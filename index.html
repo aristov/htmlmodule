@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>Instance</title>
+    <link rel=stylesheet href=styles/common.css>
+    <link rel=stylesheet href=styles/link.css>
+    <link rel=stylesheet href=styles/button.css>
+    <link rel=stylesheet href=styles/textbox.css>
+    <link rel=stylesheet href=styles/listbox.css>
+    <link rel=stylesheet href=styles/combobox.css>
+    <link rel=stylesheet href=styles/radiogroup.css>
+    <link rel=stylesheet href=styles/buttongroup.css>
+    <link rel=stylesheet href=styles/menu.css>
+    <link rel=stylesheet href=styles/popup.css>
+</head>
+<body>
+    <span data-instance=button
+          role=button
+          class=button
+          tabindex=0
+          aria-haspopup=true
+          aria-controls=samplemenu
+          aria-expanded=false>Button</span>
+    <div data-instance=menu role=menu class="menu popup" id=samplemenu hidden>
+        <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>First item</div>
+        <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Second item</div>
+        <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Third item</div>
+    </div>
+    <script src=dist/bundle.js></script>
+</body>
+</html>

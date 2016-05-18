@@ -1,0 +1,30 @@
+.link
+{
+    color: #04b;
+}
+.link:not(:focus):not(:hover)
+{
+    text-decoration: none;
+}
+.link:focus
+{
+    box-shadow: 0 0 0 2px #ffdb4d;
+    outline: none;
+}
+.link:hover
+{
+    color: #c00;
+    cursor: pointer;
+}
+.link[aria-disabled]
+{
+    color: #999;
+    cursor: default;
+}
+
+/* external link */
+
+.link[rel~=external]:not(:hover)
+{
+    color: #070;
+}

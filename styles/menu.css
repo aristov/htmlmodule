@@ -1,0 +1,32 @@
+.menu
+{
+    outline: none;
+    white-space: nowrap;
+    background: #fff;
+    padding: 4px 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.menu .menuitem
+{
+    display: block;
+    position: relative;
+    padding: 0 13px;
+    line-height: 25px;
+    cursor: pointer;
+    outline: none;
+}
+.menu:hover .box
+{
+    border-color: rgba(0, 0, 0, 0.3);
+}
+.menu .menuitem:focus
+{
+    background: #ffeba0;
+}
+.menu .menuitem:focus:active,
+.menu .menuitem:focus.active
+{
+    background: #fee481;
+}

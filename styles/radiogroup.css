@@ -1,0 +1,100 @@
+.radio
+{
+    display: inline-block;
+    outline: none;
+    white-space: nowrap;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.radio
+{
+    cursor: pointer;
+}
+.radio .box
+{
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.radio:hover .box
+{
+    border-color: rgba(0, 0, 0, 0.3);
+}
+.radio:focus .box
+{
+    border-color: #ffdb4d;
+}
+.radio:focus .box
+{
+    box-shadow: inset 0 0 0 1px #ffdb4d;
+}
+.radio:active .box,
+.radio.active .box
+{
+    background: #f3f1ed;
+}
+.radio[aria-checked=true] .box
+{
+    background: #ffeba0;
+}
+.radio[aria-checked=true]:active .box,
+.radio[aria-checked=true].active .box
+{
+    background: #fee481;
+}
+.radio[aria-disabled=true],
+.radiogroup[aria-disabled=true],
+.radiogroup[aria-disabled=true] .radio
+{
+    cursor: default;
+    color: rgba(0, 0, 0, 0.5);
+}
+.radio[aria-disabled=true] .box,
+.radiogroup[aria-disabled=true] .radio .box
+{
+    background: rgba(0, 0, 0, 0.08);
+    border-color: transparent;
+}
+.radio[aria-checked=true][aria-disabled=true] .box,
+.radiogroup[aria-disabled=true] .radio[aria-checked=true] .box
+{
+    background: rgba(0, 0, 0, 0.15);
+    border-color: transparent;
+}
+.radio[aria-checked=true][aria-disabled=true] .box::before,
+.radiogroup[aria-disabled=true] .radio[aria-checked=true] .box::before
+{
+    opacity: 0.4;
+}
+.radio .box
+{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    position: relative;
+    vertical-align: top;
+}
+.radiogroup
+{
+    display: inline-block;
+}
+.radiogroup .radio
+{
+    margin-right: 10px;
+}
+.radiogroup .radio .box
+{
+    border-radius: 7px;
+}
+.radiogroup .radio[aria-checked=true] .box::before
+{
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background: #000;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
