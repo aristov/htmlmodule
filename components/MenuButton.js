@@ -12,7 +12,7 @@ export default class MenuButton extends Button {
     }
     onDocumentClick(event) {
         if(this.expanded === 'true') {
-            var target = event.target;
+            let target = event.target;
             if(!this.element.contains(target) && !this.menu.element.contains(target)) {
                 this.expanded = 'false';
             }
@@ -20,7 +20,7 @@ export default class MenuButton extends Button {
     }
     onDocumentFocus(event) {
         if(this.expanded === 'true') {
-            var target = event.target;
+            let target = event.target;
             if(target !== this.element && !this.menu.element.contains(target)) {
                 this.expanded = 'false';
             }

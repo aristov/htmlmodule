@@ -7,7 +7,7 @@ export default class Menu {
     }
     get items() {
         return Array.prototype.map.call(
-            this.element.querySelectorAll('[role=menuitem]'),
+            this.element.querySelectorAll('[data-instance=menuitem]'),
             function(element) {
                 return MenuItem.getInstance(element);
             });
@@ -22,10 +22,9 @@ export default class Menu {
         this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
-        return typeof element.getAttribute === 'function' &&
-            element.getAttribute('role') === 'menu'?
-                element.instance || new Menu(element) :
-                null;
+        return element.dataset && element.dataset.instance === 'menu'?
+            element.instance || new Menu(element) :
+            null;
     }
     static attachToDocument() {
         MenuItem.attachToDocument();

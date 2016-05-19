@@ -5,14 +5,14 @@ export default class MenuItem {
         element.instance = this;
         this.element = element;
 
-        this.menu = Menu.getInstance(this.element.closest('[role=menu]'));
+        this.menu = Menu.getInstance(this.element.closest('[data-instance=menu]'));
 
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
         this.on('mouseleave', this.onMouseLeave);
     }
     onKeyDown(event) {
-        var keyCode = event.keyCode;
+        let keyCode = event.keyCode;
 
         if(keyCode === 38 || keyCode === 40) {
             event.preventDefault(); // prevent page scrolling
@@ -25,7 +25,7 @@ export default class MenuItem {
     }
     onKeyUp(event) {
         if(event.keyCode === 32) {
-            var element = this.element;
+            let element = this.element;
 
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', {
@@ -36,7 +36,7 @@ export default class MenuItem {
         }
     }
     onArrowKeyDown(event) {
-        var direction = event.keyCode < 39? -1 : 1,
+        let direction = event.keyCode < 39? -1 : 1,
             items = this.menu.items,
             index = items.indexOf(this) + direction;
 
@@ -55,14 +55,13 @@ export default class MenuItem {
         this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
-        return typeof element.getAttribute === 'function' &&
-            element.getAttribute('role') === 'menuitem'?
-                element.instance || new MenuItem(element) :
-                null;
+        return element.dataset && element.dataset.instance === 'menuitem'?
+            element.instance || new MenuItem(element) :
+            null;
     }
     static attachToDocument() {
         document.addEventListener('mouseenter', function(event) {
-            var menuItem = MenuItem.getInstance(event.target);
+            let menuItem = MenuItem.getInstance(event.target);
             if(menuItem) menuItem.onMouseEnter(event);  
         }, true);
     }

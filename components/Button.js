@@ -35,7 +35,7 @@ export default class Button {
         }
     }
     onKeyDown(event) {
-        var keyCode = event.keyCode;
+        let keyCode = event.keyCode;
 
         if(keyCode === 13)
             this.element.dispatchEvent(new Event('click'));
@@ -47,7 +47,7 @@ export default class Button {
     }
     onKeyUp(event) {
         if(event.keyCode === 32) {
-            var element = this.element;
+            let element = this.element;
 
             element.classList.remove('active');
             element.dispatchEvent(new Event('click'));
