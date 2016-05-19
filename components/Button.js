@@ -1,19 +1,7 @@
-import Menu from './Menu';
-
 export default class Button {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
-        if(this.haspopup === 'true' && this.controls) {
-            var popup = document.getElementById(this.controls);
-            if(popup.getAttribute('role') === 'menu') {
-                this.menu = Menu.getInstance(popup);
-                this.menu.on('keydown', this.onMenuKeyDown.bind(this));
-                document.addEventListener('click', this.onDocumentClick.bind(this));
-                document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
-            }
-        }
 
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
@@ -46,28 +34,6 @@ export default class Button {
             document.getElementById(this.controls).hidden = expanded === 'false';
         }
     }
-    onDocumentClick(event) {
-        if(this.expanded === 'true') {
-            var target = event.target;
-            if(!this.element.contains(target) && !this.menu.element.contains(target)) {
-                this.expanded = 'false';
-            }
-        }
-    }
-    onDocumentFocus(event) {
-        if(this.expanded === 'true') {
-            var target = event.target;
-            if(target !== this.element && !this.menu.element.contains(target)) {
-                this.expanded = 'false';
-            }
-        }
-    }
-    onMenuKeyDown(event) {
-        if(event.keyCode === 27) {
-            this.expanded = 'false';
-            this.element.focus();
-        }
-    }
     onKeyDown(event) {
         var keyCode = event.keyCode;
 
@@ -77,12 +43,6 @@ export default class Button {
         if(keyCode === 32 && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
-        }
-
-        if(keyCode === 40 && this.menu) {
-            event.preventDefault();
-            if(this.expanded === 'false') this.expanded = 'true';
-            this.menu.items[0].element.focus();
         }
     }
     onKeyUp(event) {
