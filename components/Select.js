@@ -8,7 +8,6 @@ export default class Select {
 
         this.listBox = ListBox.getInstance(element.querySelector('[data-instance=listbox]'));
         this.button = Button.getInstance(element.querySelector('[data-instance=button]'));
-        this.input = element.querySelector('input') || document.createElement('input');
 
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
@@ -31,10 +30,10 @@ export default class Select {
         }
     }
     get value() {
-        return this.input.value;
+        return this.listBox.value;
     }
     set value(value) {
-        this.input.value = value;
+        this.listBox.value = value;
     }
     onDocumentFocus(event) {
         if(this.expanded === 'true' && event.target !== this.element) {
@@ -85,9 +84,7 @@ export default class Select {
         }
     }
     onListBoxChange(event) {
-        var listBox = this.listBox;
-        this.button.text = listBox.checkedOptions[0].text;
-        this.value = listBox.value;
+        this.button.text = this.listBox.checkedOptions[0].text;
     }
     onClick(event) {
         this.expanded = String(this.expanded === 'false');
