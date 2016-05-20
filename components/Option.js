@@ -1,86 +1,62 @@
-function Option(element) {
-    element.instance = this;
-    this.element = element;
+import ListBox from './ListBox';
 
-    this.listBox = ListBox.getInstance(element.closest('[role=listbox]'));
+export default class Option {
+    constructor(element) {
+        element.instance = this;
+        this.element = element;
 
-    this.on('click', this.onClick);
-}
+        this.listBox = ListBox.getInstance(element.closest('[role=listbox]'));
 
-Object.defineProperty(Option.prototype, 'selected', {
-    enumerable : true,
-    get : function() {
-        return this.element.getAttribute('aria-selected') || '';
-    },
-    set : function(value) {
-        value = String(value);
-        this.element.setAttribute('aria-selected', value);
+        this.on('click', this.onClick);
     }
-});
-
-Object.defineProperty(Option.prototype, 'checked', {
-    enumerable : true,
-    get : function() {
+    get selected() {
+        return this.element.getAttribute('aria-selected') || '';
+    }
+    set selected(selected) {
+        this.element.setAttribute('aria-selected', selected);
+    }
+    get checked() {
         return this.element.getAttribute('aria-checked') || '';
-    },
-    set : function(value) {
-        value = String(value);
-        this.element.setAttribute('aria-checked', value);
+    }
+    set checked(checked) {
+        this.element.setAttribute('aria-checked', checked);
         this.listBox.value = this.value;
     }
-});
-
-Object.defineProperty(Option.prototype, 'disabled', {
-    enumerable : true,
-    get : function() {
+    get disabled() {
         return this.listBox.disabled || this.element.getAttribute('aria-disabled') || '';
-    },
-    set : function(value) {
-        value = String(value);
-        this.element.setAttribute('aria-disabled', value);
     }
-});
-
-Object.defineProperty(Option.prototype, 'value', {
-    enumerable : true,
-    get : function() {
+    set disabled(disabled) {
+        this.element.setAttribute('aria-disabled', disabled);
+    }
+    get value() {
         return this.element.dataset.value;
     }
-});
-
-Object.defineProperty(Option.prototype, 'text', {
-    enumerable : true,
-    get : function() {
+    get text() {
         return this.element.textContent;
     }
-});
-
-Option.prototype.onClick = function(event) {
-    if(this.disabled === 'true') event.stopImmediatePropagation();
-    else this.listBox.checkedOptions = [this];
-}
-
-Option.prototype.onMouseEnter = function(event) {
-    if(this.disabled !== 'true') {
-        this.listBox.unselect();
-        this.selected = 'true';
+    onClick(event) {
+        if(this.disabled === 'true') event.stopImmediatePropagation();
+        else this.listBox.checkedOptions = [this];
     }
-}
-
-Option.prototype.on = function(type, listener, context) {
-    this.element.addEventListener(type, listener.bind(context || this));
-}
-
-Option.getInstance = function(element) {
-    return typeof element.getAttribute === 'function' &&
-        element.getAttribute('role') === 'option'?
-            element.instance || new this(element) :
-            null;
-}
-
-Option.attachToDocument = function() {
-    document.addEventListener('mouseenter', function(event) {
-        var option = this.getInstance(event.target);
-        if(option) option.onMouseEnter(event);
-    }.bind(this), true);
+    onMouseEnter(event) {
+        if(this.disabled !== 'true') {
+            this.listBox.unselect();
+            this.selected = 'true';
+        }
+    }
+    on(type, listener, context) {
+        this.element.addEventListener(type, listener.bind(context || this));
+    }
+    static getInstance(element) {
+        return typeof element.getAttribute === 'function' &&
+            element.getAttribute('role') === 'option'?
+                element.instance || new this(element) :
+                null;
+    }
+    static attachToDocument() {
+        document.addEventListener('mouseenter', function(event) {
+            let option = this.getInstance(event.target);
+            if(option) option.onMouseEnter(event);
+        }.bind(this), true);
+    }
 }
