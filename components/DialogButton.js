@@ -6,7 +6,7 @@ export default class DialogButton extends Button {
         super(element);
 
         this.dialog = Dialog.getInstance(document.getElementById(this.controls));
-
+        this.dialog.on('keydown', this.onDialogKeyDown, this);
         document.addEventListener('click', this.onDocumentClick.bind(this));
         document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
     }
@@ -27,14 +27,15 @@ export default class DialogButton extends Button {
             }
         }
     }
+    onDialogKeyDown(event) {
+        if(event.keyCode === 27) {
+            this.expanded = 'false';
+            this.element.focus();
+        }
+    }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'dialogbutton'?
             element.instance || new this(element) :
             null;
-    }
-    static attachToDocument() {
-        document.addEventListener('focus', function(event) {
-            this.getInstance(event.target);
-        }.bind(this), true);
     }
 }

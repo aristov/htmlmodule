@@ -9,6 +9,9 @@ export default class Dialog {
     set hidden(hidden) {
         this.element.hidden = hidden === 'true';
     }
+    on(type, listener, context) {
+        this.element.addEventListener(type, listener.bind(context || this));
+    }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'dialog'?
             element.instance || new this(element) :

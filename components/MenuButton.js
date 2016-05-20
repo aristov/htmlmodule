@@ -6,7 +6,7 @@ export default class MenuButton extends Button {
         super(element);
 
         this.menu = Menu.getInstance(document.getElementById(this.controls));
-        this.menu.on('keydown', this.onMenuKeyDown.bind(this));
+        this.menu.on('keydown', this.onMenuKeyDown, this);
         document.addEventListener('click', this.onDocumentClick.bind(this));
         document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
     }
@@ -43,12 +43,7 @@ export default class MenuButton extends Button {
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'menubutton'?
-            element.instance || new MenuButton(element) :
+            element.instance || new this(element) :
             null;
-    }
-    static attachToDocument() {
-        document.addEventListener('focus', function(event) {
-            MenuButton.getInstance(event.target);
-        }, true);
     }
 }

@@ -77,12 +77,12 @@ export default class Button {
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'button'?
-            element.instance || new Button(element) :
+            element.instance || new this(element) :
             null;
     }
     static attachToDocument() {
         document.addEventListener('focus', function(event) {
-            Button.getInstance(event.target);
-        }, true);
+            this.getInstance(event.target);
+        }.bind(this), true);
     }
 }
