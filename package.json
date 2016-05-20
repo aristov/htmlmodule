@@ -1,0 +1,12 @@
+{
+  "name": "instance",
+  "author": "Viacheslav Aristov <vv.aristov@gmail.ru>",
+  "version": "0.0.0",
+  "dependencies": {
+    "babel-core": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "webpack": "^1.13.1"
+  }
+}
