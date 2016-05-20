@@ -1,0 +1,74 @@
+.checkbox
+{
+    display: inline-block;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.checkbox .box
+{
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    position: relative;
+    vertical-align: top;
+}
+.checkbox:hover .box
+{
+    border-color: rgba(0, 0, 0, 0.3);
+}
+.checkbox:focus .box
+{
+    border-color: #ffdb4d;
+}
+.checkbox:focus .box
+{
+    box-shadow: inset 0 0 0 1px #ffdb4d;
+}
+.checkbox:active .box,
+.checkbox.active .box
+{
+    background: #f3f1ed;
+}
+.checkbox[aria-checked=true] .box
+{
+    background: #ffeba0;
+}
+.checkbox[aria-checked=true]:active .box,
+.checkbox[aria-checked=true].active .box
+{
+    background: #fee481;
+}
+.checkbox[aria-disabled=true]
+{
+    cursor: default;
+    color: rgba(0, 0, 0, 0.5);
+}
+.checkbox[aria-disabled=true] .box
+{
+    background: rgba(0, 0, 0, 0.08);
+    border-color: transparent;
+}
+.checkbox[aria-checked=true][aria-disabled=true] .box
+{
+    background: rgba(0, 0, 0, 0.15);
+    border-color: transparent;
+}
+.checkbox[aria-checked=true][aria-disabled=true] .box::before
+{
+    opacity: 0.4;
+}
+.checkbox[aria-checked=true] .box::before
+{
+    content: url(../images/checkmark.svg);
+    position: absolute;
+    top: -6px;
+    left: 1px;
+}
