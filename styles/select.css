@@ -1,23 +1,23 @@
-.combobox
+.select
 {
     display: inline-block;
     outline: none;
 }
-.combobox .button
+.select .button
 {
     position: relative;
     padding-right: 24px;
 }
-.combobox:focus .button
+.select:focus .button
 {
     border-color: #ffdb4d;
     box-shadow: inset 0 0 0 1px #ffdb4d;
 }
-.combobox.active .button
+.select.active .button
 {
     background: #f3f1ed;
 }
-.combobox .button::after
+.select .button::after
 {
     content: url(../images/arrow-down.svg);
     position: absolute;
@@ -25,35 +25,35 @@
     right: 6px;
     transition: transform 0.1s ease-out 0s;
 }
-.combobox[aria-label]::before
+.select[aria-label]::before
 {
     content: attr(aria-label);
     display: block;
     margin-bottom: 5px;
     cursor: default;
 }
-.combobox .listbox
+.select .listbox
 {
     display: block;
 }
-.combobox .listbox .box
+.select .listbox .box
 {
     border: none;
 }
-.combobox[aria-expanded=true] .button::after
+.select[aria-expanded=true] .button::after
 {
     transform: rotate(-180deg) translateY(-2px);
 }
-.combobox[aria-expanded=false] .listbox
+.select[aria-expanded=false] .listbox
 {
     display: none;
 }
-.combobox:focus .listbox .option[aria-selected=true]
+.select:focus .listbox .option[aria-selected=true]
 {
     background: #ffeba0;
 }
-.combobox .listbox .option[aria-selected=true]:active,
-.combobox .listbox .option[aria-selected=true].active
+.select .listbox .option[aria-selected=true]:active,
+.select .listbox .option[aria-selected=true].active
 {
     background: #fee481;
 }

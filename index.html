@@ -40,6 +40,18 @@
             <span data-instance=option role=option class=option>Third option</span>
         </span>
     </span>
+    <hr>
+    <span data-instance=select role=combobox tabindex=0 aria-expanded=false class=select>
+        <span role=textbox class=button>First</span>
+        <span data-instance=listbox role=listbox class="listbox popup">
+            <input type=hidden autocomplete=off value=one>
+            <span class=box>
+                <span data-instance=option role=option class=option aria-checked=true data-value=one>First</span>
+                <span data-instance=option role=option class=option data-value=two>Second</span>
+                <span data-instance=option role=option class=option data-value=three>Third</span>
+            </span>
+        </span>
+    </span>
     <script src=dist/bundle.js></script>
 </body>
 </html>

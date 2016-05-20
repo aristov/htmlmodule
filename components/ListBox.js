@@ -39,6 +39,7 @@ export default class ListBox {
         options.forEach(function(option) {
             option.checked = 'true';
         });
+        console.log(this.value, value);
         this.value === value || this.element.dispatchEvent(new Event('change'));
     }
     get value() {
@@ -121,10 +122,9 @@ export default class ListBox {
         this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
-        return typeof element.getAttribute === 'function' &&
-            element.getAttribute('data-instance') === 'listbox'?
-                element.instance || new this(element) :
-                null;
+        return element.dataset && element.dataset.instance === 'listbox'?
+            element.instance || new this(element) :
+            null;
     }
     static attachToDocument() {
         document.addEventListener('focus', function(event) {

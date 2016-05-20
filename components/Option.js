@@ -5,7 +5,7 @@ export default class Option {
         element.instance = this;
         this.element = element;
 
-        this.listBox = ListBox.getInstance(element.closest('[role=listbox]'));
+        this.listBox = ListBox.getInstance(element.closest('[data-instance=listbox]'));
 
         this.on('click', this.onClick);
     }
@@ -48,10 +48,9 @@ export default class Option {
         this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
-        return typeof element.getAttribute === 'function' &&
-            element.getAttribute('role') === 'option'?
-                element.instance || new this(element) :
-                null;
+        return element.dataset && element.dataset.instance === 'option'?
+            element.instance || new this(element) :
+            null;
     }
     static attachToDocument() {
         document.addEventListener('mouseenter', function(event) {
