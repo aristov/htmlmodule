@@ -4,6 +4,7 @@ body
     margin: 20px;
 }
 
+/*
 .backdrop
 {
     position: fixed;
@@ -25,4 +26,15 @@ body
     width: 500px;
     margin-left: -250px;
     box-sizing: border-box;
+}
+*/
+
+.dialog
+{
+    padding: 15px;
+}
+
+.dialog h3
+{
+    margin-top: 0;
 }

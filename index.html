@@ -18,11 +18,26 @@
           tabindex=0
           aria-haspopup=true
           aria-controls=samplemenu
-          aria-expanded=false>Menu</span>
+          aria-expanded=false>Menu button</span>
     <div data-instance=menu role=menu class="menu popup" id=samplemenu hidden>
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>First item</div>
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Second item</div>
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Third item</div>
+    </div>
+    <hr>
+    <span data-instance=dialogbutton
+          role=button
+          class=button
+          tabindex=0
+          aria-haspopup=true
+          aria-controls=sampledialog
+          aria-expanded=false>Dialog button</span>
+    <div data-instance=dialog role=dialog class="dialog popup" id=sampledialog hidden>
+        <h3>Dialog</h3>
+        <span class=textbox>
+            <input class=box autocomplete=off>
+        </span>
+        <span data-instance=button tabindex=0 class=button>Submit</span>
     </div>
     <hr>
     <span data-instance=checkbox role=checkbox class=checkbox tabindex=0>

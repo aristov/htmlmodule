@@ -6,6 +6,7 @@ import RadioGroup from './components/RadioGroup';
 import ListBox from './components/ListBox';
 import Select from './components/Select';
 import TextBox from './components/TextBox';
+import DialogButton from './components/DialogButton';
 
 Button.attachToDocument();
 CheckBox.attachToDocument();
@@ -15,3 +16,4 @@ RadioGroup.attachToDocument();
 ListBox.attachToDocument();
 Select.attachToDocument();
 TextBox.attachToDocument();
+DialogButton.attachToDocument();
