@@ -9,7 +9,7 @@ export default class RadioGroup {
     }
     get radios() {
         return Array.prototype.map.call(
-            this.element.querySelectorAll('[role=radio]'),
+            this.element.querySelectorAll('[data-instance=radio]'),
             function(element) {
                 return Radio.getInstance(element);
             });
@@ -18,7 +18,7 @@ export default class RadioGroup {
         return this.element.getAttribute('aria-disabled') || '';
     }
     set disabled(value) {
-        var element = this.element,
+        let element = this.element,
             disabled = String(value),
             radios = this.radios,
             checked;
@@ -52,10 +52,9 @@ export default class RadioGroup {
         });
     }
     static getInstance(element) {
-        return typeof element.getAttribute === 'function' &&
-            element.getAttribute('role') === 'radiogroup'?
-                element.instance || new RadioGroup(element) :
-                null;
+        return element.dataset && element.dataset.instance === 'radiogroup'?
+            element.instance || new RadioGroup(element) :
+            null;
     }
     static attachToDocument() {
         Radio.attachToDocument();

@@ -4,6 +4,12 @@
     <meta charset=utf-8>
     <title>Instance</title>
     <link rel=stylesheet href=index.css>
+    <style>
+        hr
+        {
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
     <span data-instance=menubutton
@@ -18,6 +24,13 @@
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Second item</div>
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Third item</div>
     </div>
+    <hr>
+    <span data-instance=radiogroup role=radiogroup class=radiogroup>
+        <input type=hidden>
+        <span data-instance=radio role=radio class=radio tabindex=0><span class=box></span>One</span>
+        <span data-instance=radio role=radio class=radio tabindex=-1><span class=box></span>Two</span>
+        <span data-instance=radio role=radio class=radio tabindex=-1><span class=box></span>Three</span>
+    </span>
     <script src=dist/bundle.js></script>
 </body>
 </html>
