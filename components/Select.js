@@ -1,3 +1,4 @@
+import Button from './Button';
 import ListBox from './ListBox';
 
 export default class Select {
@@ -6,7 +7,7 @@ export default class Select {
         this.element = element;
 
         this.listBox = ListBox.getInstance(element.querySelector('[data-instance=listbox]'));
-        this.textBoxElement = element.querySelector('[role=textbox]');
+        this.button = Button.getInstance(element.querySelector('[data-instance=button]'));
         this.input = element.querySelector('input') || document.createElement('input');
 
         this.on('click', this.onClick);
@@ -85,7 +86,7 @@ export default class Select {
     }
     onListBoxChange(event) {
         var listBox = this.listBox;
-        this.textBoxElement.textContent = listBox.checkedOptions[0].text;
+        this.button.text = listBox.checkedOptions[0].text;
         this.value = listBox.value;
     }
     onClick(event) {

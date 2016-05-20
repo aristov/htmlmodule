@@ -18,7 +18,7 @@
           tabindex=0
           aria-haspopup=true
           aria-controls=samplemenu
-          aria-expanded=false>Button</span>
+          aria-expanded=false>Menu</span>
     <div data-instance=menu role=menu class="menu popup" id=samplemenu hidden>
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>First item</div>
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Second item</div>
@@ -33,16 +33,16 @@
     </span>
     <hr>
     <span data-instance=listbox role=listbox class=listbox tabindex=0>
-        <input type=hidden autocomplete=off>
+        <input type=hidden autocomplete=off value=one>
         <span class=box>
-            <span data-instance=option role=option class=option>First option</span>
-            <span data-instance=option role=option class=option>Second option</span>
-            <span data-instance=option role=option class=option>Third option</span>
+            <span data-instance=option role=option class=option data-value=one>First option</span>
+            <span data-instance=option role=option class=option data-value=two>Second option</span>
+            <span data-instance=option role=option class=option data-value=three>Third option</span>
         </span>
     </span>
     <hr>
     <span data-instance=select role=combobox tabindex=0 aria-expanded=false class=select>
-        <span role=textbox class=button>First</span>
+        <span data-instance=button role=textbox class=button>First</span>
         <span data-instance=listbox role=listbox class="listbox popup">
             <input type=hidden autocomplete=off value=one>
             <span class=box>

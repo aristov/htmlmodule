@@ -34,6 +34,12 @@ export default class Button {
             document.getElementById(this.controls).hidden = expanded === 'false';
         }
     }
+    get text() {
+        return this.element.textContent;
+    }
+    set text(text) {
+        this.element.textContent = text;
+    }
     onKeyDown(event) {
         let keyCode = event.keyCode;
 

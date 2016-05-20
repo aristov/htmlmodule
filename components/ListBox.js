@@ -39,7 +39,6 @@ export default class ListBox {
         options.forEach(function(option) {
             option.checked = 'true';
         });
-        console.log(this.value, value);
         this.value === value || this.element.dispatchEvent(new Event('change'));
     }
     get value() {
