@@ -3,6 +3,18 @@ export default class Dialog {
         element.instance = this;
         this.element = element;
     }
+    get widgets() {
+        let nodeIterator = document.createNodeIterator(
+                this.element,
+                NodeFilter.SHOW_ELEMENT,
+                (node) => node.tabIndex > -1 && !node.disabled?
+                    NodeFilter.FILTER_ACCEPT :
+                    NodeFilter.FILTER_REJECT),
+            node,
+            result = [];
+        while(node = nodeIterator.nextNode()) result.push(node);
+        return result;
+    }
     get hidden() {
         return String(this.element.hidden);
     }

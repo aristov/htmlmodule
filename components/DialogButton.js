@@ -8,29 +8,38 @@ export default class DialogButton extends Button {
         this.dialog = Dialog.getInstance(document.getElementById(this.controls));
         this.dialog.on('keydown', this.onDialogKeyDown, this);
         document.addEventListener('click', this.onDocumentClick.bind(this));
-        document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
     }
-    onDocumentClick(event) {
+    onKeyDown(event) {
+        super.onKeyDown(event);
+
+        if(event.keyCode === 27) {
+            this.expanded = 'false';
+        }
+        if(event.keyCode === 9 && event.shiftKey) {
+            let widgets = this.dialog.widgets;
+            event.preventDefault();
+            widgets[widgets.length - 1].focus();
+        }
+    }
+    onDocumentClick({ target }) {
         if(this.expanded === 'true') {
-            let target = event.target;
             if(!this.element.contains(target) && !this.dialog.element.contains(target)) {
                 this.expanded = 'false';
             }
         }
     }
-    onDocumentFocus(event) {
-        if(this.expanded === 'true') {
-            let target = event.target;
-            if(target !== this.element && !this.dialog.element.contains(target)) {
-                //this.expanded = 'false';
-                this.element.focus();
-            }
-        }
-    }
     onDialogKeyDown(event) {
-        if(event.keyCode === 27) {
+        let keyCode = event.keyCode;
+        if(keyCode === 27) {
             this.expanded = 'false';
             this.element.focus();
+        }
+        if(keyCode === 9 && !event.shiftKey) {
+            let widgets = this.dialog.widgets;
+            if(event.target === widgets[widgets.length - 1]) {
+                event.preventDefault();
+                this.element.focus();
+            }
         }
     }
     static getInstance(element) {
