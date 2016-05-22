@@ -25,7 +25,7 @@ export default class DialogButton extends Button {
         if(event.keyCode === 27) {
             this.expanded = 'false';
         }
-        if(event.keyCode === 9 && event.shiftKey) {
+        if(this.expanded === 'true' && event.keyCode === 9 && event.shiftKey) {
             let widgets = this.dialog.widgets;
             event.preventDefault();
             widgets[widgets.length - 1].focus();

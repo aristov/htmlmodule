@@ -4,7 +4,14 @@ export default class Dialog {
         this.element = element;
 
         if(this.modal === 'true') {
-            this.backdrop = element.closest('.backdrop');
+            let backdrop = this.backdrop = document.createElement('div'),
+                div = document.createElement('div');
+            backdrop.classList.add('backdrop');
+            backdrop.hidden = true;
+            div.appendChild(element);
+            backdrop.appendChild(div);
+            document.body.appendChild(backdrop);
+            //this.backdrop = element.closest('.backdrop');
             //document.addEventListener('click', this.onDocumentClick.bind(this));
         }
     }
