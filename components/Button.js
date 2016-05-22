@@ -30,9 +30,7 @@ export default class Button {
     }
     set expanded(expanded) {
         this.element.setAttribute('aria-expanded', expanded);
-        if(this.controls) {
-            document.getElementById(this.controls).hidden = expanded === 'false';
-        }
+        this.onExpanded(expanded);
     }
     get text() {
         return this.element.textContent;
@@ -40,6 +38,7 @@ export default class Button {
     set text(text) {
         this.element.textContent = text;
     }
+    onExpanded(expanded) {}
     onKeyDown(event) {
         let keyCode = event.keyCode;
 

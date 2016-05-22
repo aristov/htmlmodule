@@ -9,6 +9,16 @@ export default class DialogButton extends Button {
         this.dialog.on('keydown', this.onDialogKeyDown, this);
         document.addEventListener('click', this.onDocumentClick.bind(this));
     }
+    onExpanded(expanded) {
+        super.onExpanded(expanded);
+        if(this.controls) {
+            let dialog = this.dialog;
+            dialog.hidden = String(expanded === 'false');
+            if(dialog.modal === 'true') {
+                dialog.widgets[0].focus();
+            }
+        }
+    }
     onKeyDown(event) {
         super.onKeyDown(event);
 
@@ -34,11 +44,16 @@ export default class DialogButton extends Button {
             this.expanded = 'false';
             this.element.focus();
         }
-        if(keyCode === 9 && !event.shiftKey) {
-            let widgets = this.dialog.widgets;
-            if(event.target === widgets[widgets.length - 1]) {
+        if(keyCode === 9) {
+            let dialog = this.dialog,
+                widgets = dialog.widgets;
+            if(event.target === widgets[widgets.length - 1] && !event.shiftKey) {
                 event.preventDefault();
-                this.element.focus();
+                dialog.modal === 'true'? widgets[0].focus() : this.element.focus();
+            }
+            if(dialog.modal === 'true' && event.target === widgets[0] && event.shiftKey) {
+                event.preventDefault();
+                widgets[widgets.length - 1].focus();
             }
         }
     }

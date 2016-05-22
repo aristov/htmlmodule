@@ -10,6 +10,12 @@ export default class MenuButton extends Button {
         document.addEventListener('click', this.onDocumentClick.bind(this));
         document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
     }
+    onExpanded(expanded) {
+        super.onExpanded(expanded);
+        if(this.controls) {
+            this.menu.hidden = String(expanded === 'false');
+        }
+    }
     onDocumentClick(event) {
         if(this.expanded === 'true') {
             let target = event.target;
