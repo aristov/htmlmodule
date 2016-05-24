@@ -1,0 +1,81 @@
+.datepicker
+{
+    background: #fff;
+    text-align: center;
+    width: 250px;
+    padding: 7px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.datepicker .button
+{
+    box-sizing: content-box;
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.datepicker .button:not(:focus):not(:hover)
+{
+    border-color: transparent;
+}
+.datepicker .button[data-direction=prev]
+{
+    float: left;
+    background-image: url(../images/arrow-left.svg);
+}
+.datepicker .button[data-direction=next]
+{
+    float: right;
+    background-image: url(../images/arrow-right.svg);
+}
+.datepicker [role=heading]
+{
+    display: inline-block;
+    padding: 6px;
+}
+.datepicker table
+{
+    width: 100%;
+}
+.datepicker th
+{
+    padding: 2px 2px 6px;
+}
+.datepicker td
+{
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 8px;
+}
+.datepicker td[data-is-weekend=true]
+{
+    color: #c00;
+}
+.datepicker td[data-is-today=true]
+{
+    background: rgba(0, 0, 0, 0.08);
+}
+.datepicker td:hover:not([aria-disabled=true])
+{
+    border-color: rgba(0, 0, 0, 0.3);
+}
+.datepicker td:active
+{
+    background: #f3f1ed;
+}
+.datepicker td[aria-selected=true]
+{
+    background: #ffeba0;
+}
+.datepicker td[aria-selected=true]:active
+{
+    background: #fee481;
+}
+.datepicker td[aria-disabled=true]
+{
+    cursor: default;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
