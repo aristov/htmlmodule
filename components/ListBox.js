@@ -59,7 +59,7 @@ export default class ListBox {
             this.input.disabled = true;
         } else {
             element.removeAttribute('aria-disabled');
-            element.setAttribute('tabindex', '0');
+            element.tabIndex = 0;
             this.input.disabled = false;
         }
     }

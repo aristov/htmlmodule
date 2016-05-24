@@ -2,32 +2,25 @@ export default class Dialog {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
+        this.trigger = null;
         if(this.modal === 'true') {
-            let backdrop = this.backdrop = document.createElement('div'),
-                div = document.createElement('div');
-            backdrop.classList.add('backdrop');
-            backdrop.hidden = true;
-            div.appendChild(element);
-            backdrop.appendChild(div);
-            document.body.appendChild(backdrop);
-            //this.backdrop = element.closest('.backdrop');
-            //document.addEventListener('click', this.onDocumentClick.bind(this));
+            this.createBackdrop();
         }
+        //document.addEventListener('click', this.onDocumentClick.bind(this));
     }
     get modal() {
         return this.element.getAttribute('aria-modal') || 'false';
     }
     get widgets() {
-        let nodeIterator = document.createNodeIterator(
+        let iterator = document.createNodeIterator(
                 this.element,
                 NodeFilter.SHOW_ELEMENT,
-                (node) => node.tabIndex > -1 && !node.disabled?
+                node => node.tabIndex > -1 && !node.disabled?
                     NodeFilter.FILTER_ACCEPT :
                     NodeFilter.FILTER_REJECT),
             node,
             result = [];
-        while(node = nodeIterator.nextNode()) result.push(node);
+        while(node = iterator.nextNode()) result.push(node);
         return result;
     }
     get hidden() {
@@ -36,9 +29,25 @@ export default class Dialog {
     set hidden(hidden) {
         (this.backdrop || this.element).hidden = hidden === 'true';
     }
+    createBackdrop() {
+        let element = this.element,
+            backdrop = this.backdrop = document.createElement('div'),
+            div = document.createElement('div');
+        backdrop.classList.add('backdrop');
+        backdrop.hidden = true;
+        element.hidden = false;
+        div.appendChild(element);
+        backdrop.appendChild(div);
+        document.body.appendChild(backdrop);
+    }
     onDocumentClick(event) {
-        if(!this.element.contains(event.target)) {
-            this.hidden = 'true';
+        if(this.hidden === 'false' && !this.element.contains(event.target)) {
+            let trigger = this.trigger;
+            if(trigger) {
+                if(trigger.element.contains(event.target)) trigger.expanded = 'false';
+            } else {
+                this.hidden = 'true';
+            }
         }
     }
     on(type, listener, context) {

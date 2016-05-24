@@ -32,22 +32,22 @@ export default class Button {
         this.element.setAttribute('aria-expanded', expanded);
         this.onExpanded(expanded);
     }
+    onExpanded(expanded) {}
     get text() {
         return this.element.textContent;
     }
     set text(text) {
         this.element.textContent = text;
     }
-    onExpanded(expanded) {}
     onKeyDown(event) {
         let keyCode = event.keyCode;
 
         if(keyCode === 13)
             this.element.dispatchEvent(new Event('click'));
 
-        if(keyCode === 32 && !event.repeat) {
+        if(keyCode === 32) {
             event.preventDefault();
-            this.element.classList.add('active');
+            event.repeat || this.element.classList.add('active');
         }
     }
     onKeyUp(event) {

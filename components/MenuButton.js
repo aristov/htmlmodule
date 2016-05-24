@@ -12,9 +12,7 @@ export default class MenuButton extends Button {
     }
     onExpanded(expanded) {
         super.onExpanded(expanded);
-        if(this.controls) {
-            this.menu.hidden = String(expanded === 'false');
-        }
+        this.menu.hidden = String(expanded === 'false');
     }
     onDocumentClick(event) {
         if(this.expanded === 'true') {
