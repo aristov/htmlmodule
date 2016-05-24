@@ -45,6 +45,7 @@
     font: inherit;
     padding: 5px 8px;
     outline: none;
+    box-sizing: border-box;
 }
 
 .textbox[aria-label]::before
