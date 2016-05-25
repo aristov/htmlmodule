@@ -3,7 +3,7 @@ export default class TextBox {
         element.instance = this;
         this.element = element;
 
-        this.input = element.querySelector('input,textarea');
+        this.input = element.querySelector('input');
         this.input.addEventListener('blur', this.onBlur.bind(this));
     }
     get disabled() {
@@ -35,12 +35,10 @@ export default class TextBox {
     }
     static attachToDocument() {
         document.addEventListener('focus', function(event) {
-            let target = event.target,
-                tagName = target.tagName;
-            if(tagName === 'INPUT' || tagName === 'TEXTAREA') {
-                let element = target.closest('[data-instance=textbox]'),
-                    textBox = element && this.getInstance(element);
-                if(textBox) textBox.onFocus(event);
+            let target = event.target;
+            if(target.tagName === 'INPUT') {
+                let element = target.closest('[data-instance=textbox]');
+                if(element) this.getInstance(element).onFocus(event);
             }
         }.bind(this), true);
     }

@@ -2,10 +2,6 @@
 {
     position: relative;
 }
-.datebox input
-{
-    width: 100px;
-}
 .datebox::after
 {
     content: url(../images/calendar.svg);

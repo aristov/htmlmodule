@@ -1,11 +1,10 @@
+import TextBox from './TextBox';
 import DatePicker from './DatePicker';
 
-export default class DateBox {
+export default class DateBox extends TextBox {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
 
-        this.input = element.querySelector('input');
         this.datePicker = DatePicker.getInstance(element.querySelector('[data-instance=datepicker]'));
 
         this.datePicker.on('change', this.onDatePickerChange, this);
@@ -23,7 +22,7 @@ export default class DateBox {
         this.datePicker.hidden = String(expanded === 'false');
     }
     onDatePickerChange(event) {
-        var dataset = event.target.dataset,
+        let dataset = event.target.dataset,
             date = dataset.date,
             month = dataset.month,
             year = dataset.year;
@@ -44,7 +43,7 @@ export default class DateBox {
         }
     }
     onKeyDown(event) {
-        var keyCode = event.keyCode;
+        let keyCode = event.keyCode;
         if(keyCode === 27) this.expanded = 'false';
         if(keyCode === 32) {
             event.preventDefault();
@@ -64,9 +63,9 @@ export default class DateBox {
     }
     static attachToDocument() {
         document.addEventListener('focus', function(event) {
-            var target = event.target;
+            let target = event.target;
             if(target.tagName === 'INPUT') {
-                var element = target.closest('[data-instance=datebox]');
+                let element = target.closest('[data-instance=datebox]');
                 if(element) this.getInstance(element).onFocus(event);
             }
         }.bind(this), true);
