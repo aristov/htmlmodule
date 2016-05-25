@@ -9,25 +9,7 @@ export default class DialogButton extends Button {
         this.dialog.trigger = this;
         this.dialog.on('keydown', this.onDialogKeyDown, this);
         document.addEventListener('click', this.onDocumentClick.bind(this));
-
-        /*let observer = new MutationObserver(this.onAttributeChange.bind(this));
-        observer.observe(element, { attributes: true });*/
     }
-    /*onAttributeChange(mutations) {
-        if(mutations[0].attributeName === 'aria-expanded') {
-            let dialog = this.dialog;
-            dialog.hidden = String(this.expanded === 'false');
-            if(dialog.modal === 'true') dialog.widgets[0].focus();
-        }
-    }*/
-    /*set expanded(expanded) {
-        console.log(expanded);
-        super.expanded = expanded;
-
-        let dialog = this.dialog;
-        dialog.hidden = String(expanded === 'false');
-        if(dialog.modal === 'true') dialog.widgets[0].focus();
-    }*/
     onExpanded(expanded) {
         super.onExpanded(expanded);
 

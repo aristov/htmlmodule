@@ -6,7 +6,6 @@ export default class Dialog {
         if(this.modal === 'true') {
             this.createBackdrop();
         }
-        //document.addEventListener('click', this.onDocumentClick.bind(this));
     }
     get modal() {
         return this.element.getAttribute('aria-modal') || 'false';
@@ -39,16 +38,6 @@ export default class Dialog {
         div.appendChild(element);
         backdrop.appendChild(div);
         document.body.appendChild(backdrop);
-    }
-    onDocumentClick(event) {
-        if(this.hidden === 'false' && !this.element.contains(event.target)) {
-            let trigger = this.trigger;
-            if(trigger) {
-                if(trigger.element.contains(event.target)) trigger.expanded = 'false';
-            } else {
-                this.hidden = 'true';
-            }
-        }
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));
