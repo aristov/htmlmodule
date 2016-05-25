@@ -56,13 +56,13 @@ export default class MenuItem {
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'menuitem'?
-            element.instance || new MenuItem(element) :
+            element.instance || new this(element) :
             null;
     }
     static attachToDocument() {
         document.addEventListener('mouseenter', function(event) {
-            let menuItem = MenuItem.getInstance(event.target);
+            let menuItem = this.getInstance(event.target);
             if(menuItem) menuItem.onMouseEnter(event);  
-        }, true);
+        }.bind(this), true);
     }
 }

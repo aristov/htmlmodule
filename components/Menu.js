@@ -22,8 +22,8 @@ export default class Menu {
         this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'menu'?
-            element.instance || new Menu(element) :
+        return element.dataset.instance === 'menu'?
+            element.instance || new this(element) :
             null;
     }
     static attachToDocument() {

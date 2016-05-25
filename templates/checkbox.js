@@ -1,4 +1,4 @@
-export default (domTransform) => {
+export default domTransform => {
     domTransform.element('checkbox', function(checkbox) {
         let attrs = checkbox.attributes,
             view = attrs.view || 'checkbox',

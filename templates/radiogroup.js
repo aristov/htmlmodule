@@ -1,4 +1,4 @@
-export default (domTransform) => {
+export default domTransform => {
     domTransform.element('radiogroup', function(radiogroup) {
         let attrs = radiogroup.attributes,
             params = {

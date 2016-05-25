@@ -53,7 +53,7 @@ export default class RadioGroup {
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'radiogroup'?
-            element.instance || new RadioGroup(element) :
+            element.instance || new this(element) :
             null;
     }
     static attachToDocument() {

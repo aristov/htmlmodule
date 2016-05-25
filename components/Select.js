@@ -95,12 +95,12 @@ export default class Select {
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'select'?
-            element.instance || new Select(element) :
+            element.instance || new this(element) :
             null;
     }
     static attachToDocument() {
         document.addEventListener('focus', function(event) {
-            Select.getInstance(event.target);
-        }, true);
+            this.getInstance(event.target);
+        }.bind(this), true);
     }
 }

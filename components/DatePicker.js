@@ -4,7 +4,7 @@ class DatePicker {
         this.element = element;
 
         let dataset = element.dataset,
-            now = new Date();
+            now = new Date;
 
         if(!dataset.year) dataset.year = now.getFullYear();
         if(!dataset.month) dataset.month = now.getMonth() + 1;
@@ -90,7 +90,7 @@ class DatePicker {
             selectedYear = dataset.year,
             selectedMonth = dataset.month - 1,
             firstDayOfMonth = new Date(selectedYear, selectedMonth, 1).getDay(),
-            now = new Date(),
+            now = new Date,
             currentDateString = [now.getFullYear(), now.getMonth(), now.getDate()].join('.'),
             selectedDateString = [selectedYear, selectedMonth, dataset.date].join('.');
 
@@ -113,7 +113,7 @@ class DatePicker {
                 cellDataset.isToday = currentDateString === dateString;
                 cellDataset.value = dateValue;
                 cell.setAttribute('role', 'gridcell');
-                cell.setAttribute('aria-selected', selectedDateString === dateString);
+                cell.setAttribute('aria-selected', String(selectedDateString === dateString));
                 if(date < 1 || date > daysInMonth) cell.setAttribute('aria-disabled', 'true');
                 cell.textContent = dateValue;
 

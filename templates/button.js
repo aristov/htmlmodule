@@ -1,4 +1,4 @@
-export default (domTransform) => {
+export default domTransform => {
     domTransform.element('button', function({ attributes, content }) {
         return {
             element : 'span',

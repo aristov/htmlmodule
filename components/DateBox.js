@@ -8,10 +8,8 @@ export default class DateBox extends TextBox {
         this.datePicker = DatePicker.getInstance(element.querySelector('[data-instance=datepicker]'));
 
         this.datePicker.on('change', this.onDatePickerChange, this);
-
         document.addEventListener('click', this.onDocumentClick.bind(this));
         document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
-
         this.on('keydown', this.onKeyDown);
     }
     get expanded() {
@@ -57,7 +55,7 @@ export default class DateBox extends TextBox {
         this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'datebox'?
+        return element.dataset.instance === 'datebox'?
             element.instance || new this(element) :
             null;
     }

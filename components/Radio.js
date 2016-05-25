@@ -102,12 +102,12 @@ export default class Radio {
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'radio'?
-            element.instance || new Radio(element) :
+            element.instance || new this(element) :
             null;
     }
     static attachToDocument() {
         document.addEventListener('focus', function(event) {
-            Radio.getInstance(event.target);
-        }, true);
+            this.getInstance(event.target);
+        }.bind(this), true);
     }
 }

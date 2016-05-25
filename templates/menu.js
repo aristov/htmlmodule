@@ -1,4 +1,4 @@
-export default (domTransform) => {
+export default domTransform => {
     domTransform.element('menu', function({ attributes, content }) {
         return {
             element : 'div',

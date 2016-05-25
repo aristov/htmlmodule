@@ -29,7 +29,7 @@ export default class TextBox {
         this.element.classList.remove('focus');
     }
     static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'textbox'?
+        return element.dataset.instance === 'textbox'?
             element.instance || new this(element) :
             null;
     }

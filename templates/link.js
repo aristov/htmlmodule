@@ -1,4 +1,4 @@
-export default (domTransform) => {
+export default domTransform => {
     domTransform.element('link', function(link) {
         let attrs = link.attributes;
         return {

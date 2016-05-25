@@ -1,4 +1,4 @@
-export default (domTransform) => {
+export default domTransform => {
     domTransform.element('textbox', function({ attributes }) {
         return {
             element : 'span',
