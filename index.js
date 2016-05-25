@@ -7,7 +7,7 @@ import ListBox from './components/ListBox';
 import Select from './components/Select';
 import TextBox from './components/TextBox';
 import DialogButton from './components/DialogButton';
-import DatePicker from './components/DatePicker';
+import DateBox from './components/DateBox';
 
 Button.attachToDocument();
 CheckBox.attachToDocument();
@@ -18,4 +18,4 @@ ListBox.attachToDocument();
 Select.attachToDocument();
 TextBox.attachToDocument();
 DialogButton.attachToDocument();
-DatePicker.getInstance(document.querySelector('[data-instance=datepicker]'));
+DateBox.attachToDocument();

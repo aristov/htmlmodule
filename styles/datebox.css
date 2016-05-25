@@ -1,0 +1,16 @@
+.datebox
+{
+    position: relative;
+}
+.datebox input
+{
+    width: 100px;
+}
+.datebox::after
+{
+    content: url(../images/calendar.svg);
+    position: absolute;
+    bottom: 3px;
+    right: 6px;
+    cursor: pointer;
+}

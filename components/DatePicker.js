@@ -15,10 +15,10 @@ class DatePicker {
         this.on('click', this.onClick);
     }
     get hidden() {
-        return this.element.hidden;
+        return String(this.element.hidden);
     }
     set hidden(hidden) {
-        this.element.hidden = String(hidden === 'true');
+        this.element.hidden = hidden === 'true';
     }
     build() {
         let element = this.element;

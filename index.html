@@ -89,11 +89,14 @@
         </span>
     </span>
     <hr>
-    <label data-instance=textbox class=textbox aria-label=Simple>
+    <label data-instance=textbox class=textbox aria-label="Text Box">
         <input autocomplete=off class=box>
     </label>
     <hr>
-    <div data-instance=datepicker class=datepicker></div>
+    <label data-instance=datebox class=textbox aria-label="Date Box">
+        <input autocomplete=off class=box aria-haspopup=true aria-expanded=false>
+        <div data-instance=datepicker class="datepicker popup" hidden></div>
+    </label>
     <script src=dist/bundle.js></script>
 </body>
 </html>
