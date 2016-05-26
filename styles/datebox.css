@@ -1,12 +1,12 @@
-.datebox
+.datebox .box
 {
-    position: relative;
+    padding-right: 26px;
 }
 .datebox::after
 {
     content: url(../images/calendar.svg);
     position: absolute;
-    bottom: 3px;
+    bottom: 4px;
     right: 6px;
     cursor: pointer;
 }

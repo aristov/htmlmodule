@@ -1,18 +1,21 @@
+.textbox
+{
+    display: inline-block;
+    position: relative;
+}
 .textbox .box
 {
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    font: inherit;
+    padding: 5px 8px;
+    outline: none;
+    box-sizing: border-box;
 }
-
-/* hover */
-
 .textbox:hover .box
 {
     border-color: rgba(0, 0, 0, 0.3);
 }
-
-/* focus */
-
 .textbox .box:focus
 {
     border-color: #ffdb4d;
@@ -21,9 +24,6 @@
 {
     box-shadow: inset 0 0 0 1px #ffdb4d;
 }
-
-/* disabled */
-
 .textbox.disabled,
 .textbox .box:disabled
 {
@@ -35,19 +35,6 @@
     background: rgba(0, 0, 0, 0.08);
     border-color: transparent;
 }
-
-.textbox
-{
-    display: inline-block;
-}
-.textbox .box
-{
-    font: inherit;
-    padding: 5px 8px;
-    outline: none;
-    box-sizing: border-box;
-}
-
 .textbox[aria-label]::before
 {
     content: attr(aria-label);
@@ -55,4 +42,23 @@
     margin-bottom: 5px;
     cursor: default;
 }
-
+.textbox.hasclear .box
+{
+    padding-right: 26px;
+}
+.textbox .clear:not([hidden])
+{
+    display: inline-block;
+    width: 27px;
+    height: 27px;
+    background: url(../images/cross.svg) no-repeat 50% 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 1px;
+    opacity: 0.3;
+    outline: none;
+}
+.textbox .clear:hover
+{
+    opacity: 1;
+}

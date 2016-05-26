@@ -5,6 +5,12 @@ export default class TextBox {
 
         this.input = element.querySelector('input');
         this.input.addEventListener('blur', this.onBlur.bind(this));
+
+        if(element.classList.contains('hasclear')) {
+            this.clear = element.querySelector('.clear');
+            this.input.addEventListener('input', this.onInput.bind(this));
+            this.clear.addEventListener('click', this.onClearClick.bind(this));
+        }
     }
     get disabled() {
         return String(this.input.disabled);
@@ -21,6 +27,13 @@ export default class TextBox {
     }
     set value(value) {
         this.input.value = value;
+    }
+    onInput(event) {
+        this.clear.hidden = !this.value;
+    }
+    onClearClick(event) {
+        this.value = '';
+        this.clear.hidden = true;
     }
     onFocus(event) {
         this.element.classList.add('focus');
