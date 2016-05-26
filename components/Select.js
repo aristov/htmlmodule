@@ -24,9 +24,8 @@ export default class Select {
     set expanded(expanded) {
         this.element.setAttribute('aria-expanded', expanded);
         if(expanded === 'true') {
-            var listBox = this.listBox,
-                selectedOption = listBox.selectedOptions[0];
-            if(!selectedOption) listBox.options[0].selected = 'true';
+            let listBox = this.listBox;
+            if(!listBox.selectedOption) listBox.options[0].selected = 'true';
         }
     }
     get value() {
@@ -46,7 +45,7 @@ export default class Select {
         }
     }
     onKeyDown(event) {
-        var keyCode = event.keyCode;
+        let keyCode = event.keyCode;
 
         if(keyCode === 32 && !event.repeat) {
             event.preventDefault();
@@ -72,7 +71,7 @@ export default class Select {
     }
     onKeyUp(event) {
         if(event.keyCode === 32) {
-            var element = this.element;
+            let element = this.element;
 
             if(this.expanded === 'true') {
                 this.listBox.onSpaceKeyUp(event);
@@ -84,7 +83,7 @@ export default class Select {
         }
     }
     onListBoxChange(event) {
-        this.button.text = this.listBox.checkedOptions[0].text;
+        this.button.text = this.listBox.checkedOption.text;
     }
     onClick(event) {
         this.expanded = String(this.expanded === 'false');

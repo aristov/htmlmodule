@@ -28,10 +28,16 @@ export default class ListBox {
             return option.selected === 'true';
         });
     }
+    get selectedOption() {
+        return this.selectedOptions[0];
+    }
     get checkedOptions() {
         return this.options.filter(function(option) {
             return option.checked === 'true';
         });
+    }
+    get checkedOption() {
+        return this.checkedOptions[0];
     }
     set checkedOptions(options) {
         let value = this.value;
