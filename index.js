@@ -8,6 +8,7 @@ import Select from './components/Select';
 import TextBox from './components/TextBox';
 import DialogButton from './components/DialogButton';
 import DateBox from './components/DateBox';
+import TabList from './components/TabList';
 
 Button.attachToDocument();
 CheckBox.attachToDocument();
@@ -19,3 +20,4 @@ Select.attachToDocument();
 TextBox.attachToDocument();
 DialogButton.attachToDocument();
 DateBox.attachToDocument();
+TabList.attachToDocument();

@@ -1,0 +1,41 @@
+.tablist
+{
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.tablist .tab
+{
+    color: #aaa;
+    display: inline-block;
+    padding: 0 15px;
+    border-radius: 0;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+.tablist .tab:hover
+{
+    color: #c00;
+}
+.tablist .tab span
+{
+    display: block;
+    padding: 16px 0 18px;
+    border-top: 2px solid transparent;
+}
+.tablist .tab[aria-selected=true]
+{
+    color: black;
+    cursor: default;
+}
+.tablist .tab[aria-selected=true] span
+{
+    border-top: 2px solid black;
+}
+.tablist .tab:focus span
+{
+    border-color: #ffdb4d;
+}

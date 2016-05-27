@@ -9,6 +9,14 @@
         {
             margin: 20px 0;
         }
+        .tablist
+        {
+            display: inline-block;
+        }
+        .tabpanel
+        {
+            padding: 15px;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +108,15 @@
     </label>
     <hr>
     <span class=spin></span>
+    <hr>
+    <div data-instance=tablist role=tablist class=tablist>
+        <span data-instance=tab role=tab tabindex=0 aria-controls=firsttab class=tab aria-selected=true><span>One</span></span
+        ><span data-instance=tab role=tab tabindex=-1 aria-controls=secondtab class=tab><span>Two</span></span
+        ><span data-instance=tab role=tab tabindex=-1 aria-controls=thirdtab class=tab><span>Three</span></span>
+    </div>
+    <div role=tabpanel class=tabpanel id=firsttab>First panel</div>
+    <div role=tabpanel class=tabpanel id=secondtab hidden>Second panel</div>
+    <div role=tabpanel class=tabpanel id=thirdtab hidden>Third panel</div>
     <script src=dist/bundle.js></script>
 </body>
 </html>
