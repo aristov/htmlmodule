@@ -49,6 +49,7 @@ export default class DateBox extends TextBox {
         }
     }
     onFocus(event) {
+        super.onFocus(event);
         this.expanded = 'true';
     }
     on(type, listener, context) {

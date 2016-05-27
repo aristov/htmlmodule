@@ -12,5 +12,8 @@ module.exports = {
             loader : 'babel?presets[]=es2015'
         }]
     },
+    resolve: {
+        modulesDirectories: ['node_modules']
+    },
     watch : true
 };
