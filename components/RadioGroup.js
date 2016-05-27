@@ -1,5 +1,7 @@
 import Radio from './Radio';
 
+const map = Array.prototype.map;
+
 export default class RadioGroup {
     constructor(element) {
         element.instance = this;
@@ -8,7 +10,7 @@ export default class RadioGroup {
         this.input = element.querySelector('input') || document.createElement('input');
     }
     get radios() {
-        return Array.prototype.map.call(
+        return map.call(
             this.element.querySelectorAll('[data-instance=radio]'),
             function(element) {
                 return Radio.getInstance(element);

@@ -1,12 +1,14 @@
 import MenuItem from './MenuItem';
 
+const map = Array.prototype.map;
+
 export default class Menu {
     constructor(element) {
         element.instance = this;
         this.element = element;
     }
     get items() {
-        return Array.prototype.map.call(
+        return map.call(
             this.element.querySelectorAll('[data-instance=menuitem]'),
             function(element) {
                 return MenuItem.getInstance(element);

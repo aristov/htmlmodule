@@ -1,5 +1,7 @@
 import Option from './Option';
 
+const map = Array.prototype.map;
+
 export default class ListBox {
     constructor(element) {
         element.instance = this;
@@ -11,7 +13,7 @@ export default class ListBox {
         this.on('keyup', this.onKeyUp);
     }
     get options() {
-        return Array.prototype.map.call(
+        return map.call(
             this.element.querySelectorAll('[data-instance=option]'),
             function(element) {
                 return Option.getInstance(element);

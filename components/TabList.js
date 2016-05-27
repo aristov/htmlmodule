@@ -1,12 +1,14 @@
 import Tab from './Tab';
 
+const map = Array.prototype.map;
+
 export default class TabList {
     constructor(element) {
         element.instance = this;
         this.element = element;
     }
     get tabs() {
-        return Array.prototype.map.call(
+        return map.call(
             this.element.querySelectorAll('[data-instance=tab]'),
             function(element) {
                 return Tab.getInstance(element);
