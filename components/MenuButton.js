@@ -44,6 +44,9 @@ export default class MenuButton extends Button {
             if(this.expanded === 'false') this.expanded = 'true';
             this.menu.items[0].element.focus();
         }
+        if(event.keyCode === 27) {
+            this.expanded = 'false';
+        }
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'menubutton'?
