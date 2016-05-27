@@ -3,3 +3,28 @@
     width: 80px;
     cursor: default;
 }
+.timebox .button
+{
+    position: absolute;
+    right: 3px;
+    border: none;
+    opacity: 0.5;
+    font-size: 9px;
+    padding: 0 5px;
+}
+.timebox .button:hover
+{
+    background: rgba(0, 0, 0, 0.2);
+}
+.timebox .button:active
+{
+    background: rgba(0, 0, 0, 0.3);
+}
+.timebox .button[data-value="+1"]
+{
+    bottom: 14px;
+}
+.timebox .button[data-value="-1"]
+{
+    bottom: 3px;
+}

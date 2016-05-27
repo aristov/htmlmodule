@@ -6,9 +6,10 @@ const format = 'HH : mm';
 export default class TimeBox extends TextBox {
     constructor(element) {
         super(element);
-        this._enterInProgress = false;
-        this.input.addEventListener('click', this.onClick.bind(this));
-        this.input.addEventListener('keydown', this.onKeyDown.bind(this));
+        this.enterInProgress = false;
+        element.addEventListener('click', this.onClick.bind(this));
+        this.input.addEventListener('click', this.onInputClick.bind(this));
+        this.input.addEventListener('keydown', this.onInputKeyDown.bind(this));
     }
     get range() {
         return this.element.dataset.range || '';
@@ -17,19 +18,30 @@ export default class TimeBox extends TextBox {
         this.element.dataset.range = range;
         if(range === 'hours') this.input.setSelectionRange(0, 2);
         else this.input.setSelectionRange(5, 7);
-        this._enterInProgress = false;
+        this.enterInProgress = false;
     }
     onFocus(event) {
         super.onFocus(event);
         setTimeout(() => this.range = this.range || 'hours', 0);
     }
-    onClick(event) {
+    onClick({ target }) {
+        if(target.getAttribute('role') === 'button') {
+            this.shiftValue(Number(target.dataset.value));
+            this.element.focus();
+        }
+    }
+    onInputClick() {
         this.range = this.input.selectionStart < 4? 'hours' : 'minutes';
     }
-    onKeyDown(event) {
+    onInputKeyDown(event) {
         let keyCode = event.keyCode;
         if(keyCode >= 48 && keyCode <= 57) this.onDigitKeyDown(event);
         if(keyCode >= 37 && keyCode <= 40) this.onArrowKeyDown(event);
+    }
+    onDigitKeyDown({ keyCode }) {
+        let value = keyCode - 48;
+        if(this.range === 'hours') this.onHoursEnter(value);
+        else this.onMinutesEnter(value)
     }
     onArrowKeyDown(event) {
         event.preventDefault();
@@ -40,14 +52,9 @@ export default class TimeBox extends TextBox {
             case 40: this.shiftValue(-1); break;
         }
     }
-    onDigitKeyDown({ keyCode }) {
-        let value = keyCode - 48;
-        if(this.range === 'hours') this.onHoursEnter(value);
-        else this.onMinutesEnter(value)
-    }
     onHoursEnter(value) {
         let time = moment(this.value, format);
-        if(this._enterInProgress) {
+        if(this.enterInProgress) {
             value = parseInt(parseInt(time.hours(), 10) + String(value), 10);
             this.value = time.hours(Math.min(value, 23)).format(format);
             this.range = 'minutes';
@@ -55,30 +62,27 @@ export default class TimeBox extends TextBox {
             this.value = time.hours(value).format(format);
             if(value < 3) {
                 this.range = 'hours';
-                this._enterInProgress = true;
-            } else {
-                this.range = 'minutes';
-            }
+                this.enterInProgress = true;
+            } else this.range = 'minutes';
         }
 
     }
     onMinutesEnter(value) {
         let time = moment(this.value, format);
-        if(this._enterInProgress) {
+        if(this.enterInProgress) {
             value = parseInt(parseInt(time.minutes(), 10) + String(value), 10);
             this.value = time.minutes(Math.min(value, 59)).format(format);
             this.range = 'minutes';
         } else {
             this.value = time.minutes(value).format(format);
             this.range = 'minutes';
-            if(value < 6) this._enterInProgress = true;
+            if(value < 6) this.enterInProgress = true;
         }
     }
     shiftValue(step) {
         let time = moment(this.value, format),
-            range = this.range,
-            value = time[range]();
-        this.value = time[range](value + step).format(format);
+            range = this.range;
+        this.value = time[range](time[range]() + step).format(format);
         this.range = range;
     }
     static getInstance(element) {
