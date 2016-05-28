@@ -107,8 +107,14 @@
     </label>
     <hr>
     <label data-instance=datebox class="textbox datebox" aria-label="Date Box">
-        <input autocomplete=off class=box aria-haspopup=true aria-expanded=false>
-        <div data-instance=datepicker class="datepicker popup" hidden></div>
+        <input autocomplete=off class=box aria-haspopup=true aria-expanded=false value=28.05.2016>
+        <div data-instance=datepicker class="datepicker popup" data-year=2016 data-month=5 data-date=28 hidden></div>
+    </label>
+    &nbsp;
+    <label data-instance=timebox class="textbox timebox" aria-label="Time Box">
+        <input autocomplete=off class=box readonly value="09 : 00">
+        <span role=button class=button tabindex=-1 data-value=+1>&#9650;</span>
+        <span role=button class=button tabindex=-1 data-value=-1>&#9660;</span>
     </label>
     <hr>
     <span class=spin></span>
