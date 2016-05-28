@@ -8,6 +8,9 @@ export default class TimeBox extends TextBox {
         super(element);
         this.enterInProgress = false;
         element.addEventListener('click', this.onClick.bind(this));
+        element.addEventListener('focus', () => {
+            this.disabled === 'true' || element.classList.add('focus');
+        }, true);
         this.input.addEventListener('click', this.onInputClick.bind(this));
         this.input.addEventListener('keydown', this.onInputKeyDown.bind(this));
     }
@@ -25,7 +28,7 @@ export default class TimeBox extends TextBox {
         setTimeout(() => this.range = this.range || 'hours', 0);
     }
     onClick({ target }) {
-        if(target.getAttribute('role') === 'button') {
+        if(this.disabled === 'false' && target.getAttribute('role') === 'button') {
             this.shiftValue(Number(target.dataset.value));
             this.element.focus();
         }
@@ -65,7 +68,6 @@ export default class TimeBox extends TextBox {
                 this.enterInProgress = true;
             } else this.range = 'minutes';
         }
-
     }
     onMinutesEnter(value) {
         let time = moment(this.value, format);

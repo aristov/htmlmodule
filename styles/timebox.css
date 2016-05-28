@@ -1,6 +1,7 @@
 .timebox .box
 {
     width: 80px;
+    padding-right: 25px;
     cursor: default;
 }
 .timebox .button
@@ -20,6 +21,10 @@
 {
     background: rgba(0, 0, 0, 0.3);
 }
+.timebox .button:focus
+{
+    box-shadow: none;
+}
 .timebox .button[data-value="+1"]
 {
     bottom: 14px;
@@ -27,4 +32,9 @@
 .timebox .button[data-value="-1"]
 {
     bottom: 3px;
+}
+.timebox.disabled .button
+{
+    background: transparent;
+    cursor: default;
 }

@@ -28,17 +28,17 @@ export default class TextBox {
     set value(value) {
         this.input.value = value;
     }
-    onInput(event) {
+    onInput() {
         this.clear.hidden = !this.value;
     }
-    onClearClick(event) {
+    onClearClick() {
         this.value = '';
         this.clear.hidden = true;
     }
     onFocus(event) {
         this.element.classList.add('focus');
     }
-    onBlur(event) {
+    onBlur() {
         this.element.classList.remove('focus');
     }
     static getInstance(element) {

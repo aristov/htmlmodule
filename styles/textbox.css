@@ -16,12 +16,10 @@
 {
     border-color: rgba(0, 0, 0, 0.3);
 }
-.textbox .box:focus
+.textbox .box:focus,
+.textbox.focus .box
 {
     border-color: #ffdb4d;
-}
-.textbox .box:focus
-{
     box-shadow: inset 0 0 0 1px #ffdb4d;
 }
 .textbox.disabled,
