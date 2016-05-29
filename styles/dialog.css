@@ -8,7 +8,7 @@
     margin-top: 0;
 }
 
-.backdrop:not([hidden])
+.backdrop
 {
     display: table;
     position: fixed;
@@ -35,4 +35,24 @@
     position: relative;
     text-align: left;
     margin: 0;
+}
+
+.dialog .button[data-action=close]
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-image: url(../images/cross.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    opacity: 0.5;
+}
+.dialog .button[data-action=close]:hover
+{
+    opacity: 1;
+}
+.dialog .button[data-action=close]:not(:focus)
+{
+    border-color: transparent;
 }

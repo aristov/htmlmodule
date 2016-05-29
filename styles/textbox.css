@@ -44,7 +44,7 @@
 {
     padding-right: 26px;
 }
-.textbox .clear:not([hidden])
+.textbox .clear
 {
     display: inline-block;
     width: 27px;

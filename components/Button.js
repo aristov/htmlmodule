@@ -55,7 +55,10 @@ export default class Button {
             let element = this.element;
 
             element.classList.remove('active');
-            element.dispatchEvent(new Event('click'));
+            element.dispatchEvent(new Event('click', {
+                bubbles: true,
+                cancelable: true
+            }));
         }
     }
     onClick(event) {
@@ -70,6 +73,9 @@ export default class Button {
         if(this.expanded) {
             this.expanded = this.expanded === 'true'? 'false' : 'true';
         }
+    }
+    focus() {
+        this.element.focus();
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));
