@@ -63,7 +63,7 @@
             <input class=box autocomplete=off>
         </span>
         <span data-instance=button tabindex=0 class=button>Submit</span>
-        <span data-instance=button tabindex=0 class=button data-action=close></span>
+        <span data-instance=button tabindex=0 class=button data-action=close aria-label="Close dialog"></span>
     </div>
     <hr>
     <span data-instance=checkbox role=checkbox class=checkbox tabindex=0>
@@ -121,13 +121,13 @@
     <span class=spin></span>
     <hr>
     <div data-instance=tablist role=tablist class=tablist>
-        <span data-instance=tab role=tab tabindex=0 aria-controls=firstpanel class=tab aria-selected=true><span>One</span></span
-        ><span data-instance=tab role=tab tabindex=-1 aria-controls=secondpanel class=tab><span>Two</span></span
-        ><span data-instance=tab role=tab tabindex=-1 aria-controls=thirdpanel class=tab><span>Three</span></span>
+        <span data-instance=tab role=tab tabindex=0 aria-controls=tabpanel1 class=tab aria-selected=true><span>One</span></span
+        ><span data-instance=tab role=tab tabindex=-1 aria-controls=tabpanel2 class=tab><span>Two</span></span
+        ><span data-instance=tab role=tab tabindex=-1 aria-controls=tabpanel3 class=tab><span>Three</span></span>
     </div>
-    <div role=tabpanel class=tabpanel id=firstpanel>First panel</div>
-    <div role=tabpanel class=tabpanel id=secondpanel hidden>Second panel</div>
-    <div role=tabpanel class=tabpanel id=thirdpanel hidden>Third panel</div>
+    <div role=tabpanel class=tabpanel id=tabpanel1>First panel</div>
+    <div role=tabpanel class=tabpanel id=tabpanel2 hidden>Second panel</div>
+    <div role=tabpanel class=tabpanel id=tabpanel3 hidden>Third panel</div>
     <script src=dist/bundle.js></script>
 </body>
 </html>

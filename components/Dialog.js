@@ -60,14 +60,15 @@ export default class Dialog {
             this.trigger.focus();
         }
         if(keyCode === 9) {
-            let widgets = this.widgets;
-            if(event.target === widgets[widgets.length - 1] && !event.shiftKey) {
+            let widgets = this.widgets,
+                lastWidget = widgets[widgets.length - 1];
+            if(event.shiftKey && this.modal === 'true' && event.target === widgets[0]) {
+                event.preventDefault();
+                lastWidget.focus();
+            }
+            if(!event.shiftKey && event.target === lastWidget) {
                 event.preventDefault();
                 this.modal === 'true'? widgets[0].focus() : this.trigger.focus();
-            }
-            if(this.modal === 'true' && event.target === widgets[0] && event.shiftKey) {
-                event.preventDefault();
-                widgets[widgets.length - 1].focus();
             }
         }
     }
