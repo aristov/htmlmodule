@@ -4,9 +4,7 @@ export default class Radio {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
-        this.group = this.getGroup();
-
+        this.group = RadioGroup.getInstance(this.element.closest('[data-instance=radiogroup]'));
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
@@ -16,7 +14,6 @@ export default class Radio {
     }
     set checked(checked) {
         let element = this.element;
-
         element.setAttribute('aria-checked', checked);
         element.tabIndex = checked === 'true'? '0' : '-1';
         this.group.value = this.value;
@@ -24,11 +21,10 @@ export default class Radio {
     get disabled() {
         return this.group.disabled === 'true'?
             'true' :
-            this.element.getAttribute('aria-disabled') || '';
+            this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
         let element = this.element;
-
         if(disabled === 'true') {
             element.setAttribute('aria-disabled', 'true');
             element.removeAttribute('tabindex');
@@ -40,12 +36,6 @@ export default class Radio {
     get value() {
         return this.element.dataset.value;
     }
-    getGroup() {
-        let element = this.element,
-            group = element.closest('[data-instance=radiogroup]');
-
-        return RadioGroup.getInstance(group);
-    }
     onClick(event) {
         if(this.disabled)
             event.stopImmediatePropagation();
@@ -56,17 +46,14 @@ export default class Radio {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-
         if(keyCode >= 37 && keyCode <= 40) {
-            event.preventDefault(); // prevent page scrolling
+            event.preventDefault();
             this.onArrowKeyDown(event);
         }
-
         if(event.keyCode === 32 && !event.repeat) {
-            event.preventDefault(); // prevent page scrolling
+            event.preventDefault();
             this.element.classList.add('active');
         }
-
         if(event.keyCode === 13) this.submitForm();
     }
     submitForm() {
@@ -79,7 +66,6 @@ export default class Radio {
     onKeyUp(event) {
         if(event.keyCode === 32) {
             let element = this.element;
-
             element.classList.remove('active');
             element.dispatchEvent(new Event('click'));
         }

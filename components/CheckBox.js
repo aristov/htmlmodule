@@ -3,26 +3,25 @@ export default class CheckBox {
         element.instance = this;
         this.element = element;
         this.input = this.getInput();
-
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
     }
     get checked() {
-        return this.element.getAttribute('aria-checked') || '';
+        return this.element.getAttribute('aria-checked') || 'false';
     }
     set checked(checked) {
-        var element = this.element;
+        let element = this.element;
         element.setAttribute('aria-checked', checked);
         checked === 'true'?
             element.appendChild(this.input) :
             element.removeChild(this.input);
     }
     get disabled() {
-        return this.element.getAttribute('aria-disabled') || '';
+        return this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
-        var element = this.element;
+        let element = this.element;
         element.setAttribute('aria-disabled', disabled);
         if(this.input.disabled = disabled === 'true') {
             element.removeAttribute('tabindex');
@@ -36,36 +35,35 @@ export default class CheckBox {
         this.input.value = value;
     }
     getInput() {
-        var element = this.element,
+        let element = this.element,
             input = element.querySelector('input');
         if(!input) {
-            var dataset = element.dataset;
+            let dataset = element.dataset;
             input = document.createElement('input');
             input.type = 'hidden';
             input.name = dataset.name || '';
             input.value = dataset.value || '';
-            if(this.checked) element.appendChild(input);
+            if(this.checked === 'true') element.appendChild(input);
         }
         return input;
     }
     onKeyDown(event) {
         if(event.keyCode === 32 && !event.repeat) {
-            event.preventDefault(); // prevent page scrolling
+            event.preventDefault();
             this.element.classList.add('active');
         }
     }
     onKeyUp(event) {
         if(event.keyCode === 32) {
-            var element = this.element;
+            let element = this.element;
             element.classList.remove('active');
-            element.dispatchEvent(new Event('click'));
+            element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
         }
     }
     onClick(event) {
-        if(this.disabled === 'true') {
-            event.stopImmediatePropagation();
-        } else {
-            this.checked = this.checked === 'true'? 'false' : 'true';
+        if(this.disabled === 'true') event.stopImmediatePropagation();
+        else {
+            this.checked = String(this.checked === 'false');
             this.element.dispatchEvent(new Event('change'));
         }
     }

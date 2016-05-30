@@ -2,7 +2,6 @@ export default class Button {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
@@ -41,24 +40,19 @@ export default class Button {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-
-        if(keyCode === 13)
-            this.element.dispatchEvent(new Event('click'));
-
+        if(keyCode === 13) {
+            this.element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
+        }
         if(keyCode === 32) {
             event.preventDefault();
             event.repeat || this.element.classList.add('active');
         }
     }
-    onKeyUp(event) {
-        if(event.keyCode === 32) {
+    onKeyUp({ keyCode }) {
+        if(keyCode === 32) {
             let element = this.element;
-
             element.classList.remove('active');
-            element.dispatchEvent(new Event('click', {
-                bubbles: true,
-                cancelable: true
-            }));
+            element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
         }
     }
     onClick(event) {
