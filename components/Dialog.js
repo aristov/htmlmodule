@@ -3,10 +3,13 @@ export default class Dialog {
         element.instance = this;
         this.element = element;
         this.trigger = null;
-        if(this.modal === 'true') this.createBackdrop();
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         document.addEventListener('click', this.onDocumentClick.bind(this));
+        if(this.modal === 'true') {
+            document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
+            this.createBackdrop();
+        }
     }
     get modal() {
         return this.element.getAttribute('aria-modal') || 'false';
@@ -36,6 +39,9 @@ export default class Dialog {
             if(this.modal === 'true' && hidden === 'false') this.widgets[0].focus();
         }
     }
+    get assertive() {
+        return this.element.dataset.assertive || 'false';
+    }
     createBackdrop() {
         let element = this.element,
             backdrop = this.backdrop = document.createElement('div'),
@@ -55,7 +61,7 @@ export default class Dialog {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === 27) {
+        if(keyCode === 27 && this.assertive === 'false') {
             this.hidden = 'true';
             this.trigger.focus();
         }
@@ -72,11 +78,17 @@ export default class Dialog {
             }
         }
     }
+    onDocumentFocus({ target }) {
+        if(this.hidden === 'false' && this.assertive === 'true' && !this.element.contains(target)) {
+            this.widgets[0].focus();
+        }
+    }
     onDocumentClick({ target }) {
-        if(this.hidden === 'false') {
-            if(!this.element.contains(target) && !(this.trigger && this.trigger.element.contains(target))) {
+        if(this.hidden === 'false' &&
+            this.assertive === 'false' &&
+            !this.element.contains(target) &&
+            !(this.trigger && this.trigger.element.contains(target))) {
                 this.hidden = 'true';
-            }
         }
     }
     on(type, listener, context) {

@@ -46,18 +46,15 @@ export default class Select {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-
         if(keyCode === 32 && !event.repeat) {
             event.preventDefault();
             this.onSpaceKeyDown(event);
         }
-
         if(keyCode >= 37 && keyCode <= 40) {
             event.preventDefault();
             if(this.expanded === 'false') this.expanded = 'true';
             else this.listBox.onArrowKeyDown(event);
         }
-
         if(keyCode === 27) {
             this.expanded = 'false';
         }
@@ -72,7 +69,6 @@ export default class Select {
     onKeyUp(event) {
         if(event.keyCode === 32) {
             let element = this.element;
-
             if(this.expanded === 'true') {
                 this.listBox.onSpaceKeyUp(event);
                 this.expanded = 'false';
