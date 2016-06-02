@@ -4,14 +4,13 @@ import Menu from './Menu';
 export default class MenuButton extends Button {
     constructor(element) {
         super(element);
-
         this.menu = Menu.getInstance(document.getElementById(this.controls));
         this.menu.on('keydown', this.onMenuKeyDown, this);
         document.addEventListener('click', this.onDocumentClick.bind(this));
         document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
     }
-    onExpanded(expanded) {
-        super.onExpanded(expanded);
+    setExpanded(expanded) {
+        super.setExpanded(expanded);
         this.menu.hidden = String(expanded === 'false');
     }
     onDocumentClick(event) {
@@ -38,7 +37,6 @@ export default class MenuButton extends Button {
     }
     onKeyDown(event) {
         super.onKeyDown(event);
-
         if(event.keyCode === 40) {
             event.preventDefault();
             if(this.expanded === 'false') this.expanded = 'true';

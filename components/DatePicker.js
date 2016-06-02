@@ -74,7 +74,7 @@ class DatePicker {
         let gridHead = document.createElement('thead'),
             row = document.createElement('tr');
 
-        DatePicker.WEEK_DAY_NAMES.forEach(function(name) {
+        DatePicker.WEEK_DAY_NAMES.forEach(name => {
             let columnHeader = document.createElement('th');
             columnHeader.setAttribute('role', 'columnheader');
             columnHeader.textContent = name;
@@ -107,11 +107,11 @@ class DatePicker {
                     dateValue = new Date(selectedYear, selectedMonth, date).getDate(),
                     dateString = [selectedYear, selectedMonth, date].join('.'),
                     cell = document.createElement('td'),
-                    cellDataset = cell.dataset;
+                    dataset = cell.dataset;
 
-                cellDataset.isWeekend = j > 5;
-                cellDataset.isToday = currentDateString === dateString;
-                cellDataset.value = dateValue;
+                dataset.isWeekend = j > 5;
+                dataset.isToday = currentDateString === dateString;
+                dataset.value = dateValue;
                 cell.setAttribute('role', 'gridcell');
                 cell.setAttribute('aria-selected', String(selectedDateString === dateString));
                 if(date < 1 || date > daysInMonth) cell.setAttribute('aria-disabled', 'true');
@@ -124,11 +124,11 @@ class DatePicker {
         return this.gridBody = gridBody;
     }
     onClick(event) {
-        if(event.target.dataset.instance === 'button') this.onButtonClick(event);
-        if(event.target.getAttribute('role') === 'gridcell') this.onGridCellClick(event);
-    }
-    onGridCellClick(event) {
         let target = event.target;
+        if(target.dataset.instance === 'button') this.onButtonClick(event);
+        if(target.getAttribute('role') === 'gridcell') this.onGridCellClick(event);
+    }
+    onGridCellClick({ target }) {
         if(target.getAttribute('aria-disabled') !== 'true') {
             let element = this.element,
                 selected = element.querySelector('[role=gridcell][aria-selected=true]');
@@ -138,9 +138,9 @@ class DatePicker {
             element.dispatchEvent(new Event('change'));
         }
     }
-    onButtonClick(event) {
+    onButtonClick({ target }) {
         let element = this.element,
-            direction = event.target.dataset.direction,
+            direction = target.dataset.direction,
             dataset = element.dataset;
 
         direction === 'next'? dataset.month++ : dataset.month--;
@@ -160,7 +160,6 @@ class DatePicker {
     rebuild() {
         let gridBody = this.gridBody,
             heading = this.heading;
-
         this.grid.replaceChild(this.buildGridBody(), gridBody);
         this.header.replaceChild(this.buildHeading(), heading);
     }

@@ -4,9 +4,7 @@ import DatePicker from './DatePicker';
 export default class DateBox extends TextBox {
     constructor(element) {
         super(element);
-
         this.datePicker = DatePicker.getInstance(element.querySelector('[data-instance=datepicker]'));
-
         this.datePicker.on('change', this.onDatePickerChange, this);
         document.addEventListener('click', this.onDocumentClick.bind(this));
         document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
@@ -61,12 +59,12 @@ export default class DateBox extends TextBox {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
+        document.addEventListener('focus', event => {
             let target = event.target;
             if(target.tagName === 'INPUT') {
                 let element = target.closest('[data-instance=datebox]');
                 if(element) this.getInstance(element).onFocus(event);
             }
-        }.bind(this), true);
+        }, true);
     }
 }

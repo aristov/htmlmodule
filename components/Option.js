@@ -53,9 +53,9 @@ export default class Option {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('mouseenter', function(event) {
+        document.addEventListener('mouseenter', event => {
             let option = this.getInstance(event.target);
             if(option) option.onMouseEnter(event);
-        }.bind(this), true);
+        }, true);
     }
 }

@@ -12,9 +12,7 @@ export default class RadioGroup {
     get radios() {
         return map.call(
             this.element.querySelectorAll('[data-instance=radio]'),
-            function(element) {
-                return Radio.getInstance(element);
-            });
+            element => Radio.getInstance(element));
     }
     get disabled() {
         return this.element.getAttribute('aria-disabled') || '';
@@ -28,13 +26,11 @@ export default class RadioGroup {
         if(disabled === 'true') {
             element.setAttribute('aria-disabled', 'true');
             this.input.disabled = true;
-            radios.forEach(function(radio) {
-                radio.element.removeAttribute('tabindex');
-            });
+            radios.forEach(({ element }) => element.removeAttribute('tabindex'));
         } else {
             element.removeAttribute('aria-disabled');
             this.input.disabled = false;
-            radios.forEach(function(radio) {
+            radios.forEach(radio => {
                 radio.element.tabIndex = -1;
                 if(radio.checked === 'true') checked = radio;
             });
@@ -49,9 +45,7 @@ export default class RadioGroup {
         this.input.value = value;
     }
     uncheck() {
-        this.radios.forEach(function(radio) {
-            radio.checked = 'false';
-        });
+        this.radios.forEach(radio => radio.checked = 'false');
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === 'radiogroup'?

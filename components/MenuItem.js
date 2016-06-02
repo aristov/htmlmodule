@@ -4,16 +4,13 @@ export default class MenuItem {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
         this.menu = Menu.getInstance(this.element.closest('[data-instance=menu]'));
-
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
         this.on('mouseleave', this.onMouseLeave);
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-
         if(keyCode === 38 || keyCode === 40) {
             event.preventDefault(); // prevent page scrolling
             this.onArrowKeyDown(event);
@@ -26,7 +23,6 @@ export default class MenuItem {
     onKeyUp(event) {
         if(event.keyCode === 32) {
             let element = this.element;
-
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', {
                 bubbles : true,
@@ -35,20 +31,18 @@ export default class MenuItem {
             if(element.href) window.location.href = element.href;
         }
     }
-    onArrowKeyDown(event) {
-        let direction = event.keyCode < 39? -1 : 1,
+    onArrowKeyDown({ keyCode }) {
+        let direction = keyCode < 39? -1 : 1,
             items = this.menu.items,
             index = items.indexOf(this) + direction;
-
         if(index === items.length) index = 0;
         if(index < 0) index = items.length - 1;
-
         items[index].element.focus();
     }
-    onMouseEnter(event) {
+    onMouseEnter() {
         this.element.focus();
     }
-    onMouseLeave(event) {
+    onMouseLeave() {
         this.element.blur();
     }
     on(type, listener, context) {
@@ -60,9 +54,9 @@ export default class MenuItem {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('mouseenter', function(event) {
+        document.addEventListener('mouseenter', event => {
             let menuItem = this.getInstance(event.target);
             if(menuItem) menuItem.onMouseEnter(event);  
-        }.bind(this), true);
+        }, true);
     }
 }

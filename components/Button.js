@@ -13,7 +13,7 @@ export default class Button {
         this.element.setAttribute('aria-pressed', pressed);
     }
     get disabled() {
-        return this.element.getAttribute('aria-disabled') || '';
+        return this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
         this.element.setAttribute('aria-disabled', disabled);
@@ -28,10 +28,11 @@ export default class Button {
         return this.element.getAttribute('aria-expanded') || '';
     }
     set expanded(expanded) {
-        this.element.setAttribute('aria-expanded', expanded);
-        this.onExpanded(expanded);
+        this.setExpanded(expanded);
     }
-    onExpanded(expanded) {}
+    setExpanded(expanded) {
+        this.element.setAttribute('aria-expanded', expanded);
+    }
     get text() {
         return this.element.textContent;
     }
@@ -61,11 +62,11 @@ export default class Button {
             return;
         }
         if(this.pressed) {
-            this.pressed = this.pressed === 'true'? 'false' : 'true';
-            this.element.dispatchEvent(new Event('change'));
+            this.pressed = String(this.pressed === 'false');
+            this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
         }
         if(this.expanded) {
-            this.expanded = this.expanded === 'true'? 'false' : 'true';
+            this.expanded = String(this.expanded === 'false');
         }
     }
     focus() {
@@ -80,8 +81,6 @@ export default class Button {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
-            this.getInstance(event.target);
-        }.bind(this), true);
+        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }

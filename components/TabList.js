@@ -10,9 +10,7 @@ export default class TabList {
     get tabs() {
         return map.call(
             this.element.querySelectorAll('[data-instance=tab]'),
-            function(element) {
-                return Tab.getInstance(element);
-            });
+            element => Tab.getInstance(element));
     }
     get selectedTab() {
         return Tab.getInstance(this.element.querySelector('[data-instance=tab][aria-selected=true]'));
@@ -27,16 +25,14 @@ export default class TabList {
     prev() {
         let tabs = this.tabs,
             index = tabs.indexOf(this.selectedTab) - 1;
-
         this.select(index < 0? tabs[tabs.length - 1] : tabs[index]);
-        this.element.dispatchEvent(new Event('change'));
+        this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
     }
     next() {
         let tabs = this.tabs,
             index = tabs.indexOf(this.selectedTab) + 1;
-
         this.select(index === tabs.length? tabs[0] : tabs[index]);
-        this.element.dispatchEvent(new Event('change'));
+        this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
     }
     static getInstance(element) {
         return element.dataset.instance === 'tablist'?

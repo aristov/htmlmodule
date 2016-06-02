@@ -10,9 +10,7 @@ export default class Menu {
     get items() {
         return map.call(
             this.element.querySelectorAll('[data-instance=menuitem]'),
-            function(element) {
-                return MenuItem.getInstance(element);
-            });
+            element => MenuItem.getInstance(element));
     }
     get hidden() {
         return String(this.element.hidden);

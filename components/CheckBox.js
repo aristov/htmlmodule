@@ -11,11 +11,11 @@ export default class CheckBox {
         return this.element.getAttribute('aria-checked') || 'false';
     }
     set checked(checked) {
-        let element = this.element;
+        let element = this.element,
+            input = this.input;
         element.setAttribute('aria-checked', checked);
-        checked === 'true'?
-            element.appendChild(this.input) :
-            element.removeChild(this.input);
+        if(checked === 'true') element.appendChild(input);
+        else element.removeChild(input);
     }
     get disabled() {
         return this.element.getAttribute('aria-disabled') || 'false';
@@ -23,9 +23,7 @@ export default class CheckBox {
     set disabled(disabled) {
         let element = this.element;
         element.setAttribute('aria-disabled', disabled);
-        if(this.input.disabled = disabled === 'true') {
-            element.removeAttribute('tabindex');
-        }
+        if(this.input.disabled = disabled === 'true') element.removeAttribute('tabindex');
         else element.tabIndex = 0;
     }
     get value() {
@@ -53,8 +51,8 @@ export default class CheckBox {
             this.element.classList.add('active');
         }
     }
-    onKeyUp(event) {
-        if(event.keyCode === 32) {
+    onKeyUp({ keyCode }) {
+        if(keyCode === 32) {
             let element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
@@ -64,7 +62,7 @@ export default class CheckBox {
         if(this.disabled === 'true') event.stopImmediatePropagation();
         else {
             this.checked = String(this.checked === 'false');
-            this.element.dispatchEvent(new Event('change'));
+            this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
         }
     }
     on(type, listener, context) {
@@ -76,8 +74,6 @@ export default class CheckBox {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
-            this.getInstance(event.target);
-        }.bind(this), true);
+        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }

@@ -60,11 +60,8 @@ export default class Select {
         }
     }
     onSpaceKeyDown(event) {
-        if(this.expanded === 'true') {
-            this.listBox.onSpaceKeyDown(event);
-        } else {
-            this.element.classList.add('active');
-        }
+        if(this.expanded === 'true') this.listBox.onSpaceKeyDown(event);
+        else this.element.classList.add('active');
     }
     onKeyUp(event) {
         if(event.keyCode === 32) {
@@ -78,10 +75,10 @@ export default class Select {
             }
         }
     }
-    onListBoxChange(event) {
+    onListBoxChange() {
         this.button.text = this.listBox.checkedOption.text;
     }
-    onClick(event) {
+    onClick() {
         this.expanded = String(this.expanded === 'false');
         this.element.focus();
     }
@@ -94,8 +91,6 @@ export default class Select {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
-            this.getInstance(event.target);
-        }.bind(this), true);
+        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }

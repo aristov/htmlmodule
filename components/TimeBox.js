@@ -44,7 +44,7 @@ export default class TimeBox extends TextBox {
     onDigitKeyDown({ keyCode }) {
         let value = keyCode - 48;
         if(this.range === 'hours') this.onHoursEnter(value);
-        else this.onMinutesEnter(value)
+        else this.onMinutesEnter(value);
     }
     onArrowKeyDown(event) {
         event.preventDefault();
@@ -93,12 +93,12 @@ export default class TimeBox extends TextBox {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
+        document.addEventListener('focus', event => {
             let target = event.target;
             if(target.tagName === 'INPUT') {
                 let element = target.closest('[data-instance=timebox]');
                 if(element) this.getInstance(element).onFocus(event);
             }
-        }.bind(this), true);
+        }, true);
     }
 }

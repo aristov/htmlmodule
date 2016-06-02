@@ -2,10 +2,8 @@ export default class TextBox {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
         this.input = element.querySelector('input,textarea');
         this.input.addEventListener('blur', this.onBlur.bind(this));
-
         if(element.classList.contains('hasclear')) {
             this.clear = element.querySelector('.clear');
             this.input.addEventListener('input', this.onInput.bind(this));
@@ -15,9 +13,7 @@ export default class TextBox {
     get disabled() {
         return String(this.input.disabled);
     }
-    set disabled(value) {
-        let disabled = String(value);
-
+    set disabled(disabled) {
         (this.input.disabled = disabled === 'true')?
             this.element.classList.add('disabled') :
             this.element.classList.remove('disabled');
@@ -47,13 +43,13 @@ export default class TextBox {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
+        document.addEventListener('focus', event => {
             let target = event.target,
                 tagName = target.tagName;
             if(tagName === 'INPUT' || tagName === 'TEXTAREA') {
                 let element = target.closest('[data-instance=textbox]');
                 if(element) this.getInstance(element).onFocus(event);
             }
-        }.bind(this), true);
+        }, true);
     }
 }

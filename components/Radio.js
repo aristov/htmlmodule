@@ -15,7 +15,7 @@ export default class Radio {
     set checked(checked) {
         let element = this.element;
         element.setAttribute('aria-checked', checked);
-        element.tabIndex = checked === 'true'? '0' : '-1';
+        element.tabIndex = checked === 'true'? 0 : -1;
         this.group.value = this.value;
     }
     get disabled() {
@@ -37,8 +37,7 @@ export default class Radio {
         return this.element.dataset.value;
     }
     onClick(event) {
-        if(this.disabled)
-            event.stopImmediatePropagation();
+        if(this.disabled === 'true') event.stopImmediatePropagation();
         else {
             this.group.uncheck();
             this.checked = 'true';
@@ -58,20 +57,17 @@ export default class Radio {
     }
     submitForm() {
         let form = this.element.closest('form');
-        if(form) form.dispatchEvent(new Event('submit', {
-            bubbles : true,
-            cancelable : true
-        }));
+        if(form) form.dispatchEvent(new Event('submit', { bubbles : true, cancelable : true }));
     }
-    onKeyUp(event) {
-        if(event.keyCode === 32) {
+    onKeyUp({ keyCode }) {
+        if(keyCode === 32) {
             let element = this.element;
             element.classList.remove('active');
-            element.dispatchEvent(new Event('click'));
+            element.dispatchEvent(new Event('click', { bubbles : true, cancelable : true }));
         }
     }
-    onArrowKeyDown(event) {
-        let direction = event.keyCode < 39? -1 : 1,
+    onArrowKeyDown({ keyCode }) {
+        let direction = keyCode < 39? -1 : 1,
             group = this.group,
             radios = group.radios,
             index = radios.indexOf(this) + direction;
@@ -92,8 +88,6 @@ export default class Radio {
             null;
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
-            this.getInstance(event.target);
-        }.bind(this), true);
+        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }
