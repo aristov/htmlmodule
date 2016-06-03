@@ -14,9 +14,8 @@ export default class TextBox {
         return String(this.input.disabled);
     }
     set disabled(disabled) {
-        (this.input.disabled = disabled === 'true')?
-            this.element.classList.add('disabled') :
-            this.element.classList.remove('disabled');
+        if(this.input.disabled = disabled === 'true') this.element.classList.add('disabled');
+        else this.element.classList.remove('disabled');
     }
     get value() {
         return this.input.value;

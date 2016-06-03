@@ -56,9 +56,7 @@ export default class Select {
             if(this.expanded === 'false') this.expanded = 'true';
             else this.listBox.onArrowKeyDown(event);
         }
-        if(keyCode === 27) {
-            this.expanded = 'false';
-        }
+        if(keyCode === 27) this.expanded = 'false';
     }
     onSpaceKeyDown(event) {
         if(this.expanded === 'true') this.listBox.onSpaceKeyDown(event);
