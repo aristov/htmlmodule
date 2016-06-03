@@ -6,31 +6,32 @@ export default class MenuButton extends Button {
         super(element);
         this.menu = Menu.getInstance(document.getElementById(this.controls));
         this.menu.on('keydown', this.onMenuKeyDown, this);
-        document.addEventListener('click', this.onDocumentClick.bind(this));
-        document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
+        this.onDocumentClick = this.onDocumentClick.bind(this);
+        this.onDocumentFocus = this.onDocumentFocus.bind(this);
     }
     setExpanded(expanded) {
         super.setExpanded(expanded);
         this.menu.hidden = String(expanded === 'false');
-    }
-    onDocumentClick(event) {
-        if(this.expanded === 'true') {
-            let target = event.target;
-            if(!this.element.contains(target) && !this.menu.element.contains(target)) {
-                this.expanded = 'false';
-            }
+        if(expanded === 'true') {
+            document.addEventListener('click', this.onDocumentClick);
+            document.addEventListener('focus', this.onDocumentFocus, true);
+        } else {
+            document.removeEventListener('click', this.onDocumentClick);
+            document.removeEventListener('focus', this.onDocumentFocus, true);
         }
     }
-    onDocumentFocus(event) {
-        if(this.expanded === 'true') {
-            let target = event.target;
-            if(target !== this.element && !this.menu.element.contains(target)) {
-                this.expanded = 'false';
-            }
+    onDocumentClick({ target }) {
+        if(!this.element.contains(target) && !this.menu.element.contains(target)) {
+            this.expanded = 'false';
         }
     }
-    onMenuKeyDown(event) {
-        if(event.keyCode === 27) {
+    onDocumentFocus({ target }) {
+        if(target !== this.element && !this.menu.element.contains(target)) {
+            this.expanded = 'false';
+        }
+    }
+    onMenuKeyDown({ keyCode }) {
+        if(keyCode === 27) {
             this.expanded = 'false';
             this.element.focus();
         }

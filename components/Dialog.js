@@ -5,11 +5,9 @@ export default class Dialog {
         this.trigger = null;
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
-        document.addEventListener('click', this.onDocumentClick.bind(this));
-        if(this.modal === 'true') {
-            document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
-            this.createBackdrop();
-        }
+        if(this.modal === 'true') this.createBackdrop();
+        this.onDocumentClick = this.onDocumentClick.bind(this);
+        this.onDocumentFocus = this.onDocumentFocus.bind(this);
     }
     get modal() {
         return this.element.getAttribute('aria-modal') || 'false';
@@ -31,12 +29,24 @@ export default class Dialog {
     }
     set hidden(hidden) {
         if(this.hidden !== hidden) {
-            (this.backdrop || this.element).hidden = hidden === 'true';
-            if(this.trigger && this.trigger.expanded === 'true' && hidden === 'true') {
-                this.trigger.expanded = 'false';
-                this.trigger.focus();
+            if((this.backdrop || this.element).hidden = hidden === 'true') {
+                if(this.trigger && this.trigger.expanded === 'true') {
+                    this.trigger.expanded = 'false';
+                    this.trigger.focus();
+                }
+                if(this.assertive === 'false') document.removeEventListener('click', this.onDocumentClick);
+                if(this.modal === 'true' && this.assertive === 'true') {
+                    document.removeEventListener('focus', this.onDocumentFocus, true);
+                }
+            } else {
+                if(this.assertive === 'false') document.addEventListener('click', this.onDocumentClick);
+                if(this.modal === 'true') {
+                    if(this.assertive === 'true') {
+                        document.addEventListener('focus', this.onDocumentFocus, true);
+                    }
+                    this.widgets[0].focus();
+                }
             }
-            if(this.modal === 'true' && hidden === 'false') this.widgets[0].focus();
         }
     }
     get assertive() {
@@ -79,14 +89,10 @@ export default class Dialog {
         }
     }
     onDocumentFocus({ target }) {
-        if(this.hidden === 'false' && this.assertive === 'true' && !this.element.contains(target)) {
-            this.widgets[0].focus();
-        }
+        if(!this.element.contains(target)) this.widgets[0].focus();
     }
     onDocumentClick({ target }) {
-        if(this.hidden === 'false' &&
-            this.assertive === 'false' &&
-            !this.element.contains(target) &&
+        if(!this.element.contains(target) &&
             !(this.trigger && this.trigger.element.contains(target))) {
                 this.hidden = 'true';
         }
