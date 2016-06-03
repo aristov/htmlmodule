@@ -3,11 +3,11 @@ export default class TextBox {
         element.instance = this;
         this.element = element;
         this.input = element.querySelector('input,textarea');
-        this.input.addEventListener('blur', this.onBlur.bind(this));
+        this.input.addEventListener('blur', this.onInputBlur.bind(this));
         if(element.classList.contains('hasclear')) {
             this.clear = element.querySelector('.clear');
-            this.input.addEventListener('input', this.onInput.bind(this));
             this.clear.addEventListener('click', this.onClearClick.bind(this));
+            this.input.addEventListener('input', this.onInputInput.bind(this));
         }
     }
     get disabled() {
@@ -24,18 +24,21 @@ export default class TextBox {
     set value(value) {
         this.input.value = value;
     }
-    onInput() {
+    onInputInput() {
         this.clear.hidden = !this.value;
     }
     onClearClick() {
         this.value = '';
         this.clear.hidden = true;
     }
-    onFocus(event) {
+    onInputFocus() {
         this.element.classList.add('focus');
     }
-    onBlur() {
+    onInputBlur() {
         this.element.classList.remove('focus');
+    }
+    on(type, listener, context) {
+        this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
         return element.dataset.instance === 'textbox'?
@@ -48,7 +51,7 @@ export default class TextBox {
                 tagName = target.tagName;
             if(tagName === 'INPUT' || tagName === 'TEXTAREA') {
                 let element = target.closest('[data-instance=textbox]');
-                if(element) this.getInstance(element).onFocus(event);
+                if(element) this.getInstance(element).onInputFocus(event);
             }
         }, true);
     }

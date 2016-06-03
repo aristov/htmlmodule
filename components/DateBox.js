@@ -35,11 +35,11 @@ export default class DateBox extends TextBox {
             year
         ].join('.');
     }
-    onDocumentFocus(event) {
-        if(!this.element.contains(event.target)) this.expanded = 'false';
+    onDocumentFocus({ target }) {
+        if(!this.element.contains(target)) this.expanded = 'false';
     }
-    onDocumentClick(event) {
-        if(!this.element.contains(event.target)) this.expanded = 'false';
+    onDocumentClick({ target }) {
+        if(!this.element.contains(target)) this.expanded = 'false';
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
@@ -49,12 +49,9 @@ export default class DateBox extends TextBox {
             this.expanded = 'true';
         }
     }
-    onFocus(event) {
-        super.onFocus(event);
+    onInputFocus(event) {
+        super.onInputFocus(event);
         this.expanded = 'true';
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
     }
     static getInstance(element) {
         return element.dataset.instance === 'datebox'?
@@ -66,7 +63,7 @@ export default class DateBox extends TextBox {
             let target = event.target;
             if(target.tagName === 'INPUT') {
                 let element = target.closest('[data-instance=datebox]');
-                if(element) this.getInstance(element).onFocus(event);
+                if(element) this.getInstance(element).onInputFocus(event);
             }
         }, true);
     }

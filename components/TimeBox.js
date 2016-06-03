@@ -7,10 +7,8 @@ export default class TimeBox extends TextBox {
     constructor(element) {
         super(element);
         this.enterInProgress = false;
-        element.addEventListener('click', this.onClick.bind(this));
-        element.addEventListener('focus', () => {
-            this.disabled === 'true' || element.classList.add('focus');
-        }, true);
+        this.on('click', this.onClick);
+        element.addEventListener('focus', this.onFocus.bind(this), true);
         this.input.addEventListener('click', this.onInputClick.bind(this));
         this.input.addEventListener('keydown', this.onInputKeyDown.bind(this));
     }
@@ -23,15 +21,18 @@ export default class TimeBox extends TextBox {
         else this.input.setSelectionRange(5, 7);
         this.enterInProgress = false;
     }
-    onFocus(event) {
-        super.onFocus(event);
-        setTimeout(() => this.range = this.range || 'hours', 0);
-    }
     onClick({ target }) {
         if(this.disabled === 'false' && target.getAttribute('role') === 'button') {
             this.shiftValue(Number(target.dataset.value));
             this.element.focus();
         }
+    }
+    onFocus() {
+        this.disabled === 'true' || this.element.classList.add('focus');
+    }
+    onInputFocus(event) {
+        super.onInputFocus(event);
+        setTimeout(() => this.range = this.range || 'hours', 0);
     }
     onInputClick() {
         this.range = this.input.selectionStart < 4? 'hours' : 'minutes';
@@ -97,7 +98,7 @@ export default class TimeBox extends TextBox {
             let target = event.target;
             if(target.tagName === 'INPUT') {
                 let element = target.closest('[data-instance=timebox]');
-                if(element) this.getInstance(element).onFocus(event);
+                if(element) this.getInstance(element).onInputFocus(event);
             }
         }, true);
     }
