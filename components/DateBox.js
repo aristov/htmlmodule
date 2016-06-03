@@ -6,9 +6,9 @@ export default class DateBox extends TextBox {
         super(element);
         this.datePicker = DatePicker.getInstance(element.querySelector('[data-instance=datepicker]'));
         this.datePicker.on('change', this.onDatePickerChange, this);
-        document.addEventListener('click', this.onDocumentClick.bind(this));
-        document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
         this.on('keydown', this.onKeyDown);
+        this.onDocumentClick = this.onDocumentClick.bind(this);
+        this.onDocumentFocus = this.onDocumentFocus.bind(this);
     }
     get expanded() {
         return this.input.getAttribute('aria-expanded') || 'false';
@@ -16,6 +16,13 @@ export default class DateBox extends TextBox {
     set expanded(expanded) {
         this.input.setAttribute('aria-expanded', expanded);
         this.datePicker.hidden = String(expanded === 'false');
+        if(expanded === 'true') {
+            document.addEventListener('click', this.onDocumentClick);
+            document.addEventListener('focus', this.onDocumentFocus, true);
+        } else {
+            document.removeEventListener('click', this.onDocumentClick);
+            document.removeEventListener('focus', this.onDocumentFocus, true);
+        }
     }
     onDatePickerChange(event) {
         let dataset = event.target.dataset,
@@ -29,14 +36,10 @@ export default class DateBox extends TextBox {
         ].join('.');
     }
     onDocumentFocus(event) {
-        if(this.expanded === 'true' && !this.element.contains(event.target)) {
-            this.expanded = 'false';
-        }
+        if(!this.element.contains(event.target)) this.expanded = 'false';
     }
     onDocumentClick(event) {
-        if(this.expanded === 'true' && !this.element.contains(event.target)) {
-            this.expanded = 'false';
-        }
+        if(!this.element.contains(event.target)) this.expanded = 'false';
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;

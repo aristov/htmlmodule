@@ -15,8 +15,8 @@ export default class Select {
 
         this.listBox.on('change', this.onListBoxChange, this);
 
-        document.addEventListener('click', this.onDocumentClick.bind(this));
-        document.addEventListener('focus', this.onDocumentFocus.bind(this), true);
+        this.onDocumentClick = this.onDocumentClick.bind(this);
+        this.onDocumentFocus = this.onDocumentFocus.bind(this);
     }
     get expanded() {
         return this.element.getAttribute('aria-expanded') || 'false';
@@ -26,6 +26,11 @@ export default class Select {
         if(expanded === 'true') {
             let listBox = this.listBox;
             if(!listBox.selectedOption) listBox.options[0].selected = 'true';
+            document.addEventListener('click', this.onDocumentClick);
+            document.addEventListener('focus', this.onDocumentFocus, true);
+        } else {
+            document.removeEventListener('click', this.onDocumentClick);
+            document.removeEventListener('focus', this.onDocumentFocus, true);
         }
     }
     get value() {
@@ -34,15 +39,11 @@ export default class Select {
     set value(value) {
         this.listBox.value = value;
     }
-    onDocumentFocus(event) {
-        if(this.expanded === 'true' && event.target !== this.element) {
-            this.expanded = 'false';
-        }
+    onDocumentFocus({ target }) {
+        if(!this.element.contains(target)) this.expanded = 'false';
     }
-    onDocumentClick(event) {
-        if(this.expanded === 'true' && !this.element.contains(event.target)) {
-            this.expanded = 'false';
-        }
+    onDocumentClick({ target }) {
+        if(!this.element.contains(target)) this.expanded = 'false';
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
@@ -71,7 +72,7 @@ export default class Select {
                 this.expanded = 'false';
             } else {
                 element.classList.remove('active');
-                element.dispatchEvent(new Event('click'));
+                element.dispatchEvent(new Event('click', { bubbles : true, cancelable : true }));
             }
         }
     }
