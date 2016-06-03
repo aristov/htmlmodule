@@ -4,9 +4,7 @@ export default class Option {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
         this.listBox = ListBox.getInstance(element.closest('[data-instance=listbox]'));
-
         this.on('click', this.onClick);
     }
     get selected() {
@@ -38,7 +36,7 @@ export default class Option {
         if(this.disabled === 'true') event.stopImmediatePropagation();
         else this.listBox.checkedOptions = [this];
     }
-    onMouseEnter(event) {
+    onMouseEnter() {
         if(this.disabled !== 'true') {
             this.listBox.unselect();
             this.selected = 'true';

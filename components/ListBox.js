@@ -7,6 +7,8 @@ export default class ListBox {
         element.instance = this;
         this.element = element;
         this.input = element.querySelector('input') || document.createElement('input');
+        this.box = element.querySelector('.box');
+        this.box.addEventListener('focus', () => element.focus());
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
     }
@@ -48,7 +50,7 @@ export default class ListBox {
         this.input.value = value;
     }
     get disabled() {
-        return this.element.getAttribute('aria-disabled') || '';
+        return this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
         let element = this.element;
@@ -92,7 +94,16 @@ export default class ListBox {
 
         this.unselect();
         options[nextIndex].selected = true;
+        this.scrollToSelected();
     }
+    scrollToSelected() {
+        let box = this.box,
+            option = this.selectedOption.element;
+        if(option.offsetTop < box.scrollTop ||
+            option.offsetTop + option.clientHeight > box.scrollTop + box.clientHeight) {
+                box.scrollTop = option.offsetTop + Math.floor((option.clientHeight - box.clientHeight) / 2);
+            }
+    };
     onSpaceKeyDown(event) {
         if(!event.repeat) {
             this.selectedOptions.forEach(option => option.element.classList.add('active'));

@@ -98,3 +98,10 @@
     top: 3px;
     left: 3px;
 }
+.radiogroup[aria-label]::before
+{
+    content: attr(aria-label);
+    display: block;
+    margin-bottom: 5px;
+    cursor: default;
+}
