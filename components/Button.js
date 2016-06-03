@@ -18,7 +18,7 @@ export default class Button {
     set disabled(disabled) {
         this.element.setAttribute('aria-disabled', disabled);
     }
-    get haspopup() {
+    get hasPopup() {
         return this.element.getAttribute('aria-haspopup') || 'false';
     }
     get controls() {

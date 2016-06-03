@@ -65,6 +65,9 @@ export default class ListBox {
     get multiselectable() {
         return this.element.getAttribute('aria-multiselectable') || 'false';
     }
+    set activeDescendant(id) {
+        this.element.setAttribute('aria-activedescendant', id);
+    }
     unselect() {
         this.selectedOptions.forEach(option => option.selected = 'false');
     }

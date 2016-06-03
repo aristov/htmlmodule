@@ -4,6 +4,7 @@ export default class Option {
     constructor(element) {
         element.instance = this;
         this.element = element;
+        element.id || this.generateId();
         this.listBox = ListBox.getInstance(element.closest('[data-instance=listbox]'));
         this.on('click', this.onClick);
     }
@@ -12,6 +13,7 @@ export default class Option {
     }
     set selected(selected) {
         this.element.setAttribute('aria-selected', selected);
+        this.listBox.activeDescendant = this.element.id;
     }
     get checked() {
         return this.element.getAttribute('aria-checked') || '';
@@ -31,6 +33,12 @@ export default class Option {
     }
     get text() {
         return this.element.textContent;
+    }
+    generateId() {
+        let id;
+        do id = 'option' + Math.floor(Math.random() * 1e10);
+        while(document.getElementById(id));
+        this.element.id = id;
     }
     onClick(event) {
         if(this.disabled === 'true') event.stopImmediatePropagation();
