@@ -35,7 +35,7 @@ export default class Dialog {
                     this.trigger.focus();
                 }
                 if(this.assertive === 'false') document.removeEventListener('click', this.onDocumentClick);
-                if(this.modal === 'true' && this.assertive === 'true') {
+                else if(this.modal === 'true') {
                     document.removeEventListener('focus', this.onDocumentFocus, true);
                 }
             } else {

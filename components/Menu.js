@@ -15,8 +15,8 @@ export default class Menu {
     get hidden() {
         return String(this.element.hidden);
     }
-    set hidden(value) {
-        this.element.hidden = String(value) === 'true';
+    set hidden(hidden) {
+        this.element.hidden = hidden === 'true';
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));

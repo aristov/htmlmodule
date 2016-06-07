@@ -6,7 +6,6 @@ export default class RadioGroup {
     constructor(element) {
         element.instance = this;
         this.element = element;
-
         this.input = element.querySelector('input') || document.createElement('input');
     }
     get radios() {
@@ -23,13 +22,11 @@ export default class RadioGroup {
             radios = this.radios,
             checked;
 
-        if(disabled === 'true') {
+        if(this.input.disabled = disabled === 'true') {
             element.setAttribute('aria-disabled', 'true');
-            this.input.disabled = true;
             radios.forEach(({ element }) => element.removeAttribute('tabindex'));
         } else {
             element.removeAttribute('aria-disabled');
-            this.input.disabled = false;
             radios.forEach(radio => {
                 radio.element.tabIndex = -1;
                 if(radio.checked === 'true') checked = radio;
