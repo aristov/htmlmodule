@@ -7,8 +7,11 @@ export default class DialogButton extends Button {
         this.dialog = Dialog.getInstance(document.getElementById(this.controls));
         this.dialog.trigger = this;
     }
-    setExpanded(expanded) {
-        super.setExpanded(expanded);
+    get expanded() {
+        return super.expanded;
+    }
+    set expanded(expanded) {
+        super.expanded = expanded;
         let dialog = this.dialog,
             hidden = String(expanded === 'false');
         if(dialog.hidden !== hidden) dialog.hidden = hidden;

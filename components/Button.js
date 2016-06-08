@@ -7,6 +7,9 @@ export default class Button extends Instance {
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
     }
+    get disabled() {
+        return super.disabled;
+    }
     set disabled(disabled) {
         super.disabled = disabled;
         if(disabled === 'true') this.element.removeAttribute('tabindex');
@@ -18,9 +21,6 @@ export default class Button extends Instance {
     set pressed(pressed) {
         this.element.setAttribute('aria-pressed', pressed);
     }
-    get hasPopup() {
-        return this.element.getAttribute('aria-haspopup') || 'false';
-    }
     get controls() {
         return this.element.getAttribute('aria-controls') || '';
     }
@@ -28,9 +28,6 @@ export default class Button extends Instance {
         return this.element.getAttribute('aria-expanded') || '';
     }
     set expanded(expanded) {
-        this.setExpanded(expanded);
-    }
-    setExpanded(expanded) {
         this.element.setAttribute('aria-expanded', expanded);
     }
     get text() {
@@ -56,11 +53,7 @@ export default class Button extends Instance {
             element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
         }
     }
-    get disabled() {
-        return super.disabled;
-    }
     onClick(event) {
-        console.log(this.disabled);
         if(this.disabled === 'true') {
             event.stopImmediatePropagation();
             return;
