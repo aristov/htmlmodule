@@ -1,22 +1,22 @@
-export default class Button {
+import Instance from './Instance';
+
+export default class Button extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
+    }
+    set disabled(disabled) {
+        super.disabled = disabled;
+        if(disabled === 'true') this.element.removeAttribute('tabindex');
+        else this.element.tabIndex = 0;
     }
     get pressed() {
         return this.element.getAttribute('aria-pressed') || '';
     }
     set pressed(pressed) {
         this.element.setAttribute('aria-pressed', pressed);
-    }
-    get disabled() {
-        return this.element.getAttribute('aria-disabled') || 'false';
-    }
-    set disabled(disabled) {
-        this.element.setAttribute('aria-disabled', disabled);
     }
     get hasPopup() {
         return this.element.getAttribute('aria-haspopup') || 'false';
@@ -56,7 +56,11 @@ export default class Button {
             element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
         }
     }
+    get disabled() {
+        return super.disabled;
+    }
     onClick(event) {
+        console.log(this.disabled);
         if(this.disabled === 'true') {
             event.stopImmediatePropagation();
             return;
@@ -71,14 +75,6 @@ export default class Button {
     }
     focus() {
         this.element.focus();
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'button'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
