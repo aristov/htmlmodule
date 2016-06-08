@@ -1,7 +1,8 @@
-export default class CheckBox {
+import Instance from './Instance';
+
+export default class CheckBox extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
         this.input = this.getInput();
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
@@ -64,14 +65,6 @@ export default class CheckBox {
             this.checked = String(this.checked === 'false');
             this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
         }
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'checkbox'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('focus', ({ target }) => this.getInstance(target), true);

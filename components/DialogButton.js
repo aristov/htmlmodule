@@ -25,9 +25,4 @@ export default class DialogButton extends Button {
             widgets[widgets.length - 1].focus();
         }
     }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'dialogbutton'?
-            element.instance || new this(element) :
-            null;
-    }
 }

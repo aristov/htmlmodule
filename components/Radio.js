@@ -1,16 +1,16 @@
+import Instance from './Instance';
 import RadioGroup from './RadioGroup';
 
-export default class Radio {
+export default class Radio extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
-        this.group = RadioGroup.getInstance(this.element.closest('[data-instance=radiogroup]'));
+        super(element);
+        this.group = RadioGroup.getInstance(this.element.closest('[data-instance=RadioGroup]'));
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
     }
     get checked() {
-        return this.element.getAttribute('aria-checked') || '';
+        return this.element.getAttribute('aria-checked') || 'false';
     }
     set checked(checked) {
         let element = this.element;
@@ -19,9 +19,7 @@ export default class Radio {
         this.group.value = this.value;
     }
     get disabled() {
-        return this.group.disabled === 'true'?
-            'true' :
-            this.element.getAttribute('aria-disabled') || 'false';
+        return this.group.disabled === 'true'? 'true' : super.disabled;
     }
     set disabled(disabled) {
         let element = this.element;
@@ -76,16 +74,8 @@ export default class Radio {
         if(index < 0) index = radios.length - 1;
 
         group.uncheck();
-        radios[index].checked = true;
+        radios[index].checked = 'true';
         radios[index].element.focus();
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'radio'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('focus', ({ target }) => this.getInstance(target), true);

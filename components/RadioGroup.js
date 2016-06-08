@@ -1,20 +1,20 @@
+import Instance from './Instance';
 import Radio from './Radio';
 
 const map = Array.prototype.map;
 
-export default class RadioGroup {
+export default class RadioGroup extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
         this.input = element.querySelector('input') || document.createElement('input');
     }
     get radios() {
         return map.call(
-            this.element.querySelectorAll('[data-instance=radio]'),
+            this.element.querySelectorAll('[data-instance=Radio]'),
             element => Radio.getInstance(element));
     }
     get disabled() {
-        return this.element.getAttribute('aria-disabled') || '';
+        return super.disabled;
     }
     set disabled(value) {
         let element = this.element,
@@ -43,11 +43,6 @@ export default class RadioGroup {
     }
     uncheck() {
         this.radios.forEach(radio => radio.checked = 'false');
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'radiogroup'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         Radio.attachToDocument();

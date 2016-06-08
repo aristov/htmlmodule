@@ -50,9 +50,4 @@ export default class MenuButton extends Button {
             this.expanded = 'false';
         }
     }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'menubutton'?
-            element.instance || new this(element) :
-            null;
-    }
 }

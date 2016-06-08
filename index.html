@@ -27,7 +27,7 @@
 <body>
     <span data-instance=Button role=button class=button tabindex=0 aria-pressed=false>Toggle button</span>
     <hr>
-    <span data-instance=menubutton
+    <span data-instance=MenuButton
           role=button
           class=button
           tabindex=0
@@ -40,14 +40,14 @@
         <div data-instance=menuitem role=menuitem class=menuitem tabindex=-1>Third item</div>
     </div>
     <hr>
-    <span data-instance=dialogbutton
+    <span data-instance=DialogButton
           role=button
           class=button
           tabindex=0
           aria-haspopup=true
           aria-controls=sampledialog
           aria-expanded=false>Dialog button</span>
-    <div data-instance=dialog role=dialog class="dialog popup" data-assertive=true id=sampledialog hidden>
+    <div data-instance=dialog role=dialog class="dialog popup" data-assertive=false id=sampledialog hidden>
         <h3>Dialog</h3>
         <span class=textbox>
             <input class=box autocomplete=off>
@@ -55,14 +55,14 @@
         <span data-instance=button tabindex=0 class=button>Submit</span>
     </div>
     <hr>
-    <span data-instance=dialogbutton
+    <span data-instance=DialogButton
           role=button
           class=button
           tabindex=0
           aria-haspopup=true
           aria-controls=samplemodal
           aria-expanded=false>Modal dialog button</span>
-    <div data-instance=dialog role=dialog class="dialog popup" aria-modal=true data-assertive=true id=samplemodal hidden>
+    <div data-instance=dialog role=dialog class="dialog popup" aria-modal=true data-assertive=false id=samplemodal hidden>
         <h3>Modal dialog</h3>
         <span class=textbox>
             <input class=box autocomplete=off>
@@ -71,15 +71,15 @@
         <span data-instance=button tabindex=0 class=button data-action=close aria-label="Close dialog"></span>
     </div>
     <hr>
-    <span data-instance=checkbox role=checkbox class=checkbox tabindex=0>
+    <span data-instance=CheckBox role=checkbox class=checkbox tabindex=0>
         <span class=box></span>Check Box
     </span>
     <hr>
-    <span data-instance=radiogroup role=radiogroup class=radiogroup aria-label="Radio group">
+    <span data-instance=RadioGroup role=radiogroup class=radiogroup aria-label="Radio group">
         <input type=hidden>
-        <span data-instance=radio role=radio class=radio tabindex=0><span class=box></span>One</span>
-        <span data-instance=radio role=radio class=radio tabindex=-1><span class=box></span>Two</span>
-        <span data-instance=radio role=radio class=radio tabindex=-1><span class=box></span>Three</span>
+        <span data-instance=Radio role=radio class=radio tabindex=0><span class=box></span>One</span>
+        <span data-instance=Radio role=radio class=radio tabindex=-1><span class=box></span>Two</span>
+        <span data-instance=Radio role=radio class=radio tabindex=-1><span class=box></span>Three</span>
     </span>
     <hr>
     <span data-instance=listbox role=listbox class=listbox tabindex=0 aria-label="List box">
