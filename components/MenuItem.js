@@ -1,10 +1,10 @@
+import Instance from './Instance';
 import Menu from './Menu';
 
-export default class MenuItem {
+export default class MenuItem extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
-        this.menu = Menu.getInstance(this.element.closest('[data-instance=menu]'));
+        super(element);
+        this.menu = Menu.getInstance(this.element.closest('[data-instance=Menu]'));
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
         this.on('mouseleave', this.onMouseLeave);
@@ -12,11 +12,11 @@ export default class MenuItem {
     onKeyDown(event) {
         let keyCode = event.keyCode;
         if(keyCode === 38 || keyCode === 40) {
-            event.preventDefault(); // prevent page scrolling
+            event.preventDefault();
             this.onArrowKeyDown(event);
         }
         else if(event.keyCode === 32 && !event.repeat) {
-            event.preventDefault(); // prevent page scrolling
+            event.preventDefault();
             this.element.classList.add('active');
         }
     }
@@ -44,14 +44,6 @@ export default class MenuItem {
     }
     onMouseLeave() {
         this.element.blur();
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'menuitem'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('mouseenter', event => {

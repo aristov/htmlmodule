@@ -1,30 +1,13 @@
+import Instance from './Instance';
 import MenuItem from './MenuItem';
 
 const map = Array.prototype.map;
 
-export default class Menu {
-    constructor(element) {
-        element.instance = this;
-        this.element = element;
-    }
+export default class Menu extends Instance {
     get items() {
         return map.call(
-            this.element.querySelectorAll('[data-instance=menuitem]'),
+            this.element.querySelectorAll('[data-instance=MenuItem]'),
             element => MenuItem.getInstance(element));
-    }
-    get hidden() {
-        return String(this.element.hidden);
-    }
-    set hidden(hidden) {
-        this.element.hidden = hidden === 'true';
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset.instance === 'menu'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         MenuItem.attachToDocument();
