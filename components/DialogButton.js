@@ -11,10 +11,10 @@ export default class DialogButton extends Button {
         return super.expanded;
     }
     set expanded(expanded) {
-        super.expanded = expanded;
-        let dialog = this.dialog,
-            hidden = String(expanded === 'false');
-        if(dialog.hidden !== hidden) dialog.hidden = hidden;
+        if(expanded !== this.expanded) {
+            super.expanded = expanded;
+            this.dialog.hidden = String(expanded === 'false');
+        }
     }
     onKeyDown(event) {
         super.onKeyDown(event);

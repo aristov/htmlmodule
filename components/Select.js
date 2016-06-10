@@ -1,13 +1,13 @@
+import Instance from './Instance';
 import Button from './Button';
 import ListBox from './ListBox';
 
-export default class Select {
+export default class Select extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
 
-        this.listBox = ListBox.getInstance(element.querySelector('[data-instance=listbox]'));
-        this.button = Button.getInstance(element.querySelector('[data-instance=button]'));
+        this.listBox = ListBox.getInstance(element.querySelector('[data-instance=ListBox]'));
+        this.button = Button.getInstance(element.querySelector('[data-instance=Button]'));
 
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
@@ -80,14 +80,6 @@ export default class Select {
     onClick() {
         this.expanded = String(this.expanded === 'false');
         this.element.focus();
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'select'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('focus', ({ target }) => this.getInstance(target), true);

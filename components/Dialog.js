@@ -1,7 +1,8 @@
-export default class Dialog {
+import Instance from './Instance';
+
+export default class Dialog extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
         this.trigger = null;
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
@@ -20,17 +21,17 @@ export default class Dialog {
                     NodeFilter.FILTER_ACCEPT :
                     NodeFilter.FILTER_REJECT),
             node,
-            result = [];
-        while(node = iterator.nextNode()) result.push(node);
-        return result;
+            widgets = [];
+        while(node = iterator.nextNode()) widgets.push(node);
+        return widgets;
     }
     get hidden() {
         return String((this.backdrop || this.element).hidden);
     }
     set hidden(hidden) {
-        if(this.hidden !== hidden) {
+        if(hidden !== this.hidden) {
             if((this.backdrop || this.element).hidden = hidden === 'true') {
-                if(this.trigger && this.trigger.expanded === 'true') {
+                if(this.trigger) {
                     this.trigger.expanded = 'false';
                     this.trigger.focus();
                 }
@@ -56,7 +57,7 @@ export default class Dialog {
         let element = this.element,
             backdrop = this.backdrop = document.createElement('div'),
             div = document.createElement('div');
-        backdrop.classList.add('backdrop');
+        backdrop.className = 'backdrop';
         backdrop.hidden = true;
         element.hidden = false;
         div.appendChild(element);
@@ -65,9 +66,7 @@ export default class Dialog {
     }
     onClick({ target }) {
         let dataset = target.dataset;
-        if(dataset.instance === 'button' && dataset.action === 'close') {
-            this.hidden = 'true';
-        }
+        if(dataset.instance === 'button' && dataset.action === 'close') this.hidden = 'true';
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
@@ -96,13 +95,5 @@ export default class Dialog {
             !(this.trigger && this.trigger.element.contains(target))) {
                 this.hidden = 'true';
         }
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset.instance === 'dialog'?
-            element.instance || new this(element) :
-            null;
     }
 }

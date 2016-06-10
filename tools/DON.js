@@ -2,28 +2,25 @@ const map = Array.prototype.map,
       reduce = Array.prototype.reduce,
       domImplementation = document.implementation;
 
-const processChildNodes = (node) => (
-    map.call(node.childNodes, (child) => DON.fromDOM(child))
-);
+const processChildNodes = node => map.call(node.childNodes, child => DON.fromDOM(child));
 
 const processContent = (content, element) => {
     Array.isArray(content)?
-        content.forEach((item) => processContent(item, element)) :
+        content.forEach(item => processContent(item, element)) :
         element.appendChild(DON.toDOM(content));
 };
 
 const DON = {
-    fromDOM : (node) => {
+    fromDOM : node => {
         switch(node.nodeType) {
             case Node.ELEMENT_NODE :
                 return {
                     node : 'element',
                     element : node.tagName,
-                    attributes : reduce.call(
-                        node.attributes, (res, attr) => {
-                            res[attr.name] = attr.value;
-                            return res;
-                        }, {}),
+                    attributes : reduce.call(node.attributes, (res, attr) => {
+                        res[attr.name] = attr.value;
+                        return res;
+                    }, {}),
                     content : processChildNodes(node)
                 };
             case Node.TEXT_NODE :
@@ -49,9 +46,9 @@ const DON = {
             default : throw Error('Unsupported node');
         }
     },
-    toDOM : (object) => {
+    toDOM : object => {
         if(Array.isArray(object)) {
-            return object.map((item) => DON.toDOM(item));
+            return object.map(item => DON.toDOM(item));
         }
         if(typeof object === 'string') {
             object = { node : 'text', content : object };
@@ -61,11 +58,11 @@ const DON = {
         }
         switch(object.node) {
             case 'element' :
-                var element = document.createElement(object.element),
+                let element = document.createElement(object.element),
                     attributes = object.attributes,
                     content = object.content;
                 if(attributes) {
-                    var name, value;
+                    let name, value;
                     for(name in attributes) {
                         value = attributes[name];
                         if(typeof value !== 'undefined') {

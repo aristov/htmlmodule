@@ -13,7 +13,7 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     display: block;
     position: relative;
-    overflow: scroll;
+    overflow: auto;
     outline: none;
 }
 .listbox .option

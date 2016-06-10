@@ -1,11 +1,11 @@
+import Instance from './Instance';
 import ListBox from './ListBox';
 
-export default class Option {
+export default class Option extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
         element.id || this.generateId();
-        this.listBox = ListBox.getInstance(element.closest('[data-instance=listbox]'));
+        this.listBox = ListBox.getInstance(element.closest('[data-instance=ListBox]'));
         this.on('click', this.onClick);
     }
     get selected() {
@@ -49,14 +49,6 @@ export default class Option {
             this.listBox.unselect();
             this.selected = 'true';
         }
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'option'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('mouseenter', event => {

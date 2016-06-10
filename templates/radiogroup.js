@@ -9,9 +9,8 @@ export default domTransform => {
             content = this.apply(radiogroup.content, params),
             checked = params.checked;
 
-        if(!params.disabled) {
-            (checked || params.first).attributes.tabindex = '0';
-        }
+        if(!params.disabled) (checked || params.first).attributes.tabindex = '0';
+
         return {
             element : 'span',
             attributes : {

@@ -1,10 +1,10 @@
+import Instance from './Instance';
 import TabList from './TabList';
 
-export default class Tab {
+export default class Tab extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
-        this.list = TabList.getInstance(element.closest('[data-instance=tablist]'));
+        super(element);
+        this.list = TabList.getInstance(element.closest('[data-instance=TabList]'));
         this.panel = document.getElementById(this.controls);
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
@@ -53,11 +53,6 @@ export default class Tab {
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'tab'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('focus', ({ target }) => this.getInstance(target), true);

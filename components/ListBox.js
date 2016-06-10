@@ -1,11 +1,11 @@
+import Instance from './Instance';
 import Option from './Option';
 
 const map = Array.prototype.map;
 
-export default class ListBox {
+export default class ListBox extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
         this.input = element.querySelector('input') || document.createElement('input');
         this.box = element.querySelector('.box');
         this.box.addEventListener('focus', () => element.focus());
@@ -14,14 +14,8 @@ export default class ListBox {
     }
     get options() {
         return map.call(
-            this.element.querySelectorAll('[data-instance=option]'),
+            this.element.querySelectorAll('[data-instance=Option]'),
             element => Option.getInstance(element));
-    }
-    get hidden() {
-        return String(this.element.hidden);
-    }
-    set hidden(hidden) {
-        this.element.hidden = hidden === 'true';
     }
     get selectedOptions() {
         return this.options.filter(option => option.selected === 'true');
@@ -121,14 +115,6 @@ export default class ListBox {
     }
     onFocus() {
         if(!this.selectedOptions.length) this.options[0].selected = 'true';
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'listbox'?
-            element.instance || new this(element) :
-            null;
     }
     static attachToDocument() {
         document.addEventListener('focus', event => {

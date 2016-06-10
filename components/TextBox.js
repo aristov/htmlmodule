@@ -1,7 +1,8 @@
-export default class TextBox {
+import Instance from './Instance';
+
+export default class TextBox extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
         this.input = element.querySelector('input,textarea');
         this.input.addEventListener('blur', this.onInputBlur.bind(this));
         if(element.classList.contains('hasclear')) {
@@ -36,20 +37,12 @@ export default class TextBox {
     onInputBlur() {
         this.element.classList.remove('focus');
     }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset.instance === 'textbox'?
-            element.instance || new this(element) :
-            null;
-    }
     static attachToDocument() {
         document.addEventListener('focus', event => {
             let target = event.target,
                 tagName = target.tagName;
             if(tagName === 'INPUT' || tagName === 'TEXTAREA') {
-                let element = target.closest('[data-instance=textbox]');
+                let element = target.closest('[data-instance=TextBox]');
                 if(element) this.getInstance(element).onInputFocus(event);
             }
         }, true);

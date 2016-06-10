@@ -1,7 +1,8 @@
-class DatePicker {
+import Instance from './Instance';
+
+class DatePicker extends Instance {
     constructor(element) {
-        element.instance = this;
-        this.element = element;
+        super(element);
 
         let dataset = element.dataset,
             now = new Date;
@@ -13,12 +14,6 @@ class DatePicker {
         this.build();
 
         this.on('click', this.onClick);
-    }
-    get hidden() {
-        return String(this.element.hidden);
-    }
-    set hidden(hidden) {
-        this.element.hidden = hidden === 'true';
     }
     build() {
         let element = this.element;
@@ -162,14 +157,6 @@ class DatePicker {
             heading = this.heading;
         this.grid.replaceChild(this.buildGridBody(), gridBody);
         this.header.replaceChild(this.buildHeading(), heading);
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
-    }
-    static getInstance(element) {
-        return element.dataset && element.dataset.instance === 'datepicker'?
-            element.instance || new this(element) :
-            null;
     }
 }
 
