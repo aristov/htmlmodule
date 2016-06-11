@@ -1,4 +1,5 @@
 import Instance from './Instance';
+import { ESCAPE, TAB } from '../tools/keyCodes';
 
 export default class Dialog extends Instance {
     constructor(element) {
@@ -66,15 +67,15 @@ export default class Dialog extends Instance {
     }
     onClick({ target }) {
         let dataset = target.dataset;
-        if(dataset.instance === 'button' && dataset.action === 'close') this.hidden = 'true';
+        if(dataset.instance === 'Button' && dataset.action === 'close') this.hidden = 'true';
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === 27 && this.assertive === 'false') {
+        if(keyCode === ESCAPE && this.assertive === 'false') {
             this.hidden = 'true';
             this.trigger.focus();
         }
-        if(keyCode === 9) {
+        if(keyCode === TAB) {
             let widgets = this.widgets,
                 lastWidget = widgets[widgets.length - 1];
             if(event.shiftKey && this.modal === 'true' && event.target === widgets[0]) {

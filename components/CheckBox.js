@@ -1,5 +1,7 @@
 import Instance from './Instance';
 
+import { SPACE } from '../tools/keyCodes';
+
 export default class CheckBox extends Instance {
     constructor(element) {
         super(element);
@@ -47,13 +49,13 @@ export default class CheckBox extends Instance {
         return input;
     }
     onKeyDown(event) {
-        if(event.keyCode === 32 && !event.repeat) {
+        if(event.keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
         }
     }
     onKeyUp({ keyCode }) {
-        if(keyCode === 32) {
+        if(keyCode === SPACE) {
             let element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));

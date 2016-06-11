@@ -1,6 +1,8 @@
 import Instance from './Instance';
 import Menu from './Menu';
 
+import { SPACE, ARROWS } from '../tools/keyCodes';
+
 export default class MenuItem extends Instance {
     constructor(element) {
         super(element);
@@ -11,17 +13,17 @@ export default class MenuItem extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === 38 || keyCode === 40) {
+        if(keyCode === ARROWS.UP || keyCode === ARROWS.DOWN) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
-        else if(event.keyCode === 32 && !event.repeat) {
+        else if(event.keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
         }
     }
-    onKeyUp(event) {
-        if(event.keyCode === 32) {
+    onKeyUp({ keyCode }) {
+        if(keyCode === SPACE) {
             let element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', {
@@ -32,7 +34,7 @@ export default class MenuItem extends Instance {
         }
     }
     onArrowKeyDown({ keyCode }) {
-        let direction = keyCode < 39? -1 : 1,
+        let direction = keyCode === ARROWS.UP? -1 : 1,
             items = this.menu.items,
             index = items.indexOf(this) + direction;
         if(index === items.length) index = 0;

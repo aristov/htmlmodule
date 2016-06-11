@@ -1,5 +1,8 @@
 import Instance from './Instance';
 import RadioGroup from './RadioGroup';
+import { SPACE, ENTER, ARROWS } from '../tools/keyCodes';
+
+const ARROW_CODES = Object.values(ARROWS);
 
 export default class Radio extends Instance {
     constructor(element) {
@@ -43,29 +46,29 @@ export default class Radio extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode >= 37 && keyCode <= 40) {
+        if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
-        if(event.keyCode === 32 && !event.repeat) {
+        if(event.keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
         }
-        if(event.keyCode === 13) this.submitForm();
+        if(event.keyCode === ENTER) this.submitForm();
     }
     submitForm() {
         let form = this.element.closest('form');
         if(form) form.dispatchEvent(new Event('submit', { bubbles : true, cancelable : true }));
     }
     onKeyUp({ keyCode }) {
-        if(keyCode === 32) {
+        if(keyCode === SPACE) {
             let element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', { bubbles : true, cancelable : true }));
         }
     }
     onArrowKeyDown({ keyCode }) {
-        let direction = keyCode < 39? -1 : 1,
+        let direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1,
             group = this.group,
             radios = group.radios,
             index = radios.indexOf(this) + direction;

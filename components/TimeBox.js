@@ -1,5 +1,9 @@
 import TextBox from './TextBox';
 import moment from 'moment';
+import { DIGITS, ARROWS } from '../tools/keyCodes';
+
+const ARROW_CODES = Object.values(ARROWS),
+      DIGIT_CODES = Object.values(DIGITS);
 
 const format = 'HH : mm';
 
@@ -39,21 +43,21 @@ export default class TimeBox extends TextBox {
     }
     onInputKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode >= 48 && keyCode <= 57) this.onDigitKeyDown(event);
-        if(keyCode >= 37 && keyCode <= 40) this.onArrowKeyDown(event);
+        if(DIGIT_CODES.indexOf(keyCode) > -1) this.onDigitKeyDown(event);
+        if(ARROW_CODES.indexOf(keyCode) > -1) this.onArrowKeyDown(event);
     }
     onDigitKeyDown({ keyCode }) {
-        let value = keyCode - 48;
+        let value = keyCode - DIGITS[0];
         if(this.range === 'hours') this.onHoursEnter(value);
         else this.onMinutesEnter(value);
     }
     onArrowKeyDown(event) {
         event.preventDefault();
         switch(event.keyCode) {
-            case 37: this.range = 'hours'; break;
-            case 39: this.range = 'minutes'; break;
-            case 38: this.shiftValue(1); break;
-            case 40: this.shiftValue(-1); break;
+            case ARROWS.LEFT: this.range = 'hours'; break;
+            case ARROWS.RIGHT: this.range = 'minutes'; break;
+            case ARROWS.UP: this.shiftValue(1); break;
+            case ARROWS.DOWN: this.shiftValue(-1); break;
         }
     }
     onHoursEnter(value) {

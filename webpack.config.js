@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+
 module.exports = {
     entry : './index',
     output : {
@@ -13,7 +15,11 @@ module.exports = {
         }]
     },
     resolve: {
-        modulesDirectories: ['node_modules']
+        modulesDirectories: [
+            'node_modules',
+            path.join(__dirname, 'components'),
+            path.join(__dirname, 'tools')
+        ]
     },
     watch : true
 };

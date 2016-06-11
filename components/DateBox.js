@@ -1,5 +1,6 @@
 import TextBox from './TextBox';
 import DatePicker from './DatePicker';
+import { ESCAPE, SPACE } from '../tools/keyCodes';
 
 export default class DateBox extends TextBox {
     constructor(element) {
@@ -43,8 +44,8 @@ export default class DateBox extends TextBox {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === 27) this.expanded = 'false';
-        if(keyCode === 32) {
+        if(keyCode === ESCAPE) this.expanded = 'false';
+        if(keyCode === SPACE) {
             event.preventDefault();
             this.expanded = 'true';
         }

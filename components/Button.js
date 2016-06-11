@@ -1,4 +1,5 @@
 import Instance from './Instance';
+import { ENTER, SPACE } from '../tools/keyCodes';
 
 export default class Button extends Instance {
     constructor(element) {
@@ -38,16 +39,16 @@ export default class Button extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === 13) {
+        if(keyCode === ENTER) {
             this.element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
         }
-        if(keyCode === 32) {
+        if(keyCode === SPACE) {
             event.preventDefault();
             event.repeat || this.element.classList.add('active');
         }
     }
     onKeyUp({ keyCode }) {
-        if(keyCode === 32) {
+        if(keyCode === SPACE) {
             let element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));

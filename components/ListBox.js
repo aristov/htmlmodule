@@ -1,7 +1,9 @@
 import Instance from './Instance';
 import Option from './Option';
+import { SPACE, ARROWS } from '../tools/keyCodes';
 
-const map = Array.prototype.map;
+const map = Array.prototype.map,
+      ARROW_CODES = Object.values(ARROWS);
 
 export default class ListBox extends Instance {
     constructor(element) {
@@ -70,17 +72,17 @@ export default class ListBox extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode >= 37 && keyCode <= 40) {
+        if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
-        if(keyCode === 32) {
+        if(keyCode === SPACE) {
             event.preventDefault();
             this.onSpaceKeyDown(event);
         }
     }
-    onArrowKeyDown(event) {
-        let direction = event.keyCode < 39? -1 : 1,
+    onArrowKeyDown({ keyCode }) {
+        let direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1,
             options = this.options,
             selectedOptions = this.selectedOptions,
             selectedOption = selectedOptions[direction < 0? 0 : selectedOptions.length - 1],
@@ -101,13 +103,11 @@ export default class ListBox extends Instance {
                 box.scrollTop = option.offsetTop + Math.floor((option.clientHeight - box.clientHeight) / 2);
             }
     };
-    onSpaceKeyDown(event) {
-        if(!event.repeat) {
-            this.selectedOptions.forEach(option => option.element.classList.add('active'));
-        }
+    onSpaceKeyDown({ repeat }) {
+        if(!repeat) this.selectedOptions.forEach(option => option.element.classList.add('active'));
     }
     onKeyUp(event) {
-        if(event.keyCode === 32) this.onSpaceKeyUp(event);
+        if(event.keyCode === SPACE) this.onSpaceKeyUp(event);
     }
     onSpaceKeyUp() {
         this.checkedOptions = this.selectedOptions;

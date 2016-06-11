@@ -1,5 +1,6 @@
 import Button from './Button';
 import Menu from './Menu';
+import { ESCAPE, ARROWS } from '../tools/keyCodes';
 
 export default class MenuButton extends Button {
     constructor(element) {
@@ -34,20 +35,20 @@ export default class MenuButton extends Button {
         }
     }
     onMenuKeyDown({ keyCode }) {
-        if(keyCode === 27) {
+        if(keyCode === ESCAPE) {
             this.expanded = 'false';
             this.element.focus();
         }
     }
     onKeyDown(event) {
         super.onKeyDown(event);
-        if(event.keyCode === 40) {
+        if(event.keyCode === ARROWS.DOWN) {
             event.preventDefault();
-            if(this.expanded === 'false') this.expanded = 'true';
-            this.menu.items[0].element.focus();
+            if(this.expanded === 'false') {
+                this.expanded = 'true';
+                this.menu.items[0].element.focus();
+            }
         }
-        if(event.keyCode === 27) {
-            this.expanded = 'false';
-        }
+        if(event.keyCode === ESCAPE) this.expanded = 'false';
     }
 }

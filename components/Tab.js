@@ -1,5 +1,8 @@
 import Instance from './Instance';
 import TabList from './TabList';
+import { SPACE, ARROWS } from '../tools/keyCodes';
+
+const ARROW_CODES = Object.values(ARROWS);
 
 export default class Tab extends Instance {
     constructor(element) {
@@ -32,24 +35,24 @@ export default class Tab extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode >= 37 && keyCode <= 40) {
+        if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
-        if(event.keyCode === 32 && !event.repeat) {
+        if(event.keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
         }
     }
     onKeyUp({ keyCode }) {
-        if(keyCode === 32) {
+        if(keyCode === SPACE) {
             let element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
         }
     }
     onArrowKeyDown({ keyCode }) {
-        keyCode < 39? this.list.prev() : this.list.next();
+        keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? this.list.prev() : this.list.next();
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));

@@ -1,6 +1,9 @@
 import Instance from './Instance';
 import Button from './Button';
 import ListBox from './ListBox';
+import { SPACE, ESCAPE, ARROWS } from '../tools/keyCodes';
+
+const ARROW_CODES = Object.values(ARROWS);
 
 export default class Select extends Instance {
     constructor(element) {
@@ -47,23 +50,23 @@ export default class Select extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === 32 && !event.repeat) {
+        if(keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.onSpaceKeyDown(event);
         }
-        if(keyCode >= 37 && keyCode <= 40) {
+        if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             if(this.expanded === 'false') this.expanded = 'true';
             else this.listBox.onArrowKeyDown(event);
         }
-        if(keyCode === 27) this.expanded = 'false';
+        if(keyCode === ESCAPE) this.expanded = 'false';
     }
     onSpaceKeyDown(event) {
         if(this.expanded === 'true') this.listBox.onSpaceKeyDown(event);
         else this.element.classList.add('active');
     }
     onKeyUp(event) {
-        if(event.keyCode === 32) {
+        if(event.keyCode === SPACE) {
             let element = this.element;
             if(this.expanded === 'true') {
                 this.listBox.onSpaceKeyUp(event);
