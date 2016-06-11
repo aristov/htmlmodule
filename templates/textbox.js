@@ -3,6 +3,7 @@ export default domTransform => {
         return {
             element : 'span',
             attributes : {
+                'data-instance' : 'TextBox',
                 role : 'textbox',
                 'aria-label' : attributes.label,
                 'class' : [

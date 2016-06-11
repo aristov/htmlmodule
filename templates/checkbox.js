@@ -27,6 +27,7 @@ export default domTransform => {
         return {
             element : 'span',
             attributes : {
+                'data-instance' : 'CheckBox',
                 role : 'checkbox',
                 tabindex : attrs.disabled === 'true'? undefined : '0',
                 'aria-disabled' : attrs.disabled,

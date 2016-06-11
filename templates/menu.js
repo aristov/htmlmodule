@@ -3,6 +3,7 @@ export default domTransform => {
         return {
             element : 'div',
             attributes : {
+                'data-instance' : 'Menu',
                 role : 'menu',
                 id : attributes.id,
                 hidden : '',
@@ -15,6 +16,7 @@ export default domTransform => {
         return {
             element : 'div',
             attributes : {
+                'data-instance' : 'MenuItem',
                 role : 'menuitem',
                 tabindex : '-1',
                 'class' : 'menuitem'

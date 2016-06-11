@@ -5,4 +5,4 @@ Instance.js
 - Clear DOM API
 - Fast and simple
 - Customizable styling
-
+- BEM methodology

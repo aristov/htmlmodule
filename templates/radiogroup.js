@@ -14,6 +14,7 @@ export default domTransform => {
         return {
             element : 'span',
             attributes : {
+                'data-instance' : 'RadioGroup',
                 role : 'radiogroup',
                 'aria-label' : attrs.label,
                 'aria-disabled' : attrs.disabled,
@@ -41,9 +42,9 @@ export default domTransform => {
             result = {
                 element : 'span',
                 attributes : {
+                    'data-instance' : 'Radio',
                     role : 'radio',
                     tabindex : disabled? undefined : attrs.tabindex || '-1',
-                    'data-instance' : 'radio',
                     'data-value' : attrs.value,
                     'aria-checked' : attrs.checked,
                     'aria-disabled' : attrs.disabled,

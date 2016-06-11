@@ -1,0 +1,131 @@
+<main>
+    <article>
+        <h1>Link</h1>
+        <section>
+            <link href="//yandex.ru">Simple</link>
+        </section>
+        <section>
+            <link href="//google.ru" rel="external">External</link>
+        </section>
+    </article>
+    <article>
+        <h1>Button</h1>
+        <section>
+            <button>Simple</button>
+        </section>
+        <section>
+            <button pressed="true">Pressed toggle button</button>
+        </section>
+        <section>
+            <button disabled="true">Disabled</button>
+        </section>
+        <section>
+            <button pressed="true" disabled="true">Pressed disabled toggle button</button>
+        </section>
+    </article>
+    <article>
+        <h1>Check box</h1>
+        <section>
+            <checkbox name="checkbox" value="on">Simple</checkbox>
+        </section>
+        <section>
+            <checkbox checked="true" name="checkbox-checked" value="on">Checked</checkbox>
+        </section>
+        <section>
+            <checkbox disabled="true" name="checkbox-disabled" value="on">Disabled</checkbox>
+        </section>
+        <section>
+            <checkbox checked="true" disabled="true" name="checkbox-checked-disabled" value="on">Checked disabled</checkbox>
+        </section>
+    </article>
+    <article>
+        <h1>Radio group</h1>
+        <section>
+            <radiogroup name="radiogroup" label="Simple">
+                <radio value="first">First</radio>
+                <radio value="second">Second</radio>
+                <radio value="third">Third</radio>
+            </radiogroup>
+        </section>
+        <section>
+            <radiogroup name="radiogroup-checked" label="Checked">
+                <radio value="first">First</radio>
+                <radio value="second" checked="true">Second</radio>
+                <radio value="third">Third</radio>
+            </radiogroup>
+        </section>
+        <section>
+            <radiogroup disabled="true" name="radiogroup-checked-disabled" label="Disabled">
+                <radio value="first">First</radio>
+                <radio value="second">Second</radio>
+                <radio value="third" checked="true">Third</radio>
+            </radiogroup>
+        </section>
+    </article>
+    <article>
+        <h1>List box</h1>
+        <section>
+            <listbox name="listbox" label="Simple">
+                <option value="first">First</option>
+                <option value="second">Second</option>
+                <option value="third">Third</option>
+            </listbox>
+        </section>
+        <section>
+            <listbox disabled="true" name="listbox" label="Disabled">
+                <option value="first">First</option>
+                <option value="second" checked="true">Second</option>
+                <option value="third">Third</option>
+            </listbox>
+        </section>
+    </article>
+    <article>
+        <h1>Text box</h1>
+        <section>
+            <textbox label="Simple"/>
+        </section>
+        <section>
+            <textbox value="Text" label="Filled"/>
+        </section>
+        <section>
+            <textbox disabled="true" value="Text" label="Disabled"/>
+        </section>
+    </article>
+    <article>
+        <h1>Text area</h1>
+        <section>
+            <textbox multiline="true" label="Simple"/>
+        </section>
+        <section>
+            <textbox multiline="true" value="Text" label="Filled"/>
+        </section>
+        <section>
+            <textbox multiline="true" disabled="true" value="Text" label="Disabled"/>
+        </section>
+    </article>
+    <article>
+        <h1>Mixes</h1>
+        <section>
+            <button view="link">Button as link</button>
+        </section>
+        <section>
+            <link href="//yandex.ru" mix="button">Link as button</link>
+        </section>
+        <section>
+            <checkbox name="checkbox-button" value="on" view="button">Check button</checkbox>
+        </section>
+        <section>
+            <group label="Check button group" view="buttongroup">
+                <checkbox view="button">First</checkbox
+                ><checkbox view="button">Second</checkbox>
+            </group>
+        </section>
+        <section>
+            <radiogroup name="radio-button-group" view="buttongroup" label="Radio button group">
+                <radio value="first" view="button">First</radio>
+                <radio value="second" view="button">Second</radio>
+                <radio value="third" view="button">Third</radio>
+            </radiogroup>
+        </section>
+    </article>
+</main>
