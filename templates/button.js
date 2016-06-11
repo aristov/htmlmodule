@@ -3,9 +3,10 @@ export default domTransform => {
         return {
             element : 'span',
             attributes : {
-                'data-instance' : 'Button',
+                'data-instance' : attributes.instance || 'Button',
                 role : 'button',
                 tabindex : attributes.disabled === 'true'? undefined : '0',
+                title : attributes.title,
                 'class' : [attributes.view || 'button', attributes.mix].join(' ').trim(),
                 'aria-disabled' : attributes.disabled,
                 'aria-pressed' : attributes.pressed,

@@ -7,6 +7,7 @@ export default class DOMTransform {
                 return transform.call(this, element, params);
             },
             text : text => /^\s+$/.test(text.content)? null : text,
+            // text : text => text,
             comment : comment => comment,
             document : document => document,
             doctype : doctype => doctype

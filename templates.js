@@ -6,8 +6,10 @@ import checkbox from './templates/checkbox';
 import radiogroup from './templates/radiogroup';
 import listbox from './templates/listbox';
 import textbox from './templates/textbox';
+import select from './templates/select';
 import menu from './templates/menu';
 import group from './templates/group';
+import dialog from './templates/dialog';
 
 let domTransform = new DOMTransform();
 
@@ -17,7 +19,9 @@ checkbox(domTransform);
 radiogroup(domTransform);
 listbox(domTransform);
 textbox(domTransform);
+select(domTransform);
 menu(domTransform);
 group(domTransform);
+dialog(domTransform);
 
 export default domTransform;

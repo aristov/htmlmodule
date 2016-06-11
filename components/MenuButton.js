@@ -44,10 +44,8 @@ export default class MenuButton extends Button {
         super.onKeyDown(event);
         if(event.keyCode === ARROWS.DOWN) {
             event.preventDefault();
-            if(this.expanded === 'false') {
-                this.expanded = 'true';
-                this.menu.items[0].element.focus();
-            }
+            if(this.expanded === 'false') this.expanded = 'true';
+            this.menu.items[0].element.focus();
         }
         if(event.keyCode === ESCAPE) this.expanded = 'false';
     }

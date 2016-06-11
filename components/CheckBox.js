@@ -1,5 +1,4 @@
 import Instance from './Instance';
-
 import { SPACE } from '../tools/keyCodes';
 
 export default class CheckBox extends Instance {

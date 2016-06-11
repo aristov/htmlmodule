@@ -24,4 +24,19 @@ export default domTransform => {
             content : this.apply(content)
         }
     });
+    domTransform.element('menubutton', function({ attributes, content }) {
+        return this.apply({
+            element : 'button',
+            attributes : {
+                instance : 'MenuButton',
+                disabled : attributes.disabled,
+                view : attributes.view,
+                mix : ['menubutton', attributes.mix].join(' '),
+                haspopup : 'true',
+                controls : attributes.controls,
+                expanded : 'false'
+            },
+            content
+        })
+    });
 }

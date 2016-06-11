@@ -1,20 +1,18 @@
 export default domTransform => {
-    domTransform.element('listbox', function(listbox) {
-        var attrs = listbox.attributes,
-            params = { checked : null },
-            content = [this.apply({
+    domTransform.element('listbox', function({ attributes, content }, params = { checked : null }) {
+        let newContent = [{
                 element : 'span',
                 attributes : { 'class' : 'box' },
-                content : listbox.content
-            }, params)],
+                content : this.apply(content, params)
+            }],
             checked = params.checked;
-        content.push({
+        newContent.push({
             element : 'input',
             attributes : {
                 type : 'hidden',
                 autocomplete : 'off',
-                disabled : attrs.disabled === 'true' ? '' : undefined,
-                name : attrs.name,
+                disabled : attributes.disabled === 'true' ? '' : undefined,
+                name : attributes.name,
                 value : checked? checked.attributes['data-value'] : undefined
             }
         });
@@ -23,29 +21,28 @@ export default domTransform => {
             attributes : {
                 'data-instance': 'ListBox',
                 role : 'listbox',
-                tabindex : attrs.disabled === 'true'? undefined : '0',
-                'aria-label' : attrs.label,
-                'aria-disabled' : attrs.disabled,
-                'class' : attrs.view || 'listbox'
+                tabindex : attributes.disabled === 'true'? undefined : '0',
+                'aria-label' : attributes.label,
+                'aria-disabled' : attributes.disabled,
+                'class' : [attributes.view || 'listbox', attributes.mix].join(' ').trim()
             },
-            content : content
+            content : newContent
         };
     });
-    domTransform.element('option', function(option, params) {
-        var attrs = option.attributes,
-            result = {
+    domTransform.element('option', function({ attributes, content }, params) {
+        let result = {
                 element : 'span',
                 attributes : {
                     'data-instance' : 'Option',
                     role : 'option',
-                    'aria-selected' : attrs.selected,
-                    'aria-checked' : attrs.checked,
-                    'data-value' : attrs.value,
-                    'class' : attrs.view || 'option'
+                    'aria-selected' : attributes.selected,
+                    'aria-checked' : attributes.checked,
+                    'data-value' : attributes.value,
+                    'class' : attributes.view || 'option'
                 },
-                content : option.content
+                content
             };
-        if(attrs.checked === 'true') params.checked = result;
+        if(attributes.checked === 'true') params.checked = result;
         return result;
     });
 }

@@ -6,3 +6,15 @@ Instance.js
 - Fast and simple
 - Customizable styling
 - BEM methodology
+
+WAI-ARIA framework implementation with ES6 + DOM4 + HTML5 + CSS3
+
+## Usage
+
+```
+npm i
+webpack
+static
+```
+
+

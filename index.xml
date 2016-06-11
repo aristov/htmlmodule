@@ -104,6 +104,66 @@
         </section>
     </article>
     <article>
+        <h1>Select</h1>
+        <section>
+            <select label="Simple">
+                <option value="one">First</option>
+                <option value="two">Second</option>
+                <option value="three">Third</option>
+            </select>
+        </section>
+        <section>
+            <select label="Checked">
+                <option value="one">First</option>
+                <option value="two" checked="true">Second</option>
+                <option value="three">Third</option>
+            </select>
+        </section>
+    </article>
+    <article>
+        <h1>Menu button</h1>
+        <section>
+            <menubutton controls="simplemenu">Simple menu</menubutton>
+            <menu id="simplemenu">
+                <menuitem>First item</menuitem>
+                <menuitem>Second item</menuitem>
+                <menuitem>Third item</menuitem>
+            </menu>
+        </section>
+    </article>
+    <article>
+        <h1>Dialog</h1>
+        <section>
+            <dialogbutton controls="simpledialog">Simple dialog</dialogbutton>
+            <dialog id="simpledialog">
+                <h3>Dialog title</h3>
+                <textbox/><button>Submit</button>
+            </dialog>
+        </section>
+        <section>
+            <dialogbutton controls="assertivedialog">Assertive dialog</dialogbutton>
+            <dialog id="assertivedialog" assertive="true">
+                <h3>Dialog title</h3>
+                <textbox/><button>Submit</button>
+            </dialog>
+        </section>
+        <section>
+            <dialogbutton controls="modaldialog">Modal dialog</dialogbutton>
+            <dialog id="modaldialog" modal="true">
+                <h3>Dialog title</h3>
+                <textbox/><button>Submit</button>
+            </dialog>
+        </section>
+        <section>
+            <dialogbutton controls="assertivemodaldialog">Assertive modal dialog</dialogbutton>
+            <dialog id="assertivemodaldialog" modal="true" assertive="true">
+                <h3>Dialog title</h3>
+                <textbox/><button>Submit</button>
+                <button action="close" title="Close dialog"/>
+            </dialog>
+        </section>
+    </article>
+    <article>
         <h1>Mixes</h1>
         <section>
             <button view="link">Button as link</button>
@@ -116,8 +176,8 @@
         </section>
         <section>
             <group label="Check button group" view="buttongroup">
-                <checkbox view="button">First</checkbox
-                ><checkbox view="button">Second</checkbox>
+                <checkbox view="button">First</checkbox>
+                <checkbox view="button">Second</checkbox>
             </group>
         </section>
         <section>
