@@ -18,8 +18,8 @@ export default domTransform => {
                 role : 'tab',
                 tabindex : attributes.selected === 'true'? '0' : '-1',
                 'aria-controls' : attributes.controls,
-                'class' : 'tab',
-                'aria-selected' : attributes.selected
+                'aria-selected' : attributes.selected,
+                'class' : 'tab'
             },
             content : { element : 'span', content }
         }

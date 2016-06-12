@@ -21,6 +21,9 @@ export default class Instance {
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));
     }
+    emit(type) {
+        this.element.dispatchEvent(new Event(type, { bubbles : true, cancelable : true }));
+    }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === this.name?
             element.instance || new this(element) :

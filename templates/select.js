@@ -11,8 +11,9 @@ export default domTransform => {
             attributes : {
                 'data-instance' : 'Select',
                 role : 'combobox',
-                tabindex : 0,
+                tabindex : attributes.disabled === 'true'? undefined : 0,
                 'aria-expanded' : false,
+                'aria-disabled' : attributes.disabled,
                 'class' : 'select',
                 'aria-label' : attributes.label
             },
@@ -23,7 +24,8 @@ export default domTransform => {
                         'data-instance' : 'Button',
                         role : 'textbox',
                         'class' : 'button',
-                        'aria-readonly' : 'true'
+                        'aria-readonly' : 'true',
+                        'aria-disabled' : attributes.disabled
                     },
                     content : params.checked? params.checked.content : '—'
                 },

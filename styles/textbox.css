@@ -50,13 +50,13 @@
     width: 27px;
     height: 27px;
     background: url(../images/cross.svg) no-repeat 50% 50%;
-    cursor: pointer;
     position: absolute;
     right: 1px;
     opacity: 0.3;
     outline: none;
 }
-.textbox .clear:hover
+.textbox:not(.disabled) .clear:hover
 {
+    cursor: pointer;
     opacity: 1;
 }

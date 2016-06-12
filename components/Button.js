@@ -39,9 +39,7 @@ export default class Button extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === ENTER) {
-            this.element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
-        }
+        if(keyCode === ENTER) this.emit('click');
         if(keyCode === SPACE) {
             event.preventDefault();
             event.repeat || this.element.classList.add('active');

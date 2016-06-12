@@ -82,13 +82,13 @@
     <article>
         <h1>Text box</h1>
         <section>
-            <textbox label="Simple"/>
+            <textbox hasclear="true" label="Simple"/>
         </section>
         <section>
-            <textbox value="Text" label="Filled"/>
+            <textbox hasclear="true" value="Text" label="Filled"/>
         </section>
         <section>
-            <textbox disabled="true" value="Text" label="Disabled"/>
+            <textbox hasclear="true" disabled="true" value="Text" label="Disabled"/>
         </section>
     </article>
     <article>
@@ -97,19 +97,25 @@
             <textbox multiline="true" label="Simple"/>
         </section>
         <section>
-            <textbox multiline="true" value="Text" label="Filled"/>
-        </section>
-        <section>
             <textbox multiline="true" disabled="true" value="Text" label="Disabled"/>
         </section>
     </article>
     <article>
-        <h1>Date/time box</h1>
+        <h1>Date box</h1>
         <section>
-            <datebox label="Date box" value="12.06.2016"/>
+            <datebox label="Simple" value="12.06.2016"/>
         </section>
         <section>
-            <timebox label="Time box" value="09 : 00"/>
+            <datebox disabled="true" label="Disabled" value="12.06.2016"/>
+        </section>
+    </article>
+    <article>
+        <h1>Time box</h1>
+        <section>
+            <timebox label="Simple" value="09 : 00"/>
+        </section>
+        <section>
+            <timebox disabled="true" label="Disabled" value="09 : 00"/>
         </section>
     </article>
     <article>
@@ -123,6 +129,13 @@
         </section>
         <section>
             <select label="Checked">
+                <option value="one">First option</option>
+                <option value="two" checked="true">Second option</option>
+                <option value="three">Third option</option>
+            </select>
+        </section>
+        <section>
+            <select label="Disabled" disabled="true">
                 <option value="one">First option</option>
                 <option value="two" checked="true">Second option</option>
                 <option value="three">Third option</option>

@@ -9,5 +9,8 @@
     position: absolute;
     bottom: 4px;
     right: 6px;
+}
+.datebox:not(.disabled)::after
+{
     cursor: pointer;
 }

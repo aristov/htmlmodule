@@ -25,6 +25,14 @@
     right: 6px;
     transition: transform 0.1s ease-out 0s;
 }
+.select[aria-disabled=true]
+{
+    color: rgba(0, 0, 0, 0.5);
+}
+.select[aria-disabled=true] .button::after
+{
+    opacity: 0.2;
+}
 .select[aria-label]::before
 {
     content: attr(aria-label);
