@@ -14,6 +14,7 @@ import menubutton from './templates/menubutton';
 import group from './templates/group';
 import dialog from './templates/dialog';
 import dialogbutton from './templates/dialogbutton';
+import tablist from './templates/tablist';
 
 let domTransform = new DOMTransform();
 
@@ -31,5 +32,6 @@ menubutton(domTransform);
 group(domTransform);
 dialog(domTransform);
 dialogbutton(domTransform);
+tablist(domTransform);
 
 export default domTransform;

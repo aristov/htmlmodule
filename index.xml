@@ -173,6 +173,17 @@
         </section>
     </article>
     <article>
+        <h1>Tab list</h1>
+        <tablist>
+            <tab controls="tabpanel1" selected="true">One</tab>
+            <tab controls="tabpanel2">Two</tab>
+            <tab controls="tabpanel3">Three</tab>
+        </tablist>
+        <tabpanel id="tabpanel1">First panel</tabpanel>
+        <tabpanel id="tabpanel2" hidden="true">Second panel</tabpanel>
+        <tabpanel id="tabpanel3" hidden="true">Third panel</tabpanel>
+    </article>
+    <article>
         <h1>Mixes</h1>
         <section>
             <button view="link">Button as link</button>

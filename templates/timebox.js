@@ -20,6 +20,7 @@ export default domTransform => {
                         disabled : attributes.disabled === 'true'? '' : undefined,
                         placeholder : attributes.placeholder,
                         value : attributes.value,
+                        readonly : '',
                         'class' : 'box'
                     }
                 },
