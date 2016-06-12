@@ -15,6 +15,7 @@ import group from './templates/group';
 import dialog from './templates/dialog';
 import dialogbutton from './templates/dialogbutton';
 import tablist from './templates/tablist';
+import spin from './templates/spin';
 
 let domTransform = new DOMTransform();
 
@@ -33,5 +34,6 @@ group(domTransform);
 dialog(domTransform);
 dialogbutton(domTransform);
 tablist(domTransform);
+spin(domTransform);
 
 export default domTransform;

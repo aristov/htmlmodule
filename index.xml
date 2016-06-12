@@ -184,6 +184,10 @@
         <tabpanel id="tabpanel3" hidden="true">Third panel</tabpanel>
     </article>
     <article>
+        <h1>Spin</h1>
+        <spin/>
+    </article>
+    <article>
         <h1>Mixes</h1>
         <section>
             <button view="link">Button as link</button>
