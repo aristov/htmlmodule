@@ -16,14 +16,16 @@
     color: #c00;
     cursor: pointer;
 }
+.link:active,
+.link.active
+{
+    background: #f3f1ed;
+}
 .link[aria-disabled]
 {
     color: #999;
     cursor: default;
 }
-
-/* external link */
-
 .link[rel~=external]:not(:hover)
 {
     color: #070;

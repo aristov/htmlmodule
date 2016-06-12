@@ -154,6 +154,7 @@
             <dialog id="assertivedialog" assertive="true">
                 <h3>Dialog title</h3>
                 <textbox/> <button>Submit</button>
+                <button action="close" title="Close dialog"/>
             </dialog>
         </section>
         <section>

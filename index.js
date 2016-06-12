@@ -29,7 +29,7 @@ TabList.attachToDocument();
 
 const parser = new DOMParser;
 
-fetch('index.xml')
+fetch('showcase.xml')
     .then(response => response.text())
     .then(xml => {
         let ts = Date.now(),
