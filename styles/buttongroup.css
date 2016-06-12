@@ -28,3 +28,10 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
+.buttongroup[aria-label]::before
+{
+    content: attr(aria-label);
+    display: block;
+    margin-bottom: 5px;
+    cursor: default;
+}

@@ -3,7 +3,7 @@ export default domTransform => {
         let params = { checked : null },
             listbox = this.apply({
                 element : 'listbox',
-                attributes : { mix : 'popup' },
+                attributes : { mix : 'popup', tabindex : undefined },
                 content
             }, params);
         return {

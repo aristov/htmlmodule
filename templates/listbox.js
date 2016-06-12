@@ -1,12 +1,12 @@
 export default domTransform => {
     domTransform.element('listbox', function({ attributes, content }, params = { checked : null }) {
-        let newContent = [{
+        let box = [{
                 element : 'span',
                 attributes : { 'class' : 'box' },
                 content : this.apply(content, params)
             }],
             checked = params.checked;
-        newContent.push({
+        box.push({
             element : 'input',
             attributes : {
                 type : 'hidden',
@@ -21,12 +21,14 @@ export default domTransform => {
             attributes : {
                 'data-instance': 'ListBox',
                 role : 'listbox',
-                tabindex : attributes.disabled === 'true'? undefined : '0',
+                tabindex : 'tabindex' in attributes?
+                    attributes.tabindex :
+                    attributes.disabled === 'true'? undefined : '0',
                 'aria-label' : attributes.label,
                 'aria-disabled' : attributes.disabled,
                 'class' : [attributes.view || 'listbox', attributes.mix].join(' ').trim()
             },
-            content : newContent
+            content : box
         };
     });
     domTransform.element('option', function({ attributes, content }, params) {

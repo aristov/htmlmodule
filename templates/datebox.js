@@ -1,27 +1,18 @@
 export default domTransform => {
-    domTransform.element('textbox', function({ attributes }) {
+    domTransform.element('datebox', function({ attributes }) {
         return {
             element : 'label',
             attributes : {
-                'data-instance' : 'TextBox',
-                role : 'textbox',
+                'data-instance' : 'DateBox',
+                role : 'datebox',
                 'aria-label' : attributes.label,
                 'class' : [
-                    attributes.view || 'textbox',
+                    attributes.view || 'textbox datebox',
                     attributes.disabled === 'true' && 'disabled',
                     attributes.mix
                 ].join(' ').trim()
             },
-            content : attributes.multiline === 'true'? {
-                element : 'textarea',
-                attributes : {
-                    autocomplete : 'off',
-                    disabled : attributes.disabled === 'true'? '' : undefined,
-                    placeholder : attributes.placeholder,
-                    'class' : 'box'
-                },
-                content : attributes.value
-            } : {
+            content : [{
                 element : 'input',
                 attributes : {
                     autocomplete : 'off',
@@ -30,7 +21,17 @@ export default domTransform => {
                     value : attributes.value,
                     'class' : 'box'
                 }
-            }
+            }, {
+                element : 'div',
+                attributes : {
+                    'data-instance' : 'DatePicker',
+                    'class' : 'datepicker popup',
+                    'data-year' : attributes.year,
+                    'data-month' : attributes.month,
+                    'data-date' : attributes.date,
+                    hidden : ''
+                }
+            }]
         };
     });
 }

@@ -14,19 +14,4 @@ export default domTransform => {
             content : this.apply(content)
         }
     });
-    domTransform.element('dialogbutton', function({ attributes, content }) {
-        return this.apply({
-            element : 'button',
-            attributes : {
-                instance : 'DialogButton',
-                disabled : attributes.disabled,
-                view : attributes.view,
-                mix : ['dialogbutton', attributes.mix].join(' '),
-                haspopup : 'true',
-                controls : attributes.controls,
-                expanded : 'false'
-            },
-            content
-        })
-    });
 }

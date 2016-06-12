@@ -4,7 +4,7 @@ export default domTransform => {
             element : 'span',
             attributes : {
                 'data-instance' : attributes.instance || 'Button',
-                role : 'button',
+                role : attributes.role || 'button',
                 tabindex : attributes.disabled === 'true'? undefined : '0',
                 title : attributes.title,
                 'class' : [attributes.view || 'button', attributes.mix].join(' ').trim(),
