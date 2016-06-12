@@ -1,12 +1,13 @@
 export default domTransform => {
-    domTransform.element('listbox', function({ attributes, content }, params = { checked : null }) {
-        let box = [{
+    domTransform.element('listbox', function(listbox, params = { checked : null }) {
+        let attributes = listbox.attributes,
+            content = [{
                 element : 'span',
                 attributes : { 'class' : 'box' },
-                content : this.apply(content, params)
+                content : this.apply(listbox.content, params)
             }],
             checked = params.checked;
-        box.push({
+        content.push({
             element : 'input',
             attributes : {
                 type : 'hidden',
@@ -28,7 +29,7 @@ export default domTransform => {
                 'aria-disabled' : attributes.disabled,
                 'class' : [attributes.view || 'listbox', attributes.mix].join(' ').trim()
             },
-            content : box
+            content
         };
     });
     domTransform.element('option', function({ attributes, content }, params) {

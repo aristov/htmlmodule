@@ -32,6 +32,8 @@ const parser = new DOMParser;
 fetch('index.xml')
     .then(response => response.text())
     .then(xml => {
-        let element = parser.parseFromString(xml, 'text/xml').documentElement;
+        let ts = Date.now(),
+            element = parser.parseFromString(xml, 'text/xml').documentElement;
         document.body.appendChild(DON.toDOM(templates.apply(DON.fromDOM(element))));
+        console.log(Date.now() - ts);
     });
