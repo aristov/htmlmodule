@@ -1,14 +1,13 @@
 export default domTransform => {
-    domTransform.element('group', function(group, params) {
-        var attrs = group.attributes;
+    domTransform.element('group', function({ attributes, content }, params) {
         return {
             element : 'span',
             attributes : {
                 role : 'group',
-                'aria-label' : attrs.label,
-                'class' : attrs.view || 'group'
+                'aria-label' : attributes.label,
+                'class' : attributes.view || 'group'
             },
-            content : this.apply(group.content, params)
+            content : this.apply(content, params)
         };
     });
 }

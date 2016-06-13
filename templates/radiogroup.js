@@ -1,14 +1,13 @@
 export default domTransform => {
-    domTransform.element('radiogroup', function(radiogroup) {
-        let attrs = radiogroup.attributes,
-            params = {
-                disabled : attrs.disabled === 'true',
+    domTransform.element('radiogroup', function({ attributes, content }) {
+        let params = {
+                disabled : attributes.disabled === 'true',
                 first : null,
                 checked : null
-            },
-            content = this.apply(radiogroup.content, params),
-            checked = params.checked;
+            };
+        content = this.apply(content, params);
 
+        let checked = params.checked;
         if(!params.disabled) (checked || params.first).attributes.tabindex = '0';
 
         return {
@@ -16,9 +15,9 @@ export default domTransform => {
             attributes : {
                 'data-instance' : 'RadioGroup',
                 role : 'radiogroup',
-                'aria-label' : attrs.label,
-                'aria-disabled' : attrs.disabled,
-                'class' : attrs.view || 'radiogroup'
+                'aria-label' : attributes.label,
+                'aria-disabled' : attributes.disabled,
+                'class' : attributes.view || 'radiogroup'
             },
             content : [
                 {
@@ -26,8 +25,8 @@ export default domTransform => {
                     attributes : {
                         type : 'hidden',
                         autocomplete : 'off',
-                        disabled : attrs.disabled === 'true' ? '' : undefined,
-                        name : attrs.name,
+                        disabled : attributes.disabled === 'true' ? '' : undefined,
+                        name : attributes.name,
                         value : checked? checked.attributes['data-value'] : undefined
                     }
                 },

@@ -94,10 +94,10 @@
     <article>
         <h1>Text area</h1>
         <section>
-            <textbox multiline="true" label="Simple"/>
+            <textarea label="Simple"/>
         </section>
         <section>
-            <textbox multiline="true" disabled="true" value="Text" label="Disabled"/>
+            <textarea disabled="true" value="Text" label="Disabled"/>
         </section>
     </article>
     <article>

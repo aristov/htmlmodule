@@ -37,12 +37,15 @@
 {
     background: #f3f1ed;
 }
-.checkbox[aria-checked=true] .box
+.checkbox[aria-checked=true] .box,
+.checkbox[aria-checked=mixed] .box
 {
     background: #ffeba0;
 }
 .checkbox[aria-checked=true]:active .box,
-.checkbox[aria-checked=true].active .box
+.checkbox[aria-checked=mixed]:active .box,
+.checkbox[aria-checked=true].active .box,
+.checkbox[aria-checked=mixed].active .box
 {
     background: #fee481;
 }
@@ -71,4 +74,15 @@
     position: absolute;
     top: -6px;
     left: 1px;
+}
+.checkbox[aria-checked=mixed] .box::before
+{
+    content: '';
+    display: inline-block;
+    background: #000;
+    width: 8px;
+    height: 2px;
+    top: 5px;
+    left: 2px;
+    position: absolute;
 }

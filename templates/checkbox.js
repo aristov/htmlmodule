@@ -1,26 +1,21 @@
 export default domTransform => {
-    domTransform.element('checkbox', function(checkbox) {
-        let attrs = checkbox.attributes,
-            view = attrs.view || 'checkbox',
-            content = this.apply(view === 'checkbox'?
-                [
-                    {
-                        element : 'span',
-                        attributes : { 'class' : 'box' }
-                    },
-                    checkbox.content
-                ] :
-                checkbox.content);
+    domTransform.element('checkbox', function({ attributes, content }) {
+        let view = attributes.view || 'checkbox';
 
-        if(attrs.checked === 'true') {
+        content = this.apply(view === 'checkbox'? [{
+            element : 'span',
+            attributes : { 'class' : 'box' }
+        }, content] : content);
+
+        if(attributes.checked === 'true') {
             content.push({
                 element : 'input',
                 attributes : {
                     type : 'hidden',
                     autocomplete : 'off',
-                    disabled : attrs.disabled === 'true' ? '' : undefined,
-                    name : attrs.name,
-                    value : attrs.value
+                    disabled : attributes.disabled === 'true' ? '' : undefined,
+                    name : attributes.name,
+                    value : attributes.value
                 }
             });
         }
@@ -29,12 +24,14 @@ export default domTransform => {
             attributes : {
                 'data-instance' : 'CheckBox',
                 role : 'checkbox',
-                tabindex : attrs.disabled === 'true'? undefined : '0',
-                'aria-disabled' : attrs.disabled,
-                'aria-checked' : attrs.checked,
+                tabindex : attributes.disabled === 'true'? undefined : '0',
+                id : attributes.id,
+                'aria-disabled' : attributes.disabled,
+                'aria-checked' : attributes.checked,
+                'aria-controls' : attributes.controls,
                 'class' : view
             },
-            content : content
+            content
         };
     });
 }

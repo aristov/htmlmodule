@@ -1,12 +1,11 @@
 export default domTransform => {
-    domTransform.element('listbox', function(listbox, params = { checked : null }) {
-        let attributes = listbox.attributes,
-            content = [{
-                element : 'span',
-                attributes : { 'class' : 'box' },
-                content : this.apply(listbox.content, params)
-            }],
-            checked = params.checked;
+    domTransform.element('listbox', function({ attributes, content }, params = { checked : null }) {
+        content = [{
+            element : 'span',
+            attributes : { 'class' : 'box' },
+            content : this.apply(content, params)
+        }];
+        let checked = params.checked;
         content.push({
             element : 'input',
             attributes : {

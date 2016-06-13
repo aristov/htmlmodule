@@ -8,11 +8,11 @@ export default domTransform => {
                 'aria-label' : attributes.label,
                 'class' : [
                     attributes.view || 'textbox timebox',
-                    attributes.disabled === 'true' && 'disabled',
+                    attributes.disabled === 'true'? 'disabled' : '',
                     attributes.mix
                 ].join(' ').trim()
             },
-            content : [
+            content : this.apply([
                 {
                     element : 'input',
                     attributes : {
@@ -25,26 +25,22 @@ export default domTransform => {
                     }
                 },
                 {
-                    element : 'span',
+                    element : 'button',
                     attributes : {
-                        role : 'button',
                         tabindex : '-1',
-                        'class' : 'button',
-                        'data-value' : '+1'
+                        value : '+1'
                     },
                     content : '▲'
                 },
                 {
-                    element : 'span',
+                    element : 'button',
                     attributes : {
-                        role : 'button',
                         tabindex : '-1',
-                        'class' : 'button',
-                        'data-value' : '-1'
+                        value : '-1'
                     },
                     content : '▼'
                 }
-            ]
+            ])
         };
     });
 }

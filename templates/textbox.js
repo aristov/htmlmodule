@@ -1,15 +1,6 @@
 export default domTransform => {
     domTransform.element('textbox', function({ attributes }) {
-        let content = [attributes.multiline === 'true'? {
-            element : 'textarea',
-            attributes : {
-                autocomplete : 'off',
-                disabled : attributes.disabled === 'true'? '' : undefined,
-                placeholder : attributes.placeholder,
-                'class' : 'box'
-            },
-            content : attributes.value
-        } : {
+        let content = [{
             element : 'input',
             attributes : {
                 autocomplete : 'off',
@@ -35,16 +26,39 @@ export default domTransform => {
             element : 'label',
             attributes : {
                 'data-instance' : 'TextBox',
-                role : 'textbox',
                 'aria-label' : attributes.label,
                 'class' : [
                     attributes.view || 'textbox',
                     attributes.hasclear === 'true'? 'hasclear' : '',
                     attributes.disabled === 'true'? 'disabled' : '',
                     attributes.mix
-                ].filter(s => s).join(' ').trim()
+                ].join(' ').trim()
             },
             content
+        };
+    });
+    domTransform.element('textarea', function({ attributes }) {
+        return {
+            element : 'label',
+            attributes : {
+                'data-instance' : 'TextBox',
+                'aria-label' : attributes.label,
+                'class' : [
+                    attributes.view || 'textbox',
+                    attributes.disabled === 'true'? 'disabled' : '',
+                    attributes.mix
+                ].join(' ').trim()
+            },
+            content : {
+                element : 'textarea',
+                attributes : {
+                    autocomplete : 'off',
+                    disabled : attributes.disabled === 'true'? '' : undefined,
+                    placeholder : attributes.placeholder,
+                    'class' : 'box'
+                },
+                content : attributes.value
+            }
         };
     });
 }

@@ -13,10 +13,10 @@ export default class DOMTransform {
             doctype : doctype => doctype
         };
         this.elements = {
-            '' : (element, params) => ({
-                element : element.element,
-                attributes : element.attributes,
-                content : this.apply(element.content, params)
+            '' : ({ element, attributes, content }, params) => ({
+                element,
+                attributes,
+                content : this.apply(content, params)
             })
         };
     }

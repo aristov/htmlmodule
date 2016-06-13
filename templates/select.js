@@ -12,7 +12,7 @@ export default domTransform => {
                 'data-instance' : 'Select',
                 role : 'combobox',
                 tabindex : attributes.disabled === 'true'? undefined : 0,
-                'aria-expanded' : false,
+                'aria-expanded' : 'false',
                 'aria-disabled' : attributes.disabled,
                 'class' : 'select',
                 'aria-label' : attributes.label

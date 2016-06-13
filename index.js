@@ -27,13 +27,14 @@ DialogButton.attachToDocument();
 DateBox.attachToDocument();
 TabList.attachToDocument();
 
-const parser = new DOMParser;
-
 fetch('showcase.xml')
     .then(response => response.text())
     .then(xml => {
         let ts = Date.now(),
-            element = parser.parseFromString(xml, 'text/xml').documentElement;
-        document.body.appendChild(DON.toDOM(templates.apply(DON.fromDOM(element))));
+            parser = new DOMParser,
+            element = parser.parseFromString(xml, 'text/xml').documentElement,
+            don = templates.apply(DON.fromDOM(element));
+        console.dir(don);
+        document.body.appendChild(DON.toDOM(don));
         console.log(Date.now() - ts);
     });
