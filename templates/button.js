@@ -20,3 +20,22 @@ export default domTransform => {
         };
     })
 }
+
+
+/*export const button = ({ attributes, content }) => ({
+    element : 'span',
+    instance : attributes.instance || 'Button',
+    role : attributes.role || 'button',
+    tabindex : attributes.disabled === 'true'? undefined : '0',
+    title : attributes.title,
+    classes : [attributes.view || 'button', attributes.mix],
+    disabled : attributes.disabled,
+    pressed : attributes.pressed,
+    haspopup : attributes.haspopup,
+    controls : attributes.controls,
+    expanded : attributes.expanded,
+    action : attributes.action,
+    value : attributes.value,
+    content
+});*/
+

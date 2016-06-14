@@ -8,7 +8,7 @@ export default domTransform => {
                 'aria-label' : attributes.label,
                 'class' : [
                     attributes.view || 'textbox datebox',
-                    attributes.disabled === 'true'? 'disabled' : '',
+                    attributes.disabled === 'true'? 'disabled' : undefined,
                     attributes.mix
                 ].join(' ').trim()
             },

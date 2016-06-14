@@ -1,10 +1,10 @@
 export default domTransform => {
     domTransform.element('radiogroup', function({ attributes, content }) {
         let params = {
-                disabled : attributes.disabled === 'true',
-                first : null,
-                checked : null
-            };
+            disabled : attributes.disabled === 'true',
+            first : null,
+            checked : null
+        };
         content = this.apply(content, params);
 
         let checked = params.checked;

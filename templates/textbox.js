@@ -20,7 +20,7 @@ export default domTransform => {
                     'class' : 'clear',
                     hidden : attributes.value? undefined : ''
                 }
-            })
+            });
         }
         return {
             element : 'label',
@@ -29,8 +29,8 @@ export default domTransform => {
                 'aria-label' : attributes.label,
                 'class' : [
                     attributes.view || 'textbox',
-                    attributes.hasclear === 'true'? 'hasclear' : '',
-                    attributes.disabled === 'true'? 'disabled' : '',
+                    attributes.hasclear === 'true'? 'hasclear' : undefined,
+                    attributes.disabled === 'true'? 'disabled' : undefined,
                     attributes.mix
                 ].join(' ').trim()
             },

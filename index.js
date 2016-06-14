@@ -14,6 +14,9 @@ import DialogButton from './components/DialogButton';
 import DateBox from './components/DateBox';
 import TabList from './components/TabList';
 
+//import * as design from './design';
+//[...design].forEach(Instance => Instance.attachToDocument());
+
 Button.attachToDocument();
 CheckBox.attachToDocument();
 Menu.attachToDocument();
@@ -34,7 +37,7 @@ fetch('showcase.xml')
             parser = new DOMParser,
             element = parser.parseFromString(xml, 'text/xml').documentElement,
             don = templates.apply(DON.fromDOM(element));
+        console.log(Date.now() - ts);
         console.dir(don);
         document.body.appendChild(DON.toDOM(don));
-        console.log(Date.now() - ts);
     });

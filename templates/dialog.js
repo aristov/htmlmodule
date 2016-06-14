@@ -3,12 +3,12 @@ export default domTransform => {
         return {
             element : 'div',
             attributes : {
+                'data-instance' : attributes.instance || 'Dialog',
                 role : 'dialog',
                 id : attributes.id,
                 hidden : '',
                 'class' : 'dialog popup',
                 'aria-modal' : attributes.modal,
-                'data-instance' : 'Dialog',
                 'data-assertive' : attributes.assertive
             },
             content : this.apply(content)

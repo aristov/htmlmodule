@@ -19,11 +19,11 @@ export default domTransform => {
         return {
             element : 'span',
             attributes : {
-                'data-instance': 'ListBox',
                 role : 'listbox',
                 tabindex : 'tabindex' in attributes?
                     attributes.tabindex :
                     attributes.disabled === 'true'? undefined : '0',
+                'data-instance': 'ListBox',
                 'aria-label' : attributes.label,
                 'aria-disabled' : attributes.disabled,
                 'class' : [attributes.view || 'listbox', attributes.mix].join(' ').trim()
@@ -35,8 +35,8 @@ export default domTransform => {
         let result = {
                 element : 'span',
                 attributes : {
-                    'data-instance' : 'Option',
                     role : 'option',
+                    'data-instance' : 'Option',
                     'aria-selected' : attributes.selected,
                     'aria-checked' : attributes.checked,
                     'data-value' : attributes.value,
