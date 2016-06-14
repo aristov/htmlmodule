@@ -1,0 +1,59 @@
+.tree
+{
+    display: inline-block;
+    padding-left: 20px;
+    -moz-user-select: none;
+}
+.tree .group
+{
+    display: block;
+    padding-left: 20px;
+}
+.treeitem
+{
+    display: block;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    /*padding-left: 10px;*/
+}
+.treeitem:focus
+{
+    box-shadow: 0 0 0 2px #ffdb4d;
+}
+.treeitem[aria-expanded] > [role=button]
+{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.5);
+    left: -18px;
+    line-height: 11px;
+    padding: 0 2px;
+    position: absolute;
+    top: 4px;
+}
+.treeitem[aria-expanded] > [role=button]:hover
+{
+    border-color: rgba(0, 0, 0, 0.3);
+    color: #000;
+}
+.treeitem[aria-expanded=false] > [role=button]::before
+{
+    content: '+';
+}
+.treeitem[aria-expanded=true] > [role=button]::before
+{
+    content: '−';
+}
+.treeitem[aria-expanded=false] .group
+{
+    display: none;
+}
+.treeitem .label
+{
+    display: block;
+    padding: 3px 2px;
+}
+.treeitem[aria-selected=true] > .label
+{
+    background: #ffeba0;
+}

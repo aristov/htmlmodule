@@ -202,6 +202,29 @@
         <spin/>
     </article>
     <article>
+        <h1>Tree</h1>
+        <tree>
+            <treeitem expanded="true" label="First">
+                <group>
+                    <treeitem label="Nested 1"/>
+                    <treeitem label="Nested 2"/>
+                </group>
+            </treeitem>
+            <treeitem expanded="true" label="Second">
+                <group>
+                    <treeitem expanded="false" label="Nested 1">
+                        <group>
+                            <treeitem label="Subnested 1"/>
+                            <treeitem label="Subnested 2"/>
+                            <treeitem label="Subnested 3"/>
+                        </group>
+                    </treeitem>
+                    <treeitem label="Nested 2"/>
+                </group>
+            </treeitem>
+        </tree>
+    </article>
+    <article>
         <h1>Mixes</h1>
         <section>
             <button view="link">Button as link</button>

@@ -13,6 +13,7 @@ import TimeBox from './components/TimeBox';
 import DialogButton from './components/DialogButton';
 import DateBox from './components/DateBox';
 import TabList from './components/TabList';
+import { TreeItem } from './components/Tree';
 
 //import * as design from './design';
 //[...design].forEach(Instance => Instance.attachToDocument());
@@ -29,6 +30,7 @@ TimeBox.attachToDocument();
 DialogButton.attachToDocument();
 DateBox.attachToDocument();
 TabList.attachToDocument();
+TreeItem.attachToDocument();
 
 fetch('showcase.xml')
     .then(response => response.text())
