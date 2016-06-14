@@ -48,7 +48,7 @@ export class TreeItem extends Instance {
     }
     get parent() {
         let element = this.element.parentElement.closest('[data-instance=TreeItem]');
-        return element? TreeItem.getInstance(element) : null;
+        return element? TreeItem.getInstance(element) : this.tree;
     }
     get hidden() {
         return String(Boolean(this.element.parentElement.closest('[data-instance=TreeItem][aria-expanded=false]')));
@@ -96,28 +96,25 @@ export class TreeItem extends Instance {
         else if(this.items.length) this.items[0].focus();
     }
     onUpArrowKeyDown() {
-        let parent = this.parent || this.tree,
+        let parent = this.parent,
             items = parent.items.filter(item => item.hidden === 'false'),
             index = items.indexOf(this),
             prevItem = items[index - 1];
         if(prevItem) prevItem.focus();
-        else if(this.parent) this.parent.focus();
+        else if(parent instanceof TreeItem) parent.focus();
     }
     onDownArrowKeyDown() {
-        if(this.expanded === 'true') {
-            if(this.items.length) this.items[0].focus();
-        } else {
-            let parent = this.parent || this.tree,
-                items = parent.items.filter(item => item.hidden === 'false'),
-                index = items.indexOf(this),
-                nextItem = items[index + 1];
-            if(nextItem) nextItem.focus();
-            else {
-                let parent = this.parent && this.parent.parent || this.tree,
-                    items = parent.items.filter(item => item.hidden === 'false'),
+        if(this.expanded === 'true') this.items[0].focus();
+        else {
+            let parent = this;
+            while(parent = parent.parent) {
+                let items = parent.items.filter(item => item.hidden === 'false'),
                     index = items.indexOf(this),
                     nextItem = items[index + 1];
-                if(nextItem) nextItem.focus();
+                if(nextItem) {
+                    nextItem.focus();
+                    break;
+                }
             }
         }
     }

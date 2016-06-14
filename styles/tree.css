@@ -30,6 +30,7 @@
     padding: 0 2px;
     position: absolute;
     top: 4px;
+    border-radius: 2px;
 }
 .treeitem[aria-expanded] > [role=button]:hover
 {
