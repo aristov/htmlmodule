@@ -2,6 +2,8 @@
 @import url(../styles/button.css);
 @import url(../styles/textbox.css);
 @import url(../styles/checkbox.css);
+@import url(../styles/popup.css);
+@import url(../styles/dialog.css);
 
 
 main
@@ -48,4 +50,8 @@ form
 .removebutton:hover
 {
     opacity: 0.5;
+}
+.dialog p
+{
+    margin: 10px 0 30px;
 }
