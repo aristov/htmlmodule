@@ -1,0 +1,51 @@
+@import url(../styles/common.css);
+@import url(../styles/button.css);
+@import url(../styles/textbox.css);
+@import url(../styles/checkbox.css);
+
+
+main
+{
+    width: 500px;
+    margin: 0 auto;
+}
+h2
+{
+    color: #444;
+}
+ul
+{
+    padding: 0;
+    list-style: none;
+}
+li
+{
+    position: relative;
+    padding: 5px 25px 5px 5px;
+    background: #eee;
+    margin-bottom: 5px;
+}
+form
+{
+    background: #ddd;
+    padding: 10px;
+}
+.textbox .box
+{
+    width: 300px;
+}
+.removebutton
+{
+    position: absolute;
+    right: 5px;
+    font-size: 2em;
+    line-height: 15px;
+    opacity: 0.2;
+    cursor: pointer;
+    outline: none;
+}
+.removebutton:focus,
+.removebutton:hover
+{
+    opacity: 0.5;
+}
