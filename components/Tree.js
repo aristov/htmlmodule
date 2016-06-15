@@ -1,5 +1,5 @@
 import Instance from './Instance';
-import { ARROWS } from '../tools/keyCodes';
+import { ARROWS, ENTER, SPACE } from '../tools/keyCodes';
 
 const map = Array.prototype.map;
 const ARROW_CODES = Object.values(ARROWS);
@@ -86,10 +86,15 @@ export class TreeItem extends Instance {
                     break;
             }
         }
+        if(keyCode === SPACE || keyCode === ENTER) {
+            event.preventDefault();
+            event.stopPropagation();
+            if(this.expanded) this.expanded = String(this.expanded === 'false');
+        }
     }
     onLeftArrowKeyDown() {
         if(this.expanded === 'true') this.expanded = 'false';
-        else if(this.parent) this.parent.focus();
+        else if(this.parent instanceof TreeItem) this.parent.focus();
     }
     onRightArrowKeyDown() {
         if(this.expanded === 'false') this.expanded = 'true';
