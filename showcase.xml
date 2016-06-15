@@ -205,91 +205,16 @@
         <h1>Tree</h1>
         <tree>
             <treeitem expanded="true" label="First">
-                <group>
-                    <treeitem label="Nested 1"/>
-                    <treeitem label="Nested 2"/>
-                    <!--<treeitem expanded="true" label="First">
-                        <group>
-                            <treeitem label="Nested 1"/>
-                            <treeitem expanded="false" label="Nested 1">
-                                <group>
-                                    <treeitem label="Subnested 1"/>
-                                    <treeitem label="Subnested 2"/>
-                                    <treeitem label="Subnested 3"/>
-                                </group>
-                            </treeitem>
-                            <treeitem expanded="false" label="Nested 1">
-                                <group>
-                                    <treeitem label="Subnested 1"/>
-                                    <treeitem label="Subnested 2"/>
-                                    <treeitem label="Subnested 3"/>
-                                </group>
-                            </treeitem>
-                            <treeitem label="Nested 2"/>
-                        </group>
-                    </treeitem>
-                    <treeitem expanded="true" label="Second">
-                        <group>
-                            <treeitem expanded="false" label="Nested 1">
-                                <group>
-                                    <treeitem label="Subnested 1"/>
-                                    <treeitem label="Subnested 2"/>
-                                    <treeitem label="Subnested 3"/>
-                                    <treeitem expanded="true" label="First">
-                                        <group>
-                                            <treeitem label="Nested 1"/>
-                                            <treeitem label="Nested 2"/>
-                                            <treeitem expanded="true" label="First">
-                                                <group>
-                                                    <treeitem label="Nested 1"/>
-                                                    <treeitem expanded="false" label="Nested 1">
-                                                        <group>
-                                                            <treeitem label="Subnested 1"/>
-                                                            <treeitem label="Subnested 2"/>
-                                                            <treeitem label="Subnested 3"/>
-                                                        </group>
-                                                    </treeitem>
-                                                    <treeitem expanded="false" label="Nested 1">
-                                                        <group>
-                                                            <treeitem label="Subnested 1"/>
-                                                            <treeitem label="Subnested 2"/>
-                                                            <treeitem label="Subnested 3"/>
-                                                        </group>
-                                                    </treeitem>
-                                                    <treeitem label="Nested 2"/>
-                                                </group>
-                                            </treeitem>
-                                            <treeitem expanded="true" label="Second">
-                                                <group>
-                                                    <treeitem expanded="false" label="Nested 1">
-                                                        <group>
-                                                            <treeitem label="Subnested 1"/>
-                                                            <treeitem label="Subnested 2"/>
-                                                            <treeitem label="Subnested 3"/>
-                                                            <treeitem label="Nested 2"/>
-                                                        </group>
-                                                    </treeitem>
-                                                </group>
-                                            </treeitem>
-                                        </group>
-                                    </treeitem>
-                                </group>
-                            </treeitem>
-                        </group>
-                    </treeitem>-->
-                </group>
+                <treeitem label="Nested 1"/>
+                <treeitem label="Nested 2"/>
             </treeitem>
             <treeitem expanded="true" label="Second">
-                <group>
-                    <treeitem expanded="false" label="Nested 1">
-                        <group>
-                            <treeitem label="Subnested 1"/>
-                            <treeitem label="Subnested 2"/>
-                            <treeitem label="Subnested 3"/>
-                        </group>
-                    </treeitem>
-                    <treeitem label="Nested 2"/>
-                </group>
+                <treeitem expanded="false" label="Nested 1">
+                    <treeitem label="Subnested 1"/>
+                    <treeitem label="Subnested 2"/>
+                    <treeitem label="Subnested 3"/>
+                </treeitem>
+                <treeitem label="Nested 2"/>
             </treeitem>
         </tree>
     </article>

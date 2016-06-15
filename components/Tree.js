@@ -68,7 +68,7 @@ export class TreeItem extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(ARROW_CODES.indexOf(keyCode) > -1) {
+        if(ARROW_CODES.indexOf(keyCode) > -1 || keyCode === SPACE || keyCode === ENTER) {
             event.preventDefault();
             event.stopPropagation();
             switch(keyCode) {
@@ -84,12 +84,11 @@ export class TreeItem extends Instance {
                 case ARROWS.DOWN:
                     this.onDownArrowKeyDown();
                     break;
+                case SPACE:
+                case ENTER:
+                    if(this.expanded) this.expanded = String(this.expanded === 'false');
+                    break;
             }
-        }
-        if(keyCode === SPACE || keyCode === ENTER) {
-            event.preventDefault();
-            event.stopPropagation();
-            if(this.expanded) this.expanded = String(this.expanded === 'false');
         }
     }
     onLeftArrowKeyDown() {

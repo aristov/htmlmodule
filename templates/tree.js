@@ -14,7 +14,7 @@ export default domTransform => {
         let tabindex;
         if(!params.first) {
             tabindex = '0';
-            params.first = true;
+            params.first = this;
         }
         return {
             element : 'span',
@@ -35,7 +35,7 @@ export default domTransform => {
                     attributes : { 'class' : 'label' },
                     content : attributes.label
                 },
-                this.apply(content, params)
+                attributes.expanded? this.apply({ element : 'group', content }, params) : ''
             ]
         }
     });
