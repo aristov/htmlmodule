@@ -11,7 +11,22 @@ export default domTransform => {
         }
     });
     domTransform.element('treeitem', function({ attributes, content }, params) {
-        let tabindex;
+        let tabindex,
+            children = {
+                element : 'span',
+                attributes : { 'class' : 'label' },
+                content : attributes.label
+            };
+        if(attributes.expanded) {
+            children = [
+                {
+                    element : 'span',
+                    attributes : { role : 'button' }
+                },
+                children,
+                this.apply({ element : 'group', content }, params)
+            ];
+        }
         if(!params.first) {
             tabindex = '0';
             params.first = this;
@@ -25,18 +40,7 @@ export default domTransform => {
                 'aria-expanded' : attributes.expanded,
                 'class' : attributes.view || 'treeitem'
             },
-            content : [
-                attributes.expanded? {
-                    element : 'span',
-                    attributes : { role : 'button' }
-                } : '',
-                {
-                    element : 'span',
-                    attributes : { 'class' : 'label' },
-                    content : attributes.label
-                },
-                attributes.expanded? this.apply({ element : 'group', content }, params) : ''
-            ]
+            content : children
         }
     });
 }

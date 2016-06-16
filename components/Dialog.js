@@ -74,7 +74,7 @@ export default class Dialog extends Instance {
         let keyCode = event.keyCode;
         if(keyCode === ESCAPE && this.assertive === 'false') {
             this.hidden = 'true';
-            this.trigger.focus();
+            if(this.trigger) this.trigger.focus();
         }
         if(keyCode === TAB) {
             let widgets = this.widgets,
@@ -85,7 +85,8 @@ export default class Dialog extends Instance {
             }
             if(!event.shiftKey && event.target === lastWidget) {
                 event.preventDefault();
-                this.modal === 'true'? widgets[0].focus() : this.trigger.focus();
+                if(this.modal === 'true') widgets[0].focus();
+                else if(this.trigger) this.trigger.focus();
             }
         }
     }

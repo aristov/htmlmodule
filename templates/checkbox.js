@@ -26,6 +26,7 @@ export default domTransform => {
                 role : 'checkbox',
                 tabindex : attributes.disabled === 'true'? undefined : '0',
                 id : attributes.id,
+                title : attributes.title,
                 'aria-disabled' : attributes.disabled,
                 'aria-checked' : attributes.checked,
                 'aria-controls' : attributes.controls,

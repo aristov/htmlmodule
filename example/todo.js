@@ -5,7 +5,7 @@ import TextBox from '../components/TextBox';
 import CheckBox from '../components/CheckBox';
 import Dialog from '../components/Dialog';
 
-// import template engine tools
+// import template engine
 import DOMTransform from '../tools/DOMTransform';
 import DON from '../tools/DON';
 
@@ -54,13 +54,17 @@ class TodoApp extends Instance {
     }
     onListClick({ target }) {
         let dataset = target.dataset;
-        if(dataset.instance === 'Button' && dataset.type === 'remove') this.onItemRemove(target.closest('li'));
+        if(dataset.instance === 'Button' && dataset.type === 'remove') {
+            this.onItemRemove(target.closest('li'));
+        }
     }
     onDialogClick({ target }) {
         let dataset = target.dataset;
         if(dataset.instance === 'Button' && dataset.type === 'cancel') {
             this.dialog.hidden = 'true';
-            if(this.currentItem) this.currentItem.querySelector('[data-instance=Button]').focus();
+            if(this.currentItem) {
+                this.currentItem.querySelector('[data-instance=Button]').focus();
+            }
         }
     }
     onDialogSubmit(event) {
@@ -77,6 +81,7 @@ class TodoApp extends Instance {
             this.list.removeChild(item);
         } else {
             this.currentItem = item;
+            this.dialog.trigger = Button.getInstance(item.querySelector('[data-instance=Button]'));
             this.dialog.hidden = 'false';
         }
     }
@@ -112,12 +117,13 @@ domTransform.element('todoapp', function() {
                 content : [
                     {
                         element : 'textbox',
-                        attributes : { placeholder : 'Type text here...' }
+                        //attributes : { placeholder : 'Type text here...' }
+                        attributes : { placeholder : 'What are you going to do?' }
                     },
                     {
                         element : 'button',
                         attributes : { type : 'submit' },
-                        content : 'Submit'
+                        content : 'Remember'
                     }
                 ]
             },
@@ -133,10 +139,7 @@ domTransform.element('todoapp', function() {
 domTransform.element('confirmdialog', function({ text, submit, cancel }) {
     return this.apply({
         element : 'dialog',
-        attributes : {
-            modal : 'true',
-            assertive : 'true'
-        },
+        attributes : { modal : 'true' },
         content : {
             element : 'form',
             content : [
@@ -158,9 +161,12 @@ domTransform.element('confirmdialog', function({ text, submit, cancel }) {
 domTransform.element('todoitem', function({ text }) {
     return this.apply({
         element : 'li',
-        attributes : { 'data-instance' : 'TodoItem' },
+        //attributes : { 'data-instance' : 'TodoItem' },
         content : [
-            { element : 'checkbox' },
+            {
+                element : 'checkbox',
+                attributes : { title : 'Mark as "done"' }
+            },
             {
                 element : 'span',
                 attributes : { 'class' : 'text' },
