@@ -14,6 +14,7 @@ import DialogButton from './components/DialogButton';
 import DateBox from './components/DateBox';
 import TabList from './components/TabList';
 import { TreeItem } from './components/Tree';
+import { Grid } from './components/Grid';
 
 //import * as design from './design';
 //[...design].forEach(Instance => Instance.attachToDocument());
@@ -31,6 +32,7 @@ DialogButton.attachToDocument();
 DateBox.attachToDocument();
 TabList.attachToDocument();
 TreeItem.attachToDocument();
+Grid.attachToDocument();
 
 fetch('showcase.xml')
     .then(response => response.text())

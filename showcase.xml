@@ -219,6 +219,30 @@
         </tree>
     </article>
     <article>
+        <h1>Grid</h1>
+        <section>
+            <grid label="Simple">
+                <row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>
+            </grid>
+        </section>
+        <section>
+            <grid multiselectable="true" label="Multiselectable">
+                <row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>
+            </grid>
+        </section>
+        <section>
+            <grid disabled="true" label="Disabled">
+                <row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>
+            </grid>
+        </section>
+    </article>
+    <article>
         <h1>Mixes</h1>
         <section>
             <button view="link">Button as link</button>

@@ -17,6 +17,7 @@ import dialogbutton from './templates/dialogbutton';
 import tablist from './templates/tablist';
 import spin from './templates/spin';
 import tree from './templates/tree';
+import grid from './templates/grid';
 
 let domTransform = new DOMTransform();
 
@@ -37,5 +38,6 @@ dialogbutton(domTransform);
 tablist(domTransform);
 spin(domTransform);
 tree(domTransform);
+grid(domTransform);
 
 export default domTransform;

@@ -33,6 +33,23 @@
             min-width: 130px;
         }
     </style>
+    <script>
+        void function() {
+            var link;
+            if(navigator.userAgent.indexOf('Firefox') > 1) {
+                link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'styles/grid.moz.css';
+                document.head.appendChild(link);
+            }
+            else if(navigator.userAgent.indexOf('WebKit') > 1) {
+                link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'styles/grid.webkit.css';
+                document.head.appendChild(link);
+            }
+        }();
+    </script>
 </head>
 <body>
     <script src=tools/object-values.js></script>
