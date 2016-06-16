@@ -5,15 +5,15 @@
 @import url(../styles/popup.css);
 @import url(../styles/dialog.css);
 
-
+body
+{
+    font-size: 20px;
+    color: #444;
+}
 main
 {
     width: 500px;
     margin: 0 auto;
-}
-h2
-{
-    color: #444;
 }
 ul
 {
@@ -23,14 +23,25 @@ ul
 li
 {
     position: relative;
-    padding: 5px 25px 5px 5px;
+    padding: 10px 45px;
     background: #eee;
     margin-bottom: 5px;
 }
-form
+li .checkbox
 {
-    background: #ddd;
+    line-height: 13px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+main form
+{
+    background: #888;
     padding: 10px;
+}
+.textbox
+{
+    margin-right: 5px;
 }
 .textbox .box
 {
@@ -39,19 +50,28 @@ form
 .removebutton
 {
     position: absolute;
-    right: 5px;
+    right: 11px;
     font-size: 2em;
     line-height: 15px;
     opacity: 0.2;
     cursor: pointer;
     outline: none;
+    top: 15px;
 }
 .removebutton:focus,
 .removebutton:hover
 {
     opacity: 0.5;
 }
+.dialog
+{
+    padding: 25px;
+}
 .dialog p
 {
-    margin: 10px 0 30px;
+    margin: 0 0 25px;
+}
+.dialog .button[data-type=submit]
+{
+    margin-right: 5px;
 }

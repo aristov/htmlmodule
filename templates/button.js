@@ -13,7 +13,7 @@ export default domTransform => {
                 'aria-haspopup' : attributes.haspopup,
                 'aria-controls' : attributes.controls,
                 'aria-expanded' : attributes.expanded,
-                'data-action' : attributes.action,
+                'data-type' : attributes.type,
                 'data-value' : attributes.value
             },
             content : this.apply(content)

@@ -6,7 +6,6 @@ export default class DialogButton extends Button {
     constructor(element) {
         super(element);
         this.dialog = Dialog.getInstance(document.getElementById(this.controls));
-        this.dialog.trigger = this;
     }
     get expanded() {
         return super.expanded;
@@ -15,6 +14,7 @@ export default class DialogButton extends Button {
         if(expanded !== this.expanded) {
             super.expanded = expanded;
             this.dialog.hidden = String(expanded === 'false');
+            if(expanded === 'true') this.dialog.trigger = this;
         }
     }
     onKeyDown(event) {

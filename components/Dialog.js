@@ -35,6 +35,7 @@ export default class Dialog extends Instance {
                 if(this.trigger) {
                     this.trigger.expanded = 'false';
                     this.trigger.focus();
+                    this.trigger = null;
                 }
                 if(this.assertive === 'false') document.removeEventListener('click', this.onDocumentClick);
                 else if(this.modal === 'true') {

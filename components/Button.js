@@ -37,6 +37,9 @@ export default class Button extends Instance {
     set text(text) {
         this.element.textContent = text;
     }
+    get type() {
+        return this.element.dataset.type;
+    }
     onKeyDown(event) {
         let keyCode = event.keyCode;
         if(keyCode === ENTER) this.emit('click');
@@ -49,7 +52,7 @@ export default class Button extends Instance {
         if(keyCode === SPACE) {
             let element = this.element;
             element.classList.remove('active');
-            element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
+            element.dispatchEvent(new Event('click', { bubbles : true, cancelable : true }));
         }
     }
     onClick(event) {
@@ -59,10 +62,14 @@ export default class Button extends Instance {
         }
         if(this.pressed) {
             this.pressed = String(this.pressed === 'false');
-            this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+            this.element.dispatchEvent(new Event('change', { bubbles : true, cancelable : true }));
         }
         if(this.expanded) {
             this.expanded = String(this.expanded === 'false');
+        }
+        if(this.type === 'submit') {
+            let form = this.element.closest('form');
+            if(form) form.dispatchEvent(new Event('submit', { bubbles : true, cancelable : true }));
         }
     }
     focus() {
@@ -71,26 +78,27 @@ export default class Button extends Instance {
     static attachToDocument() {
         document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
-    static donTemplate(domTransform) {
-        domTransform.element('button', function({ attributes, content }) {
-            return {
-                element : 'span',
-                attributes : {
-                    'data-instance' : attributes.instance || 'Button',
-                    role : attributes.role || 'button',
-                    tabindex : attributes.disabled === 'true'? undefined : '0',
-                    title : attributes.title,
-                    'class' : [attributes.view || 'button', attributes.mix].join(' ').trim(),
-                    'aria-disabled' : attributes.disabled,
-                    'aria-pressed' : attributes.pressed,
-                    'aria-haspopup' : attributes.haspopup,
-                    'aria-controls' : attributes.controls,
-                    'aria-expanded' : attributes.expanded,
-                    'data-action' : attributes.action,
-                    'data-value' : attributes.value
-                },
-                content : this.apply(content)
-            };
-        })
+    static init(context = document) {
+        context.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    }
+    static template({ attributes, content }, transform) {
+        return {
+            element : 'span',
+            attributes : {
+                'data-instance' : attributes.instance || 'Button',
+                role : attributes.role || 'button',
+                tabindex : attributes.disabled === 'true'? undefined : '0',
+                title : attributes.title,
+                'class' : [attributes.view || 'button', attributes.mix].join(' ').trim(),
+                'aria-disabled' : attributes.disabled,
+                'aria-pressed' : attributes.pressed,
+                'aria-haspopup' : attributes.haspopup,
+                'aria-controls' : attributes.controls,
+                'aria-expanded' : attributes.expanded,
+                'data-type' : attributes.type,
+                'data-value' : attributes.value
+            },
+            content : transform.apply(content)
+        }
     }
 }
