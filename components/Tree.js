@@ -1,14 +1,11 @@
 import Instance from './Instance';
 import { ARROWS, ENTER, SPACE } from '../tools/keyCodes';
 
-const map = Array.prototype.map;
 const ARROW_CODES = Object.values(ARROWS);
 
 export class Tree extends Instance {
     get items() {
-        return map.call(
-            this.element.querySelectorAll('[data-instance=TreeItem]'),
-            item => TreeItem.getInstance(item));
+        return this.findAll(TreeItem);
     }
     unselect() {
         this.items.forEach(item => item.selected = 'false');
@@ -29,9 +26,7 @@ export class TreeItem extends Instance {
         }
     }
     get items() {
-        return map.call(
-            this.element.querySelectorAll('[data-instance=TreeItem]'),
-            item => TreeItem.getInstance(item));
+        return this.findAll(TreeItem);
     }
     get expanded() {
         return this.element.getAttribute('aria-expanded');

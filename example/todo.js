@@ -23,18 +23,13 @@ class TodoApp extends Instance {
 
         this.list = element.querySelector('ul');
         this.form = element.querySelector('form');
+        this.dialog = Dialog.getInstance(this.element.querySelector('[data-instance=Dialog]'));
 
         this.list.addEventListener('click', this.onListClick.bind(this));
         this.form.addEventListener('submit', this.onSubmit.bind(this));
-
-        this.dialog.on('click', this.onDialogClick, this);
         this.dialog.on('submit', this.onDialogSubmit, this);
 
         this.currentItem = null;
-    }
-    get dialog() {
-        return this._dialog || (this._dialog =
-            Dialog.getInstance(this.element.querySelector('[data-instance=Dialog]')));
     }
     get textbox() {
         return this._textbox || (this._textbox =
@@ -58,15 +53,6 @@ class TodoApp extends Instance {
             this.onItemRemove(target.closest('li'));
         }
     }
-    onDialogClick({ target }) {
-        let dataset = target.dataset;
-        if(dataset.instance === 'Button' && dataset.type === 'cancel') {
-            this.dialog.hidden = 'true';
-            if(this.currentItem) {
-                this.currentItem.querySelector('[data-instance=Button]').focus();
-            }
-        }
-    }
     onDialogSubmit(event) {
         event.preventDefault();
         if(this.currentItem) {
@@ -83,7 +69,35 @@ class TodoApp extends Instance {
             this.currentItem = item;
             this.dialog.trigger = Button.getInstance(item.querySelector('[data-instance=Button]'));
             this.dialog.hidden = 'false';
+
+            /*ConfirmDialog
+                .show({ text : 'A u sure?' })
+                .then(() => this.list.removeChild(item));*/
         }
+    }
+}
+
+/*class ConfirmDialog extends Dialog {
+    get hidden() {
+        return super.hidden;
+    }
+    set hidden(hidden) {
+        super.hidden = hidden;
+        this.promise = new Promise((resolve, reject) => {
+
+        });
+    }
+    onClick(event) {
+        super.onClick(event);
+        let dataset = event.target.dataset;
+        if(dataset.instance === 'Button' && dataset.type === 'cancel') {
+            this.promise
+        }
+    }
+    static show({ text }) {
+        let element = DON.toDOM(domTransform.apply({ element : 'confirmdialog', text })),
+            dialog = this.getInstance(element);
+        dialog.on('click', event => event.target.dataset.type === 'cancel' && )
     }
 }
 
@@ -94,7 +108,7 @@ class TodoItem extends Instance {
     static init() {
         document.addEventListener('click');
     }
-}
+}*/
 
 // create template engine instance
 const domTransform = new DOMTransform;
@@ -117,7 +131,6 @@ domTransform.element('todoapp', function() {
                 content : [
                     {
                         element : 'textbox',
-                        //attributes : { placeholder : 'Type text here...' }
                         attributes : { placeholder : 'What are you going to do?' }
                     },
                     {
@@ -151,7 +164,7 @@ domTransform.element('confirmdialog', function({ text, submit, cancel }) {
                 },
                 {
                     element : 'button',
-                    attributes : { type: 'cancel' },
+                    attributes : { type: 'close' },
                     content : cancel || 'Cancel'
                 }
             ]

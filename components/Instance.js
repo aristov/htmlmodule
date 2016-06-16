@@ -1,3 +1,5 @@
+const map = Array.prototype.map;
+
 export default class Instance {
     constructor(element) {
         element.instance = this;
@@ -23,6 +25,17 @@ export default class Instance {
     }
     emit(type) {
         this.element.dispatchEvent(new Event(type, { bubbles : true, cancelable : true }));
+    }
+    find(Class) {
+        return Class.getInstance(this.element.querySelector(`[data-instance=${Class.name}`));
+    }
+    findAll(Class) {
+        return map.call(
+            this.element.querySelectorAll(`[data-instance=${Class.name}`),
+            element => Class.getInstance(element));
+    }
+    closest(Class) {
+        return Class.getInstance(this.element.closest(`[data-instance=${Class.name}`));
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === this.name?

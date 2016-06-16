@@ -37,7 +37,7 @@
     margin: 0;
 }
 
-.dialog .button[data-action=close]
+.dialog .closebutton
 {
     position: absolute;
     top: 0;
@@ -48,11 +48,11 @@
     background-position: 50% 50%;
     opacity: 0.5;
 }
-.dialog .button[data-action=close]:hover
+.dialog .closebutton:hover
 {
     opacity: 1;
 }
-.dialog .button[data-action=close]:not(:focus)
+.dialog .closebutton:not(:focus)
 {
     border-color: transparent;
 }

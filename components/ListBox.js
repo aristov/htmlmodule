@@ -2,8 +2,7 @@ import Instance from './Instance';
 import Option from './Option';
 import { SPACE, ARROWS } from '../tools/keyCodes';
 
-const map = Array.prototype.map,
-      ARROW_CODES = Object.values(ARROWS);
+const ARROW_CODES = Object.values(ARROWS);
 
 export default class ListBox extends Instance {
     constructor(element) {
@@ -15,9 +14,7 @@ export default class ListBox extends Instance {
         this.on('keyup', this.onKeyUp);
     }
     get options() {
-        return map.call(
-            this.element.querySelectorAll('[data-instance=Option]'),
-            element => Option.getInstance(element));
+        return this.findAll(Option);
     }
     get selectedOptions() {
         return this.options.filter(option => option.selected === 'true');

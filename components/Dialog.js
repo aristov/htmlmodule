@@ -68,7 +68,7 @@ export default class Dialog extends Instance {
     }
     onClick({ target }) {
         let dataset = target.dataset;
-        if(dataset.instance === 'Button' && dataset.action === 'close') this.hidden = 'true';
+        if(dataset.instance === 'Button' && dataset.type === 'close') this.hidden = 'true';
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;

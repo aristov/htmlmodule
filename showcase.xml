@@ -167,7 +167,7 @@
             <dialog id="assertivedialog" assertive="true">
                 <h3>Dialog title</h3>
                 <textbox/> <button>Submit</button>
-                <button action="close" title="Close dialog"/>
+                <button type="close" mix="closebutton" title="Close dialog"/>
             </dialog>
         </section>
         <section>
@@ -182,7 +182,7 @@
             <dialog id="assertivemodaldialog" modal="true" assertive="true">
                 <h3>Dialog title</h3>
                 <textbox/> <button>Submit</button>
-                <button action="close" title="Close dialog"/>
+                <button type="close" mix="closebutton" title="Close dialog"/>
             </dialog>
         </section>
     </article>
