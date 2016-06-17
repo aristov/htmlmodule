@@ -5,7 +5,7 @@ export default class Option extends Instance {
     constructor(element) {
         super(element);
         element.id || this.generateId();
-        this.listBox = ListBox.getInstance(element.closest('[data-instance=ListBox]'));
+        this.listBox = this.closest(ListBox);
         this.on('click', this.onClick);
     }
     get selected() {

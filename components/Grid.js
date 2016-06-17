@@ -37,8 +37,7 @@ export class Grid extends Instance {
         });
     }
     get active() {
-        let element = this.element.querySelector('[role=gridcell][tabindex="0"]');
-        return GridCell.getInstance(element);
+        return this.find(GridCell, cell => cell.element.tabIndex > -1);
     }
     set active(cell) {
         this.active.active = false;

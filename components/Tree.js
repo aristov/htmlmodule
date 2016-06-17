@@ -18,7 +18,7 @@ export class Tree extends Instance {
 export class TreeItem extends Instance {
     constructor(element) {
         super(element);
-        this.tree = Tree.getInstance(element.closest('[data-instance=Tree]'));
+        this.tree = this.closest(Tree);
         this.on('click', this.onClick);
         this.on('dblclick', this.onDoubleClick);
         this.on('keydown', this.onKeyDown);
@@ -45,11 +45,11 @@ export class TreeItem extends Instance {
         this.element.setAttribute('aria-selected', selected);
     }
     get parent() {
-        let element = this.element.parentElement.closest('[data-instance=TreeItem]');
-        return element? TreeItem.getInstance(element) : this.tree;
+        return this.closest(TreeItem) || this.tree;
     }
     get hidden() {
         return String(Boolean(this.element.parentElement.closest('[data-instance=TreeItem][aria-expanded=false]')));
+        //return String(Boolean(this.closest(TreeItem, item => item.expanded === false)));
     }
     onClick({ target }) {
         if(target.closest('[data-instance=TreeItem]') === this.element) this.selected = 'true';

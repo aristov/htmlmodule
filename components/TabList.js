@@ -5,12 +5,10 @@ const map = Array.prototype.map;
 
 export default class TabList extends Instance {
     get tabs() {
-        return map.call(
-            this.element.querySelectorAll('[data-instance=Tab]'),
-            element => Tab.getInstance(element));
+        return this.findAll(Tab);
     }
     get selectedTab() {
-        return Tab.getInstance(this.element.querySelector('[data-instance=Tab][aria-selected=true]'));
+        return this.find(Tab, tab => tab.selected === 'true');
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));

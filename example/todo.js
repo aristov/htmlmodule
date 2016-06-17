@@ -187,7 +187,7 @@ domTransform.element('todoitem', function({ text }) {
             },
             {
                 element : 'button',
-                attributes : { view : 'removebutton', type : 'remove' },
+                attributes : { view : 'removebutton', type : 'remove', title : 'Remove' },
                 content : '×'
             }
         ]

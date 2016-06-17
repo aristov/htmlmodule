@@ -5,7 +5,7 @@ import { ESCAPE, SPACE } from '../tools/keyCodes';
 export default class DateBox extends TextBox {
     constructor(element) {
         super(element);
-        this.datePicker = DatePicker.getInstance(element.querySelector('[data-instance=DatePicker]'));
+        this.datePicker = this.find(DatePicker);
         this.datePicker.on('change', this.onDatePickerChange, this);
         this.on('keydown', this.onKeyDown);
         this.onDocumentClick = this.onDocumentClick.bind(this);

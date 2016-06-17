@@ -26,16 +26,20 @@ export default class Instance {
     emit(type) {
         this.element.dispatchEvent(new Event(type, { bubbles : true, cancelable : true }));
     }
-    find(Class) {
-        return Class.getInstance(this.element.querySelector(`[data-instance=${Class.name}`));
+    find(Class, filter) {
+        return filter?
+            this.findAll(Class, filter)[0] || null :
+            Class.getInstance(this.element.querySelector(`[data-instance=${Class.name}`));
     }
-    findAll(Class) {
-        return map.call(
+    findAll(Class, filter) {
+        let result = map.call(
             this.element.querySelectorAll(`[data-instance=${Class.name}`),
             element => Class.getInstance(element));
+        return filter? result.filter(filter) : result;
     }
     closest(Class) {
-        return Class.getInstance(this.element.closest(`[data-instance=${Class.name}`));
+        let element = this.element.parentElement.closest(`[data-instance=${Class.name}`);
+        return element && Class.getInstance(element);
     }
     static getInstance(element) {
         return element.dataset && element.dataset.instance === this.name?

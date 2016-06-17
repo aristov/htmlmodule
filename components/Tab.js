@@ -7,7 +7,7 @@ const ARROW_CODES = Object.values(ARROWS);
 export default class Tab extends Instance {
     constructor(element) {
         super(element);
-        this.list = TabList.getInstance(element.closest('[data-instance=TabList]'));
+        this.list = this.closest(TabList);
         this.panel = document.getElementById(this.controls);
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);

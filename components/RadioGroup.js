@@ -9,9 +9,7 @@ export default class RadioGroup extends Instance {
         this.input = element.querySelector('input') || document.createElement('input');
     }
     get radios() {
-        return map.call(
-            this.element.querySelectorAll('[data-instance=Radio]'),
-            element => Radio.getInstance(element));
+        return this.findAll(Radio);
     }
     get disabled() {
         return super.disabled;

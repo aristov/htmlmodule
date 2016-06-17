@@ -7,7 +7,7 @@ const ARROW_CODES = Object.values(ARROWS);
 export default class Radio extends Instance {
     constructor(element) {
         super(element);
-        this.group = RadioGroup.getInstance(this.element.closest('[data-instance=RadioGroup]'));
+        this.group = this.closest(RadioGroup);
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);

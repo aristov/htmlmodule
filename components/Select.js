@@ -9,8 +9,8 @@ export default class Select extends Instance {
     constructor(element) {
         super(element);
 
-        this.listBox = ListBox.getInstance(element.querySelector('[data-instance=ListBox]'));
-        this.button = Button.getInstance(element.querySelector('[data-instance=Button]'));
+        this.listBox = this.find(ListBox);
+        this.button = this.find(Button);
 
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);

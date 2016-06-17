@@ -6,7 +6,7 @@ import { SPACE, ARROWS } from '../tools/keyCodes';
 export default class MenuItem extends Instance {
     constructor(element) {
         super(element);
-        this.menu = Menu.getInstance(this.element.closest('[data-instance=Menu]'));
+        this.menu = this.closest(Menu);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
         this.on('mouseleave', this.onMouseLeave);
