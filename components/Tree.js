@@ -10,6 +10,9 @@ export class Tree extends Instance {
     unselect() {
         this.items.forEach(item => item.selected = 'false');
     }
+    static attachToDocument() {
+        TreeItem.attachToDocument();
+    }
 }
 
 export class TreeItem extends Instance {

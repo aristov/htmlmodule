@@ -1,4 +1,10 @@
 import Instance from './Instance';
+import { ENTER, ESCAPE, SPACE, BACKSPACE, ARROWS, DIGITS, LETTERS } from '../tools/keyCodes';
+
+let { LEFT, UP, RIGHT, DOWN } = ARROWS;
+const ARROW_CODES = Object.values(ARROWS);
+const DIGIT_CODES = Object.values(DIGITS);
+const LETTER_CODES = Object.values(LETTERS);
 
 export class Grid extends Instance {
     constructor(element) {
@@ -21,7 +27,7 @@ export class Grid extends Instance {
         return this.cells.filter(cell => cell.selected === 'true');
     }
     get disabled() {
-        return this.element.getAttribute('aria-disabled') || '';
+        return this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
         this.element.setAttribute('aria-disabled', disabled);
@@ -136,17 +142,19 @@ export class Row extends Instance {
 export class GridCell extends Instance {
     constructor(element) {
         super(element);
+
         element.dataset.mode = 'navigation';
         this.grid = this.closest(Grid);
         this.row = this.closest(Row);
         this.text = element.querySelector('.text');
         this.input = this.getInput();
         this.merged = this.getMerged();
+        this.span = null;
+
         this.on('blur', this.onBlur);
         this.on('click', this.onClick);
         this.on('dblclick', this.onDoubleClick);
         this.on('keydown', this.onKeyDown);
-        this.span = null;
     }
     get mode() {
         return this.element.dataset.mode;
@@ -157,6 +165,7 @@ export class GridCell extends Instance {
                 input = this.input,
                 text = this.text;
             if(mode === 'edit') {
+                input.value = text.textContent;
                 text.hidden = true;
                 input.hidden = false;
                 input.focus();
@@ -185,7 +194,7 @@ export class GridCell extends Instance {
     get disabled() {
         return this.grid.disabled === 'true'?
             'true' :
-            this.element.getAttribute('aria-disabled') || '';
+            this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
         let element = this.element;
@@ -254,7 +263,6 @@ export class GridCell extends Instance {
             input = element.querySelector('input');
         if(!input) {
             input = document.createElement('input');
-            input.setAttribute('role', 'presentation');
             input.hidden = true;
             element.appendChild(input);
         }
@@ -284,30 +292,22 @@ export class GridCell extends Instance {
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;
-        if(keyCode === 13) this.onEnterKeyDown(event);
-        else if(keyCode === 27) this.onEscapeKeyDown(event);
-        else if(keyCode >= 37 && keyCode <= 40) {
-            if(this.mode === 'navigation') {
-                event.preventDefault();
-                this.onArrowKeyDown(event);
-            }
+        if(keyCode === ENTER) this.onEnterKeyDown(event);
+        else if(keyCode === ESCAPE) this.onEscapeKeyDown(event);
+        else if(ARROW_CODES.indexOf(keyCode) > -1 && this.mode === 'navigation') {
+            event.preventDefault();
+            this.onArrowKeyDown(event);
         }
-        else if(keyCode === 8) this.onBackspaceKeyDown(event);
-        else if(keyCode === 65 && (event.metaKey || event.ctrlKey)) {
-            if(this.mode === 'navigation') {
+        else if(keyCode === BACKSPACE) this.onBackspaceKeyDown(event);
+        else if(keyCode === LETTERS.A && (event.metaKey || event.ctrlKey)) {
+            if(this.mode === 'navigation' && this.grid.multiselectable === 'true') {
                 event.preventDefault();
                 this.grid.selectAll();
             }
         }
-        else if(keyCode === 32 ||
-            (keyCode >= 48 && keyCode <= 57) ||
-            (keyCode >= 65 && keyCode <= 90) &&
-            !event.metaKey && !event.ctrlKey) {
-                this.onCharacterKeyDown(event);
+        else if([SPACE, ...DIGIT_CODES, ...LETTER_CODES].indexOf(keyCode) > -1) {
+            if(!event.metaKey && !event.ctrlKey) this.mode = 'edit';
         }
-    }
-    onCharacterKeyDown() {
-        this.mode = 'edit';
     }
     onBackspaceKeyDown(event) {
         if(this.mode === 'navigation') {
@@ -368,17 +368,17 @@ export class GridCell extends Instance {
             let rowCells = current.row.cells,
                 column = current.column;
             switch(keyCode) {
-                case 37: target = rowCells[0]; break;
-                case 38: target = column[0]; break;
-                case 39: target = rowCells[rowCells.length - 1]; break;
-                case 40: target = column[column.length - 1]; break;
+                case LEFT: target = rowCells[0]; break;
+                case UP: target = column[0]; break;
+                case RIGHT: target = rowCells[rowCells.length - 1]; break;
+                case DOWN: target = column[column.length - 1]; break;
             }
         } else {
             switch(keyCode) {
-                case 37: target = current.leftSibling; break;
-                case 38: target = current.topSibling; break;
-                case 39: target = current.rightSibling; break;
-                case 40: target = current.bottomSibling; break;
+                case LEFT: target = current.leftSibling; break;
+                case UP: target = current.topSibling; break;
+                case RIGHT: target = current.rightSibling; break;
+                case DOWN: target = current.bottomSibling; break;
             }
         }
         if(target) {
@@ -392,13 +392,13 @@ export class GridCell extends Instance {
         }
     }
     static attachToDocument() {
-        document.addEventListener('focus', function(event) {
+        document.addEventListener('focus', event => {
             let gridCell = this.getInstance(event.target);
             if(gridCell) gridCell.onFocus(event);
-        }.bind(this), true);
-        document.addEventListener('mouseenter', function(event) {
+        }, true);
+        document.addEventListener('mouseenter', event => {
             let gridCell = this.getInstance(event.target);
             if(gridCell) gridCell.onMouseEnter(event);
-        }.bind(this), true);
+        }, true);
     }
 }

@@ -13,7 +13,7 @@ import TimeBox from './components/TimeBox';
 import DialogButton from './components/DialogButton';
 import DateBox from './components/DateBox';
 import TabList from './components/TabList';
-import { TreeItem } from './components/Tree';
+import { Tree } from './components/Tree';
 import { Grid } from './components/Grid';
 
 //import * as design from './design';
@@ -31,7 +31,7 @@ TimeBox.attachToDocument();
 DialogButton.attachToDocument();
 DateBox.attachToDocument();
 TabList.attachToDocument();
-TreeItem.attachToDocument();
+Tree.attachToDocument();
 Grid.attachToDocument();
 
 fetch('showcase.xml')

@@ -17,6 +17,10 @@ export default domTransform => {
                 attributes : { 'class' : 'label' },
                 content : attributes.label
             };
+        if(!params.first) {
+            tabindex = '0';
+            params.first = this;
+        }
         if(attributes.expanded) {
             children = [
                 {
@@ -26,10 +30,6 @@ export default domTransform => {
                 children,
                 this.apply({ element : 'group', content }, params)
             ];
-        }
-        if(!params.first) {
-            tabindex = '0';
-            params.first = this;
         }
         return {
             element : 'span',
