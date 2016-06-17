@@ -20,7 +20,7 @@
 {
     color: #c00;
 }
-.tablist .tab span
+.tablist .tab > span
 {
     display: block;
     padding: 16px 0 18px;
@@ -31,11 +31,11 @@
     color: black;
     cursor: default;
 }
-.tablist .tab[aria-selected=true] span
+.tablist .tab[aria-selected=true] > span
 {
     border-top: 2px solid black;
 }
-.tablist .tab:focus span
+.tablist .tab:focus > span
 {
     border-color: #ffdb4d;
 }

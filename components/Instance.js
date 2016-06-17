@@ -37,12 +37,14 @@ export default class Instance {
             element => Class.getInstance(element));
         return filter? result.filter(filter) : result;
     }
-    closest(Class) {
-        let element = this.element.parentElement.closest(`[data-instance=${Class.name}`);
-        return element && Class.getInstance(element);
+    closest(Class, filter) {
+        let instance = this;
+        do instance = Class.getInstance(instance.element.parentElement.closest(`[data-instance=${Class.name}`));
+        while(instance && filter && !filter(instance));
+        return instance;
     }
     static getInstance(element) {
-        return element.dataset && element.dataset.instance === this.name?
+        return element && element.dataset && element.dataset.instance === this.name?
             element.instance || new this(element) :
             null;
     }

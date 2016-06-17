@@ -5,6 +5,13 @@
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+.grid[aria-label]::before
+{
+    content: attr(aria-label);
+    display: inline-block;
+    margin-bottom: 5px;
+    cursor: default;
+}
 .grid .gridcell
 {
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -62,11 +69,4 @@
 .grid[aria-disabled=true] .gridcell
 {
     border-color: transparent;
-}
-.grid[aria-label]::before
-{
-    content: attr(aria-label);
-    display: inline-block;
-    margin-bottom: 5px;
-    cursor: default;
 }

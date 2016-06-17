@@ -216,6 +216,16 @@
                 </treeitem>
                 <treeitem label="Nested 2"/>
             </treeitem>
+            <treeitem expanded="true" label="Third">
+                <treeitem expanded="true" label="Nested 1">
+                    <treeitem expanded="true" label="Subnested">
+                        <treeitem label="Deepnested"/>
+                    </treeitem>
+                </treeitem>
+                <treeitem expanded="false" label="Nested 2">
+                    <treeitem label="Subnested"/>
+                </treeitem>
+            </treeitem>
         </tree>
     </article>
     <article>

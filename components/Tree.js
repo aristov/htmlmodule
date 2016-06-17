@@ -32,7 +32,7 @@ export class TreeItem extends Instance {
         return this.findAll(TreeItem);
     }
     get expanded() {
-        return this.element.getAttribute('aria-expanded');
+        return this.element.getAttribute('aria-expanded') || '';
     }
     set expanded(expanded) {
         this.element.setAttribute('aria-expanded', expanded);
@@ -48,8 +48,7 @@ export class TreeItem extends Instance {
         return this.closest(TreeItem) || this.tree;
     }
     get hidden() {
-        return String(Boolean(this.element.parentElement.closest('[data-instance=TreeItem][aria-expanded=false]')));
-        //return String(Boolean(this.closest(TreeItem, item => item.expanded === false)));
+        return String(Boolean(this.closest(TreeItem, item => item.expanded === 'false')));
     }
     onClick({ target }) {
         if(target.closest('[data-instance=TreeItem]') === this.element) this.selected = 'true';
