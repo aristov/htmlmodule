@@ -80,7 +80,7 @@ export default class Radio extends Instance {
         radios[index].checked = 'true';
         radios[index].element.focus();
     }
-    static attachToDocument() {
-        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    static attachTo(node) {
+        node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }

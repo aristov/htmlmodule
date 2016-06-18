@@ -23,12 +23,12 @@
 .datepicker .button[data-direction=prev]
 {
     float: left;
-    background-image: url(../images/arrow-left.svg);
+    background-image: url(images/arrow-left.svg);
 }
 .datepicker .button[data-direction=next]
 {
     float: right;
-    background-image: url(../images/arrow-right.svg);
+    background-image: url(images/arrow-right.svg);
 }
 .datepicker [role=heading]
 {

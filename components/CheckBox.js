@@ -67,9 +67,6 @@ export default class CheckBox extends Instance {
             this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
         }
     }
-    static attachToDocument() {
-        this.attachTo(document);
-    }
     static attachTo(node) {
         node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }

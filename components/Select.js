@@ -84,7 +84,7 @@ export default class Select extends Instance {
         this.expanded = String(this.expanded === 'false');
         this.element.focus();
     }
-    static attachToDocument() {
-        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    static attachTo(node) {
+        node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }

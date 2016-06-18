@@ -57,7 +57,7 @@ export default class Tab extends Instance {
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));
     }
-    static attachToDocument() {
-        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    static attachTo(node) {
+        node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }

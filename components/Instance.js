@@ -29,17 +29,17 @@ export default class Instance {
     find(Class, filter) {
         return filter?
             this.findAll(Class, filter)[0] || null :
-            Class.getInstance(this.element.querySelector(`[data-instance=${Class.name}`));
+            Class.getInstance(this.element.querySelector(`[data-instance=${Class.name}]`));
     }
     findAll(Class, filter) {
         let result = map.call(
-            this.element.querySelectorAll(`[data-instance=${Class.name}`),
+            this.element.querySelectorAll(`[data-instance=${Class.name}]`),
             element => Class.getInstance(element));
         return filter? result.filter(filter) : result;
     }
     closest(Class, filter) {
         let instance = this;
-        do instance = Class.getInstance(instance.element.parentElement.closest(`[data-instance=${Class.name}`));
+        do instance = Class.getInstance(instance.element.parentElement.closest(`[data-instance=${Class.name}]`));
         while(instance && filter && !filter(instance));
         return instance;
     }
@@ -48,17 +48,7 @@ export default class Instance {
             element.instance || new this(element) :
             null;
     }
-
-    /*static attachTo(context = document) {
-        context.addEventListener('focus', event => {
-            if(this.isInstance(event.target)) this.onFocus(event);
-        }, true);
+    static closestInstance(element) {
+        return this.getInstance(element.closest(`[data-instance=${this.name}]`));
     }
-    static isInstance(element) {
-        return Boolean(element && element.dataset && element.dataset.instance === this.name);
-    }
-    static onFocus(event) {
-        let instance = this.getInstance(event.target);
-        if(typeof instance.onFocus === 'function') instance.onFocus(event);
-    }*/
 }

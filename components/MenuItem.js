@@ -47,8 +47,8 @@ export default class MenuItem extends Instance {
     onMouseLeave() {
         this.element.blur();
     }
-    static attachToDocument() {
-        document.addEventListener('mouseenter', event => {
+    static attachTo(node) {
+        node.addEventListener('mouseenter', event => {
             let menuItem = this.getInstance(event.target);
             if(menuItem) menuItem.onMouseEnter(event);  
         }, true);

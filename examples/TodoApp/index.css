@@ -1,9 +1,9 @@
-@import url(../styles/common.css);
-@import url(../styles/button.css);
-@import url(../styles/textbox.css);
-@import url(../styles/checkbox.css);
-@import url(../styles/popup.css);
-@import url(../styles/dialog.css);
+@import url(../../styles/yandex/common.css);
+@import url(../../styles/yandex/button.css);
+@import url(../../styles/yandex/textbox.css);
+@import url(../../styles/yandex/checkbox.css);
+@import url(../../styles/yandex/popup.css);
+@import url(../../styles/yandex/dialog.css);
 
 body
 {

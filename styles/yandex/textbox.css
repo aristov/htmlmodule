@@ -49,7 +49,7 @@
     display: inline-block;
     width: 27px;
     height: 27px;
-    background: url(../images/cross.svg) no-repeat 50% 50%;
+    background: url(images/cross.svg) no-repeat 50% 50%;
     position: absolute;
     right: 1px;
     opacity: 0.3;

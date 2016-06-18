@@ -19,7 +19,7 @@
 }
 .select .button::after
 {
-    content: url(../images/arrow-down.svg);
+    content: url(images/arrow-down.svg);
     position: absolute;
     top: 4px;
     right: 6px;

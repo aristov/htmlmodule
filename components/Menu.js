@@ -5,7 +5,7 @@ export default class Menu extends Instance {
     get items() {
         return this.findAll(MenuItem);
     }
-    static attachToDocument() {
-        MenuItem.attachToDocument();
+    static attachTo(node) {
+        MenuItem.attachTo(node);
     }
 }

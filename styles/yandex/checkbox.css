@@ -70,7 +70,7 @@
 }
 .checkbox[aria-checked=true] .box::before
 {
-    content: url(../images/checkmark.svg);
+    content: url(images/checkmark.svg);
     position: absolute;
     top: -6px;
     left: 1px;

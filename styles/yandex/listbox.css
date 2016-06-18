@@ -77,7 +77,7 @@
 }
 .listbox .option[aria-checked=true]::before
 {
-    content: url(../images/checkmark-small.svg);
+    content: url(images/checkmark-small.svg);
     position: absolute;
     top: 2px;
     left: 10px;

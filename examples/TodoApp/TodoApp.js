@@ -1,29 +1,27 @@
 // import components
-import Instance from '../components/Instance';
-import Button from '../components/Button';
-import TextBox from '../components/TextBox';
-import CheckBox from '../components/CheckBox';
-import Dialog from '../components/Dialog';
+import Instance from '../../components/Instance';
+import Button from '../../components/Button';
+import TextBox from '../../components/TextBox';
+import CheckBox from '../../components/CheckBox';
+import Dialog from '../../components/Dialog';
 
 // import template engine
-import DOMTransform from '../tools/DOMTransform';
-import DON from '../tools/DON';
+import DOMTransform from '../../tools/DOMTransform';
+import DON from '../../tools/DON';
 
 // import templates
-import button from '../templates/button.js';
-import textbox from '../templates/textbox.js';
-import checkbox from '../templates/checkbox.js';
-import dialog from '../templates/dialog.js';
+import button from '../../templates/button.js';
+import textbox from '../../templates/textbox.js';
+import checkbox from '../../templates/checkbox.js';
+import dialog from '../../templates/dialog.js';
 
 // create application components
 class TodoApp extends Instance {
     constructor(element) {
         super(element);
-
-        this.list = element.querySelector('ul');
         element.appendChild(DON.toDOM(domTransform.apply({ element : 'todoapp' })));
         element.querySelector('form').addEventListener('submit', this.onSubmit.bind(this));
-
+        this.list = element.querySelector('ul');
         this.attach(Button, TextBox, CheckBox, TodoItem);
     }
     attach(...components) {
@@ -83,7 +81,7 @@ class TodoItem extends Instance {
             const target = event.target;
             const button = Button.getInstance(target);
             if(button && button.type === 'remove') {
-                const item = this.getInstance(target.closest('[data-instance=TodoItem'));
+                const item = this.getInstance(target.closest('[data-instance=TodoItem]'));
                 if(item) item.onButtonClick(event);
             }
         });
@@ -94,10 +92,7 @@ class TodoItem extends Instance {
 const domTransform = new DOMTransform;
 
 // connect lib templates
-button(domTransform);
-textbox(domTransform);
-checkbox(domTransform);
-dialog(domTransform);
+[button, textbox, checkbox, dialog].forEach(template => template(domTransform));
 
 // write application templates
 domTransform.element('todoapp', function() {

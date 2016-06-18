@@ -29,7 +29,7 @@ export default class TabList extends Instance {
         this.select(index === tabs.length? tabs[0] : tabs[index]);
         this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
     }
-    static attachToDocument() {
-        Tab.attachToDocument();
+    static attachTo(node) {
+        Tab.attachTo(node);
     }
 }

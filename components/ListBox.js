@@ -113,11 +113,11 @@ export default class ListBox extends Instance {
     onFocus() {
         if(!this.selectedOptions.length) this.options[0].selected = 'true';
     }
-    static attachToDocument() {
-        document.addEventListener('focus', event => {
+    static attachTo(node) {
+        node.addEventListener('focus', event => {
             let listBox = this.getInstance(event.target);
             if(listBox) listBox.onFocus(event);
         }, true);
-        Option.attachToDocument();
+        Option.attachTo(node);
     }
 }

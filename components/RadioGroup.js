@@ -42,7 +42,7 @@ export default class RadioGroup extends Instance {
     uncheck() {
         this.radios.forEach(radio => radio.checked = 'false');
     }
-    static attachToDocument() {
-        Radio.attachToDocument();
+    static attachTo(node) {
+        Radio.attachTo(node);
     }
 }

@@ -3,18 +3,15 @@
 const path = require('path');
 
 module.exports = {
-    entry : './todo',
+    entry : './TodoApp',
     output : {
-        filename : 'app.js'
+        filename : 'index.js'
     },
     module : {
         loaders : [{
             test : /\.js$/,
             loader : 'babel?presets[]=es2015'
         }]
-    },
-    resolve: {
-        modulesDirectories: ['node_modules']
     },
     watch : true
 };

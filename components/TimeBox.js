@@ -92,8 +92,8 @@ export default class TimeBox extends TextBox {
         this.value = time[range](time[range]() + step).format(format);
         this.range = range;
     }
-    static attachToDocument() {
-        document.addEventListener('focus', event => {
+    static attachTo(node) {
+        node.addEventListener('focus', event => {
             let target = event.target;
             if(target.tagName === 'INPUT') {
                 let element = target.closest('[data-instance=TimeBox]');

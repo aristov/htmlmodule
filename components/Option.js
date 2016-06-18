@@ -50,8 +50,8 @@ export default class Option extends Instance {
             this.selected = 'true';
         }
     }
-    static attachToDocument() {
-        document.addEventListener('mouseenter', event => {
+    static attachTo(node) {
+        node.addEventListener('mouseenter', event => {
             let option = this.getInstance(event.target);
             if(option) option.onMouseEnter(event);
         }, true);
