@@ -20,14 +20,11 @@ class TodoApp extends Instance {
     constructor(element) {
         super(element);
         element.dataset.instance = this.constructor.name;
-        element.appendChild(DON.toDOM(domTransform.apply({
-            element : 'todoapp',
-            items : this.load()
-        })));
+        element.appendChild(DON.toDOM(domTransform.apply(this.load())));
         element.querySelector('form').addEventListener('submit', this.onSubmit.bind(this));
         this.list = element.querySelector('ul');
-        this.findAll(TodoItem);
         this.attach(Button, TextBox, CheckBox);
+        this.findAll(TodoItem);
     }
     attach(...components) {
         components.forEach(Component => Component.attachTo(this.element));
@@ -35,22 +32,23 @@ class TodoApp extends Instance {
     onSubmit(event) {
         const textbox = this.find(TextBox);
         const text = textbox.value.trim();
-        event.preventDefault();
         if(text) {
             const element = DON.toDOM(domTransform.apply({ element : 'todoitem', text }));
             const todoitem = TodoItem.getInstance(this.list.appendChild(element));
             textbox.value = '';
             this.save();
         } else textbox.focus();
+        event.preventDefault();
     }
     save() {
         localStorage.setItem('TodoApp', JSON.stringify({
-            items : this.findAll(TodoItem).map(({ text, done }) => ({ text, done }))
+            element : 'todoapp',
+            items : this.findAll(TodoItem).map(({ text, done }) => ({ element : 'todoitem', text, done }))
         }));
     }
     load() {
         const storage = localStorage.getItem('TodoApp');
-        return storage? JSON.parse(storage).items : [];
+        return storage? JSON.parse(storage) : { element : 'todoapp', items : [] };
     }
 }
 class TodoItem extends Instance {
@@ -58,8 +56,7 @@ class TodoItem extends Instance {
         super(element);
         this.app = this.closest(TodoApp);
         this.dialog = Dialog.getInstance(document.getElementById('removeitemconfirm'));
-        this.checkbox = this.find(CheckBox);
-        this.checkbox.on('change', () => this.app.save());
+        this.checkbox = this.find(CheckBox).on('change', () => this.app.save());
         this.find(Button).on('click', this.onButtonClick, this);
         this.onDialogSubmit = this.onDialogSubmit.bind(this);
     }
@@ -119,7 +116,7 @@ domTransform.element('todoapp', function({ items }) {
             { element : 'h2', content : 'TODO list' },
             {
                 element : 'ul',
-                content : items.map(({ text, done }) => ({ element : 'todoitem', text, done }))
+                content : items
             },
             {
                 element : 'form',

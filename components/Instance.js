@@ -22,9 +22,11 @@ export default class Instance {
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));
+        return this;
     }
     emit(type) {
         this.element.dispatchEvent(new Event(type, { bubbles : true, cancelable : true }));
+        return this;
     }
     find(Class, filter) {
         return filter?
