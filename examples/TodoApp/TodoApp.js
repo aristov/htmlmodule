@@ -19,9 +19,14 @@ import dialog from '../../templates/dialog.js';
 class TodoApp extends Instance {
     constructor(element) {
         super(element);
-        element.appendChild(DON.toDOM(domTransform.apply({ element : 'todoapp' })));
+        element.dataset.instance = this.constructor.name;
+        element.appendChild(DON.toDOM(domTransform.apply({
+            element : 'todoapp',
+            items : this.load()
+        })));
         element.querySelector('form').addEventListener('submit', this.onSubmit.bind(this));
         this.list = element.querySelector('ul');
+        this.findAll(TodoItem);
         this.attach(Button, TextBox, CheckBox);
     }
     attach(...components) {
@@ -30,18 +35,31 @@ class TodoApp extends Instance {
     onSubmit(event) {
         const textbox = this.find(TextBox);
         const text = textbox.value.trim();
-        if(text) {
-            const todoitem = DON.toDOM(domTransform.apply({ element : 'todoitem', text }));
-            TodoItem.getInstance(this.list.appendChild(todoitem));
-            textbox.value = '';
-        } else textbox.focus();
         event.preventDefault();
+        if(text) {
+            const element = DON.toDOM(domTransform.apply({ element : 'todoitem', text }));
+            const todoitem = TodoItem.getInstance(this.list.appendChild(element));
+            textbox.value = '';
+            this.save();
+        } else textbox.focus();
+    }
+    save() {
+        localStorage.setItem('TodoApp', JSON.stringify({
+            items : this.findAll(TodoItem).map(({ text, done }) => ({ text, done }))
+        }));
+    }
+    load() {
+        const storage = localStorage.getItem('TodoApp');
+        return storage? JSON.parse(storage).items : [];
     }
 }
 class TodoItem extends Instance {
     constructor(element) {
         super(element);
+        this.app = this.closest(TodoApp);
         this.dialog = Dialog.getInstance(document.getElementById('removeitemconfirm'));
+        this.checkbox = this.find(CheckBox);
+        this.checkbox.on('change', () => this.app.save());
         this.find(Button).on('click', this.onButtonClick, this);
         this.onDialogSubmit = this.onDialogSubmit.bind(this);
     }
@@ -60,13 +78,19 @@ class TodoItem extends Instance {
             }
         }
     }
+    get text() {
+        return this.element.querySelector('.text').textContent;
+    }
+    get done() {
+        return this.checkbox.checked;
+    }
     onDialogSubmit(event) {
         this.expanded = 'false';
         this.remove();
         event.preventDefault();
     }
     onButtonClick() {
-        if(this.find(CheckBox).checked === 'true') this.remove();
+        if(this.done === 'true') this.remove();
         else {
             this.dialog.trigger = this;
             this.expanded = 'true';
@@ -74,9 +98,10 @@ class TodoItem extends Instance {
     }
     remove() {
         this.element.parentElement.removeChild(this.element);
+        this.app.save();
     }
     focus() {
-        this.find(CheckBox).focus();
+        this.checkbox.focus();
     }
 }
 
@@ -87,12 +112,15 @@ const domTransform = new DOMTransform;
 [button, textbox, checkbox, dialog].forEach(template => template(domTransform));
 
 // write application templates
-domTransform.element('todoapp', function() {
+domTransform.element('todoapp', function({ items }) {
     return this.apply({
         element : 'main',
         content : [
             { element : 'h2', content : 'TODO list' },
-            { element : 'ul' },
+            {
+                element : 'ul',
+                content : items.map(({ text, done }) => ({ element : 'todoitem', text, done }))
+            },
             {
                 element : 'form',
                 content : [
@@ -140,14 +168,14 @@ domTransform.element('confirmdialog', function({ attributes, content }) {
         }
     });
 });
-domTransform.element('todoitem', function({ text }) {
+domTransform.element('todoitem', function({ text, done }) {
     return {
         element : 'li',
         attributes : { 'data-instance' : 'TodoItem', 'aria-haspopup' : 'true' },
         content : this.apply([
             {
                 element : 'checkbox',
-                attributes : { title : 'Mark as "done"' }
+                attributes : { checked : done, title : 'Mark as "done"' }
             },
             {
                 element : 'span',
