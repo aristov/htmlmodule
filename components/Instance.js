@@ -48,4 +48,17 @@ export default class Instance {
             element.instance || new this(element) :
             null;
     }
+
+    /*static attachTo(context = document) {
+        context.addEventListener('focus', event => {
+            if(this.isInstance(event.target)) this.onFocus(event);
+        }, true);
+    }
+    static isInstance(element) {
+        return Boolean(element && element.dataset && element.dataset.instance === this.name);
+    }
+    static onFocus(event) {
+        let instance = this.getInstance(event.target);
+        if(typeof instance.onFocus === 'function') instance.onFocus(event);
+    }*/
 }

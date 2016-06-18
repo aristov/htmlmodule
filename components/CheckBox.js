@@ -68,6 +68,9 @@ export default class CheckBox extends Instance {
         }
     }
     static attachToDocument() {
-        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+        this.attachTo(document);
+    }
+    static attachTo(node) {
+        node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
 }

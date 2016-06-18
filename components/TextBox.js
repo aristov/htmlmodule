@@ -38,7 +38,10 @@ export default class TextBox extends Instance {
         this.element.classList.remove('focus');
     }
     static attachToDocument() {
-        document.addEventListener('focus', event => {
+        this.attachTo(document);
+    }
+    static attachTo(node) {
+        node.addEventListener('focus', event => {
             let target = event.target,
                 tagName = target.tagName;
             if(tagName === 'INPUT' || tagName === 'TEXTAREA') {

@@ -15,105 +15,85 @@ import textbox from '../templates/textbox.js';
 import checkbox from '../templates/checkbox.js';
 import dialog from '../templates/dialog.js';
 
-// create core application component
+// create application components
 class TodoApp extends Instance {
     constructor(element) {
         super(element);
-        this.build();
 
         this.list = element.querySelector('ul');
-        this.form = element.querySelector('form');
-        this.dialog = Dialog.getInstance(this.element.querySelector('[data-instance=Dialog]'));
+        element.appendChild(DON.toDOM(domTransform.apply({ element : 'todoapp' })));
+        element.querySelector('form').addEventListener('submit', this.onSubmit.bind(this));
 
-        this.list.addEventListener('click', this.onListClick.bind(this));
-        this.form.addEventListener('submit', this.onSubmit.bind(this));
-        this.dialog.on('submit', this.onDialogSubmit, this);
-
-        this.currentItem = null;
+        this.attach(Button, TextBox, CheckBox, TodoItem);
     }
-    get textbox() {
-        return this._textbox || (this._textbox =
-            TextBox.getInstance(this.element.querySelector('[data-instance=TextBox]')));
-    }
-    build() {
-        this.element.appendChild(DON.toDOM(domTransform.apply({ element : 'todoapp' })));
+    attach(...components) {
+        components.forEach(Component => Component.attachTo(this.element));
     }
     onSubmit(event) {
-        event.preventDefault();
-        let text = this.textbox.value.trim();
+        const textbox = this.find(TextBox);
+        const text = textbox.value.trim();
         if(text) {
-            let item = { element : 'todoitem', text };
-            this.list.appendChild(DON.toDOM(domTransform.apply(item)));
-            this.textbox.value = '';
-        } else this.textbox.element.focus();
-    }
-    onListClick({ target }) {
-        let dataset = target.dataset;
-        if(dataset.instance === 'Button' && dataset.type === 'remove') {
-            this.onItemRemove(target.closest('li'));
-        }
-    }
-    onDialogSubmit(event) {
+            this.list.appendChild(DON.toDOM(domTransform.apply({ element : 'todoitem', text })));
+            textbox.value = '';
+        } else textbox.element.focus();
         event.preventDefault();
-        if(this.currentItem) {
-            this.list.removeChild(this.currentItem);
-            this.currentItem = null;
-        }
-        this.dialog.hidden = 'true';
-    }
-    onItemRemove(item) {
-        let checkBox = CheckBox.getInstance(item.querySelector('[data-instance=CheckBox]'));
-        if(checkBox.checked === 'true') {
-            this.list.removeChild(item);
-        } else {
-            this.currentItem = item;
-            this.dialog.trigger = Button.getInstance(item.querySelector('[data-instance=Button]'));
-            this.dialog.hidden = 'false';
-
-            /*ConfirmDialog
-                .show({ text : 'A u sure?' })
-                .then(() => this.list.removeChild(item));*/
-        }
     }
 }
-
-/*class ConfirmDialog extends Dialog {
-    get hidden() {
-        return super.hidden;
-    }
-    set hidden(hidden) {
-        super.hidden = hidden;
-        this.promise = new Promise((resolve, reject) => {
-
-        });
-    }
-    onClick(event) {
-        super.onClick(event);
-        let dataset = event.target.dataset;
-        if(dataset.instance === 'Button' && dataset.type === 'cancel') {
-            this.promise
-        }
-    }
-    static show({ text }) {
-        let element = DON.toDOM(domTransform.apply({ element : 'confirmdialog', text })),
-            dialog = this.getInstance(element);
-        dialog.on('click', event => event.target.dataset.type === 'cancel' && )
-    }
-}
-
 class TodoItem extends Instance {
     constructor(element) {
         super(element);
+        this.dialog = Dialog.getInstance(document.getElementById('removeitemconfirm'));
+        this.onDialogSubmit = this.onDialogSubmit.bind(this);
     }
-    static init() {
-        document.addEventListener('click');
+    get expanded() {
+        return this.element.getAttribute('aria-expanded') || 'false';
     }
-}*/
+    set expanded(expanded) {
+        if(expanded !== this.expanded) {
+            this.element.setAttribute('aria-expanded', expanded);
+            if(expanded === 'true') {
+                this.dialog.element.addEventListener('submit', this.onDialogSubmit);
+                this.dialog.hidden = 'false';
+            } else {
+                this.dialog.element.removeEventListener('submit', this.onDialogSubmit);
+                this.dialog.hidden = 'true';
+            }
+        }
+    }
+    onDialogSubmit(event) {
+        this.expanded = 'false';
+        this.remove();
+        event.preventDefault();
+    }
+    onButtonClick() {
+        if(this.find(CheckBox).checked === 'true') this.remove();
+        else {
+            this.dialog.trigger = this;
+            this.expanded = 'true';
+        }
+    }
+    remove() {
+        this.element.closest('ul').removeChild(this.element);
+    }
+    focus() {
+        this.find(Button).focus();
+    }
+    static attachTo(node) {
+        node.addEventListener('click', event => {
+            const target = event.target;
+            const button = Button.getInstance(target);
+            if(button && button.type === 'remove') {
+                const item = this.getInstance(target.closest('[data-instance=TodoItem'));
+                if(item) item.onButtonClick(event);
+            }
+        });
+    }
+}
 
 // create template engine instance
 const domTransform = new DOMTransform;
 
-// connect instance.js templates
+// connect lib templates
 button(domTransform);
 textbox(domTransform);
 checkbox(domTransform);
@@ -141,31 +121,33 @@ domTransform.element('todoapp', function() {
                 ]
             },
             {
-                instance : 'ConfirmDialog',
                 element : 'confirmdialog',
-                text : 'Item is not marked as "done". Are you sure?',
-                submit : 'Remove item'
+                attributes : {
+                    text : 'Item is not marked as "done". Are you sure?',
+                    id : 'removeitemconfirm',
+                    submitLabel : 'Remove item'
+                }
             }
         ]
     });
 });
-domTransform.element('confirmdialog', function({ text, submit, cancel }) {
+domTransform.element('confirmdialog', function({ attributes, content }) {
     return this.apply({
         element : 'dialog',
-        attributes : { modal : 'true' },
-        content : {
+        attributes : { modal : 'true', id : attributes.id },
+        content : content || {
             element : 'form',
             content : [
-                { element : 'p', content : text },
+                { element : 'p', content : attributes.text },
                 {
                     element : 'button',
                     attributes : { type: 'submit', mix : 'accent' },
-                    content : submit || 'Ok'
+                    content : attributes.submitLabel || 'Ok'
                 },
                 {
                     element : 'button',
                     attributes : { type: 'close' },
-                    content : cancel || 'Cancel'
+                    content : attributes.dismissLabel || 'Cancel'
                 }
             ]
         }
@@ -174,7 +156,7 @@ domTransform.element('confirmdialog', function({ text, submit, cancel }) {
 domTransform.element('todoitem', function({ text }) {
     return this.apply({
         element : 'li',
-        //attributes : { 'data-instance' : 'TodoItem' },
+        attributes : { 'data-instance' : 'TodoItem', 'aria-haspopup' : 'true' },
         content : [
             {
                 element : 'checkbox',
@@ -193,11 +175,6 @@ domTransform.element('todoitem', function({ text }) {
         ]
     });
 });
-
-// init components
-Button.init();
-TextBox.attachToDocument();
-CheckBox.attachToDocument();
 
 // init app
 new TodoApp(document.body);

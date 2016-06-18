@@ -76,10 +76,10 @@ export default class Button extends Instance {
         this.element.focus();
     }
     static attachToDocument() {
-        document.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+        this.attachTo(document);
     }
-    static init(context = document) {
-        context.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    static attachTo(node) {
+        node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
     }
     static template({ attributes, content }, transform) {
         return {

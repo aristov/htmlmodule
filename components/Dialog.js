@@ -76,18 +76,19 @@ export default class Dialog extends Instance {
             this.hidden = 'true';
             if(this.trigger) this.trigger.focus();
         }
-        if(keyCode === TAB) {
-            let widgets = this.widgets,
-                lastWidget = widgets[widgets.length - 1];
-            if(event.shiftKey && this.modal === 'true' && event.target === widgets[0]) {
-                event.preventDefault();
-                lastWidget.focus();
-            }
-            if(!event.shiftKey && event.target === lastWidget) {
-                event.preventDefault();
-                if(this.modal === 'true') widgets[0].focus();
-                else if(this.trigger) this.trigger.focus();
-            }
+        if(keyCode === TAB) this.onTabKeyDown(event);
+    }
+    onTabKeyDown(event) {
+        let widgets = this.widgets,
+            lastWidget = widgets[widgets.length - 1];
+        if(event.shiftKey && this.modal === 'true' && event.target === widgets[0]) {
+            event.preventDefault();
+            lastWidget.focus();
+        }
+        if(!event.shiftKey && event.target === lastWidget) {
+            event.preventDefault();
+            if(this.modal === 'true') widgets[0].focus();
+            else if(this.trigger) this.trigger.focus();
         }
     }
     onDocumentFocus({ target }) {
