@@ -22,7 +22,7 @@ class TodoApp extends Instance {
         element.appendChild(DON.toDOM(domTransform.apply({ element : 'todoapp' })));
         element.querySelector('form').addEventListener('submit', this.onSubmit.bind(this));
         this.list = element.querySelector('ul');
-        this.attach(Button, TextBox, CheckBox, TodoItem);
+        this.attach(Button, TextBox, CheckBox);
     }
     attach(...components) {
         components.forEach(Component => Component.attachTo(this.element));
@@ -31,9 +31,10 @@ class TodoApp extends Instance {
         const textbox = this.find(TextBox);
         const text = textbox.value.trim();
         if(text) {
-            this.list.appendChild(DON.toDOM(domTransform.apply({ element : 'todoitem', text })));
+            const todoitem = DON.toDOM(domTransform.apply({ element : 'todoitem', text }));
+            TodoItem.getInstance(this.list.appendChild(todoitem));
             textbox.value = '';
-        } else textbox.element.focus();
+        } else textbox.focus();
         event.preventDefault();
     }
 }
@@ -41,6 +42,7 @@ class TodoItem extends Instance {
     constructor(element) {
         super(element);
         this.dialog = Dialog.getInstance(document.getElementById('removeitemconfirm'));
+        this.find(Button).on('click', this.onButtonClick, this);
         this.onDialogSubmit = this.onDialogSubmit.bind(this);
     }
     get expanded() {
@@ -71,20 +73,10 @@ class TodoItem extends Instance {
         }
     }
     remove() {
-        this.element.closest('ul').removeChild(this.element);
+        this.element.parentElement.removeChild(this.element);
     }
     focus() {
-        this.find(Button).focus();
-    }
-    static attachTo(node) {
-        node.addEventListener('click', event => {
-            const target = event.target;
-            const button = Button.getInstance(target);
-            if(button && button.type === 'remove') {
-                const item = this.getInstance(target.closest('[data-instance=TodoItem]'));
-                if(item) item.onButtonClick(event);
-            }
-        });
+        this.find(CheckBox).focus();
     }
 }
 
@@ -149,10 +141,10 @@ domTransform.element('confirmdialog', function({ attributes, content }) {
     });
 });
 domTransform.element('todoitem', function({ text }) {
-    return this.apply({
+    return {
         element : 'li',
         attributes : { 'data-instance' : 'TodoItem', 'aria-haspopup' : 'true' },
-        content : [
+        content : this.apply([
             {
                 element : 'checkbox',
                 attributes : { title : 'Mark as "done"' }
@@ -167,8 +159,8 @@ domTransform.element('todoitem', function({ text }) {
                 attributes : { view : 'removebutton', type : 'remove', title : 'Remove' },
                 content : '×'
             }
-        ]
-    });
+        ])
+    };
 });
 
 // init app

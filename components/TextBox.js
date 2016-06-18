@@ -37,6 +37,9 @@ export default class TextBox extends Instance {
     onInputBlur() {
         this.element.classList.remove('focus');
     }
+    focus() {
+        this.input.focus();
+    }
     static attachTo(node) {
         node.addEventListener('focus', event => {
             let target = event.target,
