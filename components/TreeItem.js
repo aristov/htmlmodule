@@ -8,7 +8,6 @@ export default class TreeItem extends Instance {
     constructor(element) {
         super(element);
         this.tree = this.closest(Tree);
-        this.on('click', this.onClick);
         this.on('dblclick', this.onDoubleClick);
         this.on('keydown', this.onKeyDown);
         if(this.expanded) {
@@ -39,16 +38,13 @@ export default class TreeItem extends Instance {
     get hidden() {
         return String(Boolean(this.closest(TreeItem, item => item.expanded === 'false')));
     }
-    onClick({ target }) {
-        if(target.closest('[data-instance=TreeItem]') === this.element) this.selected = 'true';
-    }
     onFocus() {
         this.tree.items.forEach(item => item.element.tabIndex = -1);
         this.element.tabIndex = 0;
         this.selected = 'true';
     }
     onDoubleClick({ target }) {
-        if(target.closest('[data-instance=TreeItem]') === this.element && this.expanded) {
+        if(this.expanded && TreeItem.closestInstance(target) === this) {
             this.expanded = String(this.expanded === 'false');
         }
     }

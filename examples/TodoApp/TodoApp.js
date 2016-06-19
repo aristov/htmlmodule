@@ -114,10 +114,7 @@ domTransform.element('todoapp', function({ items }) {
         element : 'main',
         content : [
             { element : 'h2', content : 'TODO list' },
-            {
-                element : 'ul',
-                content : items
-            },
+            { element : 'ul', content : items },
             {
                 element : 'form',
                 content : [
