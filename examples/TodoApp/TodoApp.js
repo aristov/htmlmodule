@@ -15,6 +15,7 @@ import textbox from '../../templates/textbox.js';
 import checkbox from '../../templates/checkbox.js';
 import dialog from '../../templates/dialog.js';
 
+// import styles
 require('./index.css');
 
 // create application components
@@ -53,6 +54,7 @@ class TodoApp extends Instance {
         return storage? JSON.parse(storage) : { element : 'todoapp', items : [] };
     }
 }
+
 class TodoItem extends Instance {
     constructor(element) {
         super(element);
@@ -142,6 +144,7 @@ domTransform.element('todoapp', function({ items }) {
         ]
     });
 });
+
 domTransform.element('confirmdialog', function({ attributes, content }) {
     return this.apply({
         element : 'dialog',
@@ -164,6 +167,7 @@ domTransform.element('confirmdialog', function({ attributes, content }) {
         }
     });
 });
+
 domTransform.element('todoitem', function({ text, done }) {
     return {
         element : 'li',

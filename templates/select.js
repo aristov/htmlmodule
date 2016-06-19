@@ -1,6 +1,6 @@
 export default domTransform => {
     domTransform.element('select', function({ attributes, content }) {
-        let params = { checked : null },
+        let params = { text : '—', value : undefined },
             listbox = this.apply({
                 element : 'listbox',
                 attributes : { mix : 'popup', tabindex : undefined },
@@ -27,7 +27,7 @@ export default domTransform => {
                         'aria-readonly' : 'true',
                         'aria-disabled' : attributes.disabled
                     },
-                    content : params.checked? params.checked.content : '—'
+                    content : params.text
                 },
                 listbox
             ]

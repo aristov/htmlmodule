@@ -4,6 +4,7 @@ import button from './button';
 export default domTransform => {
     dialog(domTransform);
     button(domTransform);
+    //domTransform.templates(dialog, button);
 
     domTransform.element('confirmdialog', function({ attributes, content }) {
         return this.apply({

@@ -43,7 +43,10 @@ export default domTransform => {
                 },
                 content
             };
-        if(attributes.checked === 'true') params.value = attributes.value;
+        if(attributes.checked === 'true') {
+            params.value = attributes.value;
+            params.text = content;
+        }
         return result;
     });
 }
