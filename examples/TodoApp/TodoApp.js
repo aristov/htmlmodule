@@ -34,7 +34,7 @@ class TodoApp extends Instance {
         const text = textbox.value.trim();
         if(text) {
             const element = DON.toDOM(domTransform.apply({ element : 'todoitem', text }));
-            const todoitem = TodoItem.getInstance(this.list.appendChild(element));
+            TodoItem.getInstance(this.list.appendChild(element));
             textbox.value = '';
             this.save();
         } else textbox.focus();
@@ -55,9 +55,9 @@ class TodoItem extends Instance {
     constructor(element) {
         super(element);
         this.app = this.closest(TodoApp);
-        this.dialog = Dialog.getInstance(document.getElementById('removeitemconfirm'));
         this.checkbox = this.find(CheckBox).on('change', () => this.app.save());
         this.find(Button).on('click', this.onButtonClick, this);
+        this.dialog = Dialog.getInstance(document.getElementById('removeitemconfirm'));
         this.onDialogSubmit = this.onDialogSubmit.bind(this);
     }
     get expanded() {

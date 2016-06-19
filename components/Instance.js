@@ -53,4 +53,12 @@ export default class Instance {
     static closestInstance(element) {
         return this.getInstance(element.closest(`[data-instance=${this.name}]`));
     }
+    static on(type, listener, context) {
+        document.addEventListener(type, event => {
+            const instance = context?
+                context.closestInstance(event.target) :
+                this.closestInstance(event.target);
+            if(instance) listener.call(instance, event);
+        }, true);
+    }
 }
