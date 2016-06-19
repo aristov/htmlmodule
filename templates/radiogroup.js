@@ -3,7 +3,8 @@ export default domTransform => {
         let params = {
             disabled : attributes.disabled === 'true',
             first : null,
-            checked : null
+            checked : null,
+            value : undefined
         };
         content = this.apply(content, params);
 
@@ -27,36 +28,38 @@ export default domTransform => {
                         autocomplete : 'off',
                         disabled : attributes.disabled === 'true' ? '' : undefined,
                         name : attributes.name,
-                        value : checked? checked.attributes['data-value'] : undefined
+                        value : params.value
                     }
                 },
                 content
             ]
         };
     });
-    domTransform.element('radio', function(radio, params) {
-        let attrs = radio.attributes,
-            view = attrs.view || 'radio',
-            disabled = params.disabled || attrs.disabled === 'true',
+    domTransform.element('radio', function({ attributes, content }, params) {
+        let view = attributes.view || 'radio',
+            disabled = params.disabled || attributes.disabled === 'true',
             result = {
                 element : 'span',
                 attributes : {
                     'data-instance' : 'Radio',
                     role : 'radio',
-                    tabindex : disabled? undefined : attrs.tabindex || '-1',
-                    'data-value' : attrs.value,
-                    'aria-checked' : attrs.checked,
-                    'aria-disabled' : attrs.disabled,
+                    tabindex : disabled? undefined : attributes.tabindex || '-1',
+                    'data-value' : attributes.value,
+                    'aria-checked' : attributes.checked,
+                    'aria-disabled' : attributes.disabled,
                     'class' : view
                 },
                 content : this.apply(view === 'radio'? [{
                         element : 'span',
                         attributes : { 'class' : 'box' }
-                    }, radio.content] :
-                    radio.content)
+                    }, content] :
+                    content)
             };
         if(!params.first) params.first = result;
-        if(attrs.checked === 'true') params.checked = result;
+        if(attributes.checked === 'true') {
+            params.checked = result;
+            params.value = attributes.value;
+        }
         return result;
     });
 }

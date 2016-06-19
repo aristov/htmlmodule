@@ -8,7 +8,7 @@ export default domTransform => {
                 'aria-label' : attributes.label,
                 'class' : [
                     attributes.view || 'textbox timebox',
-                    attributes.disabled === 'true'? 'disabled' : '',
+                    attributes.disabled === 'true'? 'disabled' : undefined,
                     attributes.mix
                 ].join(' ').trim()
             },
@@ -18,7 +18,6 @@ export default domTransform => {
                     attributes : {
                         autocomplete : 'off',
                         disabled : attributes.disabled === 'true'? '' : undefined,
-                        placeholder : attributes.placeholder,
                         value : attributes.value,
                         readonly : '',
                         'class' : 'box'

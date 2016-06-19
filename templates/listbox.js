@@ -1,11 +1,10 @@
 export default domTransform => {
-    domTransform.element('listbox', function({ attributes, content }, params = { checked : null }) {
+    domTransform.element('listbox', function({ attributes, content }, params = { value : undefined }) {
         content = [{
             element : 'span',
             attributes : { 'class' : 'box' },
             content : this.apply(content, params)
         }];
-        let checked = params.checked;
         content.push({
             element : 'input',
             attributes : {
@@ -13,7 +12,7 @@ export default domTransform => {
                 autocomplete : 'off',
                 disabled : attributes.disabled === 'true' ? '' : undefined,
                 name : attributes.name,
-                value : checked? checked.attributes['data-value'] : undefined
+                value : params.value
             }
         });
         return {
@@ -44,7 +43,7 @@ export default domTransform => {
                 },
                 content
             };
-        if(attributes.checked === 'true') params.checked = result;
+        if(attributes.checked === 'true') params.value = attributes.value;
         return result;
     });
 }

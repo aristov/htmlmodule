@@ -15,6 +15,8 @@ import textbox from '../../templates/textbox.js';
 import checkbox from '../../templates/checkbox.js';
 import dialog from '../../templates/dialog.js';
 
+require('./index.css');
+
 // create application components
 class TodoApp extends Instance {
     constructor(element) {

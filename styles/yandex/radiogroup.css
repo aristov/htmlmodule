@@ -15,6 +15,28 @@
 {
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    position: relative;
+    vertical-align: top;
+    border-radius: 50%;
+}
+.radiogroup
+{
+    display: inline-block;
+}
+.radiogroup .radio
+{
+    margin-right: 10px;
+}
+.radiogroup[aria-label]::before
+{
+    content: attr(aria-label);
+    display: block;
+    margin-bottom: 5px;
+    cursor: default;
 }
 .radio:hover .box
 {
@@ -36,6 +58,17 @@
 .radio[aria-checked=true] .box
 {
     background: #ffeba0;
+}
+.radio[aria-checked=true] .box::before
+{
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+    top: 3px;
+    left: 3px;
 }
 .radio[aria-checked=true]:active .box,
 .radio[aria-checked=true].active .box
@@ -65,43 +98,4 @@
 .radiogroup[aria-disabled=true] .radio[aria-checked=true] .box::before
 {
     opacity: 0.4;
-}
-.radio .box
-{
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 6px;
-    position: relative;
-    vertical-align: top;
-}
-.radiogroup
-{
-    display: inline-block;
-}
-.radiogroup .radio
-{
-    margin-right: 10px;
-}
-.radiogroup .radio .box
-{
-    border-radius: 7px;
-}
-.radiogroup .radio[aria-checked=true] .box::before
-{
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 3px;
-    background: #000;
-    position: absolute;
-    top: 3px;
-    left: 3px;
-}
-.radiogroup[aria-label]::before
-{
-    content: attr(aria-label);
-    display: block;
-    margin-bottom: 5px;
-    cursor: default;
 }
