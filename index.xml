@@ -113,15 +113,16 @@
     <article>
         <h1>Search group</h1>
         <section>
-            <searchgroup>
+            <searchgroup label="Simple"/>
+            <!--<searchgroup>
                 <searchbox label="Simple"/>
-                <button type="Submit">Search</button>
-            </searchgroup>
+                <button type="submit">Search</button>
+            </searchgroup>-->
         </section>
         <section>
             <searchgroup>
                 <searchbox label="Accent"/>
-                <button type="Submit" mix="accent">Search</button>
+                <button type="submit" mix="accent">Search</button>
             </searchgroup>
         </section>
     </article>
@@ -232,8 +233,8 @@
             <tabpanel id="tabpanelmenu2" hidden="true">menu</tabpanel>
         </section>-->
         <section>
-            <h1>As menu</h1>
-            <tablist view="menu" controls="tabpanelgroup">
+            <h1>Tab menu</h1>
+            <tablist view="tabmenu" mix="menu" controls="tabpanelgroup">
                 <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
                 <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
                 <tab controls="tabpanelmenu3" view="menuitem">Three</tab>

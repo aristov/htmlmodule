@@ -1,12 +1,14 @@
 export default domTransform => {
     domTransform.element('tablist', function({ attributes, content }) {
+        let view = attributes.view || 'tablist';
         return {
             element : 'div',
             attributes : {
                 'data-instance' : 'TabList',
                 role : 'tablist',
-                'class' : attributes.view || 'tablist',
-                'aria-controls' : attributes.controls
+                'class' : [view, attributes.mix].join(' ').trim(),
+                'aria-controls' : attributes.controls,
+                'aria-orientation' : view === 'tabmenu'? 'vertical' : undefined
             },
             content: this.apply(content)
         }
