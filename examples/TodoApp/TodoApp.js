@@ -118,7 +118,6 @@ domTransform.element('todoapp', function({ items }) {
         element : 'main',
         content : [
             { element : 'h2', content : 'TODO list' },
-            { element : 'ul', content : items },
             {
                 element : 'form',
                 content : [
@@ -133,6 +132,7 @@ domTransform.element('todoapp', function({ items }) {
                     }
                 ]
             },
+            { element : 'ul', content : items },
             {
                 element : 'confirmdialog',
                 attributes : {
@@ -171,7 +171,7 @@ domTransform.element('confirmdialog', function({ attributes, content }) {
 domTransform.element('todoitem', function({ text, done }) {
     return {
         element : 'li',
-        attributes : { 'data-instance' : 'TodoItem', 'aria-haspopup' : 'true' },
+        attributes : { 'data-instance' : 'TodoItem', 'aria-haspopup' : 'true', draggable : 'false' },
         content : this.apply([
             {
                 element : 'checkbox',

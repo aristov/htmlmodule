@@ -1,4 +1,38 @@
 <main>
+    <!--<import>
+        <design/>
+            <Button/>
+            <CheckBox/>
+            ...
+        <templates>
+            <link/>
+            <button/>
+            <checkbox/>
+            <radiogroup/>
+            <listbox/>
+            <textbox/>
+            <textarea/>
+            <searchbox/>
+            <searchgroup/>
+            <datebox/>
+            <timebox/>
+            <select/>
+            <menubutton/>
+            <dialogbutton/>
+            <tablist/>
+            <spin/>
+            <tree/>
+            <grid/>
+            <buttongroup/>
+        </templates>
+        <styles>
+            <yandex>
+                <link/>
+                <button/>
+                ...
+            </yandex>
+        </styles>
+    </import>-->
     <article>
         <h1>Link</h1>
         <section>
@@ -114,10 +148,6 @@
         <h1>Search group</h1>
         <section>
             <searchgroup label="Simple"/>
-            <!--<searchgroup>
-                <searchbox label="Simple"/>
-                <button type="submit">Search</button>
-            </searchgroup>-->
         </section>
         <section>
             <searchgroup>
@@ -224,14 +254,6 @@
             <tabpanel id="tabpanel2" hidden="true">Second panel</tabpanel>
             <tabpanel id="tabpanel3" hidden="true">Third panel</tabpanel>
         </section>
-        <!--<section>
-            <tablist view="menu">
-                <tab controls="tabpanelmenu1" selected="true" view="menuitem">Tab</tab>
-                <tab controls="tabpanelmenu2" view="menuitem">list</tab>
-            </tablist>
-            <tabpanel id="tabpanelmenu1">as</tabpanel>
-            <tabpanel id="tabpanelmenu2" hidden="true">menu</tabpanel>
-        </section>-->
         <section>
             <h1>Tab menu</h1>
             <tablist view="tabmenu" mix="menu" controls="tabpanelgroup">
@@ -319,39 +341,53 @@
     <article>
         <h1>Mixes</h1>
         <section>
-            <button view="link">Button as link</button>
+            <button view="link">Button link</button>
         </section>
         <section>
-            <link href="//yandex.ru" mix="button">Link as button</link>
+            <link href="//yandex.ru" mix="button">Link button</link>
         </section>
         <section>
             <checkbox name="checkbox-button" value="on" view="button">Check button</checkbox>
         </section>
         <section>
             <group label="Check button group" view="buttongroup">
-                <checkbox view="button">First</checkbox>
-                <checkbox view="button">Second</checkbox>
+                <checkbox view="button">Check button 1</checkbox>
+                <checkbox view="button">Check button 2</checkbox>
             </group>
         </section>
         <section>
-            <radiogroup name="radio-button-group" view="buttongroup" label="Radio button group">
-                <radio value="first" view="button">First</radio>
-                <radio value="second" view="button">Second</radio>
-                <radio value="third" view="button">Third</radio>
+            <radiogroup name="radio-button-group" label="Radio button group" view="buttongroup">
+                <radio value="first" view="button">Radio button 1</radio>
+                <radio value="second" view="button">Radio button 2</radio>
+                <radio value="third" view="button">Radio button 3</radio>
             </radiogroup>
         </section>
-        <!--<h1>Tab list as menu</h1>
-        <section>
-            <tablist view="menu">
-                <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
-                <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
-                <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
-            </tablist>
-            <tabpanel id="tabpanelmenu1">First panel</tabpanel>
-            <tabpanel id="tabpanelmenu2" hidden="true">Second panel</tabpanel>
-            <tabpanel id="tabpanelmenu3" hidden="true">Third panel</tabpanel>
-        </section>-->
     </article>
+    <!--<article>
+        <h1>Mixes</h1>
+        <section>
+            <buttonlink>Button link</buttonlink>
+        </section>
+        <section>
+            <linkbutton>Link button</linkbutton>
+        </section>
+        <section>
+            <checkbutton value="on">Check button</checkbutton>
+        </section>
+        <section>
+            <checkbuttongroup label="Check button group">
+                <checkbutton>First</checkbutton>
+                <checkbutton>Second</checkbutton>
+            </checkbuttongroup>
+        </section>
+        <section>
+            <radiobuttongroup name="radio-button-group" label="Radio button group">
+                <radiobutton value="first">First</radiobutton>
+                <radiobutton value="second">Second</radiobutton>
+                <radiobutton value="third">Third</radiobutton>
+            </radiobuttongroup>
+        </section>
+    </article>-->
     <article>
     </article>
 </main>

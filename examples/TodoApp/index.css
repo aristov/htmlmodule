@@ -24,8 +24,15 @@ li
 {
     position: relative;
     padding: 10px 45px;
-    background: #eee;
-    margin-bottom: 5px;
+    /*background: #eee;*/
+    /*margin-bottom: 5px;*/
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: move;
+    -moz-user-select: none;
+}
+li:last-child
+{
+    border: none;
 }
 li .checkbox
 {
@@ -53,13 +60,17 @@ main form
     right: 11px;
     font-size: 2em;
     line-height: 15px;
-    opacity: 0.2;
+    opacity: 0;
     cursor: pointer;
     outline: none;
     top: 15px;
 }
+li:hover .removebutton
+{
+    opacity: 0.2;
+}
 .removebutton:focus,
-.removebutton:hover
+li .removebutton:hover
 {
     opacity: 0.5;
 }

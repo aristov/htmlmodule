@@ -26,7 +26,7 @@ export default domTransform => {
         return {
             element : 'label',
             attributes : {
-                'data-instance' : attributes.instance,
+                'data-instance' : attributes.instance || 'TextBox',
                 'aria-label' : attributes.label,
                 'class' : [
                     attributes.view || 'textbox',
