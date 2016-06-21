@@ -82,13 +82,13 @@
     <article>
         <h1>Text box</h1>
         <section>
-            <textbox hasclear="true" label="Simple"/>
+            <textbox label="Simple"/>
         </section>
         <section>
-            <textbox hasclear="true" value="Text" label="Filled"/>
+            <textbox value="Text" label="Filled"/>
         </section>
         <section>
-            <textbox hasclear="true" disabled="true" value="Text" label="Disabled"/>
+            <textbox disabled="true" value="Text" label="Disabled"/>
         </section>
     </article>
     <article>
@@ -98,6 +98,16 @@
         </section>
         <section>
             <textarea disabled="true" value="Text" label="Disabled"/>
+        </section>
+    </article>
+    <article>
+        <h1>Search box</h1>
+        <section>
+            <!--<textbox instance="SearchBox" hasclear="true" label="Simple" mix="searchbox"/>-->
+            <searchbox label="Simple"/>
+        <section>
+        </section>
+            <searchbox label="Disabeld" disabled="true"/>
         </section>
     </article>
     <article>
@@ -188,14 +198,37 @@
     </article>
     <article>
         <h1>Tab list</h1>
-        <tablist>
-            <tab controls="tabpanel1" selected="true">One</tab>
-            <tab controls="tabpanel2">Two</tab>
-            <tab controls="tabpanel3">Three</tab>
-        </tablist>
-        <tabpanel id="tabpanel1">First panel</tabpanel>
-        <tabpanel id="tabpanel2" hidden="true">Second panel</tabpanel>
-        <tabpanel id="tabpanel3" hidden="true">Third panel</tabpanel>
+        <section>
+            <tablist>
+                <tab controls="tabpanel1" selected="true">One</tab>
+                <tab controls="tabpanel2">Two</tab>
+                <tab controls="tabpanel3">Three</tab>
+            </tablist>
+            <tabpanel id="tabpanel1">First panel</tabpanel>
+            <tabpanel id="tabpanel2" hidden="true">Second panel</tabpanel>
+            <tabpanel id="tabpanel3" hidden="true">Third panel</tabpanel>
+        </section>
+        <!--<section>
+            <tablist view="menu">
+                <tab controls="tabpanelmenu1" selected="true" view="menuitem">Tab</tab>
+                <tab controls="tabpanelmenu2" view="menuitem">list</tab>
+            </tablist>
+            <tabpanel id="tabpanelmenu1">as</tabpanel>
+            <tabpanel id="tabpanelmenu2" hidden="true">menu</tabpanel>
+        </section>-->
+        <section>
+            <h1>As menu</h1>
+            <tablist view="menu" controls="tabpanelgroup">
+                <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
+                <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
+                <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
+            </tablist>
+            <group id="tabpanelgroup">
+                <tabpanel id="tabpanelmenu1">First panel</tabpanel>
+                <tabpanel id="tabpanelmenu2" hidden="true">Second panel</tabpanel>
+                <tabpanel id="tabpanelmenu3" hidden="true">Third panel</tabpanel>
+            </group>
+        </section>
     </article>
     <article>
         <h1>Spin</h1>
@@ -288,5 +321,18 @@
                 <radio value="third" view="button">Third</radio>
             </radiogroup>
         </section>
+        <!--<h1>Tab list as menu</h1>
+        <section>
+            <tablist view="menu">
+                <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
+                <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
+                <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
+            </tablist>
+            <tabpanel id="tabpanelmenu1">First panel</tabpanel>
+            <tabpanel id="tabpanelmenu2" hidden="true">Second panel</tabpanel>
+            <tabpanel id="tabpanelmenu3" hidden="true">Third panel</tabpanel>
+        </section>-->
+    </article>
+    <article>
     </article>
 </main>

@@ -1,5 +1,10 @@
 import Instance from './Instance';
 
+//import { DISABLED, FOCUS } from 'tools/classnames';
+
+const DISABLED = 'disabled';
+const FOCUS = 'focus';
+
 export default class TextBox extends Instance {
     constructor(element) {
         super(element);
@@ -15,8 +20,8 @@ export default class TextBox extends Instance {
         return String(this.input.disabled);
     }
     set disabled(disabled) {
-        if(this.input.disabled = disabled === 'true') this.element.classList.add('disabled');
-        else this.element.classList.remove('disabled');
+        if(this.input.disabled = disabled === 'true') this.element.classList.add(DISABLED);
+        else this.element.classList.remove(DISABLED);
     }
     get value() {
         return this.input.value;
@@ -32,20 +37,20 @@ export default class TextBox extends Instance {
         this.clear.hidden = true;
     }
     onInputFocus() {
-        this.element.classList.add('focus');
+        this.element.classList.add(FOCUS);
     }
     onInputBlur() {
-        this.element.classList.remove('focus');
+        this.element.classList.remove(FOCUS);
     }
     focus() {
         this.input.focus();
     }
     static attachTo(node) {
         node.addEventListener('focus', event => {
-            let target = event.target,
-                tagName = target.tagName;
+            const target = event.target;
+            const tagName = target.tagName;
             if(tagName === 'INPUT' || tagName === 'TEXTAREA') {
-                let element = target.closest('[data-instance=TextBox]');
+                let element = target.closest(`[data-instance=${this.name}]`);
                 if(element) this.getInstance(element).onInputFocus(event);
             }
         }, true);

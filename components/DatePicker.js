@@ -106,7 +106,12 @@ class DatePicker extends Instance {
 
                 dataset.isWeekend = j > 5;
                 dataset.isToday = currentDateString === dateString;
+
                 dataset.value = dateValue;
+                /*dataset(element, 'value', dateValue);
+                element.setAttribute('data-value', dateValue);
+                element.setData('value', dateValue);*/
+
                 cell.setAttribute('role', 'gridcell');
                 cell.setAttribute('aria-selected', String(selectedDateString === dateString));
                 if(date < 1 || date > daysInMonth) cell.setAttribute('aria-disabled', 'true');

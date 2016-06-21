@@ -1,3 +1,10 @@
+//import { values } from './polyfills/Object';
+
+//values(Object); // dont work =(
+
+import DON from './tools/DON';
+import DOMTransform from './tools/DOMTransform';
+
 import Button from './components/Button';
 import CheckBox from './components/CheckBox';
 import MenuButton from './components/MenuButton';
@@ -6,6 +13,7 @@ import RadioGroup from './components/RadioGroup';
 import ListBox from './components/ListBox';
 import Select from './components/Select';
 import TextBox from './components/TextBox';
+import SearchBox from './components/SearchBox';
 import TimeBox from './components/TimeBox';
 import DialogButton from './components/DialogButton';
 import DateBox from './components/DateBox';
@@ -13,15 +21,13 @@ import TabList from './components/TabList';
 import Tree from './components/Tree';
 import Grid from './components/Grid';
 
-import DON from './tools/DON';
-import DOMTransform from './tools/DOMTransform';
-
 import link from './templates/link';
 import button from './templates/button';
 import checkbox from './templates/checkbox';
 import radiogroup from './templates/radiogroup';
 import listbox from './templates/listbox';
 import textbox from './templates/textbox';
+import searchbox from './templates/searchbox';
 import datebox from './templates/datebox';
 import timebox from './templates/timebox';
 import select from './templates/select';
@@ -44,6 +50,7 @@ const components = [
     ListBox,
     Select,
     TextBox,
+    SearchBox,
     TimeBox,
     DialogButton,
     DateBox,
@@ -59,6 +66,7 @@ const templates = [
     radiogroup,
     listbox,
     textbox,
+    searchbox,
     datebox,
     timebox,
     select,

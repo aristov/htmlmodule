@@ -17,7 +17,7 @@ export default class Tab extends Instance {
         return this.element.getAttribute('aria-selected') || 'false';
     }
     set selected(selected) {
-        let element = this.element;
+        const element = this.element;
         element.setAttribute('aria-selected', selected);
         element.tabIndex = selected === 'true'? 0 : -1;
         this.panel.hidden = selected === 'false';
@@ -28,13 +28,13 @@ export default class Tab extends Instance {
     }
     onClick() {
         if(this.selected === 'false') {
-            let list = this.list;
+            const list = this.list;
             list.select(this);
             list.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
         }
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             this.onArrowKeyDown(event);
@@ -46,16 +46,13 @@ export default class Tab extends Instance {
     }
     onKeyUp({ keyCode }) {
         if(keyCode === SPACE) {
-            let element = this.element;
+            const element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
         }
     }
     onArrowKeyDown({ keyCode }) {
         keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? this.list.prev() : this.list.next();
-    }
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
     }
     static attachTo(node) {
         node.addEventListener('focus', ({ target }) => this.getInstance(target), true);

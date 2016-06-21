@@ -16,17 +16,40 @@
     line-height: 25px;
     cursor: pointer;
     outline: none;
+    border-left: 2px solid transparent;
+
 }
 .menu:hover .box
 {
     border-color: rgba(0, 0, 0, 0.3);
 }
+.menu .menuitem:focus,
+.menu .menuitem[aria-selected=true]
+{
+    border-left: 2px solid black;
+}
 .menu .menuitem:focus
 {
     background: #ffeba0;
+    /*border-left: 2px solid yellow;*/
 }
+.menu .menuitem[aria-selected=true]
+{
+    //background: #ffeba0;
+}
+
 .menu .menuitem:focus:active,
 .menu .menuitem:focus.active
 {
     background: #fee481;
+}
+
+.menu .menuitem:focus:hover
+{
+
+}
+.menu[data-instance=TabList]
+{
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
 }

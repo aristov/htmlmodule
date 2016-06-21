@@ -7,6 +7,7 @@ export default domTransform => {
                 disabled : attributes.disabled === 'true'? '' : undefined,
                 placeholder : attributes.placeholder,
                 value : attributes.value,
+                //...attributes,
                 'class' : 'box'
             }
         }];
@@ -25,7 +26,7 @@ export default domTransform => {
         return {
             element : 'label',
             attributes : {
-                'data-instance' : 'TextBox',
+                'data-instance' : attributes.instance,
                 'aria-label' : attributes.label,
                 'class' : [
                     attributes.view || 'textbox',

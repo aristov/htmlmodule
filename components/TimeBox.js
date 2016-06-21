@@ -2,10 +2,9 @@ import TextBox from './TextBox';
 import moment from 'moment';
 import { DIGITS, ARROWS } from '../tools/keyCodes';
 
-const ARROW_CODES = Object.values(ARROWS),
-      DIGIT_CODES = Object.values(DIGITS);
-
-const format = 'HH : mm';
+const ARROW_CODES = Object.values(ARROWS);
+const DIGIT_CODES = Object.values(DIGITS);
+const FORMAT = 'HH : mm';
 
 export default class TimeBox extends TextBox {
     constructor(element) {
@@ -61,13 +60,13 @@ export default class TimeBox extends TextBox {
         }
     }
     onHoursEnter(value) {
-        let time = moment(this.value, format);
+        let time = moment(this.value, FORMAT);
         if(this.enterInProgress) {
             value = parseInt(parseInt(time.hours(), 10) + String(value), 10);
-            this.value = time.hours(Math.min(value, 23)).format(format);
+            this.value = time.hours(Math.min(value, 23)).format(FORMAT);
             this.range = 'minutes';
         } else {
-            this.value = time.hours(value).format(format);
+            this.value = time.hours(value).format(FORMAT);
             if(value < 3) {
                 this.range = 'hours';
                 this.enterInProgress = true;
@@ -75,21 +74,21 @@ export default class TimeBox extends TextBox {
         }
     }
     onMinutesEnter(value) {
-        let time = moment(this.value, format);
+        let time = moment(this.value, FORMAT);
         if(this.enterInProgress) {
             value = parseInt(parseInt(time.minutes(), 10) + String(value), 10);
-            this.value = time.minutes(Math.min(value, 59)).format(format);
+            this.value = time.minutes(Math.min(value, 59)).format(FORMAT);
             this.range = 'minutes';
         } else {
-            this.value = time.minutes(value).format(format);
+            this.value = time.minutes(value).format(FORMAT);
             this.range = 'minutes';
             if(value < 6) this.enterInProgress = true;
         }
     }
     shiftValue(step) {
-        let time = moment(this.value, format),
+        let time = moment(this.value, FORMAT),
             range = this.range;
-        this.value = time[range](time[range]() + step).format(format);
+        this.value = time[range](time[range]() + step).format(FORMAT);
         this.range = range;
     }
     static attachTo(node) {

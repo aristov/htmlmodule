@@ -1,11 +1,12 @@
 export default domTransform => {
-    domTransform.element('tablist', function({ content }) {
+    domTransform.element('tablist', function({ attributes, content }) {
         return {
             element : 'div',
             attributes : {
                 'data-instance' : 'TabList',
                 role : 'tablist',
-                'class' : 'tablist'
+                'class' : attributes.view || 'tablist',
+                'aria-controls' : attributes.controls
             },
             content: this.apply(content)
         }
@@ -19,7 +20,7 @@ export default domTransform => {
                 tabindex : attributes.selected === 'true'? '0' : '-1',
                 'aria-controls' : attributes.controls,
                 'aria-selected' : attributes.selected,
-                'class' : 'tab'
+                'class' : attributes.view || 'tab'
             },
             content : { element : 'span', content }
         }

@@ -1,6 +1,5 @@
 import Instance from './Instance';
 import Menu from './Menu';
-
 import { SPACE, ARROWS } from '../tools/keyCodes';
 
 export default class MenuItem extends Instance {
