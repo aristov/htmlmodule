@@ -1,7 +1,3 @@
-//import { values } from './polyfills/Object';
-
-//values(Object); // dont work =(
-
 import DON from './tools/DON';
 import DOMTransform from './tools/DOMTransform';
 
@@ -27,6 +23,7 @@ import checkbox from './templates/checkbox';
 import radiogroup from './templates/radiogroup';
 import listbox from './templates/listbox';
 import textbox from './templates/textbox';
+import passwordbox from './templates/passwordbox';
 import searchbox from './templates/searchbox';
 import searchgroup from './templates/searchgroup';
 import datebox from './templates/datebox';
@@ -67,6 +64,7 @@ const templates = [
     radiogroup,
     listbox,
     textbox,
+    passwordbox,
     searchbox,
     searchgroup,
     datebox,

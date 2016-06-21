@@ -1,13 +1,13 @@
 export default domTransform => {
     domTransform.element('textbox', function({ attributes }) {
-        let content = [{
+        const content = [{
             element : 'input',
             attributes : {
                 autocomplete : 'off',
                 disabled : attributes.disabled === 'true'? '' : undefined,
                 placeholder : attributes.placeholder,
                 value : attributes.value,
-                //...attributes,
+                type : attributes.type,
                 'class' : 'box'
             }
         }];

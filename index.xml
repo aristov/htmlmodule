@@ -135,6 +135,12 @@
         </section>
     </article>
     <article>
+        <h1>Password box</h1>
+        <section>
+            <passwordbox label="Simple"/>
+        </section>
+    </article>
+    <article>
         <h1>Search box</h1>
         <section>
             <!--<textbox instance="SearchBox" hasclear="true" label="Simple" mix="searchbox"/>-->
