@@ -6,7 +6,7 @@ export default class TabList extends Instance {
         return this.findAll(Tab);
     }
     get selectedTab() {
-        return this.find(Tab, tab => tab.selected === 'true');
+        return this.find(Tab, ({ selected }) => selected === 'true');
     }
     on(type, listener, context) {
         this.element.addEventListener(type, listener.bind(context || this));

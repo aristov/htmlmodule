@@ -39,7 +39,7 @@ export default class Tab extends Instance {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
-        if(event.keyCode === SPACE && !event.repeat) {
+        if(keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
         }

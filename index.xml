@@ -111,6 +111,21 @@
         </section>
     </article>
     <article>
+        <h1>Search group</h1>
+        <section>
+            <searchgroup>
+                <searchbox label="Simple"/>
+                <button type="Submit">Search</button>
+            </searchgroup>
+        </section>
+        <section>
+            <searchgroup>
+                <searchbox label="Accent"/>
+                <button type="Submit" mix="accent">Search</button>
+            </searchgroup>
+        </section>
+    </article>
+    <article>
         <h1>Date box</h1>
         <section>
             <datebox label="Simple" value="12.06.2016"/>
@@ -287,6 +302,9 @@
                     <gridcell>Eight</gridcell>
                     <gridcell>Nine</gridcell>
                 </row>
+                <!--<row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>
+                <row><gridcell/><gridcell/><gridcell/></row>-->
             </grid>
         </section>
         <section>

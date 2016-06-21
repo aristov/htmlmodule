@@ -26,7 +26,7 @@ export default class ListBox extends Instance {
         return this.options.filter(option => option.checked === 'true');
     }
     set checkedOptions(options) {
-        let value = this.value;
+        const value = this.value;
         this.uncheck();
         options.forEach(option => option.checked = 'true');
         if(this.value !== value) {
@@ -46,7 +46,7 @@ export default class ListBox extends Instance {
         return this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
-        let element = this.element;
+        const element = this.element;
         if(this.input.disabled = disabled === 'true') {
             element.setAttribute('aria-disabled', 'true');
             element.removeAttribute('tabindex');
@@ -68,7 +68,7 @@ export default class ListBox extends Instance {
         this.checkedOptions.forEach(option => option.checked = 'false');
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             this.onArrowKeyDown(event);

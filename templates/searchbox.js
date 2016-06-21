@@ -6,9 +6,9 @@ export default domTransform => {
         return this.apply({
             element : 'textbox',
             attributes : Object.assign({
-                instance : "SearchBox",
-                hasclear : "true",
-                mix : "searchbox"
+                instance : 'SearchBox',
+                hasclear : 'true',
+                mix : 'searchbox'
             }, attributes)
         });
     })

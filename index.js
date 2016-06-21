@@ -28,6 +28,7 @@ import radiogroup from './templates/radiogroup';
 import listbox from './templates/listbox';
 import textbox from './templates/textbox';
 import searchbox from './templates/searchbox';
+import searchgroup from './templates/searchgroup';
 import datebox from './templates/datebox';
 import timebox from './templates/timebox';
 import select from './templates/select';
@@ -67,6 +68,7 @@ const templates = [
     listbox,
     textbox,
     searchbox,
+    searchgroup,
     datebox,
     timebox,
     select,
