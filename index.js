@@ -10,6 +10,7 @@ import ListBox from './components/ListBox';
 import Select from './components/Select';
 import TextBox from './components/TextBox';
 import PasswordBox from './components/PasswordBox';
+import NumberBox from './components/NumberBox';
 import SearchBox from './components/SearchBox';
 import TimeBox from './components/TimeBox';
 import DialogButton from './components/DialogButton';
@@ -26,6 +27,7 @@ import listbox from './templates/listbox';
 import textbox from './templates/textbox';
 import textarea from './templates/textarea';
 import passwordbox from './templates/passwordbox';
+import numberbox from './templates/numberbox';
 import searchbox from './templates/searchbox';
 import searchgroup from './templates/searchgroup';
 import datebox from './templates/datebox';
@@ -51,6 +53,7 @@ const components = [
     Select,
     TextBox,
     PasswordBox,
+    NumberBox,
     SearchBox,
     TimeBox,
     DialogButton,
@@ -69,6 +72,7 @@ const templates = [
     textbox,
     textarea,
     passwordbox,
+    numberbox,
     searchbox,
     searchgroup,
     datebox,

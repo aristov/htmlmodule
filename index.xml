@@ -144,6 +144,15 @@
         </section>
     </article>
     <article>
+        <h1>Number box</h1>
+        <section>
+            <numberbox label="Simple"/>
+        </section>
+        <section>
+            <numberbox label="Disabled" disabled="true"/>
+        </section>
+    </article>
+    <article>
         <h1>Search box</h1>
         <section>
             <searchbox label="Simple"/>

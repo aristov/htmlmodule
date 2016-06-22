@@ -38,3 +38,8 @@
     background: transparent;
     cursor: default;
 }
+
+.timebox[aria-invalid=true] .box
+{
+    border-color: red;
+}
