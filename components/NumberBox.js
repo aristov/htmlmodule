@@ -27,9 +27,10 @@ export default class NumberBox extends TextBox {
         this.invalid = String(isNaN(Number(this.value)));
     }
     onInputKeyDown(event) {
-        switch(event.keyCode) {
-            case ARROWS.UP: this.shiftValue(1); event.preventDefault(); break;
-            case ARROWS.DOWN: this.shiftValue(-1); event.preventDefault(); break;
+        const keyCode = event.keyCode;
+        if(keyCode === ARROWS.UP || keyCode === ARROWS.DOWN) {
+            this.shiftValue(keyCode === ARROWS.UP? 1 : -1);
+            event.preventDefault();
         }
     }
     shiftValue(step) {
