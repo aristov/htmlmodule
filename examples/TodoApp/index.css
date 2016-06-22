@@ -69,7 +69,7 @@ li:hover .removebutton
 {
     opacity: 0.2;
 }
-.removebutton:focus,
+li .removebutton:focus,
 li .removebutton:hover
 {
     opacity: 0.5;
