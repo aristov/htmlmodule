@@ -43,7 +43,7 @@ export default class Button extends Instance {
         return this.element.dataset.value;
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(keyCode === ENTER) this.emit('click');
         if(keyCode === SPACE) {
             event.preventDefault();
@@ -52,9 +52,8 @@ export default class Button extends Instance {
     }
     onKeyUp({ keyCode }) {
         if(keyCode === SPACE) {
-            let element = this.element;
-            element.classList.remove('active');
-            element.dispatchEvent(new Event('click', { bubbles : true, cancelable : true }));
+            this.element.classList.remove('active');
+            this.emit('click');
         }
     }
     onClick(event) {
@@ -64,13 +63,13 @@ export default class Button extends Instance {
         }
         if(this.pressed) {
             this.pressed = String(this.pressed === 'false');
-            this.element.dispatchEvent(new Event('change', { bubbles : true, cancelable : true }));
+            this.emit('change');
         }
         if(this.expanded) {
             this.expanded = String(this.expanded === 'false');
         }
         if(this.type === 'submit') {
-            let form = this.element.closest('form');
+            const form = this.element.closest('form');
             if(form) form.dispatchEvent(new Event('submit', { bubbles : true, cancelable : true }));
         }
     }

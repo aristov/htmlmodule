@@ -8,23 +8,36 @@ export default domTransform => {
     button(domTransform);
 
     domTransform.element('passwordbox', function({ attributes }) {
+        const { disabled, value } = attributes;
+
         return this.apply({
             element : 'textbox',
-            attributes : attributes = Object.assign(attributes, {
+            attributes : {
                 instance : 'PasswordBox',
-                type : 'password',
-                mix : ['passwordbox', attributes.mix].join(' ').trim()
-            }),
+                label : attributes.label,
+                view : attributes.view,
+                mix : ['passwordbox', attributes.mix].join(' ').trim(),
+                disabled
+            },
             content : [
-                { element : 'textinput', attributes },
+                {
+                    element : 'textinput',
+                    attributes : {
+                        type : 'password',
+                        name : attributes.name,
+                        value,
+                        placeholder : attributes.placeholder,
+                        disabled
+                    }
+                },
                 {
                     element : 'button',
                     attributes : {
                         type : 'watch',
                         tabindex : '-1',
                         view : 'watchbutton',
-                        disabled : attributes.disabled,
-                        hidden : String(!attributes.value)
+                        hidden : String(!value),
+                        disabled
                     }
                 }
             ]

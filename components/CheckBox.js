@@ -13,8 +13,7 @@ export default class CheckBox extends Instance {
         return this.element.getAttribute('aria-checked') || 'false';
     }
     set checked(checked) {
-        let element = this.element,
-            input = this.input;
+        const { element, input } = this;
         element.setAttribute('aria-checked', checked);
         if(checked === 'true') element.appendChild(input);
         else element.removeChild(input);
@@ -23,7 +22,7 @@ export default class CheckBox extends Instance {
         return this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
-        let element = this.element;
+        const element = this.element;
         element.setAttribute('aria-disabled', disabled);
         if(this.input.disabled = disabled === 'true') element.removeAttribute('tabindex');
         else element.tabIndex = 0;
@@ -35,10 +34,10 @@ export default class CheckBox extends Instance {
         this.input.value = value;
     }
     getInput() {
-        let element = this.element,
-            input = element.querySelector('input');
+        const element = this.element;
+        let input = element.querySelector('input');
         if(!input) {
-            let dataset = element.dataset;
+            const dataset = element.dataset;
             input = document.createElement('input');
             input.type = 'hidden';
             input.name = dataset.name || '';
@@ -55,16 +54,15 @@ export default class CheckBox extends Instance {
     }
     onKeyUp({ keyCode }) {
         if(keyCode === SPACE) {
-            let element = this.element;
-            element.classList.remove('active');
-            element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
+            this.element.classList.remove('active');
+            this.emit('click');
         }
     }
     onClick(event) {
         if(this.disabled === 'true') event.stopImmediatePropagation();
         else {
             this.checked = String(this.checked === 'false');
-            this.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+            this.emit('change');
         }
     }
     focus() {

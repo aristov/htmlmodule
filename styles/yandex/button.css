@@ -52,7 +52,8 @@ button.button::-moz-focus-inner
 /* pressed/checked */
 
 .button[aria-pressed=true],
-.button[aria-checked=true]
+.button[aria-checked=true],
+.button[aria-selected=true]
 {
     background: #ffeba0;
 }
@@ -62,7 +63,9 @@ button.button::-moz-focus-inner
 .button[aria-pressed=true]:active,
 .button[aria-pressed=true].active,
 .button[aria-checked=true]:active,
-.button[aria-checked=true].active
+.button[aria-checked=true].active,
+.button[aria-selected=true]:active,
+.button[aria-selected=true].active
 {
     background: #fee481;
 }
@@ -83,7 +86,8 @@ button.button::-moz-focus-inner
 /* pressed/checked + disabled */
 
 .button[aria-pressed=true][aria-disabled=true],
-.button[aria-checked=true][aria-disabled=true]
+.button[aria-checked=true][aria-disabled=true],
+.button[aria-selected=true][aria-disabled=true]
 {
     background: rgba(0, 0, 0, 0.15);
     border-color: transparent;

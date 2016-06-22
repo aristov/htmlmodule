@@ -5,8 +5,8 @@ import { ESCAPE, SPACE } from '../tools/keyCodes';
 export default class DateBox extends TextBox {
     constructor(element) {
         super(element);
-        this.datePicker = this.find(DatePicker);
-        this.datePicker.on('change', this.onDatePickerChange, this);
+        this.datepicker = this.find(DatePicker);
+        this.datepicker.on('change', this.onDatePickerChange, this);
         this.on('keydown', this.onKeyDown);
         this.onDocumentClick = this.onDocumentClick.bind(this);
         this.onDocumentFocus = this.onDocumentFocus.bind(this);
@@ -16,7 +16,7 @@ export default class DateBox extends TextBox {
     }
     set expanded(expanded) {
         this.input.setAttribute('aria-expanded', expanded);
-        this.datePicker.hidden = String(expanded === 'false');
+        this.datepicker.hidden = String(expanded === 'false');
         if(expanded === 'true') {
             document.addEventListener('click', this.onDocumentClick);
             document.addEventListener('focus', this.onDocumentFocus, true);
@@ -35,6 +35,7 @@ export default class DateBox extends TextBox {
             month < 10? '0' + month : month,
             year
         ].join('.');
+        setTimeout(() => this.expanded = 'false', 0);
     }
     onDocumentFocus({ target }) {
         if(!this.element.contains(target)) this.expanded = 'false';

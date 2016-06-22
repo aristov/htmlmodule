@@ -6,9 +6,8 @@ export default class SearchBox extends TextBox {
         super(element);
         this.on('keydown', this.onKeyDown);
     }
-    onKeyDown(event) {
-        //super.onKeyDown(event);
-        if(event.keyCode === ESCAPE) {
+    onKeyDown({ keyCode }) {
+        if(keyCode === ESCAPE) {
             this.value = '';
             this.clear.hidden = true;
         }

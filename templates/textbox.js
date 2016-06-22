@@ -6,17 +6,27 @@ export default domTransform => {
     button(domTransform);
 
     domTransform.element('textbox', function({ attributes, content }) {
+        const { disabled, value } = attributes;
+
         if(content && content.length) content = this.apply(content);
         else {
-            content = this.apply({ element : 'textinput', attributes });
+            content = this.apply({
+                element : 'textinput',
+                attributes : {
+                    name : attributes.name,
+                    value,
+                    placeholder : attributes.placeholder,
+                    disabled
+                }
+            });
             if(attributes.hasclear === 'true') content = [content, this.apply({
                 element : 'button',
                 attributes : {
                     type : 'clear',
                     tabindex : '-1',
                     view : 'clearbutton',
-                    disabled : attributes.disabled,
-                    hidden : String(!attributes.value)
+                    disabled,
+                    hidden : String(!value)
                 }
             })];
         }
@@ -28,7 +38,7 @@ export default domTransform => {
                 'class' : [
                     attributes.view || 'textbox',
                     attributes.hasclear === 'true'? 'hasclear' : undefined,
-                    attributes.disabled === 'true'? 'disabled' : undefined,
+                    disabled === 'true'? 'disabled' : undefined,
                     attributes.mix
                 ].join(' ').trim()
             },

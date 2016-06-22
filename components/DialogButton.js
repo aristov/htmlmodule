@@ -21,7 +21,7 @@ export default class DialogButton extends Button {
         super.onKeyDown(event);
         if(event.keyCode === ESCAPE && this.dialog.assertive === 'false') this.expanded = 'false';
         if(event.keyCode === TAB && event.shiftKey && this.expanded === 'true') {
-            let widgets = this.dialog.widgets;
+            const widgets = this.dialog.widgets;
             event.preventDefault();
             widgets[widgets.length - 1].focus();
         }

@@ -1,8 +1,6 @@
 import Instance from './Instance';
 import Radio from './Radio';
 
-const map = Array.prototype.map;
-
 export default class RadioGroup extends Instance {
     constructor(element) {
         super(element);
@@ -15,10 +13,10 @@ export default class RadioGroup extends Instance {
         return super.disabled;
     }
     set disabled(value) {
-        let element = this.element,
-            disabled = String(value),
-            radios = this.radios,
-            checked;
+        const element = this.element;
+        const radios = this.radios;
+        let disabled = String(value);
+        let checked;
 
         if(this.input.disabled = disabled === 'true') {
             element.setAttribute('aria-disabled', 'true');

@@ -49,7 +49,7 @@ export default class TreeItem extends Instance {
         }
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if([SPACE, ENTER, ...ARROW_CODES].indexOf(keyCode) > -1) {
             event.preventDefault();
             event.stopPropagation();
@@ -82,10 +82,10 @@ export default class TreeItem extends Instance {
         else if(this.items.length) this.items[0].focus();
     }
     onUpArrowKeyDown() {
-        let parent = this.parent,
-            items = parent.items.filter(item => item.hidden === 'false'),
-            index = items.indexOf(this),
-            prevItem = items[index - 1];
+        const parent = this.parent;
+        const items = parent.items.filter(item => item.hidden === 'false');
+        const index = items.indexOf(this);
+        const prevItem = items[index - 1];
         if(prevItem) prevItem.focus();
         else if(parent instanceof TreeItem) parent.focus();
     }
@@ -94,9 +94,9 @@ export default class TreeItem extends Instance {
         else {
             let parent = this;
             while(parent = parent.parent) {
-                let items = parent.items.filter(item => item.hidden === 'false'),
-                    index = items.indexOf(this),
-                    nextItem = items[index + 1];
+                const items = parent.items.filter(item => item.hidden === 'false');
+                const index = items.indexOf(this);
+                const nextItem = items[index + 1];
                 if(nextItem) {
                     nextItem.focus();
                     break;

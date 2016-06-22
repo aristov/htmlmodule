@@ -15,6 +15,14 @@ export default domTransform => {
                 value : params.value
             }
         });
+        /*content.push({
+            element : 'hiddeninput',
+            attributes : {
+                disabled : attributes.disabled,
+                name : attributes.name,
+                value : params.value
+            }
+        });*/
         return {
             element : 'span',
             attributes : {

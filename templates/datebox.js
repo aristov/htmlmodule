@@ -1,37 +1,41 @@
+import textbox from './textbox';
+import textinput from './textinput';
+
 export default domTransform => {
+    textbox(domTransform);
+    textinput(domTransform);
+
     domTransform.element('datebox', function({ attributes }) {
-        return {
-            element : 'label',
+        const disabled = attributes.disabled;
+        return this.apply({
+            element : 'textbox',
             attributes : {
-                'data-instance' : 'DateBox',
-                role : 'datebox',
-                'aria-label' : attributes.label,
-                'class' : [
-                    attributes.view || 'textbox datebox',
-                    attributes.disabled === 'true'? 'disabled' : undefined,
-                    attributes.mix
-                ].join(' ').trim()
+                instance : 'DateBox',
+                label : attributes.label,
+                mix : ['datebox', attributes.mix].join(' ').trim(),
+                disabled
             },
-            content : [{
-                element : 'input',
-                attributes : {
-                    autocomplete : 'off',
-                    disabled : attributes.disabled === 'true'? '' : undefined,
-                    placeholder : attributes.placeholder,
-                    value : attributes.value,
-                    'class' : 'box'
+            content : [
+                {
+                    element : 'textinput',
+                    attributes : {
+                        name : attributes.name,
+                        value : attributes.value,
+                        disabled
+                    }
+                },
+                {
+                    element : 'div',
+                    attributes : {
+                        'data-instance' : 'DatePicker',
+                        'class' : 'datepicker popup',
+                        'data-year' : attributes.year,
+                        'data-month' : attributes.month,
+                        'data-date' : attributes.date,
+                        hidden : ''
+                    }
                 }
-            }, {
-                element : 'div',
-                attributes : {
-                    'data-instance' : 'DatePicker',
-                    'class' : 'datepicker popup',
-                    'data-year' : attributes.year,
-                    'data-month' : attributes.month,
-                    'data-date' : attributes.date,
-                    hidden : ''
-                }
-            }]
-        };
+            ]
+        });
     });
 }

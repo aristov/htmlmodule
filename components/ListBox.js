@@ -79,11 +79,11 @@ export default class ListBox extends Instance {
         }
     }
     onArrowKeyDown({ keyCode }) {
-        let direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1,
-            options = this.options,
-            selectedOptions = this.selectedOptions,
-            selectedOption = selectedOptions[direction < 0? 0 : selectedOptions.length - 1],
-            nextIndex = options.indexOf(selectedOption) + direction;
+        const options = this.options;
+        const selectedOptions = this.selectedOptions;
+        const direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1;
+        const selectedOption = selectedOptions[direction < 0? 0 : selectedOptions.length - 1];
+        let nextIndex = options.indexOf(selectedOption) + direction;
 
         if(nextIndex === options.length) nextIndex = 0;
         if(nextIndex < 0) nextIndex = options.length - 1;
@@ -93,8 +93,8 @@ export default class ListBox extends Instance {
         this.scrollToSelected();
     }
     scrollToSelected() {
-        let box = this.box,
-            option = this.selectedOption.element;
+        const box = this.box;
+        const option = this.selectedOption.element;
         if(option.offsetTop < box.scrollTop ||
             option.offsetTop + option.clientHeight > box.scrollTop + box.clientHeight) {
                 box.scrollTop = option.offsetTop + Math.floor((option.clientHeight - box.clientHeight) / 2);
@@ -115,8 +115,8 @@ export default class ListBox extends Instance {
     }
     static attachTo(node) {
         node.addEventListener('focus', event => {
-            let listBox = this.getInstance(event.target);
-            if(listBox) listBox.onFocus(event);
+            const listbox = this.getInstance(event.target);
+            if(listbox) listbox.onFocus(event);
         }, true);
         Option.attachTo(node);
     }

@@ -16,7 +16,7 @@ export default class Radio extends Instance {
         return this.element.getAttribute('aria-checked') || 'false';
     }
     set checked(checked) {
-        let element = this.element;
+        const element = this.element;
         element.setAttribute('aria-checked', checked);
         element.tabIndex = checked === 'true'? 0 : -1;
         this.group.value = this.value;
@@ -25,7 +25,7 @@ export default class Radio extends Instance {
         return this.group.disabled === 'true'? 'true' : super.disabled;
     }
     set disabled(disabled) {
-        let element = this.element;
+        const element = this.element;
         if(disabled === 'true') {
             element.setAttribute('aria-disabled', 'true');
             element.removeAttribute('tabindex');
@@ -45,16 +45,16 @@ export default class Radio extends Instance {
         }
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
-        if(event.keyCode === SPACE && !event.repeat) {
+        if(keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
         }
-        if(event.keyCode === ENTER) this.submitForm();
+        if(keyCode === ENTER) this.submitForm();
     }
     submitForm() {
         let form = this.element.closest('form');
@@ -62,16 +62,16 @@ export default class Radio extends Instance {
     }
     onKeyUp({ keyCode }) {
         if(keyCode === SPACE) {
-            let element = this.element;
+            const element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', { bubbles : true, cancelable : true }));
         }
     }
     onArrowKeyDown({ keyCode }) {
-        let direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1,
-            group = this.group,
-            radios = group.radios,
-            index = radios.indexOf(this) + direction;
+        const group = this.group;
+        const radios = group.radios;
+        let direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1;
+        let index = radios.indexOf(this) + direction;
 
         if(index === radios.length) index = 0;
         if(index < 0) index = radios.length - 1;

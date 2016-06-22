@@ -41,12 +41,12 @@ export default class TimeBox extends TextBox {
         this.range = this.input.selectionStart < 4? 'hours' : 'minutes';
     }
     onInputKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(DIGIT_CODES.indexOf(keyCode) > -1) this.onDigitKeyDown(event);
         if(ARROW_CODES.indexOf(keyCode) > -1) this.onArrowKeyDown(event);
     }
     onDigitKeyDown({ keyCode }) {
-        let value = keyCode - DIGITS[0];
+        const value = keyCode - DIGITS[0];
         if(this.range === 'hours') this.onHoursEnter(value);
         else this.onMinutesEnter(value);
     }
@@ -60,7 +60,7 @@ export default class TimeBox extends TextBox {
         }
     }
     onHoursEnter(value) {
-        let time = moment(this.value, FORMAT);
+        const time = moment(this.value, FORMAT);
         if(this.enterInProgress) {
             value = parseInt(parseInt(time.hours(), 10) + String(value), 10);
             this.value = time.hours(Math.min(value, 23)).format(FORMAT);
@@ -74,7 +74,7 @@ export default class TimeBox extends TextBox {
         }
     }
     onMinutesEnter(value) {
-        let time = moment(this.value, FORMAT);
+        const time = moment(this.value, FORMAT);
         if(this.enterInProgress) {
             value = parseInt(parseInt(time.minutes(), 10) + String(value), 10);
             this.value = time.minutes(Math.min(value, 59)).format(FORMAT);
@@ -86,8 +86,8 @@ export default class TimeBox extends TextBox {
         }
     }
     shiftValue(step) {
-        let time = moment(this.value, FORMAT),
-            range = this.range;
+        const time = moment(this.value, FORMAT);
+        const range = this.range;
         this.value = time[range](time[range]() + step).format(FORMAT);
         this.range = range;
     }

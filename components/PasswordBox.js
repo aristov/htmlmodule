@@ -11,7 +11,7 @@ export default class PasswordBox extends TextBox {
     }
     onInputInput(event) {
         super.onInputInput(event);
-        this.find(Button).hidden = String(!this.value);
+        this.find(Button, button => button.type === 'watch').hidden = String(!this.value);
     }
     onButtonClick(event, button) {
         super.onButtonClick(event, button);

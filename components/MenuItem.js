@@ -11,19 +11,19 @@ export default class MenuItem extends Instance {
         this.on('mouseleave', this.onMouseLeave);
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(keyCode === ARROWS.UP || keyCode === ARROWS.DOWN) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
-        else if(event.keyCode === SPACE && !event.repeat) {
+        else if(keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.element.classList.add('active');
         }
     }
     onKeyUp({ keyCode }) {
         if(keyCode === SPACE) {
-            let element = this.element;
+            const element = this.element;
             element.classList.remove('active');
             element.dispatchEvent(new Event('click', {
                 bubbles : true,
@@ -33,9 +33,9 @@ export default class MenuItem extends Instance {
         }
     }
     onArrowKeyDown({ keyCode }) {
-        let direction = keyCode === ARROWS.UP? -1 : 1,
-            items = this.menu.items,
-            index = items.indexOf(this) + direction;
+        const items = this.menu.items;
+        let direction = keyCode === ARROWS.UP? -1 : 1;
+        let index = items.indexOf(this) + direction;
         if(index === items.length) index = 0;
         if(index < 0) index = items.length - 1;
         items[index].element.focus();

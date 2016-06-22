@@ -20,7 +20,7 @@ export default domTransform => {
                 {
                     element : 'button',
                     attributes : { type : 'submit' },
-                    content : 'Search'
+                    content : attributes.buttontext || 'Search'
                 }
             ])
         };

@@ -9,14 +9,14 @@ export default class Select extends Instance {
     constructor(element) {
         super(element);
 
-        this.listBox = this.find(ListBox);
+        this.listbox = this.find(ListBox);
         this.button = this.find(Button);
 
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
 
-        this.listBox.on('change', this.onListBoxChange, this);
+        this.listbox.on('change', this.onListBoxChange, this);
 
         this.onDocumentClick = this.onDocumentClick.bind(this);
         this.onDocumentFocus = this.onDocumentFocus.bind(this);
@@ -27,8 +27,8 @@ export default class Select extends Instance {
     set expanded(expanded) {
         this.element.setAttribute('aria-expanded', expanded);
         if(expanded === 'true') {
-            let listBox = this.listBox;
-            if(!listBox.selectedOption) listBox.options[0].selected = 'true';
+            const listbox = this.listbox;
+            if(!listbox.selectedOption) listbox.options[0].selected = 'true';
             document.addEventListener('click', this.onDocumentClick);
             document.addEventListener('focus', this.onDocumentFocus, true);
         } else {
@@ -37,10 +37,10 @@ export default class Select extends Instance {
         }
     }
     get value() {
-        return this.listBox.value;
+        return this.listbox.value;
     }
     set value(value) {
-        this.listBox.value = value;
+        this.listbox.value = value;
     }
     onDocumentFocus({ target }) {
         if(!this.element.contains(target)) this.expanded = 'false';
@@ -49,7 +49,7 @@ export default class Select extends Instance {
         if(!this.element.contains(target)) this.expanded = 'false';
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(keyCode === SPACE && !event.repeat) {
             event.preventDefault();
             this.onSpaceKeyDown(event);
@@ -57,19 +57,19 @@ export default class Select extends Instance {
         if(ARROW_CODES.indexOf(keyCode) > -1) {
             event.preventDefault();
             if(this.expanded === 'false') this.expanded = 'true';
-            else this.listBox.onArrowKeyDown(event);
+            else this.listbox.onArrowKeyDown(event);
         }
         if(keyCode === ESCAPE) this.expanded = 'false';
     }
     onSpaceKeyDown(event) {
-        if(this.expanded === 'true') this.listBox.onSpaceKeyDown(event);
+        if(this.expanded === 'true') this.listbox.onSpaceKeyDown(event);
         else this.element.classList.add('active');
     }
     onKeyUp(event) {
         if(event.keyCode === SPACE) {
-            let element = this.element;
+            const element = this.element;
             if(this.expanded === 'true') {
-                this.listBox.onSpaceKeyUp(event);
+                this.listbox.onSpaceKeyUp(event);
                 this.expanded = 'false';
             } else {
                 element.classList.remove('active');
@@ -78,7 +78,7 @@ export default class Select extends Instance {
         }
     }
     onListBoxChange() {
-        this.button.text = this.listBox.checkedOption.text;
+        this.button.text = this.listbox.checkedOption.text;
     }
     onClick() {
         this.expanded = String(this.expanded === 'false');

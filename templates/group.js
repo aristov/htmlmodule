@@ -3,10 +3,10 @@ export default domTransform => {
         return {
             element : 'span',
             attributes : {
-                role : 'group',
+                role : attributes.role || 'group',
                 id : attributes.id,
                 'aria-label' : attributes.label,
-                'class' : attributes.view || 'group'
+                'class' : [attributes.view || 'group', attributes.mix].join(' ').trim()
             },
             content : this.apply(content, params)
         };

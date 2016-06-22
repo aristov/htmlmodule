@@ -1,26 +1,31 @@
+import textbox from './textbox';
+import textinput from './textinput';
+import button from './button';
+
 export default domTransform => {
+    textbox(domTransform);
+    textinput(domTransform);
+    button(domTransform);
+
     domTransform.element('timebox', function({ attributes }) {
-        return {
-            element : 'label',
+        const disabled = attributes.disabled;
+
+        return this.apply({
+            element : 'textbox',
             attributes : {
-                'data-instance' : 'TimeBox',
-                role : 'textbox',
-                'aria-label' : attributes.label,
-                'class' : [
-                    attributes.view || 'textbox timebox',
-                    attributes.disabled === 'true'? 'disabled' : undefined,
-                    attributes.mix
-                ].join(' ').trim()
+                instance : 'TimeBox',
+                label : attributes.label,
+                mix : ['timebox', attributes.mix].join(' ').trim(),
+                disabled
             },
-            content : this.apply([
+            content : [
                 {
-                    element : 'input',
+                    element : 'textinput',
                     attributes : {
-                        autocomplete : 'off',
-                        disabled : attributes.disabled === 'true'? '' : undefined,
+                        name : attributes.name,
                         value : attributes.value,
-                        readonly : '',
-                        'class' : 'box'
+                        readonly : 'true',
+                        disabled
                     }
                 },
                 {
@@ -28,8 +33,8 @@ export default domTransform => {
                     attributes : {
                         tabindex : '-1',
                         type : 'shift',
-                        disabled : attributes.disabled,
-                        value : '+1'
+                        value : '+1',
+                        disabled
                     },
                     content : '▲'
                 },
@@ -38,12 +43,12 @@ export default domTransform => {
                     attributes : {
                         tabindex : '-1',
                         type : 'shift',
-                        disabled : attributes.disabled,
-                        value : '-1'
+                        value : '-1',
+                        disabled
                     },
                     content : '▼'
                 }
-            ])
-        };
+            ]
+        });
     });
 }

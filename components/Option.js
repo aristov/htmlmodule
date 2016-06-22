@@ -5,7 +5,7 @@ export default class Option extends Instance {
     constructor(element) {
         super(element);
         element.id || this.generateId();
-        this.listBox = this.closest(ListBox);
+        this.listbox = this.closest(ListBox);
         this.on('click', this.onClick);
     }
     get selected() {
@@ -13,17 +13,17 @@ export default class Option extends Instance {
     }
     set selected(selected) {
         this.element.setAttribute('aria-selected', selected);
-        this.listBox.activeDescendant = this.element.id;
+        this.listbox.activeDescendant = this.element.id;
     }
     get checked() {
         return this.element.getAttribute('aria-checked') || '';
     }
     set checked(checked) {
         this.element.setAttribute('aria-checked', checked);
-        this.listBox.value = this.value;
+        this.listbox.value = this.value;
     }
     get disabled() {
-        return this.listBox.disabled || this.element.getAttribute('aria-disabled') || '';
+        return this.listbox.disabled || this.element.getAttribute('aria-disabled') || '';
     }
     set disabled(disabled) {
         this.element.setAttribute('aria-disabled', disabled);
@@ -42,11 +42,11 @@ export default class Option extends Instance {
     }
     onClick(event) {
         if(this.disabled === 'true') event.stopImmediatePropagation();
-        else this.listBox.checkedOptions = [this];
+        else this.listbox.checkedOptions = [this];
     }
     onMouseEnter() {
         if(this.disabled !== 'true') {
-            this.listBox.unselect();
+            this.listbox.unselect();
             this.selected = 'true';
         }
     }

@@ -34,7 +34,7 @@ export default class Instance {
             Class.getInstance(this.element.querySelector(`[data-instance=${Class.name}]`));
     }
     findAll(Class, filter) {
-        let result = map.call(
+        const result = map.call(
             this.element.querySelectorAll(`[data-instance=${Class.name}]`),
             element => Class.getInstance(element));
         return filter? result.filter(filter) : result;

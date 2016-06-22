@@ -15,14 +15,14 @@ export default class Dialog extends Instance {
         return this.element.getAttribute('aria-modal') || 'false';
     }
     get widgets() {
-        let iterator = document.createNodeIterator(
-                this.element,
-                NodeFilter.SHOW_ELEMENT,
-                node => node.tabIndex > -1 && !node.disabled?
-                    NodeFilter.FILTER_ACCEPT :
-                    NodeFilter.FILTER_REJECT),
-            node,
-            widgets = [];
+        const iterator = document.createNodeIterator(
+            this.element,
+            NodeFilter.SHOW_ELEMENT,
+            node => node.tabIndex > -1 && !node.disabled?
+                NodeFilter.FILTER_ACCEPT :
+                NodeFilter.FILTER_REJECT);
+        const widgets = [];
+        let node;
         while(node = iterator.nextNode()) widgets.push(node);
         return widgets;
     }
@@ -56,9 +56,9 @@ export default class Dialog extends Instance {
         return this.element.dataset.assertive || 'false';
     }
     createBackdrop() {
-        let element = this.element,
-            backdrop = this.backdrop = document.createElement('div'),
-            div = document.createElement('div');
+        const element = this.element;
+        const backdrop = this.backdrop = document.createElement('div');
+        const div = document.createElement('div');
         backdrop.className = 'backdrop';
         backdrop.hidden = true;
         element.hidden = false;
@@ -67,11 +67,11 @@ export default class Dialog extends Instance {
         document.body.appendChild(backdrop);
     }
     onClick({ target }) {
-        let dataset = target.dataset;
+        const dataset = target.dataset;
         if(dataset.instance === 'Button' && dataset.type === 'close') this.hidden = 'true';
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(keyCode === ESCAPE && this.assertive === 'false') {
             this.hidden = 'true';
             if(this.trigger) this.trigger.focus();
@@ -79,8 +79,8 @@ export default class Dialog extends Instance {
         if(keyCode === TAB) this.onTabKeyDown(event);
     }
     onTabKeyDown(event) {
-        let widgets = this.widgets,
-            lastWidget = widgets[widgets.length - 1];
+        const widgets = this.widgets;
+        const lastWidget = widgets[widgets.length - 1];
         if(event.shiftKey && this.modal === 'true' && event.target === widgets[0]) {
             event.preventDefault();
             lastWidget.focus();

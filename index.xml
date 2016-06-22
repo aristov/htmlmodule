@@ -1,38 +1,4 @@
 <main>
-    <!--<import>
-        <design/>
-            <Button/>
-            <CheckBox/>
-            ...
-        <templates>
-            <link/>
-            <button/>
-            <checkbox/>
-            <radiogroup/>
-            <listbox/>
-            <textbox/>
-            <textarea/>
-            <searchbox/>
-            <searchgroup/>
-            <datebox/>
-            <timebox/>
-            <select/>
-            <menubutton/>
-            <dialogbutton/>
-            <tablist/>
-            <spin/>
-            <tree/>
-            <grid/>
-            <buttongroup/>
-        </templates>
-        <styles>
-            <yandex>
-                <link/>
-                <button/>
-                ...
-            </yandex>
-        </styles>
-    </import>-->
     <article>
         <h1>Link</h1>
         <section>
@@ -286,10 +252,6 @@
         </section>
     </article>
     <article>
-        <h1>Spin</h1>
-        <spin/>
-    </article>
-    <article>
         <h1>Tree</h1>
         <tree>
             <treeitem expanded="true" label="First">
@@ -353,55 +315,45 @@
         </section>
     </article>
     <article>
+        <h1>Spin</h1>
+        <spin/>
+    </article>
+    <article>
         <h1>Mixes</h1>
         <section>
-            <button view="link">Button link</button>
+            <button view="link">Button as link</button>
         </section>
         <section>
-            <link href="//yandex.ru" mix="button">Link button</link>
+            <link href="//yandex.ru" mix="button">Link as button</link>
         </section>
         <section>
             <checkbox name="checkbox-button" value="on" view="button">Check button</checkbox>
         </section>
         <section>
             <group label="Check button group" view="buttongroup">
-                <checkbox view="button">Check button 1</checkbox>
-                <checkbox view="button">Check button 2</checkbox>
+                <checkbox view="button">One</checkbox>
+                <checkbox view="button">Two</checkbox>
             </group>
         </section>
         <section>
             <radiogroup name="radio-button-group" label="Radio button group" view="buttongroup">
-                <radio value="first" view="button">Radio button 1</radio>
-                <radio value="second" view="button">Radio button 2</radio>
-                <radio value="third" view="button">Radio button 3</radio>
+                <radio view="button" value="first">One</radio>
+                <radio view="button" value="second">Two</radio>
+                <radio view="button" value="third">Three</radio>
             </radiogroup>
         </section>
-    </article>
-    <!--<article>
-        <h1>Mixes</h1>
         <section>
-            <buttonlink>Button link</buttonlink>
+            <h1>Tab button group</h1>
+            <tablist view="buttongroup">
+                <tab controls="tabbuttonpanel1" view="button" selected="true">One</tab>
+                <tab controls="tabbuttonpanel2" view="button">Two</tab>
+                <tab controls="tabbuttonpanel3" view="button">Three</tab>
+            </tablist>
+            <group>
+                <tabpanel id="tabbuttonpanel1">First panel</tabpanel>
+                <tabpanel id="tabbuttonpanel2" hidden="true">Second panel</tabpanel>
+                <tabpanel id="tabbuttonpanel3" hidden="true">Third panel</tabpanel>
+            </group>
         </section>
-        <section>
-            <linkbutton>Link button</linkbutton>
-        </section>
-        <section>
-            <checkbutton value="on">Check button</checkbutton>
-        </section>
-        <section>
-            <checkbuttongroup label="Check button group">
-                <checkbutton>First</checkbutton>
-                <checkbutton>Second</checkbutton>
-            </checkbuttongroup>
-        </section>
-        <section>
-            <radiobuttongroup name="radio-button-group" label="Radio button group">
-                <radiobutton value="first">First</radiobutton>
-                <radiobutton value="second">Second</radiobutton>
-                <radiobutton value="third">Third</radiobutton>
-            </radiobuttongroup>
-        </section>
-    </article>-->
-    <article>
     </article>
 </main>

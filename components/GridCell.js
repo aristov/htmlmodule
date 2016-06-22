@@ -3,7 +3,7 @@ import Grid from './Grid';
 import Row from './Row';
 import { ENTER, ESCAPE, SPACE, BACKSPACE, ARROWS, DIGITS, LETTERS } from '../tools/keyCodes';
 
-let { LEFT, UP, RIGHT, DOWN } = ARROWS;
+const { LEFT, UP, RIGHT, DOWN } = ARROWS;
 const ARROW_CODES = Object.values(ARROWS);
 const DIGIT_CODES = Object.values(DIGITS);
 const LETTER_CODES = Object.values(LETTERS);
@@ -66,7 +66,7 @@ export default class GridCell extends Instance {
             this.element.getAttribute('aria-disabled') || 'false';
     }
     set disabled(disabled) {
-        let element = this.element;
+        const element = this.element;
         element.setAttribute('aria-disabled', disabled);
         if(disabled === 'true') element.removeAttribute('tabindex');
         else element.tabIndex = -1;
