@@ -27,6 +27,8 @@ export default domTransform => {
                     element : 'button',
                     attributes : {
                         tabindex : '-1',
+                        type : 'shift',
+                        disabled : attributes.disabled,
                         value : '+1'
                     },
                     content : '▲'
@@ -35,6 +37,8 @@ export default domTransform => {
                     element : 'button',
                     attributes : {
                         tabindex : '-1',
+                        type : 'shift',
+                        disabled : attributes.disabled,
                         value : '-1'
                     },
                     content : '▼'

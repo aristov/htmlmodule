@@ -4,7 +4,6 @@ import { ENTER, SPACE } from '../tools/keyCodes';
 export default class Button extends Instance {
     constructor(element) {
         super(element);
-        //this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
     }
@@ -39,6 +38,9 @@ export default class Button extends Instance {
     }
     get type() {
         return this.element.dataset.type;
+    }
+    get value() {
+        return this.element.dataset.value;
     }
     onKeyDown(event) {
         let keyCode = event.keyCode;

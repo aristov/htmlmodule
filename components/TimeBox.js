@@ -10,13 +10,12 @@ export default class TimeBox extends TextBox {
     constructor(element) {
         super(element);
         this.enterInProgress = false;
-        this.on('click', this.onClick);
         element.addEventListener('focus', this.onFocus.bind(this), true);
         this.input.addEventListener('click', this.onInputClick.bind(this));
         this.input.addEventListener('keydown', this.onInputKeyDown.bind(this));
     }
     get range() {
-        return this.element.dataset.range || '';
+        return this.element.dataset.range || 'hours';
     }
     set range(range) {
         this.element.dataset.range = range;
@@ -24,10 +23,11 @@ export default class TimeBox extends TextBox {
         else this.input.setSelectionRange(5, 7);
         this.enterInProgress = false;
     }
-    onClick({ target }) {
-        if(this.disabled === 'false' && target.getAttribute('role') === 'button') {
-            this.shiftValue(Number(target.dataset.value));
-            this.element.focus();
+    onButtonClick(event, button) {
+        super.onButtonClick(event, button);
+        if(button.type === 'shift') {
+            this.shiftValue(Number(button.value));
+            this.focus();
         }
     }
     onFocus() {
@@ -90,14 +90,5 @@ export default class TimeBox extends TextBox {
             range = this.range;
         this.value = time[range](time[range]() + step).format(FORMAT);
         this.range = range;
-    }
-    static attachTo(node) {
-        node.addEventListener('focus', event => {
-            let target = event.target;
-            if(target.tagName === 'INPUT') {
-                let element = target.closest('[data-instance=TimeBox]');
-                if(element) this.getInstance(element).onInputFocus(event);
-            }
-        }, true);
     }
 }
