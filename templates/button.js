@@ -6,6 +6,7 @@ export default domTransform => {
                 'data-instance' : attributes.instance || 'Button',
                 role : attributes.role || 'button',
                 tabindex : attributes.disabled === 'true'? undefined : attributes.tabindex || '0',
+                hidden : attributes.hidden === 'true'? '' : undefined,
                 title : attributes.title,
                 'class' : [attributes.view || 'button', attributes.mix].join(' ').trim(),
                 'aria-disabled' : attributes.disabled,

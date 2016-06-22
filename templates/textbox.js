@@ -1,18 +1,13 @@
+import textinput from './textinput';
+
 export default domTransform => {
-    domTransform.element('textbox', function({ attributes }) {
-        const content = [{
-            element : 'input',
-            attributes : {
-                autocomplete : 'off',
-                disabled : attributes.disabled === 'true'? '' : undefined,
-                placeholder : attributes.placeholder,
-                value : attributes.value,
-                type : attributes.type,
-                'class' : 'box'
-            }
-        }];
-        if(attributes.hasclear === 'true') {
-            content.push({
+    textinput(domTransform);
+
+    domTransform.element('textbox', function({ attributes, content }) {
+        if(content && content.length) content = this.apply(content);
+        else {
+            content = this.apply({ element : 'textinput', attributes });
+            if(attributes.hasclear === 'true') content = [content, {
                 element : 'span',
                 attributes : {
                     role : 'button',
@@ -21,7 +16,7 @@ export default domTransform => {
                     'class' : 'clear',
                     hidden : attributes.value? undefined : ''
                 }
-            });
+            }];
         }
         return {
             element : 'label',
@@ -36,30 +31,6 @@ export default domTransform => {
                 ].join(' ').trim()
             },
             content
-        };
-    });
-    domTransform.element('textarea', function({ attributes }) {
-        return {
-            element : 'label',
-            attributes : {
-                'data-instance' : 'TextBox',
-                'aria-label' : attributes.label,
-                'class' : [
-                    attributes.view || 'textbox',
-                    attributes.disabled === 'true'? 'disabled' : '',
-                    attributes.mix
-                ].join(' ').trim()
-            },
-            content : {
-                element : 'textarea',
-                attributes : {
-                    autocomplete : 'off',
-                    disabled : attributes.disabled === 'true'? '' : undefined,
-                    placeholder : attributes.placeholder,
-                    'class' : 'box'
-                },
-                content : attributes.value
-            }
         };
     });
 }

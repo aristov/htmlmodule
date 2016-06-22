@@ -10,10 +10,10 @@ export default class TextBox extends Instance {
         super(element);
         this.input = element.querySelector('input,textarea');
         this.input.addEventListener('blur', this.onInputBlur.bind(this));
-        if(element.classList.contains('hasclear')) {
+        this.input.addEventListener('input', this.onInputInput.bind(this));
+        if(this.hasclear === 'true') {
             this.clear = element.querySelector('.clear');
             this.clear.addEventListener('click', this.onClearClick.bind(this));
-            this.input.addEventListener('input', this.onInputInput.bind(this));
         }
     }
     get disabled() {
@@ -29,8 +29,11 @@ export default class TextBox extends Instance {
     set value(value) {
         this.input.value = value;
     }
+    get hasclear() {
+        return String(this.element.classList.contains('hasclear'));
+    }
     onInputInput() {
-        this.clear.hidden = !this.value;
+        if(this.hasclear === 'true') this.clear.hidden = !this.value;
     }
     onClearClick() {
         this.value = '';
@@ -50,8 +53,8 @@ export default class TextBox extends Instance {
             const target = event.target;
             const tagName = target.tagName;
             if(tagName === 'INPUT' || tagName === 'TEXTAREA') {
-                let element = target.closest(`[data-instance=${this.name}]`);
-                if(element) this.getInstance(element).onInputFocus(event);
+                const instance = this.closestInstance(target);
+                if(instance) instance.onInputFocus(event);
             }
         }, true);
     }

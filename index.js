@@ -9,6 +9,7 @@ import RadioGroup from './components/RadioGroup';
 import ListBox from './components/ListBox';
 import Select from './components/Select';
 import TextBox from './components/TextBox';
+import PasswordBox from './components/PasswordBox';
 import SearchBox from './components/SearchBox';
 import TimeBox from './components/TimeBox';
 import DialogButton from './components/DialogButton';
@@ -23,6 +24,7 @@ import checkbox from './templates/checkbox';
 import radiogroup from './templates/radiogroup';
 import listbox from './templates/listbox';
 import textbox from './templates/textbox';
+import textarea from './templates/textarea';
 import passwordbox from './templates/passwordbox';
 import searchbox from './templates/searchbox';
 import searchgroup from './templates/searchgroup';
@@ -48,6 +50,7 @@ const components = [
     ListBox,
     Select,
     TextBox,
+    PasswordBox,
     SearchBox,
     TimeBox,
     DialogButton,
@@ -64,6 +67,7 @@ const templates = [
     radiogroup,
     listbox,
     textbox,
+    textarea,
     passwordbox,
     searchbox,
     searchgroup,

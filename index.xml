@@ -137,7 +137,10 @@
     <article>
         <h1>Password box</h1>
         <section>
-            <passwordbox label="Simple"/>
+            <passwordbox label="Simple" value="secret"/>
+        </section>
+        <section>
+            <passwordbox label="Disabled" disabled="true" value="secret"/>
         </section>
     </article>
     <article>
