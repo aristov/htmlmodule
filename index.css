@@ -8,9 +8,9 @@
 @import url(styles/yandex/select.css);
 @import url(styles/yandex/textbox.css);
 @import url(styles/yandex/passwordbox.css);
+@import url(styles/yandex/numberbox.css);
 @import url(styles/yandex/searchbox.css);
 @import url(styles/yandex/searchgroup.css);
-@import url(styles/yandex/timebox.css);
 @import url(styles/yandex/datebox.css);
 @import url(styles/yandex/datepicker.css);
 @import url(styles/yandex/menu.css);

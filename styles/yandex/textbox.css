@@ -60,3 +60,8 @@
     cursor: pointer;
     opacity: 1;
 }
+.textbox[aria-invalid=true] .box
+{
+    border-color: red;
+}
+

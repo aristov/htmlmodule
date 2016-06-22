@@ -1,10 +1,10 @@
-.timebox .box
+.numberbox .box
 {
     width: 80px;
     padding-right: 26px;
     cursor: default;
 }
-.timebox .button
+.numberbox .button
 {
     position: absolute;
     right: 3px;
@@ -13,33 +13,29 @@
     font-size: 9px;
     padding: 0 5px;
 }
-.timebox .button:hover
+.numberbox .button:hover
 {
     background: rgba(0, 0, 0, 0.2);
+    opacity: 0.5;
 }
-.timebox .button:active
+.numberbox .button:active
 {
     background: rgba(0, 0, 0, 0.3);
 }
-.timebox .button:focus
+.numberbox .button:focus
 {
     box-shadow: none;
 }
-.timebox .button[data-value="+1"]
+.numberbox .button[data-value="+1"]
 {
     bottom: 14px;
 }
-.timebox .button[data-value="-1"]
+.numberbox .button[data-value="-1"]
 {
     bottom: 3px;
 }
-.timebox.disabled .button
+.numberbox.disabled .button
 {
     background: transparent;
     cursor: default;
-}
-
-.timebox[aria-invalid=true] .box
-{
-    border-color: red;
 }

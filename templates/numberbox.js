@@ -1,27 +1,39 @@
+import textbox from './textbox';
+import textinput from './textinput';
+import button from './button';
+
 export default domTransform => {
+    textbox(domTransform);
+    textinput(domTransform);
+    button(domTransform);
+
     domTransform.element('numberbox', function({ attributes }) {
-        return {
-            element : 'label',
+        const disabled = attributes.disabled;
+        return this.apply({
+            element : 'textbox',
             attributes : {
-                'data-instance' : 'NumberBox',
-                role : 'textbox',
-                'aria-label' : attributes.label,
-                'class' : [
-                    attributes.view || 'textbox numberbox',
-                    attributes.disabled === 'true'? 'disabled' : undefined,
-                    attributes.mix,
-                    'timebox' // FIXME
-                ].join(' ').trim()
+                instance : attributes.instance || 'NumberBox',
+                label : attributes.label,
+                mix : ['numberbox', attributes.mix].join(' ').trim(),
+                disabled
             },
-            content : this.apply([
-                { element : 'textinput', attributes },
+            content : [
+                {
+                    element : 'textinput',
+                    attributes : {
+                        name : attributes.name,
+                        value : attributes.value,
+                        readonly : attributes.readonly,
+                        disabled
+                    }
+                },
                 {
                     element : 'button',
                     attributes : {
                         tabindex : '-1',
                         type : 'shift',
-                        disabled : attributes.disabled,
-                        value : '+1'
+                        value : '+1',
+                        disabled
                     },
                     content : '▲'
                 },
@@ -30,12 +42,12 @@ export default domTransform => {
                     attributes : {
                         tabindex : '-1',
                         type : 'shift',
-                        disabled : attributes.disabled,
-                        value : '-1'
+                        value : '-1',
+                        disabled
                     },
                     content : '▼'
                 }
-            ])
-        };
+            ]
+        });
     });
 }

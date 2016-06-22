@@ -95,8 +95,8 @@ templates.forEach(template => template(domTransform));
 fetch('index.xml')
     .then(response => response.text())
     .then(xml => {
-        let parser = new DOMParser,
-            element = parser.parseFromString(xml, 'text/xml').documentElement,
-            don = domTransform.apply(DON.fromDOM(element));
+        const parser = new DOMParser;
+        const element = parser.parseFromString(xml, 'text/xml').documentElement;
+        const don = domTransform.apply(DON.fromDOM(element));
         document.body.appendChild(DON.toDOM(don));
     });
