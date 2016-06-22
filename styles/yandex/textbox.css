@@ -44,7 +44,7 @@
 {
     padding-right: 26px;
 }
-.textbox .clear
+.textbox .clearbutton
 {
     display: inline-block;
     width: 27px;
@@ -55,7 +55,7 @@
     opacity: 0.3;
     outline: none;
 }
-.textbox:not(.disabled) .clear:hover
+.textbox:not(.disabled) .clearbutton:hover
 {
     cursor: pointer;
     opacity: 1;

@@ -4,7 +4,7 @@ import { ENTER, SPACE } from '../tools/keyCodes';
 export default class Button extends Instance {
     constructor(element) {
         super(element);
-        this.on('click', this.onClick);
+        //this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
     }
@@ -77,5 +77,9 @@ export default class Button extends Instance {
     }
     static attachTo(node) {
         node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+        node.addEventListener('click', event => {
+            const button = this.getInstance(event.target);
+            if(button) button.onClick(event);
+        }, true);
     }
 }

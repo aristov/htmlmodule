@@ -146,7 +146,6 @@
     <article>
         <h1>Search box</h1>
         <section>
-            <!--<textbox instance="SearchBox" hasclear="true" label="Simple" mix="searchbox"/>-->
             <searchbox label="Simple"/>
         <section>
         </section>
@@ -334,9 +333,6 @@
                     <gridcell>Eight</gridcell>
                     <gridcell>Nine</gridcell>
                 </row>
-                <!--<row><gridcell/><gridcell/><gridcell/></row>
-                <row><gridcell/><gridcell/><gridcell/></row>
-                <row><gridcell/><gridcell/><gridcell/></row>-->
             </grid>
         </section>
         <section>

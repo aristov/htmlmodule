@@ -1,22 +1,24 @@
 import textinput from './textinput';
+import button from './button';
 
 export default domTransform => {
     textinput(domTransform);
+    button(domTransform);
 
     domTransform.element('textbox', function({ attributes, content }) {
         if(content && content.length) content = this.apply(content);
         else {
             content = this.apply({ element : 'textinput', attributes });
-            if(attributes.hasclear === 'true') content = [content, {
-                element : 'span',
+            if(attributes.hasclear === 'true') content = [content, this.apply({
+                element : 'button',
                 attributes : {
-                    role : 'button',
-                    tabindex : attributes.disabled === 'true'? undefined : '-1',
-                    'aria-disabled' : String(attributes.disabled === 'true'),
-                    'class' : 'clear',
-                    hidden : attributes.value? undefined : ''
+                    type : 'clear',
+                    tabindex : '-1',
+                    view : 'clearbutton',
+                    disabled : attributes.disabled,
+                    hidden : String(!attributes.value)
                 }
-            }];
+            })];
         }
         return {
             element : 'label',

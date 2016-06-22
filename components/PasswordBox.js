@@ -2,10 +2,6 @@ import TextBox from './TextBox';
 import Button from './Button';
 
 export default class PasswordBox extends TextBox {
-    constructor(element) {
-        super(element);
-        this.find(Button).on('click', () => this.watchmode = String(this.watchmode === 'false'));
-    }
     get watchmode() {
         return this.element.dataset.watchmode || 'false';
     }
@@ -16,5 +12,9 @@ export default class PasswordBox extends TextBox {
     onInputInput(event) {
         super.onInputInput(event);
         this.find(Button).hidden = String(!this.value);
+    }
+    onButtonClick(event, button) {
+        super.onButtonClick(event, button);
+        if(button.type === 'watch') this.watchmode = String(this.watchmode === 'false');
     }
 }

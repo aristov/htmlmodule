@@ -1,7 +1,9 @@
 import textbox from './textbox';
+import button from './button';
 
 export default domTransform => {
     textbox(domTransform);
+    button(domTransform);
 
     domTransform.element('passwordbox', function({ attributes }) {
         attributes = Object.assign(attributes, {
@@ -17,8 +19,10 @@ export default domTransform => {
                 {
                     element : 'button',
                     attributes : {
+                        type : 'watch',
                         tabindex : '-1',
                         view : 'watchbutton',
+                        disabled : attributes.disabled,
                         hidden : String(!attributes.value)
                     }
                 }

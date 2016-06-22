@@ -1,4 +1,5 @@
 import Instance from './Instance';
+import Button from './Button';
 
 //import { DISABLED, FOCUS } from 'tools/classnames';
 
@@ -12,8 +13,7 @@ export default class TextBox extends Instance {
         this.input.addEventListener('blur', this.onInputBlur.bind(this));
         this.input.addEventListener('input', this.onInputInput.bind(this));
         if(this.hasclear === 'true') {
-            this.clear = element.querySelector('.clear');
-            this.clear.addEventListener('click', this.onClearClick.bind(this));
+            this.clearbutton = this.find(Button, button => button.type === 'clear');
         }
     }
     get disabled() {
@@ -32,18 +32,25 @@ export default class TextBox extends Instance {
     get hasclear() {
         return String(this.element.classList.contains('hasclear'));
     }
-    onInputInput() {
-        if(this.hasclear === 'true') this.clear.hidden = !this.value;
+    onClick(event) {
+        const button = Button.getInstance(event.target);
+        if(button) this.onButtonClick(event, button);
     }
-    onClearClick() {
-        this.value = '';
-        this.clear.hidden = true;
+    onInputInput() {
+        if(this.hasclear === 'true') this.clearbutton.hidden = String(!this.value);
+    }
+    onButtonClick(event, button) {
+        if(button.type === 'clear') this.clear();
     }
     onInputFocus() {
         this.element.classList.add(FOCUS);
     }
     onInputBlur() {
         this.element.classList.remove(FOCUS);
+    }
+    clear() {
+        this.value = '';
+        this.clearbutton.hidden = 'true';
     }
     focus() {
         this.input.focus();
@@ -57,6 +64,10 @@ export default class TextBox extends Instance {
                 if(instance) instance.onInputFocus(event);
             }
         }, true);
+        node.addEventListener('click', event => {
+            const instance = this.closestInstance(event.target);
+            if(instance) instance.onClick(event);
+        });
     }
     /*static attachTo2(node) {
         node.addEventListener('focus', event => {
