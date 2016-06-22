@@ -4,6 +4,7 @@
     text-align: center;
     width: 250px;
     padding: 7px;
+    display: inline-block;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

@@ -52,7 +52,7 @@
     background: url(images/cross.svg) no-repeat 50% 50%;
     position: absolute;
     right: 1px;
-    opacity: 0.3;
+    opacity: 0.25;
     outline: none;
 }
 .textbox:not(.disabled) .clearbutton:hover

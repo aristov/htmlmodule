@@ -3,14 +3,27 @@
     width: 120px;
     padding-right: 26px;
 }
-.datebox::after
+.datebox .datebutton
 {
-    content: url(images/calendar.svg);
+    display: inline-block;
+    width: 27px;
+    height: 27px;
+    background: url(images/datebutton.svg) no-repeat 50% 50%;
     position: absolute;
-    bottom: 4px;
-    right: 6px;
+    right: 1px;
+    opacity: 0.2;
+    outline: none;
 }
-.datebox:not(.disabled)::after
+.datebox:not(.disabled) .datebutton:hover
 {
     cursor: pointer;
+    opacity: 0.5;
+}
+.datebox.disabled .datebutton
+{
+    opacity: 0.1;
+}
+.datebox .datepicker
+{
+    display: block;
 }

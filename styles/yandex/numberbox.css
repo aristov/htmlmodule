@@ -13,7 +13,7 @@
     font-size: 9px;
     padding: 0 5px;
 }
-.numberbox .button:hover
+.numberbox:not(.disabled) .button:hover
 {
     background: rgba(0, 0, 0, 0.2);
     opacity: 0.5;

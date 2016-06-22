@@ -7,6 +7,7 @@ export default domTransform => {
 
     domTransform.element('datebox', function({ attributes }) {
         const disabled = attributes.disabled;
+        const [date, month, year] = attributes.value.split('.');
         return this.apply({
             element : 'textbox',
             attributes : {
@@ -25,13 +26,21 @@ export default domTransform => {
                     }
                 },
                 {
+                    element : 'button',
+                    attributes : {
+                        tabindex : '-1',
+                        view : 'datebutton',
+                        disabled
+                    }
+                },
+                {
                     element : 'div',
                     attributes : {
                         'data-instance' : 'DatePicker',
                         'class' : 'datepicker popup',
-                        'data-year' : attributes.year,
-                        'data-month' : attributes.month,
-                        'data-date' : attributes.date,
+                        'data-year' : year,
+                        'data-month' : month,
+                        'data-date' : date,
                         hidden : ''
                     }
                 }

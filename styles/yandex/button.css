@@ -35,9 +35,6 @@ button.button::-moz-focus-inner
 .button:focus
 {
     border-color: #ffdb4d;
-}
-.button:focus
-{
     box-shadow: inset 0 0 0 1px #ffdb4d;
 }
 
@@ -76,9 +73,6 @@ button.button::-moz-focus-inner
 {
     cursor: default;
     color: rgba(0, 0, 0, 0.5);
-}
-.button[aria-disabled=true]
-{
     background: rgba(0, 0, 0, 0.08);
     border-color: transparent;
 }
