@@ -28,6 +28,7 @@ export default class TextBox extends Instance {
     }
     set value(value) {
         this.input.value = value;
+        if(this.hasclear === 'true') this.clearbutton.hidden = String(!value);
     }
     get hasclear() {
         return String(this.element.classList.contains('hasclear'));
