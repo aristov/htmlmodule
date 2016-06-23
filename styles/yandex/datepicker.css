@@ -50,11 +50,12 @@
     border: 1px solid transparent;
     padding: 8px;
 }
-.datepicker td[data-is-weekend=true]
+.datepicker td[data-weekday="5"],
+.datepicker td[data-weekday="6"]
 {
     color: #c00;
 }
-.datepicker td[data-is-today=true]
+.datepicker td[aria-current=date]
 {
     background: rgba(0, 0, 0, 0.08);
 }

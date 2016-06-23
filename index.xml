@@ -129,6 +129,9 @@
     </article>
     <article>
         <h1>Date box</h1>
+        <!--<section>
+            <label>Native<br/><input type="date" value="2011-11-11"/></label>
+        </section>-->
         <section>
             <datebox label="Simple" value="12.06.2016"/>
         </section>
@@ -142,7 +145,7 @@
             <searchbox label="Simple"/>
         <section>
         </section>
-            <searchbox label="Disabeld" disabled="true"/>
+            <searchbox label="Disabled" disabled="true"/>
         </section>
     </article>
     <article>

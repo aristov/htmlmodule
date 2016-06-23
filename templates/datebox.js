@@ -1,8 +1,10 @@
 import textbox from './textbox';
+import button from './button';
 import textinput from './textinput';
 
 export default domTransform => {
     textbox(domTransform);
+    button(domTransform);
     textinput(domTransform);
 
     domTransform.element('datebox', function({ attributes }) {
@@ -22,6 +24,7 @@ export default domTransform => {
                     attributes : {
                         name : attributes.name,
                         value : attributes.value,
+                        readonly : 'true',
                         disabled
                     }
                 },
@@ -39,8 +42,8 @@ export default domTransform => {
                         'data-instance' : 'DatePicker',
                         'class' : 'datepicker popup',
                         'data-year' : year,
-                        'data-month' : month,
-                        'data-date' : date,
+                        'data-month' : Number(month),
+                        'data-date' : Number(date),
                         hidden : ''
                     }
                 }

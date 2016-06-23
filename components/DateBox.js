@@ -44,7 +44,7 @@ export default class DateBox extends TextBox {
         if(!this.element.contains(target)) this.expanded = 'false';
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(keyCode === ESCAPE) this.expanded = 'false';
         if(keyCode === SPACE) {
             event.preventDefault();
@@ -54,14 +54,5 @@ export default class DateBox extends TextBox {
     onInputFocus(event) {
         super.onInputFocus(event);
         this.expanded = 'true';
-    }
-    static attachTo(node) {
-        node.addEventListener('focus', event => {
-            let target = event.target;
-            if(target.tagName === 'INPUT') {
-                let element = target.closest('[data-instance=DateBox]');
-                if(element) this.getInstance(element).onInputFocus(event);
-            }
-        }, true);
     }
 }

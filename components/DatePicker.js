@@ -4,8 +4,8 @@ class DatePicker extends Instance {
     constructor(element) {
         super(element);
 
-        let dataset = element.dataset,
-            now = new Date;
+        const dataset = element.dataset;
+        const now = new Date;
 
         if(!dataset.year) dataset.year = now.getFullYear();
         if(!dataset.month) dataset.month = now.getMonth() + 1;
@@ -16,13 +16,13 @@ class DatePicker extends Instance {
         this.on('click', this.onClick);
     }
     build() {
-        let element = this.element;
+        const element = this.element;
 
         element.appendChild(this.buildHeader());
         element.appendChild(this.buildGrid());
     }
     buildHeader() {
-        let header = document.createElement('div');
+        const header = document.createElement('div');
 
         header.classList.add('header');
         header.appendChild(this.buildButton('prev'));
@@ -32,7 +32,7 @@ class DatePicker extends Instance {
         return this.header = header;
     }
     buildButton(direction) {
-        let button = document.createElement('span');
+        const button = document.createElement('span');
 
         button.setAttribute('role', 'button');
         button.tabIndex = -1;
@@ -43,8 +43,8 @@ class DatePicker extends Instance {
         return button;
     }
     buildHeading() {
-        let heading = document.createElement('span'),
-            dataset = this.element.dataset;
+        const heading = document.createElement('span');
+        const dataset = this.element.dataset;
 
         heading.setAttribute('role', 'heading');
         heading.setAttribute('aria-live', 'assertive');
@@ -55,7 +55,7 @@ class DatePicker extends Instance {
         return this.heading = heading;
     }
     buildGrid() {
-        let grid = document.createElement('table');
+        const grid = document.createElement('table');
 
         grid.setAttribute('role', 'grid');
         grid.setAttribute('cellspacing', '0');
@@ -66,82 +66,75 @@ class DatePicker extends Instance {
         return this.grid = grid;
     }
     buildGridHead() {
-        let gridHead = document.createElement('thead'),
-            row = document.createElement('tr');
+        const head = document.createElement('thead');
+        const row = document.createElement('tr');
 
         DatePicker.WEEK_DAY_NAMES.forEach(name => {
-            let columnHeader = document.createElement('th');
-            columnHeader.setAttribute('role', 'columnheader');
-            columnHeader.textContent = name;
-            row.appendChild(columnHeader);
+            const columnheader = document.createElement('th');
+            columnheader.setAttribute('role', 'columnheader');
+            columnheader.textContent = name;
+            row.appendChild(columnheader);
         });
-        gridHead.appendChild(row);
+        head.appendChild(row);
 
-        return gridHead;
+        return head;
     }
     buildGridBody() {
-        let element = this.element,
-            dataset = element.dataset,
-            selectedYear = dataset.year,
-            selectedMonth = dataset.month - 1,
-            firstDayOfMonth = new Date(selectedYear, selectedMonth, 1).getDay(),
-            now = new Date,
-            currentDateString = [now.getFullYear(), now.getMonth(), now.getDate()].join('.'),
-            selectedDateString = [selectedYear, selectedMonth, dataset.date].join('.');
-
-        if(firstDayOfMonth === 0) firstDayOfMonth = 7;
-
-        let daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate(),
-            weekCount = Math.ceil((daysInMonth + firstDayOfMonth - 1) / 7),
-            gridBody = document.createElement('tbody');
+        const element = this.element;
+        const dataset = element.dataset;
+        const selectedYear = dataset.year;
+        const selectedMonth = dataset.month - 1;
+        const firstDayOfMonth = (new Date(selectedYear, selectedMonth, 1)).getDay() || 7;
+        const now = new Date;
+        const currentDateString = [now.getFullYear(), now.getMonth(), now.getDate()].join('.');
+        const selectedDateString = [selectedYear, selectedMonth, dataset.date].join('.');
+        const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+        const weekCount = Math.ceil((daysInMonth + firstDayOfMonth - 1) / 7);
+        const body = document.createElement('tbody');
 
         for(let i = 0; i < weekCount; i++) {
-            let row = document.createElement('tr');
+            const row = document.createElement('tr');
             for(let j = 1; j <= 7; j++) {
-                let date = (i * 7 + j) - firstDayOfMonth + 1,
-                    dateValue = new Date(selectedYear, selectedMonth, date).getDate(),
-                    dateString = [selectedYear, selectedMonth, date].join('.'),
-                    cell = document.createElement('td'),
-                    dataset = cell.dataset;
-
-                dataset.isWeekend = j > 5;
-                dataset.isToday = currentDateString === dateString;
-
-                dataset.value = dateValue;
-                /*dataset(element, 'value', dateValue);
-                element.setAttribute('data-value', dateValue);
-                element.setData('value', dateValue);*/
+                const date = (i * 7 + j) - firstDayOfMonth + 1;
+                const dateValue = new Date(selectedYear, selectedMonth, date).getDate();
+                const dateString = [selectedYear, selectedMonth, date].join('.');
+                const cell = document.createElement('td');
+                const dataset = cell.dataset;
 
                 cell.setAttribute('role', 'gridcell');
-                cell.setAttribute('aria-selected', String(selectedDateString === dateString));
-                if(date < 1 || date > daysInMonth) cell.setAttribute('aria-disabled', 'true');
                 cell.textContent = dateValue;
+                dataset.value = dateValue;
+                dataset.weekday = j - 1;
+
+                if(currentDateString === dateString) cell.setAttribute('aria-current', 'date');
+                if(selectedDateString === dateString) cell.setAttribute('aria-selected', 'true');
+                if(date < 1 || date > daysInMonth) cell.setAttribute('aria-disabled', 'true');
 
                 row.appendChild(cell);
             }
-            gridBody.appendChild(row);
+            body.appendChild(row);
         }
-        return this.gridBody = gridBody;
+        return this.gridbody = body;
     }
     onClick(event) {
-        let target = event.target;
+        const target = event.target;
         if(target.dataset.instance === 'button') this.onButtonClick(event);
         if(target.getAttribute('role') === 'gridcell') this.onGridCellClick(event);
     }
     onGridCellClick({ target }) {
         if(target.getAttribute('aria-disabled') !== 'true') {
-            let element = this.element,
-                selected = element.querySelector('[role=gridcell][aria-selected=true]');
+            const element = this.element;
+            const selected = element.querySelector('[role=gridcell][aria-selected=true]');
             if(selected) selected.setAttribute('aria-selected', 'false');
             target.setAttribute('aria-selected', 'true');
             element.dataset.date = target.dataset.value;
-            element.dispatchEvent(new Event('change'));
+            this.emit('change');
         }
     }
     onButtonClick({ target }) {
-        let element = this.element,
-            direction = target.dataset.direction,
-            dataset = element.dataset;
+        const element = this.element;
+        const direction = target.dataset.direction;
+        const dataset = element.dataset;
 
         direction === 'next'? dataset.month++ : dataset.month--;
 
@@ -158,9 +151,9 @@ class DatePicker extends Instance {
         this.rebuild();
     }
     rebuild() {
-        let gridBody = this.gridBody,
-            heading = this.heading;
-        this.grid.replaceChild(this.buildGridBody(), gridBody);
+        const body = this.gridbody;
+        const heading = this.heading;
+        this.grid.replaceChild(this.buildGridBody(), body);
         this.header.replaceChild(this.buildHeading(), heading);
     }
 }

@@ -70,10 +70,4 @@ export default class TextBox extends Instance {
             if(instance) instance.onClick(event);
         });
     }
-    /*static attachTo2(node) {
-        node.addEventListener('focus', event => {
-            let textbox = this.closestInstance(event.target);
-            if(textbox) textbox.onInputFocus(event);
-        }, true);
-    }*/
 }

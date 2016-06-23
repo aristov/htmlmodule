@@ -42,11 +42,12 @@ export default class MenuButton extends Button {
     }
     onKeyDown(event) {
         super.onKeyDown(event);
-        if(event.keyCode === ARROWS.DOWN) {
+        const keyCode = event.keyCode;
+        if(keyCode === ARROWS.DOWN) {
             event.preventDefault();
             if(this.expanded === 'false') this.expanded = 'true';
             this.menu.items[0].element.focus();
         }
-        if(event.keyCode === ESCAPE) this.expanded = 'false';
+        if(keyCode === ESCAPE) this.expanded = 'false';
     }
 }
