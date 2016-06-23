@@ -1,13 +1,23 @@
 .datepicker
 {
     background: #fff;
-    text-align: center;
     width: 250px;
-    padding: 7px;
     display: inline-block;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+}
+.datepicker .box
+{
+    display: block;
+    padding: 7px;
+    border : 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 3px;
+}
+.datepicker:hover .box
+{
+    border-color: rgba(0, 0, 0, 0.2);
 }
 .datepicker .button
 {
@@ -21,12 +31,14 @@
 {
     border-color: transparent;
 }
-.datepicker .button[data-direction=prev]
+.datepicker .button[data-direction=prev],
+.datepicker .button[data-value="-1"]
 {
     float: left;
     background-image: url(images/arrow-left.svg);
 }
-.datepicker .button[data-direction=next]
+.datepicker .button[data-direction=next],
+.datepicker .button[data-value="+1"]
 {
     float: right;
     background-image: url(images/arrow-right.svg);
@@ -81,3 +93,11 @@
     color: rgba(0, 0, 0, 0.5);
     background-color: transparent;
 }
+.datepicker[aria-label]::before
+{
+    content: attr(aria-label);
+    display: block;
+    margin-bottom: 5px;
+    cursor: default;
+}
+

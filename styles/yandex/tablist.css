@@ -6,6 +6,10 @@
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+.tablist:hover
+{
+    border-color: rgba(0, 0, 0, 0.2);
+}
 .tablist .tab
 {
     color: #aaa;

@@ -30,6 +30,7 @@ import passwordbox from './templates/passwordbox';
 import numberbox from './templates/numberbox';
 import searchbox from './templates/searchbox';
 import searchgroup from './templates/searchgroup';
+import datepicker from './templates/datepicker';
 import datebox from './templates/datebox';
 import timebox from './templates/timebox';
 import select from './templates/select';
@@ -75,6 +76,7 @@ const templates = [
     numberbox,
     searchbox,
     searchgroup,
+    datepicker,
     datebox,
     timebox,
     select,

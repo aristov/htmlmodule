@@ -318,6 +318,12 @@
         </section>
     </article>
     <article>
+        <h1>Date picker</h1>
+        <section>
+            <datepicker label="Simple"/>
+        </section>
+    </article>
+    <article>
         <h1>Spin</h1>
         <spin/>
     </article>

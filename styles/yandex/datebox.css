@@ -26,4 +26,10 @@
 .datebox .datepicker
 {
     display: block;
+    padding: 7px;
+    text-align: center;
+}
+.datebox .datepicker .box
+{
+    border : none;
 }
