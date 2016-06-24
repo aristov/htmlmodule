@@ -79,7 +79,7 @@ export default class Button extends Instance {
     static attachTo(node) {
         node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
         node.addEventListener('click', event => {
-            const button = this.getInstance(event.target);
+            const button = this.closestInstance(event.target);
             if(button) button.onClick(event);
         }, true);
     }

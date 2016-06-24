@@ -1,0 +1,33 @@
+@import url('../styles/yandex/common.css');
+@import url('../styles/yandex/button.css');
+@import url('../styles/yandex/tablist.css');
+@import url('../styles/yandex/popup.css');
+@import url('../styles/yandex/menu.css');
+
+@import url('./style/header.css');
+@import url('./style/usermenu.css');
+
+body
+{
+    margin: 0;
+}
+
+main
+{
+    padding: 15px;
+    margin-bottom: 30px;
+}
+main h1
+{
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+main h2
+{
+    font-size: 15px;
+}
+main section
+{
+    margin-bottom: 30px;
+}
