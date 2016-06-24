@@ -22,7 +22,23 @@
         <tab controls="orders">Мои заказы</tab>
     </tablist>
     <main>
-        <tabpanel id="companies">Организации</tabpanel>
-        <tabpanel id="orders" hidden="true">Заказы</tabpanel>
+        <tabpanel id="companies">
+            <h1>Мои организации</h1>
+        </tabpanel>
+        <tabpanel id="orders" hidden="true">
+            <h1>Заказы</h1>
+        </tabpanel>
     </main>
+    <footer>
+        <link href="//tune.yandex.ru/lang" mix="langswitch">
+            <img src="//yastatic.net/islands-icons/_/aXJK_o-btp1MZf_uqan_aQUD9os.png"/> Ru
+        </link>
+        <span class="footlinks">
+            <link href="https://legal.yandex.ru/rules/">Пользовательское соглашение</link>
+            <link href="https://feedback.yandex.ru/?from=sprav">Обратная связь</link>
+            <link href="https://advertising.yandex.ru">Реклама</link>
+            <link href="https://stat.yandex.ru/Russia/Maps">Статистика карт</link>
+        </span>
+        <span class="copyright">© 2001–2016  ООО «<link href="//www.yandex.ru">Яндекс</link>»</span>
+    </footer>
 </body>

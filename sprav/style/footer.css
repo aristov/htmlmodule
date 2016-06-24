@@ -1,0 +1,22 @@
+footer
+{
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+}
+footer .footlinks .link
+{
+    margin: 0 20px;
+}
+footer .footlinks .link:not(:hover)
+{
+    color: #aaa;
+}
+footer .langswitch
+{
+    float: left;
+}
+footer .copyright
+{
+    float: right;
+}
