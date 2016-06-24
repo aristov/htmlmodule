@@ -10,6 +10,9 @@ export default class MenuItem extends Instance {
         this.on('keyup', this.onKeyUp);
         this.on('mouseleave', this.onMouseLeave);
     }
+    get type() {
+        return this.element.dataset.type || '';
+    }
     onKeyDown(event) {
         const keyCode = event.keyCode;
         if(keyCode === ARROWS.UP || keyCode === ARROWS.DOWN) {
@@ -25,10 +28,7 @@ export default class MenuItem extends Instance {
         if(keyCode === SPACE) {
             const element = this.element;
             element.classList.remove('active');
-            element.dispatchEvent(new Event('click', {
-                bubbles : true,
-                cancelable : true
-            }));
+            this.emit('click');
             if(element.href) window.location.href = element.href;
         }
     }

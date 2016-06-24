@@ -53,7 +53,7 @@ header .userbutton
 {
     float: right;
     display: inline-block;
-    margin: 17px 20px;
+    margin: 17px 15px;
     padding: 0;
     border: none;
     cursor: pointer;
@@ -74,7 +74,7 @@ header .userbutton .username
 {
     font: 15px/80% Arial,Helvetica,sans-serif;
     display: inline-block;
-    margin-left: 10px;
+    margin: 10px;
     vertical-align: middle;
 }
 header .userbutton .username::first-letter
