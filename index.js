@@ -15,6 +15,7 @@ import SearchBox from './components/SearchBox';
 import TimeBox from './components/TimeBox';
 import DialogButton from './components/DialogButton';
 import DateBox from './components/DateBox';
+import DatePicker from './components/DatePicker';
 import TabList from './components/TabList';
 import Tree from './components/Tree';
 import Grid from './components/Grid';
@@ -58,6 +59,7 @@ const components = [
     SearchBox,
     TimeBox,
     DialogButton,
+    DatePicker,
     DateBox,
     TabList,
     Tree,

@@ -1,4 +1,5 @@
 import Instance from './Instance';
+import moment from 'moment';
 
 class DatePicker extends Instance {
     constructor(element) {
@@ -11,9 +12,16 @@ class DatePicker extends Instance {
         if(!dataset.month) dataset.month = now.getMonth() + 1;
         if(!dataset.date) dataset.date = '';
 
-        this.build();
+        //this.build();
 
-        this.on('click', this.onClick);
+        //this.on('click', this.onClick);
+        this.header = element.querySelector('.header');
+        this.heading = element.querySelector('[role=heading]');
+        this.grid = element.querySelector('[role=grid]');
+        this.gridbody = element.querySelector('tbody');
+    }
+    get year() {
+        return moment(this.value, 'YYYY-MM-DD').year();
     }
     build() {
         const element = this.element;
@@ -25,20 +33,20 @@ class DatePicker extends Instance {
         const header = document.createElement('div');
 
         header.classList.add('header');
-        header.appendChild(this.buildButton('prev'));
+        header.appendChild(this.buildButton('+1'));
         header.appendChild(this.buildHeading());
-        header.appendChild(this.buildButton('next'));
+        header.appendChild(this.buildButton('-1'));
 
         return this.header = header;
     }
-    buildButton(direction) {
+    buildButton(value) {
         const button = document.createElement('span');
 
         button.setAttribute('role', 'button');
         button.tabIndex = -1;
         button.classList.add('button');
         button.dataset.instance = 'button';
-        button.dataset.direction = direction;
+        button.dataset.value = value;
 
         return button;
     }
@@ -118,7 +126,7 @@ class DatePicker extends Instance {
     }
     onClick(event) {
         const target = event.target;
-        if(target.dataset.instance === 'button') this.onButtonClick(event);
+        if(target.dataset.instance === 'Button') this.onButtonClick(event);
         if(target.getAttribute('role') === 'gridcell') this.onGridCellClick(event);
     }
     onGridCellClick({ target }) {
@@ -133,10 +141,11 @@ class DatePicker extends Instance {
     }
     onButtonClick({ target }) {
         const element = this.element;
-        const direction = target.dataset.direction;
+        const value = target.dataset.value;
         const dataset = element.dataset;
 
-        direction === 'next'? dataset.month++ : dataset.month--;
+        //value === '+1'? dataset.month++ : dataset.month--;
+        dataset.month += Number(value);
 
         if(dataset.month < 1) {
             dataset.year--;
@@ -155,6 +164,12 @@ class DatePicker extends Instance {
         const heading = this.heading;
         this.grid.replaceChild(this.buildGridBody(), body);
         this.header.replaceChild(this.buildHeading(), heading);
+    }
+    static attachTo(node) {
+        node.addEventListener('click', event => {
+            const instance = this.closestInstance(event.target);
+            if(instance) instance.onClick(event);
+        });
     }
 }
 

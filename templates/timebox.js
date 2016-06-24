@@ -1,15 +1,17 @@
 import numberbox from './numberbox';
 
-export default domTransform => {
-    numberbox(domTransform);
+const SEMISPACE = ' ';
+const mix = (...mix) => mix.filter(mix => mix).join(' ');
 
-    domTransform.element('timebox', function({ attributes }) {
+export default domTransform => {
+    domTransform.element('timebox', function({ attributes : a }) {
         return this.apply({
             element : 'numberbox',
-            attributes : Object.assign(attributes, {
-                instance : attributes.instance || 'TimeBox',
-                mix : ['timebox', attributes.mix].join(' ').trim(),
-                readonly : 'true'
+            attributes : Object.assign(a, {
+                instance : a.instance || 'TimeBox',
+                mix : mix('timebox', a.mix),
+                readonly : a.readonly || 'true',
+                value : a.value? a.value.replace(/\s/g, SEMISPACE) : '-- : --'
             })
         });
     });

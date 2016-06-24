@@ -25,6 +25,10 @@
     line-height: 25px;
     cursor: pointer;
 }
+.listbox:not([aria-disabled=true]) .option:hover/*:not([aria-selected])*/
+{
+    background: rgba(0, 0, 0, 0.01);
+}
 .listbox .option:first-child
 {
     margin-top: 4px;

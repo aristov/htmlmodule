@@ -25,14 +25,16 @@ export default domTransform => {
         const id = Math.floor(Math.random() * now);
         const value = attributes.value || moment(now).format('YYYY-MM-DD');
         let [year, month, date] = value.split('-');
-        month = Number(month);
-        date = Number(date);
+
         return {
             element : 'div',
             attributes : {
                 'data-instance' : 'DatePicker',
                 'class' : 'datepicker',
-                'aria-label' : attributes.label
+                'aria-label' : attributes.label,
+                'data-year' : year,
+                'data-month' : month,
+                'data-date' : date
             },
             content : {
                 element : 'span',
@@ -79,6 +81,8 @@ export default domTransform => {
                                 }
                             },
                             (function() {
+                                month = Number(month);
+                                date = Number(date);
                                 const selectedYear = year;
                                 const selectedMonth = month - 1;
                                 const firstDayOfMonth = (new Date(selectedYear, selectedMonth, 1)).getDay() || 7;

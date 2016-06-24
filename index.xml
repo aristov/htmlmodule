@@ -120,11 +120,14 @@
     </article>
     <article>
         <h1>Time box</h1>
+        <!--<section>
+            <label>Native<br/><input type="time"/></label>
+        </section>-->
         <section>
-            <timebox label="Simple" value="09 : 00"/>
+            <timebox label="Simple"/>
         </section>
         <section>
-            <timebox disabled="true" label="Disabled" value="09 : 00"/>
+            <timebox disabled="true" label="Disabled" value="22 : 23"/>
         </section>
     </article>
     <article>
@@ -240,19 +243,6 @@
             <tabpanel id="tabpanel2" hidden="true">Second panel</tabpanel>
             <tabpanel id="tabpanel3" hidden="true">Third panel</tabpanel>
         </section>
-        <section>
-            <h1>Tab menu</h1>
-            <tablist view="tabmenu" mix="menu" controls="tabpanelgroup">
-                <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
-                <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
-                <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
-            </tablist>
-            <group id="tabpanelgroup">
-                <tabpanel id="tabpanelmenu1">First panel</tabpanel>
-                <tabpanel id="tabpanelmenu2" hidden="true">Second panel</tabpanel>
-                <tabpanel id="tabpanelmenu3" hidden="true">Third panel</tabpanel>
-            </group>
-        </section>
     </article>
     <article>
         <h1>Tree</h1>
@@ -323,11 +313,7 @@
             <datepicker label="Simple"/>
         </section>
     </article>
-    <article>
-        <h1>Spin</h1>
-        <spin/>
-    </article>
-    <article>
+    <article class="mixes">
         <h1>Mixes</h1>
         <section>
             <button view="link">Button as link</button>
@@ -352,6 +338,19 @@
             </radiogroup>
         </section>
         <section>
+            <h1>Tab menu</h1>
+            <tablist view="tabmenu" mix="menu" controls="tabpanelgroup">
+                <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
+                <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
+                <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
+            </tablist>
+            <group id="tabpanelgroup">
+                <tabpanel id="tabpanelmenu1">First panel</tabpanel>
+                <tabpanel id="tabpanelmenu2" hidden="true">Second panel</tabpanel>
+                <tabpanel id="tabpanelmenu3" hidden="true">Third panel</tabpanel>
+            </group>
+        </section>
+        <section class="tabbuttongroup">
             <h1>Tab button group</h1>
             <tablist view="buttongroup">
                 <tab controls="tabbuttonpanel1" view="button" selected="true">One</tab>
@@ -364,5 +363,9 @@
                 <tabpanel id="tabbuttonpanel3" hidden="true">Third panel</tabpanel>
             </group>
         </section>
+    </article>
+    <article>
+        <h1>Spin</h1>
+        <spin/>
     </article>
 </main>

@@ -42,7 +42,11 @@ export default class Option extends Instance {
     }
     onClick(event) {
         if(this.disabled === 'true') event.stopImmediatePropagation();
-        else this.listbox.checkedOptions = [this];
+        else {
+            this.listbox.unselect();
+            this.selected = 'true';
+            this.listbox.checkedOptions = [this];
+        }
     }
     onMouseEnter() {
         if(this.disabled !== 'true') {
@@ -51,9 +55,9 @@ export default class Option extends Instance {
         }
     }
     static attachTo(node) {
-        node.addEventListener('mouseenter', event => {
+        /*node.addEventListener('mouseenter', event => {
             let option = this.getInstance(event.target);
             if(option) option.onMouseEnter(event);
-        }, true);
+        }, true);*/
     }
 }

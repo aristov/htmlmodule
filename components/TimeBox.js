@@ -1,9 +1,11 @@
 import NumberBox from './NumberBox';
 import moment from 'moment';
-import { DIGITS, ARROWS } from '../tools/keyCodes';
+import { DIGITS, ARROWS, BACKSPACE } from '../tools/keyCodes';
 
 const DIGIT_CODES = Object.values(DIGITS);
-const FORMAT = 'HH : mm';
+const SEMISPACE = ' ';
+const FORMAT = ['HH', ':', 'mm'].join(SEMISPACE);
+
 
 export default class TimeBox extends NumberBox {
     constructor(element) {
@@ -20,6 +22,9 @@ export default class TimeBox extends NumberBox {
         else this.input.setSelectionRange(5, 7);
         this.enterInProgress = false;
     }
+    get time() {
+        return moment(this.value.replace(/-/g, '0'), FORMAT);
+    }
     onInputFocus(event) {
         super.onInputFocus(event);
         setTimeout(() => this.range = this.range || 'hours', 0);
@@ -35,6 +40,10 @@ export default class TimeBox extends NumberBox {
             this.range = keyCode === ARROWS.LEFT? 'hours' : 'minutes';
             event.preventDefault();
         }
+        if(keyCode === BACKSPACE) {
+            this.value = '-- : --';
+            this.range = this.range;
+        }
     }
     onDigitKeyDown({ keyCode }) {
         const value = keyCode - DIGITS[0];
@@ -42,7 +51,7 @@ export default class TimeBox extends NumberBox {
         else this.onMinutesEnter(value);
     }
     onHoursEnter(value) {
-        const time = moment(this.value, FORMAT);
+        const time = this.time;
         if(this.enterInProgress) {
             value = parseInt(parseInt(time.hours(), 10) + String(value), 10);
             this.value = time.hours(Math.min(value, 23)).format(FORMAT);
@@ -56,7 +65,7 @@ export default class TimeBox extends NumberBox {
         }
     }
     onMinutesEnter(value) {
-        const time = moment(this.value, FORMAT);
+        const time = this.time;
         if(this.enterInProgress) {
             value = parseInt(parseInt(time.minutes(), 10) + String(value), 10);
             this.value = time.minutes(Math.min(value, 59)).format(FORMAT);
@@ -68,7 +77,7 @@ export default class TimeBox extends NumberBox {
         }
     }
     shiftValue(step) {
-        const time = moment(this.value, FORMAT);
+        const time = this.time;
         const range = this.range;
         this.value = time[range](time[range]() + step).format(FORMAT);
         this.range = range;
