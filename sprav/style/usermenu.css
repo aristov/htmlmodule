@@ -1,23 +1,23 @@
-#usermenu
+.usermenu
 {
     width: 180px;
     right: 98px;
     margin-top: -4px;
 }
-#usermenu .menuitem
+.usermenu .menuitem
 {
     line-height: 30px;
     color: #000;
     text-decoration: none;
 }
-#usermenu hr
+.usermenu hr
 {
     margin: 6px 0 10px;
     border-style: none none solid;
     border-color: silver;
     border-width: 0 0 1px;
 }
-#usermenu::before
+.usermenu::before
 {
     content: '';
     position: absolute;

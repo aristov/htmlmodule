@@ -7,6 +7,7 @@ export default class MenuButton extends Button {
         super(element);
         this.menu = Menu.getInstance(document.getElementById(this.controls));
         this.menu.on('keydown', this.onMenuKeyDown, this);
+        this.menu.on('mouseleave', this.onMenuMouseLeave, this);
         this.onDocumentClick = this.onDocumentClick.bind(this);
         this.onDocumentFocus = this.onDocumentFocus.bind(this);
     }
@@ -37,16 +38,19 @@ export default class MenuButton extends Button {
     onMenuKeyDown({ keyCode }) {
         if(keyCode === ESCAPE) {
             this.expanded = 'false';
-            this.element.focus();
+            this.focus();
         }
+    }
+    onMenuMouseLeave() {
+        this.focus();
     }
     onKeyDown(event) {
         super.onKeyDown(event);
         const keyCode = event.keyCode;
         if(keyCode === ARROWS.DOWN) {
-            event.preventDefault();
             if(this.expanded === 'false') this.expanded = 'true';
-            this.menu.items[0].element.focus();
+            this.menu.items[0].focus();
+            event.preventDefault();
         }
         if(keyCode === ESCAPE) this.expanded = 'false';
     }

@@ -17,7 +17,6 @@
     cursor: pointer;
     outline: none;
     border-left: 2px solid transparent;
-
 }
 .menu:hover .box
 {
@@ -31,4 +30,9 @@
 .menu .menuitem:focus.active
 {
     background: #fee481;
+}
+.menu a.menuitem:focus[href]
+{
+    color: #c00;
+    text-decoration: underline;
 }

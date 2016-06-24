@@ -7,7 +7,7 @@
             <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"></span>
             <span class="username">vv.aristov</span>
         </menubutton>
-        <menu id="usermenu">
+        <menu id="usermenu" mix="usermenu">
             <menuitem href="//mail.yandex.ru">Нет новых писем</menuitem>
             <menuitem href="//mail.yandex.ru/compose">Написать письмо</menuitem>
             <menuitem href="//disk.yandex.ru">Загрузить файлы</menuitem>

@@ -1,13 +1,15 @@
+const mix = (...mix) => mix.filter(mix => typeof mix === 'string' && mix).join(' ');
+
 export default domTransform => {
     domTransform.element('menu', function({ attributes : a, content }) {
         return {
             element : 'div',
             attributes : {
-                'data-instance' : 'Menu',
+                'data-instance' : a.instance || 'Menu',
                 role : 'menu',
                 id : a.id,
                 hidden : '',
-                'class' : 'menu popup'
+                'class' : mix(a.view || 'menu', 'popup', a.mix)
             },
             content : this.apply(content)
         }
@@ -20,7 +22,7 @@ export default domTransform => {
                 role : 'menuitem',
                 tabindex : '-1',
                 href : a.href,
-                'class' : 'menuitem'
+                'class' : mix(a.view || 'menuitem', a.mix)
             },
             content : this.apply(content)
         }

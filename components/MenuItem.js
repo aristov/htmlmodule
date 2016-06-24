@@ -41,10 +41,13 @@ export default class MenuItem extends Instance {
         items[index].element.focus();
     }
     onMouseEnter() {
-        this.element.focus();
+        this.focus();
     }
     onMouseLeave() {
         this.element.blur();
+    }
+    focus() {
+        this.element.focus();
     }
     static attachTo(node) {
         node.addEventListener('mouseenter', event => {
