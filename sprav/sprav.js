@@ -45,6 +45,8 @@ import spin from '../templates/spin';
 import tree from '../templates/tree';
 import grid from '../templates/grid';
 
+import header from './layout/header';
+
 const components = [
     Button,
     CheckBox,
@@ -90,13 +92,13 @@ const templates = [
     tablist,
     spin,
     tree,
-    grid
+    grid,
+
+    header
 ];
 
-components.forEach(Component => Component.attachTo(document.body));
+components.forEach(Component => Component.attachTo(document));
 templates.forEach(template => template(domTransform));
-
-
 
 fetch('sprav.xml')
     .then(response => response.text())
@@ -104,5 +106,5 @@ fetch('sprav.xml')
         const parser = new DOMParser;
         const element = parser.parseFromString(xml, 'text/xml').documentElement;
         const don = domTransform.apply(DON.fromDOM(element));
-        document.body.appendChild(DON.toDOM(don));
+        document.documentElement.replaceChild(DON.toDOM(don), document.body);
     });

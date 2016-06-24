@@ -93,7 +93,7 @@ const templates = [
     grid
 ];
 
-components.forEach(Component => Component.attachTo(document));
+components.forEach(Component => Component.attachTo(document.body));
 templates.forEach(template => template(domTransform));
 
 fetch('index.xml')
@@ -102,5 +102,6 @@ fetch('index.xml')
         const parser = new DOMParser;
         const element = parser.parseFromString(xml, 'text/xml').documentElement;
         const don = domTransform.apply(DON.fromDOM(element));
-        document.documentElement.replaceChild(DON.toDOM(don), document.body);
+        document.body.appendChild(DON.toDOM(don));
     });
+

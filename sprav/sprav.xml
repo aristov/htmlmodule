@@ -1,31 +1,26 @@
 <body>
     <header>
-        <div>
-            <a href="//yandex.ru" class="logo">
-                <img src="https://yastatic.net/islands/_/uBeuL5reE-5D8m89Ky4i6XNh8yo.svg" alt="Яндекс"/>
-            </a>
-            <a href="//sprav.yandex.ru" class="service">Личный кабинет</a>
-            <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fbalance.yandex.ru class="button link authbutton">Войти</a>-->
-            <menubutton controls="usermenu" mix="userbutton">
-                <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"></span>
-                <span class="username">vv.aristov</span>
-            </menubutton>
-            <menu id="usermenu">
-                <menuitem href="//mail.yandex.ru">Нет новых писем</menuitem>
-                <menuitem href="//mail.yandex.ru/compose">Написать письмо</menuitem>
-                <menuitem href="//disk.yandex.ru">Загрузить файлы</menuitem>
-                <hr/>
-                <menuitem href="//tune.yandex.ru">Настройка</menuitem>
-                <menuitem href="//passport.yandex.ru">Паспорт</menuitem>
-                <menuitem href="//passport.yandex.ru/passport?mode=logout">Выйти</menuitem>
-            </menu>
-        </div>
-        <tablist>
-            <tab selected="true" controls="companies">Мои организации</tab>
-            <tab controls="orders">Мои заказы</tab>
-        </tablist>
-
+        <logolink/>
+        <a href="//sprav.yandex.ru" class="service">Личный кабинет</a>
+        <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fbalance.yandex.ru class="button link authbutton">Войти</a>-->
+        <menubutton controls="usermenu" mix="userbutton">
+            <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"></span>
+            <span class="username">vv.aristov</span>
+        </menubutton>
+        <menu id="usermenu">
+            <menuitem href="//mail.yandex.ru">Нет новых писем</menuitem>
+            <menuitem href="//mail.yandex.ru/compose">Написать письмо</menuitem>
+            <menuitem href="//disk.yandex.ru">Загрузить файлы</menuitem>
+            <hr/>
+            <menuitem href="//tune.yandex.ru">Настройка</menuitem>
+            <menuitem href="//passport.yandex.ru">Паспорт</menuitem>
+            <menuitem href="//passport.yandex.ru/passport?mode=logout">Выйти</menuitem>
+        </menu>
     </header>
+    <tablist>
+        <tab selected="true" controls="companies">Мои организации</tab>
+        <tab controls="orders">Мои заказы</tab>
+    </tablist>
     <main>
         <tabpanel id="companies">Организации</tabpanel>
         <tabpanel id="orders" hidden="true">Заказы</tabpanel>
