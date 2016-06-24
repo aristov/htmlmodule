@@ -1,22 +1,17 @@
 footer
 {
+    display: flex;
+    justify-content: space-between;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
+    padding: 15px 20px;
 }
-footer .footlinks .link
+footer .linkgroup .link
 {
+    display: inline-block;
     margin: 0 20px;
 }
-footer .footlinks .link:not(:hover)
+footer .linkgroup .link:not(:hover),
+footer .footerlink:not(:hover)
 {
     color: #aaa;
-}
-footer .langswitch
-{
-    float: left;
-}
-footer .copyright
-{
-    float: right;
 }

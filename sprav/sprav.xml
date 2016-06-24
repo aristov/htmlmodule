@@ -1,22 +1,26 @@
 <body>
     <header>
-        <logolink/>
-        <a href="//sprav.yandex.ru" class="service">Личный кабинет</a>
-        <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fbalance.yandex.ru class="button link authbutton">Войти</a>-->
-        <!--<button>Добавить организацию</button>-->
-        <menubutton controls="usermenu" mix="userbutton">
-            <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"></span>
-            <span class="username">vv.aristov</span>
-        </menubutton>
-        <menu id="usermenu" mix="usermenu">
-            <menuitem href="//mail.yandex.ru">Нет новых писем</menuitem>
-            <menuitem href="//mail.yandex.ru/compose">Написать письмо</menuitem>
-            <menuitem href="//disk.yandex.ru">Загрузить файлы</menuitem>
-            <hr/>
-            <menuitem href="//tune.yandex.ru">Настройка</menuitem>
-            <menuitem href="//passport.yandex.ru">Паспорт</menuitem>
-            <menuitem href="//passport.yandex.ru/passport?mode=logout">Выйти</menuitem>
-        </menu>
+        <div>
+            <logolink/>
+            <a href="//sprav.yandex.ru" class="service">Личный кабинет</a>
+        </div>
+        <div>
+            <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fbalance.yandex.ru class="button link authbutton">Войти</a>-->
+            <button>Добавить организацию</button>
+            <menubutton controls="usermenu" mix="userbutton">
+                <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"></span>
+                <span class="username">vv.aristov</span>
+            </menubutton>
+            <menu id="usermenu" mix="usermenu">
+                <menuitem href="//mail.yandex.ru">Нет новых писем</menuitem>
+                <menuitem href="//mail.yandex.ru/compose">Написать письмо</menuitem>
+                <menuitem href="//disk.yandex.ru">Загрузить файлы</menuitem>
+                <hr/>
+                <menuitem href="//tune.yandex.ru">Настройка</menuitem>
+                <menuitem href="//passport.yandex.ru">Паспорт</menuitem>
+                <menuitem href="//passport.yandex.ru/passport?mode=logout">Выйти</menuitem>
+            </menu>
+        </div>
     </header>
     <tablist>
         <tab selected="true" controls="companiespanel">Мои организации</tab>
@@ -48,11 +52,11 @@
         </tabpanel>
     </main>
     <footer>
+        <link mix="footerlink" href="https://legal.yandex.ru/rules/">Пользовательское соглашение</link>
         <link href="//tune.yandex.ru/lang" mix="langswitch">
             <img src="//yastatic.net/islands-icons/_/aXJK_o-btp1MZf_uqan_aQUD9os.png"/> Ru
         </link>
-        <span class="footlinks">
-            <link href="https://legal.yandex.ru/rules/">Пользовательское соглашение</link>
+        <span class="linkgroup">
             <link href="https://feedback.yandex.ru/?from=sprav">Обратная связь</link>
             <link href="https://advertising.yandex.ru">Реклама</link>
             <link href="https://stat.yandex.ru/Russia/Maps">Статистика карт</link>

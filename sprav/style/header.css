@@ -1,3 +1,9 @@
+header
+{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
 header .logo
 {
     display: inline-block;
@@ -42,18 +48,17 @@ header .service:focus
 header .button
 {
     padding: 7px 14px;
+    vertical-align: middle;
 }
 header .authbutton
 {
     color: black;
-    float: right;
     margin: 20px;
 }
 header .userbutton
 {
-    float: right;
     display: inline-block;
-    margin: 17px 15px;
+    margin: 17px 15px 17px 30px;
     padding: 0;
     border: none;
     cursor: pointer;
