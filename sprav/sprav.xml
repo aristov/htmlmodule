@@ -3,6 +3,7 @@
         <logolink/>
         <a href="//sprav.yandex.ru" class="service">Личный кабинет</a>
         <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fbalance.yandex.ru class="button link authbutton">Войти</a>-->
+        <!--<button>Добавить организацию</button>-->
         <menubutton controls="usermenu" mix="userbutton">
             <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"></span>
             <span class="username">vv.aristov</span>
@@ -18,15 +19,32 @@
         </menu>
     </header>
     <tablist>
-        <tab selected="true" controls="companies">Мои организации</tab>
-        <tab controls="orders">Мои заказы</tab>
+        <tab selected="true" controls="companiespanel">Мои организации</tab>
+        <tab controls="orderspanel">Мои заказы</tab>
     </tablist>
     <main>
-        <tabpanel id="companies">
-            <h1>Мои организации</h1>
+        <tabpanel id="companiespanel">
+            <h1 class="mainheading">Мои организации</h1>
+            <ul class="companylist">
+                <li>
+                    <companycard name="Репетиционная база Фьюжн"
+                                 href="https://sprav.yandex.ru/org/edit/1775041988/"
+                                 address="Москва, ул. Звенигородская 2-я, 13, стр. 18а"
+                                 phone="+7 (926) 602-25-87"
+                                 category="Студия звукозаписи, Творческий коллектив"/>
+                </li>
+                <li>
+                    <companycard name="Студия Fusion"
+                                 href="https://sprav.yandex.ru/org/edit/1353574521/"
+                                 address="Москва, ул. 2-я Звенигородская, 13, стр. 17/18а"
+                                 phone="+7 (926) 602-25-87"
+                                 website="fusion.moscow"
+                                 category="Творческий коллектив"/>
+                </li>
+            </ul>
         </tabpanel>
-        <tabpanel id="orders" hidden="true">
-            <h1>Заказы</h1>
+        <tabpanel id="orderspanel" hidden="true">
+            <h1 class="mainheading">Заказы</h1>
         </tabpanel>
     </main>
     <footer>

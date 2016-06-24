@@ -1,0 +1,19 @@
+.companycard h1
+{
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0 0 7px;
+}
+.companycard .cardinfo
+{
+    border-left: 5px solid #94ba35;
+    padding-left: 8px;
+}
+.companycard .cardinfo div
+{
+    margin: 5px 0;
+}
+.companycard .cardinfo .category
+{
+    color: #888;
+}

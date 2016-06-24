@@ -46,6 +46,7 @@ import tree from '../templates/tree';
 import grid from '../templates/grid';
 
 import header from './layout/header';
+import companycard from './layout/companycard';
 
 const components = [
     Button,
@@ -94,7 +95,8 @@ const templates = [
     tree,
     grid,
 
-    header
+    header,
+    companycard
 ];
 
 components.forEach(Component => Component.attachTo(document));
