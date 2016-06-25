@@ -6,7 +6,6 @@ const DIGIT_CODES = Object.values(DIGITS);
 const SEMISPACE = ' ';
 const FORMAT = ['HH', ':', 'mm'].join(SEMISPACE);
 
-
 export default class TimeBox extends NumberBox {
     constructor(element) {
         super(element);

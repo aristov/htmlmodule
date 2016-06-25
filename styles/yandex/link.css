@@ -23,10 +23,14 @@
 }
 .link[aria-disabled]
 {
-    color: #999;
+    color: #ccc;
     cursor: default;
 }
 .link[rel~=external]:not(:hover)
 {
     color: #070;
+}
+.link.dim:not(:hover)
+{
+    color: #aaa;
 }

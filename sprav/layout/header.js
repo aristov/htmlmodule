@@ -1,4 +1,4 @@
-export default domTranform => {
+export default domTransform => {
     /*domTranform.element('header', function({ content }) {
         return this.apply({
             element : 'div',
@@ -8,7 +8,7 @@ export default domTranform => {
             ]
         })
     });*/
-    domTranform.element('logolink', function() {
+    domTransform.element('logolink', function() {
         return {
             element : 'a',
             attributes : { href : '//yandex.ru', 'class' : 'logo' },

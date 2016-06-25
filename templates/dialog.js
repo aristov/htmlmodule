@@ -1,15 +1,15 @@
 export default domTransform => {
-    domTransform.element('dialog', function({ attributes, content }) {
+    domTransform.element('dialog', function({ attributes : a, content }) {
         return {
             element : 'div',
             attributes : {
-                'data-instance' : attributes.instance || 'Dialog',
+                'data-instance' : a.instance || 'Dialog',
                 role : 'dialog',
-                id : attributes.id,
+                id : a.id,
                 hidden : '',
                 'class' : 'dialog popup',
-                'aria-modal' : attributes.modal,
-                'data-assertive' : attributes.assertive
+                'aria-modal' : a.modal,
+                'data-assertive' : a.assertive
             },
             content : this.apply(content)
         }

@@ -2,13 +2,16 @@
     <header>
         <div>
             <logolink/>
-            <a href="//sprav.yandex.ru" class="service">Личный кабинет</a>
+            <link href="//sprav.yandex.ru" view="service">Личный кабинет</link>
         </div>
         <div>
             <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fbalance.yandex.ru class="button link authbutton">Войти</a>-->
             <button>Добавить организацию</button>
             <menubutton controls="usermenu" mix="userbutton">
-                <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"></span>
+                <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"> </span>
+                <!--<span class="userpic">
+                    <img alt="User pic" src="http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle"/>
+                </span>-->
                 <span class="username">vv.aristov</span>
             </menubutton>
             <menu id="usermenu" mix="usermenu">
@@ -23,7 +26,7 @@
         </div>
     </header>
     <tablist>
-        <tab selected="true" controls="companiespanel">Мои организации</tab>
+        <tab controls="companiespanel" selected="true">Мои организации</tab>
         <tab controls="orderspanel">Мои заказы</tab>
     </tablist>
     <main>
@@ -52,15 +55,15 @@
         </tabpanel>
     </main>
     <footer>
-        <link mix="footerlink" href="https://legal.yandex.ru/rules/">Пользовательское соглашение</link>
-        <link href="//tune.yandex.ru/lang" mix="langswitch">
+        <link mix="footeritem dim" href="https://legal.yandex.ru/rules/">Пользовательское соглашение</link>
+        <link mix="footeritem dim" href="//tune.yandex.ru/lang">
             <img src="//yastatic.net/islands-icons/_/aXJK_o-btp1MZf_uqan_aQUD9os.png"/> Ru
         </link>
-        <span class="linkgroup">
-            <link href="https://feedback.yandex.ru/?from=sprav">Обратная связь</link>
-            <link href="https://advertising.yandex.ru">Реклама</link>
-            <link href="https://stat.yandex.ru/Russia/Maps">Статистика карт</link>
+        <span class="footeritem">
+            <link mix="footeritem dim" href="https://feedback.yandex.ru/?from=sprav">Обратная связь</link>
+            <link mix="footeritem dim" href="https://advertising.yandex.ru">Реклама</link>
+            <link mix="footeritem dim" href="https://stat.yandex.ru/Russia/Maps">Статистика карт</link>
         </span>
-        <span class="copyright">© 2001–2016  ООО «<link href="//www.yandex.ru">Яндекс</link>»</span>
+        <span class="footeritem copyright">© 2001-2016  ООО «<link href="//www.yandex.ru">Яндекс</link>»</span>
     </footer>
 </body>
