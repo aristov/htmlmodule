@@ -102,6 +102,8 @@ const templates = [
 components.forEach(Component => Component.attachTo(document));
 templates.forEach(template => template(domTransform));
 
+domTransform.node('text', text => /^\s*\n\s*$/.test(text.content)? null : text);
+
 fetch('sprav.xml')
     .then(response => response.text())
     .then(xml => {

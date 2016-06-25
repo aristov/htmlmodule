@@ -6,8 +6,7 @@ export default class DOMTransform {
                 if(!element.attributes) element.attributes = {};
                 return transform.call(this, element, params);
             },
-            text : text => /^\s*\n\s*$/.test(text.content)? null : text,
-            // text : text => text,
+            text : text => text,
             comment : comment => comment,
             document : document => document,
             doctype : doctype => doctype
