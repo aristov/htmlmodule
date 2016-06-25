@@ -1,13 +1,13 @@
-const map = Array.prototype.map,
-      reduce = Array.prototype.reduce,
-      domImplementation = document.implementation;
+const map = Array.prototype.map;
+const reduce = Array.prototype.reduce;
+const domImplementation = document.implementation;
 
 const processChildNodes = node => map.call(node.childNodes, child => DON.fromDOM(child));
 
-const processContent = (content, element) => {
-    Array.isArray(content)?
-        content.forEach(item => processContent(item, element)) :
-        element.appendChild(DON.toDOM(content));
+const processContent = function(content) {
+    return Array.isArray(content)?
+        content.forEach(item => processContent.call(this, item)) :
+        this.appendChild(DON.toDOM(content));
 };
 
 const DON = {
@@ -58,19 +58,16 @@ const DON = {
         }
         switch(object.node) {
             case 'element' :
-                let element = document.createElement(object.element),
-                    attributes = object.attributes,
-                    content = object.content;
+                const element = document.createElement(object.element);
+                const attributes = object.attributes;
+                const content = object.content;
                 if(attributes) {
-                    let name, value;
-                    for(name in attributes) {
-                        value = attributes[name];
-                        if(typeof value !== 'undefined') {
-                            element.setAttribute(name, value);
-                        }
-                    }
+                    Object.keys(attributes).forEach(name => {
+                        const value = attributes[name];
+                        if(typeof value === 'string') element.setAttribute(name, value);
+                    });
                 }
-                if(content) processContent(content, element);
+                if(content) processContent.call(element, content);
                 return element;
             case 'text' :
                 return document.createTextNode(object.content);
