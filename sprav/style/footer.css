@@ -19,3 +19,7 @@ footer .footeritem:last-child
 {
     margin-right: 0;
 }
+footer .langswitch:lang(ru)::before
+{
+    content: url(//yastatic.net/islands-icons/_/aXJK_o-btp1MZf_uqan_aQUD9os.png)' ';
+}

@@ -56,9 +56,7 @@
     </main>
     <footer>
         <link mix="footeritem dim" href="https://legal.yandex.ru/rules/">Пользовательское соглашение</link>
-        <link mix="footeritem dim" href="//tune.yandex.ru/lang">
-            <img src="//yastatic.net/islands-icons/_/aXJK_o-btp1MZf_uqan_aQUD9os.png"/> Ru
-        </link>
+        <link mix="footeritem langswitch" href="//tune.yandex.ru/lang">Ru</link>
         <span class="footeritem">
             <link mix="footeritem dim" href="https://feedback.yandex.ru/?from=sprav">Обратная связь</link>
             <link mix="footeritem dim" href="https://advertising.yandex.ru">Реклама</link>
