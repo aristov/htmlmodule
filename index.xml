@@ -91,7 +91,7 @@
             <textbox placeholder="Hint" label="Has placeholder"/>
         </section>
         <section>
-            <textbox disabled="true" value="Oh, unlock me, please!" label="Disabled"/>
+            <textbox disabled="true" value="Unlock me" label="Disabled"/>
         </section>
     </article>
     <article>
@@ -100,7 +100,7 @@
             <textarea label="Simple"/>
         </section>
         <section>
-            <textarea disabled="true" value="Text" label="Disabled"/>
+            <textarea disabled="true" value="You know how" label="Disabled"/>
         </section>
     </article>
     <article>
@@ -170,26 +170,26 @@
         </section>
     </article>
     <article>
-        <h1>Select</h1>
+        <h1>Select box</h1>
         <section>
             <select label="Simple">
-                <option value="one">First option</option>
-                <option value="two">Second option</option>
-                <option value="three">Third option</option>
+                <option checked="false" value="one">First option</option>
+                <option checked="false" value="two">Second option</option>
+                <option checked="false" value="three">Third option</option>
             </select>
         </section>
         <section>
             <select label="Checked">
-                <option value="one">First option</option>
-                <option value="two" checked="true">Second option</option>
-                <option value="three">Third option</option>
+                <option checked="false" value="one">First option</option>
+                <option checked="true" value="two">Second option</option>
+                <option checked="false" value="three">Third option</option>
             </select>
         </section>
         <section>
             <select label="Disabled" disabled="true">
-                <option value="one">First option</option>
-                <option value="two" checked="true">Second option</option>
-                <option value="three">Third option</option>
+                <option checked="false" value="one">First option</option>
+                <option checked="true" value="two">Second option</option>
+                <option checked="false" value="three">Third option</option>
             </select>
         </section>
     </article>
@@ -374,9 +374,9 @@
                 <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
             </tablist>
             <group id="tabpanelgroup">
-                <tabpanel id="tabpanelmenu1">Х</tabpanel>
-                <tabpanel id="tabpanelmenu2" hidden="true">У</tabpanel>
-                <tabpanel id="tabpanelmenu3" hidden="true">Й</tabpanel>
+                <tabpanel id="tabpanelmenu1">1</tabpanel>
+                <tabpanel id="tabpanelmenu2" hidden="true">2</tabpanel>
+                <tabpanel id="tabpanelmenu3" hidden="true">3</tabpanel>
             </group>
         </section>
     </article>

@@ -1,30 +1,17 @@
 import TextBox from './TextBox';
 import DatePicker from './DatePicker';
 import { ESCAPE, SPACE } from '../tools/keyCodes';
-import DOMTransform from '../tools/DOMTransform';
-import DON from '../tools/DON';
-import datepicker from '../templates/datepicker';
-
-const template = new DOMTransform;
-
-datepicker(template);
+import moment from 'moment';
 
 export default class DateBox extends TextBox {
     constructor(element) {
         super(element);
-        this.datepicker = this.find(DatePicker)/* || DateBox.create({
-            element : 'datepicker',
-            attributes : { value : this.value }
-        })*/;
-        super(element);
+        this.datepicker = this.find(DatePicker);
         this.datepicker.on('change', this.onDatePickerChange, this);
         this.on('keydown', this.onKeyDown);
         this.onDocumentClick = this.onDocumentClick.bind(this);
         this.onDocumentFocus = this.onDocumentFocus.bind(this);
     }
-    /*get value() {
-
-    }*/
     get expanded() {
         return this.input.getAttribute('aria-expanded') || 'false';
     }
@@ -39,16 +26,8 @@ export default class DateBox extends TextBox {
             document.removeEventListener('focus', this.onDocumentFocus, true);
         }
     }
-    onDatePickerChange(event) {
-        let dataset = event.target.dataset,
-            date = dataset.date,
-            month = dataset.month,
-            year = dataset.year;
-        this.input.value = [
-            date < 10? '0' + date : date,
-            month < 10? '0' + month : month,
-            year
-        ].join('.');
+    onDatePickerChange() {
+        this.input.value = moment(this.datepicker.value, 'YYYY-MM-DD').format('DD.MM.YYYY');
         setTimeout(() => this.expanded = 'false', 0);
     }
     onDocumentFocus({ target }) {
@@ -68,8 +47,5 @@ export default class DateBox extends TextBox {
     onInputFocus(event) {
         super.onInputFocus(event);
         this.expanded = 'true';
-    }
-    static create(don) {
-        console.log(DON.toDOM(template.apply(don)));
     }
 }

@@ -1,6 +1,7 @@
 import textbox from './textbox';
 import button from './button';
 import textinput from './textinput';
+import moment from 'moment';
 
 export default domTransform => {
     textbox(domTransform);
@@ -9,7 +10,7 @@ export default domTransform => {
 
     domTransform.element('datebox', function({ attributes : a }) {
         const disabled = a.disabled;
-        const [date, month, year] = a.value.split('.');
+        const value = a.value || moment(Date.now()).format('YYYY-MM-DD');
         return this.apply({
             element : 'textbox',
             attributes : {
@@ -23,7 +24,7 @@ export default domTransform => {
                     element : 'textinput',
                     attributes : {
                         name : a.name,
-                        value : a.value,
+                        value : moment(value, 'YYYY-MM-DD').format('DD.MM.YYYY'),
                         readonly : 'true',
                         disabled
                     }
@@ -38,19 +39,8 @@ export default domTransform => {
                 },
                 {
                     element : 'datepicker',
-                    attributes : { mix : 'popup', value : a.value, hidden : 'true' }
+                    attributes : { mix : 'popup', value, hidden : 'true' }
                 }
-                /*{
-                    element : 'div',
-                    attributes : {
-                        'data-instance' : 'DatePicker',
-                        'class' : 'datepicker popup',
-                        'data-year' : year,
-                        'data-month' : Number(month),
-                        'data-date' : Number(date),
-                        hidden : ''
-                    }
-                }*/
             ]
         });
     });

@@ -30,7 +30,7 @@ export default class ListBox extends Instance {
         this.checkedOptions.forEach(option => option.checked = 'false');
         options.forEach(option => option.checked = 'true');
         if(this.value !== value) {
-            this.element.dispatchEvent(new Event('change', { bubbles : true, cancelable : true }));
+            this.emit('change');
         }
     }
     get checkedOption() {
