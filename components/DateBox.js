@@ -1,16 +1,30 @@
 import TextBox from './TextBox';
 import DatePicker from './DatePicker';
 import { ESCAPE, SPACE } from '../tools/keyCodes';
+import DOMTransform from '../tools/DOMTransform';
+import DON from '../tools/DON';
+import datepicker from '../templates/datepicker';
+
+const template = new DOMTransform;
+
+datepicker(template);
 
 export default class DateBox extends TextBox {
     constructor(element) {
         super(element);
-        this.datepicker = this.find(DatePicker);
+        this.datepicker = this.find(DatePicker)/* || DateBox.create({
+            element : 'datepicker',
+            attributes : { value : this.value }
+        })*/;
+        super(element);
         this.datepicker.on('change', this.onDatePickerChange, this);
         this.on('keydown', this.onKeyDown);
         this.onDocumentClick = this.onDocumentClick.bind(this);
         this.onDocumentFocus = this.onDocumentFocus.bind(this);
     }
+    /*get value() {
+
+    }*/
     get expanded() {
         return this.input.getAttribute('aria-expanded') || 'false';
     }
@@ -54,5 +68,8 @@ export default class DateBox extends TextBox {
     onInputFocus(event) {
         super.onInputFocus(event);
         this.expanded = 'true';
+    }
+    static create(don) {
+        console.log(DON.toDOM(template.apply(don)));
     }
 }

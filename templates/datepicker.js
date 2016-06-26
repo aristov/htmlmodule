@@ -1,5 +1,6 @@
 import button from './button';
 import moment from 'moment';
+import { mix } from '../tools/utils';
 
 const WEEK_DAY_NAMES = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
 const MONTH_NAMES = [
@@ -20,21 +21,23 @@ const MONTH_NAMES = [
 export default domTransform => {
     button(domTransform);
 
-    domTransform.element('datepicker', function({ attributes }) {
+    domTransform.element('datepicker', function({ attributes : a }) {
         const now = Date.now();
         const id = Math.floor(Math.random() * now);
-        const value = attributes.value || moment(now).format('YYYY-MM-DD');
+        const value = a.value || moment(now).format('YYYY-MM-DD');
         let [year, month, date] = value.split('-');
 
         return {
             element : 'div',
             attributes : {
                 'data-instance' : 'DatePicker',
-                'class' : 'datepicker',
-                'aria-label' : attributes.label,
+                'class' : mix('datepicker', a.mix),
+                'aria-label' : a.label,
                 'data-year' : year,
                 'data-month' : month,
-                'data-date' : date
+                'data-date' : date,
+                'data-value' : value,
+                hidden : a.hidden === 'true' && ''
             },
             content : {
                 element : 'span',
@@ -48,6 +51,10 @@ export default domTransform => {
                                 element : 'button',
                                 attributes : { tabindex : '-1', value : '-1' }
                             }),
+                            /*{
+                                element : 'datepickerheading',
+                                attributes : 'id'
+                            },*/
                             {
                                 element : 'span',
                                 attributes : {
@@ -123,4 +130,17 @@ export default domTransform => {
             }
         }
     });
+    /*export const domTransform.element('d', function() {
+        return {
+            element : 'span',
+            attributes : {
+                role : 'heading',
+                id : 'heading' + id,
+                'aria-live' : 'assertive',
+                'aria-atomic' : 'true'
+            },
+            //content : MONTH_NAMES[month - 1] + ' ' + year
+            content : moment(value, 'YYYY-MM-DD').format('MMMM YYYY')
+        }
+    })*/
 }

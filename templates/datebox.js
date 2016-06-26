@@ -7,23 +7,23 @@ export default domTransform => {
     button(domTransform);
     textinput(domTransform);
 
-    domTransform.element('datebox', function({ attributes }) {
-        const disabled = attributes.disabled;
-        const [date, month, year] = attributes.value.split('.');
+    domTransform.element('datebox', function({ attributes : a }) {
+        const disabled = a.disabled;
+        const [date, month, year] = a.value.split('.');
         return this.apply({
             element : 'textbox',
             attributes : {
                 instance : 'DateBox',
-                label : attributes.label,
-                mix : ['datebox', attributes.mix].join(' ').trim(),
+                label : a.label,
+                mix : ['datebox', a.mix].join(' ').trim(),
                 disabled
             },
             content : [
                 {
                     element : 'textinput',
                     attributes : {
-                        name : attributes.name,
-                        value : attributes.value,
+                        name : a.name,
+                        value : a.value,
                         readonly : 'true',
                         disabled
                     }
@@ -37,6 +37,10 @@ export default domTransform => {
                     }
                 },
                 {
+                    element : 'datepicker',
+                    attributes : { mix : 'popup', value : a.value, hidden : 'true' }
+                }
+                /*{
                     element : 'div',
                     attributes : {
                         'data-instance' : 'DatePicker',
@@ -46,7 +50,7 @@ export default domTransform => {
                         'data-date' : Number(date),
                         hidden : ''
                     }
-                }
+                }*/
             ]
         });
     });

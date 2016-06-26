@@ -1,25 +1,25 @@
-header
+.header
 {
     display: flex;
     justify-content: space-between;
     position: relative;
     white-space: nowrap;
 }
-header .logo
+.header .logo
 {
     display: inline-block;
     padding: 10px 15px;
     outline: none;
 }
-header .logo img
+.header .logo img
 {
     padding: 7px;
 }
-header .logo:focus img
+.header .logo:focus img
 {
     box-shadow: 0 0 0 2px #ffdb4d;
 }
-header .service
+.header .service
 {
     font-size: 17px;
     color: black;
@@ -35,29 +35,29 @@ header .service
     border-right: none;
     outline: none;
 }
-header .service::after
+.header .service::after
 {
     content: url(images/service-arrow.svg);
     position: absolute;
     right: -9px;
     top: -3px;
 }
-header .service:hover,
-header .service:focus
+.header .service:hover,
+.header .service:focus
 {
     color: #c00;
 }
-header .button
+.header .button
 {
     padding: 7px 14px;
     vertical-align: middle;
 }
-header .authbutton
+.header .authbutton
 {
     color: black;
     margin: 20px;
 }
-header .userbutton
+.header .userbutton
 {
     display: inline-block;
     margin: 17px 15px 17px 30px;
@@ -67,7 +67,7 @@ header .userbutton
     outline: none;
     border-radius: 18px;
 }
-header .userbutton .userpic
+.header .userbutton .userpic
 {
     display: inline-block;
     border-radius: 50%;
@@ -78,29 +78,29 @@ header .userbutton .userpic
     background: #fff none no-repeat scroll center center / cover;
     /*overflow: hidden;
 }
-header .userbutton .userpic img
+.header .userbutton .userpic img
 {
     width: 36px;
     height: 36px;*/
 }
-header .userbutton .username
+.header .userbutton .username
 {
     font: 15px/80% Arial,Helvetica,sans-serif;
     display: inline-block;
     margin: 10px;
     vertical-align: middle;
 }
-header .userbutton .username::first-letter
+.header .userbutton .username::first-letter
 {
     color: #f00;
 }
-header .userbutton:hover,
-header .userbutton:focus
+.header .userbutton:hover,
+.header .userbutton:focus
 {
     color: #f00;
 }
-header .userbutton:focus,
-header .userbutton[aria-expanded=true]
+.header .userbutton:focus,
+.header .userbutton[aria-expanded=true]
 {
     box-shadow: 0 0 0 2px #ffdb4d;
 }

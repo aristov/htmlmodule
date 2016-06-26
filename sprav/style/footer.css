@@ -1,4 +1,4 @@
-footer
+.footer
 {
     display: flex;
     justify-content: space-between;
@@ -6,20 +6,20 @@ footer
     padding: 15px 20px;
     white-space: nowrap;
 }
-footer .footeritem
+.footer .footeritem
 {
     display: inline-block;
     margin: 0 20px;
 }
-footer .footeritem:first-child
+.footer .footeritem:first-child
 {
     margin-left: 0;
 }
-footer .footeritem:last-child
+.footer .footeritem:last-child
 {
     margin-right: 0;
 }
-footer .langswitch:lang(ru)::before
+.footer .langswitch:lang(ru)::before
 {
     content: url(//yastatic.net/islands-icons/_/aXJK_o-btp1MZf_uqan_aQUD9os.png)' ';
 }

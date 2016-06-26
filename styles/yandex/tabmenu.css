@@ -12,7 +12,8 @@
 {
     border-left: 2px solid black;
 }
-.tabmenu .menuitem:hover:not(:focus)
+.tabmenu .menuitem:hover/*:not(:focus)*/
 {
-    background: rgba(0, 0, 0, 0.01);
+    /*background: rgba(0, 0, 0, 0.01);*/
+    color: #c00;
 }

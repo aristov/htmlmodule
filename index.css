@@ -21,3 +21,91 @@
 @import url(styles/yandex/tablist.css);
 @import url(styles/yandex/tree.css);
 @import url(styles/yandex/grid.css);
+
+article
+{
+    display: inline-block;
+    padding: 0 20px;
+    margin-right: 80px;
+    vertical-align: top;
+}
+article.mixes
+{
+    width: 430px;
+}
+section
+{
+    margin: 20px 0;
+}
+article.mixes section
+{
+    display: inline-block;
+    margin-top: 4px;
+    margin-right: 30px;
+}
+article.mixes .tabmenu
+{
+    width: 112px;
+    display: inline-block;
+}
+article.mixes section.tabbuttongroup
+{
+    vertical-align: top;
+}
+article.mixes section.tabbuttongroup .button
+{
+    padding-top: 0;
+    padding-bottom: 0;
+    /*padding-top: 4px;
+    padding-bottom: 5px;*/
+}
+article.mixes section.tabbuttongroup .button > span
+{
+    padding-top: 5px;
+    padding-bottom: 4px;
+    display: inline-block;
+    border-top: 1px solid transparent;
+}
+/*article.mixes section.tabbuttongroup .button:focus > span*/
+article.mixes section.tabbuttongroup .button[aria-selected=true]:not(:focus) > span
+{
+    border-top-color: black;
+}
+article.mixes section.tabbuttongroup .button:hover
+{
+    color: #c00;
+}
+
+article.mixes section:not(.tabbuttongroup) .tabpanel
+{
+    display: inline-block;
+    min-width: 65px;
+    vertical-align: top;
+}
+.tablist
+{
+    display: inline-block;
+}
+.tabpanel
+{
+    padding: 15px;
+}
+.listbox .box
+{
+    max-height: 150px;
+}
+.select .button
+{
+    min-width: 130px;
+}
+
+.radiobuttongroup .button:first-of-type
+{
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+.radiobuttongroup .button:last-of-type
+{
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+}

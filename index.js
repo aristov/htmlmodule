@@ -96,6 +96,8 @@ const templates = [
 components.forEach(Component => Component.attachTo(document.body));
 templates.forEach(template => template(domTransform));
 
+domTransform.node('text', text => /^\s*\n\s*$/.test(text.content)? null : text);
+
 fetch('index.xml')
     .then(response => response.text())
     .then(xml => {

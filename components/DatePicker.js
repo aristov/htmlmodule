@@ -1,6 +1,8 @@
 import Instance from './Instance';
 import moment from 'moment';
 
+//import domTransform from
+
 class DatePicker extends Instance {
     constructor(element) {
         super(element);
@@ -8,9 +10,9 @@ class DatePicker extends Instance {
         const dataset = element.dataset;
         const now = new Date;
 
-        if(!dataset.year) dataset.year = now.getFullYear();
+        /*if(!dataset.year) dataset.year = now.getFullYear();
         if(!dataset.month) dataset.month = now.getMonth() + 1;
-        if(!dataset.date) dataset.date = '';
+        if(!dataset.date) dataset.date = '';*/
 
         //this.build();
 
@@ -22,6 +24,15 @@ class DatePicker extends Instance {
     }
     get year() {
         return moment(this.value, 'YYYY-MM-DD').year();
+    }
+    get month() {
+        return moment(this.value, 'YYYY-MM-DD').month();
+    }
+    get date() {
+        return moment(this.value, 'YYYY-MM-DD').date();
+    }
+    get value() {
+        return this.dataset.value || moment(Date.now().format('YYYY-MM-DD'));
     }
     build() {
         const element = this.element;
@@ -164,6 +175,16 @@ class DatePicker extends Instance {
         const heading = this.heading;
         this.grid.replaceChild(this.buildGridBody(), body);
         this.header.replaceChild(this.buildHeading(), heading);
+    }
+    static getInstance(node) {
+        if(node) return super.getInstance(node);
+        /*else domTransform.apply({
+            element : 'datepicker',
+            attributes : {
+                value : this.value
+
+            }
+        });*/
     }
     static attachTo(node) {
         node.addEventListener('click', event => {

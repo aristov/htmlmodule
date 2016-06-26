@@ -112,7 +112,9 @@ const domTransform = new DOMTransform;
 // connect lib templates
 [button, textbox, checkbox, dialog].forEach(template => template(domTransform));
 
-// write application templates
+/**
+ *    Lay Out
+ */
 domTransform.element('todoapp', function({ items }) {
     return this.apply({
         element : 'main',

@@ -1,7 +1,9 @@
+import { mix } from '../tools/utils';
+
 export default domTransform => {
-    domTransform.element('radiogroup', function({ attributes, content }) {
+    domTransform.element('radiogroup', function({ attributes : a, content }) {
         let params = {
-            disabled : attributes.disabled === 'true',
+            disabled : a.disabled === 'true',
             first : null,
             checked : null,
             value : undefined
@@ -16,9 +18,9 @@ export default domTransform => {
             attributes : {
                 'data-instance' : 'RadioGroup',
                 role : 'radiogroup',
-                'aria-label' : attributes.label,
-                'aria-disabled' : attributes.disabled,
-                'class' : attributes.view || 'radiogroup'
+                'aria-label' : a.label,
+                'aria-disabled' : a.disabled,
+                'class' : mix(a.view || 'radiogroup', a.mix)
             },
             content : [
                 {
@@ -26,8 +28,8 @@ export default domTransform => {
                     attributes : {
                         type : 'hidden',
                         autocomplete : 'off',
-                        disabled : attributes.disabled === 'true' ? '' : undefined,
-                        name : attributes.name,
+                        disabled : a.disabled === 'true' ? '' : undefined,
+                        name : a.name,
                         value : params.value
                     }
                 },

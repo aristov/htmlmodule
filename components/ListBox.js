@@ -27,7 +27,7 @@ export default class ListBox extends Instance {
     }
     set checkedOptions(options) {
         const value = this.value;
-        this.uncheck();
+        this.checkedOptions.forEach(option => option.checked = 'false');
         options.forEach(option => option.checked = 'true');
         if(this.value !== value) {
             this.element.dispatchEvent(new Event('change', { bubbles : true, cancelable : true }));
@@ -63,9 +63,6 @@ export default class ListBox extends Instance {
     }
     unselect() {
         this.selectedOptions.forEach(option => option.selected = 'false');
-    }
-    uncheck() {
-        this.checkedOptions.forEach(option => option.checked = 'false');
     }
     onKeyDown(event) {
         const keyCode = event.keyCode;
@@ -107,7 +104,7 @@ export default class ListBox extends Instance {
         if(event.keyCode === SPACE) this.onSpaceKeyUp(event);
     }
     onSpaceKeyUp() {
-        this.checkedOptions = this.selectedOptions;
+        this.checkedOptions = this.checkedOption === this.selectedOption? [] : this.selectedOptions;
         this.selectedOptions.forEach(option => option.element.classList.remove('active'));
     }
     onFocus() {

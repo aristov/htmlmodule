@@ -12,8 +12,13 @@ export default class Option extends Instance {
         return this.element.getAttribute('aria-selected') || '';
     }
     set selected(selected) {
+        if(selected === 'true') {
+            const selectedOption = this.listbox.find(Option, opt => opt.selected === 'true');
+            //console.log(selected, selectedOption);
+            if(selectedOption) selectedOption.selected = 'false';
+            this.listbox.activeDescendant = this.element.id;
+        }
         this.element.setAttribute('aria-selected', selected);
-        this.listbox.activeDescendant = this.element.id;
     }
     get checked() {
         return this.element.getAttribute('aria-checked') || '';
@@ -42,22 +47,15 @@ export default class Option extends Instance {
     }
     onClick(event) {
         if(this.disabled === 'true') event.stopImmediatePropagation();
-        else {
-            this.listbox.unselect();
-            this.selected = 'true';
-            this.listbox.checkedOptions = [this];
-        }
+        else if(this.checked) this.listbox.checkedOptions = this.checked === 'false'? [this] : [];
     }
-    onMouseEnter() {
-        if(this.disabled !== 'true') {
-            this.listbox.unselect();
-            this.selected = 'true';
-        }
+    onMouseDown() {
+        if(this.disabled !== 'true') this.selected = 'true';
     }
     static attachTo(node) {
-        /*node.addEventListener('mouseenter', event => {
+        node.addEventListener('mousedown', event => {
             let option = this.getInstance(event.target);
-            if(option) option.onMouseEnter(event);
-        }, true);*/
+            if(option) option.onMouseDown(event);
+        }, true);
     }
 }

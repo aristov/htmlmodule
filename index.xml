@@ -66,9 +66,9 @@
         <h1>List box</h1>
         <section>
             <listbox name="listbox" label="Simple">
-                <option value="first">First</option>
-                <option value="second">Second</option>
-                <option value="third">Third</option>
+                <option value="first" checked="true">First</option>
+                <option value="second" checked="false">Second</option>
+                <option value="third" checked="false">Third</option>
             </listbox>
         </section>
         <section>
@@ -85,10 +85,13 @@
             <textbox label="Simple"/>
         </section>
         <section>
-            <textbox value="Text" label="Filled"/>
+            <textbox value="Hover me" label="Has clear" hasclear="true"/>
         </section>
         <section>
-            <textbox disabled="true" value="Text" label="Disabled"/>
+            <textbox placeholder="Hint" label="Has placeholder"/>
+        </section>
+        <section>
+            <textbox disabled="true" value="Oh, unlock me, please!" label="Disabled"/>
         </section>
     </article>
     <article>
@@ -136,18 +139,21 @@
             <label>Native<br/><input type="date" value="2011-11-11"/></label>
         </section>-->
         <section>
-            <datebox label="Simple" value="12.06.2016"/>
+            <datebox label="Simple" value="2016-06-12"/>
         </section>
         <section>
-            <datebox disabled="true" label="Disabled" value="12.06.2016"/>
+            <datebox disabled="true" label="Disabled" value="2016-06-12"/>
         </section>
     </article>
     <article>
         <h1>Search box</h1>
         <section>
             <searchbox label="Simple"/>
-        <section>
         </section>
+        <section>
+            <searchbox label="Request" value="What?"/>
+        </section>
+        <section>
             <searchbox label="Disabled" disabled="true"/>
         </section>
     </article>
@@ -197,6 +203,14 @@
                 <menuitem>Third menu item</menuitem>
             </menu>
         </section>
+        <section>
+            <menubutton controls="menuitemlinks">Menu item links</menubutton>
+            <menu id="menuitemlinks">
+                <menuitem href="//yandex.ru">First menu item</menuitem>
+                <menuitem href="//google.com">Second menu item</menuitem>
+                <menuitem href="//microsoft.com">Third menu item</menuitem>
+            </menu>
+        </section>
     </article>
     <article>
         <h1>Dialog</h1>
@@ -239,9 +253,11 @@
                 <tab controls="tabpanel2">Two</tab>
                 <tab controls="tabpanel3">Three</tab>
             </tablist>
-            <tabpanel id="tabpanel1">First panel</tabpanel>
-            <tabpanel id="tabpanel2" hidden="true">Second panel</tabpanel>
-            <tabpanel id="tabpanel3" hidden="true">Third panel</tabpanel>
+            <group view="tabpanelgroup">
+                <tabpanel id="tabpanel1">1</tabpanel>
+                <tabpanel id="tabpanel2" hidden="true">2</tabpanel>
+                <tabpanel id="tabpanel3" hidden="true">3</tabpanel>
+            </group>
         </section>
     </article>
     <article>
@@ -331,24 +347,11 @@
             </group>
         </section>
         <section>
-            <radiogroup name="radio-button-group" label="Radio button group" view="buttongroup">
+            <radiogroup name="radio-button-group" label="Radio button group" view="buttongroup" mix="radiobuttongroup">
                 <radio view="button" value="first">One</radio>
                 <radio view="button" value="second">Two</radio>
                 <radio view="button" value="third">Three</radio>
             </radiogroup>
-        </section>
-        <section>
-            <h1>Tab menu</h1>
-            <tablist view="tabmenu" mix="menu" controls="tabpanelgroup">
-                <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
-                <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
-                <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
-            </tablist>
-            <group id="tabpanelgroup">
-                <tabpanel id="tabpanelmenu1">First panel</tabpanel>
-                <tabpanel id="tabpanelmenu2" hidden="true">Second panel</tabpanel>
-                <tabpanel id="tabpanelmenu3" hidden="true">Third panel</tabpanel>
-            </group>
         </section>
         <section class="tabbuttongroup">
             <h1>Tab button group</h1>
@@ -358,9 +361,22 @@
                 <tab controls="tabbuttonpanel3" view="button">Three</tab>
             </tablist>
             <group>
-                <tabpanel id="tabbuttonpanel1">First panel</tabpanel>
-                <tabpanel id="tabbuttonpanel2" hidden="true">Second panel</tabpanel>
-                <tabpanel id="tabbuttonpanel3" hidden="true">Third panel</tabpanel>
+                <tabpanel id="tabbuttonpanel1">1</tabpanel>
+                <tabpanel id="tabbuttonpanel2" hidden="true">2</tabpanel>
+                <tabpanel id="tabbuttonpanel3" hidden="true">3</tabpanel>
+            </group>
+        </section>
+        <section>
+            <h1>Tab menu</h1>
+            <tablist view="tabmenu" mix="menu" controls="tabpanelgroup">
+                <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>
+                <tab controls="tabpanelmenu2" view="menuitem">Two</tab>
+                <tab controls="tabpanelmenu3" view="menuitem">Three</tab>
+            </tablist>
+            <group id="tabpanelgroup">
+                <tabpanel id="tabpanelmenu1">Х</tabpanel>
+                <tabpanel id="tabpanelmenu2" hidden="true">У</tabpanel>
+                <tabpanel id="tabpanelmenu3" hidden="true">Й</tabpanel>
             </group>
         </section>
     </article>

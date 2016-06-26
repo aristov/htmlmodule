@@ -31,6 +31,11 @@
 {
     background: #fee481;
 }
+.menu a.menuitem
+{
+    color: #000;
+    text-decoration: none;
+}
 .menu a.menuitem:focus[href]
 {
     color: #c00;

@@ -1,12 +1,12 @@
 <body>
-    <header>
+    <header class="header">
         <div>
             <logolink/>
             <link href="//sprav.yandex.ru" view="service">Личный кабинет</link>
         </div>
         <div>
-            <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fbalance.yandex.ru class="button link authbutton">Войти</a>-->
             <button>Добавить организацию</button>
+            <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fsprav.yandex.ru class="button link authbutton">Войти</a>-->
             <menubutton controls="usermenu" mix="userbutton">
                 <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"> </span>
                 <!--<span class="userpic">
@@ -29,7 +29,7 @@
         <tab controls="companiespanel" selected="true">Мои организации</tab>
         <tab controls="orderspanel">Мои заказы</tab>
     </tablist>
-    <main>
+    <main class="main">
         <tabpanel id="companiespanel">
             <h1 class="mainheading">Мои организации</h1>
             <ul class="companylist">
@@ -54,7 +54,7 @@
             <h1 class="mainheading">Заказы</h1>
         </tabpanel>
     </main>
-    <footer>
+    <footer class="footer">
         <link mix="footeritem dim" href="https://legal.yandex.ru/rules/">Пользовательское соглашение</link>
         <link mix="footeritem langswitch" href="//tune.yandex.ru/lang">Ru</link>
         <span class="footeritem">

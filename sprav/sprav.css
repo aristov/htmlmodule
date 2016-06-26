@@ -15,13 +15,13 @@ body
     margin: 0;
 }
 
-main
+main.main
 {
     padding: 20px;
     margin-bottom: 30px;
     /*min-height: 200px;*/
 }
-main h1.mainheading
+main.main h1.mainheading
 {
     font-size: 20px;
     font-weight: normal;
