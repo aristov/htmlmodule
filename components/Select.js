@@ -42,6 +42,9 @@ export default class Select extends Instance {
     set value(value) {
         this.listbox.value = value;
     }
+    get emptyoption() {
+        return JSON.parse(this.element.dataset.emptyoption);
+    }
     onDocumentFocus({ target }) {
         if(!this.element.contains(target)) this.expanded = 'false';
     }
@@ -78,7 +81,7 @@ export default class Select extends Instance {
         }
     }
     onListBoxChange() {
-        this.button.text = this.listbox.checkedOption.text;
+        this.button.text = (this.listbox.checkedOption || this.emptyoption).text;
     }
     onClick() {
         this.expanded = String(this.expanded === 'false');

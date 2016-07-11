@@ -10,6 +10,9 @@
     </article>
     <article>
         <h1>Button</h1>
+        <!--<section>
+            <BUTTON>Native</BUTTON>
+        </section>-->
         <section>
             <button>Simple</button>
         </section>
@@ -25,6 +28,9 @@
     </article>
     <article>
         <h1>Check box</h1>
+        <!--<section>
+            <label><input type="checkbox"/> Native</label>
+        </section>-->
         <section>
             <checkbox name="checkbox" value="on">Simple</checkbox>
         </section>
@@ -40,6 +46,14 @@
     </article>
     <article>
         <h1>Radio group</h1>
+        <!--<section>
+            <span>
+                <label>Native</label><br/>
+                <label><input type="radio" name="native-radio"/> First</label>
+                <label><input type="radio" name="native-radio"/> Second</label>
+                <label><input type="radio" name="native-radio"/> Third</label>
+            </span>
+        </section>-->
         <section>
             <radiogroup name="radiogroup" label="Simple">
                 <radio value="first">First</radio>
@@ -64,6 +78,16 @@
     </article>
     <article>
         <h1>List box</h1>
+        <!--<section>
+            <label>
+                Native<br/>
+                <SELECT multiple="">
+                    <OPTION>First</OPTION>
+                    <OPTION>Second</OPTION>
+                    <OPTION>Third</OPTION>
+                </SELECT>
+            </label>
+        </section>-->
         <section>
             <listbox name="listbox" label="Simple">
                 <option value="first" checked="true">First</option>
@@ -81,6 +105,9 @@
     </article>
     <article>
         <h1>Text box</h1>
+        <!--<section>
+            <label>Native<br/><input/></label>
+        </section>-->
         <section>
             <textbox label="Simple"/>
         </section>
@@ -96,6 +123,9 @@
     </article>
     <article>
         <h1>Text area</h1>
+        <!--<section>
+            <label>Native<br/><TEXTAREA></TEXTAREA></label>
+        </section>-->
         <section>
             <textarea label="Simple"/>
         </section>
@@ -105,6 +135,9 @@
     </article>
     <article>
         <h1>Password box</h1>
+        <!--<section>
+            <label>Native<br/><input type="password"/></label>
+        </section>-->
         <section>
             <passwordbox label="Simple" value="secret"/>
         </section>
@@ -114,6 +147,9 @@
     </article>
     <article>
         <h1>Number box</h1>
+        <!--<section>
+            <label>Native<br/><input type="Number"/></label>
+        </section>-->
         <section>
             <numberbox label="Simple"/>
         </section>
@@ -147,11 +183,14 @@
     </article>
     <article>
         <h1>Search box</h1>
+        <!--<section>
+            <label>Native<br/><input type="Search"/></label>
+        </section>-->
         <section>
             <searchbox label="Simple"/>
         </section>
         <section>
-            <searchbox label="Request" value="What?"/>
+            <searchbox label="Request" value="Press ESC key"/>
         </section>
         <section>
             <searchbox label="Disabled" disabled="true"/>
@@ -159,6 +198,9 @@
     </article>
     <article>
         <h1>Search group</h1>
+        <!--<section>
+            <label>Native<br/><input type="Search"/><BUTTON>Search</BUTTON></label>
+        </section>-->
         <section>
             <searchgroup label="Simple"/>
         </section>
@@ -171,6 +213,16 @@
     </article>
     <article>
         <h1>Select box</h1>
+        <!--<section>
+            <label>
+                Native<br/>
+                <SELECT>
+                    <OPTION>First</OPTION>
+                    <OPTION>Second</OPTION>
+                    <OPTION>Third</OPTION>
+                </SELECT>
+            </label>
+        </section>-->
         <section>
             <select label="Simple">
                 <option checked="false" value="one">First option</option>
@@ -353,7 +405,7 @@
                 <radio view="button" value="third">Three</radio>
             </radiogroup>
         </section>
-        <section class="tabbuttongroup">
+        <section class="tabbuttongroupexample">
             <h1>Tab button group</h1>
             <tablist view="buttongroup">
                 <tab controls="tabbuttonpanel1" view="button" selected="true">One</tab>
@@ -366,7 +418,7 @@
                 <tabpanel id="tabbuttonpanel3" hidden="true">3</tabpanel>
             </group>
         </section>
-        <section>
+        <section class="tabmenuexample">
             <h1>Tab menu</h1>
             <tablist view="tabmenu" mix="menu" controls="tabpanelgroup">
                 <tab controls="tabpanelmenu1" selected="true" view="menuitem">One</tab>

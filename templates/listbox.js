@@ -1,5 +1,7 @@
+import { mix } from '../tools/utils';
+
 export default domTransform => {
-    domTransform.element('listbox', function({ attributes, content }, params = { value : undefined }) {
+    domTransform.element('listbox', function({ attributes : a, content }, params = { value : undefined }) {
         content = [{
             element : 'span',
             attributes : { 'class' : 'box' },
@@ -10,8 +12,8 @@ export default domTransform => {
             attributes : {
                 type : 'hidden',
                 autocomplete : 'off',
-                disabled : attributes.disabled === 'true' ? '' : undefined,
-                name : attributes.name,
+                disabled : a.disabled === 'true' && '',
+                name : a.name,
                 value : params.value
             }
         });
@@ -26,33 +28,31 @@ export default domTransform => {
         return {
             element : 'span',
             attributes : {
-                role : 'listbox',
-                tabindex : 'tabindex' in attributes?
-                    attributes.tabindex :
-                    attributes.disabled === 'true'? undefined : '0',
                 'data-instance': 'ListBox',
-                'aria-label' : attributes.label,
-                'aria-disabled' : attributes.disabled,
-                'class' : [attributes.view || 'listbox', attributes.mix].join(' ').trim()
+                role : 'listbox',
+                tabindex : 'tabindex' in a? a.tabindex : a.disabled === 'true' || '0',
+                'aria-label' : a.label,
+                'aria-disabled' : a.disabled,
+                'class' : mix(a.view || 'listbox', a.mix)
             },
             content
         };
     });
-    domTransform.element('option', function({ attributes, content }, params) {
+    domTransform.element('option', function({ attributes : a, content }, params) {
         let result = {
                 element : 'span',
                 attributes : {
-                    role : 'option',
                     'data-instance' : 'Option',
-                    'aria-selected' : attributes.selected,
-                    'aria-checked' : attributes.checked,
-                    'data-value' : attributes.value,
-                    'class' : attributes.view || 'option'
+                    role : 'option',
+                    'aria-selected' : a.selected,
+                    'aria-checked' : a.checked,
+                    'data-value' : a.value,
+                    'class' : mix(a.view || 'option', a.mix)
                 },
                 content
             };
-        if(attributes.checked === 'true') {
-            params.value = attributes.value;
+        if(a.checked === 'true') {
+            params.value = a.value;
             params.text = content;
         }
         return result;

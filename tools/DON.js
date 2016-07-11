@@ -69,10 +69,8 @@ const DON = {
                 }
                 if(content) processContent.call(element, content);
                 return element;
-            case 'text' :
-                return document.createTextNode(object.content);
-            case 'comment' :
-                return document.createComment(object.content);
+            case 'text' : return document.createTextNode(object.content);
+            case 'comment' : return document.createComment(object.content);
             case 'document' :
                 return object.type === 'html'?
                     domImplementation.createHTMLDocument(object.title) :

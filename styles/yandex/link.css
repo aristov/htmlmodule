@@ -34,3 +34,7 @@
 {
     color: #aaa;
 }
+.link.button:not(:hover)
+{
+    color: #000;
+}

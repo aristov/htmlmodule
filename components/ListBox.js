@@ -29,9 +29,12 @@ export default class ListBox extends Instance {
         const value = this.value;
         this.checkedOptions.forEach(option => option.checked = 'false');
         options.forEach(option => option.checked = 'true');
+        /*
         if(this.value !== value) {
             this.emit('change');
         }
+        */
+        this.emit('change');
     }
     get checkedOption() {
         return this.checkedOptions[0];

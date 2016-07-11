@@ -33,11 +33,11 @@ export default class Grid extends Instance {
         });
     }
     get active() {
-        return this.find(GridCell, cell => cell.element.tabIndex > -1);
+        return this.find(GridCell, cell => cell.active === 'true');
     }
     set active(cell) {
-        this.active.active = false;
-        cell.active = true;
+        this.active.active = 'false';
+        cell.active = 'true';
     }
     unselect() {
         this.selected.forEach(cell => cell.selected = 'false');

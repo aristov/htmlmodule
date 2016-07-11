@@ -55,9 +55,7 @@ export default class Instance {
     }
     static on(type, listener, context) {
         document.addEventListener(type, event => {
-            const instance = context?
-                context.closestInstance(event.target) :
-                this.closestInstance(event.target);
+            const instance = (context || this).closestInstance(event.target);
             if(instance) listener.call(instance, event);
         }, true);
     }

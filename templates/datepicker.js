@@ -1,4 +1,5 @@
 import button from './button';
+import grid from './grid';
 import moment from 'moment';
 import { mix } from '../tools/utils';
 
@@ -6,6 +7,7 @@ const WEEK_DAY_NAMES = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
 
 export default domTransform => {
     button(domTransform);
+    grid(domTransform);
 
     domTransform.element('datepicker', function({ attributes : a }) {
         const now = Date.now();
@@ -22,7 +24,7 @@ export default domTransform => {
                 hidden : a.hidden === 'true' && ''
             },
             content : {
-                element : 'span',
+                element : 'div',
                 attributes : { 'class' : 'box' },
                 content : [
                     {
@@ -31,7 +33,7 @@ export default domTransform => {
                         content : [
                             this.apply({
                                 element : 'button',
-                                attributes : { tabindex : '-1', value : '-1' }
+                                attributes : { value : '-1' }
                             }),
                             {
                                 element : 'span',
@@ -45,43 +47,26 @@ export default domTransform => {
                             },
                             this.apply({
                                 element : 'button',
-                                attributes : { tabindex : '-1', value : '+1' }
+                                attributes : { value : '+1' }
                             })
                         ]
                     },
-                    {
-                        element : 'table',
-                        attributes : { role : 'grid', cellspacing : '0', 'aria-labelledby' : 'heading' + id },
-                        content : [
-                            {
-                                element : 'thead',
-                                content : {
-                                    element : 'tr',
-                                    content : WEEK_DAY_NAMES.forEach(name => ({
-                                        element : 'th',
-                                        attributes : { role : 'columnheader' },
-                                        content : name
-                                    }))
-                                }
-                            },
-                            this.apply({ element : 'dategrid', attributes : { value } })
-                        ]
-                    }
+                    this.apply({
+                        element : 'dategrid',
+                        attributes : { labelledby : 'heading' + id, value }
+                    })
                 ]
             }
         }
     });
-    domTransform.element('dategrid', function({ attributes : a }) {
-        let [year, month, date] = a.value.split('-');
-        month = Number(month);
-        date = Number(date);
-        const selectedYear = year;
-        const selectedMonth = month - 1;
-        const firstDayOfMonth = (new Date(selectedYear, selectedMonth, 1)).getDay() || 7;
+    domTransform.element('dategrid', function({ attributes }) {
+        let [year, month, date] = attributes.value.split('-');
+        month = Number(month) - 1;
+        const firstDayOfMonth = (new Date(year, month, 1)).getDay() || 7;
         const now = new Date;
-        const currentDateString = [now.getFullYear(), now.getMonth(), now.getDate()].join('.');
-        const selectedDateString = [selectedYear, selectedMonth, date].join('.');
-        const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+        const currentDateString = [now.getFullYear(), now.getMonth(), now.getDate()].join('-');
+        const selectedDateString = [year, month, Number(date)].join('-');
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
         const weekCount = Math.ceil((daysInMonth + firstDayOfMonth - 1) / 7);
         const rows = [];
 
@@ -89,24 +74,41 @@ export default domTransform => {
             const row = [];
             for(let j = 1; j <= 7; j++) {
                 const date = (i * 7 + j) - firstDayOfMonth + 1;
-                const dateValue = new Date(selectedYear, selectedMonth, date).getDate();
-                const dateString = [selectedYear, selectedMonth, date].join('.');
+                const dateValue = new Date(year, month, date).getDate();
+                const dateString = [year, month, date].join('-');
 
                 row.push({
-                    element : 'td',
+                    element : 'gridcell',
                     attributes : {
-                        role : 'gridcell',
-                        'data-value' : String(dateValue),
-                        'data-weekday' : String(j - 1),
-                        'aria-current' : currentDateString === dateString? 'date' : undefined,
-                        'aria-selected' : selectedDateString === dateString? 'true' : undefined,
-                        'aria-disabled' : date < 1 || date > daysInMonth? 'true' : undefined
+                        value : String(dateValue),
+                        current : dateString === currentDateString && 'date',
+                        selected : String(dateString === selectedDateString),
+                        disabled : (date < 1 || date > daysInMonth) && 'true',
+                        readonly : 'true',
+                        weekday : String(j - 1)
                     },
                     content : String(dateValue)
                 });
             }
-            rows.push({ element : 'tr', content : row });
+            rows.push({ element : 'row', content : row });
         }
-        return { element : 'tbody', content : rows };
+        return this.apply({
+            element : 'grid',
+            attributes : attributes,
+            content : [
+                {
+                    element : 'thead',
+                    content : {
+                        element : 'tr',
+                        content : WEEK_DAY_NAMES.map(name => ({
+                            element : 'th',
+                            attributes : { role : 'columnheader' },
+                            content : name
+                        }))
+                    }
+                },
+                { element : 'tbody', content : rows }
+            ]
+        })
     });
 }

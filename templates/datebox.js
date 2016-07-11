@@ -39,7 +39,7 @@ export default domTransform => {
                 },
                 {
                     element : 'datepicker',
-                    attributes : { mix : 'popup', value, hidden : 'true' }
+                    attributes : { mix : 'popup', hidden : 'true', value }
                 }
             ]
         });

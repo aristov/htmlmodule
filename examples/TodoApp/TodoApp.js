@@ -15,6 +15,8 @@ import textbox from '../../templates/textbox.js';
 import checkbox from '../../templates/checkbox.js';
 import dialog from '../../templates/dialog.js';
 
+import { ENTER, ESCAPE, SPACE } from '../../tools/keyCodes';
+
 // import styles
 require('./index.css');
 
@@ -26,7 +28,7 @@ class TodoApp extends Instance {
         element.appendChild(DON.toDOM(domTransform.apply(this.load())));
         element.querySelector('form').addEventListener('submit', this.onSubmit.bind(this));
         this.list = element.querySelector('ul');
-        this.attach(Button, TextBox, CheckBox);
+        this.attach(Button, TextBox, CheckBox, EditBox);
         this.findAll(TodoItem);
     }
     attach(...components) {
@@ -60,6 +62,7 @@ class TodoItem extends Instance {
         super(element);
         this.app = this.closest(TodoApp);
         this.checkbox = this.find(CheckBox).on('change', () => this.app.save());
+        this.find(EditBox).on('change', () => this.app.save());
         this.find(Button).on('click', this.onButtonClick, this);
         this.dialog = Dialog.getInstance(document.getElementById('removeitemconfirm'));
         this.onDialogSubmit = this.onDialogSubmit.bind(this);
@@ -106,15 +109,53 @@ class TodoItem extends Instance {
     }
 }
 
+class EditBox extends Instance {
+    constructor(element) {
+        super(element);
+        const input = this.input = document.createElement('input');
+        input.value = element.textContent;
+        input.addEventListener('blur', () => this.editmode = 'false');
+        this.on('keydown', this.onKeyDown);
+        this.on('click', () => this.editmode = 'true');
+    }
+    get editmode() {
+        return this.element.dataset.editmode || 'false';
+    }
+    set editmode(editmode) {
+        if(editmode !== this.editmode) {
+            const element = this.element;
+            const input = this.input;
+            element.dataset.editmode = editmode;
+            if(editmode === 'true') {
+                const textNode = element.firstChild;
+                textNode?
+                    element.replaceChild(input, textNode) :
+                    element.appendChild(input);
+                input.focus();
+            } else {
+                element.textContent = input.value;
+                element.focus();
+                this.emit('change');
+            }
+        }
+    }
+    onKeyDown({ keyCode }) {
+        if(keyCode === ENTER) this.editmode = String(this.editmode === 'false');
+        if(keyCode === ESCAPE) this.editmode = 'false';
+        if(keyCode === SPACE) this.editmode = 'true';
+    }
+    static attachTo(node) {
+        node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    }
+}
+
 // create template engine instance
 const domTransform = new DOMTransform;
 
 // connect lib templates
 [button, textbox, checkbox, dialog].forEach(template => template(domTransform));
 
-/**
- *    Lay Out
- */
+// layout
 domTransform.element('todoapp', function({ items }) {
     return this.apply({
         element : 'main',
@@ -140,30 +181,30 @@ domTransform.element('todoapp', function({ items }) {
                 attributes : {
                     text : 'Item is not marked as "done". Are you sure?',
                     id : 'removeitemconfirm',
-                    submitLabel : 'Remove item'
+                    submitlabel : 'Remove item'
                 }
             }
         ]
     });
 });
 
-domTransform.element('confirmdialog', function({ attributes, content }) {
+domTransform.element('confirmdialog', function({ attributes : a, content }) {
     return this.apply({
         element : 'dialog',
-        attributes : { modal : 'true', id : attributes.id },
+        attributes : { modal : 'true', id : a.id },
         content : content || {
             element : 'form',
             content : [
-                { element : 'p', content : attributes.text },
+                { element : 'p', content : a.text },
                 {
                     element : 'button',
                     attributes : { type: 'submit', mix : 'accent' },
-                    content : attributes.submitLabel || 'Ok'
+                    content : a.submitlabel || 'Ok'
                 },
                 {
                     element : 'button',
                     attributes : { type: 'close' },
-                    content : attributes.dismissLabel || 'Cancel'
+                    content : a.dismisslabel || 'Cancel'
                 }
             ]
         }
@@ -173,16 +214,15 @@ domTransform.element('confirmdialog', function({ attributes, content }) {
 domTransform.element('todoitem', function({ text, done }) {
     return {
         element : 'li',
-        attributes : { 'data-instance' : 'TodoItem', 'aria-haspopup' : 'true', draggable : 'false' },
+        attributes : { 'data-instance' : 'TodoItem', 'aria-haspopup' : 'true', draggable : 'true' },
         content : this.apply([
             {
                 element : 'checkbox',
                 attributes : { checked : done, title : 'Mark as "done"' }
             },
             {
-                element : 'span',
-                attributes : { 'class' : 'text' },
-                content : text
+                element : 'editbox',
+                attributes : { value : text }
             },
             {
                 element : 'button',
@@ -190,6 +230,19 @@ domTransform.element('todoitem', function({ text, done }) {
                 content : '×'
             }
         ])
+    };
+});
+
+domTransform.element('editbox', function({ attributes : a }) {
+    return {
+        element : 'span',
+        attributes : {
+            'data-instance' : 'EditBox',
+            'class' : 'editbox',
+            tabindex : '0',
+            title : a.title || 'Click to edit'
+        },
+        content : a.value
     };
 });
 

@@ -58,7 +58,7 @@ export default class GridCell extends Instance {
         return this.element.getAttribute('aria-selected') || '';
     }
     set selected(selected) {
-        this.element.setAttribute('aria-selected', selected);
+        if(this.selected) this.element.setAttribute('aria-selected', selected);
     }
     get disabled() {
         return this.grid.disabled === 'true'?
@@ -78,10 +78,10 @@ export default class GridCell extends Instance {
         this.input.value = this.text.textContent = value;
     }
     get active() {
-        return this.element.tabIndex === 0;
+        return String(this.element.tabIndex === 0);
     }
     set active(active) {
-        this.element.tabIndex = active? 0 : -1;
+        this.element.tabIndex = active === 'true'? 0 : -1;
     }
     get leftSibling() {
         let cell = this.row.cells[this.index - 1];
@@ -145,13 +145,16 @@ export default class GridCell extends Instance {
         this.span? this.span.focus() : this.element.focus();
     }
     onClick() {
-        if(this.mode === 'navigation') this.grid.unselect();
+        if(this.mode === 'navigation' && this.disabled === 'false') {
+            this.grid.unselect();
+            this.selected = 'true';
+        }
     }
     onFocus() {
         this.grid.active = this;
     }
     onBlur() {
-        this.grid.unselect();
+        // this.grid.unselect();
     }
     onMouseEnter({ buttons }) {
         let grid = this.grid;
@@ -175,13 +178,19 @@ export default class GridCell extends Instance {
             }
         }
         else if([SPACE, ...DIGIT_CODES, ...LETTER_CODES].indexOf(keyCode) > -1) {
+            if(keyCode === SPACE && this.readonly === 'true' && this.selected && this.disabled === 'false') {
+                event.preventDefault();
+                this.grid.unselect();
+                this.selected = 'true';
+                this.emit('click');
+            }
             if(!event.metaKey && !event.ctrlKey) this.mode = 'edit';
         }
     }
     onBackspaceKeyDown(event) {
-        if(this.mode === 'navigation') {
-            let selected = this.grid.selected;
+        if(this.readonly === 'false' && this.mode === 'navigation') {
             event.preventDefault();
+            const selected = this.grid.selected;
             if(selected.length) selected.forEach(cell => cell.value = '');
             else this.value = '';
         }
@@ -262,12 +271,12 @@ export default class GridCell extends Instance {
     }
     static attachTo(node) {
         node.addEventListener('focus', event => {
-            let gridCell = this.getInstance(event.target);
-            if(gridCell) gridCell.onFocus(event);
+            const gridcell = this.getInstance(event.target);
+            if(gridcell) gridcell.onFocus(event);
         }, true);
         node.addEventListener('mouseenter', event => {
-            let gridCell = this.getInstance(event.target);
-            if(gridCell) gridCell.onMouseEnter(event);
+            const gridcell = this.getInstance(event.target);
+            if(gridcell) gridcell.onMouseEnter(event);
         }, true);
     }
 }

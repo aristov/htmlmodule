@@ -28,6 +28,7 @@ export default class TextBox extends Instance {
     }
     set value(value) {
         this.input.value = value;
+        this.input.setAttribute('value', value);
         if(this.hasclear === 'true') this.clearbutton.hidden = String(!value);
     }
     get hasclear() {
@@ -38,6 +39,7 @@ export default class TextBox extends Instance {
         if(button) this.onButtonClick(event, button);
     }
     onInputInput() {
+        this.input.setAttribute('value', this.value);
         if(this.hasclear === 'true') this.clearbutton.hidden = String(!this.value);
     }
     onButtonClick(event, button) {

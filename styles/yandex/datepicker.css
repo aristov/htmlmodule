@@ -9,7 +9,6 @@
 }
 .datepicker .box
 {
-    display: block;
     padding: 7px;
     border : 1px solid rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -27,17 +26,20 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
-.datepicker .button:not(:focus):not(:hover)
+.datepicker .button:not(:focus)/*:not(:hover)*/
 {
     border-color: transparent;
 }
-.datepicker .button[data-direction=prev],
+.datepicker .header .button:not(:focus):hover
+{
+    /*border-color: rgba(0, 0, 0, 0.15);*/
+    background-color: rgba(0, 0, 0, 0.02);
+}
 .datepicker .button[data-value="-1"]
 {
     float: left;
     background-image: url(images/arrow-left.svg);
 }
-.datepicker .button[data-direction=next],
 .datepicker .button[data-value="+1"]
 {
     float: right;
@@ -47,47 +49,58 @@
 {
     display: inline-block;
     padding: 6px;
+    margin-bottom: 5px;
 }
-.datepicker table
+.datepicker table.grid
 {
     width: 100%;
 }
+.datepicker table.grid:hover td.gridcell
+{
+    border-color: rgba(0, 0, 0, 0.1);
+    /*border-color: transparent;*/
+}
+
 .datepicker th
 {
     padding: 2px 2px 6px;
 }
-.datepicker td
+.datepicker table.grid td.gridcell
 {
     cursor: pointer;
     border: 1px solid transparent;
-    padding: 8px;
+    padding: 7px 8px;
 }
-.datepicker td[data-weekday="5"],
-.datepicker td[data-weekday="6"]
+.datepicker td.gridcell[data-weekday="5"],
+.datepicker td.gridcell[data-weekday="6"]
 {
     color: #c00;
 }
-.datepicker td[aria-current=date]
+.datepicker td.gridcell[aria-current=date]
 {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.05);
 }
-.datepicker td:hover:not([aria-disabled=true])
+.datepicker td.gridcell:hover:not([aria-disabled=true])
 {
     border-color: rgba(0, 0, 0, 0.3);
 }
-.datepicker td:active
+.datepicker td.gridcell:active
 {
     background: #f3f1ed;
 }
-.datepicker td[aria-selected=true]
+.datepicker td.gridcell[aria-selected=true]
 {
     background: #ffeba0;
 }
-.datepicker td[aria-selected=true]:active
+.datepicker td.gridcell[aria-selected=true]:not(:focus)::before
+{
+    box-shadow: none;
+}
+.datepicker td.gridcell[aria-selected=true]:active
 {
     background: #fee481;
 }
-.datepicker td[aria-disabled=true]
+.datepicker table.grid td.gridcell[aria-disabled=true]
 {
     cursor: default;
     color: rgba(0, 0, 0, 0.5);

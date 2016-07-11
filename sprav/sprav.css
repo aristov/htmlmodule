@@ -4,6 +4,8 @@
 @import url('../styles/yandex/tablist.css');
 @import url('../styles/yandex/popup.css');
 @import url('../styles/yandex/menu.css');
+@import url('../styles/yandex/buttongroup.css');
+@import url('../styles/yandex/select.css');
 
 @import url('./style/header.css');
 @import url('./style/usermenu.css');
@@ -38,9 +40,20 @@ ul.companylist li
 {
     vertical-align: top;
     padding: 10px 20px;
-
-    /*display: inline-block;
-    margin-right: 40px;*/
+    display: flex;
+    justify-content: space-between;
+}
+ul.companylist li .buttongroup
+{
+    position: relative;
+}
+ul.companylist li .button
+{
+    height: 30px;
+}
+ul.companylist li .menu
+{
+    right: 0;
 }
 ul.companylist li:hover
 {

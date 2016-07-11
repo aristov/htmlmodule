@@ -1,4 +1,4 @@
-const mix = (...mix) => mix.filter(mix => typeof mix === 'string' && mix).join(' ');
+import { mix } from '../tools/utils';
 
 export default domTransform => {
     domTransform.element('menu', function({ attributes : a, content }) {

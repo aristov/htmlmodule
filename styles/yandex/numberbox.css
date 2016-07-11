@@ -2,7 +2,6 @@
 {
     width: 80px;
     padding-right: 26px;
-    cursor: default;
 }
 .numberbox .button
 {
@@ -37,5 +36,9 @@
 .numberbox.disabled .button
 {
     background: transparent;
+    cursor: default;
+}
+.timebox .box
+{
     cursor: default;
 }

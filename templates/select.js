@@ -1,36 +1,46 @@
+import button from './button';
+import listbox from './listbox';
+
 export default domTransform => {
-    domTransform.element('select', function({ attributes, content }) {
-        let params = { text : '—', value : undefined },
-            listbox = this.apply({
-                element : 'listbox',
-                attributes : { mix : 'popup', tabindex : undefined },
-                content
-            }, params);
-        return {
+    button(domTransform);
+    listbox(domTransform);
+
+    domTransform.element('select', function({ attributes : a, content }) {
+        const option = { text : '—', value : undefined };
+
+        const selectbox = {
             element : 'span',
             attributes : {
                 'data-instance' : 'Select',
                 role : 'combobox',
-                tabindex : attributes.disabled === 'true'? undefined : '0',
+                tabindex : a.disabled === 'true'? undefined : '0',
                 'aria-expanded' : 'false',
-                'aria-disabled' : attributes.disabled,
+                'aria-disabled' : a.disabled,
                 'class' : 'select',
-                'aria-label' : attributes.label
+                'aria-label' : a.label,
+                'data-emptyoption' : JSON.stringify(option)
+            }
+        };
+
+        const listbox = this.apply({
+            element : 'listbox',
+            attributes : { mix : 'popup', tabindex : undefined },
+            content
+        }, option);
+
+        const button = this.apply({
+            element : 'button',
+            attributes : {
+                role : 'textbox',
+                readonly : 'true',
+                tabindex : undefined,
+                disabled : a.disabled
             },
-            content : [
-                {
-                    element : 'span',
-                    attributes : {
-                        'data-instance' : 'Button',
-                        role : 'textbox',
-                        'class' : 'button',
-                        'aria-readonly' : 'true',
-                        'aria-disabled' : attributes.disabled
-                    },
-                    content : params.text
-                },
-                listbox
-            ]
-        }
+            content : option.text
+        });
+
+        selectbox.content = [button, listbox];
+
+        return selectbox;
     });
 }

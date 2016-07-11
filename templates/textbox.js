@@ -1,7 +1,6 @@
 import textinput from './textinput';
 import button from './button';
-
-const mixes = (...mix) => mix.filter(mix => typeof mix === 'string' && mix).join(' ');
+import { mix as mixes } from '../tools/utils';
 
 export default domTransform => {
     textinput(domTransform);
@@ -11,7 +10,7 @@ export default domTransform => {
         attributes : {
             instance = 'TextBox',
             view = 'textbox',
-            disabled, name, value, placeholder, hasclear, label, mix
+            disabled, name, value, placeholder, hasclear, label, mix, readonly
         },
         content
     }) {
@@ -19,7 +18,7 @@ export default domTransform => {
         if(!content || (Array.isArray(content) && !content.length)) {
             content = {
                 element : 'textinput',
-                attributes : { name, value, placeholder, disabled }
+                attributes : { name, value, placeholder, disabled, readonly }
             };
             if(hasclear) content = [content, {
                 element : 'button',

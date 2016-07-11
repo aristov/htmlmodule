@@ -19,7 +19,7 @@ export default class CheckBox extends Instance {
         else element.removeChild(input);
     }
     get disabled() {
-        return this.element.getAttribute('aria-disabled') || 'false';
+        return super.disabled;
     }
     set disabled(disabled) {
         const element = this.element;

@@ -1,25 +1,23 @@
+import { mix } from '../tools/utils';
+
 export default domTransform => {
-    domTransform.element('textarea', function({ attributes }) {
+    domTransform.element('textarea', function({ attributes : a }) {
         return {
             element : 'label',
             attributes : {
-                'data-instance' : attributes.instance || 'TextBox',
-                'aria-label' : attributes.label,
-                'class' : [
-                    attributes.view || 'textbox',
-                    attributes.disabled === 'true'? 'disabled' : '',
-                    attributes.mix
-                ].join(' ').trim()
+                'data-instance' : a.instance || 'TextBox',
+                'aria-label' : a.label,
+                'class' : mix(a.view || 'textbox', a.disabled === 'true' && 'disabled', a.mix)
             },
             content : {
                 element : 'textarea',
                 attributes : {
                     autocomplete : 'off',
-                    disabled : attributes.disabled === 'true'? '' : undefined,
-                    placeholder : attributes.placeholder,
+                    disabled : a.disabled === 'true' && '',
+                    placeholder : a.placeholder,
                     'class' : 'box'
                 },
-                content : attributes.value
+                content : a.value
             }
         };
     });

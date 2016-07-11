@@ -56,7 +56,8 @@
     opacity: 0.25;
     outline: none;
 }
-.textbox:hover .clearbutton
+.textbox:hover .clearbutton,
+.textbox.focus .clearbutton
 {
     display: inline-block;
 }

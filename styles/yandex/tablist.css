@@ -43,20 +43,3 @@
 {
     border-color: #ffdb4d;
 }
-
-/*=============*/
-
-.tabpanel
-{
-    text-align: center;
-    font-size: 46px;
-    opacity: 0.3;
-    cursor: default;
-}
-
-.tabpanel:hover
-{
-    background: rgba(0, 0, 0, 0.05);
-}
-
-

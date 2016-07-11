@@ -1,3 +1,5 @@
+import { mix } from '../tools/utils';
+
 export default domTransform => {
     domTransform.element('dialog', function({ attributes : a, content }) {
         return {
@@ -7,7 +9,7 @@ export default domTransform => {
                 role : 'dialog',
                 id : a.id,
                 hidden : '',
-                'class' : 'dialog popup',
+                'class' : mix(a.view || 'dialog popup', a.mix),
                 'aria-modal' : a.modal,
                 'data-assertive' : a.assertive
             },

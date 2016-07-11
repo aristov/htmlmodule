@@ -28,7 +28,10 @@ export default class DateBox extends TextBox {
     }
     onDatePickerChange() {
         this.input.value = moment(this.datepicker.value, 'YYYY-MM-DD').format('DD.MM.YYYY');
-        setTimeout(() => this.expanded = 'false', 0);
+        setTimeout(() => {
+            this.expanded = 'false';
+            this.focus();
+        }, 0);
     }
     onDocumentFocus({ target }) {
         if(!this.element.contains(target)) this.expanded = 'false';

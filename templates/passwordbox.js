@@ -1,22 +1,23 @@
 import textbox from './textbox';
 import textinput from './textinput';
 import button from './button';
+import { mix } from '../tools/utils';
 
 export default domTransform => {
     textbox(domTransform);
     textinput(domTransform);
     button(domTransform);
 
-    domTransform.element('passwordbox', function({ attributes }) {
-        const { disabled, value } = attributes;
+    domTransform.element('passwordbox', function({ attributes : a }) {
+        const { disabled, value } = a;
 
         return this.apply({
             element : 'textbox',
             attributes : {
                 instance : 'PasswordBox',
-                label : attributes.label,
-                view : attributes.view,
-                mix : ['passwordbox', attributes.mix].join(' ').trim(),
+                label : a.label,
+                view : a.view,
+                mix : mix('passwordbox', a.mix),
                 disabled
             },
             content : [
@@ -24,9 +25,9 @@ export default domTransform => {
                     element : 'textinput',
                     attributes : {
                         type : 'password',
-                        name : attributes.name,
+                        name : a.name,
                         value,
-                        placeholder : attributes.placeholder,
+                        placeholder : a.placeholder,
                         disabled
                     }
                 },

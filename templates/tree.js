@@ -10,35 +10,33 @@ export default domTransform => {
             content : this.apply(content, { first : null })
         }
     });
-    domTransform.element('treeitem', function({ attributes, content }, params) {
-        let tabindex,
-            children = {
-                element : 'span',
-                attributes : { 'class' : 'label' },
-                content : attributes.label
-            };
+    domTransform.element('treeitem', function({ attributes : a, content }, params) {
+        let tabindex = '-1';
+        let children = {
+            element : 'span',
+            attributes : { 'class' : 'label' },
+            content : a.label
+        };
         if(!params.first) {
-            tabindex = '0';
             params.first = this;
+            tabindex = '0';
         }
-        if(attributes.expanded) {
-            children = [
-                {
-                    element : 'span',
-                    attributes : { role : 'button' }
-                },
-                children,
-                this.apply({ element : 'group', content }, params)
-            ];
-        }
+        if(a.expanded && content) children = [
+            {
+                element : 'span',
+                attributes : { role : 'button' }
+            },
+            children,
+            this.apply({ element : 'group', content }, params)
+        ];
         return {
             element : 'span',
             attributes : {
                 'data-instance' : 'TreeItem',
                 role : 'treeitem',
-                tabindex : tabindex || '-1',
-                'aria-expanded' : attributes.expanded,
-                'class' : attributes.view || 'treeitem'
+                tabindex,
+                'aria-expanded' : a.expanded,
+                'class' : a.view || 'treeitem'
             },
             content : children
         }

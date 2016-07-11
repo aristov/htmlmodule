@@ -7,7 +7,7 @@
         <div>
             <button>Добавить организацию</button>
             <!--<a href=https://passport.yandex.ru/auth?retpath=https%3A%2F%2Fsprav.yandex.ru class="button link authbutton">Войти</a>-->
-            <menubutton controls="usermenu" mix="userbutton">
+            <menubutton controls="usermenu" view="button userbutton">
                 <span class="userpic" style="background-image: url('http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle')"> </span>
                 <!--<span class="userpic">
                     <img alt="User pic" src="http://avatars.mds.yandex.net/get-yapic/32838/190609372-26926805/islands-middle"/>
@@ -39,6 +39,17 @@
                                  address="Москва, ул. Звенигородская 2-я, 13, стр. 18а"
                                  phone="+7 (926) 602-25-87"
                                  category="Студия звукозаписи, Творческий коллектив"/>
+                    <group view="buttongroup">
+                        <button>Редактировать</button>
+                        <button>Фотографии</button>
+                        <button>Отзывы</button>
+                        <button>Сниппет</button>
+                        <menubutton controls="removemenu1">Удалить</menubutton>
+                        <menu id="removemenu1">
+                            <menuitem>Из личного кабинета</menuitem>
+                            <menuitem>Из базы Яндекса</menuitem>
+                        </menu>
+                    </group>
                 </li>
                 <li>
                     <companycard name="Студия Fusion"
@@ -47,6 +58,14 @@
                                  phone="+7 (926) 602-25-87"
                                  website="fusion.moscow"
                                  category="Творческий коллектив"/>
+                    <group view="buttongroup">
+                        <button>Редактировать</button>
+                        <menubutton controls="removemenu2">Удалить</menubutton>
+                        <menu id="removemenu2">
+                            <menuitem>Из личного кабинета</menuitem>
+                            <menuitem>Из базы Яндекса</menuitem>
+                        </menu>
+                    </group>
                 </li>
             </ul>
         </tabpanel>

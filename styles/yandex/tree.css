@@ -12,10 +12,9 @@
 .treeitem
 {
     display: block;
-    outline: none;
-    cursor: pointer;
     position: relative;
-    /*padding-left: 10px;*/
+    cursor: pointer;
+    outline: none;
 }
 .treeitem:focus
 {
@@ -31,6 +30,9 @@
     position: absolute;
     top: 4px;
     border-radius: 2px;
+
+    /*left: 5px;
+    background: white;*/
 }
 .treeitem[aria-expanded] > [role=button]:hover
 {
@@ -57,4 +59,18 @@
 .treeitem[aria-selected=true] > .label
 {
     background: #ffeba0;
+}
+
+.tree
+{
+    padding-left: 0;
+}
+.treeitem[aria-expanded] > [role=button]
+{
+    left: 5px;
+    background: white;
+}
+.treeitem .label
+{
+    padding: 3px 23px;
 }

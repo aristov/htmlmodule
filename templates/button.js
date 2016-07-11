@@ -1,3 +1,5 @@
+import { mix } from '../tools/utils';
+
 export default domTransform => {
     domTransform.element('button', function({ attributes : a, content }) {
         return {
@@ -5,10 +7,10 @@ export default domTransform => {
             attributes : {
                 'data-instance' : a.instance || 'Button',
                 role : a.role || 'button',
-                tabindex : a.disabled === 'true'? undefined : a.tabindex || '0',
+                tabindex : a.disabled === 'true' || ('tabindex' in a? a.tabindex : '0'),
                 hidden : a.hidden === 'true'? '' : undefined,
                 title : a.title,
-                'class' : [a.view || 'button', a.mix].join(' ').trim(),
+                'class' : mix(a.view || 'button', a.mix),
                 'aria-disabled' : a.disabled,
                 'aria-pressed' : a.pressed,
                 'aria-haspopup' : a.haspopup,
@@ -19,7 +21,43 @@ export default domTransform => {
             },
             content : this.apply(content)
         };
-    })
+    });
+    /*domTransform.element('button', function({ attributes : {
+        instance = 'Button',
+        role = 'button',
+        tabindex = '0',
+        view = 'true',
+        mix,
+        hidden,
+        title,
+        disabled,
+        pressed,
+        haspopup,
+        controls,
+        expanded,
+        type,
+        value
+    }, content }) {
+        return {
+            element : 'span',
+            attributes : {
+                'data-instance' : instance,
+                role,
+                tabindex : disabled === 'true' || tabindex,
+                hidden : hidden === 'true' && '',
+                title,
+                'class' : mixes(view, mix),
+                'aria-disabled' : disabled,
+                'aria-pressed' : pressed,
+                'aria-haspopup' : haspopup,
+                'aria-controls' : controls,
+                'aria-expanded' : expanded,
+                'data-type' : type,
+                'data-value' : value
+            },
+            content : this.apply(content)
+        };
+    });*/
 }
 
 /*export const button = ({

@@ -1,11 +1,13 @@
 export default domTransform => {
-    domTransform.element('menubutton', function({ attributes, content }) {
+    domTransform.element('menubutton', function({ attributes : a, content }) {
         return this.apply({
             element : 'button',
-            attributes : Object.assign({}, attributes, {
+            attributes : Object.assign(a, {
                 instance : 'MenuButton',
                 haspopup : 'true',
-                expanded : 'false'
+                expanded : 'false',
+                view : a.view || 'button menubutton',
+                mix : a.mix
             }),
             content
         })

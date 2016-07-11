@@ -1,53 +1,47 @@
 import textbox from './textbox';
 import textinput from './textinput';
 import button from './button';
+import { mix } from '../tools/utils';
 
 export default domTransform => {
     textbox(domTransform);
     textinput(domTransform);
     button(domTransform);
 
-    domTransform.element('numberbox', function({ attributes }) {
-        const disabled = attributes.disabled;
-        return this.apply({
+    domTransform.element('numberbox', function({ attributes : a }) {
+        const disabled = a.disabled;
+        const textbox = this.apply({
             element : 'textbox',
-            attributes : {
-                instance : attributes.instance || 'NumberBox',
-                label : attributes.label,
-                mix : ['numberbox', attributes.mix].join(' ').trim(),
-                disabled
-            },
-            content : [
-                {
-                    element : 'textinput',
-                    attributes : {
-                        name : attributes.name,
-                        value : attributes.value,
-                        readonly : attributes.readonly,
-                        disabled
-                    }
-                },
-                {
-                    element : 'button',
-                    attributes : {
-                        tabindex : '-1',
-                        type : 'shift',
-                        value : '+1',
-                        disabled
-                    },
-                    content : '▲'
-                },
-                {
-                    element : 'button',
-                    attributes : {
-                        tabindex : '-1',
-                        type : 'shift',
-                        value : '-1',
-                        disabled
-                    },
-                    content : '▼'
-                }
-            ]
+            attributes : Object.assign(a, {
+                instance : a.instance || 'NumberBox',
+                mix : mix('numberbox', a.mix)
+            })
         });
+        textbox.content = [
+            textbox.content,
+            /*{ element : 'shiftbutton', value : '+1', content : '▲' },
+            { element : 'shiftbutton', value : '-1', content : '▼' },*/
+            this.apply({
+                element : 'button',
+                attributes : {
+                    tabindex : '-1',
+                    type : 'shift',
+                    value : '+1',
+                    disabled
+                },
+                content : '▲'
+            }),
+            this.apply({
+                element : 'button',
+                attributes : {
+                    tabindex : '-1',
+                    type : 'shift',
+                    value : '-1',
+                    disabled
+                },
+                content : '▼'
+            })
+        ];
+        return textbox;
     });
 }
