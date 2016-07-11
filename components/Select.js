@@ -70,13 +70,12 @@ export default class Select extends Instance {
     }
     onKeyUp(event) {
         if(event.keyCode === SPACE) {
-            const element = this.element;
             if(this.expanded === 'true') {
                 this.listbox.onSpaceKeyUp(event);
                 this.expanded = 'false';
             } else {
-                element.classList.remove('active');
-                element.dispatchEvent(new Event('click', { bubbles : true, cancelable : true }));
+                this.element.classList.remove('active');
+                this.emit('click');
             }
         }
     }

@@ -1,4 +1,8 @@
+import button from './button';
+
 export default domTransform => {
+    button(domTransform);
+
     domTransform.element('dialogbutton', function({ attributes, content }) {
         return this.apply({
             element : 'button',
