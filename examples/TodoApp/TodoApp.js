@@ -7,7 +7,7 @@ import Dialog from '../../components/Dialog';
 
 // import template engine
 import DOMTransform from '../../tools/DOMTransform';
-import DON from '../../tools/DON';
+import { toDOM } from '../../tools/DON';
 
 // import templates
 import button from '../../templates/button.js';
@@ -25,7 +25,7 @@ class TodoApp extends Instance {
     constructor(element) {
         super(element);
         element.dataset.instance = this.constructor.name;
-        element.appendChild(DON.toDOM(domTransform.apply(this.load())));
+        element.appendChild(toDOM(domTransform.apply(this.load())));
         element.querySelector('form').addEventListener('submit', this.onSubmit.bind(this));
         this.list = element.querySelector('ul');
         this.attach(Button, TextBox, CheckBox, EditBox);
@@ -38,7 +38,7 @@ class TodoApp extends Instance {
         const textbox = this.find(TextBox);
         const text = textbox.value.trim();
         if(text) {
-            const element = DON.toDOM(domTransform.apply({ element : 'todoitem', text }));
+            const element = toDOM(domTransform.apply({ element : 'todoitem', text }));
             TodoItem.getInstance(this.list.appendChild(element));
             textbox.value = '';
             this.save();
@@ -83,7 +83,7 @@ class TodoItem extends Instance {
         }
     }
     get text() {
-        return this.element.querySelector('.text').textContent;
+        return this.element.querySelector('.editbox').textContent;
     }
     get done() {
         return this.checkbox.checked;

@@ -1,6 +1,13 @@
 export default class DOMTransform {
     constructor() {
         this.nodes = {
+            /*element1 : (element, params) => {
+                const transform = typeof element.element === 'function'?
+                    element.element :
+                    this.elements[''];
+                if(!element.attributes) element.attributes = {};
+                return this.apply(transform.call(this, element, params));
+            },*/
             element : (element, params) => {
                 const transform = this.elements[element.element] || this.elements[''];
                 if(!element.attributes) element.attributes = {};
