@@ -1,5 +1,5 @@
 {
-  "name": "Instance.js",
+  "name": "instance",
   "author": "Viacheslav Aristov <vv.aristov@gmail.ru>",
   "version": "0.0.0",
   "dependencies": {
