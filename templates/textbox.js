@@ -10,7 +10,7 @@ export default domTransform => {
         attributes : {
             instance = 'TextBox',
             view = 'textbox',
-            disabled, name, value, placeholder, hasclear, label, mix, readonly
+            role, disabled, name, value, placeholder, hasclear, label, mix, readonly
         },
         content
     }) {
@@ -18,7 +18,7 @@ export default domTransform => {
         if(!content || (Array.isArray(content) && !content.length)) {
             content = {
                 element : 'textinput',
-                attributes : { name, value, placeholder, disabled, readonly }
+                attributes : { role, name, value, placeholder, disabled, readonly }
             };
             if(hasclear) content = [content, {
                 element : 'button',

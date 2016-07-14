@@ -5,10 +5,11 @@ export default domTransform => {
         return {
             element : 'input',
             attributes : {
-                autocomplete : 'off',
+                role : a.role,
                 type : a.type,
                 name : a.name,
                 value : a.value,
+                autocomplete : 'off',
                 placeholder : a.placeholder,
                 readonly : a.readonly === 'true' && 'readonly',
                 disabled : a.disabled === 'true' && 'disabled',

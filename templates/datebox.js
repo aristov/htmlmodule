@@ -1,6 +1,7 @@
 import textbox from './textbox';
 import button from './button';
 import textinput from './textinput';
+import datepicker from './datepicker';
 import moment from 'moment';
 
 export default domTransform => {

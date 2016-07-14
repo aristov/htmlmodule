@@ -1,1 +1,1 @@
-export const mix = (...mix) => mix.filter(mix => typeof mix === 'string' && mix).join(' ');
+export const mix = (...mix) => mix.filter(Boolean).join(' ');

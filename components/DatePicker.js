@@ -3,8 +3,8 @@ import Button from './Button';
 import GridCell from './GridCell';
 import moment from 'moment';
 
-import DOMTransform from '../tools/DOMTransform';
-import DON from '../tools/DON';
+import DOMTransform from 'DOMTransform';
+import DON from 'DON';
 import datepicker from '../templates/datepicker';
 
 const template = new DOMTransform;

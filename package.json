@@ -3,6 +3,8 @@
   "author": "Viacheslav Aristov <vv.aristov@gmail.ru>",
   "version": "0.0.0",
   "dependencies": {
+    "DOMTransform": "git+https://github.com/aristov/DOMTransform.git",
+    "DON": "git+https://github.com/aristov/don.git",
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",

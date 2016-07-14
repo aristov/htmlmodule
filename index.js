@@ -1,5 +1,5 @@
-import DON from './tools/DON';
-import DOMTransform from './tools/DOMTransform';
+import DON from 'DON';
+import DOMTransform from 'DOMTransform';
 
 import Button from './components/Button';
 import CheckBox from './components/CheckBox';
@@ -65,7 +65,7 @@ const components = [
     Tree,
     Grid
 ];
-const domTransform = new DOMTransform();
+const domTransform = new DOMTransform;
 const templates = [
     link,
     button,
@@ -106,4 +106,3 @@ fetch('index.xml')
         const don = domTransform.apply(DON.fromDOM(element));
         document.body.appendChild(DON.toDOM(don));
     });
-

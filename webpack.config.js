@@ -16,11 +16,7 @@ module.exports = {
         }]
     },
     resolve: {
-        modulesDirectories: [
-            'node_modules',
-            path.join(__dirname, 'components'),
-            path.join(__dirname, 'tools')
-        ]
+        modulesDirectories: ['node_modules']
     },
     watch : true
 };

@@ -10,6 +10,7 @@ export default domTransform => {
             attributes : Object.assign({
                 instance : 'SearchBox',
                 hasclear : 'true',
+                role : 'searchbox',
                 mix : mix('searchbox', a.mix)
             }, a)
         });
