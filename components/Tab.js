@@ -35,7 +35,7 @@ export default class Tab extends Instance {
     }
     onKeyDown(event) {
         const keyCode = event.keyCode;
-        if(ARROW_CODES.indexOf(keyCode) > -1) {
+        if(ARROW_CODES.includes(keyCode)) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }

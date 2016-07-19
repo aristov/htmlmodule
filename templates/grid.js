@@ -8,6 +8,14 @@ export default domTransform => {
             firstCell : null,
             selectedCell : null
         };
+        if(a.rows && a.columns) {
+            content = Array.from(new Array(Number(a.rows))).map(_ => ({
+                element : 'row',
+                content : Array.from(new Array(Number(a.columns))).map(_ => ({
+                    element : 'gridcell'
+                }))
+            }))
+        }
         const result = {
             element : 'table',
             attributes : {

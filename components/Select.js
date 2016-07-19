@@ -57,7 +57,7 @@ export default class Select extends Instance {
             event.preventDefault();
             this.onSpaceKeyDown(event);
         }
-        if(ARROW_CODES.indexOf(keyCode) > -1) {
+        if(ARROW_CODES.includes(keyCode)) {
             event.preventDefault();
             if(this.expanded === 'false') this.expanded = 'true';
             else this.listbox.onArrowKeyDown(event);

@@ -13,10 +13,10 @@ export default class Option extends Instance {
     }
     set selected(selected) {
         if(selected === 'true') {
-            const selectedOption = this.listbox.find(Option, opt => opt.selected === 'true');
-            //console.log(selected, selectedOption);
+            const selectedOption = this.listbox.selectedOption;
             if(selectedOption) selectedOption.selected = 'false';
-            this.listbox.activeDescendant = this.element.id;
+            this.listbox.activedescendant = this.element.id;
+            if(!this.checked) this.listbox.value = this.value;
         }
         this.element.setAttribute('aria-selected', selected);
     }

@@ -342,37 +342,17 @@
     <article>
         <h1>Grid</h1>
         <section>
-            <grid label="Simple">
-                <row><gridcell/><gridcell/><gridcell/></row>
-                <row><gridcell/><gridcell/><gridcell/></row>
-                <row><gridcell/><gridcell/><gridcell/></row>
-            </grid>
+            <grid rows="3" columns="3" label="Simple"/>
         </section>
         <section>
             <grid multiselectable="true" label="Multiselectable">
-                <row>
-                    <gridcell>One</gridcell>
-                    <gridcell>Two</gridcell>
-                    <gridcell>Three</gridcell>
-                </row>
-                <row>
-                    <gridcell>Four</gridcell>
-                    <gridcell>Five</gridcell>
-                    <gridcell>Six</gridcell>
-                </row>
-                <row>
-                    <gridcell>Seven</gridcell>
-                    <gridcell>Eight</gridcell>
-                    <gridcell>Nine</gridcell>
-                </row>
+                <row><gridcell>1 — 1</gridcell><gridcell>1 — 2</gridcell><gridcell>1 — 3</gridcell></row>
+                <row><gridcell>2 — 1</gridcell><gridcell>2 — 2</gridcell><gridcell>2 — 3</gridcell></row>
+                <row><gridcell>3 — 1</gridcell><gridcell>3 — 2</gridcell><gridcell>3 — 3</gridcell></row>
             </grid>
         </section>
         <section>
-            <grid disabled="true" label="Disabled">
-                <row><gridcell/><gridcell/><gridcell/></row>
-                <row><gridcell/><gridcell/><gridcell/></row>
-                <row><gridcell/><gridcell/><gridcell/></row>
-            </grid>
+            <grid rows="3" columns="3" disabled="true" label="Disabled"/>
         </section>
     </article>
     <article>

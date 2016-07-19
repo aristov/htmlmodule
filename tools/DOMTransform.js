@@ -39,6 +39,9 @@ export default class DOMTransform {
             const result = [];
             for(let i = 0; i < object.length; i++) {
                 let item;
+                /*params.position = i;
+                params.isFirst = !i;
+                params.isLast = i === object.length - 1;*/
                 if(item = this.apply(object[i], params)) result.push(item);
             }
             return result;

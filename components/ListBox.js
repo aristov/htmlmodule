@@ -17,13 +17,13 @@ export default class ListBox extends Instance {
         return this.findAll(Option);
     }
     get selectedOptions() {
-        return this.options.filter(option => option.selected === 'true');
+        return this.findAll(Option, ({ selected }) => selected === 'true');
     }
     get selectedOption() {
         return this.selectedOptions[0];
     }
     get checkedOptions() {
-        return this.options.filter(option => option.checked === 'true');
+        return this.findAll(Option, ({ checked }) => checked === 'true');
     }
     set checkedOptions(options) {
         const value = this.value;
@@ -61,15 +61,12 @@ export default class ListBox extends Instance {
     get multiselectable() {
         return this.element.getAttribute('aria-multiselectable') || 'false';
     }
-    set activeDescendant(id) {
+    set activedescendant(id) {
         this.element.setAttribute('aria-activedescendant', id);
-    }
-    unselect() {
-        this.selectedOptions.forEach(option => option.selected = 'false');
     }
     onKeyDown(event) {
         const keyCode = event.keyCode;
-        if(ARROW_CODES.indexOf(keyCode) > -1) {
+        if(ARROW_CODES.includes(keyCode)) {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
@@ -88,7 +85,7 @@ export default class ListBox extends Instance {
         if(nextIndex === options.length) nextIndex = 0;
         if(nextIndex < 0) nextIndex = options.length - 1;
 
-        this.unselect();
+        this.selectedOptions.forEach(option => option.selected = 'false');
         options[nextIndex].selected = true;
         this.scrollToSelected();
     }

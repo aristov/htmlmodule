@@ -34,7 +34,7 @@ export default class TimeBox extends NumberBox {
     onInputKeyDown(event) {
         super.onInputKeyDown(event);
         const keyCode = event.keyCode;
-        if(DIGIT_CODES.indexOf(keyCode) > -1) this.onDigitKeyDown(event);
+        if(DIGIT_CODES.includes(keyCode)) this.onDigitKeyDown(event);
         if(keyCode === ARROWS.LEFT || keyCode === ARROWS.RIGHT) {
             this.range = keyCode === ARROWS.LEFT? 'hours' : 'minutes';
             event.preventDefault();

@@ -36,7 +36,7 @@ export default class TreeItem extends Instance {
         return this.closest(TreeItem) || this.tree;
     }
     get hidden() {
-        return String(Boolean(this.closest(TreeItem, item => item.expanded === 'false')));
+        return String(Boolean(this.closest(TreeItem, ({ expanded }) => expanded === 'false')));
     }
     onFocus() {
         this.tree.items.forEach(item => item.element.tabIndex = -1);
@@ -50,7 +50,7 @@ export default class TreeItem extends Instance {
     }
     onKeyDown(event) {
         const keyCode = event.keyCode;
-        if([SPACE, ENTER, ...ARROW_CODES].indexOf(keyCode) > -1) {
+        if([SPACE, ENTER, ...ARROW_CODES].includes(keyCode)) {
             event.preventDefault();
             event.stopPropagation();
             switch(keyCode) {
@@ -59,16 +59,16 @@ export default class TreeItem extends Instance {
                     if(this.expanded) this.expanded = String(this.expanded === 'false');
                     break;
                 case ARROWS.LEFT:
-                    this.onLeftArrowKeyDown();
+                    this.onLeftArrowKeyDown(event);
                     break;
                 case ARROWS.RIGHT:
-                    this.onRightArrowKeyDown();
+                    this.onRightArrowKeyDown(event);
                     break;
                 case ARROWS.UP:
-                    this.onUpArrowKeyDown();
+                    this.onUpArrowKeyDown(event);
                     break;
                 case ARROWS.DOWN:
-                    this.onDownArrowKeyDown();
+                    this.onDownArrowKeyDown(event);
                     break;
             }
         }
@@ -83,7 +83,7 @@ export default class TreeItem extends Instance {
     }
     onUpArrowKeyDown() {
         const parent = this.parent;
-        const items = parent.items.filter(item => item.hidden === 'false');
+        const items = parent.items.filter(({ hidden }) => hidden === 'false');
         const index = items.indexOf(this);
         const prevItem = items[index - 1];
         if(prevItem) prevItem.focus();
@@ -94,9 +94,8 @@ export default class TreeItem extends Instance {
         else {
             let parent = this;
             while(parent = parent.parent) {
-                const items = parent.items.filter(item => item.hidden === 'false');
-                const index = items.indexOf(this);
-                const nextItem = items[index + 1];
+                const items = parent.items.filter(({ hidden }) => hidden === 'false');
+                const nextItem = items[items.indexOf(this) + 1];
                 if(nextItem) {
                     nextItem.focus();
                     break;

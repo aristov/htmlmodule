@@ -166,7 +166,7 @@ export default class GridCell extends Instance {
         let keyCode = event.keyCode;
         if(keyCode === ENTER) this.onEnterKeyDown(event);
         else if(keyCode === ESCAPE) this.onEscapeKeyDown(event);
-        else if(ARROW_CODES.indexOf(keyCode) > -1 && this.mode === 'navigation') {
+        else if(ARROW_CODES.includes(keyCode) && this.mode === 'navigation') {
             event.preventDefault();
             this.onArrowKeyDown(event);
         }
@@ -177,7 +177,7 @@ export default class GridCell extends Instance {
                 this.grid.selectAll();
             }
         }
-        else if([SPACE, ...DIGIT_CODES, ...LETTER_CODES].indexOf(keyCode) > -1) {
+        else if([SPACE, ...DIGIT_CODES, ...LETTER_CODES].includes(keyCode)) {
             if(keyCode === SPACE && this.readonly === 'true' && this.selected && this.disabled === 'false') {
                 event.preventDefault();
                 this.grid.unselect();
