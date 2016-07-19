@@ -42,7 +42,7 @@ export default class MenuButton extends Button {
         }
     }
     onMenuMouseLeave() {
-        this.focus();
+        // this.focus(); // FIXME
     }
     onKeyDown(event) {
         super.onKeyDown(event);

@@ -47,7 +47,8 @@ export default class Dialog extends Instance {
                     if(this.assertive === 'true') {
                         document.addEventListener('focus', this.onDocumentFocus, true);
                     }
-                    this.widgets[0].focus();
+                    const widgets = this.widgets;
+                    if(widgets.length) widgets[0].focus();
                 }
             }
         }
