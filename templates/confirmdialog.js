@@ -2,15 +2,18 @@ import dialog from './dialog';
 import button from './button';
 
 export default domTransform => {
-    domTransform.templates(dialog, button);
-    domTransform.element('confirmdialog', function({ attributes : a, content }) {
+    //domTransform.templates(dialog, button);
+    dialog(domTransform);
+    button(domTransform);
+    domTransform.element('confirmdialog', function({ attributes : a }) {
         return this.apply({
             element : 'dialog',
-            attributes : { modal : 'true', id : a.id },
-            content : content || {
+            attributes : { mix : 'confirmdialog', modal : 'true', id : a.id },
+            content : {
                 element : 'form',
                 content : [
-                    { element : 'p', content : a.text },
+                    a.heading && { element : 'h3', content : a.heading },
+                    a.text && { element : 'p', content : a.text },
                     {
                         element : 'button',
                         attributes : { type: 'submit', mix : 'accent' },

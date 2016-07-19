@@ -1,6 +1,7 @@
 import Instance from './Instance';
 import Menu from './Menu';
-import { SPACE, ARROWS } from '../tools/keyCodes';
+import Dialog from './Dialog';
+import { SPACE, ARROWS, ENTER } from '../tools/keyCodes';
 
 export default class MenuItem extends Instance {
     constructor(element) {
@@ -9,11 +10,16 @@ export default class MenuItem extends Instance {
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
         this.on('mouseleave', this.onMouseLeave);
+        this.on('click', this.onClick);
     }
     get type() {
         return this.element.dataset.type || '';
     }
+    get controls() {
+        return this.element.getAttribute('aria-controls') || '';
+    }
     onKeyDown(event) {
+        const element = this.element;
         const keyCode = event.keyCode;
         if(keyCode === ARROWS.UP || keyCode === ARROWS.DOWN) {
             event.preventDefault();
@@ -21,7 +27,10 @@ export default class MenuItem extends Instance {
         }
         else if(keyCode === SPACE && !event.repeat) {
             event.preventDefault();
-            this.element.classList.add('active');
+            element.classList.add('active');
+        }
+        else if(keyCode === ENTER) {
+            if(!element.href) this.emit('click');
         }
     }
     onKeyUp({ keyCode }) {
@@ -45,6 +54,13 @@ export default class MenuItem extends Instance {
     }
     onMouseLeave() {
         this.element.blur();
+    }
+    onClick() {
+        if(this.type === 'dialog') {
+            const dialog = Dialog.getInstance(document.getElementById(this.controls));
+            dialog.trigger = this;
+            dialog.hidden = 'false';
+        }
     }
     focus() {
         this.element.focus();

@@ -19,6 +19,8 @@ export default domTransform => {
             element : a.href? 'a' : 'div',
             attributes : {
                 'data-instance' : 'MenuItem',
+                'data-type' : a.type,
+                'aria-controls' : a.controls,
                 role : 'menuitem',
                 tabindex : '-1',
                 href : a.href,

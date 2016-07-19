@@ -22,7 +22,7 @@ export default domTransform => {
                 'class' : mix(a.view || 'radiogroup', a.mix)
             },
             content : [
-                {
+                /*{
                     element : 'input',
                     attributes : {
                         type : 'hidden',
@@ -31,7 +31,7 @@ export default domTransform => {
                         name : a.name,
                         value : params.value
                     }
-                },
+                },*/
                 content
             ]
         };
