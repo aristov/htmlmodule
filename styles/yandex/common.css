@@ -6,3 +6,17 @@ body
 {
     display: none !important;
 }
+
+/*
+.group
+{
+    display: inline-block;
+}
+.group[aria-label]::before
+{
+    content: attr(aria-label);
+    display: block;
+    margin-bottom: 5px;
+    cursor: default;
+}
+*/
