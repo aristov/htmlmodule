@@ -85,8 +85,8 @@ export default class ListBox extends Instance {
         if(nextIndex === options.length) nextIndex = 0;
         if(nextIndex < 0) nextIndex = options.length - 1;
 
-        this.selectedOptions.forEach(option => option.selected = 'false');
-        options[nextIndex].selected = true;
+        //this.selectedOptions.forEach(option => option.selected = 'false');
+        options[nextIndex].selected = 'true';
         this.scrollToSelected();
     }
     scrollToSelected() {
@@ -104,7 +104,9 @@ export default class ListBox extends Instance {
         if(event.keyCode === SPACE) this.onSpaceKeyUp(event);
     }
     onSpaceKeyUp() {
-        this.checkedOptions = this.checkedOption === this.selectedOption? [] : this.selectedOptions;
+        if(this.find(Option, ({ checked }) => checked)) {
+            this.checkedOptions = this.checkedOption === this.selectedOption? [] : this.selectedOptions;
+        }
         this.selectedOptions.forEach(option => option.element.classList.remove('active'));
     }
     onFocus() {

@@ -80,3 +80,19 @@ article.mixes section.tabmenuexample .tabpanel
     min-width: 65px;
     vertical-align: top;
 }
+
+.inlineblock
+{
+    display: inline-block !important;
+}
+
+article.listboxstand .inlineblock
+{
+    margin-right: 20px;
+}
+article.listboxstand .separator
+{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}

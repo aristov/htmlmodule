@@ -98,6 +98,27 @@ templates.forEach(template => template(domTransform));
 
 domTransform.node('text', text => /^\s*\n\s*$/.test(text.content)? null : text);
 
+domTransform.element('inlineblock', function({ content }) {
+    return {
+        element : 'span',
+        attributes : {
+            'class' : 'inlineblock'
+        },
+        content : this.apply(content)
+    }
+});
+
+domTransform.element('separator', function({ attributes : a }) {
+    return {
+        element : 'span',
+        attributes : {
+            role : 'separator',
+            'class' : 'separator',
+            'aria-orientation' : a.orientation
+        }
+    }
+});
+
 fetch('index.xml')
     .then(response => response.text())
     .then(xml => {

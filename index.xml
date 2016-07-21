@@ -76,7 +76,7 @@
             </radiogroup>
         </section>
     </article>
-    <article>
+    <article class="listboxstand">
         <h1>List box</h1>
         <!--<section>
             <label>
@@ -90,16 +90,33 @@
         </section>-->
         <section>
             <listbox name="listbox" label="Simple">
-                <option value="first" checked="true">First</option>
-                <option value="second" checked="false">Second</option>
-                <option value="third" checked="false">Third</option>
+                <option value="first">First option</option>
+                <option value="second">Second option</option>
+                <option value="third">Third option</option>
             </listbox>
         </section>
         <section>
-            <listbox disabled="true" name="listbox" label="Disabled">
-                <option value="first">First</option>
-                <option value="second" checked="true">Second</option>
-                <option value="third">Third</option>
+            <listbox disabled="true" name="listbox-disabled" label="Disabled">
+                <option value="first">First option</option>
+                <option value="second" selected="true">Second option</option>
+                <option value="third">Third option</option>
+            </listbox>
+        </section>
+    </article>
+    <article>
+        <h1>Check list box</h1>
+        <section>
+            <listbox name="checklistbox" label="Simple">
+                <option value="first" checked="false">First option</option>
+                <option value="second" checked="false">Second option</option>
+                <option value="third" checked="false">Third option</option>
+            </listbox>
+        </section>
+        <section>
+            <listbox disabled="true" name="checklistbox-disabled" label="Disabled">
+                <option value="first" checked="false">First option</option>
+                <option value="second" checked="true">Second option</option>
+                <option value="third" checked="false">Third option</option>
             </listbox>
         </section>
     </article>

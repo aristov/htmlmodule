@@ -33,6 +33,7 @@ export default domTransform => {
                 tabindex : 'tabindex' in a? a.tabindex : a.disabled === 'true' || '0',
                 'aria-label' : a.label,
                 'aria-disabled' : a.disabled,
+                'aria-multiselectable' : a.multiselectable,
                 'class' : mix(a.view || 'listbox', a.mix)
             },
             content

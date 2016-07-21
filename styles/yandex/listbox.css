@@ -21,9 +21,13 @@
     display: block;
     position: relative;
     height: 24px;
-    padding: 0 30px;
+    padding: 0 13px;
     line-height: 25px;
     cursor: pointer;
+}
+.listbox .option[aria-checked]
+{
+    padding: 0 30px;
 }
 .listbox:not([aria-disabled=true]) .option:hover/*:not([aria-selected])*/
 {
@@ -53,7 +57,29 @@
     box-shadow: 0 0 0 1px #ffdb4d;
 }
 
-/* disabled */
+/* option selected */
+/*.listbox:not([aria-disabled=true]) .option[aria-selected=true]:not([aria-checked])
+{
+    background: rgba(0, 0, 0, 0.1);
+}*/
+
+.listbox:focus span[role=option].option[aria-selected=true],
+.listbox:not([aria-disabled=true]) .option[aria-selected=true]:not([aria-checked])
+{
+    background: #ffeba0;
+}
+.listbox:focus span[role=option].option[aria-selected=true]:active,
+.listbox:focus span[role=option].option[aria-selected=true].active
+{
+    background: #fee481;
+}
+.listbox .option[aria-checked=true]::before
+{
+    content: url(images/checkmark-small.svg);
+    position: absolute;
+    top: 2px;
+    left: 10px;
+}
 
 .listbox[aria-disabled=true] .box
 {
@@ -67,24 +93,9 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
-/* option selected */
-
-.listbox:focus .option[aria-selected=true],
-.listbox:hover .option[aria-selected=true]:hover
+.listbox[aria-disabled=true] .option[aria-selected=true]:not([aria-checked])
 {
-    background: #ffeba0;
-}
-.listbox:focus .option[aria-selected=true]:active,
-.listbox:focus .option[aria-selected=true].active
-{
-    background: #fee481;
-}
-.listbox .option[aria-checked=true]::before
-{
-    content: url(images/checkmark-small.svg);
-    position: absolute;
-    top: 2px;
-    left: 10px;
+    background: rgba(0, 0, 0, 0.1);
 }
 .listbox[aria-disabled=true] .option[aria-checked=true]::before
 {
