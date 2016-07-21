@@ -1,3 +1,8 @@
+/**
+ * https://www.w3.org/TR/wai-aria-1.1/#button
+ * https://www.w3.org/TR/wai-aria-practices/#button
+ */
+
 import Instance from './Instance';
 import { ENTER, SPACE } from '../tools/keyCodes';
 

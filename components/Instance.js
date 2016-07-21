@@ -1,12 +1,29 @@
 /**
+ * concept
  * https://www.w3.org/TR/wai-aria-1.1/#roletype
+ *
+ * id
+ * https://www.w3.org/TR/wai-aria-1.1/#valuetype_idref
+ * https://www.w3.org/TR/html5/dom.html#the-id-attribute
+ *
+ * hidden
+ * https://www.w3.org/TR/wai-aria-1.1/#aria-hidden
+ * https://www.w3.org/TR/wai-aria-1.1/#dfn-hidden
+ * https://www.w3.org/TR/html5/editing.html#the-hidden-attribute
+ *
+ * disabled
+ * https://www.w3.org/TR/wai-aria-1.1/#aria-disabled
+ * https://www.w3.org/TR/html5/forms.html#attr-fe-disabled
+ *
+ * events
+ * https://www.w3.org/TR/dom/#events
  */
 
 const map = Array.prototype.map;
 
 export default class Instance {
     /**
-     * Base instance component
+     * The base instance from which all other instances in this taxonomy inherit
      * @param {Element} element root element node
      */
     constructor(element) {
@@ -15,7 +32,7 @@ export default class Instance {
     }
 
     /**
-     * Unique identifier
+     * Get unique identifier
      * @returns {String}
      */
     get id() {
@@ -23,7 +40,7 @@ export default class Instance {
     }
 
     /**
-     * Hidden state
+     * Get hidden state
      * @returns {String}
      */
     get hidden() {
@@ -31,15 +48,15 @@ export default class Instance {
     }
 
     /**
-     * Hidden state
-     * @param {String} hidden
+     * Set hidden state
+     * @param {String} hidden state
      */
     set hidden(hidden) {
         this.element.hidden = hidden === 'true';
     }
 
     /**
-     * Disabled state
+     * Get disabled state
      * @returns {String}
      */
     get disabled() {
@@ -47,8 +64,8 @@ export default class Instance {
     }
 
     /**
-     * Disabled state
-     * @param {String} disabled
+     * Set disabled state
+     * @param {String} disabled state
      */
     set disabled(disabled) {
         this.element.setAttribute('aria-disabled', disabled);
@@ -92,7 +109,7 @@ export default class Instance {
      * Find all descendant instances
      * @param {Instance} Class target instance class
      * @param {Function} filter function
-     * @returns {[Instance]}
+     * @returns {Array} array of found instances
      */
     findAll(Class, filter) {
         const result = map.call(
@@ -105,7 +122,7 @@ export default class Instance {
      * Find the nearest ancestor instance
      * @param {Instance} Class target instance class
      * @param {Function} filter function
-     * @returns {Instance}
+     * @returns {Instance} found instance
      */
     closest(Class, filter) {
         let instance = this;
