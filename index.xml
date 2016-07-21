@@ -224,25 +224,25 @@
             </label>
         </section>-->
         <section>
-            <select label="Simple">
+            <selectbox label="Simple">
                 <option checked="false" value="one">First option</option>
                 <option checked="false" value="two">Second option</option>
                 <option checked="false" value="three">Third option</option>
-            </select>
+            </selectbox>
         </section>
         <section>
-            <select label="Checked">
+            <selectbox label="Checked">
                 <option checked="false" value="one">First option</option>
                 <option checked="true" value="two">Second option</option>
                 <option checked="false" value="three">Third option</option>
-            </select>
+            </selectbox>
         </section>
         <section>
-            <select label="Disabled" disabled="true">
+            <selectbox label="Disabled" disabled="true">
                 <option checked="false" value="one">First option</option>
                 <option checked="true" value="two">Second option</option>
                 <option checked="false" value="three">Third option</option>
-            </select>
+            </selectbox>
         </section>
     </article>
     <article>

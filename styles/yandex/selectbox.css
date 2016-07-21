@@ -1,23 +1,23 @@
-.select
+.selectbox
 {
     display: inline-block;
     outline: none;
 }
-.select .button
+.selectbox .button
 {
     position: relative;
     padding-right: 24px;
 }
-.select:focus .button
+.selectbox:focus .button
 {
     border-color: #ffdb4d;
     box-shadow: inset 0 0 0 1px #ffdb4d;
 }
-.select.active .button
+.selectbox.active .button
 {
     background: #f3f1ed;
 }
-.select .button::after
+.selectbox .button::after
 {
     content: url(images/arrow-down.svg);
     position: absolute;
@@ -25,43 +25,43 @@
     right: 6px;
     transition: transform 0.1s ease-out 0s;
 }
-.select[aria-disabled=true]
+.selectbox[aria-disabled=true]
 {
     color: rgba(0, 0, 0, 0.5);
 }
-.select[aria-disabled=true] .button::after
+.selectbox[aria-disabled=true] .button::after
 {
     opacity: 0.2;
 }
-.select[aria-label]::before
+.selectbox[aria-label]::before
 {
     content: attr(aria-label);
     display: block;
     margin-bottom: 5px;
     cursor: default;
 }
-.select .listbox
+.selectbox .listbox
 {
     display: block;
 }
-.select .listbox .box
+.selectbox .listbox .box
 {
     border: none;
 }
-.select[aria-expanded=true] .button::after
+.selectbox[aria-expanded=true] .button::after
 {
     transform: rotate(-180deg) translateY(-2px);
 }
-.select[aria-expanded=false] .listbox
+.selectbox[aria-expanded=false] .listbox
 {
     display: none;
 }
-.select:focus .listbox .option[aria-selected=true]
+.selectbox:focus .listbox .option[aria-selected=true]
 {
     background: #ffeba0;
 }
-.select .listbox .option[aria-selected=true]:active,
-.select .listbox .option[aria-selected=true].active
+.selectbox .listbox .option[aria-selected=true]:active,
+.selectbox .listbox .option[aria-selected=true].active
 {
     background: #fee481;
 }

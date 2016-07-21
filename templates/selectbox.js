@@ -5,18 +5,18 @@ export default domTransform => {
     button(domTransform);
     listbox(domTransform);
 
-    domTransform.element('select', function({ attributes : a, content }) {
+    domTransform.element('selectbox', function({ attributes : a, content }) {
         const option = { text : '—', value : undefined };
 
         const selectbox = {
             element : 'span',
             attributes : {
-                'data-instance' : 'Select',
+                'data-instance' : 'SelectBox',
                 role : 'combobox',
                 tabindex : a.disabled === 'true' || '0',
                 'aria-expanded' : 'false',
                 'aria-disabled' : a.disabled,
-                'class' : 'select',
+                'class' : 'selectbox',
                 'aria-label' : a.label,
                 'data-emptyoption' : JSON.stringify(option)
             }

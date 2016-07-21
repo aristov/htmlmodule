@@ -7,7 +7,7 @@ import MenuButton from './components/MenuButton';
 import Menu from './components/Menu';
 import RadioGroup from './components/RadioGroup';
 import ListBox from './components/ListBox';
-import Select from './components/Select';
+import SelectBox from './components/SelectBox';
 import TextBox from './components/TextBox';
 import PasswordBox from './components/PasswordBox';
 import NumberBox from './components/NumberBox';
@@ -34,7 +34,7 @@ import searchgroup from './templates/searchgroup';
 import datepicker from './templates/datepicker';
 import datebox from './templates/datebox';
 import timebox from './templates/timebox';
-import select from './templates/select';
+import selectbox from './templates/selectbox';
 import menu from './templates/menu';
 import menubutton from './templates/menubutton';
 import group from './templates/group';
@@ -52,7 +52,7 @@ const components = [
     MenuButton,
     RadioGroup,
     ListBox,
-    Select,
+    SelectBox,
     TextBox,
     PasswordBox,
     NumberBox,
@@ -81,7 +81,7 @@ const templates = [
     datepicker,
     datebox,
     timebox,
-    select,
+    selectbox,
     menu,
     menubutton,
     group,

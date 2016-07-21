@@ -5,7 +5,7 @@
 @import url(styles/yandex/checkbox.css);
 @import url(styles/yandex/radiogroup.css);
 @import url(styles/yandex/listbox.css);
-@import url(styles/yandex/select.css);
+@import url(styles/yandex/selectbox.css);
 @import url(styles/yandex/textbox.css);
 @import url(styles/yandex/passwordbox.css);
 @import url(styles/yandex/numberbox.css);
@@ -38,7 +38,7 @@ section
 {
     max-height: 150px;
 }
-.select .button
+.selectbox .button
 {
     min-width: 130px;
 }

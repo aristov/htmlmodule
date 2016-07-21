@@ -5,7 +5,7 @@ import { SPACE, ESCAPE, ARROWS } from '../tools/keyCodes';
 
 const ARROW_CODES = Object.values(ARROWS);
 
-export default class Select extends Instance {
+export default class SelectBox extends Instance {
     constructor(element) {
         super(element);
 
