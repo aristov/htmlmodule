@@ -71,3 +71,41 @@
     border-color: red;
 }
 
+.textboxgroup
+{
+    display: inline-block;
+}
+.textboxgroup .textbox:not(:last-child) > .box
+{
+    border-right: none;
+}
+.textboxgroup .textbox.focus + .textbox > .box
+{
+    border-left-color: #ffdb4d;
+}
+.textboxgroup .textbox.hover:not(.focus) + .textbox:not(:focus) > .box
+{
+    border-left-color: rgba(0, 0, 0, 0.3);
+}
+
+
+/*.textboxgroup
+{
+    display: inline-block;
+}
+.textboxgroup .textinput:not(:focus):not(:last-of-type)
+{
+    border-right-width: 0;
+}
+.textboxgroup .textinput:focus + .textinput
+{
+    border-left-width: 0;
+}
+.textboxgroup .textinput[aria-checked=true] + .textinput:not(:focus):not(:hover)
+{
+    border-left-color: rgba(153, 122, 0, 0.5);
+}
+.textboxgroup:hover .textinput:hover + .textinput:not(:focus)
+{
+    border-left-color: rgba(0, 0, 0, 0.3);
+}*/
