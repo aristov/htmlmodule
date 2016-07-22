@@ -95,6 +95,13 @@
                 <option value="third">Third option</option>
             </listbox>
         </section>
+        <!--<section>
+            <listbox multiselectable="true" name="listbox-multiselectable" label="Multiselectable">
+                <option value="first">First option</option>
+                <option value="second">Second option</option>
+                <option value="third">Third option</option>
+            </listbox>
+        </section>-->
         <section>
             <listbox disabled="true" name="listbox-disabled" label="Disabled">
                 <option value="first">First option</option>

@@ -108,9 +108,9 @@ export default class TreeItem extends Instance {
     }
     static attachTo(node) {
         node.addEventListener('focus', event => {
-            let target = event.target,
-                treeItem = this.getInstance(target);
-            if(treeItem) treeItem.onFocus(event);
+            const target = event.target;
+            const treeitem = this.getInstance(target);
+            if(treeitem) treeitem.onFocus(event);
         }, true);
     }
 }

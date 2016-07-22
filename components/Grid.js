@@ -44,8 +44,8 @@ export default class Grid extends Instance {
         this.selection = null;
     }
     merge(cells) {
-        let first = cells[0],
-            last = cells[cells.length - 1];
+        const first = cells[0];
+        const last = cells[cells.length - 1];
         first.merged = [];
         cells.forEach(cell => {
             cell.selected = 'false';
@@ -61,15 +61,15 @@ export default class Grid extends Instance {
         first.mode = 'edit';
     }
     selectAll() {
-        let rows = this.rows,
-            firstRowCells = rows[0].cells,
-            lastRowCells = rows[rows.length - 1].cells,
-            topLeftCell = firstRowCells[0],
-            topRightCell = firstRowCells[firstRowCells.length - 1],
-            bottomLeftCell = lastRowCells[0],
-            bottomRightCell = lastRowCells[lastRowCells.length - 1],
-            active = this.active,
-            selection;
+        const rows = this.rows;
+        const firstRowCells = rows[0].cells;
+        const lastRowCells = rows[rows.length - 1].cells;
+        const topLeftCell = firstRowCells[0];
+        const topRightCell = firstRowCells[firstRowCells.length - 1];
+        const bottomLeftCell = lastRowCells[0];
+        const bottomRightCell = lastRowCells[lastRowCells.length - 1];
+        const active = this.active;
+        let selection;
         this.cells.forEach(cell => cell.selected = 'true');
         switch(active) {
             case topLeftCell : selection = bottomRightCell; break;
@@ -81,16 +81,16 @@ export default class Grid extends Instance {
         this.selection = selection;
     }
     updateSelection(target) {
-        let active = this.active;
+        const active = this.active;
         this.unselect();
         if(active && target !== active) {
-            let rowStart = Math.min(active.row.index, target.row.index),
-                rowEnd = Math.max(active.row.index, target.row.index),
-                colStart = Math.min(active.index, target.index),
-                colEnd = Math.max(active.index, target.index),
-                rows = this.rows,
-                merged = false,
-                cells, cell, i, j;
+            const rowStart = Math.min(active.row.index, target.row.index);
+            const rowEnd = Math.max(active.row.index, target.row.index);
+            const colStart = Math.min(active.index, target.index);
+            const colEnd = Math.max(active.index, target.index);
+            const rows = this.rows;
+            let merged = false;
+            let cells, cell, i, j;
             for(i = rowStart; i <= rowEnd; i++) {
                 cells = rows[i].cells;
                 for(j = colStart; j <= colEnd; j++) {

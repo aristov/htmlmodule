@@ -30,9 +30,9 @@ export default class GridCell extends Instance {
     }
     set mode(mode) {
         if(mode !== this.mode && this.readonly !== 'true') {
-            let element = this.element,
-                input = this.input,
-                text = this.text;
+            const element = this.element;
+            const input = this.input;
+            const text = this.text;
             if(mode === 'edit') {
                 input.value = text.textContent;
                 text.hidden = true;
@@ -84,14 +84,14 @@ export default class GridCell extends Instance {
         this.element.tabIndex = active === 'true'? 0 : -1;
     }
     get leftSibling() {
-        let cell = this.row.cells[this.index - 1];
+        const cell = this.row.cells[this.index - 1];
         return cell? cell.span || cell : null;
     }
     get rightSibling() {
         return this.row.cells[this.index + this.element.colSpan] || null;
     }
     get topSibling() {
-        let cell = this.column[this.row.index - 1];
+        const cell = this.column[this.row.index - 1];
         return cell? cell.span || cell : null;
     }
     get bottomSibling() {
@@ -104,20 +104,18 @@ export default class GridCell extends Instance {
         return this.grid.cells.filter(cell => cell.index === this.index);
     }
     getMerged() {
-        let element = this.element,
-            rowSpan = element.rowSpan,
-            colSpan = element.colSpan,
-            merged = [];
+        const element = this.element;
+        const rowSpan = element.rowSpan;
+        const colSpan = element.colSpan;
+        const merged = [];
         if(rowSpan > 1 || colSpan > 1) {
-            let grid = this.grid,
-                rows = grid.rows,
-                index = this.index,
-                rowIndex = this.row.index,
-                cells, cell, i, j;
-            for(i = rowIndex; i < rowIndex + rowSpan; i++) {
-                cells = rows[i].cells;
-                for(j = index; j < index + colSpan; j++) {
-                    cell = cells[j];
+            const rows = this.grid.rows;
+            const index = this.index;
+            const rowIndex = this.row.index;
+            for(let i = rowIndex; i < rowIndex + rowSpan; i++) {
+                const cells = rows[i].cells;
+                for(let j = index; j < index + colSpan; j++) {
+                    const cell = cells[j];
                     if(cell !== this) {
                         cell.span = this;
                         merged.push(cell);
@@ -128,8 +126,8 @@ export default class GridCell extends Instance {
         return merged;
     }
     getInput() {
-        let element = this.element,
-            input = element.querySelector('input');
+        const element = this.element;
+        let input = element.querySelector('input');
         if(!input) {
             input = document.createElement('input');
             input.hidden = true;
@@ -157,13 +155,13 @@ export default class GridCell extends Instance {
         // this.grid.unselect();
     }
     onMouseEnter({ buttons }) {
-        let grid = this.grid;
+        const grid = this.grid;
         if(buttons === 1 && grid.multiselectable === 'true') {
             grid.updateSelection(this);
         }
     }
     onKeyDown(event) {
-        let keyCode = event.keyCode;
+        const keyCode = event.keyCode;
         if(keyCode === ENTER) this.onEnterKeyDown(event);
         else if(keyCode === ESCAPE) this.onEscapeKeyDown(event);
         else if(ARROW_CODES.includes(keyCode) && this.mode === 'navigation') {
@@ -197,11 +195,11 @@ export default class GridCell extends Instance {
     }
     onEnterKeyDown({ ctrlKey }) {
         if(this.mode === 'navigation') {
-            let grid = this.grid,
-                selected = grid.selected;
+            const grid = this.grid;
             if(ctrlKey) {
+                const selected = grid.selected;
                 if(selected.length) {
-                    let merged = selected.filter(cell => Boolean(cell.merged.length));
+                    const merged = selected.filter(cell => Boolean(cell.merged.length));
                     grid.unselect();
                     if(merged.length) merged.forEach(cell => cell.unmerge());
                     else grid.merge(selected);
@@ -216,14 +214,14 @@ export default class GridCell extends Instance {
         }
     }
     unmerge() {
-        let merged = this.merged;
+        const merged = this.merged;
         if(merged.length) {
-            let element = this.element,
-                cell;
+            let cell;
             while(cell = merged.pop()) {
                 cell.span = null;
                 cell.hidden = 'false';
             }
+            const element = this.element;
             element.rowSpan = 1;
             element.colSpan = 1;
         }
@@ -239,12 +237,12 @@ export default class GridCell extends Instance {
         this.mode = 'edit';
     }
     onArrowKeyDown({ keyCode, ctrlKey, shiftKey, metaKey }) {
-        let grid = this.grid,
-            current = shiftKey? grid.selection || this : this,
-            target;
+        const grid = this.grid;
+        const current = shiftKey && grid.selection || this;
+        let target;
         if(ctrlKey || metaKey) {
-            let rowCells = current.row.cells,
-                column = current.column;
+            const rowCells = current.row.cells;
+            const column = current.column;
             switch(keyCode) {
                 case LEFT: target = rowCells[0]; break;
                 case UP: target = column[0]; break;

@@ -7,14 +7,15 @@ export default class Option extends Instance {
         element.id || this.generateId();
         this.listbox = this.closest(ListBox);
         this.on('click', this.onClick);
+        this.on('mouseenter', this.onMouseEnter);
     }
     get selected() {
         return this.element.getAttribute('aria-selected') || '';
     }
     set selected(selected) {
         if(selected === 'true') {
-            const selectedOption = this.listbox.selectedOption;
-            if(selectedOption) selectedOption.selected = 'false';
+            /*const selectedOption = this.listbox.selectedOption;
+            if(selectedOption) selectedOption.selected = 'false';*/
             this.listbox.activedescendant = this.element.id;
             if(!this.checked) this.listbox.value = this.value;
         }
@@ -49,8 +50,16 @@ export default class Option extends Instance {
         if(this.disabled === 'true') event.stopImmediatePropagation();
         else if(this.checked) this.listbox.checkedOptions = this.checked === 'false'? [this] : [];
     }
+    onMouseEnter({ buttons }) {
+        if(buttons === 1 && this.multiselectable === 'true') {
+            this.selected = 'true';
+        }
+    }
     onMouseDown() {
-        if(this.disabled !== 'true') this.selected = 'true';
+        if(this.disabled !== 'true') {
+            this.listbox.options.forEach(option => option.selected = 'false');
+            this.selected = 'true';
+        }
     }
     static attachTo(node) {
         node.addEventListener('mousedown', event => {

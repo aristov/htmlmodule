@@ -57,7 +57,7 @@ export default class Radio extends Instance {
         if(keyCode === ENTER) this.submitForm();
     }
     submitForm() {
-        let form = this.element.closest('form');
+        const form = this.element.closest('form');
         if(form) form.dispatchEvent(new Event('submit', { bubbles : true, cancelable : true }));
     }
     onKeyUp({ keyCode }) {
@@ -70,7 +70,7 @@ export default class Radio extends Instance {
     onArrowKeyDown({ keyCode }) {
         const group = this.group;
         const radios = group.radios;
-        let direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1;
+        const direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1;
         let index = radios.indexOf(this) + direction;
 
         if(index === radios.length) index = 0;

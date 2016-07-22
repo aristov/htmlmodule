@@ -15,14 +15,14 @@ export default class RadioGroup extends Instance {
     set disabled(value) {
         const element = this.element;
         const radios = this.radios;
-        let disabled = String(value);
-        let checked;
+        const disabled = String(value);
 
         if(this.input.disabled = disabled === 'true') {
             element.setAttribute('aria-disabled', 'true');
             radios.forEach(({ element }) => element.removeAttribute('tabindex'));
         } else {
             element.removeAttribute('aria-disabled');
+            let checked;
             radios.forEach(radio => {
                 radio.element.tabIndex = -1;
                 if(radio.checked === 'true') checked = radio;

@@ -43,7 +43,7 @@ export default class MenuItem extends Instance {
     }
     onArrowKeyDown({ keyCode }) {
         const items = this.menu.items;
-        let direction = keyCode === ARROWS.UP? -1 : 1;
+        const direction = keyCode === ARROWS.UP? -1 : 1;
         let index = items.indexOf(this) + direction;
         if(index === items.length) index = 0;
         if(index < 0) index = items.length - 1;
@@ -67,7 +67,7 @@ export default class MenuItem extends Instance {
     }
     static attachTo(node) {
         node.addEventListener('mouseenter', event => {
-            let menuItem = this.getInstance(event.target);
+            const menuItem = this.getInstance(event.target);
             if(menuItem) menuItem.onMouseEnter(event);  
         }, true);
     }

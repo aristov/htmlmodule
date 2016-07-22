@@ -75,19 +75,24 @@ export default class ListBox extends Instance {
             this.onSpaceKeyDown(event);
         }
     }
-    onArrowKeyDown({ keyCode }) {
+    onArrowKeyDown({ keyCode, shiftKey }) {
         const options = this.options;
         const selectedOptions = this.selectedOptions;
         const direction = keyCode === ARROWS.LEFT || keyCode === ARROWS.UP? -1 : 1;
         const selectedOption = selectedOptions[direction < 0? 0 : selectedOptions.length - 1];
         let nextIndex = options.indexOf(selectedOption) + direction;
 
-        if(nextIndex === options.length) nextIndex = 0;
-        if(nextIndex < 0) nextIndex = options.length - 1;
-
-        //this.selectedOptions.forEach(option => option.selected = 'false');
-        options[nextIndex].selected = 'true';
-        this.scrollToSelected();
+        if(this.multiselectable === 'false') {
+            if(nextIndex === options.length) nextIndex = 0;
+            if(nextIndex < 0) nextIndex = options.length - 1;
+            this.options.forEach(option => option.selected = 'false');
+            options[nextIndex].selected = 'true';
+            this.scrollToSelected();
+        }/* else if(nextIndex >= 0 && nextIndex < options.length) {
+            if(!shiftKey) this.options.forEach(option => option.selected = 'false');
+            options[nextIndex].selected = 'true';
+            this.scrollToSelected();
+        }*/
     }
     scrollToSelected() {
         const box = this.box;

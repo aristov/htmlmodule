@@ -101,9 +101,7 @@ domTransform.node('text', text => /^\s*\n\s*$/.test(text.content)? null : text);
 domTransform.element('inlineblock', function({ content }) {
     return {
         element : 'span',
-        attributes : {
-            'class' : 'inlineblock'
-        },
+        attributes : { 'class' : 'inlineblock' },
         content : this.apply(content)
     }
 });

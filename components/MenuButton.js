@@ -48,8 +48,8 @@ export default class MenuButton extends Button {
         super.onKeyDown(event);
         const keyCode = event.keyCode;
         if(keyCode === ARROWS.DOWN || keyCode === ARROWS.UP) {
-            const items = this.menu.items;
             if(this.expanded === 'false') this.expanded = 'true';
+            const items = this.menu.items;
             items[keyCode === ARROWS.DOWN? 0 : items.length - 1].focus();
             event.preventDefault();
         }
