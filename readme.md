@@ -4,7 +4,7 @@ UI design library implementation with:
 
 - [WAI-ARIA](//www.w3.org/TR/wai-aria-1.1/) + [BEM](//bem.info/methodology/) — UI design method
 - [ES6](http://www.ecma-international.org/ecma-262/6.0/) — programming language
-- [DOM4](https://dom.spec.whatwg.org/) + [HTML5](http://html.spec.whatwg.org/) — application layout model
+- [DOM4](https://www.w3.org/TR/dom/) + [HTML5](http://www.w3.org/TR/html/) — application layout model
 - [DOMTransform](//github.com/aristov/DOMTransform) + [DON](//github.com/aristov/DON) — templating
 
 [Showcase](http://aristov.github.io/instance/)
