@@ -1,6 +1,7 @@
 /**
- * concept
+ * base concept
  * https://www.w3.org/TR/wai-aria-1.1/#roletype
+ * https://www.w3.org/TR/dom/#element
  *
  * id
  * https://www.w3.org/TR/wai-aria-1.1/#valuetype_idref
@@ -18,6 +19,12 @@
  * events
  * https://www.w3.org/TR/dom/#events
  */
+
+Object.defineProperty(Element.prototype, 'instance', {
+    enumerable : true,
+    writable : true,
+    value : null
+});
 
 const map = Array.prototype.map;
 
@@ -75,7 +82,7 @@ export default class Instance {
      * Add event listener
      * @param {String} type event type
      * @param {Function} listener event listener
-     * @param {Object} context event listener context
+     * @param {Object} [context] event listener context
      * @returns {Instance} this
      */
     on(type, listener, context) {
@@ -84,7 +91,7 @@ export default class Instance {
     }
 
     /**
-     * Dispatch event
+     * Dispatch an event
      * @param {String} type event type;
      * @returns {Instance} this
      */
@@ -94,9 +101,9 @@ export default class Instance {
     }
 
     /**
-     * Find the first descendant instance
+     * Find the first descendant instance of the specified class
      * @param {Instance} Class target instance class
-     * @param {Function} filter function
+     * @param {Function} [filter] function
      * @returns {Instance|null}
      */
     find(Class, filter) {
@@ -106,9 +113,9 @@ export default class Instance {
     }
 
     /**
-     * Find all descendant instances
+     * Find all descendant instances of the specified class
      * @param {Instance} Class target instance class
-     * @param {Function} filter function
+     * @param {Function} [filter] function
      * @returns {Array} array of found instances
      */
     findAll(Class, filter) {
@@ -119,9 +126,9 @@ export default class Instance {
     }
 
     /**
-     * Find the nearest ancestor instance
+     * Find the nearest ancestor instance of the specified class
      * @param {Instance} Class target instance class
-     * @param {Function} filter function
+     * @param {Function} [filter] function
      * @returns {Instance} found instance
      */
     closest(Class, filter) {
@@ -132,7 +139,7 @@ export default class Instance {
     }
 
     /**
-     * Create if needed and return the instance of specified element
+     * Create if needed and return the instance of the specified element
      * @param {Element} element root element node of target instance
      * @returns {Instance|null}
      */
@@ -143,7 +150,7 @@ export default class Instance {
     }
 
     /**
-     * Create if needed and return the nearest ancestor instance of specified element
+     * Create if needed and return the nearest ancestor instance of the specified element
      * @param {Element} element node inside target instance
      * @returns {Instance|null}
      */
@@ -152,10 +159,10 @@ export default class Instance {
     }
 
     /**
-     * Delegate event listener to the document node
+     * Delegate an event listener to the document node
      * @param {String} type event type
      * @param {Function} listener event listener
-     * @param {Object} context event listener context
+     * @param {Object} [context] event listener context
      */
     static on(type, listener, context) {
         document.addEventListener(type, event => {
