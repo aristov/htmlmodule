@@ -101,7 +101,7 @@ class TodoItem extends Instance {
         }
     }
     remove() {
-        this.element.parentElement.removeChild(this.element);
+        this.element.remove();
         this.app.save();
     }
     focus() {
