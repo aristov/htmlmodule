@@ -1,3 +1,5 @@
+import { fromDOM, toDOM } from './DON';
+
 export default class DOMTransform {
     constructor() {
         this.nodes = {
@@ -53,6 +55,9 @@ export default class DOMTransform {
             if(transform) return transform.call(this, object, params);
         }
         throw Error('Match failed');
+    }
+    transform(input) {
+        return toDOM(this.apply(input instanceof Node? fromDOM(input) : input));
     }
     templates(...templates) {
         templates.forEach(template => template(this));
