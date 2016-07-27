@@ -1,6 +1,8 @@
 const map = Array.prototype.map;
 const reduce = Array.prototype.reduce;
 
+const processChildNodes = node => map.call(node.childNodes, child => fromDOM(child));
+
 const { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE, DOCUMENT_NODE, DOCUMENT_TYPE_NODE } = Node;
 
 export const fromDOM = node => {
@@ -12,7 +14,7 @@ export const fromDOM = node => {
                 res[attr.name] = attr.value;
                 return res;
             }, {}),
-            content : node => map.call(node.childNodes, child => fromDOM(child))
+            content : processChildNodes(node)
         };
         case TEXT_NODE : return {
             node : 'text',
@@ -24,7 +26,7 @@ export const fromDOM = node => {
         };
         case DOCUMENT_NODE : return {
             node : 'document',
-            content : node => map.call(node.childNodes, child => fromDOM(child))
+            content : processChildNodes(node)
         };
         case DOCUMENT_TYPE_NODE : return {
             node : 'doctype',
