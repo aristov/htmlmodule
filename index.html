@@ -3,26 +3,8 @@
 <head>
     <meta charset=utf-8>
     <title>Instance.js: showcase</title>
-    <link rel=stylesheet href=index.css>
-    <script>
-        if(navigator.userAgent.indexOf('Firefox') > -1) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'styles/yandex/grid.moz.css';
-            document.head.appendChild(link);
-        }
-    </script>
-    <script>
-        if(navigator.userAgent.indexOf('WebKit') > -1) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'styles/yandex/grid.webkit.css';
-            document.head.appendChild(link);
-        }
-    </script>
-    <script src=polyfills/Object.js></script>
 </head>
 <body>
-    <script src=dist/bundle.js></script>
+    <script src=build/index.build.js></script>
 </body>
 </html>
