@@ -1,6 +1,6 @@
 import Button from './Button';
 import Dialog from './Dialog';
-import { ESCAPE, TAB } from '../tools/keyCodes';
+import { ESCAPE, TAB } from '../utils/keyCodes';
 
 export default class DialogButton extends Button {
     constructor(element) {

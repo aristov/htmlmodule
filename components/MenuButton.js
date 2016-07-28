@@ -1,6 +1,6 @@
 import Button from './Button';
 import Menu from './Menu';
-import { ESCAPE, ARROWS } from '../tools/keyCodes';
+import { ESCAPE, ARROWS } from '../utils/keyCodes';
 
 export default class MenuButton extends Button {
     constructor(element) {

@@ -1,6 +1,8 @@
 import textinput from './textinput';
 import button from './button';
-import { mix as mixes } from '../tools/utils';
+import mix from '../utils/mix';
+
+const mixes = mix;
 
 export default domTransform => {
     textinput(domTransform);

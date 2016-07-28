@@ -1,7 +1,7 @@
 import textbox from './textbox';
 import textinput from './textinput';
 import button from './button';
-import { mix } from '../tools/utils';
+import mix from '../utils/mix';
 
 export default domTransform => {
     textbox(domTransform);

@@ -1,7 +1,7 @@
 import button from './button';
 import grid from './grid';
 import moment from 'moment';
-import { mix } from '../tools/utils';
+import mix from '../utils/mix';
 
 const WEEK_DAY_NAMES = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
 

@@ -1,6 +1,6 @@
 import Instance from './Instance';
 import Option from './Option';
-import { SPACE, ARROWS } from '../tools/keyCodes';
+import { SPACE, ARROWS } from '../utils/keyCodes';
 
 const ARROW_CODES = Object.values(ARROWS);
 

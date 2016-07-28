@@ -1,5 +1,5 @@
 import Instance from './Instance';
-import { SPACE } from '../tools/keyCodes';
+import { SPACE } from '../utils/keyCodes';
 
 export default class CheckBox extends Instance {
     constructor(element) {

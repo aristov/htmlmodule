@@ -1,8 +1,8 @@
 import DOMTransform from 'DOMTransform';
 import fromXML from 'DON/lib/fromXML';
 
-import documentskip from '../tools/templates/documentskip';
-import whitespacefilter from '../tools/templates/whitespacefilter';
+import documentskip from '../utils/templates/documentskip';
+import whitespacefilter from '../utils/templates/whitespacefilter';
 
 import { components, templates } from '../bundles/all';
 

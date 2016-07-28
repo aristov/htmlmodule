@@ -1,6 +1,6 @@
 import Instance from './Instance';
 import Tree from './Tree';
-import { ARROWS, ENTER, SPACE } from '../tools/keyCodes';
+import { ARROWS, ENTER, SPACE } from '../utils/keyCodes';
 
 const ARROW_CODES = Object.values(ARROWS);
 

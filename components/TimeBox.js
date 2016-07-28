@@ -1,6 +1,6 @@
 import NumberBox from './NumberBox';
 import moment from 'moment';
-import { DIGITS, ARROWS, BACKSPACE } from '../tools/keyCodes';
+import { DIGITS, ARROWS, BACKSPACE } from '../utils/keyCodes';
 
 const DIGIT_CODES = Object.values(DIGITS);
 const SEMISPACE = ' ';

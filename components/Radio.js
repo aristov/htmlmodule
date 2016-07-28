@@ -1,6 +1,6 @@
 import Instance from './Instance';
 import RadioGroup from './RadioGroup';
-import { SPACE, ENTER, ARROWS } from '../tools/keyCodes';
+import { SPACE, ENTER, ARROWS } from '../utils/keyCodes';
 
 const ARROW_CODES = Object.values(ARROWS);
 

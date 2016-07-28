@@ -1,4 +1,4 @@
-import { mix } from '../tools/utils';
+import mix from '../utils/mix';
 
 export default domTransform => {
     domTransform.element('grid', function({ attributes : a, content }) {

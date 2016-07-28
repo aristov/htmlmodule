@@ -1,5 +1,5 @@
 import TextBox from './TextBox';
-import { ARROWS } from '../tools/keyCodes';
+import { ARROWS } from '../utils/keyCodes';
 
 export default class NumberBox extends TextBox {
     constructor(element) {

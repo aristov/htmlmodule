@@ -1,7 +1,7 @@
 import Instance from './Instance';
 import Button from './Button';
 import ListBox from './ListBox';
-import { SPACE, ESCAPE, ARROWS } from '../tools/keyCodes';
+import { SPACE, ESCAPE, ARROWS } from '../utils/keyCodes';
 
 const ARROW_CODES = Object.values(ARROWS);
 

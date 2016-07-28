@@ -1,5 +1,5 @@
 import numberbox from './numberbox';
-import { mix } from '../tools/utils';
+import mix from '../utils/mix';
 
 const SEMISPACE = ' ';
 

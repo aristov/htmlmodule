@@ -1,7 +1,7 @@
 import Instance from './Instance';
 import Grid from './Grid';
 import Row from './Row';
-import { ENTER, ESCAPE, SPACE, BACKSPACE, ARROWS, DIGITS, LETTERS } from '../tools/keyCodes';
+import { ENTER, ESCAPE, SPACE, BACKSPACE, ARROWS, DIGITS, LETTERS } from '../utils/keyCodes';
 
 const { LEFT, UP, RIGHT, DOWN } = ARROWS;
 const ARROW_CODES = Object.values(ARROWS);

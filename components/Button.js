@@ -4,7 +4,7 @@
  */
 
 import Instance from './Instance';
-import { ENTER, SPACE } from '../tools/keyCodes';
+import { ENTER, SPACE } from '../utils/keyCodes';
 
 export default class Button extends Instance {
     constructor(element) {

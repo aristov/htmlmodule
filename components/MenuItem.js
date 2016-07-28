@@ -1,7 +1,7 @@
 import Instance from './Instance';
 import Menu from './Menu';
 import Dialog from './Dialog';
-import { SPACE, ARROWS, ENTER } from '../tools/keyCodes';
+import { SPACE, ARROWS, ENTER } from '../utils/keyCodes';
 
 export default class MenuItem extends Instance {
     constructor(element) {

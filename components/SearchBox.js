@@ -1,5 +1,5 @@
 import TextBox from './TextBox';
-import { ESCAPE } from '../tools/keyCodes';
+import { ESCAPE } from '../utils/keyCodes';
 
 export default class SearchBox extends TextBox {
     constructor(element) {

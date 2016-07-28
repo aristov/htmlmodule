@@ -1,6 +1,6 @@
 import TextBox from './TextBox';
 import DatePicker from './DatePicker';
-import { ESCAPE, SPACE } from '../tools/keyCodes';
+import { ESCAPE, SPACE } from '../utils/keyCodes';
 import moment from 'moment';
 
 export default class DateBox extends TextBox {

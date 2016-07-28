@@ -1,5 +1,5 @@
 import Instance from './Instance';
-import { ESCAPE, TAB } from '../tools/keyCodes';
+import { ESCAPE, TAB } from '../utils/keyCodes';
 
 export default class Dialog extends Instance {
     constructor(element) {
