@@ -1,7 +1,7 @@
 {
   "name": "instance",
   "author": "Viacheslav Aristov <vv.aristov@gmail.ru>",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "DOMTransform": "git+https://github.com/aristov/DOMTransform.git",
     "DON": "git+https://github.com/aristov/don.git",
