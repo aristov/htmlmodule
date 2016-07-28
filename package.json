@@ -2,6 +2,11 @@
   "name": "instance",
   "author": "Viacheslav Aristov <vv.aristov@gmail.ru>",
   "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aristov/instance.git"
+  },
+  "licence": "MIT",
   "dependencies": {
     "DOMTransform": "git+https://github.com/aristov/DOMTransform.git",
     "DON": "git+https://github.com/aristov/don.git",
@@ -10,6 +15,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babel-preset-es2015": "^6.9.0",
     "moment": "^2.13.0",
+    "object.values": "^1.0.3",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
