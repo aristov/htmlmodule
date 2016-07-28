@@ -1,4 +1,5 @@
-import DOMTransform from './tools/DOMTransform';
+import DOMTransform from 'DOMTransform';
+import fromXML from 'DON/lib/fromXML';
 
 import Button from './components/Button';
 import CheckBox from './components/CheckBox';
@@ -119,7 +120,6 @@ domTransform.element('separator', ({ attributes : a }) => ({
 fetch('index.xml')
     .then(response => response.text())
     .then(xml => {
-        const parser = new DOMParser;
-        const doc = parser.parseFromString(xml, 'application/xml');
-        document.body.appendChild(domTransform.transform(doc));
+        const result = domTransform.transform(fromXML(xml));
+        document.body.appendChild(result);
     });
