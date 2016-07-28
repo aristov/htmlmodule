@@ -7,7 +7,7 @@ UI design library implementation with:
 - [DOM4](https://www.w3.org/TR/dom/) + [HTML5](http://www.w3.org/TR/html/) — application layout model
 - [DOMTransform](//github.com/aristov/DOMTransform) + [XML](https://www.w3.org/TR/xml/) — templating
 
-[Showcase](http://aristov.github.io/instance/)
+[Showcase](http://aristov.github.io/instance/showcase)
 
 <em>Work in progress</em>
 
