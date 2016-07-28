@@ -5,7 +5,8 @@ const path = require('path');
 module.exports = {
     entry : './index',
     output : {
-        path: __dirname + '/build', filename : 'index.build.js'
+        path: __dirname + '/build',
+        filename : 'index.build.js'
     },
     module : {
         loaders : [
