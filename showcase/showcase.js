@@ -15,4 +15,4 @@ templates.push(documentskip, whitespacefilter);
 const xml = require('./showcase.xml');
 const showcase = DOMTransform.transform(fromXML(xml), templates);
 
-scope.appendChild(showcase);
+scope.append(showcase);
