@@ -1,27 +1,3 @@
-@import url(styles/yandex/common.css);
-@import url(styles/yandex/link.css);
-@import url(styles/yandex/button.css);
-@import url(styles/yandex/buttongroup.css);
-@import url(styles/yandex/checkbox.css);
-@import url(styles/yandex/radiogroup.css);
-@import url(styles/yandex/listbox.css);
-@import url(styles/yandex/selectbox.css);
-@import url(styles/yandex/textbox.css);
-@import url(styles/yandex/passwordbox.css);
-@import url(styles/yandex/numberbox.css);
-@import url(styles/yandex/searchbox.css);
-@import url(styles/yandex/searchgroup.css);
-@import url(styles/yandex/datebox.css);
-@import url(styles/yandex/datepicker.css);
-@import url(styles/yandex/menu.css);
-@import url(styles/yandex/tabmenu.css);
-@import url(styles/yandex/popup.css);
-@import url(styles/yandex/dialog.css);
-@import url(styles/yandex/spin.css);
-@import url(styles/yandex/tablist.css);
-@import url(styles/yandex/tree.css);
-@import url(styles/yandex/grid.css);
-
 article
 {
     display: inline-block;

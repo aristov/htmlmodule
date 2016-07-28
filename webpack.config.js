@@ -3,9 +3,9 @@
 const path = require('path');
 
 module.exports = {
-    entry : './index',
+    entry : './showcase/index',
     output : {
-        path: __dirname + '/build',
+        path: __dirname + '/showcase/build',
         filename : 'index.build.js'
     },
     module : {
