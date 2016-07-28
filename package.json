@@ -1,7 +1,7 @@
 {
   "name": "instance",
   "author": "Viacheslav Aristov <vv.aristov@gmail.ru>",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "DOMTransform": "git+https://github.com/aristov/DOMTransform.git",
     "DON": "git+https://github.com/aristov/don.git",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "css-loader": "^0.23.1",
     "jsdoc": "^3.4.0",
+    "raw-loader": "^0.5.1",
     "style-loader": "^0.13.1",
     "svg-url-loader": "^1.0.3"
   }

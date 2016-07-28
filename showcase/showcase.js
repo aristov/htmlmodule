@@ -6,14 +6,13 @@ import whitespacefilter from '../tools/templates/whitespacefilter';
 
 import { components, templates } from '../bundles/all';
 
-components.forEach(Component => Component.attachTo(document.body));
+const scope = document.body;
 
-templates.push(documentskip);
-templates.push(whitespacefilter);
+components.forEach(Component => Component.attachTo(scope));
 
-fetch('showcase.xml')
-    .then(response => response.text())
-    .then(xml => {
-        const result = DOMTransform.transform(fromXML(xml), templates);
-        document.body.appendChild(result);
-    });
+templates.push(documentskip, whitespacefilter);
+
+const xml = require('./showcase.xml');
+const showcase = DOMTransform.transform(fromXML(xml), templates);
+
+scope.appendChild(showcase);

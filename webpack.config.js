@@ -12,7 +12,8 @@ module.exports = {
         loaders : [
             { test : /\.js$/, loader : 'babel?presets[]=es2015' },
             { test : /\.css$/, loader : 'style-loader!css-loader' },
-            { test : /\.svg/, loader : 'svg-url-loader' }
+            { test : /\.svg/, loader : 'svg-url-loader' },
+            { test : /\.xml/, loader : 'raw-loader' }
         ]
     },
     resolve: {
