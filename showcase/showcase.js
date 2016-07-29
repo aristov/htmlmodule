@@ -7,13 +7,12 @@ import commentfilter from '../utils/templates/commentfilter';
 
 import { components, templates } from '../bundles/all';
 
-const scope = document.body;
-
-components.forEach(Component => Component.attachTo(scope));
+import xml from './showcase.xml';
 
 templates.push(documentskip, whitespacefilter, commentfilter);
 
-const xml = require('./showcase.xml');
-const showcase = DOMTransform.transform(fromXML(xml), templates);
-
-scope.append(showcase);
+export default element => {
+    components.forEach(Component => Component.attachTo(element));
+    const showcase = DOMTransform.transform(fromXML(xml), templates);
+    element.append(showcase);
+}
