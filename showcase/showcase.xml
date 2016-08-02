@@ -1,6 +1,6 @@
 <main>
     <article>
-        <h1>Link</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#link">Link</link></h1>
         <section>
             <link href="//yandex.ru">Simple</link>
         </section>
@@ -9,7 +9,7 @@
         </section>
     </article>
     <article>
-        <h1>Button</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#button">Button</link></h1>
         <!--<section>
             <BUTTON>Native</BUTTON>
         </section>-->
@@ -27,7 +27,7 @@
         </section>
     </article>
     <article>
-        <h1>Check box</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#checkbox">Check box</link></h1>
         <!--<section>
             <label><input type="checkbox"/> Native</label>
         </section>-->
@@ -45,7 +45,7 @@
         </section>
     </article>
     <article>
-        <h1>Radio group</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#radiobutton">Radio group</link></h1>
         <!--<section>
             <span>
                 <label>Native</label><br/>
@@ -77,7 +77,7 @@
         </section>
     </article>
     <article class="listboxstand">
-        <h1>List box</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#Listbox">List box</link></h1>
         <!--<section>
             <label>
                 Native<br/>
@@ -111,7 +111,7 @@
         </section>
     </article>
     <article>
-        <h1>Check list box</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#Listbox">Check list box</link></h1>
         <section>
             <listbox name="checklistbox" label="Simple">
                 <option value="first" checked="false">First option</option>
@@ -194,7 +194,7 @@
         </section>
     </article>
     <article>
-        <h1>Date box</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#datepicker">Date box</link></h1>
         <!--<section>
             <label>Native<br/><input type="date" value="2011-11-11"/></label>
         </section>-->
@@ -236,7 +236,7 @@
         </section>
     </article>
     <article>
-        <h1>Select box</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#combobox">Select box</link></h1>
         <!--<section>
             <label>
                 Native<br/>
@@ -270,7 +270,7 @@
         </section>
     </article>
     <article>
-        <h1>Menu button</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#menubutton">Menu button</link></h1>
         <section>
             <menubutton controls="simplemenu">Simple menu</menubutton>
             <menu id="simplemenu">
@@ -289,7 +289,7 @@
         </section>
     </article>
     <article>
-        <h1>Dialog</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#dialog_nonmodal">Dialog</link></h1>
         <section>
             <dialogbutton controls="simpledialog">Simple dialog</dialogbutton>
             <dialog id="simpledialog">
@@ -322,7 +322,7 @@
         </section>
     </article>
     <article>
-        <h1>Tab list</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#tabpanel">Tab list</link></h1>
         <section>
             <tablist>
                 <tab controls="tabpanel1" selected="true">One</tab>
@@ -337,7 +337,7 @@
         </section>
     </article>
     <article>
-        <h1>Tree</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#TreeView">Tree</link></h1>
         <tree>
             <treeitem expanded="true" label="First">
                 <treeitem label="Nested 1"/>
@@ -364,7 +364,7 @@
         </tree>
     </article>
     <article>
-        <h1>Grid</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#grid">Grid</link></h1>
         <section>
             <grid rows="3" columns="3" label="Simple"/>
         </section>
@@ -380,7 +380,7 @@
         </section>
     </article>
     <article>
-        <h1>Date picker</h1>
+        <h1><link href="https://www.w3.org/TR/wai-aria-practices/#datepicker">Date picker</link></h1>
         <section>
             <datepicker label="Simple"/>
         </section>

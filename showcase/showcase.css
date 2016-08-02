@@ -9,6 +9,10 @@ section
 {
     margin: 20px 0;
 }
+h1 .link:not(:hover)
+{
+    color: #000;
+}
 
 .listbox .box
 {
