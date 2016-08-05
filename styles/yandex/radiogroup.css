@@ -99,3 +99,12 @@
 {
     opacity: 0.4;
 }
+.radiogroup[aria-orientation=vertical]
+{
+    display: flex;
+    flex-direction: column;
+}
+.radiogroup[aria-orientation=vertical] .radio
+{
+    margin-bottom: 10px;
+}

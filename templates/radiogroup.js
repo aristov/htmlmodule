@@ -19,6 +19,7 @@ export default domTransform => {
                 role : 'radiogroup',
                 'aria-label' : a.label,
                 'aria-disabled' : a.disabled,
+                'aria-orientation' : a.orientation,
                 'class' : mix(a.view || 'radiogroup', a.mix)
             },
             content : [
