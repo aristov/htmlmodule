@@ -84,9 +84,7 @@ export default class Button extends Instance {
             const element = this.element;
             const details = document.getElementById(this.controls);
             details.hidden = !details.hidden;
-            if(element.classList.contains('autohide')) {
-                element.parentElement.removeChild(element);
-            }
+            if(element.classList.contains('autohide')) element.remove();
         }
     }
     focus() {
