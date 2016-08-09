@@ -36,6 +36,7 @@ export default domTransform => {
                 role : 'tabpanel',
                 id : a.id,
                 hidden : a.hidden === 'true' && '',
+                'aria-expanded' : a.expanded,
                 'class' : mix(a.view || 'tabpanel', a.mix)
             },
             content : this.apply(content)

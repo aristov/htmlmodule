@@ -43,3 +43,7 @@
 {
     border-color: #ffdb4d;
 }
+.tabpanel:not([aria-expanded=true])
+{
+    display: none;
+}

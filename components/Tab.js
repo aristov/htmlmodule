@@ -20,7 +20,8 @@ export default class Tab extends Instance {
         const element = this.element;
         element.setAttribute('aria-selected', selected);
         element.tabIndex = selected === 'true'? 0 : -1;
-        this.panel.hidden = selected === 'false';
+        //this.panel.hidden = selected === 'false';
+        this.panel.setAttribute('aria-expanded', String(selected === 'true'));
         if(selected === 'true' && document.activeElement !== element) element.focus();
     }
     get controls() {
