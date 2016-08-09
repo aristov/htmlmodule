@@ -33,9 +33,10 @@ export default domTransform => {
         return {
             element : 'div',
             attributes : {
+                'data-instance' : 'TabPanel',
                 role : 'tabpanel',
                 id : a.id,
-                hidden : a.hidden === 'true' && '',
+                // hidden : a.hidden === 'true' && '',
                 'aria-expanded' : a.expanded,
                 'class' : mix(a.view || 'tabpanel', a.mix)
             },

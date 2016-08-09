@@ -4,11 +4,13 @@ import { SPACE, ARROWS } from '../utils/keyCodes';
 
 const ARROW_CODES = Object.values(ARROWS);
 
+const map = Array.prototype.map;
+
 export default class Tab extends Instance {
     constructor(element) {
         super(element);
         this.list = this.closest(TabList);
-        this.panel = document.getElementById(this.controls);
+        // this.panel = document.getElementById(this.controls);
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
@@ -20,12 +22,19 @@ export default class Tab extends Instance {
         const element = this.element;
         element.setAttribute('aria-selected', selected);
         element.tabIndex = selected === 'true'? 0 : -1;
-        //this.panel.hidden = selected === 'false';
-        this.panel.setAttribute('aria-expanded', String(selected === 'true'));
+        // this.panel.hidden = selected === 'false';
+        // this.panel.setAttribute('aria-expanded', String(selected === 'true'));
+        this.panels.forEach(panel => panel.expanded = selected);
         if(selected === 'true' && document.activeElement !== element) element.focus();
     }
     get controls() {
-        return this.element.getAttribute('aria-controls') || '';
+        return (this.element.getAttribute('aria-controls') || '').split(' ');
+    }
+    get panels() {
+        return map.call(this.controls, id => {
+            const element = document.getElementById(id);
+            return TabPanel.getInstance(element);
+        });
     }
     onClick() {
         if(this.selected === 'false') {
@@ -57,5 +66,14 @@ export default class Tab extends Instance {
     }
     static attachTo(node) {
         node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    }
+}
+
+export class TabPanel extends Instance {
+    get expanded() {
+        return this.element.getAttribute('aria-expanded') || 'false';
+    }
+    set expanded(expanded) {
+        this.element.setAttribute('aria-expanded', expanded);
     }
 }

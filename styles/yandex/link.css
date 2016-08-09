@@ -32,7 +32,7 @@
 }
 .link.dim:not(:hover)
 {
-    color: #aaa;
+    color: rgba(0, 0, 0, 0.5);
 }
 .link.button:not(:hover)
 {
