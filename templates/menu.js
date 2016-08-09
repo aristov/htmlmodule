@@ -3,7 +3,7 @@ import mix from '../utils/mix';
 export default domTransform => {
     domTransform.element('menu', function({ attributes : a, content }) {
         return {
-            element : 'span',
+            element : 'div',
             attributes : {
                 'data-instance' : a.instance || 'Menu',
                 role : 'menu',
@@ -16,7 +16,7 @@ export default domTransform => {
     });
     domTransform.element('menuitem', function({ attributes : a, content }) {
         return {
-            element : a.href? 'a' : 'span',
+            element : a.href? 'a' : 'div',
             attributes : {
                 'data-instance' : 'MenuItem',
                 'data-type' : a.type,
