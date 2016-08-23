@@ -31,7 +31,7 @@ const map = Array.prototype.map;
 export default class Instance {
     /**
      * The base instance from which all other instances in this taxonomy inherit
-     * @param {Element} element root element node
+     * @param {Element} element root node
      */
     constructor(element) {
         element.instance = this;
@@ -82,59 +82,78 @@ export default class Instance {
      * Add event listener
      * @param {String} type event type
      * @param {Function} listener event listener
-     * @param {Object} [context] event listener context
+     * @param {Object} [context = this] event listener context
      * @returns {Instance} this
      */
-    on(type, listener, context) {
-        this.element.addEventListener(type, listener.bind(context || this));
+    on(type, listener, context = this) {
+        this.element.addEventListener(type, listener.bind(context));
         return this;
     }
 
     /**
      * Dispatch an event
-     * @param {String} type event type;
+     * @param {String} type event type
+     * @param {Object} [init] event init object
      * @returns {Instance} this
      */
-    emit(type) {
-        this.element.dispatchEvent(new Event(type, { bubbles : true, cancelable : true }));
+    emit(type, init = { bubbles : true, cancelable : true }) {
+        const event = new Event(type, init);
+        this.element.dispatchEvent(event);
         return this;
     }
 
     /**
      * Find the first descendant instance of the specified class
      * @param {Instance} Class target instance class
-     * @param {Function} [filter] function
+     * @param {Function|String} [filter] function or property name
+     * @param {String} [value] filter property value
      * @returns {Instance|null}
      */
-    find(Class, filter) {
+    find(Class, filter, value) {
+        const selector = `[data-instance=${Class.name}]`;
         return filter?
-            this.findAll(Class, filter)[0] || null :
-            Class.getInstance(this.element.querySelector(`[data-instance=${Class.name}]`));
+            this.findAll(Class, filter, value)[0] || null :
+            Class.getInstance(this.element.querySelector(selector));
     }
 
     /**
      * Find all descendant instances of the specified class
      * @param {Instance} Class target instance class
-     * @param {Function} [filter] function
+     * @param {Function|String} [filter] function or property name
+     * @param {String} [value] filter property value
      * @returns {Array} array of found instances
      */
-    findAll(Class, filter) {
+    findAll(Class, filter, value) {
+        const selector = `[data-instance=${Class.name}]`;
         const result = map.call(
-            this.element.querySelectorAll(`[data-instance=${Class.name}]`),
+            this.element.querySelectorAll(selector),
             element => Class.getInstance(element));
+
+        if(typeof filter === 'string') {
+            filter = instance => instance[filter] === value;
+        }
         return filter? result.filter(filter) : result;
     }
 
     /**
      * Find the nearest ancestor instance of the specified class
      * @param {Instance} Class target instance class
-     * @param {Function} [filter] function
+     * @param {Function|String} [filter] function or property name
+     * @param {String} [value] filter property value
      * @returns {Instance} found instance
      */
-    closest(Class, filter) {
+    closest(Class, filter, value) {
+        const selector = `[data-instance=${Class.name}]`;
+        if(typeof filter === 'string') {
+            filter = instance => instance[filter] === value;
+        }
         let instance = this;
-        do instance = Class.getInstance(instance.element.parentElement.closest(`[data-instance=${Class.name}]`));
-        while(instance && filter && !filter(instance));
+        do {
+            const parent = instance.element.parentElement;
+            if(!parent) return null;
+            const closest = parent.closest(selector);
+            instance = Class.getInstance(closest);
+        } while(instance && filter && !filter(instance));
         return instance;
     }
 
@@ -144,7 +163,8 @@ export default class Instance {
      * @returns {Instance|null}
      */
     static getInstance(element) {
-        return element && element.dataset && element.dataset.instance === this.name?
+        const dataset = element && element.dataset;
+        return dataset && dataset.instance === this.name?
             element.instance || new this(element) :
             null;
     }
@@ -155,18 +175,20 @@ export default class Instance {
      * @returns {Instance|null}
      */
     static closestInstance(element) {
-        return this.getInstance(element.closest(`[data-instance=${this.name}]`));
+        const selector = `[data-instance=${this.name}]`;
+        const closest = element.closest(selector);
+        return this.getInstance(closest);
     }
 
     /**
      * Delegate an event listener to the document node
      * @param {String} type event type
      * @param {Function} listener event listener
-     * @param {Object} [context] event listener context
+     * @param {Object} [context=this] event listener context
      */
-    static on(type, listener, context) {
+    static on(type, listener, context = this) {
         document.addEventListener(type, event => {
-            const instance = (context || this).closestInstance(event.target);
+            const instance = context.closestInstance(event.target);
             if(instance) listener.call(instance, event);
         }, true);
     }

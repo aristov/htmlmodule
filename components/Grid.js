@@ -33,7 +33,8 @@ export default class Grid extends Instance {
         });
     }
     get active() {
-        return this.find(GridCell, cell => cell.active === 'true');
+        //return this.find(GridCell, ({ active }) => active === 'true');
+        return this.find(GridCell, 'active', 'true');
     }
     set active(cell) {
         this.active.active = 'false';
@@ -90,11 +91,10 @@ export default class Grid extends Instance {
             const colEnd = Math.max(active.index, target.index);
             const rows = this.rows;
             let merged = false;
-            let cells, cell, i, j;
-            for(i = rowStart; i <= rowEnd; i++) {
-                cells = rows[i].cells;
-                for(j = colStart; j <= colEnd; j++) {
-                    cell = cells[j];
+            for(let i = rowStart; i <= rowEnd; i++) {
+                let cells = rows[i].cells;
+                for(let j = colStart; j <= colEnd; j++) {
+                    let cell = cells[j];
                     if(cell.span || cell.merged.length) {
                         merged = true;
                         break;
