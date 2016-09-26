@@ -33,8 +33,8 @@ export default class Grid extends Instance {
         });
     }
     get active() {
-        //return this.find(GridCell, ({ active }) => active === 'true');
-        return this.find(GridCell, 'active', 'true');
+        return this.find(GridCell, ({ active }) => active === 'true');
+        //return this.find(GridCell, 'active', 'true');
     }
     set active(cell) {
         this.active.active = 'false';
