@@ -8,7 +8,6 @@ export default class Tab extends Instance {
     constructor(element) {
         super(element);
         this.list = this.closest(TabList);
-        this.panel = document.getElementById(this.controls);
         this.on('click', this.onClick);
         this.on('keydown', this.onKeyDown);
         this.on('keyup', this.onKeyUp);
@@ -20,17 +19,23 @@ export default class Tab extends Instance {
         const element = this.element;
         element.setAttribute('aria-selected', selected);
         element.tabIndex = selected === 'true'? 0 : -1;
-        this.panel.hidden = selected === 'false';
+        this.panels.forEach(panel => panel.expanded = selected);
         if(selected === 'true' && document.activeElement !== element) element.focus();
     }
     get controls() {
-        return this.element.getAttribute('aria-controls') || '';
+        return (this.element.getAttribute('aria-controls') || '').split(' ');
+    }
+    get panels() {
+        return this.controls.map(id => {
+            const element = document.getElementById(id);
+            return TabPanel.getInstance(element);
+        });
     }
     onClick() {
         if(this.selected === 'false') {
             const list = this.list;
             list.select(this);
-            list.element.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+            list.emit('change');
         }
     }
     onKeyDown(event) {
@@ -46,9 +51,8 @@ export default class Tab extends Instance {
     }
     onKeyUp({ keyCode }) {
         if(keyCode === SPACE) {
-            const element = this.element;
-            element.classList.remove('active');
-            element.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
+            this.element.classList.remove('active');
+            this.emit('click');
         }
     }
     onArrowKeyDown({ keyCode }) {
@@ -56,5 +60,14 @@ export default class Tab extends Instance {
     }
     static attachTo(node) {
         node.addEventListener('focus', ({ target }) => this.getInstance(target), true);
+    }
+}
+
+export class TabPanel extends Instance {
+    get expanded() {
+        return this.element.getAttribute('aria-expanded') || 'false';
+    }
+    set expanded(expanded) {
+        this.element.setAttribute('aria-expanded', expanded);
     }
 }
