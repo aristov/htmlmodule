@@ -1,123 +1,239 @@
 import { HTMLInstance } from './html.instance';
 
-const htmlinstance = new HTMLInstance;
+export const instance = new HTMLInstance;
 
-export const htmlelement = (...args) => htmlinstance.createElement(...args);
+export const a = propset => instance.createElement('a', propset);
 
-export const a = propset => htmlelement('a', propset);
-export const abbr = propset => htmlelement('abbr', propset);
-export const address = propset => htmlelement('address', propset);
-export const area = propset => htmlelement('area', propset);
-export const article = propset => htmlelement('article', propset);
-export const aside = propset => htmlelement('aside', propset);
-export const audio = propset => htmlelement('audio', propset);
-export const b = propset => htmlelement('b', propset);
-export const base = propset => htmlelement('base', propset);
-export const bdi = propset => htmlelement('bdi', propset);
-export const bdo = propset => htmlelement('bdo', propset);
-export const blockquote = propset => htmlelement('blockquote', propset);
-export const body = propset => htmlelement('body', propset);
-export const br = propset => htmlelement('br', propset);
-export const button = propset => htmlelement('button', propset);
-export const canvas = propset => htmlelement('canvas', propset);
-export const caption = propset => htmlelement('caption', propset);
-export const cite = propset => htmlelement('cite', propset);
-export const code = propset => htmlelement('code', propset);
-export const col = propset => htmlelement('col', propset);
-export const colgroup = propset => htmlelement('colgroup', propset);
-export const data = propset => htmlelement('data', propset);
-export const datalist = propset => htmlelement('datalist', propset);
-export const dd = propset => htmlelement('dd', propset);
-export const del = propset => htmlelement('del', propset);
-export const details = propset => htmlelement('details', propset);
-export const dfn = propset => htmlelement('dfn', propset);
-export const dialog = propset => htmlelement('dialog', propset);
-export const div = propset => htmlelement('div', propset);
-export const dl = propset => htmlelement('dl', propset);
-export const dt = propset => htmlelement('dt', propset);
-export const em = propset => htmlelement('em', propset);
-export const embed = propset => htmlelement('embed', propset);
-export const fieldset = propset => htmlelement('fieldset', propset);
-export const figcaption = propset => htmlelement('figcaption', propset);
-export const figure = propset => htmlelement('figure', propset);
-export const footer = propset => htmlelement('footer', propset);
-export const form = propset => htmlelement('form', propset);
-export const h1 = propset => htmlelement('h1', propset);
-export const h2 = propset => htmlelement('h2', propset);
-export const h3 = propset => htmlelement('h3', propset);
-export const h4 = propset => htmlelement('h4', propset);
-export const h5 = propset => htmlelement('h5', propset);
-export const h6 = propset => htmlelement('h6', propset);
-export const head = propset => htmlelement('head', propset);
-export const header = propset => htmlelement('header', propset);
-export const hgroup = propset => htmlelement('hgroup', propset);
-export const hr = propset => htmlelement('hr', propset);
-export const html = propset => htmlelement('html', propset);
-export const i = propset => htmlelement('i', propset);
-export const iframe = propset => htmlelement('iframe', propset);
-export const img = propset => htmlelement('img', propset);
-export const input = propset => htmlelement('input', propset);
-export const ins = propset => htmlelement('ins', propset);
-export const kbd = propset => htmlelement('kbd', propset);
-export const keygen = propset => htmlelement('keygen', propset);
-export const label = propset => htmlelement('label', propset);
-export const legend = propset => htmlelement('legend', propset);
-export const li = propset => htmlelement('li', propset);
-export const link = propset => htmlelement('link', propset);
-export const main = propset => htmlelement('main', propset);
-export const map = propset => htmlelement('map', propset);
-export const mark = propset => htmlelement('mark', propset);
-// export const math = propset => htmlelement('math', propset); // todo
-export const menu = propset => htmlelement('menu', propset);
-export const menuitem = propset => htmlelement('menuitem', propset);
-export const meta = propset => htmlelement('meta', propset);
-export const meter = propset => htmlelement('meter', propset);
-export const nav = propset => htmlelement('nav', propset);
-export const noscript = propset => htmlelement('noscript', propset);
-export const object = propset => htmlelement('object', propset);
-export const ol = propset => htmlelement('ol', propset);
-export const optgroup = propset => htmlelement('optgroup', propset);
-export const option = propset => htmlelement('option', propset);
-export const output = propset => htmlelement('output', propset);
-export const p = propset => htmlelement('p', propset);
-export const param = propset => htmlelement('param', propset);
-export const picture = propset => htmlelement('picture', propset);
-export const pre = propset => htmlelement('pre', propset);
-export const progress = propset => htmlelement('progress', propset);
-export const q = propset => htmlelement('q', propset);
-export const rp = propset => htmlelement('rp', propset);
-export const rt = propset => htmlelement('rt', propset);
-export const ruby = propset => htmlelement('ruby', propset);
-export const s = propset => htmlelement('s', propset);
-export const samp = propset => htmlelement('samp', propset);
-export const script = propset => htmlelement('script', propset);
-export const section = propset => htmlelement('section', propset);
-export const select = propset => htmlelement('select', propset);
-export const slot = propset => htmlelement('slot', propset);
-export const small = propset => htmlelement('small', propset);
-export const source = propset => htmlelement('source', propset);
-export const span = propset => htmlelement('span', propset);
-export const strong = propset => htmlelement('strong', propset);
-export const style = propset => htmlelement('style', propset);
-export const sub = propset => htmlelement('sub', propset);
-export const summary = propset => htmlelement('summary', propset);
-export const sup = propset => htmlelement('sup', propset);
-// export const svg = propset => htmlelement('svg', propset); // todo
-export const table = propset => htmlelement('table', propset);
-export const tbody = propset => htmlelement('tbody', propset);
-export const td = propset => htmlelement('td', propset);
-export const template = propset => htmlelement('template', propset);
-export const textarea = propset => htmlelement('textarea', propset);
-export const tfoot = propset => htmlelement('tfoot', propset);
-export const th = propset => htmlelement('th', propset);
-export const thead = propset => htmlelement('thead', propset);
-export const time = propset => htmlelement('time', propset);
-export const title = propset => htmlelement('title', propset);
-export const tr = propset => htmlelement('tr', propset);
-export const track = propset => htmlelement('track', propset);
-export const u = propset => htmlelement('u', propset);
-export const ul = propset => htmlelement('ul', propset);
-// export const var = propset => htmlelement('var', propset); //
-export const variable = propset => htmlelement('var', propset); // var
-export const video = propset => htmlelement('video', propset);
-export const wbr = propset => htmlelement('wbr', propset);
+export const abbr = propset => instance.createElement('abbr', propset);
+
+export const address = propset => instance.createElement('address', propset);
+
+export const area = propset => instance.createElement('area', propset);
+
+export const article = propset => instance.createElement('article', propset);
+
+export const aside = propset => instance.createElement('aside', propset);
+
+export const audio = propset => instance.createElement('audio', propset);
+
+export const b = propset => instance.createElement('b', propset);
+
+export const base = propset => instance.createElement('base', propset);
+
+export const bdi = propset => instance.createElement('bdi', propset);
+
+export const bdo = propset => instance.createElement('bdo', propset);
+
+export const blockquote = propset => instance.createElement('blockquote', propset);
+
+export const body = propset => instance.createElement('body', propset);
+
+export const br = propset => instance.createElement('br', propset);
+
+export const button = propset => instance.createElement('button', propset);
+
+export const canvas = propset => instance.createElement('canvas', propset);
+
+export const caption = propset => instance.createElement('caption', propset);
+
+export const cite = propset => instance.createElement('cite', propset);
+
+export const code = propset => instance.createElement('code', propset);
+
+export const col = propset => instance.createElement('col', propset);
+
+export const colgroup = propset => instance.createElement('colgroup', propset);
+
+export const data = propset => instance.createElement('data', propset);
+
+export const datalist = propset => instance.createElement('datalist', propset);
+
+export const dd = propset => instance.createElement('dd', propset);
+
+export const del = propset => instance.createElement('del', propset);
+
+export const details = propset => instance.createElement('details', propset);
+
+export const dfn = propset => instance.createElement('dfn', propset);
+
+export const dialog = propset => instance.createElement('dialog', propset);
+
+export const div = propset => instance.createElement('div', propset);
+
+export const dl = propset => instance.createElement('dl', propset);
+
+export const dt = propset => instance.createElement('dt', propset);
+
+export const em = propset => instance.createElement('em', propset);
+
+export const embed = propset => instance.createElement('embed', propset);
+
+export const fieldset = propset => instance.createElement('fieldset', propset);
+
+export const figcaption = propset => instance.createElement('figcaption', propset);
+
+export const figure = propset => instance.createElement('figure', propset);
+
+export const footer = propset => instance.createElement('footer', propset);
+
+export const form = propset => instance.createElement('form', propset);
+
+export const h1 = propset => instance.createElement('h1', propset);
+
+export const h2 = propset => instance.createElement('h2', propset);
+
+export const h3 = propset => instance.createElement('h3', propset);
+
+export const h4 = propset => instance.createElement('h4', propset);
+
+export const h5 = propset => instance.createElement('h5', propset);
+
+export const h6 = propset => instance.createElement('h6', propset);
+
+export const head = propset => instance.createElement('head', propset);
+
+export const header = propset => instance.createElement('header', propset);
+
+export const hgroup = propset => instance.createElement('hgroup', propset);
+
+export const hr = propset => instance.createElement('hr', propset);
+
+export const html = propset => instance.createElement('html', propset);
+
+export const i = propset => instance.createElement('i', propset);
+
+export const iframe = propset => instance.createElement('iframe', propset);
+
+export const img = propset => instance.createElement('img', propset);
+
+export const input = propset => instance.createElement('input', propset);
+
+export const ins = propset => instance.createElement('ins', propset);
+
+export const kbd = propset => instance.createElement('kbd', propset);
+
+export const keygen = propset => instance.createElement('keygen', propset);
+
+export const label = propset => instance.createElement('label', propset);
+
+export const legend = propset => instance.createElement('legend', propset);
+
+export const li = propset => instance.createElement('li', propset);
+
+export const link = propset => instance.createElement('link', propset);
+
+export const main = propset => instance.createElement('main', propset);
+
+export const map = propset => instance.createElement('map', propset);
+
+export const mark = propset => instance.createElement('mark', propset);
+
+// todo MathInstance
+// export const math = propset => instance.createElement('math', propset);
+
+export const menu = propset => instance.createElement('menu', propset);
+
+export const menuitem = propset => instance.createElement('menuitem', propset);
+
+export const meta = propset => instance.createElement('meta', propset);
+
+export const meter = propset => instance.createElement('meter', propset);
+
+export const nav = propset => instance.createElement('nav', propset);
+
+export const noscript = propset => instance.createElement('noscript', propset);
+
+export const object = propset => instance.createElement('object', propset);
+
+export const ol = propset => instance.createElement('ol', propset);
+
+export const optgroup = propset => instance.createElement('optgroup', propset);
+
+export const option = propset => instance.createElement('option', propset);
+
+export const output = propset => instance.createElement('output', propset);
+
+export const p = propset => instance.createElement('p', propset);
+
+export const param = propset => instance.createElement('param', propset);
+
+export const picture = propset => instance.createElement('picture', propset);
+
+export const pre = propset => instance.createElement('pre', propset);
+
+export const progress = propset => instance.createElement('progress', propset);
+
+export const q = propset => instance.createElement('q', propset);
+
+export const rp = propset => instance.createElement('rp', propset);
+
+export const rt = propset => instance.createElement('rt', propset);
+
+export const ruby = propset => instance.createElement('ruby', propset);
+
+export const s = propset => instance.createElement('s', propset);
+
+export const samp = propset => instance.createElement('samp', propset);
+
+export const script = propset => instance.createElement('script', propset);
+
+export const section = propset => instance.createElement('section', propset);
+
+export const select = propset => instance.createElement('select', propset);
+
+export const slot = propset => instance.createElement('slot', propset);
+
+export const small = propset => instance.createElement('small', propset);
+
+export const source = propset => instance.createElement('source', propset);
+
+export const span = propset => instance.createElement('span', propset);
+
+export const strong = propset => instance.createElement('strong', propset);
+
+export const style = propset => instance.createElement('style', propset);
+
+export const sub = propset => instance.createElement('sub', propset);
+
+export const summary = propset => instance.createElement('summary', propset);
+
+export const sup = propset => instance.createElement('sup', propset);
+
+// todo SVGInstance
+// export const svg = propset => instance.createElement('svg', propset);
+
+export const table = propset => instance.createElement('table', propset);
+
+export const tbody = propset => instance.createElement('tbody', propset);
+
+export const td = propset => instance.createElement('td', propset);
+
+export const template = propset => instance.createElement('template', propset);
+
+export const textarea = propset => instance.createElement('textarea', propset);
+
+export const tfoot = propset => instance.createElement('tfoot', propset);
+
+export const th = propset => instance.createElement('th', propset);
+
+export const thead = propset => instance.createElement('thead', propset);
+
+export const time = propset => instance.createElement('time', propset);
+
+export const title = propset => instance.createElement('title', propset);
+
+export const tr = propset => instance.createElement('tr', propset);
+
+export const track = propset => instance.createElement('track', propset);
+
+export const u = propset => instance.createElement('u', propset);
+
+export const ul = propset => instance.createElement('ul', propset);
+
+// `var` is JS-keyword
+export const variable = propset => instance.createElement('var', propset);
+
+export const video = propset => instance.createElement('video', propset);
+
+export const wbr = propset => instance.createElement('wbr', propset);
+

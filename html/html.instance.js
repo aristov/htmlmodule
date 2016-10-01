@@ -1,4 +1,4 @@
-import { Instance } from '../instance/instance';
+import { Instance } from '../dom/dom.instance';
 
 const assign = Object.assign;
 const XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';

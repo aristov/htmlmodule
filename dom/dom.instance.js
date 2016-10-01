@@ -1,21 +1,22 @@
-// function NodePropertySet(propset) {}
-
 const isArray = Array.isArray;
 const XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 export class Instance {
     /**
-     *
-     * @param {String} tagName DOM Element tagName
-     * @param {{}} [propset]
+     * @param {Element} element
+     */
+    set element(element) {
+        if(element instanceof Element) {
+            this.node = element;
+        } else throw Error('This is not Element');
+    }
+
+    /**
      * @returns {Element}
      */
-    createElement(tagName, propset) {
-        const ns = this.constructor.namespaceURI;
-        const element = document.createElementNS(ns, tagName);
-        this.element = element;
-        if(propset) this.propset = propset;
-        return element;
+    get element() {
+        if(this.node) return this.node;
+        else throw Error('No element assigned');
     }
 
     /**
@@ -24,15 +25,13 @@ export class Instance {
      *  children
      *  className
      *  id
-     *  inner
-     *  nodeValue
-     *  outer
+     *  innerHTML
+     *  outerHTML ??? будет ли это работать? и если будет, то как именно?
      *  textContent
      * }} propset
      */
     set propset(propset) {
         const element = this.element;
-        // propset = NodePropertySet(propset);
         for(const prop in propset) {
             const value = propset[prop];
             if(value !== undefined) {
@@ -43,8 +42,7 @@ export class Instance {
     }
 
     /**
-     * Set attributes of the created element
-     * [DOM: Element.attributes](https://www.w3.org/TR/dom/#dom-element-attributes)
+     * Set attributes of the element
      * @param {{}} attrset dictionary object
      */
     set attrset(attrset) {
@@ -58,9 +56,8 @@ export class Instance {
     }
 
     /**
-     * Append children to the created element.
+     * Append children to the element.
      * Supports arrays and nested arrays, single DOM node and strings as Text nodes.
-     * [DOM: Element.children](https://www.w3.org/TR/dom/#dom-element-children)
      * @param {Array|Node|String|[Node|String|[...]]} children array or DOM-node or string
      */
     set children(children) {
@@ -75,7 +72,19 @@ export class Instance {
     }
 
     /**
-     *
+     * @param {String} tagName DOM Element tagName
+     * @param {{}} [propset]
+     * @returns {Element}
+     */
+    createElement(tagName, propset) {
+        const ns = this.constructor.namespaceURI;
+        const element = document.createElementNS(ns, tagName);
+        this.element = element;
+        if(propset) this.propset = propset;
+        return element;
+    }
+
+    /**
      * @returns {String}
      */
     static get namespaceURI() {
@@ -83,8 +92,8 @@ export class Instance {
     }
 }
 
-Object.defineProperty(Instance.prototype, 'element', {
-    enumerable : false,
+Object.defineProperty(Instance.prototype, 'node', {
+    enumerable : true,
     writable : true,
     value : null
 });
