@@ -3,10 +3,10 @@
 const path = require('path');
 
 module.exports = {
-    entry : './dom/dom.test',
+    entry : './dom/dom.spec',
     output : {
-        path: __dirname + '/test',
-        filename : 'test.build.js'
+        path: __dirname + '/spec',
+        filename : 'spec.build.js'
     },
     module : {
         loaders : [

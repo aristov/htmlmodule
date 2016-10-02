@@ -26,7 +26,7 @@ export class Instance {
      *  className
      *  id
      *  innerHTML
-     *  outerHTML ??? будет ли это работать? и если будет, то как именно?
+     *  outerHTML ??? todo будет ли это работать? и если будет, то как именно?
      *  textContent
      * }} propset
      */

@@ -1,4 +1,4 @@
 node_modules
-showcase/build
+spec/spec.build.js
 jsdoc
 tmp
