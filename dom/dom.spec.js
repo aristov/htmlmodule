@@ -1,7 +1,22 @@
-import { Instance } from './dom.instance';
+import mocha from 'mocha';
 import chai from 'chai';
 
+import jsdomify from 'jsdomify';
+
+const { describe, it } = mocha;
 const { assert } = chai;
+
+jsdomify.create();
+
+const {
+    document,
+    Text,
+    Comment,
+    Element,
+    HTMLHRElement
+} = window;
+
+const { Instance } = require('./dom.instance');
 
 describe('Instance', function() {
   describe('createElement', function() {
@@ -163,3 +178,5 @@ describe('Instance', function() {
     });
   });
 });
+
+jsdomify.destroy();
