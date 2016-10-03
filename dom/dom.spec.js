@@ -33,7 +33,7 @@ describe('DOMInstance', function() {
                 id : 'element_0'
             });
             it('proper number of attributes', function() {
-                assert.equal(element.hasAttributes(), true);
+                assert(element.hasAttributes());
                 assert.equal(element.attributes.length, 1);
             });
             it('has proper id attribute value', function() {
@@ -49,7 +49,7 @@ describe('DOMInstance', function() {
                 className : 'element className element_class_name'
             });
             it('proper number of attributes', function() {
-                assert.equal(element.hasAttributes(), true);
+                assert(element.hasAttributes());
                 assert.equal(element.attributes.length, 1);
             });
             it('has proper className attribute value', function() {
@@ -65,7 +65,7 @@ describe('DOMInstance', function() {
                 textContent : 'element textContent'
             });
             it('proper number of child nodes', function() {
-                assert.equal(element.hasChildNodes(), true);
+                assert(element.hasChildNodes());
                 assert.equal(element.childNodes.length, 1);
             });
             it('proper children', function() {
@@ -82,7 +82,7 @@ describe('DOMInstance', function() {
                 innerHTML : '<child foo="bar"/>'
             });
             it('proper number of child nodes', function() {
-                assert.equal(element.hasChildNodes(), true);
+                assert(element.hasChildNodes());
                 assert.equal(element.childNodes.length, 1);
             });
             it('proper children', function() {
@@ -97,21 +97,21 @@ describe('DOMInstance', function() {
         });
         describe('attrset', function() {
             const element = instance.createElement('element', {
-                attrset : { custom : 'attribute value' }
+                attrset : { attrname : 'attribute value' }
             });
             it('proper Element node created', function() {
                 assert.equal(element.constructor, Element);
                 assert.equal(element.tagName, 'element');
             });
             it('has valid number of attributes', function() {
-                assert.equal(element.hasAttributes(), true);
+                assert(element.hasAttributes());
                 assert.equal(element.attributes.length, 1);
             });
             it('has all other custum attributes assigned', function() {
-                assert.equal(element.getAttribute('custom'), 'attribute value');
+                assert.equal(element.getAttribute('attrname'), 'attribute value');
             });
             it('proper outerHTML property value', function() {
-                assert.equal(element.outerHTML, '<element custom="attribute value"></element>');
+                assert.equal(element.outerHTML, '<element attrname="attribute value"></element>');
             });
         });
         describe('children', function() {
@@ -128,21 +128,22 @@ describe('DOMInstance', function() {
                 assert.equal(element.constructor, Element);
                 assert.equal(element.tagName, 'element');
             });
+            const childNodes = element.childNodes;
             it('has proper child nodes count', function() {
                 assert(element.hasChildNodes());
-                assert.equal(element.childNodes.length, 5);
+                assert.equal(childNodes.length, 5);
             });
             it('Proper child nodes', function() {
-                assert.equal(element.childNodes[0].constructor, Element);
-                assert.equal(element.childNodes[0].tagName, 'child');
-                assert.equal(element.childNodes[1].constructor, Text);
-                assert.equal(element.childNodes[1].textContent, 'text node as string');
-                assert.equal(element.childNodes[2].constructor, Text);
-                assert.equal(element.childNodes[2].nodeValue, 'created text node');
-                assert.equal(element.childNodes[3].constructor, HTMLHRElement);
-                assert.equal(element.childNodes[3].tagName, 'HR');
-                assert.equal(element.childNodes[4].constructor, Comment);
-                assert.equal(element.childNodes[4].textContent, 'Simple DOM Comment node');
+                assert.equal(childNodes[0].constructor, Element);
+                assert.equal(childNodes[0].tagName, 'child');
+                assert.equal(childNodes[1].constructor, Text);
+                assert.equal(childNodes[1].textContent, 'text node as string');
+                assert.equal(childNodes[2].constructor, Text);
+                assert.equal(childNodes[2].nodeValue, 'created text node');
+                assert.equal(childNodes[3].constructor, HTMLHRElement);
+                assert.equal(childNodes[3].tagName, 'HR');
+                assert.equal(childNodes[4].constructor, Comment);
+                assert.equal(childNodes[4].textContent, 'Simple DOM Comment node');
             });
             it('proper outerHTML attribute value', function() {
                 assert.equal(element.outerHTML,
