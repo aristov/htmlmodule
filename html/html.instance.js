@@ -5,12 +5,6 @@ const XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 /**
  * @param {{
- *  accessKey
- *  contentEditable
- *  contextMenu
- *  dataset
- *  dir
- *  draggable
  *  hidden
  *  lang
  *  scrollTop

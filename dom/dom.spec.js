@@ -99,10 +99,6 @@ describe('DOMInstance', function() {
             const element = instance.createElement('element', {
                 attrset : { attrname : 'attribute value' }
             });
-            it('proper Element node created', function() {
-                assert.equal(element.constructor, Element);
-                assert.equal(element.tagName, 'element');
-            });
             it('has valid number of attributes', function() {
                 assert(element.hasAttributes());
                 assert.equal(element.attributes.length, 1);
@@ -123,10 +119,6 @@ describe('DOMInstance', function() {
                     document.createElement('hr'),
                     document.createComment('Simple DOM Comment node'),
                 ]
-            });
-            it('proper Element node created', function() {
-                assert.equal(element.constructor, Element);
-                assert.equal(element.tagName, 'element');
             });
             const childNodes = element.childNodes;
             it('has proper child nodes count', function() {
