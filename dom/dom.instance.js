@@ -1,5 +1,6 @@
-const isArray = Array.isArray;
 const XML_NS_URI = 'https://www.w3.org/1999/xml';
+const { document, Text, Element } = window;
+const isArray = Array.isArray;
 
 export class Instance {
     /**

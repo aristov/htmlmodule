@@ -1,0 +1,2 @@
+import '../dom/dom.spec';
+

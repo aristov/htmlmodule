@@ -1,27 +1,29 @@
-// import mocha from 'mocha';
+import mocha from 'mocha';
 // import assert from 'assert';
 import chai from 'chai';
-import { Instance } from './dom.instance';
 
-// import jasmine from 'jasmine';
-// window.jasmine = jasmine;
+import jsdomify from 'jsdomify';
+// import jsdom from 'jsdom';
 
-
-// import qunit from 'qunitjs';
-// window.qunit = qunit;
-
-// const mocha = require('mocha');
-// const { describe, it } = mocha;
-
-// const { describe, it } = mocha;
+const { describe, it } = mocha;
 const { assert } = chai;
+
+jsdomify.create();
+
+// global.window = window;
+const { Element, document } = window;
+
+const { Instance } = require('./dom.instance');
+
+// console.log(global);
+// console.log('!!!', window);
+// console.log(document);
 
 describe('Instance', function() {
   describe('createElement', function() {
     describe('Should create Element node with proper tagName', function() {
         const instance = new Instance;
         const element = instance.createElement('element');
-
         it('proper Element node created', function() {
             assert.equal(element.constructor, Element);
             assert.equal(element.tagName, 'element');
@@ -113,6 +115,7 @@ describe('Instance', function() {
             });
 
             it('has proper outerHTML property value', function() {
+                // todo use html-differ (attribute order is not guarantied)
                 assert.equal(element.outerHTML,
                     '<element ' +
                         'id="element_attribute_0" ' +
@@ -139,6 +142,7 @@ describe('Instance', function() {
                     document.createComment('Simple DOM Comment node'),
                 ]
             });
+
             it('proper Element node created', function() {
                 assert.equal(element.constructor, Element);
                 assert.equal(element.tagName, 'element');
@@ -175,3 +179,21 @@ describe('Instance', function() {
     });
   });
 });
+
+jsdomify.destroy();
+
+/*
+jsdom.env({
+    html : '<meta charset=utf-8>',
+    done : (err, window) => {
+        // console.log('!!!!!!', global === window);
+        global.document = window.document;
+        global.Element = window.Element;
+        global.Text = window.Text;
+
+        describe...
+    }
+
+});
+*/
+
