@@ -3,7 +3,7 @@
 const path = require('path');
 
 module.exports = {
-    entry : './dom/dom.spec',
+    entry : './spec/spec',
     output : {
         path: __dirname + '/spec',
         filename : 'spec.build.js'

@@ -2,6 +2,6 @@ import jsdomify from 'jsdomify';
 
 jsdomify.create();
 
-require('../dom/dom.spec');
+require('./spec');
 
 jsdomify.destroy();

@@ -17,10 +17,18 @@
     "chai": "^3.5.0",
     "jsdom": "https://github.com/aristov/jsdom.git#aristov.generated",
     "jsdomify": "^3.1.0",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-mocha": "^1.2.0",
+    "karma-mocha-reporter": "^2.2.0",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-webpack": "^1.8.0",
     "mocha": "^3.1.0",
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "test" : "mocha spec/spec.node.js --compilers js:babel-core/register"
+    "test": "./node_modules/.bin/karma start",
+    "jsdomifytest": "mocha spec/spec.node.js --compilers js:babel-core/register"
   }
 }
