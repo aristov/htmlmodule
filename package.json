@@ -19,5 +19,8 @@
     "jsdomify": "^3.1.0",
     "mocha": "^3.1.0",
     "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "test" : "mocha spec/spec.node.js --compilers js:babel-core/register"
   }
 }
