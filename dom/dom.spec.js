@@ -1,23 +1,7 @@
-import mocha from 'mocha';
-// import assert from 'assert';
+import { Instance } from './dom.instance';
 import chai from 'chai';
 
-import jsdomify from 'jsdomify';
-// import jsdom from 'jsdom';
-
-const { describe, it } = mocha;
 const { assert } = chai;
-
-jsdomify.create();
-
-// global.window = window;
-const { Element, document } = window;
-
-const { Instance } = require('./dom.instance');
-
-// console.log(global);
-// console.log('!!!', window);
-// console.log(document);
 
 describe('Instance', function() {
   describe('createElement', function() {
@@ -179,21 +163,3 @@ describe('Instance', function() {
     });
   });
 });
-
-jsdomify.destroy();
-
-/*
-jsdom.env({
-    html : '<meta charset=utf-8>',
-    done : (err, window) => {
-        // console.log('!!!!!!', global === window);
-        global.document = window.document;
-        global.Element = window.Element;
-        global.Text = window.Text;
-
-        describe...
-    }
-
-});
-*/
-
