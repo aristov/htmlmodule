@@ -128,7 +128,7 @@ describe('Instance', function() {
                     children : [
                         instance.createElement('child'),
                         'text node as string',
-                        document.createTextNode('created text node'),
+                        new Text('created text node'),
                         document.createElement('hr'),
                         document.createComment('Simple DOM Comment node'),
                     ]
