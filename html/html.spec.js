@@ -214,7 +214,7 @@ describe('HTMLInstance', function() {
             });
         });
 
-        describe('adapted interfaces', function() {
+        describe('adapted interface', function() {
 
             describe('dataset', function() {
                 const element = instance.createElement('div', {

@@ -117,7 +117,7 @@ describe('DOMInstance', function() {
             // scrollTop
         });
 
-        describe('adapted interfaces', function() {
+        describe('adapted interface', function() {
 
             describe('attrset', function() {
                 const element = instance.createElement('element', {
