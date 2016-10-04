@@ -32,9 +32,6 @@
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "test": "'./node_modules/.bin/karma start --single-run --browsers PhantomJS",
-    "make": "./node_modules/.bin/webpack",
-    "dev": "DEV_MODE=true ./node_modules/.bin/webpack",
-    "server": "./node_modules/.bin/static"
+    "test": "'./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   }
 }
