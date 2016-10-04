@@ -15,10 +15,22 @@ module.exports = {
         loaders : [
             { test : /\.js$/, loader : 'babel?presets[]=es2015' },
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' }
+        ],
+        postLoaders: [
+            {
+                test: [/\.js$/],
+                exclude: /(node_modules)/,
+                loader: 'documentation'
+            }
         ]
     },
     resolve: {
         modulesDirectories: ['node_modules']
+    },
+    documentation: {
+        entry: './dom/dom.instance.js',
+        github: true,
+        format: 'html'
     },
     watch : process.env.DEV_MODE === 'true'
 };
