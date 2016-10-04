@@ -5,7 +5,7 @@ import {
     label, select, option,
     div, ul, ol, li, dl, dd, dt,
     main, section, details, summary,
-    dfn, sup, sub, i, strong
+    dfn, sup, sub, i, strong, p, variable
 } from './html.lib';
 
 const { assert } = chai;
@@ -191,6 +191,11 @@ describe('HTMLDOM library', () => {
             const element =
                 main([
                     section(dfn('Instance.js — simple and powerfull DOM Element interface')),
+                    section(p([
+                        variable('var'),
+                        ' — is reserved JavaScript keyword, ',
+                        'so we use `variable` function name instead.'
+                    ])),
                     section([
                         sup('supertext'),
                         sub('subtext'),
@@ -203,6 +208,11 @@ describe('HTMLDOM library', () => {
                     '<section><dfn>' +
                         'Instance.js — simple and powerfull DOM Element interface' +
                     '</dfn></section>' +
+                    '<section><p>' +
+                        '<var>var</var>' +
+                        ' — is reserved JavaScript keyword, ' +
+                        'so we use `variable` function name instead.' +
+                    '</p></section>' +
                     '<section>' +
                         '<sup>supertext</sup>' +
                         '<sub>subtext</sub>' +
