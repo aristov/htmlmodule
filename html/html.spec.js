@@ -120,7 +120,7 @@ describe('HTML Instance', function() {
                     assert.equal(element.hasAttributes(), true);
                     assert.equal(element.attributes.length, 1);
                 });
-                it('has proper dir attribute set', function() {
+                it('has proper hidden attribute set', function() {
                     assert.equal(element.hidden, true);
                     assert.equal(element.getAttribute('hidden'), '');
                 });
@@ -141,7 +141,7 @@ describe('HTML Instance', function() {
                     assert.equal(element.hasAttributes(), true);
                     assert.equal(element.attributes.length, 1);
                 });
-                it('has proper dir attribute set', function() {
+                it('has proper lang attribute set', function() {
                     assert.equal(element.lang, 'ru');
                     assert.equal(element.getAttribute('lang'), 'ru');
                 });
@@ -162,7 +162,7 @@ describe('HTML Instance', function() {
                     assert.equal(element.hasAttributes(), true);
                     assert.equal(element.attributes.length, 1);
                 });
-                it('has proper dir attribute set', function() {
+                it('has proper spellcheck attribute set', function() {
                     assert.equal(element.spellcheck, true);
                     assert.equal(element.getAttribute('spellcheck'), 'true');
                 });
@@ -183,7 +183,7 @@ describe('HTML Instance', function() {
                     assert.equal(element.hasAttributes(), true);
                     assert.equal(element.attributes.length, 1);
                 });
-                it('has proper dir attribute set', function() {
+                it('has proper tabIndex attribute set', function() {
                     assert.equal(element.tabIndex, 0);
                     assert.equal(element.getAttribute('tabindex'), '0');
                 });
@@ -204,7 +204,7 @@ describe('HTML Instance', function() {
                     assert.equal(element.hasAttributes(), true);
                     assert.equal(element.attributes.length, 1);
                 });
-                it('has proper dir attribute set', function() {
+                it('has proper title attribute set', function() {
                     assert.equal(element.title, 'Select without options');
                     assert.equal(element.getAttribute('title'), 'Select without options');
                 });
