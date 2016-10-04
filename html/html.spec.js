@@ -9,7 +9,6 @@ const {
     HTMLHtmlElement,
     HTMLFormElement,
     HTMLSelectElement,
-    HTMLTextAreaElement,
     HTMLBodyElement,
     HTMLAnchorElement,
     HTMLButtonElement,
@@ -211,27 +210,6 @@ describe('HTMLInstance', function() {
                 });
                 it('proper outerHTML property value', function() {
                     assert.equal(element.outerHTML, '<select title="Select without options"></select>');
-                });
-            });
-
-            describe('translate', function() {
-                const element = instance.createElement('textarea', {
-                    translate : true
-                });
-                it('proper HTMLTextAreaElement node created', function() {
-                    assert.equal(element.constructor, HTMLTextAreaElement);
-                    assert.equal(element.tagName, 'TEXTAREA');
-                });
-                it('proper number of attributes and child nodes', function() {
-                    assert.equal(element.hasAttributes(), true);
-                    assert.equal(element.attributes.length, 1);
-                });
-                it('has proper translate attribute set', function() {
-                    assert.equal(element.translate, true);
-                    assert.equal(element.getAttribute('translate'), 'yes');
-                });
-                it('proper outerHTML property value', function() {
-                    assert.equal(element.outerHTML, '<textarea translate="yes"></textarea>');
                 });
             });
         });

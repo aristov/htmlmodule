@@ -1,6 +1,7 @@
-const XML_NS_URI = 'https://www.w3.org/1999/xml';
-const { document, Text, Element } = window;
 const isArray = Array.isArray;
+const { document, Text, Element } = window;
+
+export const XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 export class Instance {
     /**
@@ -21,15 +22,7 @@ export class Instance {
     }
 
     /**
-     * @param {{
-     *  attrset
-     *  children
-     *  className
-     *  id
-     *  innerHTML
-     *  outerHTML ??? todo будет ли это работать? и если будет, то как именно?
-     *  textContent
-     * }} propset
+     * @param {{}} propset
      */
     set propset(propset) {
         const element = this.element;

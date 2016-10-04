@@ -1,4 +1,4 @@
-import { Instance } from './dom.instance';
+import { Instance, XML_NS_URI } from './dom.instance';
 import chai from 'chai';
 
 const { assert } = chai;
@@ -7,7 +7,8 @@ const {
     Text,
     Comment,
     Element,
-    HTMLHRElement
+    HTMLHRElement,
+    HTMLSpanElement
 } = window;
 
 const instance = new Instance;
@@ -16,17 +17,22 @@ describe('DOMInstance', function() {
 
     describe('createElement', function() {
 
-        describe('tagName', function() {
+        describe('general', function() {
             const element = instance.createElement('element');
-            it('proper Element node created', function() {
+            it('Element created', () => {
                 assert.equal(element.constructor, Element);
-                assert.equal(element.tagName, 'element');
             });
-            it('proper attributes and child nodes number', function() {
-                assert.equal(element.hasAttributes(), false);
-                assert.equal(element.hasChildNodes(), false);
+            it('proper tagName', () => {
+                assert.equal(element.tagName, 'element')
             });
-            it('proper outerHTML property value', function() {
+            it('proper XMLNS URI', () => {
+                assert.equal(element.namespaceURI, XML_NS_URI)
+            });
+            it('has no attributes and no child nodes', () => {
+                assert(!element.hasAttributes());
+                assert(!element.hasChildNodes());
+            });
+            it('proper outerHTML property value', () => {
                 assert.equal(element.outerHTML, '<element></element>');
             });
         });
@@ -60,6 +66,9 @@ describe('DOMInstance', function() {
                 });
                 it('has proper className attribute value', function() {
                     assert.equal(element.className, 'element className element_class_name');
+                    assert(element.classList.contains('element'));
+                    assert(element.classList.contains('className'));
+                    assert(element.classList.contains('element_class_name'));
                 });
                 it('proper outerHTML property value', function() {
                     assert.equal(element.outerHTML,
@@ -87,7 +96,7 @@ describe('DOMInstance', function() {
 
             describe('innerHTML', function() {
                 const element = instance.createElement('element', {
-                    innerHTML : '<child foo="bar"/>'
+                    innerHTML : '<span class="box"></span>'
                 });
                 it('proper number of child nodes', function() {
                     assert(element.hasChildNodes());
@@ -95,12 +104,14 @@ describe('DOMInstance', function() {
                 });
                 it('proper children', function() {
                     const child = element.firstChild;
-                    assert.equal(child.constructor, Element);
-                    assert.equal(child.getAttribute('foo'), 'bar');
-                    assert.equal(child.outerHTML, '<child foo="bar"></child>');
+                    assert.equal(child.constructor, HTMLSpanElement);
+                    assert.equal(child.className, 'box');
+                    assert.equal(child.getAttribute('class'), 'box');
+                    assert(child.classList.contains('box'));
+                    assert.equal(child.outerHTML, '<span class="box"></span>');
                 });
                 it('proper outerHTML property value', function() {
-                    assert.equal(element.outerHTML, '<element><child foo="bar"></child></element>');
+                    assert.equal(element.outerHTML, '<element><span class="box"></span></element>');
                 });
             });
             // scrollTop
