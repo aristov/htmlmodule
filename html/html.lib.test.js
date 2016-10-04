@@ -23,15 +23,7 @@ import {
     wbr
 } from './html.lib';
 
-const crazypicsrc = 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200';
-
-const precontent = `preformatted text
-line break 
-    yet another line break with tab
-  
-  <>&`;
-
-export const tests = [
+export const test = [
 
     fieldset([
         legend('Authorization'),
@@ -71,7 +63,7 @@ export const tests = [
 
     a({ href : 'http://github.com/aristov', textContent : 'Github page' }),
 
-    abbr('XML, HTML, DOM, HTMLDOMJS, XDJS, AXDJS, HDJS, IDJS, DJS, ARI'),
+    abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL'),
 
     article({
         className : 'vcard',
@@ -97,7 +89,11 @@ export const tests = [
 
     script('Object.assign(document.currentScript.style, { display: "block", color: "blue", fontFamily : "monospace" })'),
 
-    pre(precontent),
+    pre(`preformatted text
+line break 
+    yet another line break with tab
+  
+  <>&`),
 
     ins('The ins element'),
 
@@ -110,7 +106,7 @@ export const tests = [
 
     div([
         'div — like span has no semantics, but',
-        div('div has `display: block` style by default')
+        div('div has default `display: block` style')
     ]),
 
     p(['b', br(), 'r']),
@@ -136,6 +132,11 @@ export const tests = [
     label([
         input({ type : 'checkbox', checked : true }),
         ' Checked checkbox'
+    ]),
+
+    label([
+        input({ type : 'checkbox', attrset : { checked : '' } }),
+        ' Initially checked checkbox'
     ]),
 
     label([
@@ -171,7 +172,10 @@ export const tests = [
             multiple : true,
             children : [
                 option('XML'),
-                option('HTML'),
+                option({
+                    attrset : { selected : '' },
+                    textContent : 'HTML'
+                }),
                 option('WAI-ARIA'),
                 option('RDFS'),
                 option('OWL'),
@@ -212,7 +216,7 @@ export const tests = [
         ]),
     ]),
 
-    code('export const code = propset => htmlelement(\'code\', propset);'),
+    code('export const code = init => instance.createElement(\'code\', init);'),
 
     dialog({
         open : true,
@@ -223,19 +227,19 @@ export const tests = [
     em('Emphasize!'),
 
     table([
-        caption('Web technology feature support comparison'),
-        thead(tr([ th(abbr('XML')), th(abbr('HTML')), th(abbr('ARIA')) ])),
+        caption('Web technology comparison'),
+        thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),
         tbody([
-            [code('id'), code('id'), 'use host'],
-            [code('className'), code('className'), '—'],
-            [code('xml:lang'), code('lang'), '—'],
-            ['—', code('tabIndex'), 'use host'],
-            ['—', code('title'), code('aria-label')],
-            ['—', code('hidden'), code('aria-hidden')],
-        ].map(([xml, html, aria]) => tr([ td(xml), td(html), td(aria) ])))
+            [code('tagName'), code('role')],
+            [code('hidden'), code('aria-hidden')],
+            [code('title'), code('aria-label')]
+        ].map(([xml, html]) => tr([ td(xml), td(html) ])))
     ]),
 
-    img({ src : crazypicsrc, alt : 'Crazy PiPi!' }),
+    img({
+        src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
+        alt : 'Crazy PiPi!'
+    }),
 
     hgroup([
         h1('First level heading'),

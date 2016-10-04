@@ -1,17 +1,12 @@
-import { tests } from '../html/html.lib.test';
-
-import {
-    input, code,
-    table, thead, tbody,
-    tr, th, td, br
-} from '../html/html.lib';
-
+import { test } from '../html/html.lib.test';
+import { input, code, table, thead, tbody, tr, th, td, br } from '../html/html.lib';
 import './test.css';
+
+let rows;
 
 const filterinput = input({
     type : 'search',
     className : 'filterinput',
-    name : 'query',
     placeholder : 'filter...',
     oninput : ({ target : { value } }) => {
         rows.forEach(row => {
@@ -19,8 +14,6 @@ const filterinput = input({
         });
     }
 });
-
-let rows;
 
 const filtertable = table({
     cellSpacing : 0,
@@ -34,11 +27,12 @@ const filtertable = table({
                 children : filterinput
             })])
         ]),
-        tbody(rows = tests.map(element => {
+        tbody(rows = test.map(element => {
             const tagNameList = [element.tagName];
             const tagNames = [element.tagName];
             const collection = element.querySelectorAll('*');
             const elements = Array.from(collection);
+
             elements.forEach(({ tagName }) => {
                 if(!tagNameList.includes(tagName)) {
                     tagNameList.push(br(), tagName);

@@ -9,7 +9,7 @@ module.exports = {
     },
     output : {
         path: __dirname + '/build',
-        filename : '[name].build.js'
+        filename : 'build.[name].js'
     },
     module : {
         loaders : [
