@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - 4.6
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+
+addons:
+  sauce_connect:
+    username: "aristov7"
+    access_key: "0e922c40-5658-44fc-ab2b-7be69c51301e"
