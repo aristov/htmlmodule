@@ -1,4 +1,4 @@
 node_modules
-spec/spec.build.js
+build/*.build.js
 jsdoc
 tmp

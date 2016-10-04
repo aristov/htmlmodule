@@ -15,22 +15,22 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-register": "^6.16.3",
     "chai": "^3.5.0",
-    "jsdom": "https://github.com/aristov/jsdom.git#aristov.generated",
-    "jsdomify": "^3.1.0",
+    "css-loader": "^0.25.0",
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.2.0",
     "karma-mocha-reporter": "^2.2.0",
     "karma-opera-launcher": "^1.0.0",
-    "karma-phantomjs-launcher": "^1.0.2",
     "karma-safari-launcher": "^1.0.0",
+    "karma-saucelabs-launcher": "0.0.0",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.1.0",
+    "postcss-loader": "^0.13.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "test": "./node_modules/.bin/karma start",
-    "jsdomifytest": "mocha spec/spec.node.js --compilers js:babel-core/register"
+    "test": "./node_modules/.bin/karma start"
   }
 }
