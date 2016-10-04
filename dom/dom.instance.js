@@ -22,7 +22,7 @@ export class Instance {
     }
 
     /**
-     * @param {{}} propset
+     * @param {NodePropertySet} propset
      */
     set propset(propset) {
         const element = this.element;
@@ -67,14 +67,14 @@ export class Instance {
 
     /**
      * @param {String} tagName DOM Element tagName
-     * @param {{}} [propset]
+     * @param {NodePropertySet} [propset]
      * @returns {Element}
      */
     createElement(tagName, propset) {
         const ns = this.constructor.namespaceURI;
         const element = document.createElementNS(ns, tagName);
         this.element = element;
-        if(propset) this.propset = propset;
+        if(propset) this.propset = NodePropertySet(propset);
         return element;
     }
 
@@ -91,3 +91,16 @@ Object.defineProperty(Instance.prototype, 'node', {
     writable : true,
     value : null
 });
+
+/**
+ *
+ * @param {NodePropertySet|String|Array} propset
+ * @returns {NodePropertySet}
+ * @constructor
+ */
+export function NodePropertySet(propset) {
+    if(propset && propset.constructor !== Object) {
+        return { children : propset };
+    }
+    return propset;
+}

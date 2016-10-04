@@ -1,259 +1,239 @@
 import { HTMLInstance } from './html.instance';
 
-/**
- * Instant DOM
- * IDOM
- *
- * Instant HTML DOM
- * IHTMLDOM
- *
- * Instant SVG DOM
- * ISVGDOM
- *
- * Instant MathML DOM
- * IMathDOM
- *
- * Instant ARIA DOM
- * IARIADOM
- *
- * RoleType
- */
+const instance = new HTMLInstance;
 
+export const a = init => instance.createElement('a', init);
 
-export const instant = new HTMLInstance;
+export const abbr = init => instance.createElement('abbr', init);
 
-export const a = init => instant.createElement('a', init);
+export const address = init => instance.createElement('address', init);
 
-export const abbr = init => instant.createElement('abbr', init);
+export const area = init => instance.createElement('area', init);
 
-export const address = init => instant.createElement('address', init);
+export const article = init => instance.createElement('article', init);
 
-export const area = init => instant.createElement('area', init);
+export const aside = init => instance.createElement('aside', init);
 
-export const article = init => instant.createElement('article', init);
+export const audio = init => instance.createElement('audio', init);
 
-export const aside = init => instant.createElement('aside', init);
+export const b = init => instance.createElement('b', init);
 
-export const audio = init => instant.createElement('audio', init);
+export const base = init => instance.createElement('base', init);
 
-export const b = init => instant.createElement('b', init);
+export const bdi = init => instance.createElement('bdi', init);
 
-export const base = init => instant.createElement('base', init);
+export const bdo = init => instance.createElement('bdo', init);
 
-export const bdi = init => instant.createElement('bdi', init);
+export const blockquote = init => instance.createElement('blockquote', init);
 
-export const bdo = init => instant.createElement('bdo', init);
+export const body = init => instance.createElement('body', init);
 
-export const blockquote = init => instant.createElement('blockquote', init);
+export const br = init => instance.createElement('br', init);
 
-export const body = init => instant.createElement('body', init);
+export const button = init => instance.createElement('button', init);
 
-export const br = init => instant.createElement('br', init);
+export const canvas = init => instance.createElement('canvas', init);
 
-export const button = init => instant.createElement('button', init);
+export const caption = init => instance.createElement('caption', init);
 
-export const canvas = init => instant.createElement('canvas', init);
+export const cite = init => instance.createElement('cite', init);
 
-export const caption = init => instant.createElement('caption', init);
+export const code = init => instance.createElement('code', init);
 
-export const cite = init => instant.createElement('cite', init);
+export const col = init => instance.createElement('col', init);
 
-export const code = init => instant.createElement('code', init);
+export const colgroup = init => instance.createElement('colgroup', init);
 
-export const col = init => instant.createElement('col', init);
+export const data = init => instance.createElement('data', init);
 
-export const colgroup = init => instant.createElement('colgroup', init);
+export const datalist = init => instance.createElement('datalist', init);
 
-export const data = init => instant.createElement('data', init);
+export const dd = init => instance.createElement('dd', init);
 
-export const datalist = init => instant.createElement('datalist', init);
+export const del = init => instance.createElement('del', init);
 
-export const dd = init => instant.createElement('dd', init);
+export const details = init => instance.createElement('details', init);
 
-export const del = init => instant.createElement('del', init);
+export const dfn = init => instance.createElement('dfn', init);
 
-export const details = init => instant.createElement('details', init);
+export const dialog = init => instance.createElement('dialog', init);
 
-export const dfn = init => instant.createElement('dfn', init);
+export const div = init => instance.createElement('div', init);
 
-export const dialog = init => instant.createElement('dialog', init);
+export const dl = init => instance.createElement('dl', init);
 
-export const div = init => instant.createElement('div', init);
+export const dt = init => instance.createElement('dt', init);
 
-export const dl = init => instant.createElement('dl', init);
+export const em = init => instance.createElement('em', init);
 
-export const dt = init => instant.createElement('dt', init);
+export const embed = init => instance.createElement('embed', init);
 
-export const em = init => instant.createElement('em', init);
+export const fieldset = init => instance.createElement('fieldset', init);
 
-export const embed = init => instant.createElement('embed', init);
+export const figcaption = init => instance.createElement('figcaption', init);
 
-export const fieldset = init => instant.createElement('fieldset', init);
+export const figure = init => instance.createElement('figure', init);
 
-export const figcaption = init => instant.createElement('figcaption', init);
+export const footer = init => instance.createElement('footer', init);
 
-export const figure = init => instant.createElement('figure', init);
+export const form = init => instance.createElement('form', init);
 
-export const footer = init => instant.createElement('footer', init);
+export const h1 = init => instance.createElement('h1', init);
 
-export const form = init => instant.createElement('form', init);
+export const h2 = init => instance.createElement('h2', init);
 
-export const h1 = init => instant.createElement('h1', init);
+export const h3 = init => instance.createElement('h3', init);
 
-export const h2 = init => instant.createElement('h2', init);
+export const h4 = init => instance.createElement('h4', init);
 
-export const h3 = init => instant.createElement('h3', init);
+export const h5 = init => instance.createElement('h5', init);
 
-export const h4 = init => instant.createElement('h4', init);
+export const h6 = init => instance.createElement('h6', init);
 
-export const h5 = init => instant.createElement('h5', init);
+export const head = init => instance.createElement('head', init);
 
-export const h6 = init => instant.createElement('h6', init);
+export const header = init => instance.createElement('header', init);
 
-export const head = init => instant.createElement('head', init);
+export const hgroup = init => instance.createElement('hgroup', init);
 
-export const header = init => instant.createElement('header', init);
+export const hr = init => instance.createElement('hr', init);
 
-export const hgroup = init => instant.createElement('hgroup', init);
+export const html = init => instance.createElement('html', init);
 
-export const hr = init => instant.createElement('hr', init);
+export const i = init => instance.createElement('i', init);
 
-export const html = init => instant.createElement('html', init);
+export const iframe = init => instance.createElement('iframe', init);
 
-export const i = init => instant.createElement('i', init);
+export const img = init => instance.createElement('img', init);
 
-export const iframe = init => instant.createElement('iframe', init);
+export const input = init => instance.createElement('input', init);
 
-export const img = init => instant.createElement('img', init);
+export const ins = init => instance.createElement('ins', init);
 
-export const input = init => instant.createElement('input', init);
+export const kbd = init => instance.createElement('kbd', init);
 
-export const ins = init => instant.createElement('ins', init);
+export const keygen = init => instance.createElement('keygen', init);
 
-export const kbd = init => instant.createElement('kbd', init);
+export const label = init => instance.createElement('label', init);
 
-export const keygen = init => instant.createElement('keygen', init);
+export const legend = init => instance.createElement('legend', init);
 
-export const label = init => instant.createElement('label', init);
+export const li = init => instance.createElement('li', init);
 
-export const legend = init => instant.createElement('legend', init);
+export const link = init => instance.createElement('link', init);
 
-export const li = init => instant.createElement('li', init);
+export const main = init => instance.createElement('main', init);
 
-export const link = init => instant.createElement('link', init);
+export const map = init => instance.createElement('map', init);
 
-export const main = init => instant.createElement('main', init);
-
-export const map = init => instant.createElement('map', init);
-
-export const mark = init => instant.createElement('mark', init);
+export const mark = init => instance.createElement('mark', init);
 
 // todo MathInstance
 // export const math = init => instance.createElement('math', init);
 
-export const menu = init => instant.createElement('menu', init);
+export const menu = init => instance.createElement('menu', init);
 
-export const menuitem = init => instant.createElement('menuitem', init);
+export const menuitem = init => instance.createElement('menuitem', init);
 
-export const meta = init => instant.createElement('meta', init);
+export const meta = init => instance.createElement('meta', init);
 
-export const meter = init => instant.createElement('meter', init);
+export const meter = init => instance.createElement('meter', init);
 
-export const nav = init => instant.createElement('nav', init);
+export const nav = init => instance.createElement('nav', init);
 
-export const noscript = init => instant.createElement('noscript', init);
+export const noscript = init => instance.createElement('noscript', init);
 
-export const object = init => instant.createElement('object', init);
+export const object = init => instance.createElement('object', init);
 
-export const ol = init => instant.createElement('ol', init);
+export const ol = init => instance.createElement('ol', init);
 
-export const optgroup = init => instant.createElement('optgroup', init);
+export const optgroup = init => instance.createElement('optgroup', init);
 
-export const option = init => instant.createElement('option', init);
+export const option = init => instance.createElement('option', init);
 
-export const output = init => instant.createElement('output', init);
+export const output = init => instance.createElement('output', init);
 
-export const p = init => instant.createElement('p', init);
+export const p = init => instance.createElement('p', init);
 
-export const param = init => instant.createElement('param', init);
+export const param = init => instance.createElement('param', init);
 
-export const picture = init => instant.createElement('picture', init);
+export const picture = init => instance.createElement('picture', init);
 
-export const pre = init => instant.createElement('pre', init);
+export const pre = init => instance.createElement('pre', init);
 
-export const progress = init => instant.createElement('progress', init);
+export const progress = init => instance.createElement('progress', init);
 
-export const q = init => instant.createElement('q', init);
+export const q = init => instance.createElement('q', init);
 
-export const rp = init => instant.createElement('rp', init);
+export const rp = init => instance.createElement('rp', init);
 
-export const rt = init => instant.createElement('rt', init);
+export const rt = init => instance.createElement('rt', init);
 
-export const ruby = init => instant.createElement('ruby', init);
+export const ruby = init => instance.createElement('ruby', init);
 
-export const s = init => instant.createElement('s', init);
+export const s = init => instance.createElement('s', init);
 
-export const samp = init => instant.createElement('samp', init);
+export const samp = init => instance.createElement('samp', init);
 
-export const script = init => instant.createElement('script', init);
+export const script = init => instance.createElement('script', init);
 
-export const section = init => instant.createElement('section', init);
+export const section = init => instance.createElement('section', init);
 
-export const select = init => instant.createElement('select', init);
+export const select = init => instance.createElement('select', init);
 
-export const slot = init => instant.createElement('slot', init);
+export const slot = init => instance.createElement('slot', init);
 
-export const small = init => instant.createElement('small', init);
+export const small = init => instance.createElement('small', init);
 
-export const source = init => instant.createElement('source', init);
+export const source = init => instance.createElement('source', init);
 
-export const span = init => instant.createElement('span', init);
+export const span = init => instance.createElement('span', init);
 
-export const strong = init => instant.createElement('strong', init);
+export const strong = init => instance.createElement('strong', init);
 
-export const style = init => instant.createElement('style', init);
+export const style = init => instance.createElement('style', init);
 
-export const sub = init => instant.createElement('sub', init);
+export const sub = init => instance.createElement('sub', init);
 
-export const summary = init => instant.createElement('summary', init);
+export const summary = init => instance.createElement('summary', init);
 
-export const sup = init => instant.createElement('sup', init);
+export const sup = init => instance.createElement('sup', init);
 
 // todo SVGInstance
 // export const svg = init => instance.createElement('svg', init);
 
-export const table = init => instant.createElement('table', init);
+export const table = init => instance.createElement('table', init);
 
-export const tbody = init => instant.createElement('tbody', init);
+export const tbody = init => instance.createElement('tbody', init);
 
-export const td = init => instant.createElement('td', init);
+export const td = init => instance.createElement('td', init);
 
-export const template = init => instant.createElement('template', init);
+export const template = init => instance.createElement('template', init);
 
-export const textarea = init => instant.createElement('textarea', init);
+export const textarea = init => instance.createElement('textarea', init);
 
-export const tfoot = init => instant.createElement('tfoot', init);
+export const tfoot = init => instance.createElement('tfoot', init);
 
-export const th = init => instant.createElement('th', init);
+export const th = init => instance.createElement('th', init);
 
-export const thead = init => instant.createElement('thead', init);
+export const thead = init => instance.createElement('thead', init);
 
-export const time = init => instant.createElement('time', init);
+export const time = init => instance.createElement('time', init);
 
-export const title = init => instant.createElement('title', init);
+export const title = init => instance.createElement('title', init);
 
-export const tr = init => instant.createElement('tr', init);
+export const tr = init => instance.createElement('tr', init);
 
-export const track = init => instant.createElement('track', init);
+export const track = init => instance.createElement('track', init);
 
-export const u = init => instant.createElement('u', init);
+export const u = init => instance.createElement('u', init);
 
-export const ul = init => instant.createElement('ul', init);
+export const ul = init => instance.createElement('ul', init);
 
 // `var` is JS-keyword
-export const variable = init => instant.createElement('var', init);
+export const variable = init => instance.createElement('var', init);
 
-export const video = init => instant.createElement('video', init);
+export const video = init => instance.createElement('video', init);
 
-export const wbr = init => instant.createElement('wbr', init);
+export const wbr = init => instance.createElement('wbr', init);
 

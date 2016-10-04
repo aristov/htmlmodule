@@ -18,11 +18,11 @@ const {
 
 const instance = new HTMLInstance;
 
-describe('HTMLInstance', function() {
+describe('HTML Instance', function() {
 
     describe('createElement', function() {
 
-        describe('built-in attributes', function() {
+        describe('built-in global attributes', function() {
 
             describe('accessKey', function() {
                 const element = instance.createElement('a', {
@@ -239,10 +239,7 @@ describe('HTMLInstance', function() {
 
             describe('style', function() {
                 const element = instance.createElement('span', {
-                    style : {
-                        color : 'white',
-                        backgroundColor : 'black'
-                    }
+                    style : { backgroundColor : 'black' }
                 });
                 it('proper HTMLSpanElement node created', function() {
                     assert.equal(element.constructor, HTMLSpanElement);
@@ -253,13 +250,11 @@ describe('HTMLInstance', function() {
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper proper style declaration assigned', function() {
-                    assert.equal(element.style.color, 'white');
                     assert.equal(element.style.backgroundColor, 'black');
-                    assert.equal(element.getAttribute('style'), 'color: white; background-color: black;');
+                    assert.equal(element.getAttribute('style'), 'background-color: black;');
                 });
                 it('proper outerHTML property value', function() {
-                    assert.equal(element.outerHTML,
-                        '<span style="color: white; background-color: black;"></span>');
+                    assert.equal(element.outerHTML, '<span style="background-color: black;"></span>');
                 });
             });
         });

@@ -13,7 +13,7 @@ const {
 
 const instance = new Instance;
 
-describe('DOMInstance', function() {
+describe('DOM Instance', function() {
 
     describe('createElement', function() {
 
