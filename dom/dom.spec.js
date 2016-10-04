@@ -95,6 +95,7 @@ describe('DOMInstance', function() {
                 assert.equal(element.outerHTML, '<element><child foo="bar"></child></element>');
             });
         });
+        // scrollTop
         describe('attrset', function() {
             const element = instance.createElement('element', {
                 attrset : { attrname : 'attribute value' }

@@ -3,18 +3,6 @@ import { Instance } from '../dom/dom.instance';
 const assign = Object.assign;
 const XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
-/**
- * @param {{
- *  hidden
- *  lang
- *  scrollTop
- *  spellcheck
- *  style
- *  tabIndex
- *  title
- *  translate
- * }} propset
- */
 export class HTMLInstance extends Instance {
     /**
      * Set dataset of the element.
