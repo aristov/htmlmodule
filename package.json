@@ -32,6 +32,6 @@
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "test": "'./node_modules/.bin/karma start"
+    "test": "./node_modules/.bin/karma start"
   }
 }
