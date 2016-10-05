@@ -17,6 +17,12 @@ module.exports = function (config) {
             platform: 'OS X 10.11',
             browserName: 'safari',
             version: '9.0'
+        },
+        SL_IE_11: {
+            base: 'SauceLabs',
+            platform: 'Windows 8.1',
+            browserName: 'internet explorer',
+            version: '11'
         }
     }
     config.set({

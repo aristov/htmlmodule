@@ -26,7 +26,7 @@ export const test = [
     ({ footer, address, small }) =>
         footer([
             address('vv.aristov@gmail.com'),
-            small('@ All rights free'),
+            small('@ All rights free')
         ]),
 
     ({ main, sup, sub, i, strong }) =>
