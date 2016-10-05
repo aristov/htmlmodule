@@ -32,5 +32,5 @@ module.exports = {
         github: true,
         format: 'html'
     },
-    watch : process.env.DEV_MODE === 'true'
+    watch : Boolean(process.env.WATCH_MODE)
 };

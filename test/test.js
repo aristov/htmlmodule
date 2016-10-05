@@ -15,10 +15,9 @@ const filterinput = input({
     }
 });
 
-const filtertable = table({
+const exampletable = table({
     cellSpacing : 0,
     className : 'exampletable',
-    id : 'exampletable',
     children : [
         thead([
             tr([th('tagName'), th('outerHTML'), th('DOM element')]),
@@ -52,4 +51,4 @@ const filtertable = table({
     ]
 });
 
-document.body.appendChild(filtertable);
+document.body.appendChild(exampletable);
