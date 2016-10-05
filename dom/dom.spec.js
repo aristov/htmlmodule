@@ -8,7 +8,6 @@ const {
     Comment,
     Element,
     HTMLHRElement,
-    HTMLSpanElement,
     JSON
 } = window;
 
@@ -34,10 +33,6 @@ describe('DOM assembler', function() {
                 assert(!element.hasAttributes());
                 assert(!element.hasChildNodes());
             });
-            it.skip('proper `outerHTML` property value', () => {
-                document.body.appendChild(element);
-                assert.equal(element.outerHTML, '<element></element>');
-            });
         });
 
         describe('build-in attributes', function() {
@@ -51,10 +46,6 @@ describe('DOM assembler', function() {
                 });
                 it('proper `id` attribute', function() {
                     assert.equal(element.id, 'element_0');
-                });
-                it.skip('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML,
-                        '<element id="element_0"></element>');
                 });
             });
 
@@ -73,10 +64,6 @@ describe('DOM assembler', function() {
                     assert(element.classList.contains('className'));
                     assert(element.classList.contains('element_class_name'));
                 });
-                it.skip('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML,
-                        '<element class="element className element_class_name"></element>');
-                });
             });
 
             describe('textContent', function() {
@@ -91,10 +78,6 @@ describe('DOM assembler', function() {
                     assert.equal(element.firstChild.constructor, Text);
                     assert.equal(element.firstChild.textContent, 'element textContent');
                     assert.equal(element.textContent, 'element textContent');
-                    /*assert.equal(element.innerHTML, 'element textContent');*/
-                });
-                it.skip('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<element>element textContent</element>');
                 });
             });
         });
@@ -111,9 +94,6 @@ describe('DOM assembler', function() {
                 });
                 it('proper attributes assigned', function() {
                     assert.equal(element.getAttribute('attrname'), 'attribute value');
-                });
-                it.skip('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<element attrname="attribute value"></element>');
                 });
             });
 
@@ -143,16 +123,6 @@ describe('DOM assembler', function() {
                     assert.equal(childNodes[3].tagName, 'HR');
                     assert.equal(childNodes[4].constructor, Comment);
                     assert.equal(childNodes[4].textContent, 'Simple DOM Comment node');
-                });
-                it.skip('proper `outerHTML` attribute value', function() {
-                    assert.equal(element.outerHTML,
-                        '<element>' +
-                            '<child></child>' +
-                            'text node as string' +
-                            'created text node' +
-                            '<hr>' +
-                            '<!--Simple DOM Comment node-->' +
-                        '</element>');
                 });
             });
         });
