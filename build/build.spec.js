@@ -1,3 +1,5 @@
+const Text = function(text) { return document.createTextNode(text) };
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
