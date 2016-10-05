@@ -1,5 +1,3 @@
-const Text = function(text) { return document.createTextNode(text) };
-
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -9031,7 +9029,7 @@ const Text = function(text) { return document.createTextNode(text) };
 	                    return _this.children = child;
 	                });
 	            } else {
-	                var child = typeof children === 'string' ? new Text(children) : children;
+	                var child = typeof children === 'string' ? document.createTextNode(children) : children;
 	                this.element.appendChild(child);
 	            }
 	        }

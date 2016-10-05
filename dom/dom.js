@@ -62,7 +62,7 @@ export class DOMAssembler {
             children.forEach(child => this.children = child);
         } else {
             const child = typeof children === 'string'?
-                new Text(children) :
+                document.createTextNode(children) :
                 children;
             this.element.appendChild(child);
         }

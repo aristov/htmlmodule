@@ -35,6 +35,7 @@ describe('DOM assembler', function() {
                 assert(!element.hasChildNodes());
             });
             it('proper `outerHTML` property value', () => {
+                document.body.appendChild(element);
                 assert.equal(element.outerHTML, '<element></element>');
             });
         });
@@ -139,7 +140,7 @@ describe('DOM assembler', function() {
                     children : [
                         assembler.createElement('child'),
                         'text node as string',
-                        new Text('created text node'),
+                        document.createTextNode('created text node'),
                         document.createElement('hr'),
                         document.createComment('Simple DOM Comment node'),
                     ]

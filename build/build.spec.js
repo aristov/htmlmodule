@@ -1,5 +1,3 @@
-const Text = function(text) { return document.createTextNode(text) };
-
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -8865,6 +8863,7 @@ const Text = function(text) { return document.createTextNode(text) };
 	                assert(!element.hasChildNodes());
 	            });
 	            it('proper `outerHTML` property value', function () {
+	                document.body.appendChild(element);
 	                assert.equal(element.outerHTML, '<element></element>');
 	            });
 	        });
@@ -8964,7 +8963,7 @@ const Text = function(text) { return document.createTextNode(text) };
 
 	            describe('children', function () {
 	                var element = assembler.createElement('element', {
-	                    children: [assembler.createElement('child'), 'text node as string', new Text('created text node'), document.createElement('hr'), document.createComment('Simple DOM Comment node')]
+	                    children: [assembler.createElement('child'), 'text node as string', document.createTextNode('created text node'), document.createElement('hr'), document.createComment('Simple DOM Comment node')]
 	                });
 	                var childNodes = element.childNodes;
 	                it('proper number of child nodes', function () {
@@ -9142,7 +9141,7 @@ const Text = function(text) { return document.createTextNode(text) };
 	                    return _this.children = child;
 	                });
 	            } else {
-	                var child = typeof children === 'string' ? new Text(children) : children;
+	                var child = typeof children === 'string' ? document.createTextNode(children) : children;
 	                this.element.appendChild(child);
 	            }
 	        }
