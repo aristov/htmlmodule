@@ -145,11 +145,11 @@ describe('HTML assembler', function() {
             });
 
             describe('spellcheck', function() {
-                const element = assembler.createElement('body', { spellcheck : true });
+                const element = assembler.createElement('input', { spellcheck : true });
 
-                it('HTMLBodyElement node created', function() {
-                    assert.equal(element.constructor, HTMLBodyElement);
-                    assert.equal(element.tagName, 'BODY');
+                it('HTMLInputElement node created', function() {
+                    assert.equal(element.constructor, HTMLInputElement);
+                    assert.equal(element.tagName, 'INPUT');
                 });
                 it('proper number of attributes', function() {
                     assert.equal(element.hasAttributes(), true);
@@ -160,7 +160,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.getAttribute('spellcheck'), 'true');
                 });
                 it('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<body spellcheck="true"></body>');
+                    assert.equal(element.outerHTML, '<input spellcheck="true"></input>');
                 });
             });
 
