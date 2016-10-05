@@ -160,7 +160,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.getAttribute('spellcheck'), 'true');
                 });
                 it('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<input spellcheck="true"></input>');
+                    assert.equal(element.outerHTML, '<input spellcheck="true">');
                 });
             });
 
