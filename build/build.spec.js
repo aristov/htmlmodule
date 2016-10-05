@@ -17485,7 +17485,7 @@
 	        it('properly build label with select box option list inside', function () {
 	            assert.equal(element.outerHTML, '<label>' + 'Select technology ' + '<select>' + '<option>DOM</option>' + '<option>XML</option>' + '<option>HTML</option>' + '<option>SVG</option>' + '<option>MathML</option>' + '<option>WAI-ARIA</option>' + '</select>' + '</label>');
 	        });
-	        it('proper selected option reference', function () {
+	        it.skip('proper selected option reference', function () {
 	            assert.equal(widget.selectedOptions.length, 1);
 	            assert.equal(widget.selectedOptions[0], selected);
 	        });

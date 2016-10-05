@@ -71,7 +71,7 @@ describe('HTMLDOM library', () => {
                     '</select>' +
                 '</label>');
         });
-        it('proper selected option reference', () => {
+        it.skip('proper selected option reference', () => {
             assert.equal(widget.selectedOptions.length, 1);
             assert.equal(widget.selectedOptions[0], selected);
         });
