@@ -1,10 +1,11 @@
-const isArray = Array.isArray;
+const { isArray } = Array;
 const { document, Text, Element } = window;
 
 export const XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 export class Instance {
     /**
+     * Assign given element to instance
      * @param {Element} element
      */
     set element(element) {
@@ -14,6 +15,7 @@ export class Instance {
     }
 
     /**
+     * Get the assigned element
      * @returns {Element}
      */
     get element() {
@@ -22,7 +24,8 @@ export class Instance {
     }
 
     /**
-     * @param {{}} propset
+     * Initialize the element with defined properties
+     * @param {{}} propset Node property set dictionary object
      */
     set propset(propset) {
         const element = this.element;
@@ -52,7 +55,7 @@ export class Instance {
     /**
      * Append children to the element.
      * Supports arrays and nested arrays, single DOM node and strings as Text nodes.
-     * @param {Array|Node|String|[Node|String|[...]]} children array or DOM-node or string
+     * @param {Array|Node|String|[Array|Node|String|[...]]} children array or DOM-node or string
      */
     set children(children) {
         if(isArray(children)) {
@@ -66,16 +69,16 @@ export class Instance {
     }
 
     /**
-     * @param {String} tagName DOM Element tagName
+     * Create the specified element and initialize it by given property set
+     * @param {String} tagName
      * @param {{}} [propset]
      * @returns {Element}
      */
     createElement(tagName, propset) {
-        const ns = this.constructor.namespaceURI;
-        const element = document.createElementNS(ns, tagName);
-        this.element = element;
+        const { namespaceURI } = this.constructor;
+        this.element = document.createElementNS(namespaceURI, tagName);
         if(propset) this.propset = NodePropertySet(propset);
-        return element;
+        return this.element;
     }
 
     /**
@@ -93,10 +96,11 @@ Object.defineProperty(Instance.prototype, 'node', {
 });
 
 /**
- *
+ * Converts any non-dictionary object argument
+ * to NodePropertySet dictionary object with `children` property assigned
  * @param {Object,String|Array} propset
- * @returns {{}}
- * @constructor
+ * @returns {NodePropertySet}
+ * @interface
  */
 export function NodePropertySet(propset) {
     if(propset && propset.constructor !== Object) {

@@ -13,7 +13,7 @@ module.exports = {
     },
     module : {
         loaders : [
-            { test : /\.js$/, loader : 'babel?presets[]=es2015' },
+            { test : /\.js$/, loader : 'babel?plugins[]=transform-es2015-modules-commonjs' },   
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' }
         ],
         postLoaders: [

@@ -1,12 +1,12 @@
 import { Instance } from '../dom/dom.instance';
 
-const assign = Object.assign;
+const { assign } = Object;
 
 export const XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 export class HTMLInstance extends Instance {
     /**
-     * Set dataset of the element.
+     * Assign custom `data-` attributes to the element
      * @param {{}} dataset declaration dictionary object
      */
     set dataset(dataset) {
@@ -14,7 +14,7 @@ export class HTMLInstance extends Instance {
     }
 
     /**
-     * Set style of the element.
+     * Assign CSS style declaration to the element
      * @param {CSSStyleDeclaration} style declaration dictionary object
      */
     set style(style) {
@@ -22,7 +22,6 @@ export class HTMLInstance extends Instance {
     }
 
     /**
-     *
      * @returns {String}
      */
     static get namespaceURI() {
