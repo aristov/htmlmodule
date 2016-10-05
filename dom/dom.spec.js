@@ -97,24 +97,6 @@ describe('DOM assembler', function() {
                     assert.equal(element.outerHTML, '<element>element textContent</element>');
                 });
             });
-
-            describe('innerHTML', function() {
-                const element = assembler.createElement('element', {
-                    innerHTML : '<span class="box"></span>'
-                });
-                it.skip('proper number of child nodes', function() {
-                    assert(element.hasChildNodes());
-                    assert.equal(element.childNodes.length, 1);
-                });
-                it.skip('proper child node', function() {
-                    const child = element.firstChild;
-                    assert.equal(child.constructor, HTMLSpanElement);
-                    assert.equal(child.outerHTML, '<span class="box"></span>');
-                });
-                it.skip('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<element><span class="box"></span></element>');
-                });
-            });
         });
 
         describe('adapted interface', function() {

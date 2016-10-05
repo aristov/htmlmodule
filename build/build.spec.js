@@ -8923,24 +8923,6 @@
 	                    assert.equal(element.outerHTML, '<element>element textContent</element>');
 	                });
 	            });
-
-	            describe('innerHTML', function () {
-	                var element = assembler.createElement('element', {
-	                    innerHTML: '<span class="box"></span>'
-	                });
-	                it.skip('proper number of child nodes', function () {
-	                    assert(element.hasChildNodes());
-	                    assert.equal(element.childNodes.length, 1);
-	                });
-	                it.skip('proper child node', function () {
-	                    var child = element.firstChild;
-	                    assert.equal(child.constructor, HTMLSpanElement);
-	                    assert.equal(child.outerHTML, '<span class="box"></span>');
-	                });
-	                it.skip('proper `outerHTML` property value', function () {
-	                    assert.equal(element.outerHTML, '<element><span class="box"></span></element>');
-	                });
-	            });
 	        });
 
 	        describe('adapted interface', function () {
@@ -17171,8 +17153,8 @@
 	var HTMLHtmlElement = _window.HTMLHtmlElement;
 	var HTMLFormElement = _window.HTMLFormElement;
 	var HTMLSelectElement = _window.HTMLSelectElement;
-	var HTMLBodyElement = _window.HTMLBodyElement;
 	var HTMLAnchorElement = _window.HTMLAnchorElement;
+	var HTMLBodyElement = _window.HTMLBodyElement;
 	var HTMLButtonElement = _window.HTMLButtonElement;
 	var HTMLDivElement = _window.HTMLDivElement;
 	var HTMLSpanElement = _window.HTMLSpanElement;
@@ -17286,6 +17268,28 @@
 	                });
 	            });
 
+	            describe('innerHTML', function () {
+	                var element = assembler.createElement('body', {
+	                    innerHTML: '<span class="box"></span>'
+	                });
+	                it('HTMLBodyElement node created', function () {
+	                    assert.equal(element.constructor, HTMLBodyElement);
+	                    assert.equal(element.tagName, 'BODY');
+	                });
+	                it('proper number of child nodes', function () {
+	                    assert(element.hasChildNodes());
+	                    assert.equal(element.childNodes.length, 1);
+	                });
+	                it('proper child node', function () {
+	                    var child = element.firstChild;
+	                    assert.equal(child.constructor, HTMLSpanElement);
+	                    assert.equal(child.outerHTML, '<span class="box"></span>');
+	                });
+	                it('proper `outerHTML` property value', function () {
+	                    assert.equal(element.outerHTML, '<body><span class="box"></span></body>');
+	                });
+	            });
+
 	            describe('lang', function () {
 	                var element = assembler.createElement('html', { lang: 'ru' });
 
@@ -17303,26 +17307,6 @@
 	                });
 	                it('proper outerHTML property value', function () {
 	                    assert.equal(element.outerHTML, '<html lang="ru"></html>');
-	                });
-	            });
-
-	            describe('spellcheck', function () {
-	                var element = assembler.createElement('input', { spellcheck: true });
-
-	                it('HTMLInputElement node created', function () {
-	                    assert.equal(element.constructor, HTMLInputElement);
-	                    assert.equal(element.tagName, 'INPUT');
-	                });
-	                it('proper number of attributes', function () {
-	                    assert.equal(element.hasAttributes(), true);
-	                    assert.equal(element.attributes.length, 1);
-	                });
-	                it('proper `spellcheck` attribute', function () {
-	                    assert.equal(element.spellcheck, true);
-	                    assert.equal(element.getAttribute('spellcheck'), 'true');
-	                });
-	                it('proper `outerHTML` property value', function () {
-	                    assert.equal(element.outerHTML, '<input spellcheck="true">');
 	                });
 	            });
 
