@@ -72,48 +72,55 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	const jsb = _jsBeautify2.default.js_beautify;
-	const jsbConfig = {
+	var jsb = _jsBeautify2.default.js_beautify;
+	var jsbConfig = {
 	    indent_size: 4,
 	    wrap_line_length: 100
 	};
 
-	const victoricaConfig = {
+	var victoricaConfig = {
 	    space: '    ',
 	    removeSelfClose: true
 	};
 
-	let rows;
+	var rows = void 0;
 
-	const filterinput = (0, _htmldom.input)({
+	var filterinput = (0, _htmldom.input)({
 	    type: 'search',
 	    className: 'filterinput',
 	    placeholder: 'filter...',
-	    oninput: ({ target: { value } }) => {
-	        rows.forEach(row => {
+	    oninput: function oninput(_ref) {
+	        var value = _ref.target.value;
+
+	        rows.forEach(function (row) {
 	            row.hidden = !row.className.includes(value.toUpperCase());
 	        });
 	    }
 	});
 
-	const tag = children => (0, _htmldom.span)({ className: 'tag', children });
+	var tag = function tag(children) {
+	    return (0, _htmldom.span)({ className: 'tag', children: children });
+	};
 
-	const exampletable = (0, _htmldom.table)({
+	var exampletable = (0, _htmldom.table)({
 	    cellSpacing: 0,
 	    className: 'exampletable',
-	    children: [(0, _htmldom.thead)([(0, _htmldom.tr)([(0, _htmldom.th)(filterinput)])]), (0, _htmldom.tbody)(rows = _htmldomTest.test.map(template => {
-	        const element = template(HTMLDOM);
-	        const tagNames = [element.tagName];
-	        const collection = element.querySelectorAll('*');
-	        const elements = Array.from(collection);
+	    children: [(0, _htmldom.thead)([(0, _htmldom.tr)([(0, _htmldom.th)(filterinput)])]), (0, _htmldom.tbody)(rows = _htmldomTest.test.map(function (template) {
+	        var element = template(HTMLDOM);
+	        var tagNames = [element.tagName];
+	        var collection = element.querySelectorAll('*');
+	        var elements = Array.from(collection);
 
-	        elements.forEach(({ tagName }) => {
+	        elements.forEach(function (_ref2) {
+	            var tagName = _ref2.tagName;
+
 	            if (!tagNames.includes(tagName)) tagNames.push(tagName);
 	        });
 
-	        let srcjscode, resulthtmlcode;
+	        var srcjscode = void 0,
+	            resulthtmlcode = void 0;
 
-	        const row = (0, _htmldom.tr)({
+	        var row = (0, _htmldom.tr)({
 	            className: tagNames.join(' '),
 	            children: (0, _htmldom.td)([(0, _htmldom.h3)((0, _htmldom.code)(tagNames.join(', '))), tag('Source JS:'), (0, _htmldom.div)(srcjscode = (0, _htmldom.pre)({
 	                className: 'javascript',
@@ -146,95 +153,133 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	exports.NodeInit = NodeInit;
-	const { isArray } = Array;
-	const { document, Text, Element } = window;
 
-	const XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	class DOMAssembler {
-	    /**
-	     * Assign given element to instance
-	     * @param {Element} element
-	     */
-	    set element(element) {
-	        if (element instanceof Element) {
-	            this.node = element;
-	        } else throw Error('This is not Element');
+	var isArray = Array.isArray;
+	var _window = window;
+	var document = _window.document;
+	var Text = _window.Text;
+	var Element = _window.Element;
+	var XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
+
+	var DOMAssembler = exports.DOMAssembler = function () {
+	    function DOMAssembler() {
+	        _classCallCheck(this, DOMAssembler);
 	    }
 
-	    /**
-	     * Get the assigned element
-	     * @returns {Element}
-	     */
-	    get element() {
-	        if (this.node) return this.node;else throw Error('No element assigned');
-	    }
+	    _createClass(DOMAssembler, [{
+	        key: 'createElement',
 
-	    /**
-	     * Initialize the element with defined properties
-	     * @param {{}} init Node property set dictionary object
-	     */
-	    set init(init) {
-	        const element = this.element;
-	        for (const prop in init) {
-	            const value = init[prop];
-	            if (value !== undefined) {
-	                if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
+
+	        /**
+	         * Create the specified element and initialize it by given property set
+	         * @param {String} tagName
+	         * @param {{}} [init]
+	         * @returns {Element}
+	         */
+	        value: function createElement(tagName, init) {
+	            var namespaceURI = this.constructor.namespaceURI;
+
+	            this.element = document.createElementNS(namespaceURI, tagName);
+	            if (init) this.init = NodeInit(init);
+	            return this.element;
+	        }
+
+	        /**
+	         * @returns {String}
+	         */
+
+	    }, {
+	        key: 'element',
+
+	        /**
+	         * Assign given element to instance
+	         * @param {Element} element
+	         */
+	        set: function set(element) {
+	            if (element instanceof Element) {
+	                this.node = element;
+	            } else throw Error('This is not Element');
+	        }
+
+	        /**
+	         * Get the assigned element
+	         * @returns {Element}
+	         */
+	        ,
+	        get: function get() {
+	            if (this.node) return this.node;else throw Error('No element assigned');
+	        }
+
+	        /**
+	         * Initialize the element with defined properties
+	         * @param {{}} init Node property set dictionary object
+	         */
+
+	    }, {
+	        key: 'init',
+	        set: function set(init) {
+	            var element = this.element;
+	            for (var prop in init) {
+	                var value = init[prop];
+	                if (value !== undefined) {
+	                    if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
+	                }
 	            }
 	        }
-	    }
 
-	    /**
-	     * Set attributes of the element
-	     * @param {{}} attrset dictionary object
-	     */
-	    set attrset(attrset) {
-	        const element = this.element;
-	        for (const name in attrset) {
-	            const value = attrset[name];
-	            if (typeof value === 'string') {
-	                element.setAttribute(name, value);
+	        /**
+	         * Set attributes of the element
+	         * @param {{}} attrset dictionary object
+	         */
+
+	    }, {
+	        key: 'attrset',
+	        set: function set(attrset) {
+	            var element = this.element;
+	            for (var name in attrset) {
+	                var value = attrset[name];
+	                if (typeof value === 'string') {
+	                    element.setAttribute(name, value);
+	                }
 	            }
 	        }
-	    }
 
-	    /**
-	     * Append children to the element.
-	     * Supports arrays and nested arrays, single DOM node and strings as Text nodes.
-	     * @param {Array|Node|String|[Array|Node|String|[...]]} children array or DOM-node or string
-	     */
-	    set children(children) {
-	        if (isArray(children)) {
-	            children.forEach(child => this.children = child);
-	        } else {
-	            const child = typeof children === 'string' ? new Text(children) : children;
-	            this.element.appendChild(child);
+	        /**
+	         * Append children to the element.
+	         * Supports arrays and nested arrays, single DOM node and strings as Text nodes.
+	         * @param {Array|Node|String|[Array|Node|String|[...]]} children array or DOM-node or string
+	         */
+
+	    }, {
+	        key: 'children',
+	        set: function set(children) {
+	            var _this = this;
+
+	            if (isArray(children)) {
+	                children.forEach(function (child) {
+	                    return _this.children = child;
+	                });
+	            } else {
+	                var child = typeof children === 'string' ? new Text(children) : children;
+	                this.element.appendChild(child);
+	            }
 	        }
-	    }
+	    }], [{
+	        key: 'namespaceURI',
+	        get: function get() {
+	            return XML_NS_URI;
+	        }
+	    }]);
 
-	    /**
-	     * Create the specified element and initialize it by given property set
-	     * @param {String} tagName
-	     * @param {{}} [init]
-	     * @returns {Element}
-	     */
-	    createElement(tagName, init) {
-	        const { namespaceURI } = this.constructor;
-	        this.element = document.createElementNS(namespaceURI, tagName);
-	        if (init) this.init = NodeInit(init);
-	        return this.element;
-	    }
+	    return DOMAssembler;
+	}();
 
-	    /**
-	     * @returns {String}
-	     */
-	    static get namespaceURI() {
-	        return XML_NS_URI;
-	    }
-	}
-
-	exports.DOMAssembler = DOMAssembler;
 	Object.defineProperty(DOMAssembler.prototype, 'node', {
 	    enumerable: true,
 	    writable: true,
@@ -307,37 +352,63 @@
 	});
 	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _dom = __webpack_require__(2);
 
-	const { assign } = Object;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	const XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	class HTMLAssembler extends _dom.DOMAssembler {
-	    /**
-	     * Assign custom `data-` attributes to the element
-	     * @param {{}} dataset declaration dictionary object
-	     */
-	    set dataset(dataset) {
-	        assign(this.element.dataset, dataset);
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var assign = Object.assign;
+	var XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
+
+	var HTMLAssembler = exports.HTMLAssembler = function (_DOMAssembler) {
+	    _inherits(HTMLAssembler, _DOMAssembler);
+
+	    function HTMLAssembler() {
+	        _classCallCheck(this, HTMLAssembler);
+
+	        return _possibleConstructorReturn(this, (HTMLAssembler.__proto__ || Object.getPrototypeOf(HTMLAssembler)).apply(this, arguments));
 	    }
 
-	    /**
-	     * Assign CSS style declaration to the element
-	     * @param {CSSStyleDeclaration} style declaration dictionary object
-	     */
-	    set style(style) {
-	        assign(this.element.style, style);
-	    }
+	    _createClass(HTMLAssembler, [{
+	        key: 'dataset',
 
-	    /**
-	     * @returns {String}
-	     */
-	    static get namespaceURI() {
-	        return XHTML_NS_URI;
-	    }
-	}
-	exports.HTMLAssembler = HTMLAssembler;
+	        /**
+	         * Assign custom `data-` attributes to the element
+	         * @param {{}} dataset declaration dictionary object
+	         */
+	        set: function set(dataset) {
+	            assign(this.element.dataset, dataset);
+	        }
+
+	        /**
+	         * Assign CSS style declaration to the element
+	         * @param {CSSStyleDeclaration} style declaration dictionary object
+	         */
+
+	    }, {
+	        key: 'style',
+	        set: function set(style) {
+	            assign(this.element.style, style);
+	        }
+
+	        /**
+	         * @returns {String}
+	         */
+
+	    }], [{
+	        key: 'namespaceURI',
+	        get: function get() {
+	            return XHTML_NS_URI;
+	        }
+	    }]);
+
+	    return HTMLAssembler;
+	}(_dom.DOMAssembler);
 
 /***/ },
 /* 45 */,
@@ -353,242 +424,470 @@
 
 	var _html = __webpack_require__(44);
 
-	const assembler = new _html.HTMLAssembler();
+	var assembler = new _html.HTMLAssembler();
 
-	const a = exports.a = init => assembler.createElement('a', init);
+	var a = exports.a = function a(init) {
+	  return assembler.createElement('a', init);
+	};
 
-	const abbr = exports.abbr = init => assembler.createElement('abbr', init);
+	var abbr = exports.abbr = function abbr(init) {
+	  return assembler.createElement('abbr', init);
+	};
 
-	const address = exports.address = init => assembler.createElement('address', init);
+	var address = exports.address = function address(init) {
+	  return assembler.createElement('address', init);
+	};
 
-	const area = exports.area = init => assembler.createElement('area', init);
+	var area = exports.area = function area(init) {
+	  return assembler.createElement('area', init);
+	};
 
-	const article = exports.article = init => assembler.createElement('article', init);
+	var article = exports.article = function article(init) {
+	  return assembler.createElement('article', init);
+	};
 
-	const aside = exports.aside = init => assembler.createElement('aside', init);
+	var aside = exports.aside = function aside(init) {
+	  return assembler.createElement('aside', init);
+	};
 
-	const audio = exports.audio = init => assembler.createElement('audio', init);
+	var audio = exports.audio = function audio(init) {
+	  return assembler.createElement('audio', init);
+	};
 
-	const b = exports.b = init => assembler.createElement('b', init);
+	var b = exports.b = function b(init) {
+	  return assembler.createElement('b', init);
+	};
 
-	const base = exports.base = init => assembler.createElement('base', init);
+	var base = exports.base = function base(init) {
+	  return assembler.createElement('base', init);
+	};
 
-	const bdi = exports.bdi = init => assembler.createElement('bdi', init);
+	var bdi = exports.bdi = function bdi(init) {
+	  return assembler.createElement('bdi', init);
+	};
 
-	const bdo = exports.bdo = init => assembler.createElement('bdo', init);
+	var bdo = exports.bdo = function bdo(init) {
+	  return assembler.createElement('bdo', init);
+	};
 
-	const blockquote = exports.blockquote = init => assembler.createElement('blockquote', init);
+	var blockquote = exports.blockquote = function blockquote(init) {
+	  return assembler.createElement('blockquote', init);
+	};
 
-	const body = exports.body = init => assembler.createElement('body', init);
+	var body = exports.body = function body(init) {
+	  return assembler.createElement('body', init);
+	};
 
-	const br = exports.br = init => assembler.createElement('br', init);
+	var br = exports.br = function br(init) {
+	  return assembler.createElement('br', init);
+	};
 
-	const button = exports.button = init => assembler.createElement('button', init);
+	var button = exports.button = function button(init) {
+	  return assembler.createElement('button', init);
+	};
 
-	const canvas = exports.canvas = init => assembler.createElement('canvas', init);
+	var canvas = exports.canvas = function canvas(init) {
+	  return assembler.createElement('canvas', init);
+	};
 
-	const caption = exports.caption = init => assembler.createElement('caption', init);
+	var caption = exports.caption = function caption(init) {
+	  return assembler.createElement('caption', init);
+	};
 
-	const cite = exports.cite = init => assembler.createElement('cite', init);
+	var cite = exports.cite = function cite(init) {
+	  return assembler.createElement('cite', init);
+	};
 
-	const code = exports.code = init => assembler.createElement('code', init);
+	var code = exports.code = function code(init) {
+	  return assembler.createElement('code', init);
+	};
 
-	const col = exports.col = init => assembler.createElement('col', init);
+	var col = exports.col = function col(init) {
+	  return assembler.createElement('col', init);
+	};
 
-	const colgroup = exports.colgroup = init => assembler.createElement('colgroup', init);
+	var colgroup = exports.colgroup = function colgroup(init) {
+	  return assembler.createElement('colgroup', init);
+	};
 
-	const data = exports.data = init => assembler.createElement('data', init);
+	var data = exports.data = function data(init) {
+	  return assembler.createElement('data', init);
+	};
 
-	const datalist = exports.datalist = init => assembler.createElement('datalist', init);
+	var datalist = exports.datalist = function datalist(init) {
+	  return assembler.createElement('datalist', init);
+	};
 
-	const dd = exports.dd = init => assembler.createElement('dd', init);
+	var dd = exports.dd = function dd(init) {
+	  return assembler.createElement('dd', init);
+	};
 
-	const del = exports.del = init => assembler.createElement('del', init);
+	var del = exports.del = function del(init) {
+	  return assembler.createElement('del', init);
+	};
 
-	const details = exports.details = init => assembler.createElement('details', init);
+	var details = exports.details = function details(init) {
+	  return assembler.createElement('details', init);
+	};
 
-	const dfn = exports.dfn = init => assembler.createElement('dfn', init);
+	var dfn = exports.dfn = function dfn(init) {
+	  return assembler.createElement('dfn', init);
+	};
 
-	const dialog = exports.dialog = init => assembler.createElement('dialog', init);
+	var dialog = exports.dialog = function dialog(init) {
+	  return assembler.createElement('dialog', init);
+	};
 
-	const div = exports.div = init => assembler.createElement('div', init);
+	var div = exports.div = function div(init) {
+	  return assembler.createElement('div', init);
+	};
 
-	const dl = exports.dl = init => assembler.createElement('dl', init);
+	var dl = exports.dl = function dl(init) {
+	  return assembler.createElement('dl', init);
+	};
 
-	const dt = exports.dt = init => assembler.createElement('dt', init);
+	var dt = exports.dt = function dt(init) {
+	  return assembler.createElement('dt', init);
+	};
 
-	const em = exports.em = init => assembler.createElement('em', init);
+	var em = exports.em = function em(init) {
+	  return assembler.createElement('em', init);
+	};
 
-	const embed = exports.embed = init => assembler.createElement('embed', init);
+	var embed = exports.embed = function embed(init) {
+	  return assembler.createElement('embed', init);
+	};
 
-	const fieldset = exports.fieldset = init => assembler.createElement('fieldset', init);
+	var fieldset = exports.fieldset = function fieldset(init) {
+	  return assembler.createElement('fieldset', init);
+	};
 
-	const figcaption = exports.figcaption = init => assembler.createElement('figcaption', init);
+	var figcaption = exports.figcaption = function figcaption(init) {
+	  return assembler.createElement('figcaption', init);
+	};
 
-	const figure = exports.figure = init => assembler.createElement('figure', init);
+	var figure = exports.figure = function figure(init) {
+	  return assembler.createElement('figure', init);
+	};
 
-	const footer = exports.footer = init => assembler.createElement('footer', init);
+	var footer = exports.footer = function footer(init) {
+	  return assembler.createElement('footer', init);
+	};
 
-	const form = exports.form = init => assembler.createElement('form', init);
+	var form = exports.form = function form(init) {
+	  return assembler.createElement('form', init);
+	};
 
-	const h1 = exports.h1 = init => assembler.createElement('h1', init);
+	var h1 = exports.h1 = function h1(init) {
+	  return assembler.createElement('h1', init);
+	};
 
-	const h2 = exports.h2 = init => assembler.createElement('h2', init);
+	var h2 = exports.h2 = function h2(init) {
+	  return assembler.createElement('h2', init);
+	};
 
-	const h3 = exports.h3 = init => assembler.createElement('h3', init);
+	var h3 = exports.h3 = function h3(init) {
+	  return assembler.createElement('h3', init);
+	};
 
-	const h4 = exports.h4 = init => assembler.createElement('h4', init);
+	var h4 = exports.h4 = function h4(init) {
+	  return assembler.createElement('h4', init);
+	};
 
-	const h5 = exports.h5 = init => assembler.createElement('h5', init);
+	var h5 = exports.h5 = function h5(init) {
+	  return assembler.createElement('h5', init);
+	};
 
-	const h6 = exports.h6 = init => assembler.createElement('h6', init);
+	var h6 = exports.h6 = function h6(init) {
+	  return assembler.createElement('h6', init);
+	};
 
-	const head = exports.head = init => assembler.createElement('head', init);
+	var head = exports.head = function head(init) {
+	  return assembler.createElement('head', init);
+	};
 
-	const header = exports.header = init => assembler.createElement('header', init);
+	var header = exports.header = function header(init) {
+	  return assembler.createElement('header', init);
+	};
 
-	const hgroup = exports.hgroup = init => assembler.createElement('hgroup', init);
+	var hgroup = exports.hgroup = function hgroup(init) {
+	  return assembler.createElement('hgroup', init);
+	};
 
-	const hr = exports.hr = init => assembler.createElement('hr', init);
+	var hr = exports.hr = function hr(init) {
+	  return assembler.createElement('hr', init);
+	};
 
-	const html = exports.html = init => assembler.createElement('html', init);
+	var html = exports.html = function html(init) {
+	  return assembler.createElement('html', init);
+	};
 
-	const i = exports.i = init => assembler.createElement('i', init);
+	var i = exports.i = function i(init) {
+	  return assembler.createElement('i', init);
+	};
 
-	const iframe = exports.iframe = init => assembler.createElement('iframe', init);
+	var iframe = exports.iframe = function iframe(init) {
+	  return assembler.createElement('iframe', init);
+	};
 
-	const img = exports.img = init => assembler.createElement('img', init);
+	var img = exports.img = function img(init) {
+	  return assembler.createElement('img', init);
+	};
 
-	const input = exports.input = init => assembler.createElement('input', init);
+	var input = exports.input = function input(init) {
+	  return assembler.createElement('input', init);
+	};
 
-	const ins = exports.ins = init => assembler.createElement('ins', init);
+	var ins = exports.ins = function ins(init) {
+	  return assembler.createElement('ins', init);
+	};
 
-	const kbd = exports.kbd = init => assembler.createElement('kbd', init);
+	var kbd = exports.kbd = function kbd(init) {
+	  return assembler.createElement('kbd', init);
+	};
 
-	const keygen = exports.keygen = init => assembler.createElement('keygen', init);
+	var keygen = exports.keygen = function keygen(init) {
+	  return assembler.createElement('keygen', init);
+	};
 
-	const label = exports.label = init => assembler.createElement('label', init);
+	var label = exports.label = function label(init) {
+	  return assembler.createElement('label', init);
+	};
 
-	const legend = exports.legend = init => assembler.createElement('legend', init);
+	var legend = exports.legend = function legend(init) {
+	  return assembler.createElement('legend', init);
+	};
 
-	const li = exports.li = init => assembler.createElement('li', init);
+	var li = exports.li = function li(init) {
+	  return assembler.createElement('li', init);
+	};
 
-	const link = exports.link = init => assembler.createElement('link', init);
+	var link = exports.link = function link(init) {
+	  return assembler.createElement('link', init);
+	};
 
-	const main = exports.main = init => assembler.createElement('main', init);
+	var main = exports.main = function main(init) {
+	  return assembler.createElement('main', init);
+	};
 
-	const map = exports.map = init => assembler.createElement('map', init);
+	var map = exports.map = function map(init) {
+	  return assembler.createElement('map', init);
+	};
 
-	const mark = exports.mark = init => assembler.createElement('mark', init);
+	var mark = exports.mark = function mark(init) {
+	  return assembler.createElement('mark', init);
+	};
 
 	// todo MathInstance
 	// export const math = init => instance.createElement('math', init);
 
-	const menu = exports.menu = init => assembler.createElement('menu', init);
+	var menu = exports.menu = function menu(init) {
+	  return assembler.createElement('menu', init);
+	};
 
-	const menuitem = exports.menuitem = init => assembler.createElement('menuitem', init);
+	var menuitem = exports.menuitem = function menuitem(init) {
+	  return assembler.createElement('menuitem', init);
+	};
 
-	const meta = exports.meta = init => assembler.createElement('meta', init);
+	var meta = exports.meta = function meta(init) {
+	  return assembler.createElement('meta', init);
+	};
 
-	const meter = exports.meter = init => assembler.createElement('meter', init);
+	var meter = exports.meter = function meter(init) {
+	  return assembler.createElement('meter', init);
+	};
 
-	const nav = exports.nav = init => assembler.createElement('nav', init);
+	var nav = exports.nav = function nav(init) {
+	  return assembler.createElement('nav', init);
+	};
 
-	const noscript = exports.noscript = init => assembler.createElement('noscript', init);
+	var noscript = exports.noscript = function noscript(init) {
+	  return assembler.createElement('noscript', init);
+	};
 
-	const object = exports.object = init => assembler.createElement('object', init);
+	var object = exports.object = function object(init) {
+	  return assembler.createElement('object', init);
+	};
 
-	const ol = exports.ol = init => assembler.createElement('ol', init);
+	var ol = exports.ol = function ol(init) {
+	  return assembler.createElement('ol', init);
+	};
 
-	const optgroup = exports.optgroup = init => assembler.createElement('optgroup', init);
+	var optgroup = exports.optgroup = function optgroup(init) {
+	  return assembler.createElement('optgroup', init);
+	};
 
-	const option = exports.option = init => assembler.createElement('option', init);
+	var option = exports.option = function option(init) {
+	  return assembler.createElement('option', init);
+	};
 
-	const output = exports.output = init => assembler.createElement('output', init);
+	var output = exports.output = function output(init) {
+	  return assembler.createElement('output', init);
+	};
 
-	const p = exports.p = init => assembler.createElement('p', init);
+	var p = exports.p = function p(init) {
+	  return assembler.createElement('p', init);
+	};
 
-	const param = exports.param = init => assembler.createElement('param', init);
+	var param = exports.param = function param(init) {
+	  return assembler.createElement('param', init);
+	};
 
-	const picture = exports.picture = init => assembler.createElement('picture', init);
+	var picture = exports.picture = function picture(init) {
+	  return assembler.createElement('picture', init);
+	};
 
-	const pre = exports.pre = init => assembler.createElement('pre', init);
+	var pre = exports.pre = function pre(init) {
+	  return assembler.createElement('pre', init);
+	};
 
-	const progress = exports.progress = init => assembler.createElement('progress', init);
+	var progress = exports.progress = function progress(init) {
+	  return assembler.createElement('progress', init);
+	};
 
-	const q = exports.q = init => assembler.createElement('q', init);
+	var q = exports.q = function q(init) {
+	  return assembler.createElement('q', init);
+	};
 
-	const rp = exports.rp = init => assembler.createElement('rp', init);
+	var rp = exports.rp = function rp(init) {
+	  return assembler.createElement('rp', init);
+	};
 
-	const rt = exports.rt = init => assembler.createElement('rt', init);
+	var rt = exports.rt = function rt(init) {
+	  return assembler.createElement('rt', init);
+	};
 
-	const ruby = exports.ruby = init => assembler.createElement('ruby', init);
+	var ruby = exports.ruby = function ruby(init) {
+	  return assembler.createElement('ruby', init);
+	};
 
-	const s = exports.s = init => assembler.createElement('s', init);
+	var s = exports.s = function s(init) {
+	  return assembler.createElement('s', init);
+	};
 
-	const samp = exports.samp = init => assembler.createElement('samp', init);
+	var samp = exports.samp = function samp(init) {
+	  return assembler.createElement('samp', init);
+	};
 
-	const script = exports.script = init => assembler.createElement('script', init);
+	var script = exports.script = function script(init) {
+	  return assembler.createElement('script', init);
+	};
 
-	const section = exports.section = init => assembler.createElement('section', init);
+	var section = exports.section = function section(init) {
+	  return assembler.createElement('section', init);
+	};
 
-	const select = exports.select = init => assembler.createElement('select', init);
+	var select = exports.select = function select(init) {
+	  return assembler.createElement('select', init);
+	};
 
-	const slot = exports.slot = init => assembler.createElement('slot', init);
+	var slot = exports.slot = function slot(init) {
+	  return assembler.createElement('slot', init);
+	};
 
-	const small = exports.small = init => assembler.createElement('small', init);
+	var small = exports.small = function small(init) {
+	  return assembler.createElement('small', init);
+	};
 
-	const source = exports.source = init => assembler.createElement('source', init);
+	var source = exports.source = function source(init) {
+	  return assembler.createElement('source', init);
+	};
 
-	const span = exports.span = init => assembler.createElement('span', init);
+	var span = exports.span = function span(init) {
+	  return assembler.createElement('span', init);
+	};
 
-	const strong = exports.strong = init => assembler.createElement('strong', init);
+	var strong = exports.strong = function strong(init) {
+	  return assembler.createElement('strong', init);
+	};
 
-	const style = exports.style = init => assembler.createElement('style', init);
+	var style = exports.style = function style(init) {
+	  return assembler.createElement('style', init);
+	};
 
-	const sub = exports.sub = init => assembler.createElement('sub', init);
+	var sub = exports.sub = function sub(init) {
+	  return assembler.createElement('sub', init);
+	};
 
-	const summary = exports.summary = init => assembler.createElement('summary', init);
+	var summary = exports.summary = function summary(init) {
+	  return assembler.createElement('summary', init);
+	};
 
-	const sup = exports.sup = init => assembler.createElement('sup', init);
+	var sup = exports.sup = function sup(init) {
+	  return assembler.createElement('sup', init);
+	};
 
 	// todo SVGInstance
 	// export const svg = init => instance.createElement('svg', init);
 
-	const table = exports.table = init => assembler.createElement('table', init);
+	var table = exports.table = function table(init) {
+	  return assembler.createElement('table', init);
+	};
 
-	const tbody = exports.tbody = init => assembler.createElement('tbody', init);
+	var tbody = exports.tbody = function tbody(init) {
+	  return assembler.createElement('tbody', init);
+	};
 
-	const td = exports.td = init => assembler.createElement('td', init);
+	var td = exports.td = function td(init) {
+	  return assembler.createElement('td', init);
+	};
 
-	const template = exports.template = init => assembler.createElement('template', init);
+	var template = exports.template = function template(init) {
+	  return assembler.createElement('template', init);
+	};
 
-	const textarea = exports.textarea = init => assembler.createElement('textarea', init);
+	var textarea = exports.textarea = function textarea(init) {
+	  return assembler.createElement('textarea', init);
+	};
 
-	const tfoot = exports.tfoot = init => assembler.createElement('tfoot', init);
+	var tfoot = exports.tfoot = function tfoot(init) {
+	  return assembler.createElement('tfoot', init);
+	};
 
-	const th = exports.th = init => assembler.createElement('th', init);
+	var th = exports.th = function th(init) {
+	  return assembler.createElement('th', init);
+	};
 
-	const thead = exports.thead = init => assembler.createElement('thead', init);
+	var thead = exports.thead = function thead(init) {
+	  return assembler.createElement('thead', init);
+	};
 
-	const time = exports.time = init => assembler.createElement('time', init);
+	var time = exports.time = function time(init) {
+	  return assembler.createElement('time', init);
+	};
 
-	const title = exports.title = init => assembler.createElement('title', init);
+	var title = exports.title = function title(init) {
+	  return assembler.createElement('title', init);
+	};
 
-	const tr = exports.tr = init => assembler.createElement('tr', init);
+	var tr = exports.tr = function tr(init) {
+	  return assembler.createElement('tr', init);
+	};
 
-	const track = exports.track = init => assembler.createElement('track', init);
+	var track = exports.track = function track(init) {
+	  return assembler.createElement('track', init);
+	};
 
-	const u = exports.u = init => assembler.createElement('u', init);
+	var u = exports.u = function u(init) {
+	  return assembler.createElement('u', init);
+	};
 
-	const ul = exports.ul = init => assembler.createElement('ul', init);
+	var ul = exports.ul = function ul(init) {
+	  return assembler.createElement('ul', init);
+	};
 
 	// `var` is JS-keyword
-	const variable = exports.variable = init => assembler.createElement('var', init);
+	var variable = exports.variable = function variable(init) {
+	  return assembler.createElement('var', init);
+	};
 
-	const video = exports.video = init => assembler.createElement('video', init);
+	var video = exports.video = function video(init) {
+	  return assembler.createElement('video', init);
+	};
 
-	const wbr = exports.wbr = init => assembler.createElement('wbr', init);
+	var wbr = exports.wbr = function wbr(init) {
+	  return assembler.createElement('wbr', init);
+	};
 
 /***/ },
 /* 47 */
@@ -599,70 +898,221 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ header, nav, a, ul, li }) => header(nav(ul([li(a({
-	    href: '/home.html',
-	    textContent: 'Go home'
-	})), li(a({
-	    href: 'http://github.com/aristov',
-	    textContent: 'Github page'
-	})), li(a({
-	    href: 'mailto:vv.aristov@gmail.com',
-	    textContent: 'Contact me'
-	}))]))), ({ footer, address, small }) => footer([address('vv.aristov@gmail.com'), small('@ All rights free')]), ({ main, sup, sub, i, strong }) => main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]), ({ abbr }) => abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL'), ({ article, h2, address }) => article({
-	    className: 'vcard',
-	    children: [h2({ className: 'fn', textContent: 'Vyacheslav Aristov' }), address({ className: 'email', textContent: 'vv.aristov@gmail.com' })]
-	}), ({ aside }) => aside('Your advert may be here!'), ({ audio }) => audio({
-	    controls: true,
-	    src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
-	}), ({ b }) => b('var, function, export, const'), ({ style }) => style({
-	    id: 'greenstyle',
-	    textContent: '#greenstyle { display: inline-block; color: green; font-family: monospace }'
-	}), ({ script }) => script('Object.assign(' + 'document.currentScript.style, ' + '{ display: "block", color: "blue", fontFamily : "monospace" ' + '})'), ({ pre }) => pre(`preformatted text
-	line break 
-	    — yet another line break with tab
-	  
-	  <>&`), ({ ins }) => ins('The ins element'), ({ blockquote }) => blockquote({
-	    cite: 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',
-	    textContent: 'The blockquote element represents a section that is quoted from another source.'
-	}), ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'), ({ div }) => div(['div — like span has no semantics, but', div('div has default `display: block` style')]), ({ p, br }) => p(['b', br(), 'r']), ({ p, hr }) => p(['Lorem ipsum dolor sit amet, consectetur adipiscing elit,', hr(), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']), ({ button }) => button('Push my button'), ({ form, label, input, textarea, span }) => form({
-	    style: {
-	        display: 'flex',
-	        flexDirection: 'column',
-	        justifyContent: 'space-between'
-	    },
-	    children: [label(['Text input ', input({ placeholder: 'Fill me' })]), label([input({ type: 'checkbox' }), ' Simple checkbox']), label([input({ type: 'checkbox', checked: true }), ' Checked checkbox']), label([input({ type: 'checkbox', attrset: { checked: '' } }), ' Initially checked checkbox']), label([input({ type: 'checkbox', indeterminate: true }), ' Indeterminate checkbox']), span([label([input({
-	        type: 'radio',
-	        name: 'chooseproglangradio',
-	        value: 'html'
-	    }), ' HTML ']), label([input({
-	        type: 'radio',
-	        name: 'chooseproglangradio',
-	        value: 'xml'
-	    }), ' XML'])])]
-	}), ({ form, label, select, option, br }) => form([label(['Select technology ', select([option('XML'), option('HTML'), option({ selected: true, textContent: 'WAI-ARIA' }), option('RDFS'), option('OWL'), option('SGML'), option('CSS')])]), br(), label(['Select technology stack', br(), select({
-	    multiple: true,
-	    children: [option('XML'), option({
-	        attrset: { selected: '' },
-	        textContent: 'HTML'
-	    }), option('WAI-ARIA'), option('RDFS'), option('OWL'), option('SGML'), option('CSS')] })]), br()]), ({ form, input, button }) => form({
-	    style: { whiteSpace: 'nowrap' },
-	    children: [input({
-	        name: 'query',
-	        placeholder: 'type your request',
-	        type: 'search',
-	        style: { marginRight: '5px' }
-	    }), button('search')]
-	}), ({ code }) => code('export const code = init => instance.createElement(\'code\', init);'), ({ dialog }) => dialog({
-	    open: true,
-	    style: { position: 'relative', display: 'block' },
-	    textContent: 'Hello world!'
-	}), ({ em }) => em('Emphasize!'), ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ img }) => img({
-	    src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
-	    alt: 'Crazy PiPi!'
-	}), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ del }) => del('Don\'t stroke me!'), ({ dfn }) => dfn('Instance.js — simple and powerfull DOM Element interface'), ({ details, summary }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']), ({ article, ul, li, ol, dl, dt, dd }) => article({
-	    title: 'Various lists',
-	    children: [ul([li('Ampeg'), li('Fender'), li('SMB Effects')]), ol([li('Amsterdam'), li('New York'), li('Moscow')]), dl([dt('DOM'), dd('Document object model'), dt('XML'), dd('Extensible markup language'), dt('HTML'), dd('Hyper text markup language'), dt('ARIAML'), dd('Accessible rich internet applications markup language')])]
-	}), ({ progress }) => progress({ max: '100', value: '70' })];
+
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+	var test = exports.test = [function (_ref) {
+	    var fieldset = _ref.fieldset;
+	    var legend = _ref.legend;
+	    var input = _ref.input;
+	    return fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]);
+	}, function (_ref2) {
+	    var header = _ref2.header;
+	    var nav = _ref2.nav;
+	    var a = _ref2.a;
+	    var ul = _ref2.ul;
+	    var li = _ref2.li;
+	    return header(nav(ul([li(a({
+	        href: '/home.html',
+	        textContent: 'Go home'
+	    })), li(a({
+	        href: 'http://github.com/aristov',
+	        textContent: 'Github page'
+	    })), li(a({
+	        href: 'mailto:vv.aristov@gmail.com',
+	        textContent: 'Contact me'
+	    }))])));
+	}, function (_ref3) {
+	    var footer = _ref3.footer;
+	    var address = _ref3.address;
+	    var small = _ref3.small;
+	    return footer([address('vv.aristov@gmail.com'), small('@ All rights free')]);
+	}, function (_ref4) {
+	    var main = _ref4.main;
+	    var sup = _ref4.sup;
+	    var sub = _ref4.sub;
+	    var i = _ref4.i;
+	    var strong = _ref4.strong;
+	    return main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]);
+	}, function (_ref5) {
+	    var abbr = _ref5.abbr;
+	    return abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL');
+	}, function (_ref6) {
+	    var article = _ref6.article;
+	    var h2 = _ref6.h2;
+	    var address = _ref6.address;
+	    return article({
+	        className: 'vcard',
+	        children: [h2({ className: 'fn', textContent: 'Vyacheslav Aristov' }), address({ className: 'email', textContent: 'vv.aristov@gmail.com' })]
+	    });
+	}, function (_ref7) {
+	    var aside = _ref7.aside;
+	    return aside('Your advert may be here!');
+	}, function (_ref8) {
+	    var audio = _ref8.audio;
+	    return audio({
+	        controls: true,
+	        src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
+	    });
+	}, function (_ref9) {
+	    var b = _ref9.b;
+	    return b('var, function, export, const');
+	}, function (_ref10) {
+	    var style = _ref10.style;
+	    return style({
+	        id: 'greenstyle',
+	        textContent: '#greenstyle { display: inline-block; color: green; font-family: monospace }'
+	    });
+	}, function (_ref11) {
+	    var script = _ref11.script;
+	    return script('Object.assign(' + 'document.currentScript.style, ' + '{ display: "block", color: "blue", fontFamily : "monospace" ' + '})');
+	}, function (_ref12) {
+	    var pre = _ref12.pre;
+	    return pre('preformatted text\nline break \n    \u2014 yet another line break with tab\n  \n  <>&');
+	}, function (_ref13) {
+	    var ins = _ref13.ins;
+	    return ins('The ins element');
+	}, function (_ref14) {
+	    var blockquote = _ref14.blockquote;
+	    return blockquote({
+	        cite: 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',
+	        textContent: 'The blockquote element represents a section that is quoted from another source.'
+	    });
+	}, function (_ref15) {
+	    var span = _ref15.span;
+	    return span('span — the base html element; text wrapper; no semantics, no default style');
+	}, function (_ref16) {
+	    var div = _ref16.div;
+	    return div(['div — like span has no semantics, but', div('div has default `display: block` style')]);
+	}, function (_ref17) {
+	    var p = _ref17.p;
+	    var br = _ref17.br;
+	    return p(['b', br(), 'r']);
+	}, function (_ref18) {
+	    var p = _ref18.p;
+	    var hr = _ref18.hr;
+	    return p(['Lorem ipsum dolor sit amet, consectetur adipiscing elit,', hr(), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']);
+	}, function (_ref19) {
+	    var button = _ref19.button;
+	    return button('Push my button');
+	}, function (_ref20) {
+	    var form = _ref20.form;
+	    var label = _ref20.label;
+	    var input = _ref20.input;
+	    var textarea = _ref20.textarea;
+	    var span = _ref20.span;
+	    return form({
+	        style: {
+	            display: 'flex',
+	            flexDirection: 'column',
+	            justifyContent: 'space-between'
+	        },
+	        children: [label(['Text input ', input({ placeholder: 'Fill me' })]), label([input({ type: 'checkbox' }), ' Simple checkbox']), label([input({ type: 'checkbox', checked: true }), ' Checked checkbox']), label([input({ type: 'checkbox', attrset: { checked: '' } }), ' Initially checked checkbox']), label([input({ type: 'checkbox', indeterminate: true }), ' Indeterminate checkbox']), span([label([input({
+	            type: 'radio',
+	            name: 'chooseproglangradio',
+	            value: 'html'
+	        }), ' HTML ']), label([input({
+	            type: 'radio',
+	            name: 'chooseproglangradio',
+	            value: 'xml'
+	        }), ' XML'])])]
+	    });
+	}, function (_ref21) {
+	    var form = _ref21.form;
+	    var label = _ref21.label;
+	    var select = _ref21.select;
+	    var option = _ref21.option;
+	    var br = _ref21.br;
+	    return form([label(['Select technology ', select([option('XML'), option('HTML'), option({ selected: true, textContent: 'WAI-ARIA' }), option('RDFS'), option('OWL'), option('SGML'), option('CSS')])]), br(), label(['Select technology stack', br(), select({
+	        multiple: true,
+	        children: [option('XML'), option({
+	            attrset: { selected: '' },
+	            textContent: 'HTML'
+	        }), option('WAI-ARIA'), option('RDFS'), option('OWL'), option('SGML'), option('CSS')] })]), br()]);
+	}, function (_ref22) {
+	    var form = _ref22.form;
+	    var input = _ref22.input;
+	    var button = _ref22.button;
+	    return form({
+	        style: { whiteSpace: 'nowrap' },
+	        children: [input({
+	            name: 'query',
+	            placeholder: 'type your request',
+	            type: 'search',
+	            style: { marginRight: '5px' }
+	        }), button('search')]
+	    });
+	}, function (_ref23) {
+	    var code = _ref23.code;
+	    return code('export const code = init => instance.createElement(\'code\', init);');
+	}, function (_ref24) {
+	    var dialog = _ref24.dialog;
+	    return dialog({
+	        open: true,
+	        style: { position: 'relative', display: 'block' },
+	        textContent: 'Hello world!'
+	    });
+	}, function (_ref25) {
+	    var em = _ref25.em;
+	    return em('Emphasize!');
+	}, function (_ref26) {
+	    var table = _ref26.table;
+	    var caption = _ref26.caption;
+	    var thead = _ref26.thead;
+	    var tr = _ref26.tr;
+	    var th = _ref26.th;
+	    var abbr = _ref26.abbr;
+	    var tbody = _ref26.tbody;
+	    var code = _ref26.code;
+	    var td = _ref26.td;
+	    return table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(function (_ref27) {
+	        var _ref28 = _slicedToArray(_ref27, 2);
+
+	        var xml = _ref28[0];
+	        var html = _ref28[1];
+	        return tr([td(xml), td(html)]);
+	    }))]);
+	}, function (_ref29) {
+	    var img = _ref29.img;
+	    return img({
+	        src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
+	        alt: 'Crazy PiPi!'
+	    });
+	}, function (_ref30) {
+	    var hgroup = _ref30.hgroup;
+	    var h1 = _ref30.h1;
+	    var h2 = _ref30.h2;
+	    var h3 = _ref30.h3;
+	    var h4 = _ref30.h4;
+	    var h5 = _ref30.h5;
+	    var h6 = _ref30.h6;
+	    return hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]);
+	}, function (_ref31) {
+	    var del = _ref31.del;
+	    return del('Don\'t stroke me!');
+	}, function (_ref32) {
+	    var dfn = _ref32.dfn;
+	    return dfn('Instance.js — simple and powerfull DOM Element interface');
+	}, function (_ref33) {
+	    var details = _ref33.details;
+	    var summary = _ref33.summary;
+	    return details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']);
+	}, function (_ref34) {
+	    var article = _ref34.article;
+	    var ul = _ref34.ul;
+	    var li = _ref34.li;
+	    var ol = _ref34.ol;
+	    var dl = _ref34.dl;
+	    var dt = _ref34.dt;
+	    var dd = _ref34.dd;
+	    return article({
+	        title: 'Various lists',
+	        children: [ul([li('Ampeg'), li('Fender'), li('SMB Effects')]), ol([li('Amsterdam'), li('New York'), li('Moscow')]), dl([dt('DOM'), dd('Document object model'), dt('XML'), dd('Extensible markup language'), dt('HTML'), dd('Hyper text markup language'), dt('ARIAML'), dd('Accessible rich internet applications markup language')])]
+	    });
+	}, function (_ref35) {
+	    var progress = _ref35.progress;
+	    return progress({ max: '100', value: '70' });
+	}];
 
 /***/ },
 /* 48 */
@@ -688,7 +1138,7 @@
 
 	function get_beautify(js_beautify, css_beautify, html_beautify) {
 	    // the default is js
-	    var beautify = function (src, config) {
+	    var beautify = function beautify(src, config) {
 	        return js_beautify.js_beautify(src, config);
 	    };
 
@@ -825,7 +1275,7 @@
 	// are only applied when a character is found to actually have a
 	// code point above 128.
 	var nonASCIIwhitespace=/[\u1680\u180e\u2000-\u200a\u202f\u205f\u3000\ufeff]/;// jshint ignore:line
-	var nonASCIIidentifierStartChars="\xaa\xb5\xba\xc0-\xd6\xd8-\xf6\xf8-\u02c1\u02c6-\u02d1\u02e0-\u02e4\u02ec\u02ee\u0370-\u0374\u0376\u0377\u037a-\u037d\u0386\u0388-\u038a\u038c\u038e-\u03a1\u03a3-\u03f5\u03f7-\u0481\u048a-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05d0-\u05ea\u05f0-\u05f2\u0620-\u064a\u066e\u066f\u0671-\u06d3\u06d5\u06e5\u06e6\u06ee\u06ef\u06fa-\u06fc\u06ff\u0710\u0712-\u072f\u074d-\u07a5\u07b1\u07ca-\u07ea\u07f4\u07f5\u07fa\u0800-\u0815\u081a\u0824\u0828\u0840-\u0858\u08a0\u08a2-\u08ac\u0904-\u0939\u093d\u0950\u0958-\u0961\u0971-\u0977\u0979-\u097f\u0985-\u098c\u098f\u0990\u0993-\u09a8\u09aa-\u09b0\u09b2\u09b6-\u09b9\u09bd\u09ce\u09dc\u09dd\u09df-\u09e1\u09f0\u09f1\u0a05-\u0a0a\u0a0f\u0a10\u0a13-\u0a28\u0a2a-\u0a30\u0a32\u0a33\u0a35\u0a36\u0a38\u0a39\u0a59-\u0a5c\u0a5e\u0a72-\u0a74\u0a85-\u0a8d\u0a8f-\u0a91\u0a93-\u0aa8\u0aaa-\u0ab0\u0ab2\u0ab3\u0ab5-\u0ab9\u0abd\u0ad0\u0ae0\u0ae1\u0b05-\u0b0c\u0b0f\u0b10\u0b13-\u0b28\u0b2a-\u0b30\u0b32\u0b33\u0b35-\u0b39\u0b3d\u0b5c\u0b5d\u0b5f-\u0b61\u0b71\u0b83\u0b85-\u0b8a\u0b8e-\u0b90\u0b92-\u0b95\u0b99\u0b9a\u0b9c\u0b9e\u0b9f\u0ba3\u0ba4\u0ba8-\u0baa\u0bae-\u0bb9\u0bd0\u0c05-\u0c0c\u0c0e-\u0c10\u0c12-\u0c28\u0c2a-\u0c33\u0c35-\u0c39\u0c3d\u0c58\u0c59\u0c60\u0c61\u0c85-\u0c8c\u0c8e-\u0c90\u0c92-\u0ca8\u0caa-\u0cb3\u0cb5-\u0cb9\u0cbd\u0cde\u0ce0\u0ce1\u0cf1\u0cf2\u0d05-\u0d0c\u0d0e-\u0d10\u0d12-\u0d3a\u0d3d\u0d4e\u0d60\u0d61\u0d7a-\u0d7f\u0d85-\u0d96\u0d9a-\u0db1\u0db3-\u0dbb\u0dbd\u0dc0-\u0dc6\u0e01-\u0e30\u0e32\u0e33\u0e40-\u0e46\u0e81\u0e82\u0e84\u0e87\u0e88\u0e8a\u0e8d\u0e94-\u0e97\u0e99-\u0e9f\u0ea1-\u0ea3\u0ea5\u0ea7\u0eaa\u0eab\u0ead-\u0eb0\u0eb2\u0eb3\u0ebd\u0ec0-\u0ec4\u0ec6\u0edc-\u0edf\u0f00\u0f40-\u0f47\u0f49-\u0f6c\u0f88-\u0f8c\u1000-\u102a\u103f\u1050-\u1055\u105a-\u105d\u1061\u1065\u1066\u106e-\u1070\u1075-\u1081\u108e\u10a0-\u10c5\u10c7\u10cd\u10d0-\u10fa\u10fc-\u1248\u124a-\u124d\u1250-\u1256\u1258\u125a-\u125d\u1260-\u1288\u128a-\u128d\u1290-\u12b0\u12b2-\u12b5\u12b8-\u12be\u12c0\u12c2-\u12c5\u12c8-\u12d6\u12d8-\u1310\u1312-\u1315\u1318-\u135a\u1380-\u138f\u13a0-\u13f4\u1401-\u166c\u166f-\u167f\u1681-\u169a\u16a0-\u16ea\u16ee-\u16f0\u1700-\u170c\u170e-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176c\u176e-\u1770\u1780-\u17b3\u17d7\u17dc\u1820-\u1877\u1880-\u18a8\u18aa\u18b0-\u18f5\u1900-\u191c\u1950-\u196d\u1970-\u1974\u1980-\u19ab\u19c1-\u19c7\u1a00-\u1a16\u1a20-\u1a54\u1aa7\u1b05-\u1b33\u1b45-\u1b4b\u1b83-\u1ba0\u1bae\u1baf\u1bba-\u1be5\u1c00-\u1c23\u1c4d-\u1c4f\u1c5a-\u1c7d\u1ce9-\u1cec\u1cee-\u1cf1\u1cf5\u1cf6\u1d00-\u1dbf\u1e00-\u1f15\u1f18-\u1f1d\u1f20-\u1f45\u1f48-\u1f4d\u1f50-\u1f57\u1f59\u1f5b\u1f5d\u1f5f-\u1f7d\u1f80-\u1fb4\u1fb6-\u1fbc\u1fbe\u1fc2-\u1fc4\u1fc6-\u1fcc\u1fd0-\u1fd3\u1fd6-\u1fdb\u1fe0-\u1fec\u1ff2-\u1ff4\u1ff6-\u1ffc\u2071\u207f\u2090-\u209c\u2102\u2107\u210a-\u2113\u2115\u2119-\u211d\u2124\u2126\u2128\u212a-\u212d\u212f-\u2139\u213c-\u213f\u2145-\u2149\u214e\u2160-\u2188\u2c00-\u2c2e\u2c30-\u2c5e\u2c60-\u2ce4\u2ceb-\u2cee\u2cf2\u2cf3\u2d00-\u2d25\u2d27\u2d2d\u2d30-\u2d67\u2d6f\u2d80-\u2d96\u2da0-\u2da6\u2da8-\u2dae\u2db0-\u2db6\u2db8-\u2dbe\u2dc0-\u2dc6\u2dc8-\u2dce\u2dd0-\u2dd6\u2dd8-\u2dde\u2e2f\u3005-\u3007\u3021-\u3029\u3031-\u3035\u3038-\u303c\u3041-\u3096\u309d-\u309f\u30a1-\u30fa\u30fc-\u30ff\u3105-\u312d\u3131-\u318e\u31a0-\u31ba\u31f0-\u31ff\u3400-\u4db5\u4e00-\u9fcc\ua000-\ua48c\ua4d0-\ua4fd\ua500-\ua60c\ua610-\ua61f\ua62a\ua62b\ua640-\ua66e\ua67f-\ua697\ua6a0-\ua6ef\ua717-\ua71f\ua722-\ua788\ua78b-\ua78e\ua790-\ua793\ua7a0-\ua7aa\ua7f8-\ua801\ua803-\ua805\ua807-\ua80a\ua80c-\ua822\ua840-\ua873\ua882-\ua8b3\ua8f2-\ua8f7\ua8fb\ua90a-\ua925\ua930-\ua946\ua960-\ua97c\ua984-\ua9b2\ua9cf\uaa00-\uaa28\uaa40-\uaa42\uaa44-\uaa4b\uaa60-\uaa76\uaa7a\uaa80-\uaaaf\uaab1\uaab5\uaab6\uaab9-\uaabd\uaac0\uaac2\uaadb-\uaadd\uaae0-\uaaea\uaaf2-\uaaf4\uab01-\uab06\uab09-\uab0e\uab11-\uab16\uab20-\uab26\uab28-\uab2e\uabc0-\uabe2\uac00-\ud7a3\ud7b0-\ud7c6\ud7cb-\ud7fb\uf900-\ufa6d\ufa70-\ufad9\ufb00-\ufb06\ufb13-\ufb17\ufb1d\ufb1f-\ufb28\ufb2a-\ufb36\ufb38-\ufb3c\ufb3e\ufb40\ufb41\ufb43\ufb44\ufb46-\ufbb1\ufbd3-\ufd3d\ufd50-\ufd8f\ufd92-\ufdc7\ufdf0-\ufdfb\ufe70-\ufe74\ufe76-\ufefc\uff21-\uff3a\uff41-\uff5a\uff66-\uffbe\uffc2-\uffc7\uffca-\uffcf\uffd2-\uffd7\uffda-\uffdc";var nonASCIIidentifierChars="\u0300-\u036f\u0483-\u0487\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7\u0610-\u061a\u0620-\u0649\u0672-\u06d3\u06e7-\u06e8\u06fb-\u06fc\u0730-\u074a\u0800-\u0814\u081b-\u0823\u0825-\u0827\u0829-\u082d\u0840-\u0857\u08e4-\u08fe\u0900-\u0903\u093a-\u093c\u093e-\u094f\u0951-\u0957\u0962-\u0963\u0966-\u096f\u0981-\u0983\u09bc\u09be-\u09c4\u09c7\u09c8\u09d7\u09df-\u09e0\u0a01-\u0a03\u0a3c\u0a3e-\u0a42\u0a47\u0a48\u0a4b-\u0a4d\u0a51\u0a66-\u0a71\u0a75\u0a81-\u0a83\u0abc\u0abe-\u0ac5\u0ac7-\u0ac9\u0acb-\u0acd\u0ae2-\u0ae3\u0ae6-\u0aef\u0b01-\u0b03\u0b3c\u0b3e-\u0b44\u0b47\u0b48\u0b4b-\u0b4d\u0b56\u0b57\u0b5f-\u0b60\u0b66-\u0b6f\u0b82\u0bbe-\u0bc2\u0bc6-\u0bc8\u0bca-\u0bcd\u0bd7\u0be6-\u0bef\u0c01-\u0c03\u0c46-\u0c48\u0c4a-\u0c4d\u0c55\u0c56\u0c62-\u0c63\u0c66-\u0c6f\u0c82\u0c83\u0cbc\u0cbe-\u0cc4\u0cc6-\u0cc8\u0cca-\u0ccd\u0cd5\u0cd6\u0ce2-\u0ce3\u0ce6-\u0cef\u0d02\u0d03\u0d46-\u0d48\u0d57\u0d62-\u0d63\u0d66-\u0d6f\u0d82\u0d83\u0dca\u0dcf-\u0dd4\u0dd6\u0dd8-\u0ddf\u0df2\u0df3\u0e34-\u0e3a\u0e40-\u0e45\u0e50-\u0e59\u0eb4-\u0eb9\u0ec8-\u0ecd\u0ed0-\u0ed9\u0f18\u0f19\u0f20-\u0f29\u0f35\u0f37\u0f39\u0f41-\u0f47\u0f71-\u0f84\u0f86-\u0f87\u0f8d-\u0f97\u0f99-\u0fbc\u0fc6\u1000-\u1029\u1040-\u1049\u1067-\u106d\u1071-\u1074\u1082-\u108d\u108f-\u109d\u135d-\u135f\u170e-\u1710\u1720-\u1730\u1740-\u1750\u1772\u1773\u1780-\u17b2\u17dd\u17e0-\u17e9\u180b-\u180d\u1810-\u1819\u1920-\u192b\u1930-\u193b\u1951-\u196d\u19b0-\u19c0\u19c8-\u19c9\u19d0-\u19d9\u1a00-\u1a15\u1a20-\u1a53\u1a60-\u1a7c\u1a7f-\u1a89\u1a90-\u1a99\u1b46-\u1b4b\u1b50-\u1b59\u1b6b-\u1b73\u1bb0-\u1bb9\u1be6-\u1bf3\u1c00-\u1c22\u1c40-\u1c49\u1c5b-\u1c7d\u1cd0-\u1cd2\u1d00-\u1dbe\u1e01-\u1f15\u200c\u200d\u203f\u2040\u2054\u20d0-\u20dc\u20e1\u20e5-\u20f0\u2d81-\u2d96\u2de0-\u2dff\u3021-\u3028\u3099\u309a\ua640-\ua66d\ua674-\ua67d\ua69f\ua6f0-\ua6f1\ua7f8-\ua800\ua806\ua80b\ua823-\ua827\ua880-\ua881\ua8b4-\ua8c4\ua8d0-\ua8d9\ua8f3-\ua8f7\ua900-\ua909\ua926-\ua92d\ua930-\ua945\ua980-\ua983\ua9b3-\ua9c0\uaa00-\uaa27\uaa40-\uaa41\uaa4c-\uaa4d\uaa50-\uaa59\uaa7b\uaae0-\uaae9\uaaf2-\uaaf3\uabc0-\uabe1\uabec\uabed\uabf0-\uabf9\ufb20-\ufb28\ufe00-\ufe0f\ufe20-\ufe26\ufe33\ufe34\ufe4d-\ufe4f\uff10-\uff19\uff3f";var nonASCIIidentifierStart=new RegExp("["+nonASCIIidentifierStartChars+"]");var nonASCIIidentifier=new RegExp("["+nonASCIIidentifierStartChars+nonASCIIidentifierChars+"]");// Whether a single character denotes a newline.
+	var nonASCIIidentifierStartChars="\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0\u08A2-\u08AC\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0977\u0979-\u097F\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3D\u0C58\u0C59\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D60\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F4\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16EE-\u16F0\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191C\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19C1-\u19C7\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2160-\u2188\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005-\u3007\u3021-\u3029\u3031-\u3035\u3038-\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FCC\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA697\uA6A0-\uA6EF\uA717-\uA71F\uA722-\uA788\uA78B-\uA78E\uA790-\uA793\uA7A0-\uA7AA\uA7F8-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA80-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC";var nonASCIIidentifierChars="\u0300-\u036F\u0483-\u0487\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u0620-\u0649\u0672-\u06D3\u06E7-\u06E8\u06FB-\u06FC\u0730-\u074A\u0800-\u0814\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0840-\u0857\u08E4-\u08FE\u0900-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962-\u0963\u0966-\u096F\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09D7\u09DF-\u09E0\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A66-\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2-\u0AE3\u0AE6-\u0AEF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B5F-\u0B60\u0B66-\u0B6F\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0BE6-\u0BEF\u0C01-\u0C03\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62-\u0C63\u0C66-\u0C6F\u0C82\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2-\u0CE3\u0CE6-\u0CEF\u0D02\u0D03\u0D46-\u0D48\u0D57\u0D62-\u0D63\u0D66-\u0D6F\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E34-\u0E3A\u0E40-\u0E45\u0E50-\u0E59\u0EB4-\u0EB9\u0EC8-\u0ECD\u0ED0-\u0ED9\u0F18\u0F19\u0F20-\u0F29\u0F35\u0F37\u0F39\u0F41-\u0F47\u0F71-\u0F84\u0F86-\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u1000-\u1029\u1040-\u1049\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F-\u109D\u135D-\u135F\u170E-\u1710\u1720-\u1730\u1740-\u1750\u1772\u1773\u1780-\u17B2\u17DD\u17E0-\u17E9\u180B-\u180D\u1810-\u1819\u1920-\u192B\u1930-\u193B\u1951-\u196D\u19B0-\u19C0\u19C8-\u19C9\u19D0-\u19D9\u1A00-\u1A15\u1A20-\u1A53\u1A60-\u1A7C\u1A7F-\u1A89\u1A90-\u1A99\u1B46-\u1B4B\u1B50-\u1B59\u1B6B-\u1B73\u1BB0-\u1BB9\u1BE6-\u1BF3\u1C00-\u1C22\u1C40-\u1C49\u1C5B-\u1C7D\u1CD0-\u1CD2\u1D00-\u1DBE\u1E01-\u1F15\u200C\u200D\u203F\u2040\u2054\u20D0-\u20DC\u20E1\u20E5-\u20F0\u2D81-\u2D96\u2DE0-\u2DFF\u3021-\u3028\u3099\u309A\uA640-\uA66D\uA674-\uA67D\uA69F\uA6F0-\uA6F1\uA7F8-\uA800\uA806\uA80B\uA823-\uA827\uA880-\uA881\uA8B4-\uA8C4\uA8D0-\uA8D9\uA8F3-\uA8F7\uA900-\uA909\uA926-\uA92D\uA930-\uA945\uA980-\uA983\uA9B3-\uA9C0\uAA00-\uAA27\uAA40-\uAA41\uAA4C-\uAA4D\uAA50-\uAA59\uAA7B\uAAE0-\uAAE9\uAAF2-\uAAF3\uABC0-\uABE1\uABEC\uABED\uABF0-\uABF9\uFB20-\uFB28\uFE00-\uFE0F\uFE20-\uFE26\uFE33\uFE34\uFE4D-\uFE4F\uFF10-\uFF19\uFF3F";var nonASCIIidentifierStart=new RegExp("["+nonASCIIidentifierStartChars+"]");var nonASCIIidentifier=new RegExp("["+nonASCIIidentifierStartChars+nonASCIIidentifierChars+"]");// Whether a single character denotes a newline.
 	exports.newline=/[\n\r\u2028\u2029]/;// Matches a whole line break (where CRLF is considered a single
 	// line break). Used to count lines.
 	// in javascript, these two differ
@@ -1008,7 +1458,7 @@
 	// These issues are minor compared to ugly indentation.
 	if(frame.multiline_frame||frame.mode===MODE.ForInitializer||frame.mode===MODE.Conditional){return;}// remove one indent from each line inside this section
 	var index=frame.start_line_index;var output_length=lines.length;while(index<output_length){lines[index].remove_indent();index++;}};this.trim=function(eat_newlines){eat_newlines=eat_newlines===undefined?false:eat_newlines;this.current_line.trim(indent_string,baseIndentString);while(eat_newlines&&lines.length>1&&this.current_line.is_empty()){lines.pop();this.current_line=lines[lines.length-1];this.current_line.trim();}this.previous_line=lines.length>1?lines[lines.length-2]:null;};this.just_added_newline=function(){return this.current_line.is_empty();};this.just_added_blankline=function(){if(this.just_added_newline()){if(lines.length===1){return true;// start of the file and newline = blank
-	}var line=lines[lines.length-2];return line.is_empty();}return false;};}var InputScanner=function(input){var _input=input;var _input_length=_input.length;var _position=0;this.back=function(){_position-=1;};this.hasNext=function(){return _position<_input_length;};this.next=function(){var val=null;if(this.hasNext()){val=_input.charAt(_position);_position+=1;}return val;};this.peek=function(index){var val=null;index=index||0;index+=_position;if(index>=0&&index<_input_length){val=_input.charAt(index);}return val;};this.peekCharCode=function(index){var val=0;index=index||0;index+=_position;if(index>=0&&index<_input_length){val=_input.charCodeAt(index);}return val;};this.test=function(pattern,index){index=index||0;pattern.lastIndex=_position+index;return pattern.test(_input);};this.testChar=function(pattern,index){var val=this.peek(index);return val!==null&&pattern.test(val);};this.match=function(pattern){pattern.lastIndex=_position;var pattern_match=pattern.exec(_input);if(pattern_match&&pattern_match.index===_position){_position+=pattern_match[0].length;}else{pattern_match=null;}return pattern_match;};};var Token=function(type,text,newlines,whitespace_before,parent){this.type=type;this.text=text;this.comments_before=[];this.newlines=newlines||0;this.wanted_newline=newlines>0;this.whitespace_before=whitespace_before||'';this.parent=parent||null;this.opened=null;this.directives=null;};function tokenizer(input_string,opts){var whitespace="\n\r\t ".split('');var digit=/[0-9]/;var digit_bin=/[01]/;var digit_oct=/[01234567]/;var digit_hex=/[0123456789abcdefABCDEF]/;this.positionable_operators='!= !== % & && * ** + - / : < << <= == === > >= >> >>> ? ^ | ||'.split(' ');var punct=this.positionable_operators.concat(// non-positionable operators - these do not follow operator position settings
+	}var line=lines[lines.length-2];return line.is_empty();}return false;};}var InputScanner=function InputScanner(input){var _input=input;var _input_length=_input.length;var _position=0;this.back=function(){_position-=1;};this.hasNext=function(){return _position<_input_length;};this.next=function(){var val=null;if(this.hasNext()){val=_input.charAt(_position);_position+=1;}return val;};this.peek=function(index){var val=null;index=index||0;index+=_position;if(index>=0&&index<_input_length){val=_input.charAt(index);}return val;};this.peekCharCode=function(index){var val=0;index=index||0;index+=_position;if(index>=0&&index<_input_length){val=_input.charCodeAt(index);}return val;};this.test=function(pattern,index){index=index||0;pattern.lastIndex=_position+index;return pattern.test(_input);};this.testChar=function(pattern,index){var val=this.peek(index);return val!==null&&pattern.test(val);};this.match=function(pattern){pattern.lastIndex=_position;var pattern_match=pattern.exec(_input);if(pattern_match&&pattern_match.index===_position){_position+=pattern_match[0].length;}else{pattern_match=null;}return pattern_match;};};var Token=function Token(type,text,newlines,whitespace_before,parent){this.type=type;this.text=text;this.comments_before=[];this.newlines=newlines||0;this.wanted_newline=newlines>0;this.whitespace_before=whitespace_before||'';this.parent=parent||null;this.opened=null;this.directives=null;};function tokenizer(input_string,opts){var whitespace="\n\r\t ".split('');var digit=/[0-9]/;var digit_bin=/[01]/;var digit_oct=/[01234567]/;var digit_hex=/[0123456789abcdefABCDEF]/;this.positionable_operators='!= !== % & && * ** + - / : < << <= == === > >= >> >>> ? ^ | ||'.split(' ');var punct=this.positionable_operators.concat(// non-positionable operators - these do not follow operator position settings
 	'! %= &= *= **= ++ += , -- -= /= :: <<= = => >>= >>>= ^= |= ~'.split(' '));// words which should always start on new line.
 	this.line_starters='continue,try,throw,return,var,let,const,if,switch,case,default,for,while,break,function,import,export'.split(',');var reserved_words=this.line_starters.concat(['do','in','else','get','set','new','catch','finally','typeof','yield','async','await','from','as']);//  /* ... */ comment ends with nearest */ or end of file
 	var block_comment_pattern=/([\s\S]*?)((?:\*\/)|$)/g;// comment ends just before nearest linefeed or end of file
@@ -1035,7 +1485,7 @@
 	if(!match){xmlStr+=input.match(/[\s\S]*/g)[0];}xmlStr=xmlStr.replace(acorn.allLineBreaks,'\n');return[xmlStr,"TK_STRING"];}}else{//
 	// handle string
 	//
-	var parse_string=function(delimiter,allow_unescaped_newlines,start_sub){// Template strings can travers lines without escape characters.
+	var parse_string=function parse_string(delimiter,allow_unescaped_newlines,start_sub){// Template strings can travers lines without escape characters.
 	// Other strings cannot
 	var current_char;while(input.hasNext()){current_char=input.peek();if(!(esc||current_char!==delimiter&&(allow_unescaped_newlines||!acorn.newline.test(current_char)))){break;}// Handle \r\n linebreaks after escapes or in template strings
 	if((esc||allow_unescaped_newlines)&&acorn.newline.test(current_char)){if(current_char==='\r'&&input.peek(1)==='\n'){input.next();current_char=input.peek();}resulting_string+='\n';}else{resulting_string+=current_char;}if(esc){if(current_char==='x'||current_char==='u'){has_char_escapes=true;}esc=false;}else{esc=current_char==='\\';}input.next();if(start_sub&&resulting_string.indexOf(start_sub,resulting_string.length-start_sub.length)!==-1){if(delimiter==='`'){parse_string('}',allow_unescaped_newlines,'`');}else{parse_string('`',allow_unescaped_newlines,'${');}}}};if(sep==='`'){parse_string('`',true,'${');}else{parse_string(sep);}}if(has_char_escapes&&opts.unescape_strings){resulting_string=unescape_string(resulting_string);}if(input.peek()===sep){resulting_string+=sep;input.next();if(sep==='/'){// regexps may have modifiers /regexp/MOD , so fetch those, too
@@ -1594,6 +2044,8 @@
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	/*jshint curly:true, eqeqeq:true, laxbreak:true, noempty:false */
 	/*
 
@@ -1710,7 +2162,7 @@
 	        wrap_attributes = options.wrap_attributes === undefined ? 'auto' : options.wrap_attributes;
 	        wrap_attributes_indent_size = isNaN(parseInt(options.wrap_attributes_indent_size, 10)) ? indent_size : parseInt(options.wrap_attributes_indent_size, 10);
 	        end_with_newline = options.end_with_newline === undefined ? false : options.end_with_newline;
-	        extra_liners = typeof options.extra_liners === 'object' && options.extra_liners ? options.extra_liners.concat() : typeof options.extra_liners === 'string' ? options.extra_liners.split(',') : 'head,body,/html'.split(',');
+	        extra_liners = _typeof(options.extra_liners) === 'object' && options.extra_liners ? options.extra_liners.concat() : typeof options.extra_liners === 'string' ? options.extra_liners.split(',') : 'head,body,/html'.split(',');
 	        eol = options.eol ? options.eol : '\n';
 
 	        if (options.indent_with_tabs) {
@@ -1757,7 +2209,7 @@
 	                // other tags that were in this list, keeping just in case
 	                'basefont', 'isindex'],
 	                extra_liners: extra_liners, //for tags that need a line of whitespace before them
-	                in_array: function (what, arr) {
+	                in_array: function in_array(what, arr) {
 	                    for (var i = 0; i < arr.length; i++) {
 	                        if (what === arr[i]) {
 	                            return true;
@@ -2202,12 +2654,12 @@
 	            function tokenMatcher(delimiter) {
 	                var token = '';
 
-	                var add = function (str) {
+	                var add = function add(str) {
 	                    var newToken = token + str.toLowerCase();
 	                    token = newToken.length <= delimiter.length ? newToken : newToken.substr(newToken.length - delimiter.length, delimiter.length);
 	                };
 
-	                var doesNotMatch = function () {
+	                var doesNotMatch = function doesNotMatch() {
 	                    return token.indexOf(delimiter) === -1;
 	                };
 
@@ -2542,7 +2994,7 @@
 	                        if (_beautifier) {
 
 	                            // call the Beautifier if avaliable
-	                            var Child_options = function () {
+	                            var Child_options = function Child_options() {
 	                                this.eol = '\n';
 	                            };
 	                            Child_options.prototype = options;
@@ -2594,7 +3046,7 @@
 	            var css_beautify = __webpack_require__(50);
 
 	            return {
-	                html_beautify: function (html_source, options) {
+	                html_beautify: function html_beautify(html_source, options) {
 	                    return style_html(html_source, options, js_beautify.js_beautify, css_beautify.css_beautify);
 	                }
 	            };
@@ -2836,12 +3288,12 @@
 	// Generated by CoffeeScript 1.10.0
 	var Utility,
 	    Victorica,
-	    bind = function (fn, me) {
+	    bind = function bind(fn, me) {
 	  return function () {
 	    return fn.apply(me, arguments);
 	  };
 	},
-	    extend = function (child, parent) {
+	    extend = function extend(child, parent) {
 	  for (var key in parent) {
 	    if (hasProp.call(parent, key)) child[key] = parent[key];
 	  }function ctor() {
@@ -2964,7 +3416,7 @@
 
 	// Generated by CoffeeScript 1.10.0
 	var Utility,
-	    bind = function (fn, me) {
+	    bind = function bind(fn, me) {
 	  return function () {
 	    return fn.apply(me, arguments);
 	  };
@@ -3387,6 +3839,8 @@
 
 	'use strict';
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	/*
 	Syntax highlighting with language autodetection.
 	https://highlightjs.org/
@@ -3395,7 +3849,7 @@
 	(function (factory) {
 
 	  // Find the global object for export to both the browser and web workers.
-	  var globalObject = typeof window === 'object' && window || typeof self === 'object' && self;
+	  var globalObject = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && window || (typeof self === 'undefined' ? 'undefined' : _typeof(self)) === 'object' && self;
 
 	  // Setup highlight.js for different environments. First is Node.js or
 	  // CommonJS.
@@ -3493,9 +3947,11 @@
 	    var key;
 	    var result = {};
 
-	    for (key in parent) result[key] = parent[key];
-	    if (obj) for (key in obj) result[key] = obj[key];
-	    return result;
+	    for (key in parent) {
+	      result[key] = parent[key];
+	    }if (obj) for (key in obj) {
+	      result[key] = obj[key];
+	    }return result;
 	  }
 
 	  /* Stream merging */
@@ -3621,7 +4077,7 @@
 	      if (mode.keywords) {
 	        var compiled_keywords = {};
 
-	        var flatten = function (className, str) {
+	        var flatten = function flatten(className, str) {
 	          if (language.case_insensitive) {
 	            str = str.toLowerCase();
 	          }
@@ -3681,7 +4137,7 @@
 	      var terminators = mode.contains.map(function (c) {
 	        return c.beginKeywords ? '\\.?(' + c.begin + ')\\.?' : c.begin;
 	      }).concat([mode.terminator_end, mode.illegal]).map(reStr).filter(Boolean);
-	      mode.terminators = terminators.length ? langRe(terminators.join('|'), true) : { exec: function () /*s*/{
+	      mode.terminators = terminators.length ? langRe(terminators.join('|'), true) : { exec: function exec() /*s*/{
 	          return null;
 	        } };
 	    }
@@ -9396,14 +9852,14 @@
 	  var RULES = [],
 	      VALUE = []; // forward def. for recursive modes
 
-	  var STRING_MODE = function (c) {
+	  var STRING_MODE = function STRING_MODE(c) {
 	    return {
 	      // Less strings are not multiline (also include '~' for more consistent coloring of "escaped" strings)
 	      className: 'string', begin: '~?' + c + '.*?' + c
 	    };
 	  };
 
-	  var IDENT_MODE = function (name, begin, relevance) {
+	  var IDENT_MODE = function IDENT_MODE(name, begin, relevance) {
 	    return {
 	      className: name, begin: begin, relevance: relevance
 	    };
