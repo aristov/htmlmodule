@@ -12,32 +12,44 @@ table.exampletable
     margin: 0 auto;
     width: 100%;
 }
-table.exampletable tr th
+table.exampletable > * > tr > th
 {
     border-bottom: 3px solid rgba(0, 0, 0, 0.2);
     background: rgba(0, 0, 0, 0.08);
     padding: 20px;
 }
-table.exampletable tr td
+table.exampletable > * > tr > td
 {
     padding: 20px 40px 40px;
     border-bottom: 5px solid rgba(0, 0, 0, 0.1);
 }
-table.exampletable tr td pre.html,
-table.exampletable tr td pre.javascript
+table.exampletable > * > tr > td pre.html,
+table.exampletable > * > tr > td pre.javascript
 {
     margin-top: 0;
 }
-table.exampletable tr td div
+table.exampletable > * > tr > td
+{
+    background: rgba(0, 0, 0, 0.1);
+}
+table.exampletable > * > tr > td div
 {
     max-width: 1200px;
+    box-sizing: border-box;
 }
-table.exampletable tr td span.tag
+table.exampletable > * > tr > td div.dom
+{
+    padding: 10px;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background: white;
+}
+table.exampletable > * > tr > td span.tag
 {
     display: inline-block;
-    font: 11px Arial;
+    font: 15px Arial;
     background: #0a0;
     color: white;
     padding: 1px 5px;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
 }

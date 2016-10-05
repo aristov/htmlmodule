@@ -1,4 +1,4 @@
-import { HTMLAssembler } from './html.js';
+import { HTMLAssembler } from './../html/html.js';
 
 const assembler = new HTMLAssembler;
 

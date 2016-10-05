@@ -1,6 +1,6 @@
-import { test } from '../html/html.lib.test';
-import { h3, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../html/html.lib';
-import * as HTMLDOM from '../html/html.lib';
+import { test } from '../htmldom/htmldom.test.js';
+import { h3, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom/htmldom.js';
+import * as HTMLDOM from '../htmldom/htmldom.js';
 
 import beautify from 'js-beautify';
 import victorica from 'victorica';
@@ -63,13 +63,16 @@ const exampletable = table({
                         className : 'javascript',
                         children : code(jsb(template.toString(), jsbConfig))
                     })),
-                    tag('Result HTML:'),
-                    div(resulthtmlcode = pre({
-                        className : 'html',
-                        children : code(victorica(element.outerHTML, victoricaConfig))
-                    })),
                     tag('Result DOM:'),
-                    div(element)
+                    div({ className : 'dom', children : element }),
+                    tag('Result HTML:'),
+                    div({
+                        className : '',
+                        children : resulthtmlcode = pre({
+                            className : 'html',
+                            children : code(victorica(element.outerHTML, victoricaConfig))
+                        })
+                    })
                 ])
             });
 

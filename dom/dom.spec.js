@@ -14,35 +14,6 @@ const {
 
 const assembler = new DOMAssembler;
 
-describe('Node init', function() {
-    const init = { id : 'random-id' };
-    it('return the same object', () => {
-        assert.equal(NodeInit(init), init);
-    });
-    it('proper strigified to JSON', () => {
-        assert.equal(JSON.stringify(NodeInit(init)), '{"id":"random-id"}');
-    });
-    it('properly assign string as children', () => {
-        const string = 'string as textContent';
-        const init = NodeInit(string);
-        assert.equal(init.children, string);
-    });
-    it('properly assign array as children', () => {
-        const children = ['a', 'b', 'c'];
-        const init = NodeInit(children);
-        assert.equal(init.children, children);
-    });
-    it('properly assign element as children', () => {
-        const child = document.createElement('a');
-        const init = NodeInit(child);
-        assert.equal(init.children, child);
-    });
-    it('passes through undefined', () => {
-        const init = NodeInit(undefined);
-        assert.equal(init, undefined);
-    });
-});
-
 describe('DOM assembler', function() {
 
     describe('createElement', function() {
@@ -202,5 +173,34 @@ describe('DOM assembler', function() {
                 });
             });
         });
+    });
+});
+
+describe('Node init', function() {
+    const init = { id : 'random-id' };
+    it('return the same object', () => {
+        assert.equal(NodeInit(init), init);
+    });
+    it('proper strigified to JSON', () => {
+        assert.equal(JSON.stringify(NodeInit(init)), '{"id":"random-id"}');
+    });
+    it('properly assign string as children', () => {
+        const string = 'string as textContent';
+        const init = NodeInit(string);
+        assert.equal(init.children, string);
+    });
+    it('properly assign array as children', () => {
+        const children = ['a', 'b', 'c'];
+        const init = NodeInit(children);
+        assert.equal(init.children, children);
+    });
+    it('properly assign element as children', () => {
+        const child = document.createElement('a');
+        const init = NodeInit(child);
+        assert.equal(init.children, child);
+    });
+    it('passes through undefined', () => {
+        const init = NodeInit(undefined);
+        assert.equal(init, undefined);
     });
 });

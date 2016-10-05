@@ -7,17 +7,21 @@ export const test = [
             input({ type : 'password', placeholder : 'password' })
         ]),
 
-    ({ header, nav, a }) =>
-        header(nav([
-            a({
+    ({ header, nav, a, ul, li }) =>
+        header(nav(ul([
+            li(a({
                 href : '/home.html',
                 textContent : 'Go home'
-            }),
-            a({
+            })),
+            li(a({
                 href : 'http://github.com/aristov',
                 textContent : 'Github page'
-            })
-        ])),
+            })),
+            li(a({
+                href : 'mailto:vv.aristov@gmail.com',
+                textContent : 'Contact me'
+            }))
+        ]))),
 
     ({ footer, address, small }) =>
         footer([

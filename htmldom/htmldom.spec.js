@@ -6,7 +6,7 @@ import {
     div, ul, ol, li, dl, dd, dt,
     main, section, details, summary,
     dfn, sup, sub, i, strong, p, variable
-} from './html.lib';
+} from './htmldom.js';
 
 const { assert } = chai;
 
