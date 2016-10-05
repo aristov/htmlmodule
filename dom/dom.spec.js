@@ -40,11 +40,11 @@ describe('DOM assembler', function() {
             describe('id', function() {
                 const element = assembler.createElement('element', { id : 'element_0' });
 
-                it('proper number of attributes', function() {
+                it.skip('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
-                it('proper `id` attribute', function() {
+                it.skip('proper `id` attribute', function() {
                     assert.equal(element.id, 'element_0');
                 });
             });
@@ -53,11 +53,11 @@ describe('DOM assembler', function() {
                 const element = assembler.createElement('element', {
                     className : 'element className element_class_name'
                 });
-                it('proper number of attributes', function() {
+                it.skip('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
-                it('proper `className` attribute', function() {
+                it.skip('proper `className` attribute', function() {
                     assert.equal(element.className, 'element className element_class_name');
                     assert.equal(element.getAttribute('class'), 'element className element_class_name');
                     assert(element.classList.contains('element'));
