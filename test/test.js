@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import { test } from '../htmldom/htmldom.test.js';
 import { h3, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom/htmldom.js';
 import * as HTMLDOM from '../htmldom/htmldom.js';
