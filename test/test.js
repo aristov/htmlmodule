@@ -17,7 +17,6 @@ const jsbConfig = {
 
 const victoricaConfig = {
     space: '    ',
-    // ignore: ['script','style','title','a','abbr','acronym','b','bdo','big','button','cite','code','dfn','em','i','img','kbd','label','map','object','pre','q','samp','small','span','strong','sub','sup','textarea','tt','var'],
     removeSelfClose: true,
 };
 
@@ -41,11 +40,7 @@ const exampletable = table({
     className : 'exampletable',
     children : [
         thead([
-            // tr([th(code('tagName')), th(code('outerHTML')), th(code('DOM'))]),
-            tr([th({
-                colSpan : 3,
-                children : filterinput
-            })])
+            tr([th(filterinput)])
         ]),
         tbody(rows = test.map(template => {
             const element = template(HTMLDOM);
@@ -61,24 +56,21 @@ const exampletable = table({
 
             const row = tr({
                 className : tagNames.join(' '),
-                children : td({
-                    colSpan : 3,
-                    children : [
-                        h3(code(tagNames.join(', '))),
-                        tag('Source JS:'),
-                        div(srcjscode = pre({
-                            className : 'javascript',
-                            children : code(jsb(template.toString(), jsbConfig))
-                        })),
-                        tag('Result HTML:'),
-                        div(resulthtmlcode = pre({
-                            className : 'html',
-                            children : code(victorica(element.outerHTML, victoricaConfig))
-                        })),
-                        tag('Result DOM:'),
-                        div(element)
-                    ]
-                })
+                children : td([
+                    h3(code(tagNames.join(', '))),
+                    tag('Source JS:'),
+                    div(srcjscode = pre({
+                        className : 'javascript',
+                        children : code(jsb(template.toString(), jsbConfig))
+                    })),
+                    tag('Result HTML:'),
+                    div(resulthtmlcode = pre({
+                        className : 'html',
+                        children : code(victorica(element.outerHTML, victoricaConfig))
+                    })),
+                    tag('Result DOM:'),
+                    div(element)
+                ])
             });
 
             hljs.highlightBlock(srcjscode);

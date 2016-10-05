@@ -1,51 +1,11 @@
-/*import {
-    a, abbr, address, area, article, aside, audio,
-    b, base, bdi, bdo, blockquote, body, br, button,
-    canvas, caption, cite, code, col, colgroup,
-    data, datalist, dd, del, details, dfn, dialog, div, dl, dt,
-    em, embed,
-    fieldset, figcaption, figure, footer, form,
-    h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html,
-    i, iframe, img, input, ins,
-    kbd, keygen,
-    label, legend, li, link,
-    main, map, mark, menu, menuitem, meta, meter,
-    nav, noscript,
-    object, ol, optgroup, option, output,
-    p, param, picture, pre, progress,
-    q,
-    rp, rt, ruby,
-    s, samp, script, section, select, slot, small, source,
-    span, strong, style, sub, summary, sup,
-    table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track,
-    u, ul,
-    variable, video,
-    wbr
-} from './html.lib';*/
-
-// import HTMLDOM from './html.lib';
-
 export const test = [
+
     ({ fieldset, legend, input }) =>
         fieldset([
             legend('Authorization'),
             input({ placeholder : 'login', style : { marginRight : '5px' } }),
             input({ type : 'password', placeholder : 'password' })
         ]),
-
-    /*({ iframe, html, head, meta, title, body }) =>
-        iframe({
-            srcdoc : html({
-                lang : 'ru',
-                children : [
-                    head([
-                        meta({ attrset : { charset : 'utf-8' } }),
-                        title('iframe title')
-                    ]),
-                    body('document inside iframe')
-                ]
-            }).outerHTML
-        }),*/
 
     ({ header, nav, a }) =>
         header(nav([
@@ -110,13 +70,13 @@ export const test = [
                 '{ display: "block", color: "blue", fontFamily : "monospace" ' +
             '})'),
 
-/*    ({ pre }) => pre(
+    ({ pre }) => pre(
 `preformatted text
 line break 
     — yet another line break with tab
   
   <>&`
-    ),*/
+    ),
 
     ({ ins }) => ins('The ins element'),
 
@@ -144,13 +104,12 @@ line break
 
     ({ button }) => button('Push my button'),
 
-    ({ form, label, input, textarea, select, option, br, span }) =>
+    ({ form, label, input, textarea, span }) =>
         form({
             style : {
                 display : 'flex',
                 flexDirection : 'column',
                 justifyContent : 'space-between',
-                height : '340px'
             },
             children : [
                 label([
@@ -190,46 +149,44 @@ line break
                         }),
                         ' XML'
                     ])
-                ]),
-                label([
-                    'Simple textarea', br(),
-                    textarea({
-                        title : 'multiline',
-                        textContent : 'First line\nSecond line'
-                    })
-                ]),
-                label([
-                    'Select technology ',
-                    select([
-                        option('XML'),
-                        option('HTML'),
-                        option({ selected : true, textContent : 'WAI-ARIA' }),
-                        option('RDFS'),
-                        option('OWL'),
-                        option('SGML'),
-                        option('CSS'),
-                    ])
-                ]),
-                label([
-                    'Select technology stack',
-                    br(),
-                    select({
-                        multiple : true,
-                        children : [
-                            option('XML'),
-                            option({
-                                attrset : { selected : '' },
-                                textContent : 'HTML'
-                            }),
-                            option('WAI-ARIA'),
-                            option('RDFS'),
-                            option('OWL'),
-                            option('SGML'),
-                            option('CSS'),
-                        ]})
-                ]),
+                ])
             ]
         }),
+
+    ({ form, label, select, option, br }) => form([
+        label([
+            'Select technology ',
+            select([
+                option('XML'),
+                option('HTML'),
+                option({ selected : true, textContent : 'WAI-ARIA' }),
+                option('RDFS'),
+                option('OWL'),
+                option('SGML'),
+                option('CSS'),
+            ])
+        ]),
+        br(),
+        label([
+            'Select technology stack',
+            br(),
+            select({
+                multiple : true,
+                children : [
+                    option('XML'),
+                    option({
+                        attrset : { selected : '' },
+                        textContent : 'HTML'
+                    }),
+                    option('WAI-ARIA'),
+                    option('RDFS'),
+                    option('OWL'),
+                    option('SGML'),
+                    option('CSS'),
+                ]})
+        ]),
+        br()
+    ]),
 
     ({ form, input, button }) =>
         form({

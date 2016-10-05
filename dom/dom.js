@@ -3,7 +3,7 @@ const { document, Text, Element } = window;
 
 export const XML_NS_URI = 'https://www.w3.org/1999/xml';
 
-export class Instance {
+export class DOMAssembler {
     /**
      * Assign given element to instance
      * @param {Element} element
@@ -25,12 +25,12 @@ export class Instance {
 
     /**
      * Initialize the element with defined properties
-     * @param {{}} propset Node property set dictionary object
+     * @param {{}} init Node property set dictionary object
      */
-    set propset(propset) {
+    set init(init) {
         const element = this.element;
-        for(const prop in propset) {
-            const value = propset[prop];
+        for(const prop in init) {
+            const value = init[prop];
             if(value !== undefined) {
                 if(prop in this) this[prop] = value;
                 else if(prop in element) element[prop] = value;
@@ -71,13 +71,13 @@ export class Instance {
     /**
      * Create the specified element and initialize it by given property set
      * @param {String} tagName
-     * @param {{}} [propset]
+     * @param {{}} [init]
      * @returns {Element}
      */
-    createElement(tagName, propset) {
+    createElement(tagName, init) {
         const { namespaceURI } = this.constructor;
         this.element = document.createElementNS(namespaceURI, tagName);
-        if(propset) this.propset = NodePropertySet(propset);
+        if(init) this.init = NodeInit(init);
         return this.element;
     }
 
@@ -89,7 +89,7 @@ export class Instance {
     }
 }
 
-Object.defineProperty(Instance.prototype, 'node', {
+Object.defineProperty(DOMAssembler.prototype, 'node', {
     enumerable : true,
     writable : true,
     value : null
@@ -97,14 +97,14 @@ Object.defineProperty(Instance.prototype, 'node', {
 
 /**
  * Converts any non-dictionary object argument
- * to NodePropertySet dictionary object with `children` property assigned
- * @param {Object,String|Array} propset
- * @returns {NodePropertySet}
+ * to NodeInit dictionary object with `children` property assigned
+ * @param {Object,String|Array} init
+ * @returns {{}} NodePropertySet
  * @interface
  */
-export function NodePropertySet(propset) {
-    if(propset && propset.constructor !== Object) {
-        return { children : propset };
+export function NodeInit(init) {
+    if(init && init.constructor !== Object) {
+        return { children : init };
     }
-    return propset;
+    return init;
 }

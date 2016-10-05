@@ -1,4 +1,4 @@
-import { HTMLInstance } from './html.instance';
+import { HTMLAssembler } from './html.js';
 import chai from 'chai';
 
 const { assert } = chai;
@@ -16,16 +16,16 @@ const {
     HTMLSpanElement
 } = window;
 
-const instance = new HTMLInstance;
+const assembler = new HTMLAssembler;
 
-describe('HTML Instance', function() {
+describe('HTML assembler', function() {
 
     describe('createElement', function() {
 
         describe('built-in global attributes', function() {
 
             describe('accessKey', function() {
-                const element = instance.createElement('a', { accessKey : 'A' });
+                const element = assembler.createElement('a', { accessKey : 'A' });
 
                 it('HTMLAnchorElement node created', function() {
                     assert.equal(element.constructor, HTMLAnchorElement);
@@ -45,7 +45,7 @@ describe('HTML Instance', function() {
             });
 
             describe('contentEditable', function() {
-                const element = instance.createElement('unknown', { contentEditable : 'true' });
+                const element = assembler.createElement('unknown', { contentEditable : 'true' });
 
                 it('HTMLUnknownElement node created', function() {
                     assert.equal(element.constructor, HTMLUnknownElement);
@@ -65,7 +65,7 @@ describe('HTML Instance', function() {
             });
 
             describe('dir', function() {
-                const element = instance.createElement('button', { dir : 'rtl' });
+                const element = assembler.createElement('button', { dir : 'rtl' });
 
                 it('HTMLButtonElement node created', function() {
                     assert.equal(element.constructor, HTMLButtonElement);
@@ -85,7 +85,7 @@ describe('HTML Instance', function() {
             });
 
             describe('draggable', function() {
-                const element = instance.createElement('header', { draggable : true });
+                const element = assembler.createElement('header', { draggable : true });
 
                 it('HTMLElement node created', function() {
                     assert.equal(element.constructor, HTMLElement);
@@ -105,7 +105,7 @@ describe('HTML Instance', function() {
             });
 
             describe('hidden', function() {
-                const element = instance.createElement('input', { hidden : true });
+                const element = assembler.createElement('input', { hidden : true });
 
                 it('HTMLInputElement node created', function() {
                     assert.equal(element.constructor, HTMLInputElement);
@@ -125,7 +125,7 @@ describe('HTML Instance', function() {
             });
 
             describe('lang', function() {
-                const element = instance.createElement('html', { lang : 'ru' });
+                const element = assembler.createElement('html', { lang : 'ru' });
 
                 it('HTMLHtmlElement node created', function() {
                     assert.equal(element.constructor, HTMLHtmlElement);
@@ -145,7 +145,7 @@ describe('HTML Instance', function() {
             });
 
             describe('spellcheck', function() {
-                const element = instance.createElement('body', { spellcheck : true });
+                const element = assembler.createElement('body', { spellcheck : true });
 
                 it('HTMLBodyElement node created', function() {
                     assert.equal(element.constructor, HTMLBodyElement);
@@ -165,7 +165,7 @@ describe('HTML Instance', function() {
             });
 
             describe('tabIndex', function() {
-                const element = instance.createElement('form', { tabIndex : 0 });
+                const element = assembler.createElement('form', { tabIndex : 0 });
 
                 it('HTMLFormElement node created', function() {
                     assert.equal(element.constructor, HTMLFormElement);
@@ -185,7 +185,7 @@ describe('HTML Instance', function() {
             });
 
             describe('title', function() {
-                const element = instance.createElement('select', { title : 'Select without options' });
+                const element = assembler.createElement('select', { title : 'Select without options' });
 
                 it('HTMLSelectElement node created', function() {
                     assert.equal(element.constructor, HTMLSelectElement);
@@ -208,7 +208,7 @@ describe('HTML Instance', function() {
         describe('adapted interface', function() {
 
             describe('dataset', function() {
-                const element = instance.createElement('div', {
+                const element = assembler.createElement('div', {
                     dataset : { camelCased : 'custom attribute' }
                 });
                 it('HTMLDivElement node created', function() {
@@ -229,7 +229,7 @@ describe('HTML Instance', function() {
             });
 
             describe('style', function() {
-                const element = instance.createElement('span', {
+                const element = assembler.createElement('span', {
                     style : { backgroundColor : 'black' }
                 });
                 it('HTMLSpanElement node created', function() {

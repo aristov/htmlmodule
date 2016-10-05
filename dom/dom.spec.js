@@ -1,4 +1,4 @@
-import { Instance, XML_NS_URI } from './dom.instance';
+import { XML_NS_URI, DOMAssembler, NodeInit } from './dom';
 import chai from 'chai';
 
 const { assert } = chai;
@@ -8,17 +8,47 @@ const {
     Comment,
     Element,
     HTMLHRElement,
-    HTMLSpanElement
+    HTMLSpanElement,
+    JSON
 } = window;
 
-const instance = new Instance;
+const assembler = new DOMAssembler;
 
-describe('DOM Instance', function() {
+describe('Node init', function() {
+    const init = { id : 'random-id' };
+    it('return the same object', () => {
+        assert.equal(NodeInit(init), init);
+    });
+    it('proper strigified to JSON', () => {
+        assert.equal(JSON.stringify(NodeInit(init)), '{"id":"random-id"}');
+    });
+    it('properly assign string as children', () => {
+        const string = 'string as textContent';
+        const init = NodeInit(string);
+        assert.equal(init.children, string);
+    });
+    it('properly assign array as children', () => {
+        const children = ['a', 'b', 'c'];
+        const init = NodeInit(children);
+        assert.equal(init.children, children);
+    });
+    it('properly assign element as children', () => {
+        const child = document.createElement('a');
+        const init = NodeInit(child);
+        assert.equal(init.children, child);
+    });
+    it('passes through undefined', () => {
+        const init = NodeInit(undefined);
+        assert.equal(init, undefined);
+    });
+});
+
+describe('DOM assembler', function() {
 
     describe('createElement', function() {
 
         describe('general', function() {
-            const element = instance.createElement('element');
+            const element = assembler.createElement('element');
 
             it('Element created', () => {
                 assert.equal(element.constructor, Element);
@@ -41,7 +71,7 @@ describe('DOM Instance', function() {
         describe('build-in attributes', function() {
 
             describe('id', function() {
-                const element = instance.createElement('element', { id : 'element_0' });
+                const element = assembler.createElement('element', { id : 'element_0' });
 
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
@@ -57,7 +87,7 @@ describe('DOM Instance', function() {
             });
 
             describe('className', function() {
-                const element = instance.createElement('element', {
+                const element = assembler.createElement('element', {
                     className : 'element className element_class_name'
                 });
                 it('proper number of attributes', function() {
@@ -78,7 +108,7 @@ describe('DOM Instance', function() {
             });
 
             describe('textContent', function() {
-                const element = instance.createElement('element', {
+                const element = assembler.createElement('element', {
                     textContent : 'element textContent'
                 });
                 it('proper number of child nodes', function() {
@@ -97,7 +127,7 @@ describe('DOM Instance', function() {
             });
 
             describe('innerHTML', function() {
-                const element = instance.createElement('element', {
+                const element = assembler.createElement('element', {
                     innerHTML : '<span class="box"></span>'
                 });
                 it('proper number of child nodes', function() {
@@ -118,7 +148,7 @@ describe('DOM Instance', function() {
         describe('adapted interface', function() {
 
             describe('attrset', function() {
-                const element = instance.createElement('element', {
+                const element = assembler.createElement('element', {
                     attrset : { attrname : 'attribute value' }
                 });
                 it('proper number of attributes', function() {
@@ -134,9 +164,9 @@ describe('DOM Instance', function() {
             });
 
             describe('children', function() {
-                const element = instance.createElement('element', {
+                const element = assembler.createElement('element', {
                     children : [
-                        instance.createElement('child'),
+                        assembler.createElement('child'),
                         'text node as string',
                         new Text('created text node'),
                         document.createElement('hr'),
