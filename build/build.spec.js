@@ -8924,15 +8924,15 @@
 	                });
 	            });
 
-	            describe.skip('innerHTML', function () {
+	            describe('innerHTML', function () {
 	                var element = assembler.createElement('element', {
 	                    innerHTML: '<span class="box"></span>'
 	                });
-	                it('proper number of child nodes', function () {
+	                it.skip('proper number of child nodes', function () {
 	                    assert(element.hasChildNodes());
 	                    assert.equal(element.childNodes.length, 1);
 	                });
-	                describe('proper child node', function () {
+	                it.skip('proper child node', function () {
 	                    var child = element.firstChild;
 	                    assert.equal(child.constructor, HTMLSpanElement);
 	                    assert.equal(child.outerHTML, '<span class="box"></span>');
