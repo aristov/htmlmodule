@@ -122,10 +122,10 @@
 	                id,
 	                href: '#' + id,
 	                children: tagNames.join(', ')
-	            }))), tag('Source JS:'), (0, _htmldom.div)(srcjscode = (0, _htmldom.pre)({
+	            }))), tag('Source JS'), (0, _htmldom.div)(srcjscode = (0, _htmldom.pre)({
 	                className: 'javascript',
 	                children: (0, _htmldom.code)(jsb(template.toString(), jsbConfig))
-	            })), tag('Result DOM:'), (0, _htmldom.div)({ className: 'dom', children: element }), tag('Result HTML:'), (0, _htmldom.div)({
+	            })), tag('Result DOM'), (0, _htmldom.div)({ className: 'dom', children: element }), tag('Result HTML'), (0, _htmldom.div)({
 	                className: '',
 	                children: resulthtmlcode = (0, _htmldom.pre)({
 	                    className: 'html',
@@ -9285,7 +9285,22 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ img }) => img({
+	const test = exports.test = [({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
+	    onclick: ({
+	        type,
+	        target: { tagName },
+	        constructor: { name }
+	    }) => alert([tagName, type, name, 'handler!'].join(' ')),
+	    textContent: 'Show me alert, please...'
+	}), ' ', button({
+	    onfocus: ({ target }) => target.textContent = 'Focused!',
+	    onblur: ({ target }) => target.textContent = 'Focus wait...',
+	    textContent: 'Focus wait...'
+	}), ' ', input({
+	    placeholder: 'text input char counter',
+	    style: { marginRight: '10px' },
+	    oninput: ({ target }) => target.nextElementSibling.value = target.value.length
+	}), output({ value: '0' })]), ({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ img }) => img({
 	    src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
 	    alt: 'Crazy PiPi!'
 	}), ({ audio }) => audio({

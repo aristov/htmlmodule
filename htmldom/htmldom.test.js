@@ -1,5 +1,30 @@
 export const test = [
 
+    ({ fieldset, legend, button, br, input, output }) => fieldset([
+        legend('Event handlers'),
+        button({
+            onclick : ({
+                type,
+                target : { tagName },
+                constructor : { name }
+            }) => alert([tagName, type, name, 'handler!'].join(' ')),
+            textContent : 'Show me alert, please...'
+        }),
+        ' ',
+        button({
+            onfocus : ({ target }) => target.textContent = 'Focused!',
+            onblur : ({ target }) => target.textContent = 'Focus wait...',
+            textContent : 'Focus wait...'
+        }),
+        ' ',
+        input({
+            placeholder : 'text input char counter',
+            style : { marginRight : '10px' },
+            oninput : ({ target }) => target.nextElementSibling.value = target.value.length
+        }),
+        output({ value : '0' })
+    ]),
+
     ({ fieldset, legend, input }) =>
         fieldset([
             legend('Authorization'),

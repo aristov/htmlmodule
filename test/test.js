@@ -65,14 +65,14 @@ const exampletable = table({
                         href : '#' + id,
                         children : tagNames.join(', ')
                     }))),
-                    tag('Source JS:'),
+                    tag('Source JS'),
                     div(srcjscode = pre({
                         className : 'javascript',
                         children : code(jsb(template.toString(), jsbConfig))
                     })),
-                    tag('Result DOM:'),
+                    tag('Result DOM'),
                     div({ className : 'dom', children : element }),
-                    tag('Result HTML:'),
+                    tag('Result HTML'),
                     div({
                         className : '',
                         children : resulthtmlcode = pre({
