@@ -40,7 +40,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.getAttribute('accesskey'), 'A');
                 });
                 it('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<a accesskey="A"></a>');
+                    assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY="A"></A>');
                 });
             });
 

@@ -50,9 +50,9 @@
 
 	__webpack_require__(299);
 
-	__webpack_require__(341);
+	__webpack_require__(342);
 
-	__webpack_require__(343);
+	__webpack_require__(344);
 
 /***/ },
 /* 1 */
@@ -8823,7 +8823,7 @@
 
 	var _dom = __webpack_require__(300);
 
-	var _chai = __webpack_require__(301);
+	var _chai = __webpack_require__(302);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
@@ -8984,21 +8984,22 @@
 
 /***/ },
 /* 300 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.DOMAssembler = exports.XML_NS_URI = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	exports.NodeInit = NodeInit;
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	__webpack_require__(301);
 
-	// import './dom.shim';
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var isArray = Array.isArray;
 	var _window = window;
@@ -9142,14 +9143,250 @@
 
 /***/ },
 /* 301 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+	 * classList.js: Cross-browser full element.classList implementation.
+	 * 2014-07-23
+	 *
+	 * By Eli Grey, http://eligrey.com
+	 * Public Domain.
+	 * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+	 */
+
+	/*global self, document, DOMException */
+
+	/*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
+
+	if ("document" in self) {
+
+	  // Full polyfill for browsers with no classList support
+	  if (!("classList" in document.createElement("_"))) {
+
+	    (function (view) {
+
+	      "use strict";
+
+	      if (!('Element' in view)) return;
+
+	      var classListProp = "classList",
+	          protoProp = "prototype",
+	          elemCtrProto = view.Element[protoProp],
+	          objCtr = Object,
+	          strTrim = String[protoProp].trim || function () {
+	        return this.replace(/^\s+|\s+$/g, "");
+	      },
+	          arrIndexOf = Array[protoProp].indexOf || function (item) {
+	        var i = 0,
+	            len = this.length;
+	        for (; i < len; i++) {
+	          if (i in this && this[i] === item) {
+	            return i;
+	          }
+	        }
+	        return -1;
+	      }
+	      // Vendors: please allow content code to instantiate DOMExceptions
+	      ,
+	          DOMEx = function DOMEx(type, message) {
+	        this.name = type;
+	        this.code = DOMException[type];
+	        this.message = message;
+	      },
+	          checkTokenAndGetIndex = function checkTokenAndGetIndex(classList, token) {
+	        if (token === "") {
+	          throw new DOMEx("SYNTAX_ERR", "An invalid or illegal string was specified");
+	        }
+	        if (/\s/.test(token)) {
+	          throw new DOMEx("INVALID_CHARACTER_ERR", "String contains an invalid character");
+	        }
+	        return arrIndexOf.call(classList, token);
+	      },
+	          ClassList = function ClassList(elem) {
+	        var trimmedClasses = strTrim.call(elem.getAttribute("class") || ""),
+	            classes = trimmedClasses ? trimmedClasses.split(/\s+/) : [],
+	            i = 0,
+	            len = classes.length;
+	        for (; i < len; i++) {
+	          this.push(classes[i]);
+	        }
+	        this._updateClassName = function () {
+	          elem.setAttribute("class", this.toString());
+	        };
+	      },
+	          classListProto = ClassList[protoProp] = [],
+	          classListGetter = function classListGetter() {
+	        return new ClassList(this);
+	      };
+	      // Most DOMException implementations don't allow calling DOMException's toString()
+	      // on non-DOMExceptions. Error's toString() is sufficient here.
+	      DOMEx[protoProp] = Error[protoProp];
+	      classListProto.item = function (i) {
+	        return this[i] || null;
+	      };
+	      classListProto.contains = function (token) {
+	        token += "";
+	        return checkTokenAndGetIndex(this, token) !== -1;
+	      };
+	      classListProto.add = function () {
+	        var tokens = arguments,
+	            i = 0,
+	            l = tokens.length,
+	            token,
+	            updated = false;
+	        do {
+	          token = tokens[i] + "";
+	          if (checkTokenAndGetIndex(this, token) === -1) {
+	            this.push(token);
+	            updated = true;
+	          }
+	        } while (++i < l);
+
+	        if (updated) {
+	          this._updateClassName();
+	        }
+	      };
+	      classListProto.remove = function () {
+	        var tokens = arguments,
+	            i = 0,
+	            l = tokens.length,
+	            token,
+	            updated = false,
+	            index;
+	        do {
+	          token = tokens[i] + "";
+	          index = checkTokenAndGetIndex(this, token);
+	          while (index !== -1) {
+	            this.splice(index, 1);
+	            updated = true;
+	            index = checkTokenAndGetIndex(this, token);
+	          }
+	        } while (++i < l);
+
+	        if (updated) {
+	          this._updateClassName();
+	        }
+	      };
+	      classListProto.toggle = function (token, force) {
+	        token += "";
+
+	        var result = this.contains(token),
+	            method = result ? force !== true && "remove" : force !== false && "add";
+
+	        if (method) {
+	          this[method](token);
+	        }
+
+	        if (force === true || force === false) {
+	          return force;
+	        } else {
+	          return !result;
+	        }
+	      };
+	      classListProto.toString = function () {
+	        return this.join(" ");
+	      };
+
+	      if (objCtr.defineProperty) {
+	        var classListPropDesc = {
+	          get: classListGetter,
+	          enumerable: true,
+	          configurable: true
+	        };
+	        try {
+	          objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
+	        } catch (ex) {
+	          // IE 8 doesn't support enumerable:true
+	          if (ex.number === -0x7FF5EC54) {
+	            classListPropDesc.enumerable = false;
+	            objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
+	          }
+	        }
+	      } else if (objCtr[protoProp].__defineGetter__) {
+	        elemCtrProto.__defineGetter__(classListProp, classListGetter);
+	      }
+	    })(self);
+	  } else {
+	    // There is full or partial native classList support, so just check if we need
+	    // to normalize the add/remove and toggle APIs.
+
+	    (function () {
+	      "use strict";
+
+	      var testElement = document.createElement("_");
+
+	      testElement.classList.add("c1", "c2");
+
+	      // Polyfill for IE 10/11 and Firefox <26, where classList.add and
+	      // classList.remove exist but support only one argument at a time.
+	      if (!testElement.classList.contains("c2")) {
+	        var createMethod = function createMethod(method) {
+	          var original = DOMTokenList.prototype[method];
+
+	          DOMTokenList.prototype[method] = function (token) {
+	            var i,
+	                len = arguments.length;
+
+	            for (i = 0; i < len; i++) {
+	              token = arguments[i];
+	              original.call(this, token);
+	            }
+	          };
+	        };
+	        createMethod('add');
+	        createMethod('remove');
+	      }
+
+	      testElement.classList.toggle("c3", false);
+
+	      // Polyfill for IE 10 and Firefox <24, where classList.toggle does not
+	      // support the second argument.
+	      if (testElement.classList.contains("c3")) {
+	        var _toggle = DOMTokenList.prototype.toggle;
+
+	        DOMTokenList.prototype.toggle = function (token, force) {
+	          if (1 in arguments && !this.contains(token) === !force) {
+	            return force;
+	          } else {
+	            return _toggle.call(this, token);
+	          }
+	        };
+	      }
+
+	      testElement = null;
+	    })();
+	  }
+	}
+
+	/*
+	const { Element, HTMLElement } = window;
+	const { defineProperty, getOwnPropertyDescriptor } = Object;
+
+	if(!('id' in Element.prototype)) {
+	    const descriptor = getOwnPropertyDescriptor(HTMLElement, 'id');
+	    defineProperty(Element, 'id', descriptor);
+	    console.log('id defined on Element');
+	}
+
+	if(!('className' in Element.prototype)) {
+	    const descriptor = getOwnPropertyDescriptor(HTMLElement, 'className');
+	    defineProperty(Element, 'className', descriptor);
+	    console.log('className defined on Element');
+	}
+	*/
+
+/***/ },
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(302);
+	module.exports = __webpack_require__(303);
 
 /***/ },
-/* 302 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9173,13 +9410,13 @@
 	 * Assertion Error
 	 */
 
-	_exports.AssertionError = __webpack_require__(303);
+	_exports.AssertionError = __webpack_require__(304);
 
 	/*!
 	 * Utils for plugins (not exported)
 	 */
 
-	var util = __webpack_require__(304);
+	var util = __webpack_require__(305);
 
 	/**
 	 * # .use(function)
@@ -9210,46 +9447,46 @@
 	 * Configuration
 	 */
 
-	var config = __webpack_require__(317);
+	var config = __webpack_require__(318);
 	_exports.config = config;
 
 	/*!
 	 * Primary `Assertion` prototype
 	 */
 
-	var assertion = __webpack_require__(336);
+	var assertion = __webpack_require__(337);
 	_exports.use(assertion);
 
 	/*!
 	 * Core Assertions
 	 */
 
-	var core = __webpack_require__(337);
+	var core = __webpack_require__(338);
 	_exports.use(core);
 
 	/*!
 	 * Expect interface
 	 */
 
-	var expect = __webpack_require__(338);
+	var expect = __webpack_require__(339);
 	_exports.use(expect);
 
 	/*!
 	 * Should interface
 	 */
 
-	var should = __webpack_require__(339);
+	var should = __webpack_require__(340);
 	_exports.use(should);
 
 	/*!
 	 * Assert interface
 	 */
 
-	var assert = __webpack_require__(340);
+	var assert = __webpack_require__(341);
 	_exports.use(assert);
 
 /***/ },
-/* 303 */
+/* 304 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9372,7 +9609,7 @@
 	};
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9393,123 +9630,123 @@
 	 * test utility
 	 */
 
-	_exports.test = __webpack_require__(305);
+	_exports.test = __webpack_require__(306);
 
 	/*!
 	 * type utility
 	 */
 
-	_exports.type = __webpack_require__(307);
+	_exports.type = __webpack_require__(308);
 
 	/*!
 	 * expectTypes utility
 	 */
-	_exports.expectTypes = __webpack_require__(309);
+	_exports.expectTypes = __webpack_require__(310);
 
 	/*!
 	 * message utility
 	 */
 
-	_exports.getMessage = __webpack_require__(310);
+	_exports.getMessage = __webpack_require__(311);
 
 	/*!
 	 * actual utility
 	 */
 
-	_exports.getActual = __webpack_require__(311);
+	_exports.getActual = __webpack_require__(312);
 
 	/*!
 	 * Inspect util
 	 */
 
-	_exports.inspect = __webpack_require__(312);
+	_exports.inspect = __webpack_require__(313);
 
 	/*!
 	 * Object Display util
 	 */
 
-	_exports.objDisplay = __webpack_require__(316);
+	_exports.objDisplay = __webpack_require__(317);
 
 	/*!
 	 * Flag utility
 	 */
 
-	_exports.flag = __webpack_require__(306);
+	_exports.flag = __webpack_require__(307);
 
 	/*!
 	 * Flag transferring utility
 	 */
 
-	_exports.transferFlags = __webpack_require__(318);
+	_exports.transferFlags = __webpack_require__(319);
 
 	/*!
 	 * Deep equal utility
 	 */
 
-	_exports.eql = __webpack_require__(319);
+	_exports.eql = __webpack_require__(320);
 
 	/*!
 	 * Deep path value
 	 */
 
-	_exports.getPathValue = __webpack_require__(327);
+	_exports.getPathValue = __webpack_require__(328);
 
 	/*!
 	 * Deep path info
 	 */
 
-	_exports.getPathInfo = __webpack_require__(328);
+	_exports.getPathInfo = __webpack_require__(329);
 
 	/*!
 	 * Check if a property exists
 	 */
 
-	_exports.hasProperty = __webpack_require__(329);
+	_exports.hasProperty = __webpack_require__(330);
 
 	/*!
 	 * Function name
 	 */
 
-	_exports.getName = __webpack_require__(313);
+	_exports.getName = __webpack_require__(314);
 
 	/*!
 	 * add Property
 	 */
 
-	_exports.addProperty = __webpack_require__(330);
+	_exports.addProperty = __webpack_require__(331);
 
 	/*!
 	 * add Method
 	 */
 
-	_exports.addMethod = __webpack_require__(331);
+	_exports.addMethod = __webpack_require__(332);
 
 	/*!
 	 * overwrite Property
 	 */
 
-	_exports.overwriteProperty = __webpack_require__(332);
+	_exports.overwriteProperty = __webpack_require__(333);
 
 	/*!
 	 * overwrite Method
 	 */
 
-	_exports.overwriteMethod = __webpack_require__(333);
+	_exports.overwriteMethod = __webpack_require__(334);
 
 	/*!
 	 * Add a chainable method
 	 */
 
-	_exports.addChainableMethod = __webpack_require__(334);
+	_exports.addChainableMethod = __webpack_require__(335);
 
 	/*!
 	 * Overwrite chainable method
 	 */
 
-	_exports.overwriteChainableMethod = __webpack_require__(335);
+	_exports.overwriteChainableMethod = __webpack_require__(336);
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9524,7 +9761,7 @@
 	 * Module dependancies
 	 */
 
-	var flag = __webpack_require__(306);
+	var flag = __webpack_require__(307);
 
 	/**
 	 * # test(object, expression)
@@ -9544,7 +9781,7 @@
 	};
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9584,15 +9821,15 @@
 	};
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(308);
+	module.exports = __webpack_require__(309);
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9733,7 +9970,7 @@
 	};
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9758,9 +9995,9 @@
 	 * @api public
 	 */
 
-	var AssertionError = __webpack_require__(303);
-	var flag = __webpack_require__(306);
-	var type = __webpack_require__(307);
+	var AssertionError = __webpack_require__(304);
+	var flag = __webpack_require__(307);
+	var type = __webpack_require__(308);
 
 	module.exports = function (obj, types) {
 	  var obj = flag(obj, 'object');
@@ -9784,7 +10021,7 @@
 	};
 
 /***/ },
-/* 310 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9799,10 +10036,10 @@
 	 * Module dependancies
 	 */
 
-	var flag = __webpack_require__(306),
-	    getActual = __webpack_require__(311),
-	    inspect = __webpack_require__(312),
-	    objDisplay = __webpack_require__(316);
+	var flag = __webpack_require__(307),
+	    getActual = __webpack_require__(312),
+	    inspect = __webpack_require__(313),
+	    objDisplay = __webpack_require__(317);
 
 	/**
 	 * ### .getMessage(object, message, negateMessage)
@@ -9845,7 +10082,7 @@
 	};
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9872,7 +10109,7 @@
 	};
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9882,9 +10119,9 @@
 	// This is (almost) directly from Node.js utils
 	// https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js
 
-	var getName = __webpack_require__(313);
-	var getProperties = __webpack_require__(314);
-	var getEnumerableProperties = __webpack_require__(315);
+	var getName = __webpack_require__(314);
+	var getProperties = __webpack_require__(315);
+	var getEnumerableProperties = __webpack_require__(316);
 
 	module.exports = inspect;
 
@@ -10196,7 +10433,7 @@
 	}
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -10225,7 +10462,7 @@
 	};
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -10268,7 +10505,7 @@
 	};
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -10301,7 +10538,7 @@
 	};
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10316,8 +10553,8 @@
 	 * Module dependancies
 	 */
 
-	var inspect = __webpack_require__(312);
-	var config = __webpack_require__(317);
+	var inspect = __webpack_require__(313);
+	var config = __webpack_require__(318);
 
 	/**
 	 * ### .objDisplay (object)
@@ -10354,7 +10591,7 @@
 	};
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -10416,7 +10653,7 @@
 	};
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10467,15 +10704,15 @@
 	};
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(320);
+	module.exports = __webpack_require__(321);
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10490,7 +10727,7 @@
 	 * Module dependencies
 	 */
 
-	var type = __webpack_require__(321);
+	var type = __webpack_require__(322);
 
 	/*!
 	 * Buffer.isBuffer browser shim
@@ -10498,7 +10735,7 @@
 
 	var Buffer;
 	try {
-	  Buffer = __webpack_require__(323).Buffer;
+	  Buffer = __webpack_require__(324).Buffer;
 	} catch (ex) {
 	  Buffer = {};
 	  Buffer.isBuffer = function () {
@@ -10741,15 +10978,15 @@
 	}
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(322);
+	module.exports = __webpack_require__(323);
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10900,7 +11137,7 @@
 	};
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -10913,9 +11150,9 @@
 
 	'use strict';
 
-	var base64 = __webpack_require__(324);
-	var ieee754 = __webpack_require__(325);
-	var isArray = __webpack_require__(326);
+	var base64 = __webpack_require__(325);
+	var ieee754 = __webpack_require__(326);
+	var isArray = __webpack_require__(327);
 
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -12640,10 +12877,10 @@
 	function isnan(val) {
 	  return val !== val; // eslint-disable-line no-self-compare
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(323).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12762,7 +12999,7 @@
 	}
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -12853,7 +13090,7 @@
 	};
 
 /***/ },
-/* 326 */
+/* 327 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12865,7 +13102,7 @@
 	};
 
 /***/ },
-/* 327 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12877,7 +13114,7 @@
 	 * MIT Licensed
 	 */
 
-	var getPathInfo = __webpack_require__(328);
+	var getPathInfo = __webpack_require__(329);
 
 	/**
 	 * ### .getPathValue(path, object)
@@ -12915,7 +13152,7 @@
 	};
 
 /***/ },
-/* 328 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12926,7 +13163,7 @@
 	 * MIT Licensed
 	 */
 
-	var hasProperty = __webpack_require__(329);
+	var hasProperty = __webpack_require__(330);
 
 	/**
 	 * ### .getPathInfo(path, object)
@@ -13027,7 +13264,7 @@
 	}
 
 /***/ },
-/* 329 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13040,7 +13277,7 @@
 	 * MIT Licensed
 	 */
 
-	var type = __webpack_require__(307);
+	var type = __webpack_require__(308);
 
 	/**
 	 * ### .hasProperty(object, name)
@@ -13098,7 +13335,7 @@
 	};
 
 /***/ },
-/* 330 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13109,8 +13346,8 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(317);
-	var flag = __webpack_require__(306);
+	var config = __webpack_require__(318);
+	var flag = __webpack_require__(307);
 
 	/**
 	 * ### addProperty (ctx, name, getter)
@@ -13151,7 +13388,7 @@
 	};
 
 /***/ },
-/* 331 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13162,7 +13399,7 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(317);
+	var config = __webpack_require__(318);
 
 	/**
 	 * ### .addMethod (ctx, name, method)
@@ -13189,7 +13426,7 @@
 	 * @name addMethod
 	 * @api public
 	 */
-	var flag = __webpack_require__(306);
+	var flag = __webpack_require__(307);
 
 	module.exports = function (ctx, name, method) {
 	  ctx[name] = function () {
@@ -13201,7 +13438,7 @@
 	};
 
 /***/ },
-/* 332 */
+/* 333 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13261,7 +13498,7 @@
 	};
 
 /***/ },
-/* 333 */
+/* 334 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13321,7 +13558,7 @@
 	};
 
 /***/ },
-/* 334 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13336,9 +13573,9 @@
 	 * Module dependencies
 	 */
 
-	var transferFlags = __webpack_require__(318);
-	var flag = __webpack_require__(306);
-	var config = __webpack_require__(317);
+	var transferFlags = __webpack_require__(319);
+	var flag = __webpack_require__(307);
+	var config = __webpack_require__(318);
 
 	/*!
 	 * Module variables
@@ -13438,7 +13675,7 @@
 	};
 
 /***/ },
-/* 335 */
+/* 336 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13499,7 +13736,7 @@
 	};
 
 /***/ },
-/* 336 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13511,7 +13748,7 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(317);
+	var config = __webpack_require__(318);
 
 	module.exports = function (_chai, util) {
 	  /*!
@@ -13636,7 +13873,7 @@
 	};
 
 /***/ },
-/* 337 */
+/* 338 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15244,7 +15481,7 @@
 	};
 
 /***/ },
-/* 338 */
+/* 339 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15285,7 +15522,7 @@
 	};
 
 /***/ },
-/* 339 */
+/* 340 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15493,7 +15730,7 @@
 	};
 
 /***/ },
-/* 340 */
+/* 341 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17115,14 +17352,14 @@
 	};
 
 /***/ },
-/* 341 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _html = __webpack_require__(342);
+	var _html = __webpack_require__(343);
 
-	var _chai = __webpack_require__(301);
+	var _chai = __webpack_require__(302);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
@@ -17167,7 +17404,7 @@
 	                    assert.equal(element.getAttribute('accesskey'), 'A');
 	                });
 	                it('proper `outerHTML` property value', function () {
-	                    assert.equal(element.outerHTML, '<a accesskey="A"></a>');
+	                    assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY="A"></A>');
 	                });
 	            });
 
@@ -17425,7 +17662,7 @@
 	});
 
 /***/ },
-/* 342 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17494,16 +17731,16 @@
 	}(_dom.DOMAssembler);
 
 /***/ },
-/* 343 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _chai = __webpack_require__(301);
+	var _chai = __webpack_require__(302);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
-	var _htmldom = __webpack_require__(344);
+	var _htmldom = __webpack_require__(345);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17590,7 +17827,7 @@
 	});
 
 /***/ },
-/* 344 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17600,7 +17837,7 @@
 	});
 	exports.wbr = exports.video = exports.variable = exports.ul = exports.u = exports.track = exports.tr = exports.title = exports.time = exports.thead = exports.th = exports.tfoot = exports.textarea = exports.template = exports.td = exports.tbody = exports.table = exports.sup = exports.summary = exports.sub = exports.style = exports.strong = exports.span = exports.source = exports.small = exports.slot = exports.select = exports.section = exports.script = exports.samp = exports.s = exports.ruby = exports.rt = exports.rp = exports.q = exports.progress = exports.pre = exports.picture = exports.param = exports.p = exports.output = exports.option = exports.optgroup = exports.ol = exports.object = exports.noscript = exports.nav = exports.meter = exports.meta = exports.menuitem = exports.menu = exports.mark = exports.map = exports.main = exports.link = exports.li = exports.legend = exports.label = exports.keygen = exports.kbd = exports.ins = exports.input = exports.img = exports.iframe = exports.i = exports.html = exports.hr = exports.hgroup = exports.header = exports.head = exports.h6 = exports.h5 = exports.h4 = exports.h3 = exports.h2 = exports.h1 = exports.form = exports.footer = exports.figure = exports.figcaption = exports.fieldset = exports.embed = exports.em = exports.dt = exports.dl = exports.div = exports.dialog = exports.dfn = exports.details = exports.del = exports.dd = exports.datalist = exports.data = exports.colgroup = exports.col = exports.code = exports.cite = exports.caption = exports.canvas = exports.button = exports.br = exports.body = exports.blockquote = exports.bdo = exports.bdi = exports.base = exports.b = exports.audio = exports.aside = exports.article = exports.area = exports.address = exports.abbr = exports.a = undefined;
 
-	var _html = __webpack_require__(342);
+	var _html = __webpack_require__(343);
 
 	var assembler = new _html.HTMLAssembler();
 

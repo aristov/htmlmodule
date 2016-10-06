@@ -1,4 +1,4 @@
-// import './dom.shim';
+import './dom.shim';
 
 const { isArray } = Array;
 const { document, Text, Element } = window;
