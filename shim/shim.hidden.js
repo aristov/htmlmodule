@@ -1,3 +1,10 @@
+/**
+ * HTMLElement.prototype.hidden polyfill
+ * Author
+ *  Viacheslav Aristov
+ *  vv.aristov@gmail.com
+ */
+
 if (!('hidden' in HTMLElement.prototype)) {
     Object.defineProperty(HTMLElement.prototype, 'hidden', {
         set(hidden) {
@@ -9,12 +16,13 @@ if (!('hidden' in HTMLElement.prototype)) {
             return this.hasAttribute('hidden');
         }
     });
-    // document.head.appendChild(style);
+    const root = document.head || document.body;
+    const displaynone = style('[hidden]{display:none}');
+    if(root) root.appendChild(displaynone);
 }
 
-function style() {
+function style(textContent) {
     const style = document.createElement('style');
-    style.rel = 'stylesheet';
-    style.textContent = '[hidden]{display:none}';
+    style.textContent = textContent;
     return style;
 }

@@ -1,4 +1,4 @@
-import './../shim/shim.tabindex.js';
+import './../shim/shim.mdn-classlist.js';
 
 const { isArray } = Array;
 const { document, Element } = window;

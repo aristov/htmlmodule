@@ -8927,7 +8927,7 @@
 
 	exports.NodeInit = NodeInit;
 
-	__webpack_require__(531);
+	__webpack_require__(535);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9077,6 +9077,13 @@
 
 	'use strict';
 
+	/**
+	 * HTMLElement.prototype.hidden polyfill
+	 * Author
+	 *  Viacheslav Aristov
+	 *  vv.aristov@gmail.com
+	 */
+
 	if (!('hidden' in HTMLElement.prototype)) {
 	    Object.defineProperty(HTMLElement.prototype, 'hidden', {
 	        set: function set(hidden) {
@@ -9086,13 +9093,14 @@
 	            return this.hasAttribute('hidden');
 	        }
 	    });
-	    // document.head.appendChild(style);
+	    var root = document.head || document.body;
+	    var displaynone = style('[hidden]{display:none}');
+	    if (root) root.appendChild(displaynone);
 	}
 
-	function style() {
+	function style(textContent) {
 	    var style = document.createElement('style');
-	    style.rel = 'stylesheet';
-	    style.textContent = '[hidden]{display:none}';
+	    style.textContent = textContent;
 	    return style;
 	}
 
@@ -23222,7 +23230,48 @@
 
 /***/ },
 /* 530 */,
-/* 531 */
+/* 531 */,
+/* 532 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(1);
+
+	__webpack_require__(533);
+
+	__webpack_require__(537);
+
+	__webpack_require__(536);
+
+	__webpack_require__(302);
+
+/***/ },
+/* 533 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Element.prototype.id polyfill
+	 * Author
+	 *  Viacheslav Aristov
+	 *  vv.aristov@gmail.com
+	 */
+	if (!Element.prototype.hasOwnProperty('id')) {
+	    Object.defineProperty(Element.prototype, 'id', {
+	        set: function set(id) {
+	            this.setAttribute('id', id);
+	        },
+	        get: function get() {
+	            return this.getAttribute('id');
+	        }
+	    });
+	}
+
+/***/ },
+/* 534 */,
+/* 535 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23441,44 +23490,97 @@
 	}
 
 /***/ },
-/* 532 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(1);
-
-	__webpack_require__(533);
-
-	__webpack_require__(534);
-
-	__webpack_require__(302);
-
-	__webpack_require__(531);
-
-/***/ },
-/* 533 */
+/* 536 */
 /***/ function(module, exports) {
 
 	'use strict';
 
-	if (!Element.prototype.hasOwnProperty('id')) {
-	    Object.defineProperty(Element.prototype, 'id', {
-	        set: function set(id) {
-	            this.setAttribute('id', id);
-	        },
-	        get: function get() {
-	            return this.getAttribute('id');
+	/**
+	 * https://github.com/remy/polyfills/blob/master/classList.js
+	 * copy-paste + fixes
+	 */
+	(function () {
+
+	    if (window.Element.prototype.hasOwnProperty('classList')) return;
+
+	    var prototype = Array.prototype,
+	        push = prototype.push,
+	        splice = prototype.splice,
+	        join = prototype.join;
+
+	    function DOMTokenList(el) {
+	        this.el = el;
+	        // The className needs to be trimmed and split on whitespace
+	        // to retrieve a list of classes.
+	        var classes = el.className.replace(/^\s+|\s+$/g, '').split(/\s+/);
+	        for (var i = 0; i < classes.length; i++) {
+	            push.call(this, classes[i]);
 	        }
+	    };
+
+	    DOMTokenList.prototype = {
+	        add: function add(token) {
+	            if (this.contains(token)) return;
+	            push.call(this, token);
+	            this.el.className = this.toString();
+	        },
+	        contains: function contains(token) {
+	            return this.el.className.indexOf(token) != -1;
+	        },
+	        item: function item(index) {
+	            return this[index] || null;
+	        },
+	        remove: function remove(token) {
+	            if (!this.contains(token)) return;
+	            for (var i = 0; i < this.length; i++) {
+	                if (this[i] == token) break;
+	            }
+	            splice.call(this, i, 1);
+	            this.el.className = this.toString();
+	        },
+	        toString: function toString() {
+	            return join.call(this, ' ');
+	        },
+	        toggle: function toggle(token) {
+	            if (!this.contains(token)) {
+	                this.add(token);
+	            } else {
+	                this.remove(token);
+	            }
+
+	            return this.contains(token);
+	        }
+	    };
+
+	    window.DOMTokenList = DOMTokenList;
+
+	    function defineElementGetter(obj, prop, getter) {
+	        if (Object.defineProperty) {
+	            Object.defineProperty(obj, prop, {
+	                get: getter
+	            });
+	        } else {
+	            obj.__defineGetter__(prop, getter);
+	        }
+	    }
+
+	    defineElementGetter(Element.prototype, 'classList', function () {
+	        return new DOMTokenList(this);
 	    });
-	}
+	})();
 
 /***/ },
-/* 534 */
+/* 537 */
 /***/ function(module, exports) {
 
 	'use strict';
 
+	/**
+	 * Element.prototype.className polyfill
+	 * Author
+	 *  Viacheslav Aristov
+	 *  vv.aristov@gmail.com
+	 */
 	if (!Element.prototype.hasOwnProperty('className')) {
 	    Object.defineProperty(Element.prototype, 'className', {
 	        enumerable: true,
