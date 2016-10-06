@@ -48,7 +48,7 @@ describe('DOM assembler', function() {
                 it('proper `id` attribute', function() {
                     assert.equal(element.id, ID);
                 });
-                it.skip('document finds it', function() {
+                it('document finds it', function() {
                     document.body.appendChild(element);
                     assert.equal(document.getElementById(ID), element);
                     document.body.removeChild(element);

@@ -9913,6 +9913,11 @@
 	 *
 	 * @polyfill
 	 */
+	var _window = window;
+	var Element = _window.Element;
+	var document = _window.document;
+
+
 	if (!Element.prototype.hasOwnProperty('id')) {
 	    Object.defineProperty(Element.prototype, 'id', {
 	        set: function set(id) {
@@ -9922,6 +9927,9 @@
 	            return this.getAttribute('id');
 	        }
 	    });
+	    document.getElementById = function (id) {
+	        return document.querySelector('[id=' + id + ']');
+	    };
 	}
 
 /***/ },
@@ -10166,7 +10174,7 @@
 	                it('proper `id` attribute', function () {
 	                    assert.equal(element.id, ID);
 	                });
-	                it.skip('document finds it', function () {
+	                it('document finds it', function () {
 	                    document.body.appendChild(element);
 	                    assert.equal(document.getElementById(ID), element);
 	                    document.body.removeChild(element);

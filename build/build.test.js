@@ -10009,6 +10009,11 @@
 	 *
 	 * @polyfill
 	 */
+	var _window = window;
+	var Element = _window.Element;
+	var document = _window.document;
+
+
 	if (!Element.prototype.hasOwnProperty('id')) {
 	    Object.defineProperty(Element.prototype, 'id', {
 	        set: function set(id) {
@@ -10018,6 +10023,9 @@
 	            return this.getAttribute('id');
 	        }
 	    });
+	    document.getElementById = function (id) {
+	        return document.querySelector('[id=' + id + ']');
+	    };
 	}
 
 /***/ },

@@ -7,6 +7,8 @@
  *
  * @polyfill
  */
+const { Element, document } = window;
+
 if(!Element.prototype.hasOwnProperty('id')) {
     Object.defineProperty(Element.prototype, 'id', {
         set(id) {
@@ -16,4 +18,5 @@ if(!Element.prototype.hasOwnProperty('id')) {
             return this.getAttribute('id');
         }
     });
+    document.getElementById = id => document.querySelector(`[id=${id}]`);
 }
