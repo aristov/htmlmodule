@@ -238,6 +238,18 @@ describe('HTML assembler', function() {
             });
         });
 
+        describe('built-in global event handlers', function() {
+            const onclick = sinon.spy();
+            const element = assembler.createElement('button', { onclick });
+            it('onclick', () => {
+                assert(!onclick.called);
+                element.click();
+                assert(onclick.calledOnce);
+                element.click();
+                assert(onclick.calledTwice);
+            });
+        });
+
         describe('adapted interface', function() {
 
             describe('dataset', function() {
