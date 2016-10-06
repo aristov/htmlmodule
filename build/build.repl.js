@@ -54,63 +54,55 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	var DEFAULT_SRC = 'article([\n    a({ \n        href : \'//ya.ru\', \n        textContent : \'Yandex\', \n        target : \'_blank\' \n    }),\n    ul([\n        li(\'first item\'), \n        li(\'second item\'),\n        li(\'third item\')\n    ]),\n    p(document.title),\n    code(window.location.href),\n    hr(),\n    address(\'vasya@pupkin.ru\')\n])';
+	var DEFAULT_SRC = __webpack_require__(312);
 
-	var codeinput = (0, _htmldom.textarea)({
-	    style: {
-	        width: '500px',
-	        height: '700px',
-	        font: '20px monospace'
-	    },
-	    placeholder: 'Type HTMLDOM code here...',
-	    textContent: DEFAULT_SRC,
-	    oninput: oninput
-	});
-
-	var variables = Object.keys(HTMLDOM).map(function (name) {
+	var HTMLDOM_VARIABLE_SNIPPET = Object.keys(HTMLDOM).map(function (name) {
 	    return name + '=hd.' + name;
 	}).join(',');
 
 	var getSrc = function getSrc(value) {
-	    return 'var ' + variables + ';out.append(' + value + ');';
+	    return 'var ' + HTMLDOM_VARIABLE_SNIPPET + ';out.append(' + value + ');';
 	};
 
 	function evaluate(value) {
 	    value = String(value).trim();
+	    app.classList.remove('invalid');
 	    if (value) {
 	        try {
 	            var fn = new Function('hd', 'out', getSrc(value));
-	            console.log(fn);
 	            domoutput.textContent = '';
 	            fn(HTMLDOM, domoutput);
 	        } catch (error) {
 	            domoutput.textContent = error;
+	            app.classList.add('invalid');
+	            domoutput.invalid = true;
 	        }
 	    } else domoutput.textContent = '';
 	}
 
-	function oninput(_ref) {
-	    var value = _ref.target.value;
-
-	    evaluate(value);
-	}
-
-	var domoutput = (0, _htmldom.div)({
-	    style: {
-	        padding: '50px',
-	        border: '5px solid black'
+	var codeinput = (0, _htmldom.textarea)({
+	    className: 'codeinput',
+	    placeholder: 'Type HTMLDOM code here...',
+	    textContent: DEFAULT_SRC,
+	    oninput: function oninput(_ref) {
+	        var value = _ref.target.value;
+	        return evaluate(value);
 	    }
 	});
 
+	var domoutput = (0, _htmldom.div)({
+	    className: 'domoutput'
+	});
+
 	var panel = function panel(children) {
-	    return (0, _htmldom.div)({ className: 'panel', children: children });
+	    return (0, _htmldom.div)({
+	        className: 'panel',
+	        children: children
+	    });
 	};
 
 	var app = (0, _htmldom.main)({
-	    style: {
-	        display: 'flex',
-	        justifyContent: 'space-around'
-	    },
+	    className: 'app',
 	    children: [panel(codeinput), panel(domoutput)]
 	});
 
@@ -10780,6 +10772,14 @@
 	    writable: true,
 	    value: null
 	});
+
+/***/ },
+/* 310 */,
+/* 311 */,
+/* 312 */
+/***/ function(module, exports) {
+
+	module.exports = "form({\n    style : {\n        display : 'flex',\n        flexDirection : 'column',\n        justifyContent : 'space-between',\n        height : '300px'\n    },\n    children : [\n        label([\n            'Text input ',\n            input({ placeholder : 'Fill me' })\n        ]),\n        label([\n            input({ type : 'checkbox' }),\n            ' Simple checkbox'\n        ]),\n        label([\n            input({ type : 'checkbox', checked : true }),\n            ' Checked checkbox'\n        ]),\n        label([\n            input({ type : 'checkbox', attrset : { checked : '' } }),\n            ' Initially checked checkbox'\n        ]),\n        label([\n            input({ type : 'checkbox', indeterminate : true }),\n            ' Indeterminate checkbox'\n        ]),\n        span([\n            label([\n                input({\n                    type : 'radio',\n                    name : 'chooseproglangradio',\n                    value : 'html'\n                }),\n                ' HTML '\n            ]),\n            label([\n                input({\n                    type : 'radio',\n                    name : 'chooseproglangradio',\n                    value : 'xml',\n                    checked : true\n                }),\n                ' XML'\n            ])\n        ]),\n        button({ \n            type : 'reset',\n            style : { margin : '0 auto 0 0' }, \n            textContent : 'Reset' \n        })\n    ]\n})\n"
 
 /***/ }
 /******/ ]);

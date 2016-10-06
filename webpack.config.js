@@ -19,6 +19,7 @@ module.exports = {
             env.ES6_MODE?
                 { test : /\.js$/, loader : 'babel?plugins[]=transform-es2015-modules-commonjs' } :
                 { test : /\.js$/, loader : 'babel?presets[]=es2015' },
+            { test : /\.txt$/, loader : 'raw-loader' },
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' }
         ],
         postLoaders: [
