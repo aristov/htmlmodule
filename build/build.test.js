@@ -10375,6 +10375,16 @@
 	  return assembler.createElement('article', init);
 	};
 
+	/**
+	 * [The aside element](https://html.spec.whatwg.org/#the-aside-element)
+	 * represents a section of a page that consists of content
+	 * that is tangentially related to the content around the aside element,
+	 * and which could be considered separate from that content.
+	 * Such sections are often represented as sidebars in printed typography.
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @interface HTMLElement aside
+	 */
 	var aside = exports.aside = function aside(init) {
 	  return assembler.createElement('aside', init);
 	};
