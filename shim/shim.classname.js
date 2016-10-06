@@ -7,6 +7,8 @@
  *
  * @polyfill
  */
+const { Element, document } = window;
+
 if(!Element.prototype.hasOwnProperty('className')) {
     Object.defineProperty(Element.prototype, 'className', {
         enumerable : true,
@@ -17,4 +19,6 @@ if(!Element.prototype.hasOwnProperty('className')) {
             return this.getAttribute('class');
         }
     });
+    document.getElementsByClassName = className =>
+        document.querySelectorAll(`[class~=${className}]`);
 }

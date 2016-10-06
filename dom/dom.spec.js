@@ -38,43 +38,44 @@ describe('DOM assembler', function() {
         describe('build-in attributes', function() {
 
             describe('id', function() {
-                const ID = 'element_0';
-                const element = assembler.createElement('element', { id : ID });
+                const id = 'element_0';
+                const element = assembler.createElement('element', { id });
 
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `id` attribute', function() {
-                    assert.equal(element.id, ID);
+                    assert.equal(element.id, id);
                 });
                 it('document finds it', function() {
                     document.body.appendChild(element);
-                    assert.equal(document.getElementById(ID), element);
+                    assert.equal(document.getElementById(id), element);
                     document.body.removeChild(element);
                 });
             });
 
             describe('className', function() {
-                const element = assembler.createElement('element', {
-                    className : 'element className element_class_name'
-                });
+                const className = 'foo bar wiz';
+                const element = assembler.createElement('element', { className });
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `className` attribute', function() {
-                    assert.equal(element.className, 'element className element_class_name');
-                    assert.equal(element.getAttribute('class'), 'element className element_class_name');
+                    assert.equal(element.className, className);
+                    assert.equal(element.getAttribute('class'), className);
                 });
                 it('classList interface works properly', function() {
-                    assert(element.classList.contains('element'));
-                    assert(element.classList.contains('className'));
-                    assert(element.classList.contains('element_class_name'));
+                    assert(element.classList.contains('foo'));
+                    assert(element.classList.contains('bar'));
+                    assert(element.classList.contains('wiz'));
                 });
-                it.skip('document finds it', function() {
+                it('document finds it', function() {
                     document.body.appendChild(element);
-                    assert.equal(document.getElementsByClassName('classList')[0], element);
+                    assert.equal(document.getElementsByClassName('foo')[0], element);
+                    assert.equal(document.getElementsByClassName('bar')[0], element);
+                    assert.equal(document.getElementsByClassName('wiz')[0], element);
                     document.body.removeChild(element);
                 });
             });

@@ -10043,6 +10043,11 @@
 	 *
 	 * @polyfill
 	 */
+	var _window = window;
+	var Element = _window.Element;
+	var document = _window.document;
+
+
 	if (!Element.prototype.hasOwnProperty('className')) {
 	    Object.defineProperty(Element.prototype, 'className', {
 	        enumerable: true,
@@ -10053,6 +10058,9 @@
 	            return this.getAttribute('class');
 	        }
 	    });
+	    document.getElementsByClassName = function (className) {
+	        return document.querySelectorAll('[class~=' + className + ']');
+	    };
 	}
 
 /***/ },
