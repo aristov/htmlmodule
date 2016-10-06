@@ -78,7 +78,8 @@ describe('HTML assembler', function() {
                     assert.equal(element.getAttribute('contenteditable'), 'true');
                 });
                 it('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<unknown contenteditable="true"></unknown>');
+                    assert.equal(element.outerHTML.toLowerCase(),
+                        '<unknown contenteditable="true"></unknown>');
                 });
             });
 
@@ -213,7 +214,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.getAttribute('tabindex'), '0');
                 });
                 it('proper `outerHTML` property value', function() {
-                    assert.equal(element.outerHTML, '<form tabindex="0"></form>');
+                    assert.equal(element.outerHTML.toLowerCase(), '<form tabindex="0"></form>');
                 });
             });
 

@@ -1,7 +1,8 @@
 import './dom.shim';
+import '../shim/shim.hidden';
 
 const { isArray } = Array;
-const { document, Text, Element } = window;
+const { document, Element } = window;
 
 export const XML_NS_URI = 'https://www.w3.org/1999/xml';
 
