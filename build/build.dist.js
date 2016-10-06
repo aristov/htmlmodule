@@ -40,9 +40,8 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75,7 +74,7 @@
 	  });
 	});
 
-	var _htmldom = __webpack_require__(351);
+	var _htmldom = __webpack_require__(3);
 
 	Object.keys(_htmldom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -88,8 +87,7 @@
 	});
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -257,8 +255,7 @@
 	});
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -340,8 +337,7 @@
 	}(_dom.DOMAssembler);
 
 /***/ },
-
-/***/ 351:
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -911,5 +907,4 @@
 	};
 
 /***/ }
-
-/******/ });
+/******/ ]);

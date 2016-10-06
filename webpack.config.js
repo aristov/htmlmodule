@@ -5,9 +5,10 @@ const env = process.env;
 
 module.exports = {
     entry : {
-        spec : './spec/spec',
+        /*spec : './spec/spec',
         test : './test/test',
-        dist : './dist/dist'
+        dist : './dist/dist',*/
+        repl : './repl/repl'
     },
     output : {
         path: __dirname + '/build',
