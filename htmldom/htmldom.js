@@ -16,11 +16,21 @@ const assembler = new HTMLAssembler;
  * @param {String} init.type — Hint for the type of the referenced resource
  * @param {String} init.referrerpolicy — Determines the referrer policy for fetches initiated by the element
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object;
+ * @param {NodeInit} init `NodeInit` dictionary object
  * @interface HTMLAnchorElement
  */
 export const a = init => assembler.createElement('a', init);
 
+/**
+ * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
+ * The abbr element represents an abbreviation or acronym, optionally with its expansion.
+ * The title attribute may be used to provide an expansion of the abbreviation.
+ * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
+ * @param init.title — special semantics: full term or expansion of abbreviation
+ * @param init.global{} — global `NodeInit` attributes
+ * @param {NodeInit} init `NodeInit` dictionary object
+ * @interface HTMLElement abbr
+ */
 export const abbr = init => assembler.createElement('abbr', init);
 
 export const address = init => assembler.createElement('address', init);

@@ -18764,13 +18764,23 @@
 	 * @param {String} init.type — Hint for the type of the referenced resource
 	 * @param {String} init.referrerpolicy — Determines the referrer policy for fetches initiated by the element
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object;
+	 * @param {NodeInit} init `NodeInit` dictionary object
 	 * @interface HTMLAnchorElement
 	 */
 	var a = exports.a = function a(init) {
 	  return assembler.createElement('a', init);
 	};
 
+	/**
+	 * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
+	 * The abbr element represents an abbreviation or acronym, optionally with its expansion.
+	 * The title attribute may be used to provide an expansion of the abbreviation.
+	 * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
+	 * @param init.title — special semantics: full term or expansion of abbreviation
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @interface HTMLElement abbr
+	 */
 	var abbr = exports.abbr = function abbr(init) {
 	  return assembler.createElement('abbr', init);
 	};
