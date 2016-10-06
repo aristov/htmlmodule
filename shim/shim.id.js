@@ -4,7 +4,7 @@ if(!('id' in Element.prototype)) {
             this.setAttribute('id', id);
         },
         get() {
-            return this.hasAttribute('id');
+            return this.getAttribute('id');
         }
     });
 }

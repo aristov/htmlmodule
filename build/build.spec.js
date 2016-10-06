@@ -18522,7 +18522,7 @@
 	            this.setAttribute('id', id);
 	        },
 	        get: function get() {
-	            return this.hasAttribute('id');
+	            return this.getAttribute('id');
 	        }
 	    });
 	}
