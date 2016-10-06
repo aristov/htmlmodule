@@ -52,7 +52,7 @@ module.exports = function (config) {
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
-        autoWatch: process.env.AUTO_WATCH,
+        autoWatch: true,
         sauceLabs: {
             username: 'aristov7',
             accessKey: '0e922c40-5658-44fc-ab2b-7be69c51301e',
@@ -67,7 +67,7 @@ module.exports = function (config) {
         captureTimeout: 120000,
         customLaunchers,
         browsers: Object.keys(customLaunchers),
-        singleRun: true,
+        singleRun: false,
         concurrency: Infinity
     })
 }

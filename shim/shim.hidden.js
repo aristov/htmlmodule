@@ -7,6 +7,8 @@
  *
  * @polyfill
  */
+const { HTMLElement, document } = window;
+
 if(!HTMLElement.prototype.hasOwnProperty('hidden')) {
     Object.defineProperty(HTMLElement.prototype, 'hidden', {
         set(hidden) {

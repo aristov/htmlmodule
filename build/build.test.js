@@ -408,6 +408,8 @@
 
 	__webpack_require__(307);
 
+	__webpack_require__(535);
+
 /***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
@@ -10158,6 +10160,11 @@
 	 *
 	 * @polyfill
 	 */
+	var _window = window;
+	var HTMLElement = _window.HTMLElement;
+	var document = _window.document;
+
+
 	if (!HTMLElement.prototype.hasOwnProperty('hidden')) {
 	    Object.defineProperty(HTMLElement.prototype, 'hidden', {
 	        set: function set(hidden) {
@@ -24272,6 +24279,14 @@
 
 	// exports
 
+
+/***/ },
+/* 535 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	if (!document.head) document.head = document.getElementsByTagName('head')[0];
 
 /***/ }
 /******/ ]);

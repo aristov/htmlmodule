@@ -249,15 +249,17 @@ describe('HTML assembler', function() {
                 element.click();
                 assert(onclick.calledTwice);
             });
-            it.skip('click listener', () => {
+            it('click listener', () => {
                 const onclick = sinon.spy();
                 const element = assembler.createElement('button');
+                document.body.appendChild(element);
                 element.addEventListener('click', onclick);
                 assert(onclick.notCalled);
                 element.click();
                 const event = new CustomEvent('click');
                 element.dispatchEvent(event);
                 assert.equal(onclick.callCount, 2);
+                document.body.removeChild(element);
                 // element.click();
                 // assert(onclick.calledTwice);
             });
