@@ -32,6 +32,10 @@ table.exampletable > * > tr > td
 {
     background: rgba(0, 0, 0, 0.1);
 }
+table.exampletable > * > tr > td > h2 > code > a:not(:hover)
+{
+    text-decoration : none;
+}
 table.exampletable > * > tr > td div
 {
     max-width: 1200px;

@@ -40,6 +40,7 @@ describe('DOM assembler', function() {
             describe('id', function() {
                 const element = assembler.createElement('element', { id : 'element_0' });
 
+                // fixme victims of IE11
                 it.skip('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
@@ -53,6 +54,7 @@ describe('DOM assembler', function() {
                 const element = assembler.createElement('element', {
                     className : 'element className element_class_name'
                 });
+                // todo victims of IE11
                 it.skip('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);

@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const env = process.env;
 
 module.exports = {
     entry : {
@@ -13,8 +14,9 @@ module.exports = {
     },
     module : {
         loaders : [
-            // { test : /\.js$/, loader : 'babel?plugins[]=transform-es2015-modules-commonjs' },
-            { test : /\.js$/, loader : 'babel?presets[]=es2015' },
+            env.ES6_MODE?
+                { test : /\.js$/, loader : 'babel?plugins[]=transform-es2015-modules-commonjs' } :
+                { test : /\.js$/, loader : 'babel?presets[]=es2015' },
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' }
         ],
         postLoaders: [
@@ -29,9 +31,9 @@ module.exports = {
         modulesDirectories: ['node_modules']
     },
     documentation: {
-        entry: './dom/dom.instance.js',
+        entry: './dom/dom.js',
         github: true,
         format: 'html'
     },
-    watch : Boolean(process.env.WATCH_MODE)
+    watch : Boolean(env.WATCH_MODE)
 };

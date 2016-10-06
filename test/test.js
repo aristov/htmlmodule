@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 
 import { test } from '../htmldom/htmldom.test.js';
-import { h3, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom/htmldom.js';
+import { a, h2, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom/htmldom.js';
 import * as HTMLDOM from '../htmldom/htmldom.js';
 
 import beautify from 'js-beautify';
@@ -56,10 +56,15 @@ const exampletable = table({
 
             let srcjscode, resulthtmlcode;
 
+            const id = tagNames.join('+');
             const row = tr({
                 className : tagNames.join(' '),
                 children : td([
-                    h3(code(tagNames.join(', '))),
+                    h2(code(a({
+                        id,
+                        href : '#' + id,
+                        children : tagNames.join(', ')
+                    }))),
                     tag('Source JS:'),
                     div(srcjscode = pre({
                         className : 'javascript',

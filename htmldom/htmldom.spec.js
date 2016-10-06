@@ -71,6 +71,7 @@ describe('HTMLDOM library', () => {
                     '</select>' +
                 '</label>');
         });
+        // victim of IE11 todo
         it.skip('proper selected option reference', () => {
             assert.equal(widget.selectedOptions.length, 1);
             assert.equal(widget.selectedOptions[0], selected);

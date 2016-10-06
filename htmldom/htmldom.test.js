@@ -7,6 +7,24 @@ export const test = [
             input({ type : 'password', placeholder : 'password' })
         ]),
 
+    ({ img }) =>
+        img({
+            src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
+            alt : 'Crazy PiPi!'
+        }),
+
+    ({ audio }) =>
+        audio({
+            controls : true,
+            src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
+        }),
+
+    ({ video }) =>
+        video({
+            controls : true,
+            src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
+        }),
+
     ({ header, nav, a, ul, li }) =>
         header(nav(ul([
             li(a({
@@ -52,12 +70,6 @@ export const test = [
     }),
 
     ({ aside }) => aside('Your advert may be here!'),
-
-    ({ audio }) =>
-        audio({
-            controls : true,
-            src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
-        }),
 
     ({ b }) => b('var, function, export, const'),
 
@@ -227,12 +239,6 @@ line break
                 [code('title'), code('aria-label')]
             ].map(([xml, html]) => tr([ td(xml), td(html) ])))
         ]),
-
-    ({ img }) =>
-        img({
-            src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
-            alt : 'Crazy PiPi!'
-        }),
 
     ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>
         hgroup([
