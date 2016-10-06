@@ -9319,12 +9319,14 @@
 	    style.rel = 'stylesheet';
 	    style.textContent = '[hidden]{display:none}';
 	    document.head.appendChild(style);
+	    console.log(HTMLElement.prototype);
 	    Object.defineProperty(HTMLElement.prototype, 'hidden', {
 	        set: function set(hidden) {
-	            this.setAttribute('hidden', hidden);
+	            console.log(this, hidden);
+	            hidden ? this.setAttribute('hidden', '') : this.removeAttribute('hidden');
 	        },
 	        get: function get() {
-	            return this.getAttribute('hidden');
+	            return this.hasAttribute('hidden');
 	        }
 	    });
 	}

@@ -3,12 +3,16 @@ if (!'hidden' in HTMLElement.prototype) {
     style.rel = 'stylesheet';
     style.textContent = '[hidden]{display:none}';
     document.head.appendChild(style);
+    console.log(HTMLElement.prototype);
     Object.defineProperty(HTMLElement.prototype, 'hidden', {
-        set: function (hidden) {
-            this.setAttribute('hidden', hidden);
+        set(hidden) {
+            console.log(this, hidden);
+            hidden?
+                this.setAttribute('hidden', '') :
+                this.removeAttribute('hidden');
         },
-        get: function () {
-            return this.getAttribute('hidden');
+        get() {
+            return this.hasAttribute('hidden');
         }
     });
 }
