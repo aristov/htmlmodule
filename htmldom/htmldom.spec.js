@@ -115,7 +115,7 @@ describe('HTMLDOM library', () => {
             assert(checked.checked);
             assert(indeterminate.indeterminate);
         });
-        it('check initial state proper assignment', () => {
+        it('proper initial state assignment', () => {
             const sample = input({ type : 'checkbox', attrset : { checked : '' } });
             const container = div({ innerHTML : '<input type=checkbox checked>' });
             assert(sample.isEqualNode(container.firstChild));

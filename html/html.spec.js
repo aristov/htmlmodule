@@ -239,17 +239,17 @@ describe('HTML assembler', function() {
             });
         });
 
-        /*describe('built-in global event handlers', function() {
-            const onclick = sinon.spy();
-            const element = assembler.createElement('button', { onclick });
+        describe('built-in global event handlers', function() {
             it('onclick', () => {
-                assert(!onclick.called);
+                const onclick = sinon.spy();
+                const element = assembler.createElement('button', { onclick });
+                assert(onclick.notCalled);
                 element.click();
                 assert(onclick.calledOnce);
                 element.click();
                 assert(onclick.calledTwice);
             });
-        });*/
+        });
 
         describe('adapted interface', function() {
 

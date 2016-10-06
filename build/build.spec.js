@@ -52,7 +52,7 @@
 
 	__webpack_require__(346);
 
-	__webpack_require__(348);
+	__webpack_require__(387);
 
 /***/ },
 /* 1 */
@@ -69,6 +69,8 @@
 	__webpack_require__(302);
 
 	__webpack_require__(303);
+
+	__webpack_require__(572);
 
 /***/ },
 /* 2 */
@@ -8838,10 +8840,13 @@
 	'use strict';
 
 	/**
-	 * Element.prototype.id polyfill
+	 * Element.prototype.id implementation
+	 *
 	 * Author
 	 *  Viacheslav Aristov
 	 *  vv.aristov@gmail.com
+	 *
+	 * @polyfill
 	 */
 	if (!Element.prototype.hasOwnProperty('id')) {
 	    Object.defineProperty(Element.prototype, 'id', {
@@ -8861,10 +8866,13 @@
 	'use strict';
 
 	/**
-	 * Element.prototype.className polyfill
+	 * Element.prototype.className implementation
+	 *
 	 * Author
 	 *  Viacheslav Aristov
 	 *  vv.aristov@gmail.com
+	 *
+	 * @polyfill
 	 */
 	if (!Element.prototype.hasOwnProperty('className')) {
 	    Object.defineProperty(Element.prototype, 'className', {
@@ -8965,10 +8973,13 @@
 	'use strict';
 
 	/**
-	 * HTMLElement.prototype.hidden polyfill
+	 * HTMLElement.prototype.hidden implementation
+	 *
 	 * Author
 	 *  Viacheslav Aristov
 	 *  vv.aristov@gmail.com
+	 *
+	 * @polyfill
 	 */
 	if (!HTMLElement.prototype.hasOwnProperty('hidden')) {
 	    Object.defineProperty(HTMLElement.prototype, 'hidden', {
@@ -17547,17 +17558,17 @@
 	            });
 	        });
 
-	        /*describe('built-in global event handlers', function() {
-	            const onclick = sinon.spy();
-	            const element = assembler.createElement('button', { onclick });
-	            it('onclick', () => {
-	                assert(!onclick.called);
+	        describe('built-in global event handlers', function () {
+	            it('onclick', function () {
+	                var onclick = sinon.spy();
+	                var element = assembler.createElement('button', { onclick: onclick });
+	                assert(onclick.notCalled);
 	                element.click();
 	                assert(onclick.calledOnce);
 	                element.click();
 	                assert(onclick.calledTwice);
 	            });
-	        });*/
+	        });
 
 	        describe('adapted interface', function () {
 
@@ -17676,7 +17687,46 @@
 	}(_dom.DOMAssembler);
 
 /***/ },
-/* 348 */
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17685,7 +17735,7 @@
 
 	var _chai2 = _interopRequireDefault(_chai);
 
-	var _htmldom = __webpack_require__(349);
+	var _htmldom = __webpack_require__(388);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17740,7 +17790,7 @@
 	            assert(checked.checked);
 	            assert(indeterminate.indeterminate);
 	        });
-	        it('check initial state proper assignment', function () {
+	        it('proper initial state assignment', function () {
 	            var sample = (0, _htmldom.input)({ type: 'checkbox', attrset: { checked: '' } });
 	            var container = (0, _htmldom.div)({ innerHTML: '<input type=checkbox checked>' });
 	            assert(sample.isEqualNode(container.firstChild));
@@ -17772,7 +17822,7 @@
 	});
 
 /***/ },
-/* 349 */
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18248,6 +18298,228 @@
 	var wbr = exports.wbr = function wbr(init) {
 	  return assembler.createElement('wbr', init);
 	};
+
+/***/ },
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Element.prototype.onclick invoke on Element.prototype.click call
+	 * Event system normalization for IE 11
+	 *
+	 * Author
+	 *  Viacheslav Aristov
+	 *  vv.aristov@gmail.com
+	 *
+	 * @polyfill
+	 */
+	var span = document.createElement('span');
+	if ('click' in span && 'onclick' in span) {
+	    var called = null;
+	    span.onclick = function (event) {
+	        return called = event;
+	    };
+	    span.click();
+	    if (!called) {
+	        (function () {
+	            var proto = HTMLElement.prototype;
+	            var _click = proto.click;
+	            proto.click = function () {
+	                _click.call(this);
+	                var event = document.createEvent('Event');
+	                event.initEvent('click', true, true);
+	                if ('onclick' in this && typeof this.onclick === 'function') {
+	                    this.onclick(event);
+	                }
+	            };
+	        })();
+	    }
+	}
 
 /***/ }
 /******/ ]);

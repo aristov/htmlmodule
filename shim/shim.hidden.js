@@ -1,8 +1,11 @@
 /**
- * HTMLElement.prototype.hidden polyfill
+ * HTMLElement.prototype.hidden implementation
+ *
  * Author
  *  Viacheslav Aristov
  *  vv.aristov@gmail.com
+ *
+ * @polyfill
  */
 if(!HTMLElement.prototype.hasOwnProperty('hidden')) {
     Object.defineProperty(HTMLElement.prototype, 'hidden', {

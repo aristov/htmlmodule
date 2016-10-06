@@ -24,10 +24,10 @@
     "karma-mocha": "^1.2.0",
     "karma-mocha-reporter": "^2.2.0",
     "karma-sauce-launcher": "^1.0.0",
+    "karma-sinon": "^1.0.5",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.1.0",
     "postcss-loader": "^0.13.0",
-    "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "victorica": "0.0.2",
     "webpack": "^1.13.1"

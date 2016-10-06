@@ -33,7 +33,7 @@ module.exports = function (config) {
     }
     config.set({
         basePath: '',
-        frameworks: ['mocha'],
+        frameworks: ['mocha', 'sinon'],
         files: ['spec/spec.js'],
         exclude: [],
         preprocessors: { 'spec/spec.js': ['webpack'] },

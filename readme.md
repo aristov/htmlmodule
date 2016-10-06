@@ -1,3 +1,5 @@
-# Instance.js
+# HTML DOM assembler
 
-Instance.js — simple and powerfull DOM Element constructor.
+assembler.js — simple DOM Element assembler.
+
+## !!! WIP !!!
