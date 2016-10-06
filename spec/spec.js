@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+import '../shim/shim';
 
 import '../dom/dom.spec';
 import '../html/html.spec';

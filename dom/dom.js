@@ -1,5 +1,4 @@
-import './dom.shim';
-import '../shim/shim.hidden';
+import './../shim/shim.tabindex.js';
 
 const { isArray } = Array;
 const { document, Element } = window;
