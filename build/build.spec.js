@@ -10152,6 +10152,35 @@
 	var JSON = _window.JSON;
 
 
+	describe('Node init', function () {
+	    var init = { id: 'random-id' };
+	    it('return the same object', function () {
+	        assert.equal((0, _dom.NodeInit)(init), init);
+	    });
+	    it('properly strigified to JSON', function () {
+	        assert.equal(JSON.stringify((0, _dom.NodeInit)(init)), '{"id":"random-id"}');
+	    });
+	    it('properly assign string as children', function () {
+	        var string = 'string as textContent';
+	        var init = (0, _dom.NodeInit)(string);
+	        assert.equal(init.children, string);
+	    });
+	    it('properly assign array as children', function () {
+	        var children = ['a', 'b', 'c'];
+	        var init = (0, _dom.NodeInit)(children);
+	        assert.equal(init.children, children);
+	    });
+	    it('properly assign element as children', function () {
+	        var child = document.createElement('a');
+	        var init = (0, _dom.NodeInit)(child);
+	        assert.equal(init.children, child);
+	    });
+	    it('passes through undefined', function () {
+	        var init = (0, _dom.NodeInit)(undefined);
+	        assert.equal(init, undefined);
+	    });
+	});
+
 	var assembler = new _dom.DOMAssembler();
 
 	describe('DOM assembler', function () {
@@ -10275,35 +10304,6 @@
 	                });
 	            });
 	        });
-	    });
-	});
-
-	describe('Node init', function () {
-	    var init = { id: 'random-id' };
-	    it('return the same object', function () {
-	        assert.equal((0, _dom.NodeInit)(init), init);
-	    });
-	    it('proper strigified to JSON', function () {
-	        assert.equal(JSON.stringify((0, _dom.NodeInit)(init)), '{"id":"random-id"}');
-	    });
-	    it('properly assign string as children', function () {
-	        var string = 'string as textContent';
-	        var init = (0, _dom.NodeInit)(string);
-	        assert.equal(init.children, string);
-	    });
-	    it('properly assign array as children', function () {
-	        var children = ['a', 'b', 'c'];
-	        var init = (0, _dom.NodeInit)(children);
-	        assert.equal(init.children, children);
-	    });
-	    it('properly assign element as children', function () {
-	        var child = document.createElement('a');
-	        var init = (0, _dom.NodeInit)(child);
-	        assert.equal(init.children, child);
-	    });
-	    it('passes through undefined', function () {
-	        var init = (0, _dom.NodeInit)(undefined);
-	        assert.equal(init, undefined);
 	    });
 	});
 
@@ -18338,11 +18338,14 @@
 	                });
 	            });
 
-	            // from dom/dom.spec (victims of IE11)
 	            describe('className', function () {
 	                var className = 'foo bar wiz';
 	                var element = assembler.createElement('div', { className: className });
 
+	                it('HTMLDivElement node created', function () {
+	                    assert.equal(element.constructor, HTMLDivElement);
+	                    assert.equal(element.tagName, 'DIV');
+	                });
 	                it('proper number of attributes', function () {
 	                    assert(element.hasAttributes());
 	                    assert.equal(element.attributes.length, 1);
@@ -18448,6 +18451,10 @@
 	                var id = 'element_0';
 	                var element = assembler.createElement('span', { id: id });
 
+	                it('HTMLSpanElement node created', function () {
+	                    assert.equal(element.constructor, HTMLSpanElement);
+	                    assert.equal(element.tagName, 'SPAN');
+	                });
 	                it('proper number of attributes', function () {
 	                    assert(element.hasAttributes());
 	                    assert.equal(element.attributes.length, 1);
@@ -18558,8 +18565,8 @@
 	            it('click listener', function () {
 	                var listener = sinon.spy();
 	                var element = assembler.createElement('button');
-	                document.body.appendChild(element);
 	                element.addEventListener('click', listener);
+	                document.body.appendChild(element);
 	                assert(listener.notCalled);
 	                element.click();
 	                assert(listener.calledOnce);

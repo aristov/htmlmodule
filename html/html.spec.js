@@ -44,11 +44,14 @@ describe('HTML assembler', function() {
                 });
             });
 
-            // from dom/dom.spec (victims of IE11)
             describe('className', function() {
                 const className = 'foo bar wiz';
                 const element = assembler.createElement('div', { className });
 
+                it('HTMLDivElement node created', function() {
+                    assert.equal(element.constructor, HTMLDivElement);
+                    assert.equal(element.tagName, 'DIV');
+                });
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
@@ -155,6 +158,10 @@ describe('HTML assembler', function() {
                 const id = 'element_0';
                 const element = assembler.createElement('span', { id });
 
+                it('HTMLSpanElement node created', function() {
+                    assert.equal(element.constructor, HTMLSpanElement);
+                    assert.equal(element.tagName, 'SPAN');
+                });
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
@@ -265,8 +272,8 @@ describe('HTML assembler', function() {
             it('click listener', () => {
                 const listener = sinon.spy();
                 const element = assembler.createElement('button');
-                document.body.appendChild(element);
                 element.addEventListener('click', listener);
+                document.body.appendChild(element);
                 assert(listener.notCalled);
                 element.click();
                 assert(listener.calledOnce);
