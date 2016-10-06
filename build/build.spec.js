@@ -8970,7 +8970,7 @@
 	 *  Viacheslav Aristov
 	 *  vv.aristov@gmail.com
 	 */
-	if (!('hidden' in HTMLElement.prototype)) {
+	if (!HTMLElement.prototype.hasOwnProperty('hidden')) {
 	    Object.defineProperty(HTMLElement.prototype, 'hidden', {
 	        set: function set(hidden) {
 	            hidden ? this.setAttribute('hidden', '') : this.removeAttribute('hidden');
