@@ -238,7 +238,7 @@ describe('HTML assembler', function() {
             });
         });
 
-        describe('built-in global event handlers', function() {
+        /*describe('built-in global event handlers', function() {
             const onclick = sinon.spy();
             const element = assembler.createElement('button', { onclick });
             it('onclick', () => {
@@ -248,7 +248,7 @@ describe('HTML assembler', function() {
                 element.click();
                 assert(onclick.calledTwice);
             });
-        });
+        });*/
 
         describe('adapted interface', function() {
 
