@@ -18752,6 +18752,7 @@
 
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
+	 *
 	 *  - If the a element has an href attribute, then it represents a hyperlink (a hypertext anchor) labeled by its contents.
 	 *  - If the a element has no href attribute, then the element represents a placeholder for where a link might otherwise have been placed, if it had been relevant, consisting of just the element's contents.
 	 *
@@ -18773,6 +18774,8 @@
 
 	/**
 	 * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
+	 *
+	 *
 	 * The abbr element represents an abbreviation or acronym, optionally with its expansion.
 	 * The title attribute may be used to provide an expansion of the abbreviation.
 	 * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
@@ -18785,6 +18788,15 @@
 	  return assembler.createElement('abbr', init);
 	};
 
+	/**
+	 * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
+	 *
+	 * The address element represents the contact information for its nearest article or body element ancestor.
+	 * If that is the body element, then the contact information applies to the document as a whole.
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @interface HTMLElement address
+	 */
 	var address = exports.address = function address(init) {
 	  return assembler.createElement('address', init);
 	};
