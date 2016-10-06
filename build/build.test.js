@@ -10319,7 +10319,7 @@
 	 * represents an abbreviation or acronym, optionally with its expansion.
 	 * The `title` attribute may be used to provide an expansion of the abbreviation.
 	 * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
-	 * @param init.title — special semantics: full term or expansion of abbreviation
+	 * @param {String} init.title — special semantics: full term or expansion of abbreviation
 	 * @param init.global{} — global `NodeInit` attributes
 	 * @param {NodeInit} init `NodeInit` dictionary object
 	 * @interface HTMLElement abbr
@@ -10360,7 +10360,7 @@
 	};
 
 	/**
-	 * [The article element](https://html.spec.whatwg.org/#the-article-element)
+	 * [The `article` element](https://html.spec.whatwg.org/#the-article-element)
 	 * represents a complete, or self-contained,
 	 * composition in a document, page, application, or site and that is,
 	 * in principle, independently distributable or reusable, e.g. in syndication.
@@ -10376,7 +10376,7 @@
 	};
 
 	/**
-	 * [The aside element](https://html.spec.whatwg.org/#the-aside-element)
+	 * [The `aside` element](https://html.spec.whatwg.org/#the-aside-element)
 	 * represents a section of a page that consists of content
 	 * that is tangentially related to the content around the aside element,
 	 * and which could be considered separate from that content.
@@ -10389,6 +10389,26 @@
 	  return assembler.createElement('aside', init);
 	};
 
+	/**
+	 * [The `audio` element](https://html.spec.whatwg.org/#the-audio-element)
+	 * represents a sound or audio stream.
+	 * Content may be provided inside the audio element.
+	 * User agents should not show this content to the user;
+	 * it is intended for older Web browsers which do not support audio,
+	 * so that legacy audio plugins can be tried,
+	 * or to show text to the users of these older browsers
+	 * informing them of how to access the audio contents.
+	 * @param {String} init.src — Address of the resource
+	 * @param {String} init.crossorigin — How the element handles crossorigin requests
+	 * @param {String} init.preload — Hints how much buffering the media resource will likely need
+	 * @param {Boolean} init.autoplay — Hint that the media resource can be started automatically when the page is loaded
+	 * @param {Boolean} init.loop — Whether to loop the media resource
+	 * @param {Boolean} init.muted — Whether to mute the media resource by default
+	 * @param {Boolean} init.controls — Show user agent controls
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @interface HTMLAudioElement
+	 */
 	var audio = exports.audio = function audio(init) {
 	  return assembler.createElement('audio', init);
 	};
