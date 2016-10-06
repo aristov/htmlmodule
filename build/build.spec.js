@@ -9156,7 +9156,7 @@
 	            return this.hasAttribute('hidden');
 	        }
 	    });
-	    document.head.appendChild(style);
+	    // document.head.appendChild(style);
 	}
 
 	function style() {
