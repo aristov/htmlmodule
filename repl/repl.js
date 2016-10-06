@@ -14,7 +14,11 @@ const DEFAULT_SRC =
         li('first item'), 
         li('second item'),
         li('third item')
-    ])
+    ]),
+    p(document.title),
+    code(window.location.href),
+    hr(),
+    address('vasya@pupkin.ru')
 ])`;
 
 const codeinput = textarea({
@@ -28,18 +32,19 @@ const codeinput = textarea({
     oninput
 });
 
-const variables =
-    Object
-        .keys(HTMLDOM)
-        .map((name) => `var ${name}=hd.${name};`)
-        .join('');
+const variables = Object
+    .keys(HTMLDOM)
+    .map(name => name + '=hd.' + name)
+    .join(',');
+
+const getSrc = value => `var ${variables};out.append(${value});`;
 
 function evaluate(value) {
+    value = String(value).trim();
     if(value) {
-        const src = [variables, `var node=${value};out.append(node);`].join('');
-        const fn = new Function('hd', 'out', src);
-        console.log(fn);
         try {
+            const fn = new Function('hd', 'out', getSrc(value));
+            console.log(fn);
             domoutput.textContent = '';
             fn(HTMLDOM, domoutput);
         } catch(error) {
@@ -68,8 +73,7 @@ const app = main({
     },
     children : [
         panel(codeinput),
-        panel(domoutput),
-        panel()
+        panel(domoutput)
     ]
 })
 

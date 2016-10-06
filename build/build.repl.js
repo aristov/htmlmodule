@@ -54,7 +54,7 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	var DEFAULT_SRC = 'article([\n    a({ \n        href : \'//ya.ru\', \n        textContent : \'Yandex\', \n        target : \'_blank\' \n    }),\n    ul([\n        li(\'first item\'), \n        li(\'second item\'),\n        li(\'third item\')\n    ])\n])';
+	var DEFAULT_SRC = 'article([\n    a({ \n        href : \'//ya.ru\', \n        textContent : \'Yandex\', \n        target : \'_blank\' \n    }),\n    ul([\n        li(\'first item\'), \n        li(\'second item\'),\n        li(\'third item\')\n    ]),\n    p(document.title),\n    code(window.location.href),\n    hr(),\n    address(\'vasya@pupkin.ru\')\n])';
 
 	var codeinput = (0, _htmldom.textarea)({
 	    style: {
@@ -68,15 +68,19 @@
 	});
 
 	var variables = Object.keys(HTMLDOM).map(function (name) {
-	    return 'var ' + name + '=hd.' + name + ';';
-	}).join('');
+	    return name + '=hd.' + name;
+	}).join(',');
+
+	var getSrc = function getSrc(value) {
+	    return 'var ' + variables + ';out.append(' + value + ');';
+	};
 
 	function evaluate(value) {
+	    value = String(value).trim();
 	    if (value) {
-	        var src = [variables, 'var node=' + value + ';out.append(node);'].join('');
-	        var fn = new Function('hd', 'out', src);
-	        console.log(fn);
 	        try {
+	            var fn = new Function('hd', 'out', getSrc(value));
+	            console.log(fn);
 	            domoutput.textContent = '';
 	            fn(HTMLDOM, domoutput);
 	        } catch (error) {
@@ -107,7 +111,7 @@
 	        display: 'flex',
 	        justifyContent: 'space-around'
 	    },
-	    children: [panel(codeinput), panel(domoutput), panel()]
+	    children: [panel(codeinput), panel(domoutput)]
 	});
 
 	document.body.append(app);
