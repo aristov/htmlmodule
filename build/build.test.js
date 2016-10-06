@@ -122,10 +122,10 @@
 	                id,
 	                href: '#' + id,
 	                children: tagNames.join(', ')
-	            }))), tag('Source JS'), (0, _htmldom.div)(srcjscode = (0, _htmldom.pre)({
+	            }))), tag('Source JS:'), (0, _htmldom.div)(srcjscode = (0, _htmldom.pre)({
 	                className: 'javascript',
 	                children: (0, _htmldom.code)(jsb(template.toString(), jsbConfig))
-	            })), tag('Result DOM'), (0, _htmldom.div)({ className: 'dom', children: element }), tag('Result HTML'), (0, _htmldom.div)({
+	            })), tag('Result DOM:'), (0, _htmldom.div)({ className: 'dom', children: element }), tag('Result HTML:'), (0, _htmldom.div)({
 	                className: '',
 	                children: resulthtmlcode = (0, _htmldom.pre)({
 	                    className: 'html',
@@ -9285,22 +9285,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
-	    onclick: ({
-	        type,
-	        target: { tagName },
-	        constructor: { name }
-	    }) => alert([tagName, type, name, 'handler!'].join(' ')),
-	    textContent: 'Show me alert, please...'
-	}), ' ', button({
-	    onfocus: ({ target }) => target.textContent = 'Focused!',
-	    onblur: ({ target }) => target.textContent = 'Focus wait...',
-	    textContent: 'Focus wait...'
-	}), ' ', input({
-	    placeholder: 'text input char counter',
-	    style: { marginRight: '10px' },
-	    oninput: ({ target }) => target.nextElementSibling.value = target.value.length
-	}), output({ value: '0' })]), ({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ img }) => img({
+	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ img }) => img({
 	    src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
 	    alt: 'Crazy PiPi!'
 	}), ({ audio }) => audio({
@@ -9318,7 +9303,24 @@
 	})), li(a({
 	    href: 'mailto:vv.aristov@gmail.com',
 	    textContent: 'Contact me'
-	}))]))), ({ footer, address, small }) => footer([address('vv.aristov@gmail.com'), small('@ All rights free')]), ({ main, sup, sub, i, strong }) => main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]), ({ abbr }) => abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL'), ({ article, h2, address }) => article({
+	}))]))), ({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
+	    style: { marginRight: '10px' },
+	    onclick: ({
+	        type,
+	        target: { tagName },
+	        constructor: { name }
+	    }) => alert([tagName, type, name, 'handler!'].join(' ')),
+	    textContent: 'Show me alert, please...'
+	}), button({
+	    style: { marginRight: '10px' },
+	    onfocus: ({ target }) => target.textContent = 'Focused!',
+	    onblur: ({ target }) => target.textContent = 'Focus wait...',
+	    textContent: 'Focus wait...'
+	}), input({
+	    style: { marginRight: '10px' },
+	    placeholder: 'text input char counter',
+	    oninput: ({ target }) => target.nextElementSibling.value = target.value.length
+	}), output({ value: '0' })]), ({ footer, address, small }) => footer([address('vv.aristov@gmail.com'), small('@ All rights free')]), ({ main, sup, sub, i, strong }) => main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]), ({ abbr }) => abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL'), ({ article, h2, address }) => article({
 	    className: 'vcard',
 	    children: [h2({ className: 'fn', textContent: 'Vyacheslav Aristov' }), address({ className: 'email', textContent: 'vv.aristov@gmail.com' })]
 	}), ({ aside }) => aside('Your advert may be here!'), ({ b }) => b('var, function, export, const'), ({ style }) => style({
