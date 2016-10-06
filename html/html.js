@@ -2,6 +2,11 @@ import { DOMAssembler } from '../dom/dom';
 
 const { assign } = Object;
 
+/**
+ * - XHTML namespace
+ * - provides all inherited from `HTMLElement` DOM interfaces
+ * - https://www.w3.org/1999/xhtml
+ */
 export const XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 /**

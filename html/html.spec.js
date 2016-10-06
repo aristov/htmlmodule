@@ -70,6 +70,9 @@ describe('HTML assembler', function() {
                     assert.equal(document.getElementsByClassName('wiz')[0], element);
                     document.body.removeChild(element);
                 });
+                it('proper outerHTML property value', () => {
+                    assert.equal(element.outerHTML, '<div class="foo bar wiz"></div>');
+                });
             });
 
             describe('contentEditable', function() {
@@ -153,7 +156,6 @@ describe('HTML assembler', function() {
                 });
             });
 
-            // from dom/dom.spec (victims of IE11)
             describe('id', function() {
                 const id = 'element_0';
                 const element = assembler.createElement('span', { id });
@@ -173,6 +175,9 @@ describe('HTML assembler', function() {
                     document.body.appendChild(element);
                     assert.equal(document.getElementById(id), element);
                     document.body.removeChild(element);
+                });
+                it('proper outerHTML property value', () => {
+                    assert.equal(element.outerHTML, '<span id="element_0"></span>');
                 });
             });
 

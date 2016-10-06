@@ -110,6 +110,11 @@
 	    return init;
 	}
 
+	/**
+	 * - XML namespace
+	 * - provides `Element` DOM interface
+	 * - https://www.w3.org/1999/xml
+	 */
 	var XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 	/**
@@ -259,6 +264,13 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var assign = Object.assign;
+
+	/**
+	 * - XHTML namespace
+	 * - provides all inherited from `HTMLElement` DOM interfaces
+	 * - https://www.w3.org/1999/xhtml
+	 */
+
 	var XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 	/**

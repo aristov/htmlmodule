@@ -15,6 +15,11 @@ export function NodeInit(init) {
     return init;
 }
 
+/**
+ * - XML namespace
+ * - provides `Element` DOM interface
+ * - https://www.w3.org/1999/xml
+ */
 export const XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 /**

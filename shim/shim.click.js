@@ -18,10 +18,9 @@ if('click' in span && 'onclick' in span) {
         const _click = proto.click;
         proto.click = function() {
             _click.call(this);
-            const event = document.createEvent('Event');
-            event.initEvent('click', true, true);
-            // this.dispatchEvent(event);
             if('onclick' in this && typeof this.onclick === 'function') {
+                const event = document.createEvent('Event');
+                event.initEvent('click', true, true);
                 this.onclick(event);
             }
         }
