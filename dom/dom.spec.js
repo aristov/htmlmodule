@@ -41,11 +41,11 @@ describe('DOM assembler', function() {
                 const element = assembler.createElement('element', { id : 'element_0' });
 
                 // fixme victims of IE11
-                it.skip('proper number of attributes', function() {
+                it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
-                it.skip('proper `id` attribute', function() {
+                it('proper `id` attribute', function() {
                     assert.equal(element.id, 'element_0');
                 });
             });

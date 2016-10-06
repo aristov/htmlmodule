@@ -9078,20 +9078,22 @@
 	'use strict';
 
 	if (!('hidden' in HTMLElement.prototype)) {
-	    /*const style = document.createElement('style');
-	    style.rel = 'stylesheet';
-	    style.textContent = '[hidden]{display:none}';
-	    document.head.appendChild(style);*/
-	    console.log(HTMLElement.prototype);
 	    Object.defineProperty(HTMLElement.prototype, 'hidden', {
 	        set: function set(hidden) {
-	            console.log(this, hidden);
 	            hidden ? this.setAttribute('hidden', '') : this.removeAttribute('hidden');
 	        },
 	        get: function get() {
 	            return this.hasAttribute('hidden');
 	        }
 	    });
+	    document.head.appendChild(style);
+	}
+
+	function style() {
+	    var style = document.createElement('style');
+	    style.rel = 'stylesheet';
+	    style.textContent = '[hidden]{display:none}';
+	    return style;
 	}
 
 /***/ },
@@ -23446,9 +23448,28 @@
 
 	__webpack_require__(1);
 
+	__webpack_require__(533);
+
 	__webpack_require__(302);
 
 	__webpack_require__(531);
+
+/***/ },
+/* 533 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	if (!('id' in Element.prototype)) {
+	    Object.defineProperty(Element.prototype, 'id', {
+	        set: function set(id) {
+	            this.setAttribute('id', id);
+	        },
+	        get: function get() {
+	            return this.hasAttribute('id');
+	        }
+	    });
+	}
 
 /***/ }
 /******/ ]);
