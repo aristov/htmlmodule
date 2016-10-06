@@ -10204,7 +10204,7 @@
 
 	/**
 	 * Element.prototype.onclick invoke on Element.prototype.click call
-	 * Event system normalization for IE 11
+	 * Event system normalization for MSIE 11
 	 *
 	 * Author
 	 *  Viacheslav Aristov
