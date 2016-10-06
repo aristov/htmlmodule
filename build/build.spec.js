@@ -8970,7 +8970,6 @@
 	 *  Viacheslav Aristov
 	 *  vv.aristov@gmail.com
 	 */
-
 	if (!('hidden' in HTMLElement.prototype)) {
 	    Object.defineProperty(HTMLElement.prototype, 'hidden', {
 	        set: function set(hidden) {
@@ -8984,7 +8983,6 @@
 	    var displaynone = style('[hidden]{display:none}');
 	    if (root) root.appendChild(displaynone);
 	}
-
 	function style(textContent) {
 	    var style = document.createElement('style');
 	    style.textContent = textContent;

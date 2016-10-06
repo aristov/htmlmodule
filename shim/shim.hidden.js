@@ -4,7 +4,6 @@
  *  Viacheslav Aristov
  *  vv.aristov@gmail.com
  */
-
 if (!('hidden' in HTMLElement.prototype)) {
     Object.defineProperty(HTMLElement.prototype, 'hidden', {
         set(hidden) {
@@ -20,7 +19,6 @@ if (!('hidden' in HTMLElement.prototype)) {
     const displaynone = style('[hidden]{display:none}');
     if(root) root.appendChild(displaynone);
 }
-
 function style(textContent) {
     const style = document.createElement('style');
     style.textContent = textContent;
