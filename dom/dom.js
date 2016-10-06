@@ -1,12 +1,31 @@
 const { isArray } = Array;
 const { document, Element } = window;
 
+/**
+ * Converts any non-dictionary object argument
+ * to `NodeInit` dictionary object with `children` property assigned
+ * @param {Object|String|Array} init
+ * @returns {{}} NodeInit dictionary object
+ * @interface
+ */
+export function NodeInit(init) {
+    if(init && init.constructor !== Object) {
+        return { children : init };
+    }
+    return init;
+}
+
 export const XML_NS_URI = 'https://www.w3.org/1999/xml';
 
+/**
+ * - Assembler for DOM `Element`
+ * - `Document.createElementNS` functionality wrapper
+ * - Provides built-in and adapted interfaces for `Element` initialization
+ */
 export class DOMAssembler {
     /**
-     * Assign given element to instance
-     * @param {Element} element
+     * Assign given element to assembler instance
+     * @param {Element} element node to assign
      */
     set element(element) {
         if(element instanceof Element) {
@@ -16,7 +35,7 @@ export class DOMAssembler {
 
     /**
      * Get the assigned element
-     * @returns {Element}
+     * @returns {Element} assigned node
      */
     get element() {
         if(this.node) return this.node;
@@ -25,7 +44,7 @@ export class DOMAssembler {
 
     /**
      * Initialize the element with defined properties
-     * @param {{}} init Node property set dictionary object
+     * @param {{}} init initializing dictionary object
      */
     set init(init) {
         const element = this.element;
@@ -39,7 +58,7 @@ export class DOMAssembler {
     }
 
     /**
-     * Set attributes of the element
+     * Set attributes on the element
      * @param {{}} attrset dictionary object
      */
     set attrset(attrset) {
@@ -53,9 +72,9 @@ export class DOMAssembler {
     }
 
     /**
-     * Append children to the element.
-     * Supports arrays and nested arrays, single DOM node and strings as Text nodes.
-     * @param {Array|Node|String|[Array|Node|String|[...]]} children array or DOM-node or string
+     * Append children to the element
+     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
+     * @param {Node|String|Array} children child node or string or array of listed
      */
     set children(children) {
         if(isArray(children)) {
@@ -72,7 +91,7 @@ export class DOMAssembler {
      * Create the specified element and initialize it by given property set
      * @param {String} tagName
      * @param {{}} [init]
-     * @returns {Element}
+     * @returns {Element} created and initialized DOM `Element`
      */
     createElement(tagName, init) {
         const { namespaceURI } = this.constructor;
@@ -82,7 +101,7 @@ export class DOMAssembler {
     }
 
     /**
-     * @returns {String}
+     * @returns {String} create elements in XML namespace
      */
     static get namespaceURI() {
         return XML_NS_URI;
@@ -94,17 +113,3 @@ Object.defineProperty(DOMAssembler.prototype, 'node', {
     writable : true,
     value : null
 });
-
-/**
- * Converts any non-dictionary object argument
- * to NodeInit dictionary object with `children` property assigned
- * @param {Object,String|Array} init
- * @returns {{}} NodePropertySet
- * @interface
- */
-export function NodeInit(init) {
-    if(init && init.constructor !== Object) {
-        return { children : init };
-    }
-    return init;
-}

@@ -32,7 +32,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'A');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `accessKey` attribute', function() {
@@ -70,7 +70,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'UNKNOWN');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `contentEditable` attribute', function() {
@@ -91,7 +91,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'BUTTON');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `dir` attribute', function() {
@@ -111,7 +111,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'HEADER');
                 });
                 it.skip('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it.skip('proper `draggable` attribute', function() {
@@ -131,7 +131,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'INPUT');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `hidden` attribute', function() {
@@ -186,7 +186,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'HTML');
                 });
                 it('proper number of attributes and child nodes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('has proper lang attribute set', function() {
@@ -206,7 +206,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'FORM');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `tabIndex` attribute', function() {
@@ -226,7 +226,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'SELECT');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `title` attribute', function() {
@@ -249,6 +249,18 @@ describe('HTML assembler', function() {
                 element.click();
                 assert(onclick.calledTwice);
             });
+            it.skip('click listener', () => {
+                const onclick = sinon.spy();
+                const element = assembler.createElement('button');
+                element.addEventListener('click', onclick);
+                assert(onclick.notCalled);
+                element.click();
+                const event = new CustomEvent('click');
+                element.dispatchEvent(event);
+                assert.equal(onclick.callCount, 2);
+                // element.click();
+                // assert(onclick.calledTwice);
+            });
         });
 
         describe('adapted interface', function() {
@@ -262,7 +274,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'DIV');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper custom `data-` attribute', function() {
@@ -283,7 +295,7 @@ describe('HTML assembler', function() {
                     assert.equal(element.tagName, 'SPAN');
                 });
                 it('proper number of attributes', function() {
-                    assert.equal(element.hasAttributes(), true);
+                    assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper proper style declaration assigned', function() {

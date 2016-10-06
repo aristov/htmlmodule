@@ -6,7 +6,8 @@ const env = process.env;
 module.exports = {
     entry : {
         spec : './spec/spec',
-        test : './test/test'
+        test : './test/test',
+        dist : './dist/dist'
     },
     output : {
         path: __dirname + '/build',
@@ -31,7 +32,7 @@ module.exports = {
         modulesDirectories: ['node_modules']
     },
     documentation: {
-        entry: './dom/dom.js',
+        entry: './dist/dist.js',
         github: true,
         format: 'html'
     },

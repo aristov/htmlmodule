@@ -20,6 +20,7 @@ if('click' in span && 'onclick' in span) {
             _click.call(this);
             const event = document.createEvent('Event');
             event.initEvent('click', true, true);
+            // this.dispatchEvent(event);
             if('onclick' in this && typeof this.onclick === 'function') {
                 this.onclick(event);
             }
