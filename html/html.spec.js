@@ -106,19 +106,19 @@ describe('HTML assembler', function() {
             describe('draggable', function() {
                 const element = assembler.createElement('header', { draggable : true });
 
-                it('HTMLElement node created', function() {
+                it.skip('HTMLElement node created', function() {
                     assert.equal(element.constructor, HTMLElement);
                     assert.equal(element.tagName, 'HEADER');
                 });
-                it('proper number of attributes', function() {
+                it.skip('proper number of attributes', function() {
                     assert.equal(element.hasAttributes(), true);
                     assert.equal(element.attributes.length, 1);
                 });
-                it('proper `draggable` attribute', function() {
+                it.skip('proper `draggable` attribute', function() {
                     assert.equal(element.draggable, true);
                     assert.equal(element.getAttribute('draggable'), 'true');
                 });
-                it('proper `outerHTML` property value', function() {
+                it.skip('proper `outerHTML` property value', function() {
                     assert.equal(element.outerHTML, '<header draggable="true"></header>');
                 });
             });
