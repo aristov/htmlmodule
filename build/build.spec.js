@@ -18752,7 +18752,6 @@
 
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
-	 *
 	 *  - If the `a` element has an `href` attribute, then it represents a hyperlink (a hypertext anchor) labeled by its contents.
 	 *  - If the `a` element has no `href` attribute, then the element represents a placeholder for where a link might otherwise have been placed, if it had been relevant, consisting of just the element's contents.
 	 *
@@ -18774,9 +18773,7 @@
 
 	/**
 	 * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
-	 *
-	 *
-	 * The `abbr` element represents an abbreviation or acronym, optionally with its expansion.
+	 * represents an abbreviation or acronym, optionally with its expansion.
 	 * The `title` attribute may be used to provide an expansion of the abbreviation.
 	 * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
 	 * @param init.title — special semantics: full term or expansion of abbreviation
@@ -18790,8 +18787,7 @@
 
 	/**
 	 * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
-	 *
-	 * The `address` element represents the contact information for its nearest article or body element ancestor.
+	 * element represents the contact information for its nearest article or body element ancestor.
 	 * If that is the `body` element, then the contact information applies to the document as a whole.
 	 * @param init.global{} — global `NodeInit` attributes
 	 * @param {NodeInit} init `NodeInit` dictionary object
@@ -18803,8 +18799,7 @@
 
 	/**
 	 * [The `area` element](https://html.spec.whatwg.org/#the-area-element)
-	 *
-	 * The area element represents either a hyperlink with some text and a corresponding area on an image map, or a dead area on an image map.
+	 * represents either a hyperlink with some text and a corresponding area on an image map, or a dead area on an image map.
 	 * @param {String} init.alt — Replacement text for use when images are not available
 	 * @param {String} init.coords — Coordinates for the shape to be created in an image map
 	 * @param {String} init.shape — The kind of shape to be created in an image map
@@ -18821,6 +18816,18 @@
 	  return assembler.createElement('area', init);
 	};
 
+	/**
+	 * [The article element](https://html.spec.whatwg.org/#the-article-element)
+	 * represents a complete, or self-contained,
+	 * composition in a document, page, application, or site and that is,
+	 * in principle, independently distributable or reusable, e.g. in syndication.
+	 * This could be a forum post, a magazine or newspaper article, a blog entry,
+	 * a user-submitted comment, an interactive widget or gadget,
+	 * or any other independent item of content.
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @interface HTMLElement article
+	 */
 	var article = exports.article = function article(init) {
 	  return assembler.createElement('article', init);
 	};
