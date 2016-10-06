@@ -46,19 +46,26 @@ describe('HTML assembler', function() {
 
             // from dom/dom.spec (victims of IE11)
             describe('className', function() {
-                const element = assembler.createElement('div', {
-                    className : 'element className element_class_name'
-                });
+                const className = 'foo bar wiz';
+                const element = assembler.createElement('div', { className });
+
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `className` attribute', function() {
-                    assert.equal(element.className, 'element className element_class_name');
-                    assert.equal(element.getAttribute('class'), 'element className element_class_name');
-                    assert(element.classList.contains('element'));
-                    assert(element.classList.contains('className'));
-                    assert(element.classList.contains('element_class_name'));
+                    assert.equal(element.className, className);
+                    assert.equal(element.getAttribute('class'), className);
+                    assert(element.classList.contains('foo'));
+                    assert(element.classList.contains('bar'));
+                    assert(element.classList.contains('wiz'));
+                });
+                it('document finds it', function() {
+                    document.body.appendChild(element);
+                    assert.equal(document.getElementsByClassName('foo')[0], element);
+                    assert.equal(document.getElementsByClassName('bar')[0], element);
+                    assert.equal(document.getElementsByClassName('wiz')[0], element);
+                    document.body.removeChild(element);
                 });
             });
 
@@ -145,14 +152,20 @@ describe('HTML assembler', function() {
 
             // from dom/dom.spec (victims of IE11)
             describe('id', function() {
-                const element = assembler.createElement('span', { id : 'element_0' });
+                const id = 'element_0';
+                const element = assembler.createElement('span', { id });
 
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `id` attribute', function() {
-                    assert.equal(element.id, 'element_0');
+                    assert.equal(element.id, id);
+                });
+                it('document finds it', function() {
+                    document.body.appendChild(element);
+                    assert.equal(document.getElementById(id), element);
+                    document.body.removeChild(element);
                 });
             });
 
@@ -250,18 +263,16 @@ describe('HTML assembler', function() {
                 assert(onclick.calledTwice);
             });
             it('click listener', () => {
-                const onclick = sinon.spy();
+                const listener = sinon.spy();
                 const element = assembler.createElement('button');
                 document.body.appendChild(element);
-                element.addEventListener('click', onclick);
-                assert(onclick.notCalled);
+                element.addEventListener('click', listener);
+                assert(listener.notCalled);
                 element.click();
-                const event = new CustomEvent('click');
-                element.dispatchEvent(event);
-                assert.equal(onclick.callCount, 2);
+                assert(listener.calledOnce);
+                element.click();
+                assert(listener.calledTwice);
                 document.body.removeChild(element);
-                // element.click();
-                // assert(onclick.calledTwice);
             });
         });
 
