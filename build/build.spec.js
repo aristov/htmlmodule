@@ -8866,15 +8866,18 @@
 	        describe('build-in attributes', function () {
 
 	            describe('id', function () {
-	                var element = assembler.createElement('element', { id: 'element_0' });
+	                var ID = 'element_0';
+	                var element = assembler.createElement('element', { id: ID });
 
-	                // fixme victims of IE11
 	                it('proper number of attributes', function () {
 	                    assert(element.hasAttributes());
 	                    assert.equal(element.attributes.length, 1);
 	                });
 	                it('proper `id` attribute', function () {
-	                    assert.equal(element.id, 'element_0');
+	                    assert.equal(element.id, ID);
+	                });
+	                it('document finds it', function () {
+	                    assert.equal(document.getElementById(ID), element);
 	                });
 	            });
 
@@ -8883,16 +8886,16 @@
 	                    className: 'element className element_class_name'
 	                });
 	                // todo victims of IE11
-	                it.skip('proper number of attributes', function () {
+	                it('proper number of attributes', function () {
 	                    assert(element.hasAttributes());
 	                    assert.equal(element.attributes.length, 1);
 	                });
-	                it.skip('proper `className` attribute', function () {
+	                it('proper `className` attribute', function () {
 	                    assert.equal(element.className, 'element className element_class_name');
 	                    assert.equal(element.getAttribute('class'), 'element className element_class_name');
-	                    assert(element.classList.contains('element'));
+	                    /*assert(element.classList.contains('element'));
 	                    assert(element.classList.contains('className'));
-	                    assert(element.classList.contains('element_class_name'));
+	                    assert(element.classList.contains('element_class_name'));*/
 	                });
 	            });
 
@@ -18506,6 +18509,8 @@
 
 	__webpack_require__(533);
 
+	__webpack_require__(534);
+
 	__webpack_require__(302);
 
 	__webpack_require__(531);
@@ -18523,6 +18528,24 @@
 	        },
 	        get: function get() {
 	            return this.getAttribute('id');
+	        }
+	    });
+	}
+
+/***/ },
+/* 534 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	if (!Element.prototype.hasOwnProperty('className')) {
+	    Object.defineProperty(Element.prototype, 'className', {
+	        enumerable: true,
+	        set: function set(className) {
+	            this.setAttribute('class', className);
+	        },
+	        get: function get() {
+	            return this.getAttribute('class');
 	        }
 	    });
 	}

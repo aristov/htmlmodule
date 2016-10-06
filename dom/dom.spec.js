@@ -38,15 +38,18 @@ describe('DOM assembler', function() {
         describe('build-in attributes', function() {
 
             describe('id', function() {
-                const element = assembler.createElement('element', { id : 'element_0' });
+                const ID = 'element_0';
+                const element = assembler.createElement('element', { id : ID });
 
-                // fixme victims of IE11
                 it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
                 it('proper `id` attribute', function() {
-                    assert.equal(element.id, 'element_0');
+                    assert.equal(element.id, ID);
+                });
+                it('document finds it', function() {
+                    assert.equal(document.getElementById(ID), element);
                 });
             });
 
@@ -55,16 +58,16 @@ describe('DOM assembler', function() {
                     className : 'element className element_class_name'
                 });
                 // todo victims of IE11
-                it.skip('proper number of attributes', function() {
+                it('proper number of attributes', function() {
                     assert(element.hasAttributes());
                     assert.equal(element.attributes.length, 1);
                 });
-                it.skip('proper `className` attribute', function() {
+                it('proper `className` attribute', function() {
                     assert.equal(element.className, 'element className element_class_name');
                     assert.equal(element.getAttribute('class'), 'element className element_class_name');
-                    assert(element.classList.contains('element'));
+                    /*assert(element.classList.contains('element'));
                     assert(element.classList.contains('className'));
-                    assert(element.classList.contains('element_class_name'));
+                    assert(element.classList.contains('element_class_name'));*/
                 });
             });
 

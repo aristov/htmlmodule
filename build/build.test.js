@@ -23450,6 +23450,8 @@
 
 	__webpack_require__(533);
 
+	__webpack_require__(534);
+
 	__webpack_require__(302);
 
 	__webpack_require__(531);
@@ -23467,6 +23469,24 @@
 	        },
 	        get: function get() {
 	            return this.getAttribute('id');
+	        }
+	    });
+	}
+
+/***/ },
+/* 534 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	if (!Element.prototype.hasOwnProperty('className')) {
+	    Object.defineProperty(Element.prototype, 'className', {
+	        enumerable: true,
+	        set: function set(className) {
+	            this.setAttribute('class', className);
+	        },
+	        get: function get() {
+	            return this.getAttribute('class');
 	        }
 	    });
 	}
