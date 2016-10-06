@@ -23462,7 +23462,7 @@
 
 	'use strict';
 
-	if (!('id' in Element.prototype)) {
+	if (!Element.prototype.hasOwnProperty('id')) {
 	    Object.defineProperty(Element.prototype, 'id', {
 	        set: function set(id) {
 	            this.setAttribute('id', id);

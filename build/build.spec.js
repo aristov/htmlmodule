@@ -8885,7 +8885,6 @@
 	                var element = assembler.createElement('element', {
 	                    className: 'element className element_class_name'
 	                });
-	                // todo victims of IE11
 	                it('proper number of attributes', function () {
 	                    assert(element.hasAttributes());
 	                    assert.equal(element.attributes.length, 1);
@@ -8893,9 +8892,11 @@
 	                it('proper `className` attribute', function () {
 	                    assert.equal(element.className, 'element className element_class_name');
 	                    assert.equal(element.getAttribute('class'), 'element className element_class_name');
-	                    /*assert(element.classList.contains('element'));
+	                });
+	                it('classList interface works properly', function () {
+	                    assert(element.classList.contains('element'));
 	                    assert(element.classList.contains('className'));
-	                    assert(element.classList.contains('element_class_name'));*/
+	                    assert(element.classList.contains('element_class_name'));
 	                });
 	            });
 
@@ -18521,7 +18522,7 @@
 
 	'use strict';
 
-	if (!('id' in Element.prototype)) {
+	if (!Element.prototype.hasOwnProperty('id')) {
 	    Object.defineProperty(Element.prototype, 'id', {
 	        set: function set(id) {
 	            this.setAttribute('id', id);
