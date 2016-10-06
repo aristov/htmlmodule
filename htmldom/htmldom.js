@@ -2,6 +2,23 @@ import { HTMLAssembler } from './../html/html.js';
 
 const assembler = new HTMLAssembler;
 
+/**
+ * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
+ *  - If the a element has an href attribute, then it represents a hyperlink (a hypertext anchor) labeled by its contents.
+ *  - If the a element has no href attribute, then the element represents a placeholder for where a link might otherwise have been placed, if it had been relevant, consisting of just the element's contents.
+ *
+ * @param {String} init.href — Address of the hyperlink
+ * @param {String} init.target — Browsing context for hyperlink navigation
+ * @param {String} init.download — Whether to download the resource instead of navigating to it, and its file name if so
+ * @param {String} init.ping — URLs to ping
+ * @param {String} init.rel — Relationship between the location in the document containing the hyperlink and the destination resource
+ * @param {String} init.hreflang — Language of the linked resource
+ * @param {String} init.type — Hint for the type of the referenced resource
+ * @param {String} init.referrerpolicy — Determines the referrer policy for fetches initiated by the element
+ * @param init.global{} — global `NodeInit` attributes
+ * @param {NodeInit} init `NodeInit` dictionary object;
+ * @interface HTMLAnchorElement
+ */
 export const a = init => assembler.createElement('a', init);
 
 export const abbr = init => assembler.createElement('abbr', init);
