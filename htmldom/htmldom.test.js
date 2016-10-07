@@ -25,6 +25,26 @@ export const test = [
             src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
         }),
 
+    ({ html, head, body, meta, title }) => html({
+        lang : 'en',
+        children : [
+            head([
+                /**
+                 * https://html.spec.whatwg.org/#dom-meta-name
+                 */
+                meta({
+                    /**
+                     * charset attribute has no IDL reflection,
+                     * so use `attrset` to define it
+                     */
+                    attrset : { charset : 'utf-8' }
+                }),
+                title('!!! boilerplate !!!')
+            ]),
+            body('Hello world!')
+        ]
+    }),
+
     ({ header, nav, a, ul, li }) =>
         header(nav(ul([
             li(a({

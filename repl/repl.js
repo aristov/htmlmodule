@@ -1,7 +1,7 @@
 import '../shim/shim';
 
 import * as HTMLDOM from '../htmldom/htmldom';
-import { output, main, div, header, h3, p, label, input, abbr } from '../htmldom/htmldom';
+import { option, select, output, main, div, header, h3, p, label, input, abbr } from '../htmldom/htmldom';
 
 import value from 'raw!./repl.value.rawjs';
 import { HTMLSerializer } from '../html/html.serializer';
@@ -11,6 +11,11 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
+
+import jsb from '../jsb/jsb';
+
+import { test } from '../htmldom/htmldom.test.js';
+
 
 const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 
@@ -60,13 +65,33 @@ const modebox = input({
     }
 });
 
+const options = [
+    option({ textContent : 'example with globals', value }),
+    test.map(fn => {
+        const value = fn.toString();
+        const textContent = value.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
+        return option({ textContent, value : jsb(value) });
+    })
+];
+
+const suitebox = select({
+    children : options,
+    onchange : () => {
+        globalbox.checked = suitebox.value === value;
+        jsEditor.setValue(suitebox.value);
+    }
+});
+
 document.body.append(
     header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
     main({
-        className : 'app',
+        className : 'repl',
         children : [
             panel([
-                p(label([globalbox, ' define globally'])),
+                p([
+                    label([globalbox, ' define globally']),
+                    label(suitebox)
+                ]),
                 jsInput
             ]),
             panel([

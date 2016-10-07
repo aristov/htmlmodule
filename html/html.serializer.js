@@ -12,7 +12,7 @@ export class HTMLSerializer {
     }) {
         assign(this, options);
     }
-    serializeToString({ tagName, attributes, childNodes, textContent }) {
+    serializeToString({ tagName, attributes, childNodes, innerHTML, textContent }) {
         const lineBreak = this.lineBreak;
         let indent = this.indent.repeat(this.level);
         let result = indent;
@@ -33,7 +33,7 @@ export class HTMLSerializer {
             } else indent = '';
             if(hasEndTag) result += indent + `</${tagName}>`;
         } else {
-            result += textContent;
+            result += innerHTML || textContent;
         }
         result += lineBreak;
         return result;

@@ -4,15 +4,14 @@ import { test } from '../htmldom/htmldom.test.js';
 import { a, h2, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom/htmldom.js';
 import * as HTMLDOM from '../htmldom/htmldom.js';
 
-import beautify from 'js-beautify';
+
 import victorica from 'victorica';
 import hljs from 'highlight.js/';
+import jsb from '../jsb/jsb';
 
 import './test.css';
 import 'highlight.js/styles/agate.css';
 
-const jsb = beautify.js_beautify;
-const jsbConfig = { indent_size: 4, wrap_line_length: 100, };
 
 const victoricaConfig = { space: '    ' };
 
@@ -59,12 +58,12 @@ const exampletable = table({
                     h2(code(a({
                         id,
                         href : '#' + id,
-                        textContent : tagNames.join(', ')
+                        children : tagNames.join(', ')
                     }))),
                     tag('Source JS:'),
                     div(srcjscode = pre({
                         className : 'javascript',
-                        textContent : code(jsb(template.toString(), jsbConfig))
+                        children : code(jsb(template.toString()))
                     })),
                     tag('Result DOM:'),
                     div({ className : 'dom', children : element }),
