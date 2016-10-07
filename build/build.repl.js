@@ -79,18 +79,18 @@
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	var vars = Object.keys(HTMLDOM).map(function (name) {
-	    return name + '=hd.' + name;
+	    return name + '=__ref.' + name;
 	}).join(',');
 
 	var fnbody = function fnbody(value) {
-	    return 'var ' + vars + ';' + value + ';out.append(dom);';
+	    return 'var ' + vars + ';' + value + ';return dom';
 	};
 
 	var panel = function panel(children) {
 	    return (0, _htmldom.div)({ className: 'panel', children: children });
 	};
 
-	var jsInput = (0, _htmldom.div)();
+	var jsInput = (0, _htmldom.div)({ className: 'jsinput' });
 
 	var domOutput = (0, _htmldom.output)({ className: 'domoutput' });
 
@@ -108,9 +108,10 @@
 	    repl.classList.remove('invalid');
 	    if (value) {
 	        try {
-	            var fn = new Function('hd', 'out', fnbody(value));
+	            var fn = new Function('__ref', fnbody(value));
 	            domOutput.textContent = '';
-	            fn(HTMLDOM, domOutput);
+	            var dom = fn(HTMLDOM, domOutput);
+	            domOutput.append(dom);
 
 	            var htmlcode = (0, _htmldom.code)(serializer.serializeToString(domOutput.firstChild));
 	            htmlOutput.firstChild.replaceWith(htmlcode);
@@ -21750,6 +21751,7 @@
 	                if (childNodes && childNodes.length) {
 	                    this.level++;
 	                    var children = map.call(childNodes, this.serializeToString, this);
+	                    this.level--;
 	                    result += lineBreak + children.join('');
 	                }
 	                if (!noEndTagSet[tagName]) result += indent + ('</' + tagName + '>');

@@ -27,6 +27,7 @@ export class HTMLSerializer {
             if(childNodes && childNodes.length) {
                 this.level++;
                 const children = map.call(childNodes, this.serializeToString, this);
+                this.level--;
                 result += lineBreak + children.join('');
             }
             if(!noEndTagSet[tagName]) result += indent + `</${tagName}>`;

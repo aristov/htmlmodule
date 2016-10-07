@@ -7,30 +7,23 @@ div.panel
 {
     width: 33%;
 }
-/*.jsinput textarea
-{
-    width : 100%;
-    height : 500px;
-    font : 13px monospace;
-    box-sizing: border-box;
-}*/
-div.CodeMirror
+.jsinput .CodeMirror
 {
     height : 500px;
     font-size: 14px;
 }
 output.domoutput
 {
-    display: block;
     height: 500px;
+    display: block;
     border: 1px solid black;
     box-sizing: border-box;
     padding: 10px;
 }
 pre.htmloutput
 {
-    font-size: 14px;
     height: 500px;
+    font-size: 14px;
     box-sizing: border-box;
     margin: 0;
 }

@@ -1,6 +1,6 @@
 import '../shim/shim';
 
-import { output, main, div, textarea, pre, code } from '../htmldom/htmldom';
+import { output, main, div, pre, code } from '../htmldom/htmldom';
 import * as HTMLDOM from '../htmldom/htmldom';
 
 import hljs from 'highlight.js/';
@@ -14,13 +14,13 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 
-const vars = Object.keys(HTMLDOM).map(name => name + '=hd.' + name).join(',');
+const vars = Object.keys(HTMLDOM).map(name => name + '=__ref.' + name).join(',');
 
-const fnbody = value => `var ${vars};${value};out.append(dom);`;
+const fnbody = value => `var ${vars};${value};return dom`;
 
 const panel = children => div({ className : 'panel', children });
 
-const jsInput = div();
+const jsInput = div({ className : 'jsinput' });
 
 const domOutput = output({ className : 'domoutput' });
 
@@ -42,9 +42,10 @@ function evaluate(value) {
     repl.classList.remove('invalid');
     if(value) {
         try {
-            const fn = new Function('hd', 'out', fnbody(value));
+            const fn = new Function('__ref', fnbody(value));
             domOutput.textContent = '';
-            fn(HTMLDOM, domOutput);
+            const dom = fn(HTMLDOM, domOutput);
+            domOutput.append(dom);
 
             const htmlcode = code(serializer.serializeToString(domOutput.firstChild));
             htmlOutput.firstChild.replaceWith(htmlcode);
