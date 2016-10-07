@@ -9,12 +9,12 @@ div.panel
 }
 main .CodeMirror
 {
-    height : 500px;
+    height : 600px;
     font-size: 14px;
 }
 output.domoutput
 {
-    height: 500px;
+    height: 600px;
     display: block;
     border: 1px solid black;
     box-sizing: border-box;

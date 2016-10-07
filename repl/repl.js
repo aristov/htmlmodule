@@ -12,9 +12,15 @@ import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 
-const vars = `var ${ Object.keys(HTMLDOM).map(name => name + '=__ref.' + name).join(',') };`;
+const babelOptions = {
+    presets : ['es2015'],
+    plugins : ['transform-es2015-modules-commonjs']
+};
 
-const fnbody = code => vars + code + ';return dom;';
+const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
+
+const snippet = Object.keys(HTMLDOM).map(name => name + `=${HTMLDOM_VARIABLE_NAME}.` + name).join(',');
+const vars = ['var ' + snippet, ''].join(';');
 
 const panel = children => div({ className : 'panel', children });
 
@@ -63,18 +69,26 @@ function evaluate() {
     const code = jsEditor.getValue().trim();
     if(code) {
         try {
-            const fn = new Function('__ref', fnbody(code));
-            const dom = fn(HTMLDOM, domOutput);
+            const es5 = Babel.transform(code, babelOptions);
+            const fn = new Function('exports', es5.code);
+            const exports = {
+                default : () => {
+                    throw Error('Module is not Exported!')
+                }
+            };
+            fn(exports);
+            const node = exports.default(HTMLDOM);
 
             domOutput.textContent = '';
-            domOutput.append(dom);
+            domOutput.append(node);
 
-            const htmlcode = serializer.serializeToString(domOutput.firstChild);
+            const htmlcode = serializer.serializeToString(node);
             htmlEditor.setValue(htmlcode);
         }
         catch(error) {
             domOutput.textContent = error;
             htmlEditor.setValue('');
+
         }
     } else domOutput.textContent = '';
 }

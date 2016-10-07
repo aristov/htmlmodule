@@ -14,7 +14,7 @@ export class HTMLSerializer {
     }
     serializeToString({ tagName, attributes, childNodes, textContent }) {
         const lineBreak = this.lineBreak;
-        const indent = this.indent.repeat(this.level);
+        let indent = this.indent.repeat(this.level);
         let result = indent;
         if(tagName) {
             tagName = tagName.toLowerCase();
@@ -29,7 +29,7 @@ export class HTMLSerializer {
                 const children = map.call(childNodes, this.serializeToString, this);
                 this.level--;
                 result += lineBreak + children.join('');
-            }
+            } else indent = '';
             if(!noEndTagSet[tagName]) result += indent + `</${tagName}>`;
         } else {
             result += textContent;
