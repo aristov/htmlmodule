@@ -74,10 +74,38 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+	// babel polyfill =)
+
+	if (!window.Babel) {
+	    window.Babel = {
+	        transform: function transform(code) {
+	            return {
+	                code: code.replace('export default ', 'exports.default = ')
+	            };
+	        }
+	    };
+	}
+
 	var babelOptions = {
 	    presets: ['es2015'],
 	    plugins: ['transform-es2015-modules-commonjs']
 	};
+
+	/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+
+	let babelscript;
+
+	const babelbox = input({
+	    type : 'checkbox',
+	    onchange : event => {
+	        if(!babelscript) babelLoad();
+	    }
+	});
+
+	function babelLoad() {
+	    if(window.Babel) delete window.Babel;
+	    document.body.append(babelscript = script({ src : BABEL_URL }));
+	}*/
 
 	var HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
@@ -100,7 +128,9 @@
 
 	document.body.append((0, _htmldom.main)({
 	    className: 'app',
-	    children: [panel(jsInput), panel(domOutput), panel(htmlOutput)]
+	    children: [panel([
+	    // label([babelbox, ' use Babel']),
+	    jsInput]), panel(domOutput), panel(htmlOutput)]
 	}));
 
 	var jsEditor = new _codemirror2.default(jsInput, {
@@ -134,13 +164,13 @@
 	    if (code) {
 	        try {
 	            var es5 = Babel.transform(code, babelOptions);
-	            var fn = new Function('exports', es5.code);
+	            var userCode = new Function('exports,module', es5.code);
 	            var exports = {
 	                default: function _default() {
 	                    throw Error('Module is not Exported!');
 	                }
 	            };
-	            fn(exports);
+	            userCode(exports, { exports: exports });
 	            var node = exports.default(HTMLDOM);
 
 	            domOutput.textContent = '';

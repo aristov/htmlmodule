@@ -1,7 +1,7 @@
 import '../shim/shim';
 
 import * as HTMLDOM from '../htmldom/htmldom';
-import { output, main, div } from '../htmldom/htmldom';
+import { output, main, div, label, input, script } from '../htmldom/htmldom';
 
 import value from 'raw!./repl.value.rawjs';
 import { HTMLSerializer } from '../html/html.serializer';
@@ -12,10 +12,36 @@ import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 
+// babel polyfill =)
+
+if(!window.Babel) {
+    window.Babel = {
+        transform : code => ({
+            code : code.replace('export default ', 'exports.default = ')
+        })
+    }
+}
+
 const babelOptions = {
     presets : ['es2015'],
     plugins : ['transform-es2015-modules-commonjs']
 };
+
+/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+
+let babelscript;
+
+const babelbox = input({
+    type : 'checkbox',
+    onchange : event => {
+        if(!babelscript) babelLoad();
+    }
+});
+
+function babelLoad() {
+    if(window.Babel) delete window.Babel;
+    document.body.append(babelscript = script({ src : BABEL_URL }));
+}*/
 
 const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
@@ -35,7 +61,10 @@ const serializer = new HTMLSerializer;
 document.body.append(main({
     className : 'app',
     children : [
-        panel(jsInput),
+        panel([
+            // label([babelbox, ' use Babel']),
+            jsInput
+        ]),
         panel(domOutput),
         panel(htmlOutput)
     ]
@@ -70,13 +99,13 @@ function evaluate() {
     if(code) {
         try {
             const es5 = Babel.transform(code, babelOptions);
-            const fn = new Function('exports', es5.code);
+            const userCode = new Function('exports,module', es5.code);
             const exports = {
                 default : () => {
-                    throw Error('Module is not Exported!')
+                    throw Error('Module is not Exported!');
                 }
             };
-            fn(exports);
+            userCode(exports, { exports });
             const node = exports.default(HTMLDOM);
 
             domOutput.textContent = '';

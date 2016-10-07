@@ -1,3 +1,7 @@
+body
+{
+    /*background: #000;*/
+}
 main
 {
     display : flex;
@@ -6,6 +10,9 @@ main
 div.panel
 {
     width: 33%;
+    /*border: 3px solid #888;
+    box-sizing: border-box;
+    padding: 10px;*/
 }
 main .CodeMirror
 {
@@ -19,6 +26,7 @@ output.domoutput
     border: 1px solid black;
     box-sizing: border-box;
     padding: 10px;
+    background: #fff;
 }
 main.invalid pre.htmloutput
 {
