@@ -20,6 +20,7 @@ div.panel
 div.panel form.settings label
 {
     margin-right: 20px;
+    user-select: none;
 }
 main .CodeMirror
 {

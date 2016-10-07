@@ -10734,19 +10734,6 @@
 	}), ({ video }) => video({
 	    controls: true,
 	    src: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
-	}), ({ html, head, body, meta, title }) => html({
-	    lang: 'en',
-	    children: [head([
-	    /**
-	     * https://html.spec.whatwg.org/#dom-meta-name
-	     */
-	    meta({
-	        /**
-	         * charset attribute has no IDL reflection,
-	         * so use `attrset` to define it
-	         */
-	        attrset: { charset: 'utf-8' }
-	    }), title('!!! boilerplate !!!')]), body('Hello world!')]
 	}), ({ header, nav, a, ul, li }) => header(nav(ul([li(a({
 	    href: '/home.html',
 	    textContent: 'Go home'
@@ -10790,7 +10777,8 @@
 	    style: {
 	        display: 'flex',
 	        flexDirection: 'column',
-	        justifyContent: 'space-between'
+	        justifyContent: 'space-between',
+	        height: '200px'
 	    },
 	    children: [label(['Text input ', input({ placeholder: 'Fill me' })]), label([input({ type: 'checkbox' }), ' Simple checkbox']), label([input({ type: 'checkbox', checked: true }), ' Checked checkbox']), label([input({ type: 'checkbox', attrset: { checked: '' } }), ' Initially checked checkbox']), label([input({ type: 'checkbox', indeterminate: true }), ' Indeterminate checkbox']), span([label([input({
 	        type: 'radio',
@@ -10800,7 +10788,7 @@
 	        type: 'radio',
 	        name: 'chooseproglangradio',
 	        value: 'xml'
-	    }), ' XML'])])]
+	    }), ' XML'])]), input({ type: 'reset', style: { margin: '0 auto 0 0' } })]
 	}), ({ form, label, select, option, br }) => form([label(['Select technology ', select([option('XML'), option('HTML'), option({ selected: true, textContent: 'WAI-ARIA' }), option('RDFS'), option('OWL'), option('SGML'), option('CSS')])]), br(), label(['Select technology stack', br(), select({
 	    multiple: true,
 	    children: [option('XML'), option({
@@ -10814,11 +10802,14 @@
 	        type: 'search',
 	        style: { marginRight: '5px' }
 	    }), button('search')]
-	}), ({ code }) => code('export const code = init => instance.createElement(\'code\', init);'), ({ dialog }) => dialog({
+	}), ({ dialog }) => dialog({
 	    open: true,
 	    style: { position: 'relative', display: 'block' },
 	    textContent: 'Hello world!'
-	}), ({ em }) => em('Emphasize!'), ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ del }) => del('Don\'t stroke me!'), ({ dfn }) => dfn('Instance.js — simple and powerfull DOM Element interface'), ({ details, summary }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']), ({ article, ul, li, ol, dl, dt, dd }) => article({
+	}), ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', em('Emphasize!'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', del('Don\'t stroke me!'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
+	    title: 'Ruby annotations',
+	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
+	}), ({ article, ul, li, ol, dl, dt, dd }) => article({
 	    title: 'Various lists',
 	    children: [ul([li('Ampeg'), li('Fender'), li('SMB Effects')]), ol([li('Amsterdam'), li('New York'), li('Moscow')]), dl([dt('DOM'), dd('Document object model'), dt('XML'), dd('Extensible markup language'), dt('HTML'), dd('Hyper text markup language'), dt('ARIAML'), dd('Accessible rich internet applications markup language')])]
 	}), ({ progress }) => progress({ max: '100', value: '70' })];

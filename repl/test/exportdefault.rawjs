@@ -1,0 +1,19 @@
+export default ({ html, head, body, meta, title }) => html({
+    lang : 'en',
+    children : [
+        head([
+            /**
+             * https://html.spec.whatwg.org/#dom-meta-name
+             */
+            meta({
+                /**
+                 * charset attribute has no IDL reflection,
+                 * so use `attrset` to define it
+                 */
+                attrset : { charset : 'utf-8' }
+            }),
+            title('!!! boilerplate !!!')
+        ]),
+        body('Hello world!')
+    ]
+});

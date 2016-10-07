@@ -52,9 +52,7 @@
 
 	var HTMLDOM = _interopRequireWildcard(_htmldom);
 
-	var _replValue = __webpack_require__(309);
-
-	var _replValue2 = _interopRequireDefault(_replValue);
+	var _htmldomTest = __webpack_require__(322);
 
 	var _html = __webpack_require__(310);
 
@@ -74,13 +72,26 @@
 
 	var _jsb2 = _interopRequireDefault(_jsb);
 
-	var _htmldomTest = __webpack_require__(322);
+	var _globals = __webpack_require__(505);
+
+	var _globals2 = _interopRequireDefault(_globals);
+
+	var _exportdefault = __webpack_require__(506);
+
+	var _exportdefault2 = _interopRequireDefault(_exportdefault);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+	// DOM module
+	// DOM serializer
+	// DOM assembler
+
+	// HTMLDOM
 	const EXPORT_DEFAULT_RE = /export\s+default\s+/;
+
+	const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
 	// babel polyfill =)
 	if (!window.Babel) {
@@ -93,12 +104,6 @@
 	        }
 	    };
 	}
-	const babelOptions = {
-	    presets: ['es2015'],
-	    plugins: ['transform-es2015-modules-commonjs']
-	};
-
-	const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
 	const snippet = Object.keys(HTMLDOM).map(name => name + `=${ HTMLDOM_VARIABLE_NAME }.` + name).join(',');
 	const imports = ['var ' + snippet, ''].join(';');
@@ -116,7 +121,12 @@
 	const globalbox = (0, _htmldom.input)({
 	    type: 'checkbox',
 	    checked: true,
-	    onchange: () => evaluate()
+	    onchange: () => {
+	        evaluate();
+	        if (globalbox.checked) {
+	            testselectbox.value = '';
+	        } else settingsform.reset();
+	    }
 	});
 
 	const modebox = (0, _htmldom.input)({
@@ -128,12 +138,14 @@
 	});
 
 	let selectedOption = (0, _htmldom.option)({
-	    value: _replValue2.default,
+	    value: _globals2.default,
+	    id: 'globals',
 	    selected: true,
+	    // attrset : { selected : '' },
 	    textContent: 'example with globals'
 	});
 
-	const options = [(0, _htmldom.option)({ value: '', children: '—' }), selectedOption, _htmldomTest.test.map(fn => {
+	const options = [(0, _htmldom.option)({ value: '', children: '—' }), selectedOption, (0, _htmldom.option)({ value: _exportdefault2.default, children: 'export default example' }), _htmldomTest.test.map(fn => {
 	    const src = fn.toString();
 	    const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
 	    const elements = textContent.split(', ');
@@ -142,18 +154,33 @@
 	})];
 
 	function updateTest() {
-	    globalbox.checked = suitebox.value === _replValue2.default;
-	    jsEditor.setValue(suitebox.value);
-	    location.hash = suitebox.selectedOptions[0].id;
+	    globalbox.checked = testselectbox.value === _globals2.default;
+	    jsEditor.setValue(testselectbox.value);
+	    location.hash = testselectbox.selectedOptions[0].id;
 	}
 
-	const suitebox = (0, _htmldom.select)({
+	const testselectbox = (0, _htmldom.select)({
 	    children: options,
-	    onchange: updateTest
+	    onchange: () => {
+	        const selected = testselectbox.query('[selected]');
+	        if (selected) selected.removeAttribute('selected');
+	        const opt = testselectbox.selectedOptions[0];
+	        opt.setAttribute('selected', '');
+	        updateTest();
+	    }
 	});
 
 	const clear = () => {
+	    const selected = testselectbox.query('[selected]');
+	    if (selected) {
+	        selected.removeAttribute('selected');
+	        selected.selected = false;
+	    }
+	    /*const opt = testselectbox.options[0];
+	    opt.selected = true;*/
+
 	    jsEditor.setValue('');
+
 	    location.hash = '';
 	};
 
@@ -163,16 +190,18 @@
 	    children: 'clear'
 	});
 
+	const settingsform = (0, _htmldom.form)({
+	    className: 'settings',
+	    children: (0, _htmldom.p)([(0, _htmldom.label)([globalbox, ' define globally']), (0, _htmldom.label)(testselectbox), (0, _htmldom.label)(clearbox)])
+	});
+
 	document.body.append((0, _htmldom.header)((0, _htmldom.h3)([(0, _htmldom.abbr)('HTMLDOM'), ' ', (0, _htmldom.abbr)('REPL')])), (0, _htmldom.main)({
 	    className: 'repl',
-	    children: [panel([(0, _htmldom.form)({
-	        className: 'settings',
-	        children: (0, _htmldom.p)([(0, _htmldom.label)([globalbox, ' define globally']), (0, _htmldom.label)(suitebox), (0, _htmldom.label)(clearbox)])
-	    }), jsInput]), panel([(0, _htmldom.p)((0, _htmldom.label)([modebox, ' view ', (0, _htmldom.abbr)('HTML')])), domOutput, htmlOutput])]
+	    children: [panel([settingsform, jsInput]), panel([(0, _htmldom.p)((0, _htmldom.label)([modebox, ' show ', (0, _htmldom.abbr)('HTML')])), domOutput, htmlOutput])]
 	}));
 
 	const jsEditor = new _codemirror2.default(jsInput, {
-	    value: _replValue2.default,
+	    value: _globals2.default,
 	    mode: 'javascript',
 	    theme: 'night',
 	    indentUnit: 4,
@@ -197,6 +226,7 @@
 	    const option = document.getElementById(hash);
 	    if ('selected' in option) {
 	        option.selected = true;
+	        option.setAttribute('selected', '');
 	        updateTest();
 	    }
 	}
@@ -209,7 +239,7 @@
 	    const code = jsEditor.getValue().trim();
 	    if (code) {
 	        try {
-	            const es5 = Babel.transform(code, babelOptions);
+	            const es5 = Babel.transform(code);
 	            const src = globalbox.checked ? [imports, es5.code].join(';') : es5.code;
 	            const fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
 	            const exports = {
@@ -235,7 +265,12 @@
 	    }
 	}
 
-	/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+	/*const babelOptions = {
+	    presets : ['es2015'],
+	    plugins : ['transform-es2015-modules-commonjs']
+	};
+
+	const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
 
 	let babelscript;
 
@@ -10516,12 +10551,7 @@
 	});
 
 /***/ },
-/* 309 */
-/***/ function(module, exports) {
-
-	module.exports = "form({\n    action : 'https://yandex.com/search',\n    target : '_blank',\n    children : label([\n        'Search',\n        br(),\n        input({\n            type : 'search',\n            name : 'text',\n            placeholder : 'your request...'\n        }),\n        button({\n            style : { margin : '0 7px' },\n            textContent : 'Yandex!'\n        })\n    ])\n})\n"
-
-/***/ },
+/* 309 */,
 /* 310 */
 /***/ function(module, exports) {
 
@@ -13868,19 +13898,6 @@
 	}), ({ video }) => video({
 	    controls: true,
 	    src: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
-	}), ({ html, head, body, meta, title }) => html({
-	    lang: 'en',
-	    children: [head([
-	    /**
-	     * https://html.spec.whatwg.org/#dom-meta-name
-	     */
-	    meta({
-	        /**
-	         * charset attribute has no IDL reflection,
-	         * so use `attrset` to define it
-	         */
-	        attrset: { charset: 'utf-8' }
-	    }), title('!!! boilerplate !!!')]), body('Hello world!')]
 	}), ({ header, nav, a, ul, li }) => header(nav(ul([li(a({
 	    href: '/home.html',
 	    textContent: 'Go home'
@@ -13924,7 +13941,8 @@
 	    style: {
 	        display: 'flex',
 	        flexDirection: 'column',
-	        justifyContent: 'space-between'
+	        justifyContent: 'space-between',
+	        height: '200px'
 	    },
 	    children: [label(['Text input ', input({ placeholder: 'Fill me' })]), label([input({ type: 'checkbox' }), ' Simple checkbox']), label([input({ type: 'checkbox', checked: true }), ' Checked checkbox']), label([input({ type: 'checkbox', attrset: { checked: '' } }), ' Initially checked checkbox']), label([input({ type: 'checkbox', indeterminate: true }), ' Indeterminate checkbox']), span([label([input({
 	        type: 'radio',
@@ -13934,7 +13952,7 @@
 	        type: 'radio',
 	        name: 'chooseproglangradio',
 	        value: 'xml'
-	    }), ' XML'])])]
+	    }), ' XML'])]), input({ type: 'reset', style: { margin: '0 auto 0 0' } })]
 	}), ({ form, label, select, option, br }) => form([label(['Select technology ', select([option('XML'), option('HTML'), option({ selected: true, textContent: 'WAI-ARIA' }), option('RDFS'), option('OWL'), option('SGML'), option('CSS')])]), br(), label(['Select technology stack', br(), select({
 	    multiple: true,
 	    children: [option('XML'), option({
@@ -13948,11 +13966,14 @@
 	        type: 'search',
 	        style: { marginRight: '5px' }
 	    }), button('search')]
-	}), ({ code }) => code('export const code = init => instance.createElement(\'code\', init);'), ({ dialog }) => dialog({
+	}), ({ dialog }) => dialog({
 	    open: true,
 	    style: { position: 'relative', display: 'block' },
 	    textContent: 'Hello world!'
-	}), ({ em }) => em('Emphasize!'), ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ del }) => del('Don\'t stroke me!'), ({ dfn }) => dfn('Instance.js — simple and powerfull DOM Element interface'), ({ details, summary }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']), ({ article, ul, li, ol, dl, dt, dd }) => article({
+	}), ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', em('Emphasize!'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', del('Don\'t stroke me!'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
+	    title: 'Ruby annotations',
+	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
+	}), ({ article, ul, li, ol, dl, dt, dd }) => article({
 	    title: 'Various lists',
 	    children: [ul([li('Ampeg'), li('Fender'), li('SMB Effects')]), ol([li('Amsterdam'), li('New York'), li('Moscow')]), dl([dt('DOM'), dd('Document object model'), dt('XML'), dd('Extensible markup language'), dt('HTML'), dd('Hyper text markup language'), dt('ARIAML'), dd('Accessible rich internet applications markup language')])]
 	}), ({ progress }) => progress({ max: '100', value: '70' })];
@@ -16106,6 +16127,23 @@
 	        };
 	    }
 	})();
+
+/***/ },
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */
+/***/ function(module, exports) {
+
+	module.exports = "form({\n    action : 'https://yandex.com/search',\n    target : '_blank',\n    children : label([\n        'Search',\n        br(),\n        input({\n            type : 'search',\n            name : 'text',\n            placeholder : 'your request...'\n        }),\n        button({\n            style : { margin : '0 7px' },\n            textContent : 'Yandex!'\n        })\n    ])\n})\n"
+
+/***/ },
+/* 506 */
+/***/ function(module, exports) {
+
+	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
 
 /***/ }
 /******/ ]);

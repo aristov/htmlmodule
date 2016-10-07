@@ -1,12 +1,18 @@
 import '../shim/shim';
 
+// DOM module
+// DOM serializer
+// DOM assembler
+
+// HTMLDOM
 import * as HTMLDOM from '../htmldom/htmldom';
 import {
     button, option, select, output, main,
     div, header, h3, p, label, input, abbr, form
 } from '../htmldom/htmldom';
+import { test } from '../htmldom/htmldom.test.js';
 
-import value from 'raw!./repl.value.rawjs';
+
 import { HTMLSerializer } from '../html/html.serializer';
 
 import CodeMirror from 'codemirror';
@@ -17,10 +23,12 @@ import 'codemirror/theme/night.css';
 
 import jsb from '../jsb/jsb';
 
-import { test } from '../htmldom/htmldom.test.js';
-
+import value from 'raw!./test/globals.rawjs';
+import exportdefault from 'raw!./test/exportdefault.rawjs';
 
 const EXPORT_DEFAULT_RE = /export\s+default\s+/;
+
+const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
 // babel polyfill =)
 if(!window.Babel) {
@@ -34,12 +42,6 @@ if(!window.Babel) {
         }
     }
 }
-const babelOptions = {
-    presets : ['es2015'],
-    plugins : ['transform-es2015-modules-commonjs']
-};
-
-const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
 const snippet = Object.keys(HTMLDOM).map(name => name + `=${HTMLDOM_VARIABLE_NAME}.` + name).join(',');
 const imports = ['var ' + snippet, ''].join(';');
@@ -57,7 +59,13 @@ const serializer = new HTMLSerializer;
 const globalbox = input({
     type : 'checkbox',
     checked : true,
-    onchange : () => evaluate()
+    onchange : () => {
+        evaluate();
+        if(globalbox.checked) {
+            testselectbox.value = '';
+        }
+        else settingsform.reset();
+    }
 });
 
 const modebox = input({
@@ -71,13 +79,16 @@ const modebox = input({
 
 let selectedOption = option({
     value,
+    id : 'globals',
     selected : true,
+    // attrset : { selected : '' },
     textContent : 'example with globals'
 });
 
 const options = [
     option({ value : '', children : '—' }),
     selectedOption,
+    option({ value : exportdefault, children : 'export default example' }),
     test.map(fn => {
         const src = fn.toString();
         const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
@@ -88,18 +99,33 @@ const options = [
 ];
 
 function updateTest() {
-    globalbox.checked = suitebox.value === value;
-    jsEditor.setValue(suitebox.value);
-    location.hash = suitebox.selectedOptions[0].id;
+    globalbox.checked = testselectbox.value === value;
+    jsEditor.setValue(testselectbox.value);
+    location.hash = testselectbox.selectedOptions[0].id;
 }
 
-const suitebox = select({
+const testselectbox = select({
     children : options,
-    onchange : updateTest
+    onchange : () => {
+        const selected = testselectbox.query('[selected]');
+        if(selected) selected.removeAttribute('selected');
+        const opt = testselectbox.selectedOptions[0];
+        opt.setAttribute('selected', '');
+        updateTest();
+    }
 });
 
 const clear = () => {
+    const selected = testselectbox.query('[selected]');
+    if(selected) {
+        selected.removeAttribute('selected');
+        selected.selected = false;
+    }
+    /*const opt = testselectbox.options[0];
+    opt.selected = true;*/
+
     jsEditor.setValue('');
+
     location.hash = '';
 };
 
@@ -109,24 +135,26 @@ const clearbox = button({
     children : 'clear'
 });
 
+const settingsform = form({
+    className : 'settings',
+    children : p([
+        label([globalbox, ' define globally']),
+        label(testselectbox),
+        label(clearbox)
+    ])
+});
+
 document.body.append(
     header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
     main({
         className : 'repl',
         children : [
             panel([
-                form({
-                    className : 'settings',
-                    children : p([
-                        label([globalbox, ' define globally']),
-                        label(suitebox),
-                        label(clearbox)
-                    ])
-                }),
+                settingsform,
                 jsInput
             ]),
             panel([
-                p(label([modebox, ' view ', abbr('HTML')])),
+                p(label([modebox, ' show ', abbr('HTML')])),
                 domOutput,
                 htmlOutput
             ])
@@ -159,6 +187,7 @@ if(hash) {
     const option = document.getElementById(hash);
     if('selected' in option) {
         option.selected = true;
+        option.setAttribute('selected', '');
         updateTest();
     }
 }
@@ -171,7 +200,7 @@ function evaluate() {
     const code = jsEditor.getValue().trim();
     if(code) {
         try {
-            const es5 = Babel.transform(code, babelOptions);
+            const es5 = Babel.transform(code);
             const src = globalbox.checked?
                 [imports, es5.code].join(';') :
                 es5.code;
@@ -204,7 +233,12 @@ function evaluate() {
 }
 
 
-/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+/*const babelOptions = {
+    presets : ['es2015'],
+    plugins : ['transform-es2015-modules-commonjs']
+};
+
+const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
 
 let babelscript;
 
