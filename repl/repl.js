@@ -9,29 +9,29 @@ import 'highlight.js/styles/agate.css';
 import value from 'raw!./repl.value.rawjs';
 import { HTMLSerializer } from '../html/html.serializer';
 
+import CodeMirror from 'codemirror';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/night.css';
+
 const vars = Object.keys(HTMLDOM).map(name => name + '=hd.' + name).join(',');
 
 const fnbody = value => `var ${vars};${value};out.append(dom);`;
 
 const panel = children => div({ className : 'panel', children });
 
-const codeinput = textarea({
-    className : 'codeinput',
-    placeholder : 'Type HTMLDOM code here...',
-    textContent : value,
-    oninput : ({ target : { value } }) => evaluate(value)
-});
+const jsInput = div();
 
-const domoutput = output({ className : 'domoutput' });
+const domOutput = output({ className : 'domoutput' });
 
-const codepre = pre({ className : 'codeoutput html', children : code() });
+const htmlOutput = pre({ className : 'htmloutput html', children : code() });
 
-const app = main({
+const repl = main({
     className : 'app',
     children : [
-        panel(codeinput),
-        panel(domoutput),
-        panel(codepre)
+        panel(jsInput),
+        panel(domOutput),
+        panel(htmlOutput)
     ]
 });
 
@@ -39,24 +39,39 @@ const serializer = new HTMLSerializer;
 
 function evaluate(value) {
     value = String(value).trim();
-    app.classList.remove('invalid');
+    repl.classList.remove('invalid');
     if(value) {
         try {
             const fn = new Function('hd', 'out', fnbody(value));
-            domoutput.textContent = '';
-            fn(HTMLDOM, domoutput);
+            domOutput.textContent = '';
+            fn(HTMLDOM, domOutput);
 
-            const htmlcode = code(serializer.serializeToString(domoutput.firstChild));
-            codepre.firstChild.replaceWith(htmlcode);
-            hljs.highlightBlock(codepre);
+            const htmlcode = code(serializer.serializeToString(domOutput.firstChild));
+            htmlOutput.firstChild.replaceWith(htmlcode);
+            hljs.highlightBlock(htmlOutput);
         } catch(error) {
-            domoutput.textContent = error;
-            codepre.textContent = 'Error!';
-            app.classList.add('invalid');
+            domOutput.textContent = error;
+            htmlOutput.textContent = 'Error!';
+            repl.classList.add('invalid');
         }
-    } else domoutput.textContent = '';
+    } else domOutput.textContent = '';
 }
 
-evaluate(codeinput.value);
+document.body.append(repl);
 
-document.body.append(app);
+const editor = new CodeMirror(jsInput, {
+    value,
+    mode: 'javascript',
+    theme: 'night',
+    indentUnit: 4,
+    tabSize: 4,
+    indentWithTabs: true,
+    electricChars: true,
+    styleActiveLine: true,
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    smartIndent: true
+});
+
+editor.on('change', () => evaluate(editor.getValue()));
+evaluate(editor.getValue());

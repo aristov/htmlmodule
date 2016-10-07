@@ -3,18 +3,23 @@ main
     display : flex;
     justify-content : space-around;
 }
-main > div
+div.panel
 {
     width: 33%;
 }
-textarea
+/*.jsinput textarea
 {
     width : 100%;
     height : 500px;
     font : 13px monospace;
     box-sizing: border-box;
+}*/
+div.CodeMirror
+{
+    height : 500px;
+    font-size: 14px;
 }
-output
+output.domoutput
 {
     display: block;
     height: 500px;
@@ -22,14 +27,14 @@ output
     box-sizing: border-box;
     padding: 10px;
 }
-pre
+pre.htmloutput
 {
     font-size: 14px;
     height: 500px;
     box-sizing: border-box;
     margin: 0;
 }
-main.invalid pre
+main.invalid pre.htmloutput
 {
     color: red;
 }

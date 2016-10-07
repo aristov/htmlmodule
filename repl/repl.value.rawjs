@@ -14,11 +14,11 @@ const dom = form({
     onsubmit
 });
 
-const urlpart = 'https://yandex.com/search?text=';
+const urlPart = 'https://yandex.com/search?text=';
 
 function onsubmit(event) {
     event.preventDefault();
     const box = event.target.elements[0];
     const value = box.value.trim();
-    if(value) window.open(urlpart + value);
+    if(value) window.open(urlPart + value);
 }
