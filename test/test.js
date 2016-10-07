@@ -12,27 +12,23 @@ import './test.css';
 import 'highlight.js/styles/agate.css';
 
 const jsb = beautify.js_beautify;
-const jsbConfig = {
-    indent_size: 4,
-    wrap_line_length: 100,
-};
+const jsbConfig = { indent_size: 4, wrap_line_length: 100, };
 
-const victoricaConfig = {
-    space: '    ',
-    removeSelfClose: true,
-};
+const victoricaConfig = { space: '    ' };
 
 let rows;
+
+const oninput = ({ target : { value } }) => {
+    rows.forEach(row => {
+        row.hidden = !row.className.includes(value.toUpperCase());
+    });
+};
 
 const filterinput = input({
     type : 'search',
     className : 'filterinput',
     placeholder : 'filter...',
-    oninput : ({ target : { value } }) => {
-        rows.forEach(row => {
-            row.hidden = !row.className.includes(value.toUpperCase());
-        });
-    }
+    oninput
 });
 
 const tag = children => span({ className : 'tag', children });
@@ -63,12 +59,12 @@ const exampletable = table({
                     h2(code(a({
                         id,
                         href : '#' + id,
-                        children : tagNames.join(', ')
+                        textContent : tagNames.join(', ')
                     }))),
                     tag('Source JS:'),
                     div(srcjscode = pre({
                         className : 'javascript',
-                        children : code(jsb(template.toString(), jsbConfig))
+                        textContent : code(jsb(template.toString(), jsbConfig))
                     })),
                     tag('Result DOM:'),
                     div({ className : 'dom', children : element }),

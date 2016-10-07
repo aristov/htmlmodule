@@ -5,7 +5,7 @@ main
 }
 .panel
 {
-    width: 50%;
+    width: 33%;
 }
 .codeinput
 {
@@ -21,9 +21,11 @@ main
     box-sizing: border-box;
     padding: 10px;
 }
-main.invalid .codeinput
+.codeoutput
 {
-    border-color: red;
+    height: 500px;
+    box-sizing: border-box;
+    margin: 0;
 }
 main.invalid .domoutput
 {

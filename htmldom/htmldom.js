@@ -26,6 +26,7 @@ export const a = init => assembler.createElement('a', init);
  * represents an abbreviation or acronym, optionally with its expansion.
  * The `title` attribute may be used to provide an expansion of the abbreviation.
  * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
+ *
  * @param {String} init.title — special semantics: full term or expansion of abbreviation
  * @param init.global{} — global `NodeInit` attributes
  * @param {NodeInit} init `NodeInit` dictionary object
@@ -35,8 +36,9 @@ export const abbr = init => assembler.createElement('abbr', init);
 
 /**
  * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
- * element represents the contact information for its nearest article or body element ancestor.
+ * represents the contact information for its nearest `article` or `body` element ancestor.
  * If that is the `body` element, then the contact information applies to the document as a whole.
+ *
  * @param init.global{} — global `NodeInit` attributes
  * @param {NodeInit} init `NodeInit` dictionary object
  * @interface HTMLElement address
@@ -45,7 +47,9 @@ export const address = init => assembler.createElement('address', init);
 
 /**
  * [The `area` element](https://html.spec.whatwg.org/#the-area-element)
- * represents either a hyperlink with some text and a corresponding area on an image map, or a dead area on an image map.
+ * represents either a hyperlink with some text and a corresponding area on an image map,
+ * or a dead area on an image map.
+ *
  * @param {String} init.alt — Replacement text for use when images are not available
  * @param {String} init.coords — Coordinates for the shape to be created in an image map
  * @param {String} init.shape — The kind of shape to be created in an image map
@@ -62,12 +66,11 @@ export const area = init => assembler.createElement('area', init);
 
 /**
  * [The `article` element](https://html.spec.whatwg.org/#the-article-element)
- * represents a complete, or self-contained,
- * composition in a document, page, application, or site and that is,
- * in principle, independently distributable or reusable, e.g. in syndication.
- * This could be a forum post, a magazine or newspaper article, a blog entry,
- * a user-submitted comment, an interactive widget or gadget,
- * or any other independent item of content.
+ * represents a complete, or self-contained, composition in a document, page, application,
+ * or site and that is, in principle, independently distributable or reusable, e.g. in syndication.
+ * This could be a forum post, a magazine or newspaper article, a blog entry, a user-submitted comment,
+ * an interactive widget or gadget, or any other independent item of content.
+ *
  * @param init.global{} — global `NodeInit` attributes
  * @param {NodeInit} init `NodeInit` dictionary object
  * @interface HTMLElement article
@@ -76,10 +79,10 @@ export const article = init => assembler.createElement('article', init);
 
 /**
  * [The `aside` element](https://html.spec.whatwg.org/#the-aside-element)
- * represents a section of a page that consists of content
- * that is tangentially related to the content around the aside element,
+ * represents a section of a page that consists of content that is tangentially related to the content around the aside element,
  * and which could be considered separate from that content.
  * Such sections are often represented as sidebars in printed typography.
+ *
  * @param init.global{} — global `NodeInit` attributes
  * @param {NodeInit} init `NodeInit` dictionary object
  * @interface HTMLElement aside
@@ -89,12 +92,11 @@ export const aside = init => assembler.createElement('aside', init);
 /**
  * [The `audio` element](https://html.spec.whatwg.org/#the-audio-element)
  * represents a sound or audio stream.
- * Content may be provided inside the audio element.
+ * Content may be provided inside the `audio` element.
  * User agents should not show this content to the user;
- * it is intended for older Web browsers which do not support audio,
- * so that legacy audio plugins can be tried,
- * or to show text to the users of these older browsers
- * informing them of how to access the audio contents.
+ * it is intended for older Web browsers which do not support audio, so that legacy audio plugins can be tried,
+ * or to show text to the users of these older browsers informing them of how to access the audio contents.
+ *
  * @param {String} init.src — Address of the resource
  * @param {String} init.crossorigin — How the element handles crossorigin requests
  * @param {String} init.preload — Hints how much buffering the media resource will likely need
@@ -220,7 +222,7 @@ export const map = init => assembler.createElement('map', init);
 
 export const mark = init => assembler.createElement('mark', init);
 
-// todo MathInstance
+// todo MathAssembler
 // export const math = init => instance.createElement('math', init);
 
 export const menu = init => assembler.createElement('menu', init);
@@ -291,7 +293,7 @@ export const summary = init => assembler.createElement('summary', init);
 
 export const sup = init => assembler.createElement('sup', init);
 
-// todo SVGInstance
+// todo SVGAssembler
 // export const svg = init => instance.createElement('svg', init);
 
 export const table = init => assembler.createElement('table', init);

@@ -24,6 +24,7 @@ if(!HTMLElement.prototype.hasOwnProperty('hidden')) {
     const displaynone = style('[hidden]{display:none}');
     if(root) root.appendChild(displaynone);
 }
+
 function style(textContent) {
     const style = document.createElement('style');
     style.textContent = textContent;

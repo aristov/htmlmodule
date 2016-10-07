@@ -15,15 +15,24 @@ form({
             ' Simple checkbox'
         ]),
         label([
-            input({ type : 'checkbox', checked : true }),
+            input({
+                type : 'checkbox',
+                checked : true
+            }),
             ' Checked checkbox'
         ]),
         label([
-            input({ type : 'checkbox', attrset : { checked : '' } }),
+            input({
+                type : 'checkbox',
+                attrset : { checked : '' }
+            }),
             ' Initially checked checkbox'
         ]),
         label([
-            input({ type : 'checkbox', indeterminate : true }),
+            input({
+                type : 'checkbox',
+                indeterminate : true
+            }),
             ' Indeterminate checkbox'
         ]),
         span([
