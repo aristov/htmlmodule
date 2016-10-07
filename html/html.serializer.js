@@ -24,13 +24,14 @@ export class HTMLSerializer {
                 result += attrset.join('');
             }
             result += '>';
-            if(childNodes && childNodes.length) {
+            const hasEndTag = !noEndTagSet[tagName];
+            if(childNodes && childNodes.length && hasEndTag) {
                 this.level++;
                 const children = map.call(childNodes, this.serializeToString, this);
                 this.level--;
                 result += lineBreak + children.join('');
             } else indent = '';
-            if(!noEndTagSet[tagName]) result += indent + `</${tagName}>`;
+            if(hasEndTag) result += indent + `</${tagName}>`;
         } else {
             result += textContent;
         }

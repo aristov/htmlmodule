@@ -16,7 +16,7 @@ const assembler = new HTMLAssembler;
  * @param {String} init.type — Hint for the type of the referenced resource
  * @param {String} init.referrerpolicy — Determines the referrer policy for fetches initiated by the element
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object
+ * @param {*} init object
  * @interface HTMLAnchorElement
  */
 export const a = init => assembler.createElement('a', init);
@@ -29,7 +29,7 @@ export const a = init => assembler.createElement('a', init);
  *
  * @param {String} init.title — special semantics: full term or expansion of abbreviation
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object
+ * @param {*} init object
  * @interface HTMLElement abbr
  */
 export const abbr = init => assembler.createElement('abbr', init);
@@ -40,7 +40,7 @@ export const abbr = init => assembler.createElement('abbr', init);
  * If that is the `body` element, then the contact information applies to the document as a whole.
  *
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object
+ * @param {*} init object
  * @interface HTMLElement address
  */
 export const address = init => assembler.createElement('address', init);
@@ -59,7 +59,7 @@ export const address = init => assembler.createElement('address', init);
  * @param {String} init.ping — URLs to ping
  * @param {String} init.rel — Relationship between the location in the document containing the hyperlink and the destination resource
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object
+ * @param {*} init object
  * @interface HTMLAreaElement
  */
 export const area = init => assembler.createElement('area', init);
@@ -72,7 +72,7 @@ export const area = init => assembler.createElement('area', init);
  * an interactive widget or gadget, or any other independent item of content.
  *
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object
+ * @param {*} init object
  * @interface HTMLElement article
  */
 export const article = init => assembler.createElement('article', init);
@@ -84,7 +84,7 @@ export const article = init => assembler.createElement('article', init);
  * Such sections are often represented as sidebars in printed typography.
  *
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object
+ * @param {*} init object
  * @interface HTMLElement aside
  */
 export const aside = init => assembler.createElement('aside', init);
@@ -105,7 +105,7 @@ export const aside = init => assembler.createElement('aside', init);
  * @param {Boolean} init.muted — Whether to mute the media resource by default
  * @param {Boolean} init.controls — Show user agent controls
  * @param init.global{} — global `NodeInit` attributes
- * @param {NodeInit} init `NodeInit` dictionary object
+ * @param {*} init object
  * @interface HTMLAudioElement
  */
 export const audio = init => assembler.createElement('audio', init);

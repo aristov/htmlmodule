@@ -1,10 +1,4 @@
-export default ({
-    form,
-    label,
-    br,
-    input,
-    button
-}) => form({
+form({
     action : 'https://yandex.com/search',
     target : '_blank',
     children : label([
@@ -20,4 +14,4 @@ export default ({
             textContent : 'Yandex!'
         })
     ])
-});
+})

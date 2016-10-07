@@ -74,18 +74,19 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	// babel polyfill =)
+	var EXPORT_DEFAULT_RE = /export\s+default\s+/;
 
+	// babel polyfill =)
 	if (!window.Babel) {
 	    window.Babel = {
 	        transform: function transform(code) {
-	            return {
-	                code: code.replace('export default ', 'exports.default = ')
-	            };
+	            if (EXPORT_DEFAULT_RE.test(code)) {
+	                code = code.replace(EXPORT_DEFAULT_RE, 'exports.default = ');
+	            } else code = 'exports.default = ' + code;
+	            return { code: code };
 	        }
 	    };
 	}
-
 	var babelOptions = {
 	    presets: ['es2015'],
 	    plugins: ['transform-es2015-modules-commonjs']
@@ -106,20 +107,29 @@
 
 	var domOutput = (0, _htmldom.output)({ className: 'domoutput' });
 
-	var htmlOutput = (0, _htmldom.div)({ className: 'htmloutput' });
+	var htmlOutput = (0, _htmldom.div)({ className: 'htmloutput', hidden: false });
 
 	var serializer = new _html.HTMLSerializer();
 
 	var globalbox = (0, _htmldom.input)({
 	    type: 'checkbox',
+	    checked: true,
 	    onchange: function onchange() {
 	        return evaluate();
 	    }
 	});
 
-	document.body.append((0, _htmldom.header)((0, _htmldom.h3)('HTMLDOM REPL')), (0, _htmldom.p)((0, _htmldom.label)([globalbox, ' import all'])), (0, _htmldom.main)({
+	var modebox = (0, _htmldom.input)({
+	    type: 'checkbox',
+	    checked: true,
+	    onchange: function onchange() {
+	        htmlOutput.hidden = !modebox.checked;
+	    }
+	});
+
+	document.body.append((0, _htmldom.header)((0, _htmldom.h3)([(0, _htmldom.abbr)('HTMLDOM'), ' ', (0, _htmldom.abbr)('REPL')])), (0, _htmldom.main)({
 	    className: 'app',
-	    children: [panel([jsInput]), panel(domOutput), panel(htmlOutput)]
+	    children: [panel([(0, _htmldom.p)((0, _htmldom.label)([globalbox, ' define globally'])), jsInput]), panel([(0, _htmldom.p)((0, _htmldom.label)([modebox, ' view ', (0, _htmldom.abbr)('HTML')])), domOutput, htmlOutput])]
 	}));
 
 	var jsEditor = new _codemirror2.default(jsInput, {
@@ -155,14 +165,13 @@
 	            var es5 = Babel.transform(code, babelOptions);
 	            var src = globalbox.checked ? [imports, es5.code].join(';') : es5.code;
 	            var fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
-	            console.log(fn);
 	            var exports = {
 	                default: function _default() {
 	                    throw Error('Module is not Exported!');
 	                }
 	            };
 	            fn(exports, HTMLDOM);
-	            var node = exports.default(HTMLDOM);
+	            var node = typeof exports.default === 'function' ? exports.default(HTMLDOM) : exports.default;
 
 	            domOutput.textContent = '';
 	            domOutput.append(node);
@@ -10067,7 +10076,7 @@
 	 * @param {String} init.type — Hint for the type of the referenced resource
 	 * @param {String} init.referrerpolicy — Determines the referrer policy for fetches initiated by the element
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLAnchorElement
 	 */
 	var a = exports.a = function a(init) {
@@ -10082,7 +10091,7 @@
 	 *
 	 * @param {String} init.title — special semantics: full term or expansion of abbreviation
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement abbr
 	 */
 	var abbr = exports.abbr = function abbr(init) {
@@ -10095,7 +10104,7 @@
 	 * If that is the `body` element, then the contact information applies to the document as a whole.
 	 *
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement address
 	 */
 	var address = exports.address = function address(init) {
@@ -10116,7 +10125,7 @@
 	 * @param {String} init.ping — URLs to ping
 	 * @param {String} init.rel — Relationship between the location in the document containing the hyperlink and the destination resource
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLAreaElement
 	 */
 	var area = exports.area = function area(init) {
@@ -10131,7 +10140,7 @@
 	 * an interactive widget or gadget, or any other independent item of content.
 	 *
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement article
 	 */
 	var article = exports.article = function article(init) {
@@ -10145,7 +10154,7 @@
 	 * Such sections are often represented as sidebars in printed typography.
 	 *
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement aside
 	 */
 	var aside = exports.aside = function aside(init) {
@@ -10168,7 +10177,7 @@
 	 * @param {Boolean} init.muted — Whether to mute the media resource by default
 	 * @param {Boolean} init.controls — Show user agent controls
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLAudioElement
 	 */
 	var audio = exports.audio = function audio(init) {
@@ -10864,7 +10873,7 @@
 /* 310 */
 /***/ function(module, exports) {
 
-	module.exports = "export default ({\n    form,\n    label,\n    br,\n    input,\n    button\n}) => form({\n    action : 'https://yandex.com/search',\n    target : '_blank',\n    children : label([\n        'Search',\n        br(),\n        input({\n            type : 'search',\n            name : 'text',\n            placeholder : 'your request...'\n        }),\n        button({\n            style : { margin : '0 7px' },\n            textContent : 'Yandex!'\n        })\n    ])\n});\n"
+	module.exports = "form({\n    action : 'https://yandex.com/search',\n    target : '_blank',\n    children : label([\n        'Search',\n        br(),\n        input({\n            type : 'search',\n            name : 'text',\n            placeholder : 'your request...'\n        }),\n        button({\n            style : { margin : '0 7px' },\n            textContent : 'Yandex!'\n        })\n    ])\n})\n"
 
 /***/ },
 /* 311 */
@@ -10924,13 +10933,14 @@
 	                    result += attrset.join('');
 	                }
 	                result += '>';
-	                if (childNodes && childNodes.length) {
+	                var hasEndTag = !noEndTagSet[tagName];
+	                if (childNodes && childNodes.length && hasEndTag) {
 	                    this.level++;
 	                    var children = map.call(childNodes, this.serializeToString, this);
 	                    this.level--;
 	                    result += lineBreak + children.join('');
 	                } else indent = '';
-	                if (!noEndTagSet[tagName]) result += indent + ('</' + tagName + '>');
+	                if (hasEndTag) result += indent + ('</' + tagName + '>');
 	            } else {
 	                result += textContent;
 	            }

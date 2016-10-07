@@ -1,7 +1,7 @@
 import '../shim/shim';
 
 import * as HTMLDOM from '../htmldom/htmldom';
-import { output, main, div, header, h3, p, label, input } from '../htmldom/htmldom';
+import { output, main, div, header, h3, p, label, input, abbr } from '../htmldom/htmldom';
 
 import value from 'raw!./repl.value.rawjs';
 import { HTMLSerializer } from '../html/html.serializer';
@@ -12,16 +12,20 @@ import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 
-// babel polyfill =)
+const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 
+// babel polyfill =)
 if(!window.Babel) {
     window.Babel = {
-        transform : code => ({
-            code : code.replace('export default ', 'exports.default = ')
-        })
+        transform : code => {
+            if(EXPORT_DEFAULT_RE.test(code)) {
+                code = code.replace(EXPORT_DEFAULT_RE, 'exports.default = ');
+            }
+            else code = 'exports.default = ' + code;
+            return { code };
+        }
     }
 }
-
 const babelOptions = {
     presets : ['es2015'],
     plugins : ['transform-es2015-modules-commonjs']
@@ -38,26 +42,38 @@ const jsInput = div({ className : 'jsinput' });
 
 const domOutput = output({ className : 'domoutput' });
 
-const htmlOutput = div({ className : 'htmloutput' });
+const htmlOutput = div({ className : 'htmloutput', hidden : false });
 
 const serializer = new HTMLSerializer;
 
 const globalbox = input({
     type : 'checkbox',
+    checked : true,
     onchange : () => evaluate()
 });
 
+const modebox = input({
+    type : 'checkbox',
+    checked : true,
+    onchange : () => {
+        htmlOutput.hidden = !modebox.checked;
+    }
+});
+
 document.body.append(
-    header(h3('HTMLDOM REPL')),
-    p(label([globalbox, ' import all'])),
+    header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
     main({
         className : 'app',
         children : [
             panel([
+                p(label([globalbox, ' define globally'])),
                 jsInput
             ]),
-            panel(domOutput),
-            panel(htmlOutput)
+            panel([
+                p(label([modebox, ' view ', abbr('HTML')])),
+                domOutput,
+                htmlOutput
+            ])
         ]
     }));
 
@@ -94,14 +110,15 @@ function evaluate() {
                 [imports, es5.code].join(';') :
                 es5.code;
             const fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
-            console.log(fn);
             const exports = {
                 default : () => {
                     throw Error('Module is not Exported!');
                 }
             };
             fn(exports, HTMLDOM);
-            const node = exports.default(HTMLDOM);
+            const node = typeof exports.default === 'function'?
+                exports.default(HTMLDOM) :
+                exports.default;
 
             domOutput.textContent = '';
             domOutput.append(node);
