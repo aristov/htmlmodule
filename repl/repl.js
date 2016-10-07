@@ -1,7 +1,10 @@
 import '../shim/shim';
 
 import * as HTMLDOM from '../htmldom/htmldom';
-import { option, select, output, main, div, header, h3, p, label, input, abbr } from '../htmldom/htmldom';
+import {
+    button, option, select, output, main,
+    div, header, h3, p, label, input, abbr, form
+} from '../htmldom/htmldom';
 
 import value from 'raw!./repl.value.rawjs';
 import { HTMLSerializer } from '../html/html.serializer';
@@ -65,21 +68,45 @@ const modebox = input({
     }
 });
 
+
+let selectedOption = option({
+    value,
+    selected : true,
+    textContent : 'example with globals'
+});
+
 const options = [
-    option({ textContent : 'example with globals', value }),
+    option({ value : '', children : '—' }),
+    selectedOption,
     test.map(fn => {
-        const value = fn.toString();
-        const textContent = value.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
-        return option({ textContent, value : jsb(value) });
+        const src = fn.toString();
+        const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
+        const elements = textContent.split(', ');
+        const id = elements.join('+');
+        return option({ id, textContent, value : jsb(src) });
     })
 ];
 
+function updateTest() {
+    globalbox.checked = suitebox.value === value;
+    jsEditor.setValue(suitebox.value);
+    location.hash = suitebox.selectedOptions[0].id;
+}
+
 const suitebox = select({
     children : options,
-    onchange : () => {
-        globalbox.checked = suitebox.value === value;
-        jsEditor.setValue(suitebox.value);
-    }
+    onchange : updateTest
+});
+
+const clear = () => {
+    jsEditor.setValue('');
+    location.hash = '';
+};
+
+const clearbox = button({
+    type : 'reset',
+    onclick : clear,
+    children : 'clear'
 });
 
 document.body.append(
@@ -88,10 +115,14 @@ document.body.append(
         className : 'repl',
         children : [
             panel([
-                p([
-                    label([globalbox, ' define globally']),
-                    label(suitebox)
-                ]),
+                form({
+                    className : 'settings',
+                    children : p([
+                        label([globalbox, ' define globally']),
+                        label(suitebox),
+                        label(clearbox)
+                    ])
+                }),
                 jsInput
             ]),
             panel([
@@ -121,6 +152,16 @@ const htmlEditor = new CodeMirror(htmlOutput, {
     theme: 'night',
     readOnly: true
 });
+
+const hash = location.hash.replace('#', '');
+
+if(hash) {
+    const option = document.getElementById(hash);
+    if('selected' in option) {
+        option.selected = true;
+        updateTest();
+    }
+}
 
 evaluate();
 
@@ -156,7 +197,10 @@ function evaluate() {
             htmlEditor.setValue('');
 
         }
-    } else domOutput.textContent = '';
+    } else {
+        domOutput.textContent = '';
+        htmlEditor.setValue('');
+    }
 }
 
 

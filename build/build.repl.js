@@ -127,23 +127,48 @@
 	    }
 	});
 
-	const options = [(0, _htmldom.option)({ textContent: 'example with globals', value: _replValue2.default }), _htmldomTest.test.map(fn => {
-	    const value = fn.toString();
-	    const textContent = value.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
-	    return (0, _htmldom.option)({ textContent, value: (0, _jsb2.default)(value) });
+	let selectedOption = (0, _htmldom.option)({
+	    value: _replValue2.default,
+	    selected: true,
+	    textContent: 'example with globals'
+	});
+
+	const options = [(0, _htmldom.option)({ value: '', children: '—' }), selectedOption, _htmldomTest.test.map(fn => {
+	    const src = fn.toString();
+	    const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
+	    const elements = textContent.split(', ');
+	    const id = elements.join('+');
+	    return (0, _htmldom.option)({ id, textContent, value: (0, _jsb2.default)(src) });
 	})];
+
+	function updateTest() {
+	    globalbox.checked = suitebox.value === _replValue2.default;
+	    jsEditor.setValue(suitebox.value);
+	    location.hash = suitebox.selectedOptions[0].id;
+	}
 
 	const suitebox = (0, _htmldom.select)({
 	    children: options,
-	    onchange: () => {
-	        globalbox.checked = suitebox.value === _replValue2.default;
-	        jsEditor.setValue(suitebox.value);
-	    }
+	    onchange: updateTest
+	});
+
+	const clear = () => {
+	    jsEditor.setValue('');
+	    location.hash = '';
+	};
+
+	const clearbox = (0, _htmldom.button)({
+	    type: 'reset',
+	    onclick: clear,
+	    children: 'clear'
 	});
 
 	document.body.append((0, _htmldom.header)((0, _htmldom.h3)([(0, _htmldom.abbr)('HTMLDOM'), ' ', (0, _htmldom.abbr)('REPL')])), (0, _htmldom.main)({
 	    className: 'repl',
-	    children: [panel([(0, _htmldom.p)([(0, _htmldom.label)([globalbox, ' define globally']), (0, _htmldom.label)(suitebox)]), jsInput]), panel([(0, _htmldom.p)((0, _htmldom.label)([modebox, ' view ', (0, _htmldom.abbr)('HTML')])), domOutput, htmlOutput])]
+	    children: [panel([(0, _htmldom.form)({
+	        className: 'settings',
+	        children: (0, _htmldom.p)([(0, _htmldom.label)([globalbox, ' define globally']), (0, _htmldom.label)(suitebox), (0, _htmldom.label)(clearbox)])
+	    }), jsInput]), panel([(0, _htmldom.p)((0, _htmldom.label)([modebox, ' view ', (0, _htmldom.abbr)('HTML')])), domOutput, htmlOutput])]
 	}));
 
 	const jsEditor = new _codemirror2.default(jsInput, {
@@ -165,6 +190,16 @@
 	    theme: 'night',
 	    readOnly: true
 	});
+
+	const hash = location.hash.replace('#', '');
+
+	if (hash) {
+	    const option = document.getElementById(hash);
+	    if ('selected' in option) {
+	        option.selected = true;
+	        updateTest();
+	    }
+	}
 
 	evaluate();
 
@@ -194,7 +229,10 @@
 	            domOutput.textContent = error;
 	            htmlEditor.setValue('');
 	        }
-	    } else domOutput.textContent = '';
+	    } else {
+	        domOutput.textContent = '';
+	        htmlEditor.setValue('');
+	    }
 	}
 
 	/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';

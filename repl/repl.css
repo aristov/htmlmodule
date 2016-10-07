@@ -17,7 +17,7 @@ div.panel
     width: 50%;
     margin: 5px;
 }
-div.panel > p > label
+div.panel form.settings label
 {
     margin-right: 20px;
 }
