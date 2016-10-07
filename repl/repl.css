@@ -3,31 +3,33 @@ main
     display : flex;
     justify-content : space-around;
 }
-.panel
+main > div
 {
     width: 33%;
 }
-.codeinput
+textarea
 {
     width : 100%;
     height : 500px;
     font : 13px monospace;
     box-sizing: border-box;
 }
-.domoutput
+output
 {
+    display: block;
     height: 500px;
     border: 1px solid black;
     box-sizing: border-box;
     padding: 10px;
 }
-.codeoutput
+pre
 {
+    font-size: 14px;
     height: 500px;
     box-sizing: border-box;
     margin: 0;
 }
-main.invalid .domoutput
+main.invalid pre
 {
     color: red;
 }
