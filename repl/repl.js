@@ -1,22 +1,20 @@
 import '../shim/shim';
 
-import { output, main, div, pre, code } from '../htmldom/htmldom';
 import * as HTMLDOM from '../htmldom/htmldom';
-
-import hljs from 'highlight.js/';
-import 'highlight.js/styles/agate.css';
+import { output, main, div } from '../htmldom/htmldom';
 
 import value from 'raw!./repl.value.rawjs';
 import { HTMLSerializer } from '../html/html.serializer';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 
-const vars = Object.keys(HTMLDOM).map(name => name + '=__ref.' + name).join(',');
+const vars = `var ${ Object.keys(HTMLDOM).map(name => name + '=__ref.' + name).join(',') };`;
 
-const fnbody = value => `var ${vars};${value};return dom`;
+const fnbody = code => vars + code + ';return dom;';
 
 const panel = children => div({ className : 'panel', children });
 
@@ -24,43 +22,20 @@ const jsInput = div({ className : 'jsinput' });
 
 const domOutput = output({ className : 'domoutput' });
 
-const htmlOutput = pre({ className : 'htmloutput html', children : code() });
+const htmlOutput = div({ className : 'htmloutput' });
 
-const repl = main({
+const serializer = new HTMLSerializer;
+
+document.body.append(main({
     className : 'app',
     children : [
         panel(jsInput),
         panel(domOutput),
         panel(htmlOutput)
     ]
-});
+}));
 
-const serializer = new HTMLSerializer;
-
-function evaluate(value) {
-    value = String(value).trim();
-    repl.classList.remove('invalid');
-    if(value) {
-        try {
-            const fn = new Function('__ref', fnbody(value));
-            domOutput.textContent = '';
-            const dom = fn(HTMLDOM, domOutput);
-            domOutput.append(dom);
-
-            const htmlcode = code(serializer.serializeToString(domOutput.firstChild));
-            htmlOutput.firstChild.replaceWith(htmlcode);
-            hljs.highlightBlock(htmlOutput);
-        } catch(error) {
-            domOutput.textContent = error;
-            htmlOutput.textContent = 'Error!';
-            repl.classList.add('invalid');
-        }
-    } else domOutput.textContent = '';
-}
-
-document.body.append(repl);
-
-const editor = new CodeMirror(jsInput, {
+const jsEditor = new CodeMirror(jsInput, {
     value,
     mode: 'javascript',
     theme: 'night',
@@ -74,5 +49,32 @@ const editor = new CodeMirror(jsInput, {
     smartIndent: true
 });
 
-editor.on('change', () => evaluate(editor.getValue()));
-evaluate(editor.getValue());
+const htmlEditor = new CodeMirror(htmlOutput, {
+    mode: 'htmlmixed',
+    theme: 'night',
+    readOnly: true
+});
+
+evaluate();
+
+jsEditor.on('change', () => evaluate());
+
+function evaluate() {
+    const code = jsEditor.getValue().trim();
+    if(code) {
+        try {
+            const fn = new Function('__ref', fnbody(code));
+            const dom = fn(HTMLDOM, domOutput);
+
+            domOutput.textContent = '';
+            domOutput.append(dom);
+
+            const htmlcode = serializer.serializeToString(domOutput.firstChild);
+            htmlEditor.setValue(htmlcode);
+        }
+        catch(error) {
+            domOutput.textContent = error;
+            htmlEditor.setValue('');
+        }
+    } else domOutput.textContent = '';
+}

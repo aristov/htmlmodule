@@ -7,7 +7,7 @@ div.panel
 {
     width: 33%;
 }
-.jsinput .CodeMirror
+main .CodeMirror
 {
     height : 500px;
     font-size: 14px;
@@ -19,13 +19,6 @@ output.domoutput
     border: 1px solid black;
     box-sizing: border-box;
     padding: 10px;
-}
-pre.htmloutput
-{
-    height: 500px;
-    font-size: 14px;
-    box-sizing: border-box;
-    margin: 0;
 }
 main.invalid pre.htmloutput
 {
