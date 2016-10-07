@@ -1,7 +1,7 @@
 import '../shim/shim';
 
 import * as HTMLDOM from '../htmldom/htmldom';
-import { output, main, div, label, input, script } from '../htmldom/htmldom';
+import { output, main, div, header, h3, p, label, input } from '../htmldom/htmldom';
 
 import value from 'raw!./repl.value.rawjs';
 import { HTMLSerializer } from '../html/html.serializer';
@@ -27,26 +27,10 @@ const babelOptions = {
     plugins : ['transform-es2015-modules-commonjs']
 };
 
-/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
-
-let babelscript;
-
-const babelbox = input({
-    type : 'checkbox',
-    onchange : event => {
-        if(!babelscript) babelLoad();
-    }
-});
-
-function babelLoad() {
-    if(window.Babel) delete window.Babel;
-    document.body.append(babelscript = script({ src : BABEL_URL }));
-}*/
-
 const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
 const snippet = Object.keys(HTMLDOM).map(name => name + `=${HTMLDOM_VARIABLE_NAME}.` + name).join(',');
-const vars = ['var ' + snippet, ''].join(';');
+const imports = ['var ' + snippet, ''].join(';');
 
 const panel = children => div({ className : 'panel', children });
 
@@ -58,17 +42,24 @@ const htmlOutput = div({ className : 'htmloutput' });
 
 const serializer = new HTMLSerializer;
 
-document.body.append(main({
-    className : 'app',
-    children : [
-        panel([
-            // label([babelbox, ' use Babel']),
-            jsInput
-        ]),
-        panel(domOutput),
-        panel(htmlOutput)
-    ]
-}));
+const globalbox = input({
+    type : 'checkbox',
+    onchange : () => evaluate()
+});
+
+document.body.append(
+    header(h3('HTMLDOM REPL')),
+    p(label([globalbox, ' import all'])),
+    main({
+        className : 'app',
+        children : [
+            panel([
+                jsInput
+            ]),
+            panel(domOutput),
+            panel(htmlOutput)
+        ]
+    }));
 
 const jsEditor = new CodeMirror(jsInput, {
     value,
@@ -99,13 +90,17 @@ function evaluate() {
     if(code) {
         try {
             const es5 = Babel.transform(code, babelOptions);
-            const userCode = new Function('exports,module', es5.code);
+            const src = globalbox.checked?
+                [imports, es5.code].join(';') :
+                es5.code;
+            const fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
+            console.log(fn);
             const exports = {
                 default : () => {
                     throw Error('Module is not Exported!');
                 }
             };
-            userCode(exports, { exports });
+            fn(exports, HTMLDOM);
             const node = exports.default(HTMLDOM);
 
             domOutput.textContent = '';
@@ -121,3 +116,23 @@ function evaluate() {
         }
     } else domOutput.textContent = '';
 }
+
+
+/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+
+let babelscript;
+
+// label([babelbox, ' use Babel']),
+
+const babelbox = input({
+    type : 'checkbox',
+    onchange : event => {
+        if(!babelscript) babelLoad();
+    }
+});
+
+function babelLoad() {
+    if(window.Babel) delete window.Babel;
+    document.body.append(babelscript = script({ src : BABEL_URL }));
+}*/
+

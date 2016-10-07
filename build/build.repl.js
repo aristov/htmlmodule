@@ -91,28 +91,12 @@
 	    plugins: ['transform-es2015-modules-commonjs']
 	};
 
-	/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
-
-	let babelscript;
-
-	const babelbox = input({
-	    type : 'checkbox',
-	    onchange : event => {
-	        if(!babelscript) babelLoad();
-	    }
-	});
-
-	function babelLoad() {
-	    if(window.Babel) delete window.Babel;
-	    document.body.append(babelscript = script({ src : BABEL_URL }));
-	}*/
-
 	var HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
 	var snippet = Object.keys(HTMLDOM).map(function (name) {
 	    return name + ('=' + HTMLDOM_VARIABLE_NAME + '.') + name;
 	}).join(',');
-	var vars = ['var ' + snippet, ''].join(';');
+	var imports = ['var ' + snippet, ''].join(';');
 
 	var panel = function panel(children) {
 	    return (0, _htmldom.div)({ className: 'panel', children: children });
@@ -126,11 +110,16 @@
 
 	var serializer = new _html.HTMLSerializer();
 
-	document.body.append((0, _htmldom.main)({
+	var globalbox = (0, _htmldom.input)({
+	    type: 'checkbox',
+	    onchange: function onchange() {
+	        return evaluate();
+	    }
+	});
+
+	document.body.append((0, _htmldom.header)((0, _htmldom.h3)('HTMLDOM REPL')), (0, _htmldom.p)((0, _htmldom.label)([globalbox, ' import all'])), (0, _htmldom.main)({
 	    className: 'app',
-	    children: [panel([
-	    // label([babelbox, ' use Babel']),
-	    jsInput]), panel(domOutput), panel(htmlOutput)]
+	    children: [panel([jsInput]), panel(domOutput), panel(htmlOutput)]
 	}));
 
 	var jsEditor = new _codemirror2.default(jsInput, {
@@ -164,13 +153,15 @@
 	    if (code) {
 	        try {
 	            var es5 = Babel.transform(code, babelOptions);
-	            var userCode = new Function('exports,module', es5.code);
+	            var src = globalbox.checked ? [imports, es5.code].join(';') : es5.code;
+	            var fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
+	            console.log(fn);
 	            var exports = {
 	                default: function _default() {
 	                    throw Error('Module is not Exported!');
 	                }
 	            };
-	            userCode(exports, { exports: exports });
+	            fn(exports, HTMLDOM);
 	            var node = exports.default(HTMLDOM);
 
 	            domOutput.textContent = '';
@@ -184,6 +175,24 @@
 	        }
 	    } else domOutput.textContent = '';
 	}
+
+	/*const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+
+	let babelscript;
+
+	// label([babelbox, ' use Babel']),
+
+	const babelbox = input({
+	    type : 'checkbox',
+	    onchange : event => {
+	        if(!babelscript) babelLoad();
+	    }
+	});
+
+	function babelLoad() {
+	    if(window.Babel) delete window.Babel;
+	    document.body.append(babelscript = script({ src : BABEL_URL }));
+	}*/
 
 /***/ },
 /* 1 */
