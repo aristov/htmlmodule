@@ -121,13 +121,13 @@
 	const XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 	/**
-	 * - Assembler for DOM `Element`
+	 * - Assembler for the DOM `Element`
 	 * - `Document.createElementNS` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `Element` initialization
 	 */
 	class DOMAssembler {
 	    /**
-	     * Assign given element to assembler instance
+	     * Assign the given element to assembler instance
 	     * @param {Element} element node to assign
 	     */
 	    set element(element) {
@@ -394,8 +394,27 @@
 
 	const base = exports.base = init => assembler.createElement('base', init);
 
+	/**
+	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
+	 * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
+	 *
+	 * @param {String} init.dir — special semantics
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {*} init object
+	 * @interface HTMLElement bdi
+	 */
 	const bdi = exports.bdi = init => assembler.createElement('bdi', init);
 
+	/**
+	 * [The `bdo` element](https://html.spec.whatwg.org/#the-bdo-element)
+	 * represents explicit text directionality formatting control for its children.
+	 * It allows authors to override the Unicode bidirectional algorithm by explicitly specifying a direction override.
+	 *
+	 * @param {String} init.dir — special semantics: `rtl` or `ltr` values allowed only
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {*} init object
+	 * @interface HTMLElement bdo
+	 */
 	const bdo = exports.bdo = init => assembler.createElement('bdo', init);
 
 	const blockquote = exports.blockquote = init => assembler.createElement('blockquote', init);

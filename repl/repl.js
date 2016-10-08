@@ -173,6 +173,7 @@ const jsEditor = new CodeMirror(jsInput, {
     smartIndent: true
 });
 
+// use mutation observer to init after append
 const htmlEditor = new CodeMirror(htmlOutput, {
     mode: 'htmlmixed',
     theme: 'night',
@@ -183,7 +184,7 @@ const hash = location.hash.replace('#', '');
 
 if(hash) {
     const option = document.getElementById(hash);
-    if('selected' in option) {
+    if(option && 'selected' in option) {
         option.selected = true;
         option.setAttribute('selected', '');
         updateTest();
@@ -209,11 +210,11 @@ function evaluate() {
                 }
             };
             fn(exports, HTMLDOM);
+
+            domOutput.textContent = '';
             const node = typeof exports.default === 'function'?
                 exports.default(HTMLDOM) :
                 exports.default;
-
-            domOutput.textContent = '';
             domOutput.append(node);
 
             const htmlcode = serializer.serializeToString(node);

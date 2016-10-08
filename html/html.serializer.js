@@ -4,6 +4,7 @@ const assign = Object.assign;
 const noEndTagList = 'area base br embed hr img input keygen link meta param source track wbr';
 const noEndTagSet = noEndTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
 
+// todo refactoring => DOMSerializer
 export class HTMLSerializer {
     constructor(options = {
         indent : '    ',
@@ -26,7 +27,7 @@ export class HTMLSerializer {
             }
             result += '>';
             const hasEndTag = !noEndTagSet[tagName];
-            if(childNodes && childNodes.length && hasEndTag) {
+            if(hasEndTag && childNodes && childNodes.length) {
                 this.level++;
                 const children = map.call(childNodes, this.serializeToString, this);
                 this.level--;

@@ -362,8 +362,27 @@
 
 	const base = exports.base = init => assembler.createElement('base', init);
 
+	/**
+	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
+	 * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
+	 *
+	 * @param {String} init.dir — special semantics
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {*} init object
+	 * @interface HTMLElement bdi
+	 */
 	const bdi = exports.bdi = init => assembler.createElement('bdi', init);
 
+	/**
+	 * [The `bdo` element](https://html.spec.whatwg.org/#the-bdo-element)
+	 * represents explicit text directionality formatting control for its children.
+	 * It allows authors to override the Unicode bidirectional algorithm by explicitly specifying a direction override.
+	 *
+	 * @param {String} init.dir — special semantics: `rtl` or `ltr` values allowed only
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {*} init object
+	 * @interface HTMLElement bdo
+	 */
 	const bdo = exports.bdo = init => assembler.createElement('bdo', init);
 
 	const blockquote = exports.blockquote = init => assembler.createElement('blockquote', init);

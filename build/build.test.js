@@ -444,8 +444,27 @@
 
 	const base = exports.base = init => assembler.createElement('base', init);
 
+	/**
+	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
+	 * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
+	 *
+	 * @param {String} init.dir — special semantics
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {*} init object
+	 * @interface HTMLElement bdi
+	 */
 	const bdi = exports.bdi = init => assembler.createElement('bdi', init);
 
+	/**
+	 * [The `bdo` element](https://html.spec.whatwg.org/#the-bdo-element)
+	 * represents explicit text directionality formatting control for its children.
+	 * It allows authors to override the Unicode bidirectional algorithm by explicitly specifying a direction override.
+	 *
+	 * @param {String} init.dir — special semantics: `rtl` or `ltr` values allowed only
+	 * @param init.global{} — global `NodeInit` attributes
+	 * @param {*} init object
+	 * @interface HTMLElement bdo
+	 */
 	const bdo = exports.bdo = init => assembler.createElement('bdo', init);
 
 	const blockquote = exports.blockquote = init => assembler.createElement('blockquote', init);
@@ -10407,7 +10426,17 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
+	const test = exports.test = [({ div, ul, li, bdi }) => div({
+	    children: ul([li(['User ', bdi('jcranmer'), ': 12 posts.']), li(['User ', bdi('hober'), ': 5 posts.']), li(['User ', bdi('إيان'), ': 3 posts.'])])
+	}), ({ div, bdo }) => {
+	    const children = 'АРОЗАУПАЛА';
+	    return div({
+	        children: [children, 'Н', bdo({
+	            dir: 'rtl',
+	            children
+	        })]
+	    });
+	}, ({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
 	    title: 'Media',
 	    children: [h4('Image media'), img({
 	        src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
@@ -10445,18 +10474,20 @@
 	}), input({
 	    style: { marginRight: '10px' },
 	    placeholder: 'text input char counter',
-	    oninput: ({ target }) => target.nextElementSibling.value = target.value.length
-	}), output({ value: '0' })]), ({ footer, address, small }) => footer([address('vv.aristov@gmail.com'), small('@ All rights free')]), ({ main, sup, sub, i, strong }) => main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]), ({ abbr }) => abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL'), ({ article, h2, address }) => article({
+	    oninput: ({ target }) => {
+	        target.nextElementSibling.value = target.value.length;
+	    }
+	}), output({ value: '0' })]), ({ footer, address, small }) => footer([address('vv.aristov@gmail.com'), small('@ All rights free')]), ({ main, sup, sub, i, strong }) => main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]), ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([dt('abbreviations'), dd(abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL')), dt('edits'), dd([ins('inserted'), ' and ', del('deleted'), ' text']), dt('reywords'), dd(b('var, function, export, const')), dt('other'), dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])]), ({ aside }) => aside('Your advert may be here!'), ({ article, h2, address }) => article({
 	    className: 'vcard',
 	    children: [h2({ className: 'fn', textContent: 'Vyacheslav Aristov' }), address({ className: 'email', textContent: 'vv.aristov@gmail.com' })]
-	}), ({ aside }) => aside('Your advert may be here!'), ({ b }) => b('var, function, export, const'), ({ style }) => style({
+	}), ({ style }) => style({
 	    id: 'greenstyle',
 	    textContent: '#greenstyle { display: inline-block; color: green; font-family: monospace }'
 	}), ({ script }) => script('Object.assign(' + 'document.currentScript.style, ' + '{ display: "block", color: "blue", fontFamily : "monospace" ' + '})'), ({ pre }) => pre(`preformatted text
 	line break 
 	    — yet another line break with tab
 	  
-	  <>&`), ({ ins }) => ins('The ins element'), ({ blockquote }) => blockquote({
+	  <>&`), ({ blockquote }) => blockquote({
 	    cite: 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',
 	    textContent: 'The blockquote element represents a section that is quoted from another source.'
 	}), ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'), ({ div }) => div(['div — like span has no semantics, but', div('div has default `display: block` style')]), ({ p, br }) => p(['b', br(), 'r']), ({ p, hr }) => p(['Lorem ipsum dolor sit amet, consectetur adipiscing elit,', hr(), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']), ({ button }) => button('Push my button'), ({ form, label, input, textarea, span }) => form({
@@ -10514,7 +10545,7 @@
 	    })
 	},*/
 
-	({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', em('Emphasize!'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', del('Don\'t stroke me!'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
+	({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
 	    title: 'Ruby annotations',
 	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
 	}), ({ article, ul, li, ol, dl, dt, dd }) => article({
