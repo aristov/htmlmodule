@@ -40,6 +40,7 @@ describe('Node init', function() {
     });
 });
 
+const XML_NS_ATTR = `xmlns="${ XML_NS_URI }"`;
 const assembler = new DOMAssembler;
 
 describe('DOM assembler', function() {

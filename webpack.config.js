@@ -8,9 +8,9 @@ if(env.SUPER_MODE) Object.assign(env, { ES6_MODE : true, WATCH_MODE : true });
 
 module.exports = {
     entry : {
-        spec : './spec/spec',
+        spec : ['./spec/spec'],
         test : './test/test',
-        dist : './dist/dist',
+        dist : ['./dist/dist'],
         repl : './repl/repl'
     },
     output : {

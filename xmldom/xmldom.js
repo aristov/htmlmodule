@@ -1,10 +1,10 @@
 import { DOMAssembler } from '../dom/dom';
 
-const assembler = DOMAssembler();
+const { document } = window;
 
-const xmldom = (tagName, init) => assembler.createElement(tagName, init);
+const assembler = new DOMAssembler;
 
-export default xmldom;
+export const xmldom = (tagName, init) => assembler.createElement(tagName, init);
 
 export const element = init => xmldom('element', init);
 

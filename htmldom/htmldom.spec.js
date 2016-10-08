@@ -1,4 +1,3 @@
-import chai from 'chai';
 import {
     fieldset, legend, input,
     header, nav, a, form, button,
@@ -7,6 +6,8 @@ import {
     main, section, details, summary,
     dfn, sup, sub, i, strong, p, variable
 } from './htmldom.js';
+
+import chai from 'chai';
 
 const { assert } = chai;
 
