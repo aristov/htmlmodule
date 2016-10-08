@@ -10589,7 +10589,7 @@
 	            tagName = tagName.toLowerCase();
 	            result += '<' + tagName;
 	            if (attributes && attributes.length) {
-	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value }"`);
+	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
 	                result += attrset.join('');
 	            }
 	            result += '>';
@@ -13896,15 +13896,19 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ img }) => img({
-	    src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
-	    alt: 'Crazy PiPi!'
-	}), ({ audio }) => audio({
-	    controls: true,
-	    src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
-	}), ({ video }) => video({
-	    controls: true,
-	    src: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
+	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
+	    title: 'Media',
+	    children: [h4('Image media'), img({
+	        src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
+	        alt: 'Crazy PiPi!'
+	    }), h4('Audio media'), audio({
+	        controls: true,
+	        src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
+	    }), h4('Video media'), video({
+	        controls: true,
+	        width: '200',
+	        src: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
+	    })]
 	}), ({ header, nav, a, ul, li }) => header(nav(ul([li(a({
 	    href: '/home.html',
 	    textContent: 'Go home'
@@ -13977,7 +13981,19 @@
 	    open: true,
 	    style: { position: 'relative', display: 'block' },
 	    textContent: 'Hello world!'
-	}), ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', em('Emphasize!'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', del('Don\'t stroke me!'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
+	}), ({ iframe, dialog, p, button, script }) => {
+	    const onclick = 'event.target.parentElement.close()';
+	    const srcdom = dialog([p('Close dialog?'), button({
+	        attrset: { onclick },
+	        children: 'Ok'
+	    }), ' ', button('Cancel'), script('document.currentScript.parentElement.showModal()')]);
+	    return iframe({
+	        width: '100%',
+	        height: '50%',
+	        style: { boxSizing: 'border-box' },
+	        srcdoc: srcdom.outerHTML
+	    });
+	}, ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', em('Emphasize!'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', del('Don\'t stroke me!'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
 	    title: 'Ruby annotations',
 	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
 	}), ({ article, ul, li, ol, dl, dt, dd }) => article({

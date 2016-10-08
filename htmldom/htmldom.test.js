@@ -7,22 +7,27 @@ export const test = [
             input({ type : 'password', placeholder : 'password' })
         ]),
 
-    ({ img }) =>
-        img({
-            src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
-            alt : 'Crazy PiPi!'
-        }),
-
-    ({ audio }) =>
-        audio({
-            controls : true,
-            src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
-        }),
-
-    ({ video }) =>
-        video({
-            controls : true,
-            src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
+    ({ article, h4, img, audio, video }) =>
+        article({
+            title : 'Media',
+            children : [
+                h4('Image media'),
+                img({
+                    src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
+                    alt : 'Crazy PiPi!'
+                }),
+                h4('Audio media'),
+                audio({
+                    controls : true,
+                    src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
+                }),
+                h4('Video media'),
+                video({
+                    controls : true,
+                    width : '200',
+                    src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
+                })
+            ]
         }),
 
     ({ header, nav, a, ul, li }) =>
@@ -251,6 +256,26 @@ line break
             style : { position : 'relative', display: 'block' },
             textContent : 'Hello world!'
         }),
+
+    ({ iframe, dialog, p, button, script }) => {
+        const onclick = 'event.target.parentElement.close()';
+        const srcdom = dialog([
+            p('Close dialog?'),
+            button({
+                attrset : { onclick },
+                children : 'Ok'
+            }),
+            ' ',
+            button('Cancel'),
+            script('document.currentScript.parentElement.showModal()')
+        ]);
+        return iframe({
+            width: '100%',
+            height: '50%',
+            style : { boxSizing : 'border-box' },
+            srcdoc : srcdom.outerHTML
+        })
+    },
 
     ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>
         table([

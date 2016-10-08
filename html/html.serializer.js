@@ -20,7 +20,8 @@ export class HTMLSerializer {
             tagName = tagName.toLowerCase();
             result += '<' + tagName;
             if(attributes && attributes.length) {
-                const attrset = map.call(attributes, ({ name, value }) => ` ${name}="${value}"`);
+                const attrset = map.call(attributes,
+                    ({ name, value }) => ` ${name}="${value.replace(/\"/g, '&quot;')}"`);
                 result += attrset.join('');
             }
             result += '>';
