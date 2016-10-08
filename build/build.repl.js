@@ -80,16 +80,20 @@
 
 	var _exportdefault2 = _interopRequireDefault(_exportdefault);
 
+	__webpack_require__(507);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 
 	// DOM module
 	// DOM serializer
 	// DOM assembler
 
 	// HTMLDOM
-	const EXPORT_DEFAULT_RE = /export\s+default\s+/;
+
 
 	const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
 
@@ -155,7 +159,7 @@
 
 	function updateTest() {
 	    globalbox.checked = testselectbox.value === _globals2.default;
-	    jsEditor.setValue(testselectbox.value);
+	    jsEditor.setValue(testselectbox.value + '\n');
 	    location.hash = testselectbox.selectedOptions[0].id;
 	}
 
@@ -197,7 +201,10 @@
 
 	document.body.append((0, _htmldom.header)((0, _htmldom.h3)([(0, _htmldom.abbr)('HTMLDOM'), ' ', (0, _htmldom.abbr)('REPL')])), (0, _htmldom.main)({
 	    className: 'repl',
-	    children: [panel([settingsform, jsInput]), panel([(0, _htmldom.p)((0, _htmldom.label)([modebox, ' show ', (0, _htmldom.abbr)('HTML')])), domOutput, htmlOutput])]
+	    children: [panel([settingsform, jsInput]), panel([(0, _htmldom.form)({
+	        className: 'settings',
+	        children: (0, _htmldom.p)((0, _htmldom.label)([modebox, ' show ', (0, _htmldom.abbr)('HTML')]))
+	    }), domOutput, htmlOutput])]
 	}));
 
 	const jsEditor = new _codemirror2.default(jsInput, {
@@ -205,7 +212,7 @@
 	    mode: 'javascript',
 	    theme: 'night',
 	    indentUnit: 4,
-	    tabSize: 4,
+	    tabSize: 2,
 	    indentWithTabs: true,
 	    electricChars: true,
 	    styleActiveLine: true,
@@ -16144,6 +16151,46 @@
 /***/ function(module, exports) {
 
 	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
+
+/***/ },
+/* 507 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(508);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(319)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./repl.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./repl.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 508 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(318)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "[hidden]\n{\n    display: none !important;\n}\nbody\n{\n    /*background: #000;*/\n    padding: 0 10px;\n}\nmain.repl\n{\n    display : flex;\n    justify-content : space-around;\n}\ndiv.panel\n{\n    width: 50%;\n    margin: 5px;\n}\ndiv.panel form label\n{\n    margin-right: 20px;\n    user-select: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n}\nmain .CodeMirror\n{\n    font-size: 14px;\n}\nmain .jsinput .CodeMirror\n{\n    height: 600px;\n}\nmain .htmloutput\n{\n    position: relative;\n    margin-top: -300px;\n}\nmain .htmloutput .CodeMirror\n{\n    height : 300px;\n}\noutput.domoutput\n{\n    height: 600px;\n    overflow: auto;\n    display: block;\n    border: 1px solid black;\n    box-sizing: border-box;\n    padding: 10px;\n    background: #fff;\n}\nmain.invalid pre.htmloutput\n{\n    color: red;\n}\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

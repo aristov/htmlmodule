@@ -2,6 +2,7 @@
 
 const path = require('path');
 const env = process.env;
+const autoprefixer = require('autoprefixer');
 
 if(env.SUPER_MODE) Object.assign(env, { ES6_MODE : true, WATCH_MODE : true });
 
@@ -40,5 +41,6 @@ module.exports = {
         github: true,
         format: 'html'
     },
+    postcss: () => [autoprefixer],
     watch : Boolean(env.WATCH_MODE)
 };

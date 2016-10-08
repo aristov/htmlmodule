@@ -26,6 +26,8 @@ import jsb from '../jsb/jsb';
 import value from 'raw!./test/globals.rawjs';
 import exportdefault from 'raw!./test/exportdefault.rawjs';
 
+import './repl.css';
+
 const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 
 const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
@@ -100,7 +102,7 @@ const options = [
 
 function updateTest() {
     globalbox.checked = testselectbox.value === value;
-    jsEditor.setValue(testselectbox.value);
+    jsEditor.setValue(testselectbox.value + '\n');
     location.hash = testselectbox.selectedOptions[0].id;
 }
 
@@ -154,7 +156,10 @@ document.body.append(
                 jsInput
             ]),
             panel([
-                p(label([modebox, ' show ', abbr('HTML')])),
+                form({
+                    className : 'settings',
+                    children : p(label([modebox, ' show ', abbr('HTML')]))
+                }),
                 domOutput,
                 htmlOutput
             ])
@@ -166,7 +171,7 @@ const jsEditor = new CodeMirror(jsInput, {
     mode: 'javascript',
     theme: 'night',
     indentUnit: 4,
-    tabSize: 4,
+    tabSize: 2,
     indentWithTabs: true,
     electricChars: true,
     styleActiveLine: true,
