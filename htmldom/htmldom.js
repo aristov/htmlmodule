@@ -3,10 +3,23 @@ import { HTMLAssembler } from './../html/html.js';
 const assembler = new HTMLAssembler;
 
 /**
+ * Creates and initializes the specified element
+ *
+ * @param {String} tagName element tag name
+ * @param init.global{} — global `HTMLElement` attributes
+ * @param {*} init object
+ */
+const htmldom = (tagName, init) => assembler.createElement(tagName, init);
+
+export default htmldom;
+
+/**
  * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
  *  - If the `a` element has an `href` attribute, then it represents a hyperlink (a hypertext anchor) labeled by its contents.
  *  - If the `a` element has no `href` attribute, then the element represents a placeholder for where a link might otherwise have been placed, if it had been relevant, consisting of just the element's contents.
  *
+ * Implements `HTMLAnchorElement` interface
+ * @function a
  * @param {String} init.href — Address of the hyperlink
  * @param {String} init.target — Browsing context for hyperlink navigation
  * @param {String} init.download — Whether to download the resource instead of navigating to it, and its file name if so
@@ -15,11 +28,10 @@ const assembler = new HTMLAssembler;
  * @param {String} init.hreflang — Language of the linked resource
  * @param {String} init.type — Hint for the type of the referenced resource
  * @param {String} init.referrerpolicy — Determines the referrer policy for fetches initiated by the element
- * @param init.global{} — global `NodeInit` attributes
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLAnchorElement
  */
-export const a = init => assembler.createElement('a', init);
+export const a = init => htmldom('a', init);
 
 /**
  * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
@@ -27,29 +39,33 @@ export const a = init => assembler.createElement('a', init);
  * The `title` attribute may be used to provide an expansion of the abbreviation.
  * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
  *
+ * Uses `HTMLElement` interface
+ * @function abbr
  * @param {String} init.title — special semantics: full term or expansion of abbreviation
- * @param init.global{} — global `NodeInit` attributes
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLElement abbr
  */
-export const abbr = init => assembler.createElement('abbr', init);
+export const abbr = init => htmldom('abbr', init);
 
 /**
  * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
  * represents the contact information for its nearest `article` or `body` element ancestor.
  * If that is the `body` element, then the contact information applies to the document as a whole.
  *
- * @param init.global{} — global `NodeInit` attributes
+ * Uses `HTMLElement` interface
+ * @function address
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLElement address
  */
-export const address = init => assembler.createElement('address', init);
+export const address = init => htmldom('address', init);
 
 /**
  * [The `area` element](https://html.spec.whatwg.org/#the-area-element)
  * represents either a hyperlink with some text and a corresponding area on an image map,
  * or a dead area on an image map.
  *
+ * Implements `HTMLAreaElement` interface
+ * @function area
  * @param {String} init.alt — Replacement text for use when images are not available
  * @param {String} init.coords — Coordinates for the shape to be created in an image map
  * @param {String} init.shape — The kind of shape to be created in an image map
@@ -58,11 +74,10 @@ export const address = init => assembler.createElement('address', init);
  * @param {String} init.download — Whether to download the resource instead of navigating to it, and its file name if so
  * @param {String} init.ping — URLs to ping
  * @param {String} init.rel — Relationship between the location in the document containing the hyperlink and the destination resource
- * @param init.global{} — global `NodeInit` attributes
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLAreaElement
  */
-export const area = init => assembler.createElement('area', init);
+export const area = init => htmldom('area', init);
 
 /**
  * [The `article` element](https://html.spec.whatwg.org/#the-article-element)
@@ -71,11 +86,12 @@ export const area = init => assembler.createElement('area', init);
  * This could be a forum post, a magazine or newspaper article, a blog entry, a user-submitted comment,
  * an interactive widget or gadget, or any other independent item of content.
  *
- * @param init.global{} — global `NodeInit` attributes
+ * Uses `HTMLElement` interface
+ * @function article
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLElement article
  */
-export const article = init => assembler.createElement('article', init);
+export const article = init => htmldom('article', init);
 
 /**
  * [The `aside` element](https://html.spec.whatwg.org/#the-aside-element)
@@ -83,11 +99,12 @@ export const article = init => assembler.createElement('article', init);
  * and which could be considered separate from that content.
  * Such sections are often represented as sidebars in printed typography.
  *
- * @param init.global{} — global `NodeInit` attributes
+ * Uses HTMLElement interface
+ * @function aside
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLElement aside
  */
-export const aside = init => assembler.createElement('aside', init);
+export const aside = init => htmldom('aside', init);
 
 /**
  * [The `audio` element](https://html.spec.whatwg.org/#the-audio-element)
@@ -97,6 +114,8 @@ export const aside = init => assembler.createElement('aside', init);
  * it is intended for older Web browsers which do not support audio, so that legacy audio plugins can be tried,
  * or to show text to the users of these older browsers informing them of how to access the audio contents.
  *
+ * Uses HTMLAudioElement interface
+ * @function audio
  * @param {String} init.src — Address of the resource
  * @param {String} init.crossorigin — How the element handles crossorigin requests
  * @param {String} init.preload — Hints how much buffering the media resource will likely need
@@ -104,249 +123,250 @@ export const aside = init => assembler.createElement('aside', init);
  * @param {Boolean} init.loop — Whether to loop the media resource
  * @param {Boolean} init.muted — Whether to mute the media resource by default
  * @param {Boolean} init.controls — Show user agent controls
- * @param init.global{} — global `NodeInit` attributes
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLAudioElement
  */
-export const audio = init => assembler.createElement('audio', init);
+export const audio = init => htmldom('audio', init);
 
-export const b = init => assembler.createElement('b', init);
+export const b = init => htmldom('b', init);
 
-export const base = init => assembler.createElement('base', init);
+export const base = init => htmldom('base', init);
 
 /**
  * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
  * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
  *
+ * Uses HTMLElement interface
+ * @function bdi
  * @param {String} init.dir — special semantics
- * @param init.global{} — global `NodeInit` attributes
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLElement bdi
  */
-export const bdi = init => assembler.createElement('bdi', init);
+export const bdi = init => htmldom('bdi', init);
 
 /**
  * [The `bdo` element](https://html.spec.whatwg.org/#the-bdo-element)
  * represents explicit text directionality formatting control for its children.
  * It allows authors to override the Unicode bidirectional algorithm by explicitly specifying a direction override.
  *
+ * Uses HTMLElement interface
+ * @function bdo
  * @param {String} init.dir — special semantics: `rtl` or `ltr` values allowed only
- * @param init.global{} — global `NodeInit` attributes
+ * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
- * @interface HTMLElement bdo
  */
-export const bdo = init => assembler.createElement('bdo', init);
+export const bdo = init => htmldom('bdo', init);
 
-export const blockquote = init => assembler.createElement('blockquote', init);
+export const blockquote = init => htmldom('blockquote', init);
 
-export const body = init => assembler.createElement('body', init);
+export const body = init => htmldom('body', init);
 
-export const br = init => assembler.createElement('br', init);
+export const br = init => htmldom('br', init);
 
-export const button = init => assembler.createElement('button', init);
+export const button = init => htmldom('button', init);
 
-export const canvas = init => assembler.createElement('canvas', init);
+export const canvas = init => htmldom('canvas', init);
 
-export const caption = init => assembler.createElement('caption', init);
+export const caption = init => htmldom('caption', init);
 
-export const cite = init => assembler.createElement('cite', init);
+export const cite = init => htmldom('cite', init);
 
-export const code = init => assembler.createElement('code', init);
+export const code = init => htmldom('code', init);
 
-export const col = init => assembler.createElement('col', init);
+export const col = init => htmldom('col', init);
 
-export const colgroup = init => assembler.createElement('colgroup', init);
+export const colgroup = init => htmldom('colgroup', init);
 
-export const data = init => assembler.createElement('data', init);
+export const data = init => htmldom('data', init);
 
-export const datalist = init => assembler.createElement('datalist', init);
+export const datalist = init => htmldom('datalist', init);
 
-export const dd = init => assembler.createElement('dd', init);
+export const dd = init => htmldom('dd', init);
 
-export const del = init => assembler.createElement('del', init);
+export const del = init => htmldom('del', init);
 
-export const details = init => assembler.createElement('details', init);
+export const details = init => htmldom('details', init);
 
-export const dfn = init => assembler.createElement('dfn', init);
+export const dfn = init => htmldom('dfn', init);
 
-export const dialog = init => assembler.createElement('dialog', init);
+export const dialog = init => htmldom('dialog', init);
 
-export const div = init => assembler.createElement('div', init);
+export const div = init => htmldom('div', init);
 
-export const dl = init => assembler.createElement('dl', init);
+export const dl = init => htmldom('dl', init);
 
-export const dt = init => assembler.createElement('dt', init);
+export const dt = init => htmldom('dt', init);
 
-export const em = init => assembler.createElement('em', init);
+export const em = init => htmldom('em', init);
 
-export const embed = init => assembler.createElement('embed', init);
+export const embed = init => htmldom('embed', init);
 
-export const fieldset = init => assembler.createElement('fieldset', init);
+export const fieldset = init => htmldom('fieldset', init);
 
-export const figcaption = init => assembler.createElement('figcaption', init);
+export const figcaption = init => htmldom('figcaption', init);
 
-export const figure = init => assembler.createElement('figure', init);
+export const figure = init => htmldom('figure', init);
 
-export const footer = init => assembler.createElement('footer', init);
+export const footer = init => htmldom('footer', init);
 
-export const form = init => assembler.createElement('form', init);
+export const form = init => htmldom('form', init);
 
-export const h1 = init => assembler.createElement('h1', init);
+export const h1 = init => htmldom('h1', init);
 
-export const h2 = init => assembler.createElement('h2', init);
+export const h2 = init => htmldom('h2', init);
 
-export const h3 = init => assembler.createElement('h3', init);
+export const h3 = init => htmldom('h3', init);
 
-export const h4 = init => assembler.createElement('h4', init);
+export const h4 = init => htmldom('h4', init);
 
-export const h5 = init => assembler.createElement('h5', init);
+export const h5 = init => htmldom('h5', init);
 
-export const h6 = init => assembler.createElement('h6', init);
+export const h6 = init => htmldom('h6', init);
 
-export const head = init => assembler.createElement('head', init);
+export const head = init => htmldom('head', init);
 
-export const header = init => assembler.createElement('header', init);
+export const header = init => htmldom('header', init);
 
-export const hgroup = init => assembler.createElement('hgroup', init);
+export const hgroup = init => htmldom('hgroup', init);
 
-export const hr = init => assembler.createElement('hr', init);
+export const hr = init => htmldom('hr', init);
 
-export const html = init => assembler.createElement('html', init);
+export const html = init => htmldom('html', init);
 
-export const i = init => assembler.createElement('i', init);
+export const i = init => htmldom('i', init);
 
-export const iframe = init => assembler.createElement('iframe', init);
+export const iframe = init => htmldom('iframe', init);
 
-export const img = init => assembler.createElement('img', init);
+export const img = init => htmldom('img', init);
 
-export const input = init => assembler.createElement('input', init);
+export const input = init => htmldom('input', init);
 
-export const ins = init => assembler.createElement('ins', init);
+export const ins = init => htmldom('ins', init);
 
-export const kbd = init => assembler.createElement('kbd', init);
+export const kbd = init => htmldom('kbd', init);
 
-export const keygen = init => assembler.createElement('keygen', init);
+export const keygen = init => htmldom('keygen', init);
 
-export const label = init => assembler.createElement('label', init);
+export const label = init => htmldom('label', init);
 
-export const legend = init => assembler.createElement('legend', init);
+export const legend = init => htmldom('legend', init);
 
-export const li = init => assembler.createElement('li', init);
+export const li = init => htmldom('li', init);
 
-export const link = init => assembler.createElement('link', init);
+export const link = init => htmldom('link', init);
 
-export const main = init => assembler.createElement('main', init);
+export const main = init => htmldom('main', init);
 
-export const map = init => assembler.createElement('map', init);
+export const map = init => htmldom('map', init);
 
-export const mark = init => assembler.createElement('mark', init);
+export const mark = init => htmldom('mark', init);
 
-// todo MathAssembler
-// export const math = init => instance.createElement('math', init);
+// todo mathdom
+// export const math = init => mathdom('math', init);
 
-export const menu = init => assembler.createElement('menu', init);
+export const menu = init => htmldom('menu', init);
 
-export const menuitem = init => assembler.createElement('menuitem', init);
+export const menuitem = init => htmldom('menuitem', init);
 
-export const meta = init => assembler.createElement('meta', init);
+export const meta = init => htmldom('meta', init);
 
-export const meter = init => assembler.createElement('meter', init);
+export const meter = init => htmldom('meter', init);
 
-export const nav = init => assembler.createElement('nav', init);
+export const nav = init => htmldom('nav', init);
 
-export const noscript = init => assembler.createElement('noscript', init);
+export const noscript = init => htmldom('noscript', init);
 
-export const object = init => assembler.createElement('object', init);
+export const object = init => htmldom('object', init);
 
-export const ol = init => assembler.createElement('ol', init);
+export const ol = init => htmldom('ol', init);
 
-export const optgroup = init => assembler.createElement('optgroup', init);
+export const optgroup = init => htmldom('optgroup', init);
 
-export const option = init => assembler.createElement('option', init);
+export const option = init => htmldom('option', init);
 
-export const output = init => assembler.createElement('output', init);
+export const output = init => htmldom('output', init);
 
-export const p = init => assembler.createElement('p', init);
+export const p = init => htmldom('p', init);
 
-export const param = init => assembler.createElement('param', init);
+export const param = init => htmldom('param', init);
 
-export const picture = init => assembler.createElement('picture', init);
+export const picture = init => htmldom('picture', init);
 
-export const pre = init => assembler.createElement('pre', init);
+export const pre = init => htmldom('pre', init);
 
-export const progress = init => assembler.createElement('progress', init);
+export const progress = init => htmldom('progress', init);
 
-export const q = init => assembler.createElement('q', init);
+export const q = init => htmldom('q', init);
 
-export const rp = init => assembler.createElement('rp', init);
+export const rp = init => htmldom('rp', init);
 
-export const rt = init => assembler.createElement('rt', init);
+export const rt = init => htmldom('rt', init);
 
-export const ruby = init => assembler.createElement('ruby', init);
+export const ruby = init => htmldom('ruby', init);
 
-export const s = init => assembler.createElement('s', init);
+export const s = init => htmldom('s', init);
 
-export const samp = init => assembler.createElement('samp', init);
+export const samp = init => htmldom('samp', init);
 
-export const script = init => assembler.createElement('script', init);
+export const script = init => htmldom('script', init);
 
-export const section = init => assembler.createElement('section', init);
+export const section = init => htmldom('section', init);
 
-export const select = init => assembler.createElement('select', init);
+export const select = init => htmldom('select', init);
 
-export const slot = init => assembler.createElement('slot', init);
+export const slot = init => htmldom('slot', init);
 
-export const small = init => assembler.createElement('small', init);
+export const small = init => htmldom('small', init);
 
-export const source = init => assembler.createElement('source', init);
+export const source = init => htmldom('source', init);
 
-export const span = init => assembler.createElement('span', init);
+export const span = init => htmldom('span', init);
 
-export const strong = init => assembler.createElement('strong', init);
+export const strong = init => htmldom('strong', init);
 
-export const style = init => assembler.createElement('style', init);
+export const style = init => htmldom('style', init);
 
-export const sub = init => assembler.createElement('sub', init);
+export const sub = init => htmldom('sub', init);
 
-export const summary = init => assembler.createElement('summary', init);
+export const summary = init => htmldom('summary', init);
 
-export const sup = init => assembler.createElement('sup', init);
+export const sup = init => htmldom('sup', init);
 
-// todo SVGAssembler
-// export const svg = init => instance.createElement('svg', init);
+// todo svgdom
+// export const svg = init => svgdom('svg', init);
 
-export const table = init => assembler.createElement('table', init);
+export const table = init => htmldom('table', init);
 
-export const tbody = init => assembler.createElement('tbody', init);
+export const tbody = init => htmldom('tbody', init);
 
-export const td = init => assembler.createElement('td', init);
+export const td = init => htmldom('td', init);
 
-export const template = init => assembler.createElement('template', init);
+export const template = init => htmldom('template', init);
 
-export const textarea = init => assembler.createElement('textarea', init);
+export const textarea = init => htmldom('textarea', init);
 
-export const tfoot = init => assembler.createElement('tfoot', init);
+export const tfoot = init => htmldom('tfoot', init);
 
-export const th = init => assembler.createElement('th', init);
+export const th = init => htmldom('th', init);
 
-export const thead = init => assembler.createElement('thead', init);
+export const thead = init => htmldom('thead', init);
 
-export const time = init => assembler.createElement('time', init);
+export const time = init => htmldom('time', init);
 
-export const title = init => assembler.createElement('title', init);
+export const title = init => htmldom('title', init);
 
-export const tr = init => assembler.createElement('tr', init);
+export const tr = init => htmldom('tr', init);
 
-export const track = init => assembler.createElement('track', init);
+export const track = init => htmldom('track', init);
 
-export const u = init => assembler.createElement('u', init);
+export const u = init => htmldom('u', init);
 
-export const ul = init => assembler.createElement('ul', init);
+export const ul = init => htmldom('ul', init);
 
 // `var` is JS-keyword
-export const variable = init => assembler.createElement('var', init);
+export const variable = init => htmldom('var', init);
 
-export const video = init => assembler.createElement('video', init);
+export const video = init => htmldom('video', init);
 
-export const wbr = init => assembler.createElement('wbr', init);
+export const wbr = init => htmldom('wbr', init);
 
