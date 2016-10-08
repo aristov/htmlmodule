@@ -54,9 +54,7 @@
 
 	var HTMLDOM = _interopRequireWildcard(_htmldom);
 
-	var _victorica = __webpack_require__(374);
-
-	var _victorica2 = _interopRequireDefault(_victorica);
+	var _html = __webpack_require__(310);
 
 	var _highlight = __webpack_require__(378);
 
@@ -74,7 +72,12 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	const victoricaConfig = { space: '    ' };
+	// import victorica from 'victorica';
+	if (!window.HTMLDOM) window.HTMLDOM = HTMLDOM;
+
+	const serializer = new _html.HTMLSerializer();
+
+	// const victoricaConfig = { space: '    ' };
 
 	let rows;
 
@@ -122,7 +125,8 @@
 	                className: '',
 	                children: resulthtmlcode = (0, _htmldom.pre)({
 	                    className: 'html',
-	                    children: (0, _htmldom.code)((0, _victorica2.default)(element.outerHTML, victoricaConfig))
+	                    // children : code(victorica(element.outerHTML, victoricaConfig))
+	                    children: (0, _htmldom.code)(serializer.serializeToString(element))
 	                })
 	            })])
 	        });
@@ -326,7 +330,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.wbr = exports.video = exports.variable = exports.ul = exports.u = exports.track = exports.tr = exports.title = exports.time = exports.thead = exports.th = exports.tfoot = exports.textarea = exports.template = exports.td = exports.tbody = exports.table = exports.sup = exports.summary = exports.sub = exports.style = exports.strong = exports.span = exports.source = exports.small = exports.slot = exports.select = exports.section = exports.script = exports.samp = exports.s = exports.ruby = exports.rt = exports.rp = exports.q = exports.progress = exports.pre = exports.picture = exports.param = exports.p = exports.output = exports.option = exports.optgroup = exports.ol = exports.object = exports.noscript = exports.nav = exports.meter = exports.meta = exports.menuitem = exports.menu = exports.mark = exports.map = exports.main = exports.link = exports.li = exports.legend = exports.label = exports.keygen = exports.kbd = exports.ins = exports.input = exports.img = exports.iframe = exports.i = exports.html = exports.hr = exports.hgroup = exports.header = exports.head = exports.h6 = exports.h5 = exports.h4 = exports.h3 = exports.h2 = exports.h1 = exports.form = exports.footer = exports.figure = exports.figcaption = exports.fieldset = exports.embed = exports.em = exports.dt = exports.dl = exports.div = exports.dialog = exports.dfn = exports.details = exports.del = exports.dd = exports.datalist = exports.data = exports.colgroup = exports.col = exports.code = exports.cite = exports.caption = exports.canvas = exports.button = exports.br = exports.body = exports.blockquote = exports.bdo = exports.bdi = exports.base = exports.b = exports.audio = exports.aside = exports.article = exports.area = exports.address = exports.abbr = exports.a = undefined;
+	exports.wbr = exports.video = exports.variable = exports.ul = exports.u = exports.track = exports.tr = exports.title = exports.time = exports.thead = exports.th = exports.tfoot = exports.textarea = exports.template = exports.td = exports.tbody = exports.table = exports.sup = exports.summary = exports.sub = exports.style = exports.strong = exports.span = exports.source = exports.small = exports.slot = exports.select = exports.section = exports.script = exports.samp = exports.s = exports.ruby = exports.rt = exports.rp = exports.q = exports.progress = exports.pre = exports.picture = exports.param = exports.p = exports.output = exports.option = exports.optgroup = exports.ol = exports.object = exports.noscript = exports.nav = exports.meter = exports.meta = exports.menuitem = exports.menu = exports.mark = exports.map = exports.main = exports.link = exports.li = exports.legend = exports.label = exports.keygen = exports.kbd = exports.ins = exports.input = exports.img = exports.iframe = exports.i = exports.html = exports.hr = exports.hgroup = exports.header = exports.head = exports.h6 = exports.h5 = exports.h4 = exports.h3 = exports.h2 = exports.h1 = exports.form = exports.footer = exports.figure = exports.figcaption = exports.fieldset = exports.embed = exports.em = exports.dt = exports.dl = exports.div = exports.dialog = exports.dfn = exports.details = exports.del = exports.dd = exports.datalist = exports.data = exports.colgroup = exports.col = exports.code = exports.cite = exports.caption = exports.canvas = exports.button = exports.br = exports.body = exports.blockquote = exports.bdo = exports.bdi = exports.base = exports.b = exports.audio = exports.aside = exports.article = exports.area = exports.address = exports.abbr = exports.a = exports.htmldom = undefined;
 
 	var _html = __webpack_require__(2);
 
@@ -339,9 +343,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const htmldom = (tagName, init) => assembler.createElement(tagName, init);
-
-	exports.default = htmldom;
+	const htmldom = exports.htmldom = (tagName, init) => assembler.createElement(tagName, init);
 
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
@@ -361,7 +363,6 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-
 	const a = exports.a = init => htmldom('a', init);
 
 	/**
@@ -10544,29 +10545,23 @@
 	    open: true,
 	    style: { position: 'relative', display: 'block' },
 	    textContent: 'Hello world!'
-	}),
-
-	/*({ iframe, dialog, p, button, script }) => {
+	}), ({ iframe, dialog, p, button, script }) => {
 	    const onclick = 'event.target.parentElement.close()';
-	    const srcdom = dialog([
-	        p('Close dialog?'),
-	        button({
-	            attrset : { onclick },
-	            children : 'Ok'
-	        }),
-	        ' ',
-	        button('Cancel'),
-	        script('document.currentScript.parentElement.showModal()')
-	    ]);
-	    return iframe({
+	    const srcdom = dialog([p('Close dialog?'), button({
+	        attrset: { onclick },
+	        children: 'Ok'
+	    }), ' ', button('Cancel')]);
+	    const context = iframe({
 	        width: '100%',
 	        height: '50%',
-	        style : { boxSizing : 'border-box' },
-	        srcdoc : srcdom.outerHTML
-	    })
-	},*/
-
-	({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
+	        style: { boxSizing: 'border-box' },
+	        onmouseover: () => {
+	            context.contentDocument.querySelector('dialog').showModal();
+	        },
+	        srcdoc: srcdom.outerHTML
+	    });
+	    return context;
+	}, ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
 	    title: 'Ruby annotations',
 	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
 	}), ({ article, ul, li, ol, dl, dt, dd }) => article({
@@ -10575,7 +10570,73 @@
 	}), ({ progress }) => progress({ max: '100', value: '70' })];
 
 /***/ },
-/* 310 */,
+/* 310 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	const map = Array.prototype.map;
+	const assign = Object.assign;
+
+	const noEndTagList = 'area base br embed hr img input keygen link meta param source track wbr';
+	const noEndTagSet = noEndTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
+
+	// todo refactoring => DOMSerializer
+	class HTMLSerializer {
+	    constructor(options = {
+	        indent: '    ',
+	        lineBreak: '\n',
+	        level: 0
+	    }) {
+	        assign(this, options);
+	    }
+	    serializeToString(node) {
+	        let {
+	            tagName,
+	            attributes,
+	            childNodes,
+	            innerHTML,
+	            textContent
+	        } = node;
+	        const lineBreak = this.lineBreak;
+	        let indent = this.indent.repeat(this.level);
+	        let result = indent;
+	        if (tagName) {
+	            tagName = tagName.toLowerCase();
+	            result += '<' + tagName;
+	            const hasAttributes = node.hasAttributes();
+	            if (hasAttributes) {
+	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
+	                result += attrset.join('');
+	            }
+	            result += '>';
+	            const hasEndTag = !noEndTagSet[tagName];
+	            if (hasEndTag && node.hasChildNodes()) {
+	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
+	                if (!hasAttributes && isSingleText) {
+	                    result += node.textContent;
+	                    indent = '';
+	                } else {
+	                    this.level++;
+	                    const children = map.call(childNodes, this.serializeToString, this);
+	                    this.level--;
+	                    result += lineBreak + children.join('');
+	                }
+	            } else indent = '';
+	            if (hasEndTag) result += indent + `</${ tagName }>`;
+	        } else {
+	            result += innerHTML || textContent;
+	        }
+	        result += lineBreak;
+	        return result;
+	    }
+	}
+	exports.HTMLSerializer = HTMLSerializer;
+
+/***/ },
 /* 311 */,
 /* 312 */,
 /* 313 */,
@@ -10908,9 +10969,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const jsb = _jsBeautify2.default.js_beautify;
-	const jsbConfig = { indent_size: 4, wrap_line_length: 50 };
+	const jsbConfig = { indent_size: 4, wrap_line_length: 150 };
 
-	exports.default = code => jsb(code, jsbConfig);
+	exports.default = (code, config) => jsb(code, Object.assign(jsbConfig, config));
 
 /***/ },
 /* 323 */
@@ -12917,403 +12978,10 @@
 /* 371 */,
 /* 372 */,
 /* 373 */,
-/* 374 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-
-	// Generated by CoffeeScript 1.10.0
-	var API, objectAssign, victorica;
-
-	victorica = __webpack_require__(375);
-
-	objectAssign = __webpack_require__(377);
-
-	API = objectAssign(victorica.beautify, victorica);
-
-	API.version = process.env.npm_package_version;
-
-	module.exports = API;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(298)))
-
-/***/ },
-/* 375 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	// Generated by CoffeeScript 1.10.0
-	var Utility,
-	    Victorica,
-	    bind = function (fn, me) {
-	  return function () {
-	    return fn.apply(me, arguments);
-	  };
-	},
-	    extend = function (child, parent) {
-	  for (var key in parent) {
-	    if (hasProp.call(parent, key)) child[key] = parent[key];
-	  }function ctor() {
-	    this.constructor = child;
-	  }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
-	},
-	    hasProp = {}.hasOwnProperty;
-
-	Utility = __webpack_require__(376).Utility;
-
-	Victorica = function (superClass) {
-	  extend(Victorica, superClass);
-
-	  function Victorica() {
-	    this.beautify = bind(this.beautify, this);
-	    return Victorica.__super__.constructor.apply(this, arguments);
-	  }
-
-	  Victorica.prototype.maxLevel = 100;
-
-	  Victorica.prototype.beautify = function (str, arg) {
-	    var chunk, content, debug, html, ignore, indent, level, line, offset, ref, ref1, ref2, ref3, ref4, removeSelfClose, space, tag;
-	    ref = arg != null ? arg : {}, ignore = ref.ignore, space = ref.space, removeSelfClose = ref.removeSelfClose, debug = ref.debug;
-	    html = '';
-	    if (ignore == null) {
-	      ignore = this.ignores;
-	    }
-	    if (space == null) {
-	      space = '  ';
-	    }
-	    if (removeSelfClose == null) {
-	      removeSelfClose = true;
-	    }
-	    if (debug == null) {
-	      debug = false;
-	    }
-	    if (debug) {
-	      console.log('\n');
-	      console.log('Level, Open, Close, Ignore, Alone, Void, Uplevel');
-	      console.log('L O C I A V U -------- chunk --------');
-	    }
-	    level = 0;
-	    offset = str.indexOf('<', offset);
-	    content = '';
-	    while (offset > -1) {
-	      if (typeof tag !== "undefined" && tag !== null ? tag.last : void 0) {
-	        content = str.slice(tag.last, offset);
-	      }
-	      tag = this.parse(str, offset, ignore);
-	      if (content[0] !== '\n') {
-	        indent = this.getIndent(level, space);
-	        content = '\n' + indent + content;
-	        if (!tag.open) {
-	          indent = this.getIndent(level - 1, space);
-	        }
-	        content += '\n' + indent;
-	      }
-	      if (tag.open == null) {
-	        level -= 1;
-	      }
-	      if (level < 0) {
-	        line = (ref1 = (ref2 = str.match(/\n/g)) != null ? ref2.length : void 0) != null ? ref1 : 0;
-	        throw new Error("unexpected `" + tag.name + "` close element (line " + line + ")");
-	      }
-	      chunk = '';
-	      if (content) {
-	        indent = this.getIndent(level, space);
-	        if (content.match(/^\n\s*$/)) {
-	          content = content.replace(/\n\s*/g, '\n' + indent);
-	        }
-	        chunk += content;
-	      }
-	      if (tag.open) {
-	        if (tag.closeSelf && removeSelfClose) {
-	          tag.open = tag.open.replace(/( )?\/>/, '>');
-	        }
-	        chunk += tag.open;
-	      }
-	      if (tag.content) {
-	        chunk += tag.content;
-	      }
-	      if (tag.close) {
-	        chunk += tag.close;
-	      }
-	      if (debug) {
-	        console.log(level, ~~(tag.open != null), ~~(tag.close != null), ~~(tag.ignore != null), ~~tag.alone, ~~tag["void"], ~~!(tag.close != null || tag.alone || tag["void"]), JSON.stringify(chunk));
-	      }
-	      html += chunk;
-	      if (!(tag.close != null || tag.alone || tag["void"])) {
-	        level += 1;
-	      }
-	      if (level > this.maxLevel) {
-	        line = (ref3 = (ref4 = str.match(/\n/g)) != null ? ref4.length : void 0) != null ? ref3 : 0;
-	        throw new Error("unexpected `" + tag.name + "` close element (line " + line + ")");
-	      }
-	      offset = str.indexOf('<', tag.last);
-	    }
-	    if (debug) {
-	      console.log('L O C I A V U -------- chunk --------');
-	      console.log('Level, Open, Close, Ignore, Alone, Void, Uplevel');
-	    }
-	    if (html === '') {
-	      return str;
-	    }
-	    return html.trim();
-	  };
-
-	  return Victorica;
-	}(Utility);
-
-	module.exports = new Victorica();
-
-	module.exports.Victorica = Victorica;
-
-/***/ },
-/* 376 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	// Generated by CoffeeScript 1.10.0
-	var Utility,
-	    bind = function (fn, me) {
-	  return function () {
-	    return fn.apply(me, arguments);
-	  };
-	},
-	    indexOf = [].indexOf || function (item) {
-	  for (var i = 0, l = this.length; i < l; i++) {
-	    if (i in this && this[i] === item) return i;
-	  }return -1;
-	};
-
-	Utility = function () {
-	  function Utility() {
-	    this.getIndent = bind(this.getIndent, this);
-	    this.parse = bind(this.parse, this);
-	  }
-
-	  Utility.prototype.ignores = ['script', 'style', 'title', 'a', 'abbr', 'acronym', 'b', 'bdo', 'big', 'button', 'cite', 'code', 'dfn', 'em', 'i', 'img', 'kbd', 'label', 'map', 'object', 'pre', 'q', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'textarea', 'tt', 'var'];
-
-	  Utility.prototype.voids = ['doctype', 'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
-
-	  Utility.prototype.parse = function (str, offset, ignores) {
-	    var alone, begin, beginOverlap, beginOverlapRelative, close, content, contentEnd, end, isClose, isOpen, isSelfClose, isVoid, last, left, name, open, overlapOpen, ref, right, tag;
-	    if (ignores == null) {
-	      ignores = [];
-	    }
-	    left = str.indexOf('<', offset);
-	    right = str.indexOf('>', left) + 1;
-	    tag = str.slice(left, right);
-	    if (tag[1] !== '/') {
-	      open = tag;
-	    } else {
-	      close = tag;
-	    }
-	    name = (((ref = tag.match(/<\!?\/?([-\w]*)/)) != null ? ref[1] : void 0) || '').toLowerCase();
-	    if (name.length === 0) {
-	      contentEnd = str.indexOf('<', offset + 1);
-	      if (contentEnd === -1) {
-	        contentEnd = str.length;
-	      }
-	      content = str.slice(offset, contentEnd);
-	      return {
-	        open: '',
-	        close: '',
-	        content: content,
-	        last: contentEnd
-	      };
-	    }
-	    if (str.slice(offset, offset + 4) === '<!--') {
-	      name = 'comment';
-	      open = '<!--';
-	      close = '-->';
-	      begin = offset + 4;
-	      end = str.indexOf(close, begin);
-	      content = str.slice(begin, end);
-	      last = end + close.length;
-	      return {
-	        name: name,
-	        open: open,
-	        content: content,
-	        close: close,
-	        last: last,
-	        alone: true,
-	        "void": false,
-	        ignore: true
-	      };
-	    }
-	    last = right;
-	    isClose = tag[1] === '/';
-	    isSelfClose = tag.match(/\/>$/) != null;
-	    isOpen = !(isClose || isSelfClose);
-	    isVoid = indexOf.call(this.voids, name) >= 0;
-	    if (indexOf.call(ignores, name) >= 0) {
-	      overlapOpen = new RegExp('<' + name + '\\W');
-	      close = '</' + name + '>';
-	      begin = str.indexOf('>', offset);
-	      end = str.indexOf(close, begin);
-	      beginOverlap = str.slice(begin).search(overlapOpen);
-	      if (beginOverlap !== -1) {
-	        beginOverlap += begin;
-	      }
-	      while (beginOverlap > -1 && end > beginOverlap) {
-	        end = str.indexOf(close, end + close.length);
-	        beginOverlapRelative = str.slice(beginOverlap + 1).search(overlapOpen);
-	        beginOverlap = beginOverlapRelative === -1 ? -1 : beginOverlapRelative + beginOverlap + 1;
-	      }
-	      if (end === -1) {
-	        close = '';
-	        end = str.indexOf('<', begin);
-	        if (end === -1) {
-	          end = str.length;
-	        }
-	        content = str.slice(begin + 1, end);
-	      } else {
-	        content = str.slice(begin + 1, end);
-	      }
-	      last = end + close.length;
-	      return {
-	        name: name,
-	        open: open,
-	        content: content,
-	        close: close,
-	        last: last,
-	        alone: true,
-	        "void": isVoid,
-	        ignore: true
-	      };
-	    }
-	    alone = isVoid || isSelfClose;
-	    if (isOpen) {
-	      alone = str.indexOf('</' + name + '>', right) === str.indexOf('<', right);
-	      if (alone) {
-	        content = str.slice(right, str.indexOf('<', right));
-	        close = '</' + name + '>';
-	        last = str.indexOf('<', right);
-	        if (last === -1) {
-	          last = str.length;
-	          close = null;
-	        }
-	        last += ('</' + name + '>').length;
-	      }
-	    }
-	    return {
-	      name: name,
-	      open: open,
-	      content: content,
-	      close: close,
-	      last: last,
-	      alone: alone,
-	      "void": isVoid,
-	      ignore: false,
-	      closeSelf: isSelfClose
-	    };
-	  };
-
-	  Utility.prototype.getIndent = function (repeat, space) {
-	    if (space == null) {
-	      space = '  ';
-	    }
-	    if (!(repeat > -1)) {
-	      repeat = 0;
-	    }
-	    return new Array(repeat + 1).join(space);
-	  };
-
-	  return Utility;
-	}();
-
-	module.exports = new Utility();
-
-	module.exports.Utility = Utility;
-
-/***/ },
-/* 377 */
-/***/ function(module, exports) {
-
-	'use strict';
-	/* eslint-disable no-unused-vars */
-
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-	function toObject(val) {
-		if (val === null || val === undefined) {
-			throw new TypeError('Object.assign cannot be called with null or undefined');
-		}
-
-		return Object(val);
-	}
-
-	function shouldUseNative() {
-		try {
-			if (!Object.assign) {
-				return false;
-			}
-
-			// Detect buggy property enumeration order in older V8 versions.
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc'); // eslint-disable-line
-			test1[5] = 'de';
-			if (Object.getOwnPropertyNames(test1)[0] === '5') {
-				return false;
-			}
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test2 = {};
-			for (var i = 0; i < 10; i++) {
-				test2['_' + String.fromCharCode(i)] = i;
-			}
-			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-				return test2[n];
-			});
-			if (order2.join('') !== '0123456789') {
-				return false;
-			}
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test3 = {};
-			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-				test3[letter] = letter;
-			});
-			if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
-				return false;
-			}
-
-			return true;
-		} catch (e) {
-			// We don't expect any of the above to throw, but better to be safe.
-			return false;
-		}
-	}
-
-	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-		var from;
-		var to = toObject(target);
-		var symbols;
-
-		for (var s = 1; s < arguments.length; s++) {
-			from = Object(arguments[s]);
-
-			for (var key in from) {
-				if (hasOwnProperty.call(from, key)) {
-					to[key] = from[key];
-				}
-			}
-
-			if (Object.getOwnPropertySymbols) {
-				symbols = Object.getOwnPropertySymbols(from);
-				for (var i = 0; i < symbols.length; i++) {
-					if (propIsEnumerable.call(from, symbols[i])) {
-						to[symbols[i]] = from[symbols[i]];
-					}
-				}
-			}
-		}
-
-		return to;
-	};
-
-/***/ },
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
 /* 378 */
 /***/ function(module, exports, __webpack_require__) {
 

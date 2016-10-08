@@ -230,7 +230,7 @@ line break
                 option('RDFS'),
                 option('OWL'),
                 option('SGML'),
-                option('CSS'),
+                option('CSS')
             ])
         ]),
         br(),
@@ -249,7 +249,7 @@ line break
                     option('RDFS'),
                     option('OWL'),
                     option('SGML'),
-                    option('CSS'),
+                    option('CSS')
                 ]})
         ]),
         br()
@@ -274,7 +274,7 @@ line break
         textContent : 'Hello world!'
     }),
 
-    /*({ iframe, dialog, p, button, script }) => {
+    ({ iframe, dialog, p, button, script }) => {
         const onclick = 'event.target.parentElement.close()';
         const srcdom = dialog([
             p('Close dialog?'),
@@ -283,16 +283,19 @@ line break
                 children : 'Ok'
             }),
             ' ',
-            button('Cancel'),
-            script('document.currentScript.parentElement.showModal()')
+            button('Cancel')
         ]);
-        return iframe({
+        const context = iframe({
             width: '100%',
             height: '50%',
             style : { boxSizing : 'border-box' },
+            onmouseover : () => {
+                context.contentDocument.querySelector('dialog').showModal()
+            },
             srcdoc : srcdom.outerHTML
-        })
-    },*/
+        });
+        return context;
+    },
 
     ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([
         caption('Web technology comparison'),
@@ -333,15 +336,7 @@ line break
                 ruby(['同', rt('どう')]),
                 'ぜず。'
             ]),
-            section(ruby(['漢',
-                rp(' ('),
-                rt('かん'),
-                rp(')'),
-                '字',
-                rp(' ('),
-                rt('じ'),
-                rp(')')
-            ]))
+            section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))
         ]
     }),
 

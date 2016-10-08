@@ -1,17 +1,11 @@
 import '../shim/shim';
 
-// DOM module
-// DOM serializer
-// DOM assembler
-
-// HTMLDOM
 import * as HTMLDOM from '../htmldom/htmldom';
 import {
-    button, option, select, output, main,
-    div, header, h3, p, label, input, abbr, form
+    button, option, select, output, main, div, header, h3, p, label, input, abbr, form
 } from '../htmldom/htmldom';
-import { test } from '../htmldom/htmldom.test.js';
 
+import { test } from '../htmldom/htmldom.test.js';
 
 import { HTMLSerializer } from '../html/html.serializer';
 
@@ -30,8 +24,6 @@ import './repl.css';
 
 const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 
-const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
-
 // babel polyfill =)
 if(!window.Babel) {
     window.Babel = {
@@ -44,9 +36,6 @@ if(!window.Babel) {
         }
     }
 }
-
-const snippet = Object.keys(HTMLDOM).map(name => name + `=${HTMLDOM_VARIABLE_NAME}.` + name).join(',');
-const imports = ['var ' + snippet, ''].join(';');
 
 const panel = children => div({ className : 'panel', children });
 
@@ -93,7 +82,7 @@ const options = [
         const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
         const elements = textContent.split(', ');
         const id = elements.join('+');
-        return option({ id, textContent, value : jsb(src) });
+        return option({ id, textContent, value : jsb(src, { wrap_line_length: 50 }) });
     })
 ];
 
@@ -191,24 +180,30 @@ if(hash) {
     }
 }
 
-evaluate();
 
 jsEditor.on('change', () => evaluate());
+
+const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
+
+const snippetPart = name => name + `=${HTMLDOM_VARIABLE_NAME}.` + name;
+const snippet = Object.keys(HTMLDOM).map(snippetPart).join(', ');
+const imports = `var ${ snippet }`;
 
 function evaluate() {
     const code = jsEditor.getValue().trim();
     if(code) {
         try {
             const es5 = Babel.transform(code);
-            const src = globalbox.checked?
-                [imports, es5.code].join(';') :
-                es5.code;
+            const src = globalbox.checked? [imports, es5.code].join(';\n\n') : es5.code;
+
             const fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
             const exports = {
                 default : () => {
                     throw Error('Module is not Exported!');
                 }
             };
+
+            console.log(fn);
             fn(exports, HTMLDOM);
 
             domOutput.textContent = '';
@@ -231,27 +226,4 @@ function evaluate() {
     }
 }
 
-
-/*const babelOptions = {
-    presets : ['es2015'],
-    plugins : ['transform-es2015-modules-commonjs']
-};
-
-const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
-
-let babelscript;
-
-// label([babelbox, ' use Babel']),
-
-const babelbox = input({
-    type : 'checkbox',
-    onchange : event => {
-        if(!babelscript) babelLoad();
-    }
-});
-
-function babelLoad() {
-    if(window.Babel) delete window.Babel;
-    document.body.append(babelscript = script({ src : BABEL_URL }));
-}*/
-
+evaluate();

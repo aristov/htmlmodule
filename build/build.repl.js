@@ -88,15 +88,6 @@
 
 	const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 
-	// DOM module
-	// DOM serializer
-	// DOM assembler
-
-	// HTMLDOM
-
-
-	const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
-
 	// babel polyfill =)
 	if (!window.Babel) {
 	    window.Babel = {
@@ -108,9 +99,6 @@
 	        }
 	    };
 	}
-
-	const snippet = Object.keys(HTMLDOM).map(name => name + `=${ HTMLDOM_VARIABLE_NAME }.` + name).join(',');
-	const imports = ['var ' + snippet, ''].join(';');
 
 	const panel = children => (0, _htmldom.div)({ className: 'panel', children });
 
@@ -151,7 +139,7 @@
 	    const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
 	    const elements = textContent.split(', ');
 	    const id = elements.join('+');
-	    return (0, _htmldom.option)({ id, textContent, value: (0, _jsb2.default)(src) });
+	    return (0, _htmldom.option)({ id, textContent, value: (0, _jsb2.default)(src, { wrap_line_length: 50 }) });
 	})];
 
 	function updateTest() {
@@ -232,22 +220,29 @@
 	    }
 	}
 
-	evaluate();
-
 	jsEditor.on('change', () => evaluate());
+
+	const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
+
+	const snippetPart = name => name + `=${ HTMLDOM_VARIABLE_NAME }.` + name;
+	const snippet = Object.keys(HTMLDOM).map(snippetPart).join(', ');
+	const imports = `var ${ snippet }`;
 
 	function evaluate() {
 	    const code = jsEditor.getValue().trim();
 	    if (code) {
 	        try {
 	            const es5 = Babel.transform(code);
-	            const src = globalbox.checked ? [imports, es5.code].join(';') : es5.code;
+	            const src = globalbox.checked ? [imports, es5.code].join(';\n\n') : es5.code;
+
 	            const fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
 	            const exports = {
 	                default: () => {
 	                    throw Error('Module is not Exported!');
 	                }
 	            };
+
+	            console.log(fn);
 	            fn(exports, HTMLDOM);
 
 	            domOutput.textContent = '';
@@ -266,28 +261,7 @@
 	    }
 	}
 
-	/*const babelOptions = {
-	    presets : ['es2015'],
-	    plugins : ['transform-es2015-modules-commonjs']
-	};
-
-	const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
-
-	let babelscript;
-
-	// label([babelbox, ' use Babel']),
-
-	const babelbox = input({
-	    type : 'checkbox',
-	    onchange : event => {
-	        if(!babelscript) babelLoad();
-	    }
-	});
-
-	function babelLoad() {
-	    if(window.Babel) delete window.Babel;
-	    document.body.append(babelscript = script({ src : BABEL_URL }));
-	}*/
+	evaluate();
 
 /***/ },
 /* 1 */
@@ -479,7 +453,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.wbr = exports.video = exports.variable = exports.ul = exports.u = exports.track = exports.tr = exports.title = exports.time = exports.thead = exports.th = exports.tfoot = exports.textarea = exports.template = exports.td = exports.tbody = exports.table = exports.sup = exports.summary = exports.sub = exports.style = exports.strong = exports.span = exports.source = exports.small = exports.slot = exports.select = exports.section = exports.script = exports.samp = exports.s = exports.ruby = exports.rt = exports.rp = exports.q = exports.progress = exports.pre = exports.picture = exports.param = exports.p = exports.output = exports.option = exports.optgroup = exports.ol = exports.object = exports.noscript = exports.nav = exports.meter = exports.meta = exports.menuitem = exports.menu = exports.mark = exports.map = exports.main = exports.link = exports.li = exports.legend = exports.label = exports.keygen = exports.kbd = exports.ins = exports.input = exports.img = exports.iframe = exports.i = exports.html = exports.hr = exports.hgroup = exports.header = exports.head = exports.h6 = exports.h5 = exports.h4 = exports.h3 = exports.h2 = exports.h1 = exports.form = exports.footer = exports.figure = exports.figcaption = exports.fieldset = exports.embed = exports.em = exports.dt = exports.dl = exports.div = exports.dialog = exports.dfn = exports.details = exports.del = exports.dd = exports.datalist = exports.data = exports.colgroup = exports.col = exports.code = exports.cite = exports.caption = exports.canvas = exports.button = exports.br = exports.body = exports.blockquote = exports.bdo = exports.bdi = exports.base = exports.b = exports.audio = exports.aside = exports.article = exports.area = exports.address = exports.abbr = exports.a = undefined;
+	exports.wbr = exports.video = exports.variable = exports.ul = exports.u = exports.track = exports.tr = exports.title = exports.time = exports.thead = exports.th = exports.tfoot = exports.textarea = exports.template = exports.td = exports.tbody = exports.table = exports.sup = exports.summary = exports.sub = exports.style = exports.strong = exports.span = exports.source = exports.small = exports.slot = exports.select = exports.section = exports.script = exports.samp = exports.s = exports.ruby = exports.rt = exports.rp = exports.q = exports.progress = exports.pre = exports.picture = exports.param = exports.p = exports.output = exports.option = exports.optgroup = exports.ol = exports.object = exports.noscript = exports.nav = exports.meter = exports.meta = exports.menuitem = exports.menu = exports.mark = exports.map = exports.main = exports.link = exports.li = exports.legend = exports.label = exports.keygen = exports.kbd = exports.ins = exports.input = exports.img = exports.iframe = exports.i = exports.html = exports.hr = exports.hgroup = exports.header = exports.head = exports.h6 = exports.h5 = exports.h4 = exports.h3 = exports.h2 = exports.h1 = exports.form = exports.footer = exports.figure = exports.figcaption = exports.fieldset = exports.embed = exports.em = exports.dt = exports.dl = exports.div = exports.dialog = exports.dfn = exports.details = exports.del = exports.dd = exports.datalist = exports.data = exports.colgroup = exports.col = exports.code = exports.cite = exports.caption = exports.canvas = exports.button = exports.br = exports.body = exports.blockquote = exports.bdo = exports.bdi = exports.base = exports.b = exports.audio = exports.aside = exports.article = exports.area = exports.address = exports.abbr = exports.a = exports.htmldom = undefined;
 
 	var _html = __webpack_require__(2);
 
@@ -492,9 +466,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const htmldom = (tagName, init) => assembler.createElement(tagName, init);
-
-	exports.default = htmldom;
+	const htmldom = exports.htmldom = (tagName, init) => assembler.createElement(tagName, init);
 
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
@@ -514,7 +486,6 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-
 	const a = exports.a = init => htmldom('a', init);
 
 	/**
@@ -10697,29 +10668,23 @@
 	    open: true,
 	    style: { position: 'relative', display: 'block' },
 	    textContent: 'Hello world!'
-	}),
-
-	/*({ iframe, dialog, p, button, script }) => {
+	}), ({ iframe, dialog, p, button, script }) => {
 	    const onclick = 'event.target.parentElement.close()';
-	    const srcdom = dialog([
-	        p('Close dialog?'),
-	        button({
-	            attrset : { onclick },
-	            children : 'Ok'
-	        }),
-	        ' ',
-	        button('Cancel'),
-	        script('document.currentScript.parentElement.showModal()')
-	    ]);
-	    return iframe({
+	    const srcdom = dialog([p('Close dialog?'), button({
+	        attrset: { onclick },
+	        children: 'Ok'
+	    }), ' ', button('Cancel')]);
+	    const context = iframe({
 	        width: '100%',
 	        height: '50%',
-	        style : { boxSizing : 'border-box' },
-	        srcdoc : srcdom.outerHTML
-	    })
-	},*/
-
-	({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
+	        style: { boxSizing: 'border-box' },
+	        onmouseover: () => {
+	            context.contentDocument.querySelector('dialog').showModal();
+	        },
+	        srcdoc: srcdom.outerHTML
+	    });
+	    return context;
+	}, ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
 	    title: 'Ruby annotations',
 	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
 	}), ({ article, ul, li, ol, dl, dt, dd }) => article({
@@ -10751,24 +10716,38 @@
 	    }) {
 	        assign(this, options);
 	    }
-	    serializeToString({ tagName, attributes, childNodes, innerHTML, textContent }) {
+	    serializeToString(node) {
+	        let {
+	            tagName,
+	            attributes,
+	            childNodes,
+	            innerHTML,
+	            textContent
+	        } = node;
 	        const lineBreak = this.lineBreak;
 	        let indent = this.indent.repeat(this.level);
 	        let result = indent;
 	        if (tagName) {
 	            tagName = tagName.toLowerCase();
 	            result += '<' + tagName;
-	            if (attributes && attributes.length) {
+	            const hasAttributes = node.hasAttributes();
+	            if (hasAttributes) {
 	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
 	                result += attrset.join('');
 	            }
 	            result += '>';
 	            const hasEndTag = !noEndTagSet[tagName];
-	            if (hasEndTag && childNodes && childNodes.length) {
-	                this.level++;
-	                const children = map.call(childNodes, this.serializeToString, this);
-	                this.level--;
-	                result += lineBreak + children.join('');
+	            if (hasEndTag && node.hasChildNodes()) {
+	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
+	                if (!hasAttributes && isSingleText) {
+	                    result += node.textContent;
+	                    indent = '';
+	                } else {
+	                    this.level++;
+	                    const children = map.call(childNodes, this.serializeToString, this);
+	                    this.level--;
+	                    result += lineBreak + children.join('');
+	                }
 	            } else indent = '';
 	            if (hasEndTag) result += indent + `</${ tagName }>`;
 	        } else {
@@ -14074,9 +14053,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const jsb = _jsBeautify2.default.js_beautify;
-	const jsbConfig = { indent_size: 4, wrap_line_length: 50 };
+	const jsbConfig = { indent_size: 4, wrap_line_length: 150 };
 
-	exports.default = code => jsb(code, jsbConfig);
+	exports.default = (code, config) => jsb(code, Object.assign(jsbConfig, config));
 
 /***/ },
 /* 323 */

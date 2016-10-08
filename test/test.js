@@ -4,16 +4,20 @@ import { test } from '../htmldom/htmldom.test.js';
 import { a, h2, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom/htmldom.js';
 import * as HTMLDOM from '../htmldom/htmldom.js';
 
+import { HTMLSerializer } from '../html/html.serializer';
 
-import victorica from 'victorica';
+// import victorica from 'victorica';
 import hljs from 'highlight.js/';
 import jsb from '../jsb/jsb';
 
 import './test.css';
 import 'highlight.js/styles/agate.css';
 
+if(!window.HTMLDOM) window.HTMLDOM = HTMLDOM;
 
-const victoricaConfig = { space: '    ' };
+const serializer = new HTMLSerializer;
+
+// const victoricaConfig = { space: '    ' };
 
 let rows;
 
@@ -72,7 +76,8 @@ const exampletable = table({
                         className : '',
                         children : resulthtmlcode = pre({
                             className : 'html',
-                            children : code(victorica(element.outerHTML, victoricaConfig))
+                            // children : code(victorica(element.outerHTML, victoricaConfig))
+                            children : code(serializer.serializeToString(element))
                         })
                     })
                 ])

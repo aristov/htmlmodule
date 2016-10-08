@@ -9,9 +9,7 @@ const assembler = new HTMLAssembler;
  * @param init.global{} — global `HTMLElement` attributes
  * @param {*} init object
  */
-const htmldom = (tagName, init) => assembler.createElement(tagName, init);
-
-export default htmldom;
+export const htmldom = (tagName, init) => assembler.createElement(tagName, init);
 
 /**
  * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
