@@ -10617,7 +10617,7 @@
 	            if (hasEndTag && node.hasChildNodes()) {
 	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
 	                if (!hasAttributes && isSingleText) {
-	                    result += node.textContent;
+	                    result += node.innerHTML;
 	                    indent = '';
 	                } else {
 	                    this.level++;

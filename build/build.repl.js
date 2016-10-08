@@ -86,7 +86,11 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+	const localValue = localStorage.getItem('value');
+	const localGlobal = localStorage.getItem('global');
+
 	const EXPORT_DEFAULT_RE = /export\s+default\s+/;
+	const EXPORTS_DEFAULT_RE = /exports\s*\.\s*default\s*=/;
 
 	// babel polyfill =)
 	if (!window.Babel) {
@@ -94,7 +98,9 @@
 	        transform: code => {
 	            if (EXPORT_DEFAULT_RE.test(code)) {
 	                code = code.replace(EXPORT_DEFAULT_RE, 'exports.default = ');
-	            } else code = 'exports.default = ' + code;
+	            } else if (!EXPORTS_DEFAULT_RE.test(code)) {
+	                code = 'exports.default = ' + code;
+	            }
 	            return { code };
 	        }
 	    };
@@ -112,12 +118,12 @@
 
 	const globalbox = (0, _htmldom.input)({
 	    type: 'checkbox',
-	    checked: true,
+	    checked: localGlobal === 'true',
 	    onchange: () => {
 	        evaluate();
-	        if (globalbox.checked) {
-	            testselectbox.value = '';
-	        } else settingsform.reset();
+	        const checked = globalbox.checked;
+	        if (checked) testselectbox.value = '';else settingsform.reset();
+	        // localStorage.setItem('global', String(checked));
 	    }
 	});
 
@@ -189,7 +195,7 @@
 	}));
 
 	const jsEditor = new _codemirror2.default(jsInput, {
-	    value: _globals2.default,
+	    value: localValue || _globals2.default,
 	    mode: 'javascript',
 	    theme: 'night',
 	    indentUnit: 4,
@@ -211,7 +217,7 @@
 
 	const hash = location.hash.replace('#', '');
 
-	if (hash) {
+	if (hash && !localValue) {
 	    const option = document.getElementById(hash);
 	    if (option && 'selected' in option) {
 	        option.selected = true;
@@ -242,7 +248,6 @@
 	                }
 	            };
 
-	            console.log(fn);
 	            fn(exports, HTMLDOM);
 
 	            domOutput.textContent = '';
@@ -251,6 +256,8 @@
 
 	            const htmlcode = serializer.serializeToString(node);
 	            htmlEditor.setValue(htmlcode);
+	            localStorage.setItem('value', jsEditor.getValue());
+	            localStorage.setItem('global', globalbox.checked);
 	        } catch (error) {
 	            domOutput.textContent = error;
 	            htmlEditor.setValue('');
@@ -10740,7 +10747,7 @@
 	            if (hasEndTag && node.hasChildNodes()) {
 	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
 	                if (!hasAttributes && isSingleText) {
-	                    result += node.textContent;
+	                    result += node.innerHTML;
 	                    indent = '';
 	                } else {
 	                    this.level++;

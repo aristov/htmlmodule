@@ -22,7 +22,11 @@ import exportdefault from 'raw!./test/exportdefault.rawjs';
 
 import './repl.css';
 
+const localValue = localStorage.getItem('value');
+const localGlobal = localStorage.getItem('global');
+
 const EXPORT_DEFAULT_RE = /export\s+default\s+/;
+const EXPORTS_DEFAULT_RE = /exports\s*\.\s*default\s*=/;
 
 // babel polyfill =)
 if(!window.Babel) {
@@ -31,7 +35,9 @@ if(!window.Babel) {
             if(EXPORT_DEFAULT_RE.test(code)) {
                 code = code.replace(EXPORT_DEFAULT_RE, 'exports.default = ');
             }
-            else code = 'exports.default = ' + code;
+            else if(!EXPORTS_DEFAULT_RE.test(code)) {
+                code = 'exports.default = ' + code;
+            }
             return { code };
         }
     }
@@ -49,13 +55,13 @@ const serializer = new HTMLSerializer;
 
 const globalbox = input({
     type : 'checkbox',
-    checked : true,
+    checked : localGlobal === 'true',
     onchange : () => {
         evaluate();
-        if(globalbox.checked) {
-            testselectbox.value = '';
-        }
+        const checked = globalbox.checked;
+        if(checked) testselectbox.value = '';
         else settingsform.reset();
+        // localStorage.setItem('global', String(checked));
     }
 });
 
@@ -149,7 +155,7 @@ document.body.append(
     }));
 
 const jsEditor = new CodeMirror(jsInput, {
-    value,
+    value : localValue || value,
     mode: 'javascript',
     theme: 'night',
     indentUnit: 4,
@@ -171,7 +177,7 @@ const htmlEditor = new CodeMirror(htmlOutput, {
 
 const hash = location.hash.replace('#', '');
 
-if(hash) {
+if(hash && !localValue) {
     const option = document.getElementById(hash);
     if(option && 'selected' in option) {
         option.selected = true;
@@ -179,7 +185,6 @@ if(hash) {
         updateTest();
     }
 }
-
 
 jsEditor.on('change', () => evaluate());
 
@@ -203,7 +208,6 @@ function evaluate() {
                 }
             };
 
-            console.log(fn);
             fn(exports, HTMLDOM);
 
             domOutput.textContent = '';
@@ -214,11 +218,12 @@ function evaluate() {
 
             const htmlcode = serializer.serializeToString(node);
             htmlEditor.setValue(htmlcode);
+            localStorage.setItem('value', jsEditor.getValue());
+            localStorage.setItem('global', globalbox.checked);
         }
         catch(error) {
             domOutput.textContent = error;
             htmlEditor.setValue('');
-
         }
     } else {
         domOutput.textContent = '';
