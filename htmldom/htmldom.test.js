@@ -257,7 +257,7 @@ line break
             textContent : 'Hello world!'
         }),
 
-    ({ iframe, dialog, p, button, script }) => {
+    /*({ iframe, dialog, p, button, script }) => {
         const onclick = 'event.target.parentElement.close()';
         const srcdom = dialog([
             p('Close dialog?'),
@@ -275,7 +275,7 @@ line break
             style : { boxSizing : 'border-box' },
             srcdoc : srcdom.outerHTML
         })
-    },
+    },*/
 
     ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>
         table([

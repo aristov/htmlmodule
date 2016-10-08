@@ -56,7 +56,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _dom[key];
 	    }
 	  });
@@ -68,7 +68,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _html[key];
 	    }
 	  });
@@ -80,7 +80,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _htmldom[key];
 	    }
 	  });
@@ -95,17 +95,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	exports.NodeInit = NodeInit;
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var isArray = Array.isArray;
-	var _window = window;
-	var document = _window.document;
-	var Element = _window.Element;
+	const { isArray } = Array;
+	const { document, Element } = window;
 
 	/**
 	 * Converts any non-dictionary object argument
@@ -114,7 +106,6 @@
 	 * @returns {{}} NodeInit dictionary object
 	 * @interface
 	 */
-
 	function NodeInit(init) {
 	    if (init && init.constructor !== Object) {
 	        return { children: init };
@@ -127,127 +118,96 @@
 	 * - provides `Element` DOM interface
 	 * - https://www.w3.org/1999/xml
 	 */
-	var XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
+	const XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 	/**
 	 * - Assembler for DOM `Element`
 	 * - `Document.createElementNS` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `Element` initialization
 	 */
-
-	var DOMAssembler = exports.DOMAssembler = function () {
-	    function DOMAssembler() {
-	        _classCallCheck(this, DOMAssembler);
+	class DOMAssembler {
+	    /**
+	     * Assign given element to assembler instance
+	     * @param {Element} element node to assign
+	     */
+	    set element(element) {
+	        if (element instanceof Element) {
+	            this.node = element;
+	        } else throw Error('This is not Element');
 	    }
 
-	    _createClass(DOMAssembler, [{
-	        key: 'createElement',
+	    /**
+	     * Get the assigned element
+	     * @returns {Element} assigned node
+	     */
+	    get element() {
+	        if (this.node) return this.node;else throw Error('No element assigned');
+	    }
 
-
-	        /**
-	         * Create the specified element and initialize it by given property set
-	         * @param {String} tagName
-	         * @param {{}} [init]
-	         * @returns {Element} created and initialized DOM `Element`
-	         */
-	        value: function createElement(tagName, init) {
-	            var namespaceURI = this.constructor.namespaceURI;
-
-	            this.element = document.createElementNS(namespaceURI, tagName);
-	            if (init) this.init = NodeInit(init);
-	            return this.element;
-	        }
-
-	        /**
-	         * @returns {String} create elements in XML namespace
-	         */
-
-	    }, {
-	        key: 'element',
-
-	        /**
-	         * Assign given element to assembler instance
-	         * @param {Element} element node to assign
-	         */
-	        set: function set(element) {
-	            if (element instanceof Element) {
-	                this.node = element;
-	            } else throw Error('This is not Element');
-	        }
-
-	        /**
-	         * Get the assigned element
-	         * @returns {Element} assigned node
-	         */
-	        ,
-	        get: function get() {
-	            if (this.node) return this.node;else throw Error('No element assigned');
-	        }
-
-	        /**
-	         * Initialize the element with defined properties
-	         * @param {{}} init initializing dictionary object
-	         */
-
-	    }, {
-	        key: 'init',
-	        set: function set(init) {
-	            var element = this.element;
-	            for (var prop in init) {
-	                var value = init[prop];
-	                if (value !== undefined) {
-	                    if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
-	                }
+	    /**
+	     * Initialize the element with defined properties
+	     * @param {{}} init initializing dictionary object
+	     */
+	    set init(init) {
+	        const element = this.element;
+	        for (const prop in init) {
+	            const value = init[prop];
+	            if (value !== undefined) {
+	                if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
 	            }
 	        }
+	    }
 
-	        /**
-	         * Set attributes on the element
-	         * @param {{}} attrset dictionary object
-	         */
-
-	    }, {
-	        key: 'attrset',
-	        set: function set(attrset) {
-	            var element = this.element;
-	            for (var name in attrset) {
-	                var value = attrset[name];
-	                if (typeof value === 'string') {
-	                    element.setAttribute(name, value);
-	                }
+	    /**
+	     * Set attributes on the element
+	     * @param {{}} attrset dictionary object
+	     */
+	    set attrset(attrset) {
+	        const element = this.element;
+	        for (const name in attrset) {
+	            const value = attrset[name];
+	            if (typeof value === 'string') {
+	                element.setAttribute(name, value);
 	            }
 	        }
+	    }
 
-	        /**
-	         * Append children to the element
-	         * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
-	         * @param {Node|String|Array} children child node or string or array of listed
-	         */
-
-	    }, {
-	        key: 'children',
-	        set: function set(children) {
-	            var _this = this;
-
-	            if (isArray(children)) {
-	                children.forEach(function (child) {
-	                    return _this.children = child;
-	                });
-	            } else {
-	                var child = typeof children === 'string' ? document.createTextNode(children) : children;
-	                this.element.appendChild(child);
-	            }
+	    /**
+	     * Append children to the element
+	     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
+	     * @param {Node|String|Array} children child node or string or array of listed
+	     */
+	    set children(children) {
+	        if (isArray(children)) {
+	            children.forEach(child => this.children = child);
+	        } else {
+	            const child = typeof children === 'string' ? document.createTextNode(children) : children;
+	            this.element.appendChild(child);
 	        }
-	    }], [{
-	        key: 'namespaceURI',
-	        get: function get() {
-	            return XML_NS_URI;
-	        }
-	    }]);
+	    }
 
-	    return DOMAssembler;
-	}();
+	    /**
+	     * Create the specified element and initialize it by given property set
+	     * @param {String} tagName
+	     * @param {{}} [init]
+	     * @returns {Element} created and initialized DOM `Element`
+	     */
+	    createElement(tagName, init) {
+	        const { namespaceURI } = this.constructor;
+	        this.element = document.createElementNS(namespaceURI, tagName);
+	        if (init) this.init = NodeInit(init);
+	        return this.element;
+	    }
 
+	    /**
+	     * @returns {String} create elements in XML namespace
+	     */
+	    static get namespaceURI() {
+	        return XML_NS_URI;
+	    }
+	}
+
+	exports.DOMAssembler = DOMAssembler;
 	Object.defineProperty(DOMAssembler.prototype, 'node', {
 	    enumerable: true,
 	    writable: true,
@@ -265,76 +225,47 @@
 	});
 	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _dom = __webpack_require__(1);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var assign = Object.assign;
+	const { assign } = Object;
 
 	/**
 	 * - XHTML namespace
 	 * - provides all inherited from `HTMLElement` DOM interfaces
 	 * - https://www.w3.org/1999/xhtml
 	 */
-
-	var XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
+	const XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 	/**
 	 * - Assembler for DOM `HTMLElement`
 	 * - `Document.createElement` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `HTMLElement` initialization
 	 */
-
-	var HTMLAssembler = exports.HTMLAssembler = function (_DOMAssembler) {
-	  _inherits(HTMLAssembler, _DOMAssembler);
-
-	  function HTMLAssembler() {
-	    _classCallCheck(this, HTMLAssembler);
-
-	    return _possibleConstructorReturn(this, (HTMLAssembler.__proto__ || Object.getPrototypeOf(HTMLAssembler)).apply(this, arguments));
+	class HTMLAssembler extends _dom.DOMAssembler {
+	  /**
+	   * Assign custom `data-` attributes to the element
+	   * @param {{}} dataset declaration dictionary object
+	   */
+	  set dataset(dataset) {
+	    assign(this.element.dataset, dataset);
 	  }
 
-	  _createClass(HTMLAssembler, [{
-	    key: 'dataset',
+	  /**
+	   * Assign CSS style declaration to the element
+	   * @param {CSSStyleDeclaration} style declaration dictionary object
+	   */
+	  set style(style) {
+	    assign(this.element.style, style);
+	  }
 
-	    /**
-	     * Assign custom `data-` attributes to the element
-	     * @param {{}} dataset declaration dictionary object
-	     */
-	    set: function set(dataset) {
-	      assign(this.element.dataset, dataset);
-	    }
-
-	    /**
-	     * Assign CSS style declaration to the element
-	     * @param {CSSStyleDeclaration} style declaration dictionary object
-	     */
-
-	  }, {
-	    key: 'style',
-	    set: function set(style) {
-	      assign(this.element.style, style);
-	    }
-
-	    /**
-	     * @returns {String} create elements in XHTML namespace
-	     */
-
-	  }], [{
-	    key: 'namespaceURI',
-	    get: function get() {
-	      return XHTML_NS_URI;
-	    }
-	  }]);
-
-	  return HTMLAssembler;
-	}(_dom.DOMAssembler);
+	  /**
+	   * @returns {String} create elements in XHTML namespace
+	   */
+	  static get namespaceURI() {
+	    return XHTML_NS_URI;
+	  }
+	}
+	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
 /* 3 */
@@ -349,7 +280,7 @@
 
 	var _html = __webpack_require__(2);
 
-	var assembler = new _html.HTMLAssembler();
+	const assembler = new _html.HTMLAssembler();
 
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
@@ -365,42 +296,40 @@
 	 * @param {String} init.type — Hint for the type of the referenced resource
 	 * @param {String} init.referrerpolicy — Determines the referrer policy for fetches initiated by the element
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLAnchorElement
 	 */
-	var a = exports.a = function a(init) {
-	  return assembler.createElement('a', init);
-	};
+	const a = exports.a = init => assembler.createElement('a', init);
 
 	/**
 	 * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
 	 * represents an abbreviation or acronym, optionally with its expansion.
 	 * The `title` attribute may be used to provide an expansion of the abbreviation.
 	 * The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
+	 *
 	 * @param {String} init.title — special semantics: full term or expansion of abbreviation
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement abbr
 	 */
-	var abbr = exports.abbr = function abbr(init) {
-	  return assembler.createElement('abbr', init);
-	};
+	const abbr = exports.abbr = init => assembler.createElement('abbr', init);
 
 	/**
 	 * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
-	 * element represents the contact information for its nearest article or body element ancestor.
+	 * represents the contact information for its nearest `article` or `body` element ancestor.
 	 * If that is the `body` element, then the contact information applies to the document as a whole.
+	 *
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement address
 	 */
-	var address = exports.address = function address(init) {
-	  return assembler.createElement('address', init);
-	};
+	const address = exports.address = init => assembler.createElement('address', init);
 
 	/**
 	 * [The `area` element](https://html.spec.whatwg.org/#the-area-element)
-	 * represents either a hyperlink with some text and a corresponding area on an image map, or a dead area on an image map.
+	 * represents either a hyperlink with some text and a corresponding area on an image map,
+	 * or a dead area on an image map.
+	 *
 	 * @param {String} init.alt — Replacement text for use when images are not available
 	 * @param {String} init.coords — Coordinates for the shape to be created in an image map
 	 * @param {String} init.shape — The kind of shape to be created in an image map
@@ -410,52 +339,44 @@
 	 * @param {String} init.ping — URLs to ping
 	 * @param {String} init.rel — Relationship between the location in the document containing the hyperlink and the destination resource
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLAreaElement
 	 */
-	var area = exports.area = function area(init) {
-	  return assembler.createElement('area', init);
-	};
+	const area = exports.area = init => assembler.createElement('area', init);
 
 	/**
 	 * [The `article` element](https://html.spec.whatwg.org/#the-article-element)
-	 * represents a complete, or self-contained,
-	 * composition in a document, page, application, or site and that is,
-	 * in principle, independently distributable or reusable, e.g. in syndication.
-	 * This could be a forum post, a magazine or newspaper article, a blog entry,
-	 * a user-submitted comment, an interactive widget or gadget,
-	 * or any other independent item of content.
+	 * represents a complete, or self-contained, composition in a document, page, application,
+	 * or site and that is, in principle, independently distributable or reusable, e.g. in syndication.
+	 * This could be a forum post, a magazine or newspaper article, a blog entry, a user-submitted comment,
+	 * an interactive widget or gadget, or any other independent item of content.
+	 *
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement article
 	 */
-	var article = exports.article = function article(init) {
-	  return assembler.createElement('article', init);
-	};
+	const article = exports.article = init => assembler.createElement('article', init);
 
 	/**
 	 * [The `aside` element](https://html.spec.whatwg.org/#the-aside-element)
-	 * represents a section of a page that consists of content
-	 * that is tangentially related to the content around the aside element,
+	 * represents a section of a page that consists of content that is tangentially related to the content around the aside element,
 	 * and which could be considered separate from that content.
 	 * Such sections are often represented as sidebars in printed typography.
+	 *
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLElement aside
 	 */
-	var aside = exports.aside = function aside(init) {
-	  return assembler.createElement('aside', init);
-	};
+	const aside = exports.aside = init => assembler.createElement('aside', init);
 
 	/**
 	 * [The `audio` element](https://html.spec.whatwg.org/#the-audio-element)
 	 * represents a sound or audio stream.
-	 * Content may be provided inside the audio element.
+	 * Content may be provided inside the `audio` element.
 	 * User agents should not show this content to the user;
-	 * it is intended for older Web browsers which do not support audio,
-	 * so that legacy audio plugins can be tried,
-	 * or to show text to the users of these older browsers
-	 * informing them of how to access the audio contents.
+	 * it is intended for older Web browsers which do not support audio, so that legacy audio plugins can be tried,
+	 * or to show text to the users of these older browsers informing them of how to access the audio contents.
+	 *
 	 * @param {String} init.src — Address of the resource
 	 * @param {String} init.crossorigin — How the element handles crossorigin requests
 	 * @param {String} init.preload — Hints how much buffering the media resource will likely need
@@ -464,447 +385,231 @@
 	 * @param {Boolean} init.muted — Whether to mute the media resource by default
 	 * @param {Boolean} init.controls — Show user agent controls
 	 * @param init.global{} — global `NodeInit` attributes
-	 * @param {NodeInit} init `NodeInit` dictionary object
+	 * @param {*} init object
 	 * @interface HTMLAudioElement
 	 */
-	var audio = exports.audio = function audio(init) {
-	  return assembler.createElement('audio', init);
-	};
+	const audio = exports.audio = init => assembler.createElement('audio', init);
 
-	var b = exports.b = function b(init) {
-	  return assembler.createElement('b', init);
-	};
+	const b = exports.b = init => assembler.createElement('b', init);
 
-	var base = exports.base = function base(init) {
-	  return assembler.createElement('base', init);
-	};
+	const base = exports.base = init => assembler.createElement('base', init);
 
-	var bdi = exports.bdi = function bdi(init) {
-	  return assembler.createElement('bdi', init);
-	};
+	const bdi = exports.bdi = init => assembler.createElement('bdi', init);
 
-	var bdo = exports.bdo = function bdo(init) {
-	  return assembler.createElement('bdo', init);
-	};
+	const bdo = exports.bdo = init => assembler.createElement('bdo', init);
 
-	var blockquote = exports.blockquote = function blockquote(init) {
-	  return assembler.createElement('blockquote', init);
-	};
+	const blockquote = exports.blockquote = init => assembler.createElement('blockquote', init);
 
-	var body = exports.body = function body(init) {
-	  return assembler.createElement('body', init);
-	};
+	const body = exports.body = init => assembler.createElement('body', init);
 
-	var br = exports.br = function br(init) {
-	  return assembler.createElement('br', init);
-	};
+	const br = exports.br = init => assembler.createElement('br', init);
 
-	var button = exports.button = function button(init) {
-	  return assembler.createElement('button', init);
-	};
+	const button = exports.button = init => assembler.createElement('button', init);
 
-	var canvas = exports.canvas = function canvas(init) {
-	  return assembler.createElement('canvas', init);
-	};
+	const canvas = exports.canvas = init => assembler.createElement('canvas', init);
 
-	var caption = exports.caption = function caption(init) {
-	  return assembler.createElement('caption', init);
-	};
+	const caption = exports.caption = init => assembler.createElement('caption', init);
 
-	var cite = exports.cite = function cite(init) {
-	  return assembler.createElement('cite', init);
-	};
+	const cite = exports.cite = init => assembler.createElement('cite', init);
 
-	var code = exports.code = function code(init) {
-	  return assembler.createElement('code', init);
-	};
+	const code = exports.code = init => assembler.createElement('code', init);
 
-	var col = exports.col = function col(init) {
-	  return assembler.createElement('col', init);
-	};
+	const col = exports.col = init => assembler.createElement('col', init);
 
-	var colgroup = exports.colgroup = function colgroup(init) {
-	  return assembler.createElement('colgroup', init);
-	};
+	const colgroup = exports.colgroup = init => assembler.createElement('colgroup', init);
 
-	var data = exports.data = function data(init) {
-	  return assembler.createElement('data', init);
-	};
+	const data = exports.data = init => assembler.createElement('data', init);
 
-	var datalist = exports.datalist = function datalist(init) {
-	  return assembler.createElement('datalist', init);
-	};
+	const datalist = exports.datalist = init => assembler.createElement('datalist', init);
 
-	var dd = exports.dd = function dd(init) {
-	  return assembler.createElement('dd', init);
-	};
+	const dd = exports.dd = init => assembler.createElement('dd', init);
 
-	var del = exports.del = function del(init) {
-	  return assembler.createElement('del', init);
-	};
+	const del = exports.del = init => assembler.createElement('del', init);
 
-	var details = exports.details = function details(init) {
-	  return assembler.createElement('details', init);
-	};
+	const details = exports.details = init => assembler.createElement('details', init);
 
-	var dfn = exports.dfn = function dfn(init) {
-	  return assembler.createElement('dfn', init);
-	};
+	const dfn = exports.dfn = init => assembler.createElement('dfn', init);
 
-	var dialog = exports.dialog = function dialog(init) {
-	  return assembler.createElement('dialog', init);
-	};
+	const dialog = exports.dialog = init => assembler.createElement('dialog', init);
 
-	var div = exports.div = function div(init) {
-	  return assembler.createElement('div', init);
-	};
+	const div = exports.div = init => assembler.createElement('div', init);
 
-	var dl = exports.dl = function dl(init) {
-	  return assembler.createElement('dl', init);
-	};
+	const dl = exports.dl = init => assembler.createElement('dl', init);
 
-	var dt = exports.dt = function dt(init) {
-	  return assembler.createElement('dt', init);
-	};
+	const dt = exports.dt = init => assembler.createElement('dt', init);
 
-	var em = exports.em = function em(init) {
-	  return assembler.createElement('em', init);
-	};
+	const em = exports.em = init => assembler.createElement('em', init);
 
-	var embed = exports.embed = function embed(init) {
-	  return assembler.createElement('embed', init);
-	};
+	const embed = exports.embed = init => assembler.createElement('embed', init);
 
-	var fieldset = exports.fieldset = function fieldset(init) {
-	  return assembler.createElement('fieldset', init);
-	};
+	const fieldset = exports.fieldset = init => assembler.createElement('fieldset', init);
 
-	var figcaption = exports.figcaption = function figcaption(init) {
-	  return assembler.createElement('figcaption', init);
-	};
+	const figcaption = exports.figcaption = init => assembler.createElement('figcaption', init);
 
-	var figure = exports.figure = function figure(init) {
-	  return assembler.createElement('figure', init);
-	};
+	const figure = exports.figure = init => assembler.createElement('figure', init);
 
-	var footer = exports.footer = function footer(init) {
-	  return assembler.createElement('footer', init);
-	};
+	const footer = exports.footer = init => assembler.createElement('footer', init);
 
-	var form = exports.form = function form(init) {
-	  return assembler.createElement('form', init);
-	};
+	const form = exports.form = init => assembler.createElement('form', init);
 
-	var h1 = exports.h1 = function h1(init) {
-	  return assembler.createElement('h1', init);
-	};
+	const h1 = exports.h1 = init => assembler.createElement('h1', init);
 
-	var h2 = exports.h2 = function h2(init) {
-	  return assembler.createElement('h2', init);
-	};
+	const h2 = exports.h2 = init => assembler.createElement('h2', init);
 
-	var h3 = exports.h3 = function h3(init) {
-	  return assembler.createElement('h3', init);
-	};
+	const h3 = exports.h3 = init => assembler.createElement('h3', init);
 
-	var h4 = exports.h4 = function h4(init) {
-	  return assembler.createElement('h4', init);
-	};
+	const h4 = exports.h4 = init => assembler.createElement('h4', init);
 
-	var h5 = exports.h5 = function h5(init) {
-	  return assembler.createElement('h5', init);
-	};
+	const h5 = exports.h5 = init => assembler.createElement('h5', init);
 
-	var h6 = exports.h6 = function h6(init) {
-	  return assembler.createElement('h6', init);
-	};
+	const h6 = exports.h6 = init => assembler.createElement('h6', init);
 
-	var head = exports.head = function head(init) {
-	  return assembler.createElement('head', init);
-	};
+	const head = exports.head = init => assembler.createElement('head', init);
 
-	var header = exports.header = function header(init) {
-	  return assembler.createElement('header', init);
-	};
+	const header = exports.header = init => assembler.createElement('header', init);
 
-	var hgroup = exports.hgroup = function hgroup(init) {
-	  return assembler.createElement('hgroup', init);
-	};
+	const hgroup = exports.hgroup = init => assembler.createElement('hgroup', init);
 
-	var hr = exports.hr = function hr(init) {
-	  return assembler.createElement('hr', init);
-	};
+	const hr = exports.hr = init => assembler.createElement('hr', init);
 
-	var html = exports.html = function html(init) {
-	  return assembler.createElement('html', init);
-	};
+	const html = exports.html = init => assembler.createElement('html', init);
 
-	var i = exports.i = function i(init) {
-	  return assembler.createElement('i', init);
-	};
+	const i = exports.i = init => assembler.createElement('i', init);
 
-	var iframe = exports.iframe = function iframe(init) {
-	  return assembler.createElement('iframe', init);
-	};
+	const iframe = exports.iframe = init => assembler.createElement('iframe', init);
 
-	var img = exports.img = function img(init) {
-	  return assembler.createElement('img', init);
-	};
+	const img = exports.img = init => assembler.createElement('img', init);
 
-	var input = exports.input = function input(init) {
-	  return assembler.createElement('input', init);
-	};
+	const input = exports.input = init => assembler.createElement('input', init);
 
-	var ins = exports.ins = function ins(init) {
-	  return assembler.createElement('ins', init);
-	};
+	const ins = exports.ins = init => assembler.createElement('ins', init);
 
-	var kbd = exports.kbd = function kbd(init) {
-	  return assembler.createElement('kbd', init);
-	};
+	const kbd = exports.kbd = init => assembler.createElement('kbd', init);
 
-	var keygen = exports.keygen = function keygen(init) {
-	  return assembler.createElement('keygen', init);
-	};
+	const keygen = exports.keygen = init => assembler.createElement('keygen', init);
 
-	var label = exports.label = function label(init) {
-	  return assembler.createElement('label', init);
-	};
+	const label = exports.label = init => assembler.createElement('label', init);
 
-	var legend = exports.legend = function legend(init) {
-	  return assembler.createElement('legend', init);
-	};
+	const legend = exports.legend = init => assembler.createElement('legend', init);
 
-	var li = exports.li = function li(init) {
-	  return assembler.createElement('li', init);
-	};
+	const li = exports.li = init => assembler.createElement('li', init);
 
-	var link = exports.link = function link(init) {
-	  return assembler.createElement('link', init);
-	};
+	const link = exports.link = init => assembler.createElement('link', init);
 
-	var main = exports.main = function main(init) {
-	  return assembler.createElement('main', init);
-	};
+	const main = exports.main = init => assembler.createElement('main', init);
 
-	var map = exports.map = function map(init) {
-	  return assembler.createElement('map', init);
-	};
+	const map = exports.map = init => assembler.createElement('map', init);
 
-	var mark = exports.mark = function mark(init) {
-	  return assembler.createElement('mark', init);
-	};
+	const mark = exports.mark = init => assembler.createElement('mark', init);
 
-	// todo MathInstance
+	// todo MathAssembler
 	// export const math = init => instance.createElement('math', init);
 
-	var menu = exports.menu = function menu(init) {
-	  return assembler.createElement('menu', init);
-	};
+	const menu = exports.menu = init => assembler.createElement('menu', init);
 
-	var menuitem = exports.menuitem = function menuitem(init) {
-	  return assembler.createElement('menuitem', init);
-	};
+	const menuitem = exports.menuitem = init => assembler.createElement('menuitem', init);
 
-	var meta = exports.meta = function meta(init) {
-	  return assembler.createElement('meta', init);
-	};
+	const meta = exports.meta = init => assembler.createElement('meta', init);
 
-	var meter = exports.meter = function meter(init) {
-	  return assembler.createElement('meter', init);
-	};
+	const meter = exports.meter = init => assembler.createElement('meter', init);
 
-	var nav = exports.nav = function nav(init) {
-	  return assembler.createElement('nav', init);
-	};
+	const nav = exports.nav = init => assembler.createElement('nav', init);
 
-	var noscript = exports.noscript = function noscript(init) {
-	  return assembler.createElement('noscript', init);
-	};
+	const noscript = exports.noscript = init => assembler.createElement('noscript', init);
 
-	var object = exports.object = function object(init) {
-	  return assembler.createElement('object', init);
-	};
+	const object = exports.object = init => assembler.createElement('object', init);
 
-	var ol = exports.ol = function ol(init) {
-	  return assembler.createElement('ol', init);
-	};
+	const ol = exports.ol = init => assembler.createElement('ol', init);
 
-	var optgroup = exports.optgroup = function optgroup(init) {
-	  return assembler.createElement('optgroup', init);
-	};
+	const optgroup = exports.optgroup = init => assembler.createElement('optgroup', init);
 
-	var option = exports.option = function option(init) {
-	  return assembler.createElement('option', init);
-	};
+	const option = exports.option = init => assembler.createElement('option', init);
 
-	var output = exports.output = function output(init) {
-	  return assembler.createElement('output', init);
-	};
+	const output = exports.output = init => assembler.createElement('output', init);
 
-	var p = exports.p = function p(init) {
-	  return assembler.createElement('p', init);
-	};
+	const p = exports.p = init => assembler.createElement('p', init);
 
-	var param = exports.param = function param(init) {
-	  return assembler.createElement('param', init);
-	};
+	const param = exports.param = init => assembler.createElement('param', init);
 
-	var picture = exports.picture = function picture(init) {
-	  return assembler.createElement('picture', init);
-	};
+	const picture = exports.picture = init => assembler.createElement('picture', init);
 
-	var pre = exports.pre = function pre(init) {
-	  return assembler.createElement('pre', init);
-	};
+	const pre = exports.pre = init => assembler.createElement('pre', init);
 
-	var progress = exports.progress = function progress(init) {
-	  return assembler.createElement('progress', init);
-	};
+	const progress = exports.progress = init => assembler.createElement('progress', init);
 
-	var q = exports.q = function q(init) {
-	  return assembler.createElement('q', init);
-	};
+	const q = exports.q = init => assembler.createElement('q', init);
 
-	var rp = exports.rp = function rp(init) {
-	  return assembler.createElement('rp', init);
-	};
+	const rp = exports.rp = init => assembler.createElement('rp', init);
 
-	var rt = exports.rt = function rt(init) {
-	  return assembler.createElement('rt', init);
-	};
+	const rt = exports.rt = init => assembler.createElement('rt', init);
 
-	var ruby = exports.ruby = function ruby(init) {
-	  return assembler.createElement('ruby', init);
-	};
+	const ruby = exports.ruby = init => assembler.createElement('ruby', init);
 
-	var s = exports.s = function s(init) {
-	  return assembler.createElement('s', init);
-	};
+	const s = exports.s = init => assembler.createElement('s', init);
 
-	var samp = exports.samp = function samp(init) {
-	  return assembler.createElement('samp', init);
-	};
+	const samp = exports.samp = init => assembler.createElement('samp', init);
 
-	var script = exports.script = function script(init) {
-	  return assembler.createElement('script', init);
-	};
+	const script = exports.script = init => assembler.createElement('script', init);
 
-	var section = exports.section = function section(init) {
-	  return assembler.createElement('section', init);
-	};
+	const section = exports.section = init => assembler.createElement('section', init);
 
-	var select = exports.select = function select(init) {
-	  return assembler.createElement('select', init);
-	};
+	const select = exports.select = init => assembler.createElement('select', init);
 
-	var slot = exports.slot = function slot(init) {
-	  return assembler.createElement('slot', init);
-	};
+	const slot = exports.slot = init => assembler.createElement('slot', init);
 
-	var small = exports.small = function small(init) {
-	  return assembler.createElement('small', init);
-	};
+	const small = exports.small = init => assembler.createElement('small', init);
 
-	var source = exports.source = function source(init) {
-	  return assembler.createElement('source', init);
-	};
+	const source = exports.source = init => assembler.createElement('source', init);
 
-	var span = exports.span = function span(init) {
-	  return assembler.createElement('span', init);
-	};
+	const span = exports.span = init => assembler.createElement('span', init);
 
-	var strong = exports.strong = function strong(init) {
-	  return assembler.createElement('strong', init);
-	};
+	const strong = exports.strong = init => assembler.createElement('strong', init);
 
-	var style = exports.style = function style(init) {
-	  return assembler.createElement('style', init);
-	};
+	const style = exports.style = init => assembler.createElement('style', init);
 
-	var sub = exports.sub = function sub(init) {
-	  return assembler.createElement('sub', init);
-	};
+	const sub = exports.sub = init => assembler.createElement('sub', init);
 
-	var summary = exports.summary = function summary(init) {
-	  return assembler.createElement('summary', init);
-	};
+	const summary = exports.summary = init => assembler.createElement('summary', init);
 
-	var sup = exports.sup = function sup(init) {
-	  return assembler.createElement('sup', init);
-	};
+	const sup = exports.sup = init => assembler.createElement('sup', init);
 
-	// todo SVGInstance
+	// todo SVGAssembler
 	// export const svg = init => instance.createElement('svg', init);
 
-	var table = exports.table = function table(init) {
-	  return assembler.createElement('table', init);
-	};
+	const table = exports.table = init => assembler.createElement('table', init);
 
-	var tbody = exports.tbody = function tbody(init) {
-	  return assembler.createElement('tbody', init);
-	};
+	const tbody = exports.tbody = init => assembler.createElement('tbody', init);
 
-	var td = exports.td = function td(init) {
-	  return assembler.createElement('td', init);
-	};
+	const td = exports.td = init => assembler.createElement('td', init);
 
-	var template = exports.template = function template(init) {
-	  return assembler.createElement('template', init);
-	};
+	const template = exports.template = init => assembler.createElement('template', init);
 
-	var textarea = exports.textarea = function textarea(init) {
-	  return assembler.createElement('textarea', init);
-	};
+	const textarea = exports.textarea = init => assembler.createElement('textarea', init);
 
-	var tfoot = exports.tfoot = function tfoot(init) {
-	  return assembler.createElement('tfoot', init);
-	};
+	const tfoot = exports.tfoot = init => assembler.createElement('tfoot', init);
 
-	var th = exports.th = function th(init) {
-	  return assembler.createElement('th', init);
-	};
+	const th = exports.th = init => assembler.createElement('th', init);
 
-	var thead = exports.thead = function thead(init) {
-	  return assembler.createElement('thead', init);
-	};
+	const thead = exports.thead = init => assembler.createElement('thead', init);
 
-	var time = exports.time = function time(init) {
-	  return assembler.createElement('time', init);
-	};
+	const time = exports.time = init => assembler.createElement('time', init);
 
-	var title = exports.title = function title(init) {
-	  return assembler.createElement('title', init);
-	};
+	const title = exports.title = init => assembler.createElement('title', init);
 
-	var tr = exports.tr = function tr(init) {
-	  return assembler.createElement('tr', init);
-	};
+	const tr = exports.tr = init => assembler.createElement('tr', init);
 
-	var track = exports.track = function track(init) {
-	  return assembler.createElement('track', init);
-	};
+	const track = exports.track = init => assembler.createElement('track', init);
 
-	var u = exports.u = function u(init) {
-	  return assembler.createElement('u', init);
-	};
+	const u = exports.u = init => assembler.createElement('u', init);
 
-	var ul = exports.ul = function ul(init) {
-	  return assembler.createElement('ul', init);
-	};
+	const ul = exports.ul = init => assembler.createElement('ul', init);
 
 	// `var` is JS-keyword
-	var variable = exports.variable = function variable(init) {
-	  return assembler.createElement('var', init);
-	};
+	const variable = exports.variable = init => assembler.createElement('var', init);
 
-	var video = exports.video = function video(init) {
-	  return assembler.createElement('video', init);
-	};
+	const video = exports.video = init => assembler.createElement('video', init);
 
-	var wbr = exports.wbr = function wbr(init) {
-	  return assembler.createElement('wbr', init);
-	};
+	const wbr = exports.wbr = init => assembler.createElement('wbr', init);
 
 /***/ }
 /******/ ]);

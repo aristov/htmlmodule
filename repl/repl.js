@@ -73,9 +73,7 @@ const globalbox = input({
 const modebox = input({
     type : 'checkbox',
     checked : true,
-    onchange : () => {
-        htmlOutput.hidden = !modebox.checked;
-    }
+    onchange : () => htmlOutput.hidden = !modebox.checked
 });
 
 
@@ -83,7 +81,6 @@ let selectedOption = option({
     value,
     id : 'globals',
     selected : true,
-    // attrset : { selected : '' },
     textContent : 'example with globals'
 });
 
@@ -123,11 +120,7 @@ const clear = () => {
         selected.removeAttribute('selected');
         selected.selected = false;
     }
-    /*const opt = testselectbox.options[0];
-    opt.selected = true;*/
-
     jsEditor.setValue('');
-
     location.hash = '';
 };
 
