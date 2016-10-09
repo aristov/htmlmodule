@@ -13,10 +13,10 @@ module
 
 ## Links
 
- - [repl](//aristov.github.io/repl/repl.html)
- - [test case](//aristov.github.io/test/test.html)
- - [spec suite](//aristov.github.io/spec/spec.html)
- - [API documentation](//aristov.github.io/documentation)
+ - [repl](//aristov.github.io/dommodule/repl/repl.html)
+ - [test case](//aristov.github.io/dommodule/test/test.html)
+ - [spec suite](//aristov.github.io/dommodule/spec/spec.html)
+ - [API documentation](//aristov.github.io/dommodule/documentation)
 
 ## Usage
 
@@ -117,7 +117,7 @@ run dev server
 static
 ```
 
-open in browser [http://localhost:8080/repl/repl.html]
+open in browser [localhost:8080](http://localhost:8080/)
 
 ### testing
 
