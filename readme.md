@@ -13,17 +13,25 @@ module
 
 ## Usage
 
-install
+### environment
+
+ - browser
+ - node + webpack (optional)
+
+### install
+
 ```
 npm install dommodule
 ```
 
-import elements
+### create application
+
+#### import elements
 ```js
 import { form, label, input, button } from 'dommodule/html'
 ```
 
-create application
+#### build DOM tree
 ```js
 const websearch = 
     form({
@@ -39,7 +47,9 @@ const websearch =
     })
 ```
 
-now `websearch` DOM structure is respective to this markup
+<details>
+<summary>respective html markup</summary>
+<!--now `websearch` DOM structure is respective to this markup-->
 ```html
 <form action=//yandex.com/search target=_blank>
     <label>
@@ -49,13 +59,14 @@ now `websearch` DOM structure is respective to this markup
     <button>Find</button>
 </form>
 ```
+</details>
 
-append to document body
+#### append to document body
 ```js
 document.body.append(websearch)
 ```
 
-now it works.
+now it works
 
 ## Development
 
@@ -67,7 +78,7 @@ now it works.
 ### install
 
 ```
-git clone git://github.com:aristov/dommodule.git
+git clone git@github.com:aristov/dommodule.git
 cd dommodule
 npm i
 ```
