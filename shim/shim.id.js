@@ -18,5 +18,5 @@ if(!Element.prototype.hasOwnProperty('id')) {
             return this.getAttribute('id');
         }
     });
-    document.getElementById = id => document.querySelector(`[id=${id}]`);
+    document.getElementById = id => document.querySelector(`[id=${ id }]`);
 }

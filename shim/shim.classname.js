@@ -20,5 +20,5 @@ if(!Element.prototype.hasOwnProperty('className')) {
         }
     });
     document.getElementsByClassName = className =>
-        document.querySelectorAll(`[class~=${className}]`);
+        document.querySelectorAll(`[class~=${ className }]`);
 }

@@ -11,6 +11,7 @@ module.exports = {
         spec : ['./spec/spec'],
         test : './test/test',
         dist : ['./dist/dist'],
+        'dist.global' : ['./dist/dist.global'],
         repl : './repl/repl'
     },
     output : {

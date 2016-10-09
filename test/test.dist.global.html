@@ -1,0 +1,10 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>DOM module: distribution via global var test</title>
+<body>
+    <script src=../build/build.dist.global.js></script>
+    <script>
+        const { button } = DOM;
+        document.body.append(button('Test'));
+    </script>
+</body>
