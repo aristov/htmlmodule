@@ -17,7 +17,7 @@ div.panel
     width: 50%;
     margin: 5px;
 }
-div.panel form label
+div.panel > form > label
 {
     margin-right: 20px;
     user-select: none;

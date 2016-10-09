@@ -8,11 +8,12 @@ if(env.SUPER_MODE) Object.assign(env, { ES6_MODE : true, WATCH_MODE : true });
 
 module.exports = {
     entry : {
+        test : ['./test/test'],
         spec : ['./spec/spec'],
-        test : './test/test',
         dist : ['./dist/dist'],
         'dist.global' : ['./dist/dist.global'],
-        repl : './repl/repl'
+        repl : ['./repl/repl'],
+        // readme : ['./readme/readme']
     },
     output : {
         path: __dirname + '/build',
@@ -24,7 +25,8 @@ module.exports = {
                 { test : /\.js$/, loader : 'babel?plugins[]=transform-es2015-modules-commonjs' } :
                 { test : /\.js$/, loader : 'babel?presets[]=es2015' },
             { test : /\.txt$/, loader : 'raw-loader' },
-            { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' }
+            { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' },
+            // { test: /\.md$/, loader: "markdown" },
         ],
         postLoaders: [
             {

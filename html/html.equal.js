@@ -14,3 +14,15 @@ const xmldoc = xml => parser.parseFromString(xml, 'application/xml');
 export const xmlequal = (xml1, xml2) => xmldoc(xml1).isEqualNode(xmldoc(xml2));
 
 // window.htmlequal = htmlequal;
+
+export const domEqualMarkup = (dom, markup) => {
+    const parser = new DOMParser;
+    const node = parser.parseFromString(markup, 'application/xml');
+    return dom.isEqualNode(node);
+}
+
+export const htmlEqualMarkup = (dom, markup) => {
+    const parser = new DOMParser;
+    const node = parser.parseFromString(markup, 'application/xhtml');
+    return dom.isEqualNode(node);
+}

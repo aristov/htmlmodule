@@ -1,17 +1,11 @@
 form({
-    action : 'https://yandex.com/search',
+    action : '//yandex.com/search',
     target : '_blank',
-    children : label([
-        'Search',
-        br(),
-        input({
-            type : 'search',
-            name : 'text',
-            placeholder : 'your request...'
-        }),
-        button({
-            style : { margin : '0 7px' },
-            textContent : 'Yandex!'
-        })
-    ])
+    children : [
+        label([
+            'Search ',
+            input({ type : 'search', name : 'text', })
+        ]),
+        button('Find')
+    ]
 })

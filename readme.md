@@ -1,32 +1,74 @@
 # DOM module
 
-<em>work in propgress</em>
-
-[html](http://html.spec.whatwg.org)
 [dom](http://dom.spec.whatwg.org)
+&&
+[html](http://html.spec.whatwg.org)
 module
+
+<em>work in propgress</em>
 
 ## Usage
 
+install
 ```
 npm install dommodule
 ```
 
+import elements
 ```js
-import { a } from 'dommodule/html';
-
-document.body.append(
-    a({ href : 'ya.ru', children : 'yaru' })
-)
+import { form, label, input, button } from 'dommodule/html'
 ```
 
-result is DOM equiv of
+create application
+```js
+const websearch = 
+    form({
+        action : '//yandex.com/search',
+        target : '_blank',
+        children : [
+            label([
+                'Search ',
+                input({ type : 'search', name : 'text', })
+            ]),
+            button('Find')
+        ]
+    })
+```
 
+now `websearch` DOM structure is respective to this markup
 ```html
-<a href="ya.ru">yaru</a>
+<form action=//yandex.com/search target=_blank>
+    <label>
+        Search 
+        <input type=search name=text>
+    </label>
+    <button>Find</button>
+</form>
+```
+
+append to document body
+```js
+const body = document.body
+body.innerHTML === '' // true
+
+body.append(websearch)
+body.innerHTML === websearch.outerHTML // true
 ```
 
 ## Development
+
+### environment
+
+ - browser
+ - node + webpack
+
+### install
+
+```
+git clone git://github.com:aristov/dommodule.git
+cd dommodule
+npm i
+```
 
 ### build
 
@@ -40,12 +82,9 @@ webpack
 DEV_MODE=true webpack
 ```
 
- - Node.js
- - NPM
- - Browser
- - Modern HTML DOM implementations
-
 ### testing
+
+mocha + chai + sinon + karma + sauce
 
 ```
 npm test
