@@ -1,18 +1,16 @@
-import { form, label, input, button } from '../../htmldom/htmldom';
-
-export const websearch = ({ target = '_blank', action, name }) =>
-    form({
-        action,
-        target,
-        children : [
-            label([
-                'Search ',
-                input({ type : 'search', name })
-            ]),
-            button('Find')
-        ]
-    })
-
-export const yandex = websearch({ action : '//yandex.com/search', name : 'text' })
-
-export const test = () => document.body.append(yandex)
+form({
+    action : '//yandex.com/search',
+    target : '_blank',
+    children : [
+        label([
+            img({
+                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',
+                alt : 'Yandex',
+                width : 50
+            }),
+            br(),
+            input({ type : 'search', name : 'text' }), ' '
+        ]),
+        button('Find')
+    ]
+})

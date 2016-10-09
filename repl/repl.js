@@ -19,6 +19,7 @@ import jsb from '../jsb/jsb';
 
 import value from 'raw!./test/globals.rawjs';
 import exportdefault from 'raw!./test/exportdefault.rawjs';
+import importfrom from 'raw!./test/importfrom.rawjs';
 
 import './repl.css';
 
@@ -28,10 +29,13 @@ const localGlobal = localStorage.getItem('global');
 const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 const EXPORTS_DEFAULT_RE = /exports\s*\.\s*default\s*=/;
 
+const IMPORT_FROM_RE = /import\s*({(?:\s*\w+\s*,)*(?:\s*\w+\s*,?\s*)})\s*from\s*'(\w+)';?/;
+
 // babel polyfill =)
 if(!window.Babel) {
     window.Babel = {
         transform : code => {
+            code = code.replace(IMPORT_FROM_RE, 'const $1 = $2;');
             if(EXPORT_DEFAULT_RE.test(code)) {
                 code = code.replace(EXPORT_DEFAULT_RE, 'exports.default = ');
             }
@@ -83,6 +87,7 @@ const options = [
     option({ value : '', children : '—' }),
     selectedOption,
     option({ value : exportdefault, children : 'export default example' }),
+    option({ value : importfrom, children : 'full module example' }),
     test.map(fn => {
         const src = fn.toString();
         const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
@@ -207,6 +212,7 @@ function evaluate() {
                     throw Error('Module is not Exported!');
                 }
             };
+            // console.log(fn);
 
             fn(exports, HTMLDOM);
 

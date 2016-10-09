@@ -84,7 +84,7 @@ export class DOMAssembler {
     set children(children) {
         if(isArray(children)) {
             children.forEach(child => this.children = child);
-        } else {
+        } else if(children) {
             const child = typeof children === 'string'?
                 document.createTextNode(children) :
                 children;

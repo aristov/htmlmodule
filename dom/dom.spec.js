@@ -143,11 +143,17 @@ describe('DOM assembler', function() {
             describe('children', function() {
                 const element = assembler.createElement('element', {
                     children : [
+                        0,
                         assembler.createElement('child'),
+                        '',
                         'text node as string',
+                        NaN,
                         document.createTextNode('created text node'),
+                        null,
                         document.createElement('hr'),
-                        document.createComment('Simple DOM Comment node')
+                        false,
+                        document.createComment('Simple DOM Comment node'),
+                        undefined
                     ]
                 });
                 const childNodes = element.childNodes;

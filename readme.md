@@ -4,12 +4,12 @@
 todo links: dist, dist global, spec, repl, test, documentation
 -->
 
+<em>work in progress</em>
+
 [DOM](//dom.spec.whatwg.org)
 &&
 [HTML](//html.spec.whatwg.org)
-module
-
-<em>work in progress</em>
+module provides HTML DOM semantics functionality
 
 ## Links
 
@@ -117,7 +117,7 @@ run dev server
 static
 ```
 
-open in browser [localhost:8080](http://localhost:8080/)
+open in browser [localhost:8080](//localhost:8080/)
 
 ### testing
 
