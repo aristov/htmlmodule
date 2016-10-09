@@ -1,11 +1,15 @@
 # DOM module
 
+<!--
+todo links: dist, dist global, spec, repl, test, documentation
+-->
+
 [dom](http://dom.spec.whatwg.org)
 &&
 [html](http://html.spec.whatwg.org)
 module
 
-<em>work in propgress</em>
+<em>work in progress</em>
 
 ## Usage
 
