@@ -52,12 +52,10 @@ now `websearch` DOM structure is respective to this markup
 
 append to document body
 ```js
-const body = document.body
-body.innerHTML === '' // true
-
-body.append(websearch)
-body.innerHTML === websearch.outerHTML // true
+document.body.append(websearch)
 ```
+
+now it works.
 
 ## Development
 
