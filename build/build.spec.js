@@ -19069,10 +19069,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const { assert } = _chai2.default;
-	const { Element, Text, Comment, HTMLSpanElement, HTMLAnchorElement } = window;
+	const { Node, Element, Text, Comment, HTMLSpanElement, HTMLAnchorElement } = window;
 	const { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE } = Node;
-
-	const XML_NS_ATTR = `xmlns="${ _dist.XML_NS_URI }"`;
 
 	const serializer = new XMLSerializer();
 
@@ -19083,18 +19081,12 @@
 	            assert.equal(node.nodeType, ELEMENT_NODE);
 	            assert.equal(node.tagName, 'pipi7');
 	            assert.equal(node.constructor, Element);
-
-	            const str = `<pipi7 ${ XML_NS_ATTR }>+++</pipi7>`;
-	            assert.equal(serializer.serializeToString(node), str);
 	        });
 	        it('element', () => {
 	            const node = (0, _dist.element)('bafi4');
 	            assert.equal(node.nodeType, ELEMENT_NODE);
 	            assert.equal(node.tagName, 'element');
 	            assert.equal(node.constructor, Element);
-
-	            const str = `<element ${ XML_NS_ATTR }>bafi4</element>`;
-	            assert.equal(serializer.serializeToString(node), str);
 	        });
 	        it('text', () => {
 	            const node = (0, _dist.text)('cuce31');
