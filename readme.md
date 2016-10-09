@@ -16,7 +16,7 @@ module
 ### environment
 
  - browser
- - node + webpack (optional)
+ - node + webpack <sup>optional</sup>
 
 ### install
 
