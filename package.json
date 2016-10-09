@@ -33,6 +33,7 @@
     "mocha": "^3.1.0",
     "postcss-loader": "^0.13.0",
     "raw-loader": "^0.5.1",
+    "static": "^2.0.0",
     "style-loader": "^0.13.1",
     "victorica": "0.0.2",
     "webpack": "^1.13.1"
