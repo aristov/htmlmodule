@@ -4,19 +4,19 @@
 todo links: dist, dist global, spec, repl, test, documentation
 -->
 
-[DOM](http://dom.spec.whatwg.org)
+[DOM](//dom.spec.whatwg.org)
 &&
-[HTML](http://html.spec.whatwg.org)
+[HTML](//html.spec.whatwg.org)
 module
 
 <em>work in progress</em>
 
 ## Links
 
- - [repl](aristov.github.io/repl/repl.html)
- - [test case](aristov.github.io/test/test.html)
- - [spec suite](aristov.github.io/spec/spec.html)
- - [API documentation](aristov.github.io/documentation)
+ - [repl](//aristov.github.io/repl/repl.html)
+ - [test case](//aristov.github.io/test/test.html)
+ - [spec suite](//aristov.github.io/spec/spec.html)
+ - [API documentation](//aristov.github.io/documentation)
 
 ## Usage
 
@@ -117,7 +117,7 @@ run dev server
 static
 ```
 
-open in browser http://localhost:8080/repl/repl.html
+open in browser [http://localhost:8080/repl/repl.html]
 
 ### testing
 
