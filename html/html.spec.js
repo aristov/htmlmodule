@@ -1,6 +1,8 @@
 import { HTMLAssembler } from './html.js';
 import chai from 'chai';
 
+import { htmlequal } from './html.equal.js';
+
 const { assert } = chai;
 const {
     HTMLElement,
@@ -41,6 +43,9 @@ describe('HTML assembler', function() {
                 });
                 it('proper `outerHTML` property value', function() {
                     assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY="A"></A>');
+                });
+                it('hdmldiff works properly', function() {
+                    assert.equal(htmlequal(element.outerHTML.toUpperCase(), '<a accesskey="A"></a>'), true);
                 });
             });
 

@@ -148,7 +148,7 @@ describe('DOM assembler', function() {
                         'text node as string',
                         document.createTextNode('created text node'),
                         document.createElement('hr'),
-                        document.createComment('Simple DOM Comment node'),
+                        document.createComment('Simple DOM Comment node')
                     ]
                 });
                 const childNodes = element.childNodes;

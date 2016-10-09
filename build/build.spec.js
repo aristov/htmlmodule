@@ -18622,6 +18622,8 @@
 
 	var _chai2 = _interopRequireDefault(_chai);
 
+	var _htmlEqual = __webpack_require__(551);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const { assert } = _chai2.default;
@@ -18664,6 +18666,9 @@
 	                });
 	                it('proper `outerHTML` property value', function () {
 	                    assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY="A"></A>');
+	                });
+	                it('hdmldiff works properly', function () {
+	                    assert.equal((0, _htmlEqual.htmlequal)(element.outerHTML.toUpperCase(), '<a accesskey="A"></a>'), true);
 	                });
 	            });
 
@@ -19064,15 +19069,18 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const { assert } = _chai2.default;
-	const { Element, Text, Comment } = window;
+	const { Element, Text, Comment, HTMLSpanElement, HTMLAnchorElement } = window;
+	const { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE } = Node;
+
 	const XML_NS_ATTR = `xmlns="${ _dist.XML_NS_URI }"`;
+
+	const serializer = new XMLSerializer();
 
 	describe('DOM module', () => {
 	    describe('dom', () => {
-	        const serializer = new XMLSerializer();
 	        it('xmldom', () => {
 	            const node = (0, _dist.xmldom)('pipi7', '+++');
-	            assert.equal(node.nodeType, Node.ELEMENT_NODE);
+	            assert.equal(node.nodeType, ELEMENT_NODE);
 	            assert.equal(node.tagName, 'pipi7');
 	            assert.equal(node.constructor, Element);
 
@@ -19081,7 +19089,7 @@
 	        });
 	        it('element', () => {
 	            const node = (0, _dist.element)('bafi4');
-	            assert.equal(node.nodeType, Node.ELEMENT_NODE);
+	            assert.equal(node.nodeType, ELEMENT_NODE);
 	            assert.equal(node.tagName, 'element');
 	            assert.equal(node.constructor, Element);
 
@@ -19090,18 +19098,249 @@
 	        });
 	        it('text', () => {
 	            const node = (0, _dist.text)('cuce31');
-	            assert.equal(node.nodeType, Node.TEXT_NODE);
+	            assert.equal(node.nodeType, TEXT_NODE);
 	            assert.equal(node.constructor, Text);
 	            assert.equal(serializer.serializeToString(node), 'cuce31');
 	        });
 	        it('comment', () => {
 	            const node = (0, _dist.comment)('tuty5');
-	            assert.equal(node.nodeType, Node.COMMENT_NODE);
+	            assert.equal(node.nodeType, COMMENT_NODE);
 	            assert.equal(node.constructor, Comment);
 	            assert.equal(serializer.serializeToString(node), '<!--tuty5-->');
 	        });
 	    });
+	    describe('html', () => {
+	        it('htmldom', () => {
+	            const node = (0, _dist.htmldom)('span', {
+	                id: '00101',
+	                className: 'fa fi fu',
+	                children: ['a', (0, _dist.comment)('a b'), 'b']
+	            });
+	            assert.equal(node.nodeType, ELEMENT_NODE);
+	            assert.equal(node.tagName, 'SPAN');
+	            assert.equal(node.constructor, HTMLSpanElement);
+	            assert.equal(node.id, '00101');
+	            assert.equal(node.className, 'fa fi fu');
+	            assert.equal(node.children.length, 0);
+	            assert.equal(node.childNodes.length, 3);
+	            assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
+	            assert.equal(node.childNodes[1].constructor, Comment);
+	            assert.equal(node.childNodes[2].textContent, 'b');
+	        });
+	        it('a', () => {
+	            const node = (0, _dist.a)({
+	                href: 'html://www.aria.dom/math.svg',
+	                rel: 'next',
+	                title: 'om dom dom dom d',
+	                textContent: 'DOM module'
+	            });
+	            assert.equal(node.tagName, 'A');
+	            assert.equal(node.constructor, HTMLAnchorElement);
+	            assert.equal(node.href, 'html://www.aria.dom/math.svg');
+	            assert.equal(node.rel, 'next');
+	            assert.equal(node.title, 'om dom dom dom d');
+	            assert.equal(node.textContent, 'DOM module');
+	        });
+	    });
 	});
+
+/***/ },
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	const htmlbowl = innerHTML => Object.assign(document.createElement('div'), { innerHTML });
+
+	const htmlequal = exports.htmlequal = (html1, html2) => htmlbowl(html1).isEqualNode(htmlbowl(html2));
+
+	/*const xmlbowl = innerHTML => {
+	    const element = document.createElementNS('https://www.w3.org/1999/xml', 'e');
+	    return Object.assign(element, { innerHTML });
+	};*/
+
+	const parser = new DOMParser();
+	const xmldoc = xml => parser.parseFromString(xml, 'application/xml');
+
+	const xmlequal = exports.xmlequal = (xml1, xml2) => xmldoc(xml1).isEqualNode(xmldoc(xml2));
+
+	// window.htmlequal = htmlequal;
 
 /***/ }
 /******/ ]);
