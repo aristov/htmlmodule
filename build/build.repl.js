@@ -195,7 +195,7 @@
 	     */
 	    set init(init) {
 	        const element = this.element;
-	        for (const prop in init) {
+	        for (let prop in init) {
 	            const value = init[prop];
 	            if (value !== undefined) {
 	                if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
@@ -209,7 +209,7 @@
 	     */
 	    set attrset(attrset) {
 	        const element = this.element;
-	        for (const name in attrset) {
+	        for (let name in attrset) {
 	            const value = attrset[name];
 	            if (typeof value === 'string') {
 	                element.setAttribute(name, value);
@@ -909,7 +909,7 @@
 
 	const globalbox = (0, _htmldom.input)({
 	    type: 'checkbox',
-	    checked: localGlobal === 'true',
+	    checked: localGlobal === null || localGlobal === 'true',
 	    onchange: () => {
 	        evaluate();
 	        const checked = globalbox.checked;
@@ -983,12 +983,17 @@
 	    children: (0, _htmldom.p)([(0, _htmldom.label)([globalbox, ' define globally']), (0, _htmldom.label)(testselectbox), (0, _htmldom.label)(clearboxnode)])
 	});
 
-	document.body.append((0, _htmldom.header)((0, _htmldom.h3)([(0, _htmldom.abbr)('HTMLDOM'), ' ', (0, _htmldom.abbr)('REPL')])), (0, _htmldom.main)({
+	document.body.append(
+	// header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
+	(0, _htmldom.header)((0, _htmldom.code)((0, _htmldom.h1)(['htmlmodule repl']))), (0, _htmldom.main)({
 	    className: 'repl',
 	    children: [panel([settingsformnode, jsInput]), panel([(0, _htmldom.form)({
 	        className: 'settings',
 	        children: (0, _htmldom.p)((0, _htmldom.label)([modebox, ' show ', (0, _htmldom.abbr)('HTML')]))
 	    }), domOutput, htmlOutput])]
+	}), (0, _htmldom.footer)({
+	    style: { textAlign: 'center' },
+	    children: (0, _htmldom.p)((0, _htmldom.code)(HTMLDOM.strong([(0, _htmldom.a)({ href: '../documentation', children: 'api doc' }), ' • ', (0, _htmldom.a)({ href: '../spec', children: 'spec suite' }), ' • ', (0, _htmldom.a)({ href: '../test', children: 'test suite' }), ' • ', (0, _htmldom.a)({ href: '../dist', children: 'dist test' })])))
 	}));
 
 	const jsEditor = new _codemirror2.default(jsInput, {
@@ -1253,6 +1258,7 @@
 	};
 
 	// todo refactoring => DOMSerializer
+	// todo comment support
 	class HTMLSerializer {
 	    constructor(options = {
 	        indent: '    ',

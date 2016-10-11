@@ -10,6 +10,7 @@ const isEmptyTag = node => {
 }
 
 // todo refactoring => DOMSerializer
+// todo comment support
 export class HTMLSerializer {
     constructor(options = {
         indent : '    ',

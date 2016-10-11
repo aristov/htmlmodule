@@ -6,10 +6,11 @@
     <script src="../build/build.dist.global.min.js"></script>
     <script>
         // global DOM variable is expected
-        var { ul, li, h1, main, code, variable, sup } = DOM;
+        var { ul, li, h1, hr, main, code, variable, sup } = DOM;
         var listnode = main([
                 code([
                     h1('htmlmodule'),
+                    hr(),
                     ul({
                         style : {
                             columnCount : 7,

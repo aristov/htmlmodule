@@ -1,6 +1,6 @@
 import * as HTMLDOM from '../dist';
 import {
-    button, option, select, output, main, div, header, h3, p, label, input, abbr, form
+    button, option, select, output, main, div, header, h1, p, label, input, abbr, form, code, footer, a
 } from '../htmldom/htmldom';
 
 import { test } from '../htmldom/htmldom.test';
@@ -57,7 +57,7 @@ const serializer = new HTMLSerializer;
 
 const globalbox = input({
     type : 'checkbox',
-    checked : localGlobal === 'true',
+    checked : localGlobal === null || localGlobal === 'true',
     onchange : () => {
         evaluate();
         const checked = globalbox.checked;
@@ -144,7 +144,8 @@ const settingsformnode = form({
 });
 
 document.body.append(
-    header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
+    // header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
+    header(code(h1(['htmlmodule repl']))),
     main({
         className : 'repl',
         children : [
@@ -161,7 +162,20 @@ document.body.append(
                 htmlOutput
             ])
         ]
-    }));
+    }),
+    footer({
+        style : { textAlign : 'center' },
+        children : p(code(HTMLDOM.strong([
+            a({ href : '../documentation', children : 'api doc' }),
+            ' • ',
+            a({ href : '../spec', children : 'spec suite' }),
+            ' • ',
+            a({ href : '../test', children : 'test suite' }),
+            ' • ',
+            a({ href : '../dist', children : 'dist test' }),
+        ])))
+    })
+);
 
 const jsEditor = new CodeMirror(jsInput, {
     value : localValue || value,

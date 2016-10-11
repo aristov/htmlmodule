@@ -119,7 +119,7 @@
 	     */
 	    set init(init) {
 	        const element = this.element;
-	        for (const prop in init) {
+	        for (let prop in init) {
 	            const value = init[prop];
 	            if (value !== undefined) {
 	                if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
@@ -133,7 +133,7 @@
 	     */
 	    set attrset(attrset) {
 	        const element = this.element;
-	        for (const name in attrset) {
+	        for (let name in attrset) {
 	            const value = attrset[name];
 	            if (typeof value === 'string') {
 	                element.setAttribute(name, value);
@@ -1116,6 +1116,7 @@
 	};
 
 	// todo refactoring => DOMSerializer
+	// todo comment support
 	class HTMLSerializer {
 	    constructor(options = {
 	        indent: '    ',
