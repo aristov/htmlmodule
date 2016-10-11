@@ -42,13 +42,19 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/*!******************!*\
+  !*** multi dist ***!
+  \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(1);
+	module.exports = __webpack_require__(/*! ./dist/dist */1);
 
 
 /***/ },
 /* 1 */
+/*!**********************!*\
+  !*** ./dist/dist.js ***!
+  \**********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57,7 +63,7 @@
 	  value: true
 	});
 
-	var _dom = __webpack_require__(2);
+	var _dom = __webpack_require__(/*! ../dom */ 2);
 
 	Object.keys(_dom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -69,7 +75,7 @@
 	  });
 	});
 
-	var _html = __webpack_require__(3);
+	var _html = __webpack_require__(/*! ../html */ 6);
 
 	Object.keys(_html).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -81,7 +87,32 @@
 	  });
 	});
 
-	var _xmldom = __webpack_require__(4);
+/***/ },
+/* 2 */
+/*!**********************!*\
+  !*** ./dom/index.js ***!
+  \**********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dom = __webpack_require__(/*! ./dom */ 3);
+
+	Object.keys(_dom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _dom[key];
+	    }
+	  });
+	});
+
+	var _xmldom = __webpack_require__(/*! ../xmldom */ 4);
 
 	Object.keys(_xmldom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -93,20 +124,11 @@
 	  });
 	});
 
-	var _htmldom = __webpack_require__(5);
-
-	Object.keys(_htmldom).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function () {
-	      return _htmldom[key];
-	    }
-	  });
-	});
-
 /***/ },
-/* 2 */
+/* 3 */
+/*!********************!*\
+  !*** ./dom/dom.js ***!
+  \********************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -234,7 +256,100 @@
 	});
 
 /***/ },
-/* 3 */
+/* 4 */
+/*!*************************!*\
+  !*** ./xmldom/index.js ***!
+  \*************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _xmldom = __webpack_require__(/*! ./xmldom */ 5);
+
+	Object.keys(_xmldom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _xmldom[key];
+	    }
+	  });
+	});
+
+/***/ },
+/* 5 */
+/*!**************************!*\
+  !*** ./xmldom/xmldom.js ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.comment = exports.text = exports.element = exports.xmldom = undefined;
+
+	var _dom = __webpack_require__(/*! ../dom/dom */ 3);
+
+	const { document } = window;
+
+	const assembler = new _dom.DOMAssembler();
+
+	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
+
+	const element = exports.element = init => xmldom('element', init);
+
+	const text = exports.text = text => document.createTextNode(text);
+
+	const comment = exports.comment = comment => document.createComment(comment);
+
+/***/ },
+/* 6 */
+/*!***********************!*\
+  !*** ./html/index.js ***!
+  \***********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _html = __webpack_require__(/*! ./html */ 7);
+
+	Object.keys(_html).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _html[key];
+	    }
+	  });
+	});
+
+	var _htmldom = __webpack_require__(/*! ../htmldom */ 8);
+
+	Object.keys(_htmldom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _htmldom[key];
+	    }
+	  });
+	});
+
+/***/ },
+/* 7 */
+/*!**********************!*\
+  !*** ./html/html.js ***!
+  \**********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -244,7 +359,7 @@
 	});
 	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
-	var _dom = __webpack_require__(2);
+	var _dom = __webpack_require__(/*! ../dom/dom */ 3);
 
 	const { assign } = Object;
 
@@ -287,7 +402,10 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-/* 4 */
+/* 8 */
+/*!**************************!*\
+  !*** ./htmldom/index.js ***!
+  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -295,24 +413,24 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.comment = exports.text = exports.element = exports.xmldom = undefined;
 
-	var _dom = __webpack_require__(2);
+	var _htmldom = __webpack_require__(/*! ./htmldom */ 9);
 
-	const { document } = window;
-
-	const assembler = new _dom.DOMAssembler();
-
-	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
-
-	const element = exports.element = init => xmldom('element', init);
-
-	const text = exports.text = text => document.createTextNode(text);
-
-	const comment = exports.comment = comment => document.createComment(comment);
+	Object.keys(_htmldom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _htmldom[key];
+	    }
+	  });
+	});
 
 /***/ },
-/* 5 */
+/* 9 */
+/*!****************************!*\
+  !*** ./htmldom/htmldom.js ***!
+  \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -322,7 +440,7 @@
 	});
 	exports.wbr = exports.video = exports.variable = exports.ul = exports.u = exports.track = exports.tr = exports.title = exports.time = exports.thead = exports.th = exports.tfoot = exports.textarea = exports.template = exports.td = exports.tbody = exports.table = exports.sup = exports.summary = exports.sub = exports.style = exports.strong = exports.span = exports.source = exports.small = exports.slot = exports.select = exports.section = exports.script = exports.samp = exports.s = exports.ruby = exports.rt = exports.rp = exports.q = exports.progress = exports.pre = exports.picture = exports.param = exports.p = exports.output = exports.option = exports.optgroup = exports.ol = exports.object = exports.noscript = exports.nav = exports.meter = exports.meta = exports.menuitem = exports.menu = exports.mark = exports.map = exports.main = exports.link = exports.li = exports.legend = exports.label = exports.keygen = exports.kbd = exports.ins = exports.input = exports.img = exports.iframe = exports.i = exports.html = exports.hr = exports.hgroup = exports.header = exports.head = exports.h6 = exports.h5 = exports.h4 = exports.h3 = exports.h2 = exports.h1 = exports.form = exports.footer = exports.figure = exports.figcaption = exports.fieldset = exports.embed = exports.em = exports.dt = exports.dl = exports.div = exports.dialog = exports.dfn = exports.details = exports.del = exports.dd = exports.datalist = exports.data = exports.colgroup = exports.col = exports.code = exports.cite = exports.caption = exports.canvas = exports.button = exports.br = exports.body = exports.blockquote = exports.bdo = exports.bdi = exports.base = exports.b = exports.audio = exports.aside = exports.article = exports.area = exports.address = exports.abbr = exports.a = exports.htmldom = undefined;
 
-	var _html = __webpack_require__(3);
+	var _html = __webpack_require__(/*! ./../html/html.js */ 7);
 
 	const assembler = new _html.HTMLAssembler();
 

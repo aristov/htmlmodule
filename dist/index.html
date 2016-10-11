@@ -1,0 +1,38 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>htmlmodule: dist test suite</title>
+<body>
+    <!--<script src="../build/build.dist.global.js"></script>-->
+    <script src="../build/build.dist.global.min.js"></script>
+    <script>
+        // global DOM variable is expected
+        var { ul, li, h1, main, code, variable, sup } = DOM;
+        var listnode = main([
+                code([
+                    h1('htmlmodule'),
+                    ul({
+                        style : {
+                            columnCount : 7,
+                            listStyle : 'none'
+                        },
+                        children : Object.keys(DOM).map(function(key) {
+                            return li(key);
+                        })
+                    })
+                ])
+            ]);
+        document.body.appendChild(listnode);
+    </script>
+    <script>
+        var { dialog, code, button, h2 } = DOM;
+        var popupnode = dialog([
+                code(h2('test passed')),
+                button({
+                    onclick : function() { popupnode.close() },
+                    children : 'Ok'
+                })
+            ]);
+        document.body.appendChild(popupnode);
+        popupnode.showModal();
+    </script>
+</body>

@@ -68,7 +68,7 @@ describe('DOM module', () => {
                 assert.equal(node.childNodes[1].constructor, Comment);
                 assert.equal(node.childNodes[2].textContent, 'b');
             });
-            assert(node1.isEqualNode(node2), 'htmldom() and span() works differently');
+            assert(node1.isEqualNode(node2), 'htmldom() and span() work differently');
         });
         it('a', () => {
             const node = a({

@@ -1,6 +1,6 @@
 import '../shim/shim';
 
-import * as HTMLDOM from '../htmldom/htmldom';
+import * as HTMLDOM from '../dist';
 import {
     button, option, select, output, main, div, header, h3, p, label, input, abbr, form
 } from '../htmldom/htmldom';
@@ -64,7 +64,7 @@ const globalbox = input({
         evaluate();
         const checked = globalbox.checked;
         if(checked) testselectbox.value = '';
-        else settingsform.reset();
+        else settingsformnode.reset();
         // localStorage.setItem('global', String(checked));
     }
 });
@@ -114,28 +114,34 @@ const testselectbox = select({
     }
 });
 
-const clear = () => {
-    const selected = testselectbox.query('[selected]');
-    if(selected) {
-        selected.removeAttribute('selected');
-        selected.selected = false;
+class REPLApp {
+    clear() {
+        const selected = testselectbox.query('[selected]');
+        if(selected) {
+            selected.removeAttribute('selected');
+            selected.selected = false;
+        }
+        jsEditor.setValue('');
+        location.hash = '';
     }
-    jsEditor.setValue('');
-    location.hash = '';
+}
+
+const clear = () => {
+    REPLApp.prototype.clear();
 };
 
-const clearbox = button({
+const clearboxnode = button({
     type : 'reset',
     onclick : clear,
     children : 'clear'
 });
 
-const settingsform = form({
+const settingsformnode = form({
     className : 'settings',
     children : p([
         label([globalbox, ' define globally']),
         label(testselectbox),
-        label(clearbox)
+        label(clearboxnode)
     ])
 });
 
@@ -145,7 +151,7 @@ document.body.append(
         className : 'repl',
         children : [
             panel([
-                settingsform,
+                settingsformnode,
                 jsInput
             ]),
             panel([

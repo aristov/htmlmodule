@@ -1,49 +1,63 @@
 'use strict';
 
-const path = require('path');
-const env = process.env;
+const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
-if(env.SUPER_MODE) Object.assign(env, { ES6_MODE : true, WATCH_MODE : true });
+const env = process.env;
+const PROD = env.PROD;
+const plugins = [];
+
+if(PROD) {
+    const options = {
+        compress : { warnings : false },
+        mangle : { keep_fnames : true },
+        comments : false
+    };
+    const uglifyjs = new webpack.optimize.UglifyJsPlugin(options);
+    plugins.push(uglifyjs);
+}
 
 module.exports = {
-    entry : {
-        test : ['./test/test'],
-        spec : ['./spec/spec'],
+    entry : PROD? {
+        shim : ['./shim/shim'],
+        dist : ['./dist/dist'],
+        'dist.global' : ['./dist/dist.global']
+    } : {
+        shim : ['./shim/shim'],
         dist : ['./dist/dist'],
         'dist.global' : ['./dist/dist.global'],
-        repl : ['./repl/repl'],
-        // readme : ['./readme/readme']
+        test : ['./test/test'],
+        spec : ['./spec/spec'],
+        repl : ['./repl/repl']
     },
     output : {
-        path: __dirname + '/build',
-        filename : 'build.[name].js'
+        path : __dirname + '/build',
+        filename : PROD? 'build.[name].min.js' : 'build.[name].js',
+        pathinfo : !PROD
     },
     module : {
         loaders : [
-            env.ES6_MODE?
-                { test : /\.js$/, loader : 'babel?plugins[]=transform-es2015-modules-commonjs' } :
-                { test : /\.js$/, loader : 'babel?presets[]=es2015' },
+            PROD?
+                { test : /\.js$/, loader : 'babel?presets[]=es2015' } :
+                { test : /\.js$/, loader : 'babel?plugins[]=transform-es2015-modules-commonjs' },
             { test : /\.txt$/, loader : 'raw-loader' },
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' },
-            // { test: /\.md$/, loader: "markdown" },
         ],
-        postLoaders: [
-            {
-                test: [/\.js$/],
-                exclude: /(node_modules)/,
-                loader: 'documentation'
-            }
-        ]
+        postLoaders : [{
+            test : [/\.js$/],
+            exclude : /(node_modules)/,
+            loader : 'documentation'
+        }]
     },
-    resolve: {
-        modulesDirectories: ['node_modules']
+    plugins,
+    resolve : {
+        modulesDirectories : ['node_modules']
     },
-    documentation: {
-        entry: './dist/dist.js',
-        github: true,
-        format: 'html'
+    documentation : {
+        entry : './dist/dist.js',
+        github : true,
+        format : 'html'
     },
-    postcss: () => [autoprefixer],
-    watch : Boolean(env.WATCH_MODE)
+    postcss : () => [autoprefixer],
+    watch : Boolean(env.WATCH)
 };

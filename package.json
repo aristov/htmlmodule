@@ -7,6 +7,7 @@
     "url": "git://github.com/aristov/instance.git"
   },
   "license": "MIT",
+  "main" : "./dist",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel": "^6.5.2",

@@ -9,7 +9,8 @@ form({
                 width : 50
             }),
             br(),
-            input({ type : 'search', name : 'text' }), ' '
+            input({ type : 'search', name : 'text' }),
+            ' '
         ]),
         button('Find')
     ]

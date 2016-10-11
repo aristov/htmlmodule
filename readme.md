@@ -1,7 +1,7 @@
 # DOM module
 
 <!--
-todo links: dist, dist global, spec, repl, test, documentation
+todo links: dist, dist global, spec, repl, test, documentation, browser support (shim)
 -->
 
 <em>work in progress</em>
