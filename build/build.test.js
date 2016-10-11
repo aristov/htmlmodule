@@ -14976,7 +14976,7 @@
 	    },
 	    test: {
 	        href: '../test',
-	        children: 'test suite'
+	        children: 'test case'
 	    },
 	    dist: {
 	        href: '../dist',
