@@ -1,8 +1,13 @@
 const map = Array.prototype.map;
 const assign = Object.assign;
 
-const noEndTagList = 'area base br embed hr img input keygen link meta param source track wbr';
-const noEndTagSet = noEndTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
+const epmtyTagList = 'area base br embed hr img input keygen link meta param source track wbr';
+const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
+
+const isEmptyTag = node => {
+    if(node.constructor === Element && !node.hasChildNodes()) return true;
+    return Boolean(emptyTagSet[node.tagName]);
+}
 
 // todo refactoring => DOMSerializer
 export class HTMLSerializer {
@@ -34,7 +39,7 @@ export class HTMLSerializer {
                 result += attrset.join('');
             }
             result += '>';
-            const hasEndTag = !noEndTagSet[tagName];
+            const hasEndTag = isEmptyTag(node);
             if(hasEndTag && node.hasChildNodes()) {
                 const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
                 if(!hasAttributes && isSingleText) {

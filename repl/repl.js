@@ -1,11 +1,9 @@
-import '../shim/shim';
-
 import * as HTMLDOM from '../dist';
 import {
     button, option, select, output, main, div, header, h3, p, label, input, abbr, form
 } from '../htmldom/htmldom';
 
-import { test } from '../htmldom/htmldom.test.js';
+import { test } from '../htmldom/htmldom.test';
 
 import { HTMLSerializer } from '../html/html.serializer';
 

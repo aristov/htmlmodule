@@ -1,8 +1,6 @@
-import '../shim/shim';
-
-import { test } from '../htmldom/htmldom.test.js';
-import { a, h2, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom/htmldom.js';
-import * as HTMLDOM from '../htmldom/htmldom.js';
+import { test } from '../htmldom/htmldom.test';
+import { a, h2, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom';
+import * as HTMLDOM from '../htmldom';
 
 import { HTMLSerializer } from '../html/html.serializer';
 
