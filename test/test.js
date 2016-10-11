@@ -1,6 +1,7 @@
 import { test } from '../htmldom/htmldom.test';
-import { a, h2, input, code, table, thead, tbody, tr, th, td, span, pre, div } from '../htmldom';
+import { a, h2, input, code, table, thead, tbody, tr, th, td, span, pre, div, h1 } from '../htmldom';
 import * as HTMLDOM from '../htmldom';
+import { sitenav } from '../common/sitenav';
 
 import { HTMLSerializer } from '../html/html.serializer';
 
@@ -89,4 +90,4 @@ const exampletable = table({
     ]
 });
 
-document.body.appendChild(exampletable);
+document.body.append(h1(code('htmlmodule test')), exampletable, sitenav('test'));

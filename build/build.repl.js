@@ -868,6 +868,8 @@
 
 	var _importfrom2 = _interopRequireDefault(_importfrom);
 
+	var _sitenav = __webpack_require__(/*! ../common/sitenav */ 560);
+
 	__webpack_require__(/*! ./repl.css */ 339);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -991,13 +993,9 @@
 	    className: 'repl',
 	    children: [panel([settingsformnode, jsInput]), panel([(0, _htmldom.form)({
 	        className: 'settings',
-	        children: (0, _htmldom.p)((0, _htmldom.label)([modebox, ' show ', (0, _htmldom.abbr)('HTML')]))
+	        children: (0, _htmldom.p)((0, _htmldom.label)([modebox, ' show markup']))
 	    }), domOutput, htmlOutput])]
-	}), (0, _htmldom.footer)({
-	    style: { textAlign: 'center' },
-	    children: (0, _htmldom.p)((0, _htmldom.code)(HTMLDOM.strong([// todo ul li
-	    (0, _htmldom.a)({ href: '../documentation', children: 'api doc' }), ' • ', (0, _htmldom.a)({ href: '../spec', children: 'spec suite' }), ' • ', (0, _htmldom.a)({ href: '//github.com/aristov/htmlmodule', children: 'git repo' }), ' • ', (0, _htmldom.a)({ href: '../test', children: 'test suite' }), ' • ', (0, _htmldom.a)({ href: '../dist', children: 'dist test' })])))
-	}));
+	}), (0, _sitenav.sitenav)('repl'));
 
 	const jsEditor = new _codemirror2.default(jsInput, {
 	    value: localValue || _globals2.default,
@@ -1115,17 +1113,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ div, ul, li, bdi }) => div({
-	    children: ul([li(['User ', bdi('jcranmer'), ': 12 posts.']), li(['User ', bdi('hober'), ': 5 posts.']), li(['User ', bdi('إيان'), ': 3 posts.'])])
-	}), ({ div, bdo }) => {
-	    const children = 'АРОЗАУПАЛА';
-	    return div({
-	        children: [children, 'Н', bdo({
-	            dir: 'rtl',
-	            children
-	        })]
-	    });
-	}, ({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
+	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
 	    title: 'Media',
 	    children: [h4('Image media'), img({
 	        src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
@@ -1147,7 +1135,17 @@
 	})), li(a({
 	    href: 'mailto:vv.aristov@gmail.com',
 	    textContent: 'Contact me'
-	}))]))), ({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
+	}))]))), ({ div, ul, li, bdi }) => div({
+	    children: ul([li(['User ', bdi('jcranmer'), ': 12 posts.']), li(['User ', bdi('hober'), ': 5 posts.']), li(['User ', bdi('إيان'), ': 3 posts.'])])
+	}), ({ div, bdo }) => {
+	    const children = 'АРОЗАУПАЛА';
+	    return div({
+	        children: [children, 'Н', bdo({
+	            dir: 'rtl',
+	            children
+	        })]
+	    });
+	}, ({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
 	    style: { marginRight: '10px' },
 	    onclick: ({
 	        type,
@@ -6707,6 +6705,105 @@
 
 	// module
 	exports.push([module.id, "[hidden]\n{\n    display: none !important;\n}\nbody\n{\n    /*background: #000;*/\n    padding: 0 10px;\n}\nmain.repl\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n}\ndiv.panel\n{\n    width: 50%;\n    margin: 5px;\n}\ndiv.panel > form label\n{\n    margin-right: 20px;\n    user-select: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n}\nmain .CodeMirror\n{\n    font-size: 14px;\n}\nmain .jsinput .CodeMirror\n{\n    height: 600px;\n}\nmain .htmloutput\n{\n    position: relative;\n    margin-top: -300px;\n}\nmain .htmloutput .CodeMirror\n{\n    height : 300px;\n}\noutput.domoutput\n{\n    height: 600px;\n    overflow: auto;\n    display: block;\n    border: 1px solid black;\n    box-sizing: border-box;\n    padding: 10px;\n    background: #fff;\n}\nmain.invalid pre.htmloutput\n{\n    color: red;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 560:
+/*!***************************!*\
+  !*** ./common/sitenav.js ***!
+  \***************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sitenav = undefined;
+
+	var _ = __webpack_require__(/*! ../ */ 317);
+
+	__webpack_require__(/*! ./sitenav.css */ 561);
+
+	const sitenavset = {
+	    doc: {
+	        href: '../documentation',
+	        children: 'api doc'
+	    },
+	    spec: {
+	        href: '../spec',
+	        children: 'spec suite'
+	    },
+	    repo: {
+	        href: '//github.com/aristov/htmlmodule',
+	        children: 'git repo'
+	    },
+	    test: {
+	        href: '../test',
+	        children: 'test suite'
+	    },
+	    dist: {
+	        href: '../dist',
+	        children: 'dist test'
+	    }
+	};
+
+	const sitenav = exports.sitenav = current => (0, _.footer)({
+	    className: 'sitenav',
+	    children: Object.keys(sitenavset).map(key => {
+	        const value = sitenavset[key];
+	        if (key === current) delete value.href;
+	        return (0, _.a)(value);
+	    })
+	});
+
+/***/ },
+
+/***/ 561:
+/*!****************************!*\
+  !*** ./common/sitenav.css ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../~/css-loader!./../~/postcss-loader!./sitenav.css */ 562);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../~/style-loader/addStyles.js */ 328)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./sitenav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 562:
+/*!**************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./common/sitenav.css ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../~/css-loader/lib/css-base.js */ 327)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".sitenav\n{\n    font: bold 15px monospace;\n    width: 700px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n.sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
 
 	// exports
 

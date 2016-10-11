@@ -1,0 +1,12 @@
+.sitenav
+{
+    font: bold 15px monospace;
+    width: 700px;
+    margin: 25px auto 30px;
+    display: flex;
+    justify-content: space-around;
+}
+.sitenav a:not(:hover)
+{
+    text-decoration: none;
+}

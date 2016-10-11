@@ -1,6 +1,6 @@
 import * as HTMLDOM from '../dist';
 import {
-    button, option, select, output, main, div, header, h1, p, label, input, abbr, form, code, footer, a
+    button, option, select, output, main, div, header, h1, p, label, input, abbr, form, code
 } from '../htmldom/htmldom';
 
 import { test } from '../htmldom/htmldom.test';
@@ -19,6 +19,7 @@ import value from 'raw!./test/globals.rawjs';
 import exportdefault from 'raw!./test/exportdefault.rawjs';
 import importfrom from 'raw!./test/importfrom.rawjs';
 
+import { sitenav } from '../common/sitenav';
 import './repl.css';
 
 const localValue = localStorage.getItem('value');
@@ -162,27 +163,14 @@ document.body.append(
             panel([
                 form({
                     className : 'settings',
-                    children : p(label([modebox, ' show ', abbr('HTML')]))
+                    children : p(label([modebox, ' show markup']))
                 }),
                 domOutput,
                 htmlOutput
             ])
         ]
     }),
-    footer({
-        style : { textAlign : 'center' },
-        children : p(code(HTMLDOM.strong([ // todo ul li
-            a({ href : '../documentation', children : 'api doc' }),
-            ' • ',
-            a({ href : '../spec', children : 'spec suite' }),
-            ' • ',
-            a({ href : '//github.com/aristov/htmlmodule', children : 'git repo' }),
-            ' • ',
-            a({ href : '../test', children : 'test suite' }),
-            ' • ',
-            a({ href : '../dist', children : 'dist test' }),
-        ])))
-    })
+    sitenav('repl')
 );
 
 const jsEditor = new CodeMirror(jsInput, {

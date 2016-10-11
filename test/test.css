@@ -4,7 +4,7 @@ body
     padding: 0 10px;
     background: rgba(0, 0, 0, 0.08);
 }
-body > h1:first-child
+body > h1
 {
     text-align: center;
 }
@@ -20,13 +20,11 @@ table.exampletable
 }
 table.exampletable > * > tr > th
 {
-    border-bottom: 5px solid rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding-top: 20px;
 }
-table.exampletable > * > tr > td:not(:last-child)
+table.exampletable > * > tr > td
 {
-    padding: 20px 40px 40px;
-    border-bottom: 5px solid rgba(0, 0, 0, 0.1);
+    padding: 30px 0;
 }
 table.exampletable > * > tr > td pre.html,
 table.exampletable > * > tr > td pre.javascript

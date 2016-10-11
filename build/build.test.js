@@ -51,8 +51,80 @@
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
+/* 1 */
+/*!**********************!*\
+  !*** ./dist/dist.js ***!
+  \**********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dom = __webpack_require__(/*! ../dom */ 2);
+
+	Object.keys(_dom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _dom[key];
+	    }
+	  });
+	});
+
+	var _html = __webpack_require__(/*! ../html */ 6);
+
+	Object.keys(_html).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _html[key];
+	    }
+	  });
+	});
+
+/***/ },
+/* 2 */
+/*!**********************!*\
+  !*** ./dom/index.js ***!
+  \**********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dom = __webpack_require__(/*! ./dom */ 3);
+
+	Object.keys(_dom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _dom[key];
+	    }
+	  });
+	});
+
+	var _xmldom = __webpack_require__(/*! ../xmldom */ 4);
+
+	Object.keys(_xmldom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _xmldom[key];
+	    }
+	  });
+	});
+
+/***/ },
 /* 3 */
 /*!********************!*\
   !*** ./dom/dom.js ***!
@@ -184,9 +256,96 @@
 	});
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
+/* 4 */
+/*!*************************!*\
+  !*** ./xmldom/index.js ***!
+  \*************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _xmldom = __webpack_require__(/*! ./xmldom */ 5);
+
+	Object.keys(_xmldom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _xmldom[key];
+	    }
+	  });
+	});
+
+/***/ },
+/* 5 */
+/*!**************************!*\
+  !*** ./xmldom/xmldom.js ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.comment = exports.text = exports.element = exports.xmldom = undefined;
+
+	var _dom = __webpack_require__(/*! ../dom/dom */ 3);
+
+	const { document } = window;
+
+	const assembler = new _dom.DOMAssembler();
+
+	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
+
+	const element = exports.element = init => xmldom('element', init);
+
+	const text = exports.text = text => document.createTextNode(text);
+
+	const comment = exports.comment = comment => document.createComment(comment);
+
+/***/ },
+/* 6 */
+/*!***********************!*\
+  !*** ./html/index.js ***!
+  \***********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _html = __webpack_require__(/*! ./html */ 7);
+
+	Object.keys(_html).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _html[key];
+	    }
+	  });
+	});
+
+	var _htmldom = __webpack_require__(/*! ../htmldom */ 8);
+
+	Object.keys(_htmldom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _htmldom[key];
+	    }
+	  });
+	});
+
+/***/ },
 /* 7 */
 /*!**********************!*\
   !*** ./html/html.js ***!
@@ -959,7 +1118,31 @@
 /* 314 */,
 /* 315 */,
 /* 316 */,
-/* 317 */,
+/* 317 */
+/*!***********************!*\
+  !*** ./dist/index.js ***!
+  \***********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dist = __webpack_require__(/*! ./dist */ 1);
+
+	Object.keys(_dist).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _dist[key];
+	    }
+	  });
+	});
+
+/***/ },
 /* 318 */
 /*!*********************************!*\
   !*** ./htmldom/htmldom.test.js ***!
@@ -971,17 +1154,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ div, ul, li, bdi }) => div({
-	    children: ul([li(['User ', bdi('jcranmer'), ': 12 posts.']), li(['User ', bdi('hober'), ': 5 posts.']), li(['User ', bdi('إيان'), ': 3 posts.'])])
-	}), ({ div, bdo }) => {
-	    const children = 'АРОЗАУПАЛА';
-	    return div({
-	        children: [children, 'Н', bdo({
-	            dir: 'rtl',
-	            children
-	        })]
-	    });
-	}, ({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
+	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
 	    title: 'Media',
 	    children: [h4('Image media'), img({
 	        src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
@@ -1003,7 +1176,17 @@
 	})), li(a({
 	    href: 'mailto:vv.aristov@gmail.com',
 	    textContent: 'Contact me'
-	}))]))), ({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
+	}))]))), ({ div, ul, li, bdi }) => div({
+	    children: ul([li(['User ', bdi('jcranmer'), ': 12 posts.']), li(['User ', bdi('hober'), ': 5 posts.']), li(['User ', bdi('إيان'), ': 3 posts.'])])
+	}), ({ div, bdo }) => {
+	    const children = 'АРОЗАУПАЛА';
+	    return div({
+	        children: [children, 'Н', bdo({
+	            dir: 'rtl',
+	            children
+	        })]
+	    });
+	}, ({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
 	    style: { marginRight: '10px' },
 	    onclick: ({
 	        type,
@@ -3550,6 +3733,8 @@
 
 	var HTMLDOM = _interopRequireWildcard(_htmldom2);
 
+	var _sitenav = __webpack_require__(/*! ../common/sitenav */ 560);
+
 	var _html = __webpack_require__(/*! ../html/html.serializer */ 319);
 
 	var _highlight = __webpack_require__(/*! highlight.js/ */ 388);
@@ -3634,7 +3819,7 @@
 	    }))]
 	});
 
-	document.body.appendChild(exampletable);
+	document.body.append((0, _htmldom2.h1)((0, _htmldom2.code)('htmlmodule test')), exampletable, (0, _sitenav.sitenav)('test'));
 
 /***/ },
 /* 388 */
@@ -14703,7 +14888,7 @@
 
 
 	// module
-	exports.push([module.id, "body\n{\n    /*margin: 0;*/\n    padding: 0 10px;\n    background: rgba(0, 0, 0, 0.08);\n}\nbody > h1:first-child\n{\n    text-align: center;\n}\ninput.filterinput\n{\n    width: 100%;\n    font-size: 20px;\n}\ntable.exampletable\n{\n    margin: 0 auto;\n    width: 1200px;\n}\ntable.exampletable > * > tr > th\n{\n    border-bottom: 5px solid rgba(0, 0, 0, 0.1);\n    padding: 20px;\n}\ntable.exampletable > * > tr > td:not(:last-child)\n{\n    padding: 20px 40px 40px;\n    border-bottom: 5px solid rgba(0, 0, 0, 0.1);\n}\ntable.exampletable > * > tr > td pre.html,\ntable.exampletable > * > tr > td pre.javascript\n{\n    margin-top: 0;\n}\ntable.exampletable > * > tr > td > h2 > code > a:not(:hover)\n{\n    text-decoration : none;\n}\ntable.exampletable > * > tr > td div\n{\n    max-width: 1200px;\n    box-sizing: border-box;\n}\ntable.exampletable > * > tr > td div.dom\n{\n    padding: 10px;\n    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);\n    margin-bottom: 20px;\n    background: white;\n}\ntable.exampletable > * > tr > td span.tag\n{\n    display: inline-block;\n    font: 15px Arial;\n    background: #0a0;\n    color: white;\n    padding: 1px 5px;\n    /*opacity: 0.5;*/\n}\n", ""]);
+	exports.push([module.id, "body\n{\n    /*margin: 0;*/\n    padding: 0 10px;\n    background: rgba(0, 0, 0, 0.08);\n}\nbody > h1\n{\n    text-align: center;\n}\ninput.filterinput\n{\n    width: 100%;\n    font-size: 20px;\n}\ntable.exampletable\n{\n    margin: 0 auto;\n    width: 1200px;\n}\ntable.exampletable > * > tr > th\n{\n    padding-top: 20px;\n}\ntable.exampletable > * > tr > td\n{\n    padding: 30px 0;\n}\ntable.exampletable > * > tr > td pre.html,\ntable.exampletable > * > tr > td pre.javascript\n{\n    margin-top: 0;\n}\ntable.exampletable > * > tr > td > h2 > code > a:not(:hover)\n{\n    text-decoration : none;\n}\ntable.exampletable > * > tr > td div\n{\n    max-width: 1200px;\n    box-sizing: border-box;\n}\ntable.exampletable > * > tr > td div.dom\n{\n    padding: 10px;\n    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);\n    margin-bottom: 20px;\n    background: white;\n}\ntable.exampletable > * > tr > td span.tag\n{\n    display: inline-block;\n    font: 15px Arial;\n    background: #0a0;\n    color: white;\n    padding: 1px 5px;\n    /*opacity: 0.5;*/\n}\n", ""]);
 
 	// exports
 
@@ -14750,6 +14935,102 @@
 
 	// module
 	exports.push([module.id, "/*!\n * Agate by Taufik Nurrohman <https://github.com/tovic>\n * ----------------------------------------------------\n *\n * #ade5fc\n * #a2fca2\n * #c6b4f0\n * #d36363\n * #fcc28c\n * #fc9b9b\n * #ffa\n * #fff\n * #333\n * #62c8f3\n * #888\n *\n */\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #333;\n  color: white;\n}\n\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-code,\n.hljs-emphasis {\n  font-style: italic;\n}\n\n.hljs-tag {\n  color: #62c8f3;\n}\n\n.hljs-variable,\n.hljs-template-variable,\n.hljs-selector-id,\n.hljs-selector-class {\n  color: #ade5fc;\n}\n\n.hljs-string,\n.hljs-bullet {\n  color: #a2fca2;\n}\n\n.hljs-type,\n.hljs-title,\n.hljs-section,\n.hljs-attribute,\n.hljs-quote,\n.hljs-built_in,\n.hljs-builtin-name {\n  color: #ffa;\n}\n\n.hljs-number,\n.hljs-symbol,\n.hljs-bullet {\n  color: #d36363;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal {\n  color: #fcc28c;\n}\n\n.hljs-comment,\n.hljs-deletion,\n.hljs-code {\n  color: #888;\n}\n\n.hljs-regexp,\n.hljs-link {\n  color: #c6b4f0;\n}\n\n.hljs-meta {\n  color: #fc9b9b;\n}\n\n.hljs-deletion {\n  background-color: #fc9b9b;\n  color: #333;\n}\n\n.hljs-addition {\n  background-color: #a2fca2;\n  color: #333;\n}\n\n.hljs a {\n  color: inherit;\n}\n\n.hljs a:focus,\n.hljs a:hover {\n  color: inherit;\n  text-decoration: underline;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 560 */
+/*!***************************!*\
+  !*** ./common/sitenav.js ***!
+  \***************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sitenav = undefined;
+
+	var _ = __webpack_require__(/*! ../ */ 317);
+
+	__webpack_require__(/*! ./sitenav.css */ 561);
+
+	const sitenavset = {
+	    doc: {
+	        href: '../documentation',
+	        children: 'api doc'
+	    },
+	    spec: {
+	        href: '../spec',
+	        children: 'spec suite'
+	    },
+	    repo: {
+	        href: '//github.com/aristov/htmlmodule',
+	        children: 'git repo'
+	    },
+	    test: {
+	        href: '../test',
+	        children: 'test suite'
+	    },
+	    dist: {
+	        href: '../dist',
+	        children: 'dist test'
+	    }
+	};
+
+	const sitenav = exports.sitenav = current => (0, _.footer)({
+	    className: 'sitenav',
+	    children: Object.keys(sitenavset).map(key => {
+	        const value = sitenavset[key];
+	        if (key === current) delete value.href;
+	        return (0, _.a)(value);
+	    })
+	});
+
+/***/ },
+/* 561 */
+/*!****************************!*\
+  !*** ./common/sitenav.css ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../~/css-loader!./../~/postcss-loader!./sitenav.css */ 562);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../~/style-loader/addStyles.js */ 328)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./sitenav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 562 */
+/*!**************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./common/sitenav.css ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../~/css-loader/lib/css-base.js */ 327)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".sitenav\n{\n    font: bold 15px monospace;\n    width: 700px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n.sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
 
 	// exports
 

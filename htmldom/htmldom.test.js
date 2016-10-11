@@ -1,27 +1,5 @@
 export const test = [
 
-    ({ div, ul, li, bdi }) => div({
-        children : ul([
-            li(['User ', bdi('jcranmer'), ': 12 posts.']),
-            li(['User ', bdi('hober'), ': 5 posts.']),
-            li(['User ', bdi('إيان'), ': 3 posts.'])
-        ])
-    }),
-
-    ({ div, bdo }) => {
-        const children = 'АРОЗАУПАЛА';
-        return div({
-            children: [
-                children,
-                'Н',
-                bdo({
-                    dir: 'rtl',
-                    children
-                })
-            ]
-        })
-    },
-
     ({ fieldset, legend, input }) => fieldset([
         legend('Authorization'),
         input({ placeholder : 'login', style : { marginRight : '5px' } }),
@@ -64,6 +42,28 @@ export const test = [
             textContent : 'Contact me'
         }))
     ]))),
+
+    ({ div, ul, li, bdi }) => div({
+        children : ul([
+            li(['User ', bdi('jcranmer'), ': 12 posts.']),
+            li(['User ', bdi('hober'), ': 5 posts.']),
+            li(['User ', bdi('إيان'), ': 3 posts.'])
+        ])
+    }),
+
+    ({ div, bdo }) => {
+        const children = 'АРОЗАУПАЛА';
+        return div({
+            children: [
+                children,
+                'Н',
+                bdo({
+                    dir: 'rtl',
+                    children
+                })
+            ]
+        })
+    },
 
     ({ fieldset, legend, button, br, input, output }) => fieldset([
         legend('Event handlers'),
