@@ -983,7 +983,11 @@
 	    children: (0, _htmldom.p)([(0, _htmldom.label)([globalbox, ' define globally']), (0, _htmldom.label)(testselectbox), (0, _htmldom.label)(clearboxnode)])
 	});
 
-	document.body.append((0, _htmldom.header)((0, _htmldom.h1)((0, _htmldom.code)(['htmlmodule repl']))), (0, _htmldom.main)({
+	document.body.append((0, _htmldom.header)((0, _htmldom.h1)((0, _htmldom.code)(['htmlmodule ', (0, _htmldom.abbr)({
+	    title: 'read-eval-print-loop',
+	    style: { cursor: 'help' },
+	    children: 'repl'
+	})]))), (0, _htmldom.main)({
 	    className: 'repl',
 	    children: [panel([settingsformnode, jsInput]), panel([(0, _htmldom.form)({
 	        className: 'settings',
@@ -991,7 +995,8 @@
 	    }), domOutput, htmlOutput])]
 	}), (0, _htmldom.footer)({
 	    style: { textAlign: 'center' },
-	    children: (0, _htmldom.p)((0, _htmldom.code)(HTMLDOM.strong([(0, _htmldom.a)({ href: '../documentation', children: 'api doc' }), ' • ', (0, _htmldom.a)({ href: '../spec', children: 'spec suite' }), ' • ', (0, _htmldom.a)({ href: '../test', children: 'test suite' }), ' • ', (0, _htmldom.a)({ href: '../dist', children: 'dist test' })])))
+	    children: (0, _htmldom.p)((0, _htmldom.code)(HTMLDOM.strong([// todo ul li
+	    (0, _htmldom.a)({ href: '../documentation', children: 'api doc' }), ' • ', (0, _htmldom.a)({ href: '../spec', children: 'spec suite' }), ' • ', (0, _htmldom.a)({ href: '//github.com/aristov/htmlmodule', children: 'git repo' }), ' • ', (0, _htmldom.a)({ href: '../test', children: 'test suite' }), ' • ', (0, _htmldom.a)({ href: '../dist', children: 'dist test' })])))
 	}));
 
 	const jsEditor = new _codemirror2.default(jsInput, {

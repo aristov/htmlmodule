@@ -144,7 +144,14 @@ const settingsformnode = form({
 });
 
 document.body.append(
-    header(h1(code(['htmlmodule repl']))),
+    header(h1(code([
+        'htmlmodule ',
+        abbr({
+            title : 'read-eval-print-loop',
+            style : { cursor : 'help' },
+            children : 'repl'
+        })
+    ]))),
     main({
         className : 'repl',
         children : [
@@ -164,10 +171,12 @@ document.body.append(
     }),
     footer({
         style : { textAlign : 'center' },
-        children : p(code(HTMLDOM.strong([
+        children : p(code(HTMLDOM.strong([ // todo ul li
             a({ href : '../documentation', children : 'api doc' }),
             ' • ',
             a({ href : '../spec', children : 'spec suite' }),
+            ' • ',
+            a({ href : '//github.com/aristov/htmlmodule', children : 'git repo' }),
             ' • ',
             a({ href : '../test', children : 'test suite' }),
             ' • ',
