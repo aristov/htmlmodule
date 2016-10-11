@@ -1,7 +1,9 @@
 # htmlmodule
 
 <!--
-todo links: dist, dist global, spec, repl, test, documentation, browser support (shim)
+todo 
+    dist + dist global 
+    browser support (shim)
 -->
 
 <em>work in progress</em>
@@ -9,12 +11,12 @@ todo links: dist, dist global, spec, repl, test, documentation, browser support 
 [HTML](//html.spec.whatwg.org)
 module provides web application semantics and functionality by simple JavaScript API
 
-## Links
+## Try now
 
- - [repl](//aristov.github.io/htmlmodule/repl/repl.html)
- - [test case](//aristov.github.io/htmlmodule/test/test.html)
- - [spec suite](//aristov.github.io/htmlmodule/spec/spec.html)
- - [API documentation](//aristov.github.io/htmlmodule/documentation)
+<a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">
+    REPL
+    application
+</a>
 
 ## Usage
 
@@ -56,7 +58,6 @@ const websearch =
 
 <details>
 <summary>respective html markup</summary>
-<!--now `websearch` DOM structure is respective to this markup-->
 ```html
 <form action=//yandex.com/search target=_blank>
     <label>
@@ -98,6 +99,10 @@ const websearch =
 document.body.append(websearch)
 ```
 </details>
+
+### API
+
+[documentation](//aristov.github.io/htmlmodule/documentation)
 
 ## Development
 
@@ -142,10 +147,25 @@ open in browser [localhost:8080](//localhost:8080/)
 
 ### Testing
 
+#### karma
+
 mocha + chai + sinon + karma + sauce
+
 ```
 npm test
 ```
+
+#### browser
+
+[localhost:8080/spec](//localhost:8080/spec)
+
+#### links
+
+check test suites in your browser
+
+- [spec suite](//aristov.github.io/htmlmodule/spec)
+- [test case](//aristov.github.io/htmlmodule/test)
+- [dist test](//aristov.github.io/htmlmodule/dist)
 
 ## License
 
