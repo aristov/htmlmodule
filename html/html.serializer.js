@@ -1,7 +1,7 @@
 const map = Array.prototype.map;
 const assign = Object.assign;
 
-const epmtyTagList = 'area base br embed hr img input keygen link meta param source track wbr';
+const epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
 const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
 
 const isEmptyTag = node => {
@@ -38,8 +38,9 @@ export class HTMLSerializer {
                     ({ name, value }) => ` ${name}="${value.replace(/\"/g, '&quot;')}"`);
                 result += attrset.join('');
             }
-            result += '>';
-            const hasEndTag = isEmptyTag(node);
+            const hasEndTag = !isEmptyTag(node);
+            const selfClose = node.constructor === Element? '/>' : '>';
+            result += hasEndTag? '>' : selfClose;
             if(hasEndTag && node.hasChildNodes()) {
                 const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
                 if(!hasAttributes && isSingleText) {
