@@ -2,7 +2,6 @@
 
 <!--
 todo 
-    dist + dist global 
     browser support (shim)
 -->
 
@@ -14,16 +13,10 @@ module provides web application semantics and functionality by simple JavaScript
 ## Try now
 
 <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">
-    REPL
-    application
+    REPL application
 </a>
 
 ## Usage
-
-### Environment
-
- - browser
- - node + webpack <sup>optional</sup>
 
 ### Install
 
@@ -33,56 +26,11 @@ npm install htmlmodule
 
 ### Create application
 
-#### import elements
-
 ```js
-import { form, label, input, button } from 'htmlmodule'
-```
-
-#### build DOM tree
-
-```js
-const websearch = 
-    form({
-        action : '//yandex.com/search',
-        target : '_blank',
-        children : [
-            label([
-                'Search ',
-                input({ type : 'search', name : 'text' })
-            ]),
-            button('Find')
-        ]
-    })
-```
-
-<details>
-<summary>respective html markup</summary>
-```html
-<form action=//yandex.com/search target=_blank>
-    <label>
-        Search 
-        <input type=search name=text>
-    </label>
-    <button>Find</button>
-</form>
-```
-</details>
-
-#### append to document body
-
-```js
-document.body.append(websearch)
-```
-
-now it works
-
-<details>
-<summary>full module src</summary>
-
-```js
+// import element assemblers
 import { form, label, input, button } from 'htmlmodule'
 
+// create application
 const websearch = 
     form({
         action : '//yandex.com/search',
@@ -96,11 +44,36 @@ const websearch =
         ]
     })
     
-document.body.append(websearch)
+// insert to document
+document.body.append(websearch);
 ```
-</details>
 
-### API
+now it works
+
+`websearch` is DOM structure with respective html markup:
+
+```html
+<form action=//yandex.com/search target=_blank>
+    <label>
+        Search 
+        <input type=search name=text>
+    </label>
+    <button>Find</button>
+</form>
+```
+
+### Browser global script
+
+```html
+<!--fixme-->
+<script src="https://aristov.github.io/htmlmodule/build/build.dist.min.js"></script>
+<script>
+const { a, span, div, article, input, fieldset } = HTMLDOM
+// make magic...
+</script> 
+```
+
+## API
 
 [documentation](//aristov.github.io/htmlmodule/documentation)
 
