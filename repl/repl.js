@@ -145,7 +145,7 @@ const settingsformnode = form({
 
 document.body.append(
     // header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
-    header(code(h1(['htmlmodule repl']))),
+    header(h1(code(['htmlmodule repl']))),
     main({
         className : 'repl',
         children : [

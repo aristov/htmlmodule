@@ -1,6 +1,12 @@
 body
 {
-    margin: 0;
+    /*margin: 0;*/
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0.08);
+}
+body > h1:first-child
+{
+    text-align: center;
 }
 input.filterinput
 {
@@ -10,15 +16,14 @@ input.filterinput
 table.exampletable
 {
     margin: 0 auto;
-    width: 100%;
+    width: 1200px;
 }
 table.exampletable > * > tr > th
 {
-    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
-    background: rgba(0, 0, 0, 0.08);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
-table.exampletable > * > tr > td
+table.exampletable > * > tr > td:not(:last-child)
 {
     padding: 20px 40px 40px;
     border-bottom: 5px solid rgba(0, 0, 0, 0.1);
@@ -27,10 +32,6 @@ table.exampletable > * > tr > td pre.html,
 table.exampletable > * > tr > td pre.javascript
 {
     margin-top: 0;
-}
-table.exampletable > * > tr > td
-{
-    background: rgba(0, 0, 0, 0.1);
 }
 table.exampletable > * > tr > td > h2 > code > a:not(:hover)
 {

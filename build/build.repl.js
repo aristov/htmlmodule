@@ -985,7 +985,7 @@
 
 	document.body.append(
 	// header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
-	(0, _htmldom.header)((0, _htmldom.code)((0, _htmldom.h1)(['htmlmodule repl']))), (0, _htmldom.main)({
+	(0, _htmldom.header)((0, _htmldom.h1)((0, _htmldom.code)(['htmlmodule repl']))), (0, _htmldom.main)({
 	    className: 'repl',
 	    children: [panel([settingsformnode, jsInput]), panel([(0, _htmldom.form)({
 	        className: 'settings',
