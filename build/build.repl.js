@@ -983,9 +983,7 @@
 	    children: (0, _htmldom.p)([(0, _htmldom.label)([globalbox, ' define globally']), (0, _htmldom.label)(testselectbox), (0, _htmldom.label)(clearboxnode)])
 	});
 
-	document.body.append(
-	// header(h3([abbr('HTMLDOM'), ' ', abbr('REPL')])),
-	(0, _htmldom.header)((0, _htmldom.h1)((0, _htmldom.code)(['htmlmodule repl']))), (0, _htmldom.main)({
+	document.body.append((0, _htmldom.header)((0, _htmldom.h1)((0, _htmldom.code)(['htmlmodule repl']))), (0, _htmldom.main)({
 	    className: 'repl',
 	    children: [panel([settingsformnode, jsInput]), panel([(0, _htmldom.form)({
 	        className: 'settings',
