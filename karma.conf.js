@@ -6,24 +6,24 @@ module.exports = function (config) {
             browserName: 'chrome',
             version: '53.0'
         },
-        /*SL_Firefox: {
+        SL_Firefox: {
             base: 'SauceLabs',
             platform: 'Linux',
             browserName: 'firefox',
             version: '45.0'
-        },*/
-        /*SL_Safari: {
+        },
+        SL_Safari: {
             base: 'SauceLabs',
             platform: 'OS X 10.11',
             browserName: 'safari',
             version: '9.0'
-        },*/
-        /*SL_IE_11: {
+        },
+        SL_IE_11: {
             base: 'SauceLabs',
             platform: 'Windows 8.1',
             browserName: 'internet explorer',
             version: '11'
-        },*/
+        },
         /*SL_IE_9: {
             base: 'SauceLabs',
             platform: 'Windows 7',
