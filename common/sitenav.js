@@ -2,6 +2,14 @@ import { footer, a } from '../';
 import './sitenav.css';
 
 const sitenavset = {
+    repl : {
+        href : '../repl',
+        children : 'repl app'
+    },
+    repo : {
+        href : '//github.com/aristov/htmlmodule',
+        children : 'git repo'
+    },
     doc : {
         href : '../documentation',
         children : 'api doc'
@@ -9,10 +17,6 @@ const sitenavset = {
     spec : {
         href : '../spec',
         children : 'spec suite'
-    },
-    repo : {
-        href : '//github.com/aristov/htmlmodule',
-        children : 'git repo'
     },
     test : {
         href : '../test',

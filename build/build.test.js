@@ -14958,6 +14958,14 @@
 	__webpack_require__(/*! ./sitenav.css */ 561);
 
 	const sitenavset = {
+	    repl: {
+	        href: '../repl',
+	        children: 'repl app'
+	    },
+	    repo: {
+	        href: '//github.com/aristov/htmlmodule',
+	        children: 'git repo'
+	    },
 	    doc: {
 	        href: '../documentation',
 	        children: 'api doc'
@@ -14965,10 +14973,6 @@
 	    spec: {
 	        href: '../spec',
 	        children: 'spec suite'
-	    },
-	    repo: {
-	        href: '//github.com/aristov/htmlmodule',
-	        children: 'git repo'
 	    },
 	    test: {
 	        href: '../test',
@@ -15030,7 +15034,7 @@
 
 
 	// module
-	exports.push([module.id, ".sitenav\n{\n    font: bold 15px monospace;\n    width: 700px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n.sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
+	exports.push([module.id, ".sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n.sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
 
 	// exports
 
