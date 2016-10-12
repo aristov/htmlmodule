@@ -6659,7 +6659,7 @@
   \***************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "import { form, label, input, button, img, br } from 'HTMLDOM'\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    })\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n})\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n})\n\nexport default yandex\n"
+	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
 
 /***/ },
 

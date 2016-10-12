@@ -2,10 +2,6 @@
  * Element.prototype.onclick invoke on Element.prototype.click call
  * Event system normalization for MSIE 11
  *
- * Author
- *  Viacheslav Aristov
- *  vv.aristov@gmail.com
- *
  * @polyfill
  */
 const span = document.createElement('span');

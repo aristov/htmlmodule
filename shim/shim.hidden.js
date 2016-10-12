@@ -1,10 +1,6 @@
 /**
  * HTMLElement.prototype.hidden implementation
  *
- * Author
- *  Viacheslav Aristov
- *  vv.aristov@gmail.com
- *
  * @polyfill
  */
 const { HTMLElement, document } = window;

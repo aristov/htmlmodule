@@ -10487,10 +10487,6 @@
 	/**
 	 * Element.prototype.id implementation
 	 *
-	 * Author
-	 *  Viacheslav Aristov
-	 *  vv.aristov@gmail.com
-	 *
 	 * @polyfill
 	 */
 	const { Element, document } = window;
@@ -10518,10 +10514,6 @@
 
 	/**
 	 * Element.prototype.className implementation
-	 *
-	 * Author
-	 *  Viacheslav Aristov
-	 *  vv.aristov@gmail.com
 	 *
 	 * @polyfill
 	 */
@@ -10635,10 +10627,6 @@
 	/**
 	 * HTMLElement.prototype.hidden implementation
 	 *
-	 * Author
-	 *  Viacheslav Aristov
-	 *  vv.aristov@gmail.com
-	 *
 	 * @polyfill
 	 */
 	const { HTMLElement, document } = window;
@@ -10676,10 +10664,6 @@
 	 * Element.prototype.onclick invoke on Element.prototype.click call
 	 * Event system normalization for MSIE 11
 	 *
-	 * Author
-	 *  Viacheslav Aristov
-	 *  vv.aristov@gmail.com
-	 *
 	 * @polyfill
 	 */
 	const span = document.createElement('span');
@@ -10710,7 +10694,21 @@
 
 	'use strict';
 
-	if (!document.head) document.head = document.getElementsByTagName('head')[0];
+	/**
+	 * Document.prototype.head getter implementation
+	 *
+	 * @get {HTMLHeadElement} head
+	 * @polyfill
+	 */
+	const { HTMLDocument: { prototype } } = window;
+
+	if (!('head' in prototype)) {
+	    Object.defineProperty(prototype, 'head', {
+	        get() {
+	            return document.getElementsByTagName('head')[0];
+	        }
+	    });
+	}
 
 /***/ }
 /******/ ]);

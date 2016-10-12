@@ -1,10 +1,6 @@
 /**
  * Element.prototype.className implementation
  *
- * Author
- *  Viacheslav Aristov
- *  vv.aristov@gmail.com
- *
  * @polyfill
  */
 const { Element, document } = window;
