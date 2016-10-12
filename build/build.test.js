@@ -47,13 +47,13 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./test/test */387);
+	module.exports = __webpack_require__(/*! ./docs/lib/test */387);
 
 
 /***/ },
 /* 1 */
 /*!**********************!*\
-  !*** ./dist/dist.js ***!
+  !*** ./lib/index.js ***!
   \**********************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -63,56 +63,43 @@
 	  value: true
 	});
 
-	var _dom = __webpack_require__(/*! ../dom */ 2);
+	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
 
-	Object.keys(_dom).forEach(function (key) {
+	Object.keys(_nodeinit).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
 	    get: function () {
-	      return _dom[key];
+	      return _nodeinit[key];
 	    }
 	  });
 	});
 
-	var _html = __webpack_require__(/*! ../html */ 6);
+	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	Object.keys(_html).forEach(function (key) {
+	Object.keys(_domassembler).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
 	    get: function () {
-	      return _html[key];
+	      return _domassembler[key];
 	    }
 	  });
 	});
 
-/***/ },
-/* 2 */
-/*!**********************!*\
-  !*** ./dom/index.js ***!
-  \**********************/
-/***/ function(module, exports, __webpack_require__) {
+	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 4);
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _dom = __webpack_require__(/*! ./dom */ 3);
-
-	Object.keys(_dom).forEach(function (key) {
+	Object.keys(_htmlassembler).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
 	    get: function () {
-	      return _dom[key];
+	      return _htmlassembler[key];
 	    }
 	  });
 	});
 
-	var _xmldom = __webpack_require__(/*! ../xmldom */ 4);
+	var _xmldom = __webpack_require__(/*! ./xmldom */ 5);
 
 	Object.keys(_xmldom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -124,22 +111,31 @@
 	  });
 	});
 
+	var _htmldom = __webpack_require__(/*! ./htmldom */ 6);
+
+	Object.keys(_htmldom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _htmldom[key];
+	    }
+	  });
+	});
+
 /***/ },
-/* 3 */
-/*!********************!*\
-  !*** ./dom/dom.js ***!
-  \********************/
+/* 2 */
+/*!*************************!*\
+  !*** ./lib/nodeinit.js ***!
+  \*************************/
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.NodeInit = NodeInit;
-	const { isArray } = Array;
-	const { document, Element } = window;
-
+	exports.default = NodeInit;
 	/**
 	 * Converts any non-dictionary object argument
 	 * to `NodeInit` dictionary object with `children` property assigned
@@ -153,6 +149,29 @@
 	    }
 	    return init;
 	}
+
+/***/ },
+/* 3 */
+/*!*****************************!*\
+  !*** ./lib/domassembler.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.XML_NS_URI = undefined;
+
+	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
+
+	var _nodeinit2 = _interopRequireDefault(_nodeinit);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const { isArray } = Array;
+	const { document, Element } = window;
 
 	/**
 	 * - XML namespace
@@ -236,7 +255,7 @@
 	    createElement(tagName, init) {
 	        const { namespaceURI } = this.constructor;
 	        this.element = document.createElementNS(namespaceURI, tagName);
-	        if (init) this.init = NodeInit(init);
+	        if (init) this.init = (0, _nodeinit2.default)(init);
 	        return this.element;
 	    }
 
@@ -248,7 +267,11 @@
 	    }
 	}
 
-	exports.DOMAssembler = DOMAssembler;
+	exports.default = DOMAssembler; /**
+	                                 * @class DOMAssembler
+	                                 * @property {Node} node assigned
+	                                 */
+
 	Object.defineProperty(DOMAssembler.prototype, 'node', {
 	    enumerable: true,
 	    writable: true,
@@ -257,9 +280,9 @@
 
 /***/ },
 /* 4 */
-/*!*************************!*\
-  !*** ./xmldom/index.js ***!
-  \*************************/
+/*!******************************!*\
+  !*** ./lib/htmlassembler.js ***!
+  \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -267,99 +290,13 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.XHTML_NS_URI = undefined;
 
-	var _xmldom = __webpack_require__(/*! ./xmldom */ 5);
+	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	Object.keys(_xmldom).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function () {
-	      return _xmldom[key];
-	    }
-	  });
-	});
+	var _domassembler2 = _interopRequireDefault(_domassembler);
 
-/***/ },
-/* 5 */
-/*!**************************!*\
-  !*** ./xmldom/xmldom.js ***!
-  \**************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.comment = exports.text = exports.element = exports.xmldom = undefined;
-
-	var _dom = __webpack_require__(/*! ../dom/dom */ 3);
-
-	const { document } = window;
-
-	const assembler = new _dom.DOMAssembler();
-
-	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
-
-	const element = exports.element = init => xmldom('element', init);
-
-	const text = exports.text = text => document.createTextNode(text);
-
-	const comment = exports.comment = comment => document.createComment(comment);
-
-/***/ },
-/* 6 */
-/*!***********************!*\
-  !*** ./html/index.js ***!
-  \***********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _html = __webpack_require__(/*! ./html */ 7);
-
-	Object.keys(_html).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function () {
-	      return _html[key];
-	    }
-	  });
-	});
-
-	var _htmldom = __webpack_require__(/*! ../htmldom */ 8);
-
-	Object.keys(_htmldom).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function () {
-	      return _htmldom[key];
-	    }
-	  });
-	});
-
-/***/ },
-/* 7 */
-/*!**********************!*\
-  !*** ./html/html.js ***!
-  \**********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
-
-	var _dom = __webpack_require__(/*! ../dom/dom */ 3);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const { assign } = Object;
 
@@ -375,7 +312,7 @@
 	 * - `Document.createElement` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `HTMLElement` initialization
 	 */
-	class HTMLAssembler extends _dom.DOMAssembler {
+	class HTMLAssembler extends _domassembler2.default {
 	  /**
 	   * Assign custom `data-` attributes to the element
 	   * @param {{}} dataset declaration dictionary object
@@ -399,13 +336,13 @@
 	    return XHTML_NS_URI;
 	  }
 	}
-	exports.HTMLAssembler = HTMLAssembler;
+	exports.default = HTMLAssembler;
 
 /***/ },
-/* 8 */
-/*!**************************!*\
-  !*** ./htmldom/index.js ***!
-  \**************************/
+/* 5 */
+/*!***********************!*\
+  !*** ./lib/xmldom.js ***!
+  \***********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -413,24 +350,31 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.comment = exports.text = exports.element = exports.xmldom = undefined;
 
-	var _htmldom = __webpack_require__(/*! ./htmldom */ 9);
+	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	Object.keys(_htmldom).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function () {
-	      return _htmldom[key];
-	    }
-	  });
-	});
+	var _domassembler2 = _interopRequireDefault(_domassembler);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const { document } = window;
+
+	const assembler = new _domassembler2.default();
+
+	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
+
+	const element = exports.element = init => xmldom('element', init);
+
+	const text = exports.text = text => document.createTextNode(text);
+
+	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-/* 9 */
-/*!****************************!*\
-  !*** ./htmldom/htmldom.js ***!
-  \****************************/
+/* 6 */
+/*!************************!*\
+  !*** ./lib/htmldom.js ***!
+  \************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -440,9 +384,13 @@
 	});
 	exports.wbr = exports.video = exports.variable = exports.ul = exports.u = exports.track = exports.tr = exports.title = exports.time = exports.thead = exports.th = exports.tfoot = exports.textarea = exports.template = exports.td = exports.tbody = exports.table = exports.sup = exports.summary = exports.sub = exports.style = exports.strong = exports.span = exports.source = exports.small = exports.slot = exports.select = exports.section = exports.script = exports.samp = exports.s = exports.ruby = exports.rt = exports.rp = exports.q = exports.progress = exports.pre = exports.picture = exports.param = exports.p = exports.output = exports.option = exports.optgroup = exports.ol = exports.object = exports.noscript = exports.nav = exports.meter = exports.meta = exports.menuitem = exports.menu = exports.mark = exports.map = exports.main = exports.link = exports.li = exports.legend = exports.label = exports.keygen = exports.kbd = exports.ins = exports.input = exports.img = exports.iframe = exports.i = exports.html = exports.hr = exports.hgroup = exports.header = exports.head = exports.h6 = exports.h5 = exports.h4 = exports.h3 = exports.h2 = exports.h1 = exports.form = exports.footer = exports.figure = exports.figcaption = exports.fieldset = exports.embed = exports.em = exports.dt = exports.dl = exports.div = exports.dialog = exports.dfn = exports.details = exports.del = exports.dd = exports.datalist = exports.data = exports.colgroup = exports.col = exports.code = exports.cite = exports.caption = exports.canvas = exports.button = exports.br = exports.body = exports.blockquote = exports.bdo = exports.bdi = exports.base = exports.b = exports.audio = exports.aside = exports.article = exports.area = exports.address = exports.abbr = exports.a = exports.htmldom = undefined;
 
-	var _html = __webpack_require__(/*! ./../html/html.js */ 7);
+	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 4);
 
-	const assembler = new _html.HTMLAssembler();
+	var _htmlassembler2 = _interopRequireDefault(_htmlassembler);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const assembler = new _htmlassembler2.default();
 
 	/**
 	 * Creates and initializes the specified element
@@ -803,7 +751,21 @@
 
 	const ul = exports.ul = init => htmldom('ul', init);
 
-	// `var` is JS-keyword
+	/**
+	 * [the `var<ins>iable</ins>` element](https://html.spec.whatwg.org/#the-var-element)
+	 * represents a variable.
+	 * This could be an actual variable in a mathematical expression or programming context,
+	 * an identifier representing a constant, a symbol identifying a physical quantity,
+	 * a function parameter, or just be a term used as a placeholder in prose.
+	 *
+	 * `var` is reserved JS keyword
+	 * htmlmodule provides `variable` instead
+	 *
+	 * Uses HTMLElement interface
+	 * @function variable
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const variable = exports.variable = init => htmldom('var', init);
 
 	const video = exports.video = init => htmldom('video', init);
@@ -811,342 +773,11 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */
-/*!***********************!*\
-  !*** ./dist/index.js ***!
-  \***********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _dist = __webpack_require__(/*! ./dist */ 1);
-
-	Object.keys(_dist).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function () {
-	      return _dist[key];
-	    }
-	  });
-	});
-
-/***/ },
-/* 318 */
-/*!*********************************!*\
-  !*** ./htmldom/htmldom.test.js ***!
-  \*********************************/
+/* 7 */,
+/* 8 */
+/*!********************************!*\
+  !*** ./util/htmlserializer.js ***!
+  \********************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1154,139 +785,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const test = exports.test = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
-	    title: 'Media',
-	    children: [h4('Image media'), img({
-	        src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
-	        alt: 'Crazy PiPi!'
-	    }), h4('Audio media'), audio({
-	        controls: true,
-	        src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
-	    }), h4('Video media'), video({
-	        controls: true,
-	        width: '200',
-	        src: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
-	    })]
-	}), ({ header, nav, a, ul, li }) => header(nav(ul([li(a({
-	    href: '/home.html',
-	    textContent: 'Go home'
-	})), li(a({
-	    href: 'http://github.com/aristov',
-	    textContent: 'Github page'
-	})), li(a({
-	    href: 'mailto:vv.aristov@gmail.com',
-	    textContent: 'Contact me'
-	}))]))), ({ div, ul, li, bdi }) => div({
-	    children: ul([li(['User ', bdi('jcranmer'), ': 12 posts.']), li(['User ', bdi('hober'), ': 5 posts.']), li(['User ', bdi('إيان'), ': 3 posts.'])])
-	}), ({ div, bdo }) => {
-	    const children = 'АРОЗАУПАЛА';
-	    return div({
-	        children: [children, 'Н', bdo({
-	            dir: 'rtl',
-	            children
-	        })]
-	    });
-	}, ({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
-	    style: { marginRight: '10px' },
-	    onclick: ({
-	        type,
-	        target: { tagName },
-	        constructor: { name }
-	    }) => alert([tagName, type, name, 'handler!'].join(' ')),
-	    textContent: 'Show me alert, please...'
-	}), button({
-	    style: { marginRight: '10px' },
-	    onfocus: ({ target }) => target.textContent = 'Focused!',
-	    onblur: ({ target }) => target.textContent = 'Focus wait...',
-	    textContent: 'Focus wait...'
-	}), input({
-	    style: { marginRight: '10px' },
-	    placeholder: 'text input char counter',
-	    oninput: ({ target }) => {
-	        target.nextElementSibling.value = target.value.length;
-	    }
-	}), output({ value: '0' })]), ({ footer, address, small }) => footer([address('vv.aristov@gmail.com'), small('@ All rights free')]), ({ main, sup, sub, i, strong }) => main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]), ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([dt('abbreviations'), dd(abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL')), dt('edits'), dd([ins('inserted'), ' and ', del('deleted'), ' text']), dt('reywords'), dd(b('var, function, export, const')), dt('other'), dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])]), ({ aside }) => aside('Your advert may be here!'), ({ article, h2, address }) => article({
-	    className: 'vcard',
-	    children: [h2({ className: 'fn', textContent: 'Vyacheslav Aristov' }), address({ className: 'email', textContent: 'vv.aristov@gmail.com' })]
-	}), ({ style }) => style({
-	    id: 'greenstyle',
-	    textContent: '#greenstyle { display: inline-block; color: green; font-family: monospace }'
-	}), ({ script }) => script('Object.assign(' + 'document.currentScript.style, ' + '{ display: "block", color: "blue", fontFamily : "monospace" ' + '})'), ({ pre }) => pre(`preformatted text
-	line break 
-	    — yet another line break with tab
-	  
-	  <>&`), ({ blockquote }) => blockquote({
-	    cite: 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',
-	    textContent: 'The blockquote element represents a section that is quoted from another source.'
-	}), ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'), ({ div }) => div(['div — like span has no semantics, but', div('div has default `display: block` style')]), ({ p, br }) => p(['b', br(), 'r']), ({ p, hr }) => p(['Lorem ipsum dolor sit amet, consectetur adipiscing elit,', hr(), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']), ({ button }) => button('Push my button'), ({ form, label, input, textarea, span }) => form({
-	    style: {
-	        display: 'flex',
-	        flexDirection: 'column',
-	        justifyContent: 'space-between',
-	        height: '200px'
-	    },
-	    children: [label(['Text input ', input({ placeholder: 'Fill me' })]), label([input({ type: 'checkbox' }), ' Simple checkbox']), label([input({ type: 'checkbox', checked: true }), ' Checked checkbox']), label([input({ type: 'checkbox', attrset: { checked: '' } }), ' Initially checked checkbox']), label([input({ type: 'checkbox', indeterminate: true }), ' Indeterminate checkbox']), span([label([input({
-	        type: 'radio',
-	        name: 'chooseproglangradio',
-	        value: 'html'
-	    }), ' HTML ']), label([input({
-	        type: 'radio',
-	        name: 'chooseproglangradio',
-	        value: 'xml'
-	    }), ' XML'])]), input({ type: 'reset', style: { margin: '0 auto 0 0' } })]
-	}), ({ form, label, select, option, br }) => form([label(['Select technology ', select([option('XML'), option('HTML'), option({ selected: true, textContent: 'WAI-ARIA' }), option('RDFS'), option('OWL'), option('SGML'), option('CSS')])]), br(), label(['Select technology stack', br(), select({
-	    multiple: true,
-	    children: [option('XML'), option({
-	        attrset: { selected: '' },
-	        textContent: 'HTML'
-	    }), option('WAI-ARIA'), option('RDFS'), option('OWL'), option('SGML'), option('CSS')] })]), br()]), ({ form, input, button }) => form({
-	    style: { whiteSpace: 'nowrap' },
-	    children: [input({
-	        name: 'query',
-	        placeholder: 'type your request',
-	        type: 'search',
-	        style: { marginRight: '5px' }
-	    }), button('search')]
-	}), ({ dialog }) => dialog({
-	    open: true,
-	    style: { position: 'relative', display: 'block' },
-	    textContent: 'Hello world!'
-	}), ({ iframe, dialog, p, button, script }) => {
-	    const onclick = 'event.target.parentElement.close()';
-	    const srcdom = dialog([p('Close dialog?'), button({
-	        attrset: { onclick },
-	        children: 'Ok'
-	    }), ' ', button('Cancel')]);
-	    const context = iframe({
-	        width: '100%',
-	        height: '50%',
-	        style: { boxSizing: 'border-box' },
-	        onmouseover: () => {
-	            context.contentDocument.querySelector('dialog').showModal();
-	        },
-	        srcdoc: srcdom.outerHTML
-	    });
-	    return context;
-	}, ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
-	    title: 'Ruby annotations',
-	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
-	}), ({ article, ul, li, ol, dl, dt, dd }) => article({
-	    title: 'Various lists',
-	    children: [ul([li('Ampeg'), li('Fender'), li('SMB Effects')]), ol([li('Amsterdam'), li('New York'), li('Moscow')]), dl([dt('DOM'), dd('Document object model'), dt('XML'), dd('Extensible markup language'), dt('HTML'), dd('Hyper text markup language'), dt('ARIAML'), dd('Accessible rich internet applications markup language')])]
-	}), ({ progress }) => progress({ max: '100', value: '70' })];
+	// todo refactoring => DOMSerializer
 
-/***/ },
-/* 319 */
-/*!*********************************!*\
-  !*** ./html/html.serializer.js ***!
-  \*********************************/
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 	const map = Array.prototype.map;
 	const assign = Object.assign;
 
@@ -1298,7 +798,6 @@
 	    return Boolean(emptyTagSet[node.tagName]);
 	};
 
-	// todo refactoring => DOMSerializer
 	// todo comment support
 	class HTMLSerializer {
 	    constructor(options = {
@@ -1353,353 +852,8 @@
 	exports.HTMLSerializer = HTMLSerializer;
 
 /***/ },
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */
-/*!**************************************!*\
-  !*** ./~/css-loader/lib/css-base.js ***!
-  \**************************************/
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function () {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for (var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if (item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function (modules, mediaQuery) {
-			if (typeof modules === "string") modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for (var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if (typeof id === "number") alreadyImportedModules[id] = true;
-			}
-			for (i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if (mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if (mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
-
-/***/ },
-/* 328 */
-/*!*************************************!*\
-  !*** ./~/style-loader/addStyles.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0,
-		styleElementsInsertedAtTop = [];
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		// By default, add <style> tags to the bottom of <head>.
-		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function insertStyleElement(options, styleElement) {
-		var head = getHeadElement();
-		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-		if (options.insertAt === "top") {
-			if(!lastStyleElementInsertedAtTop) {
-				head.insertBefore(styleElement, head.firstChild);
-			} else if(lastStyleElementInsertedAtTop.nextSibling) {
-				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-			} else {
-				head.appendChild(styleElement);
-			}
-			styleElementsInsertedAtTop.push(styleElement);
-		} else if (options.insertAt === "bottom") {
-			head.appendChild(styleElement);
-		} else {
-			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-		}
-	}
-
-	function removeStyleElement(styleElement) {
-		styleElement.parentNode.removeChild(styleElement);
-		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-		if(idx >= 0) {
-			styleElementsInsertedAtTop.splice(idx, 1);
-		}
-	}
-
-	function createStyleElement(options) {
-		var styleElement = document.createElement("style");
-		styleElement.type = "text/css";
-		insertStyleElement(options, styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement(options));
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement(options);
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
-
-
-/***/ },
-/* 329 */,
-/* 330 */,
-/* 331 */
-/*!********************!*\
-  !*** ./jsb/jsb.js ***!
-  \********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _jsBeautify = __webpack_require__(/*! js-beautify */ 332);
-
-	var _jsBeautify2 = _interopRequireDefault(_jsBeautify);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	const jsb = _jsBeautify2.default.js_beautify;
-	const jsbConfig = { indent_size: 4, wrap_line_length: 150 };
-
-	exports.default = (code, config) => jsb(code, Object.assign(jsbConfig, config));
-
-/***/ },
-/* 332 */
+/* 9 */,
+/* 10 */
 /*!***********************************!*\
   !*** ./~/js-beautify/js/index.js ***!
   \***********************************/
@@ -1744,7 +898,7 @@
 
 	if (true) {
 	    // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ./lib/beautify */ 333), __webpack_require__(/*! ./lib/beautify-css */ 334), __webpack_require__(/*! ./lib/beautify-html */ 335)], __WEBPACK_AMD_DEFINE_RESULT__ = function (js_beautify, css_beautify, html_beautify) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ./lib/beautify */ 11), __webpack_require__(/*! ./lib/beautify-css */ 12), __webpack_require__(/*! ./lib/beautify-html */ 13)], __WEBPACK_AMD_DEFINE_RESULT__ = function (js_beautify, css_beautify, html_beautify) {
 	        return get_beautify(js_beautify, css_beautify, html_beautify);
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {
@@ -1758,7 +912,7 @@
 	}
 
 /***/ },
-/* 333 */
+/* 11 */
 /*!******************************************!*\
   !*** ./~/js-beautify/js/lib/beautify.js ***!
   \******************************************/
@@ -2106,7 +1260,7 @@
 	global.js_beautify=js_beautify;}})();
 
 /***/ },
-/* 334 */
+/* 12 */
 /*!**********************************************!*\
   !*** ./~/js-beautify/js/lib/beautify-css.js ***!
   \**********************************************/
@@ -2632,7 +1786,7 @@
 	})();
 
 /***/ },
-/* 335 */
+/* 13 */
 /*!***********************************************!*\
   !*** ./~/js-beautify/js/lib/beautify-html.js ***!
   \***********************************************/
@@ -3635,9 +2789,9 @@
 
 	    if (true) {
 	        // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, __webpack_require__(/*! ./beautify */ 333), __webpack_require__(/*! ./beautify-css */ 334)], __WEBPACK_AMD_DEFINE_RESULT__ = function (requireamd) {
-	            var js_beautify = __webpack_require__(/*! ./beautify */ 333);
-	            var css_beautify = __webpack_require__(/*! ./beautify-css */ 334);
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, __webpack_require__(/*! ./beautify */ 11), __webpack_require__(/*! ./beautify-css */ 12)], __WEBPACK_AMD_DEFINE_RESULT__ = function (requireamd) {
+	            var js_beautify = __webpack_require__(/*! ./beautify */ 11);
+	            var css_beautify = __webpack_require__(/*! ./beautify-css */ 12);
 
 	            return {
 	                html_beautify: function (html_source, options) {
@@ -3668,6 +2822,865 @@
 	})();
 
 /***/ },
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */
+/*!**************************************!*\
+  !*** ./~/css-loader/lib/css-base.js ***!
+  \**************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function () {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for (var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if (item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function (modules, mediaQuery) {
+			if (typeof modules === "string") modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for (var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if (typeof id === "number") alreadyImportedModules[id] = true;
+			}
+			for (i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if (mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if (mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+/***/ },
+/* 22 */
+/*!*************************************!*\
+  !*** ./~/style-loader/addStyles.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		var blob = new Blob([css], { type: "text/css" });
+
+		var oldSrc = linkElement.href;
+
+		linkElement.href = URL.createObjectURL(blob);
+
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */
+/*!****************************************!*\
+  !*** ./docs/lib/test/test-testcase.js ***!
+  \****************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = [({ fieldset, legend, input }) => fieldset([legend('Authorization'), input({ placeholder: 'login', style: { marginRight: '5px' } }), input({ type: 'password', placeholder: 'password' })]), ({ article, h4, img, audio, video }) => article({
+	    title: 'Media',
+	    children: [h4('Image media'), img({
+	        src: 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
+	        alt: 'Crazy PiPi!'
+	    }), h4('Audio media'), audio({
+	        controls: true,
+	        src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
+	    }), h4('Video media'), video({
+	        controls: true,
+	        width: '200',
+	        src: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
+	    })]
+	}), ({ header, nav, a, ul, li }) => header(nav(ul([li(a({
+	    href: '/home.html',
+	    textContent: 'Go home'
+	})), li(a({
+	    href: 'http://github.com/aristov',
+	    textContent: 'Github page'
+	})), li(a({
+	    href: 'mailto:vv.aristov@gmail.com',
+	    textContent: 'Contact me'
+	}))]))), ({ div, ul, li, bdi }) => div({
+	    children: ul([li(['User ', bdi('jcranmer'), ': 12 posts.']), li(['User ', bdi('hober'), ': 5 posts.']), li(['User ', bdi('إيان'), ': 3 posts.'])])
+	}), ({ div, bdo }) => {
+	    const children = 'АРОЗАУПАЛА';
+	    return div({
+	        children: [children, 'Н', bdo({
+	            dir: 'rtl',
+	            children
+	        })]
+	    });
+	}, ({ fieldset, legend, button, br, input, output }) => fieldset([legend('Event handlers'), button({
+	    style: { marginRight: '10px' },
+	    onclick: ({
+	        type,
+	        target: { tagName },
+	        constructor: { name }
+	    }) => alert([tagName, type, name, 'handler!'].join(' ')),
+	    textContent: 'Show me alert, please...'
+	}), button({
+	    style: { marginRight: '10px' },
+	    onfocus: ({ target }) => target.textContent = 'Focused!',
+	    onblur: ({ target }) => target.textContent = 'Focus wait...',
+	    textContent: 'Focus wait...'
+	}), input({
+	    style: { marginRight: '10px' },
+	    placeholder: 'text input char counter',
+	    oninput: ({ target }) => {
+	        target.nextElementSibling.value = target.value.length;
+	    }
+	}), output({ value: '0' })]), ({ footer, address, small }) => footer([address('vv.aristov@gmail.com'), small('@ All rights free')]), ({ main, sup, sub, i, strong }) => main(['Here comes ', sup('supertext'), ' and ', sub('subtext'), '. Later they are followed by ', i('alternative voice'), ' and ', strong('important!')]), ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([dt('abbreviations'), dd(abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL')), dt('edits'), dd([ins('inserted'), ' and ', del('deleted'), ' text']), dt('reywords'), dd(b('var, function, export, const')), dt('other'), dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])]), ({ aside }) => aside('Your advert may be here!'), ({ article, h2, address }) => article({
+	    className: 'vcard',
+	    children: [h2({ className: 'fn', textContent: 'Vyacheslav Aristov' }), address({ className: 'email', textContent: 'vv.aristov@gmail.com' })]
+	}), ({ style }) => style({
+	    id: 'greenstyle',
+	    textContent: '#greenstyle { display: inline-block; color: green; font-family: monospace }'
+	}), ({ script }) => script('Object.assign(' + 'document.currentScript.style, ' + '{ display: "block", color: "blue", fontFamily : "monospace" ' + '})'), ({ pre }) => pre(`preformatted text
+	line break 
+	    — yet another line break with tab
+	  
+	  <>&`), ({ blockquote }) => blockquote({
+	    cite: 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',
+	    textContent: 'The blockquote element represents a section that is quoted from another source.'
+	}), ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'), ({ div }) => div(['div — like span has no semantics, but', div('div has default `display: block` style')]), ({ p, br }) => p(['b', br(), 'r']), ({ p, hr }) => p(['Lorem ipsum dolor sit amet, consectetur adipiscing elit,', hr(), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']), ({ button }) => button('Push my button'), ({ form, label, input, textarea, span }) => form({
+	    style: {
+	        display: 'flex',
+	        flexDirection: 'column',
+	        justifyContent: 'space-between',
+	        height: '200px'
+	    },
+	    children: [label(['Text input ', input({ placeholder: 'Fill me' })]), label([input({ type: 'checkbox' }), ' Simple checkbox']), label([input({ type: 'checkbox', checked: true }), ' Checked checkbox']), label([input({ type: 'checkbox', attrset: { checked: '' } }), ' Initially checked checkbox']), label([input({ type: 'checkbox', indeterminate: true }), ' Indeterminate checkbox']), span([label([input({
+	        type: 'radio',
+	        name: 'chooseproglangradio',
+	        value: 'html'
+	    }), ' HTML ']), label([input({
+	        type: 'radio',
+	        name: 'chooseproglangradio',
+	        value: 'xml'
+	    }), ' XML'])]), input({ type: 'reset', style: { margin: '0 auto 0 0' } })]
+	}), ({ form, label, select, option, br }) => form([label(['Select technology ', select([option('XML'), option('HTML'), option({ selected: true, textContent: 'WAI-ARIA' }), option('RDFS'), option('OWL'), option('SGML'), option('CSS')])]), br(), label(['Select technology stack', br(), select({
+	    multiple: true,
+	    children: [option('XML'), option({
+	        attrset: { selected: '' },
+	        textContent: 'HTML'
+	    }), option('WAI-ARIA'), option('RDFS'), option('OWL'), option('SGML'), option('CSS')] })]), br()]), ({ form, input, button }) => form({
+	    style: { whiteSpace: 'nowrap' },
+	    children: [input({
+	        name: 'query',
+	        placeholder: 'type your request',
+	        type: 'search',
+	        style: { marginRight: '5px' }
+	    }), button('search')]
+	}), ({ dialog }) => dialog({
+	    open: true,
+	    style: { position: 'relative', display: 'block' },
+	    textContent: 'Hello world!'
+	}), ({ iframe, dialog, p, button, script }) => {
+	    const onclick = 'event.target.parentElement.close()';
+	    const srcdom = dialog([p('Close dialog?'), button({
+	        attrset: { onclick },
+	        children: 'Ok'
+	    }), ' ', button('Cancel')]);
+	    const context = iframe({
+	        width: '100%',
+	        height: '50%',
+	        style: { boxSizing: 'border-box' },
+	        onmouseover: () => {
+	            context.contentDocument.querySelector('dialog').showModal();
+	        },
+	        srcdoc: srcdom.outerHTML
+	    });
+	    return context;
+	}, ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([caption('Web technology comparison'), thead(tr([th(abbr('HTML')), th(abbr('ARIA'))])), tbody([[code('tagName'), code('role')], [code('hidden'), code('aria-hidden')], [code('title'), code('aria-label')]].map(([xml, html]) => tr([td(xml), td(html)])))]), ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([h1('First level heading'), h2('Second level heading'), h3('Third level heading'), h4('Fourth level heding'), h5('Fifth level heding'), h6('Sixth level heding in group')]), ({ details, summary, code, em, del, dfn }) => details([summary('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', code('export const code = init => instance.createElement(\'code\', init);'), 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', dfn('Instance.js — simple and powerfull DOM Element interface')]), ({ article, section, ruby, rt, rp }) => article({
+	    title: 'Ruby annotations',
+	    children: [section([ruby(['君', rt('くん')]), ruby(['子', rt('し')]), 'は', ruby(['和', rt('わ')]), 'して', ruby(['同', rt('どう')]), 'ぜず。']), section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))]
+	}), ({ article, ul, li, ol, dl, dt, dd }) => article({
+	    title: 'Various lists',
+	    children: [ul([li('Ampeg'), li('Fender'), li('SMB Effects')]), ol([li('Amsterdam'), li('New York'), li('Moscow')]), dl([dt('DOM'), dd('Document object model'), dt('XML'), dd('Extensible markup language'), dt('HTML'), dd('Hyper text markup language'), dt('ARIAML'), dd('Accessible rich internet applications markup language')])]
+	}), ({ progress }) => progress({ max: '100', value: '70' })];
+
+/***/ },
+/* 29 */
+/*!*****************************!*\
+  !*** ./docs/lib/sitenav.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sitenav = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	__webpack_require__(/*! ./sitenav.css */ 30);
+
+	const pathname = location.pathname;
+
+	const children = [(0, _lib.a)({
+	    href: './repl.html',
+	    children: 'repl app'
+	}), (0, _lib.a)({
+	    href: '//github.com/aristov/htmlmodule',
+	    target: '_blank',
+	    children: 'git repo'
+	}), (0, _lib.a)({
+	    href: './api/',
+	    target: '_blank',
+	    children: 'api doc'
+	}), (0, _lib.a)({
+	    href: './spec.html',
+	    children: 'spec suite'
+	}), (0, _lib.a)({
+	    href: './test.html',
+	    children: 'test case'
+	}), (0, _lib.a)({
+	    href: './dist.html',
+	    children: 'global test'
+	})];
+
+	children.forEach(link => {
+	    if (link.pathname === pathname) link.removeAttribute('href');
+	});
+
+	const sitenavNode = document.getElementById('sitenav');
+	if (sitenavNode) sitenavNode.append(...children);
+
+	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
+
+/***/ },
+/* 30 */
+/*!******************************!*\
+  !*** ./docs/lib/sitenav.css ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 31);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 22)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 31 */
+/*!****************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 21)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n#sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
 /* 336 */,
 /* 337 */,
 /* 338 */,
@@ -3720,45 +3733,42 @@
 /* 385 */,
 /* 386 */,
 /* 387 */
-/*!**********************!*\
-  !*** ./test/test.js ***!
-  \**********************/
+/*!**************************!*\
+  !*** ./docs/lib/test.js ***!
+  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _htmldom = __webpack_require__(/*! ../htmldom/htmldom.test */ 318);
+	var _testTestcase = __webpack_require__(/*! ./test/test-testcase.js */ 28);
 
-	var _htmldom2 = __webpack_require__(/*! ../htmldom */ 8);
+	var _testTestcase2 = _interopRequireDefault(_testTestcase);
 
-	var HTMLDOM = _interopRequireWildcard(_htmldom2);
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	var _sitenav = __webpack_require__(/*! ../common/sitenav */ 560);
+	var htmlmodule = _interopRequireWildcard(_lib);
 
-	var _html = __webpack_require__(/*! ../html/html.serializer */ 319);
+	var _sitenav = __webpack_require__(/*! ./sitenav */ 29);
+
+	var _htmlserializer = __webpack_require__(/*! ../../util/htmlserializer */ 8);
 
 	var _highlight = __webpack_require__(/*! highlight.js/ */ 388);
 
 	var _highlight2 = _interopRequireDefault(_highlight);
 
-	var _jsb = __webpack_require__(/*! ../jsb/jsb */ 331);
+	var _jsbeautify = __webpack_require__(/*! ./jsbeautify */ 561);
 
-	var _jsb2 = _interopRequireDefault(_jsb);
+	var _jsbeautify2 = _interopRequireDefault(_jsbeautify);
 
-	__webpack_require__(/*! ./test.css */ 556);
+	__webpack_require__(/*! highlight.js/styles/agate.css */ 556);
 
-	__webpack_require__(/*! highlight.js/styles/agate.css */ 558);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	__webpack_require__(/*! ./test.css */ 558);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	// import victorica from 'victorica';
-	if (!window.HTMLDOM) window.HTMLDOM = HTMLDOM;
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const serializer = new _html.HTMLSerializer();
-
-	// const victoricaConfig = { space: '    ' };
+	const serializer = new _htmlserializer.HTMLSerializer();
 
 	let rows;
 
@@ -3768,20 +3778,20 @@
 	    });
 	};
 
-	const filterinput = (0, _htmldom2.input)({
+	const filterinput = (0, _lib.input)({
 	    type: 'search',
 	    className: 'filterinput',
 	    placeholder: 'filter...',
 	    oninput
 	});
 
-	const tag = children => (0, _htmldom2.span)({ className: 'tag', children });
+	const tag = children => (0, _lib.span)({ className: 'tag', children });
 
-	const exampletable = (0, _htmldom2.table)({
+	const exampletable = (0, _lib.table)({
 	    cellSpacing: 0,
 	    className: 'exampletable',
-	    children: [(0, _htmldom2.thead)([(0, _htmldom2.tr)([(0, _htmldom2.th)(filterinput)])]), (0, _htmldom2.tbody)(rows = _htmldom.test.map(template => {
-	        const element = template(HTMLDOM);
+	    children: [(0, _lib.thead)([(0, _lib.tr)([(0, _lib.th)(filterinput)])]), (0, _lib.tbody)(rows = _testTestcase2.default.map(template => {
+	        const element = template(htmlmodule);
 	        const tagNames = [element.tagName];
 	        const collection = element.querySelectorAll('*');
 	        const elements = Array.from(collection);
@@ -3793,21 +3803,20 @@
 	        let srcjscode, resulthtmlcode;
 
 	        const id = tagNames.join('+');
-	        const row = (0, _htmldom2.tr)({
+	        const row = (0, _lib.tr)({
 	            className: tagNames.join(' '),
-	            children: (0, _htmldom2.td)([(0, _htmldom2.h2)((0, _htmldom2.code)((0, _htmldom2.a)({
+	            children: (0, _lib.td)([(0, _lib.h2)((0, _lib.code)((0, _lib.a)({
 	                id,
 	                href: '#' + id,
 	                children: tagNames.join(', ')
-	            }))), tag('Source JS:'), (0, _htmldom2.div)(srcjscode = (0, _htmldom2.pre)({
+	            }))), tag('Source JS:'), (0, _lib.div)(srcjscode = (0, _lib.pre)({
 	                className: 'javascript',
-	                children: (0, _htmldom2.code)((0, _jsb2.default)(template.toString()))
-	            })), tag('Result DOM:'), (0, _htmldom2.div)({ className: 'dom', children: element }), tag('Result HTML:'), (0, _htmldom2.div)({
+	                children: (0, _lib.code)((0, _jsbeautify2.default)(template.toString()))
+	            })), tag('Result DOM:'), (0, _lib.div)({ className: 'dom', children: element }), tag('Result HTML:'), (0, _lib.div)({
 	                className: '',
-	                children: resulthtmlcode = (0, _htmldom2.pre)({
+	                children: resulthtmlcode = (0, _lib.pre)({
 	                    className: 'html',
-	                    // children : code(victorica(element.outerHTML, victoricaConfig))
-	                    children: (0, _htmldom2.code)(serializer.serializeToString(element))
+	                    children: (0, _lib.code)(serializer.serializeToString(element))
 	                })
 	            })])
 	        });
@@ -3819,7 +3828,7 @@
 	    }))]
 	});
 
-	document.body.append((0, _htmldom2.h1)((0, _htmldom2.code)('htmlmodule test')), exampletable, (0, _sitenav.sitenav)('test'));
+	document.body.append((0, _lib.h1)((0, _lib.code)('htmlmodule test')), exampletable, (0, _sitenav.sitenav)());
 
 /***/ },
 /* 388 */
@@ -14849,52 +14858,6 @@
 
 /***/ },
 /* 556 */
-/*!***********************!*\
-  !*** ./test/test.css ***!
-  \***********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../~/css-loader!./../~/postcss-loader!./test.css */ 557);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../~/style-loader/addStyles.js */ 328)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./test.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./test.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 557 */
-/*!*********************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./test/test.css ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../~/css-loader/lib/css-base.js */ 327)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "body\n{\n    /*margin: 0;*/\n    padding: 0 10px;\n    background: rgba(0, 0, 0, 0.08);\n}\nbody > h1\n{\n    text-align: center;\n}\ninput.filterinput\n{\n    width: 100%;\n    font-size: 20px;\n}\ntable.exampletable\n{\n    margin: 0 auto;\n    width: 1200px;\n}\ntable.exampletable > * > tr > th\n{\n    padding-top: 20px;\n}\ntable.exampletable > * > tr > td\n{\n    padding: 30px 0;\n}\ntable.exampletable > * > tr > td pre.html,\ntable.exampletable > * > tr > td pre.javascript\n{\n    margin-top: 0;\n}\ntable.exampletable > * > tr > td > h2 > code > a:not(:hover)\n{\n    text-decoration : none;\n}\ntable.exampletable > * > tr > td div\n{\n    max-width: 1200px;\n    box-sizing: border-box;\n}\ntable.exampletable > * > tr > td div.dom\n{\n    padding: 10px;\n    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);\n    margin-bottom: 20px;\n    background: white;\n}\ntable.exampletable > * > tr > td span.tag\n{\n    display: inline-block;\n    font: 15px Arial;\n    background: #0a0;\n    color: white;\n    padding: 1px 5px;\n    /*opacity: 0.5;*/\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 558 */
 /*!*****************************************!*\
   !*** ./~/highlight.js/styles/agate.css ***!
   \*****************************************/
@@ -14903,10 +14866,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./agate.css */ 559);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./agate.css */ 557);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 328)(content, {});
+	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -14923,13 +14886,13 @@
 	}
 
 /***/ },
-/* 559 */
+/* 557 */
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/highlight.js/styles/agate.css ***!
   \***************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 327)();
+	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 21)();
 	// imports
 
 
@@ -14940,80 +14903,26 @@
 
 
 /***/ },
-/* 560 */
+/* 558 */
 /*!***************************!*\
-  !*** ./common/sitenav.js ***!
+  !*** ./docs/lib/test.css ***!
   \***************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _ = __webpack_require__(/*! ../ */ 317);
-
-	__webpack_require__(/*! ./sitenav.css */ 561);
-
-	const sitenavset = {
-	    repl: {
-	        href: '../repl',
-	        children: 'repl app'
-	    },
-	    repo: {
-	        href: '//github.com/aristov/htmlmodule',
-	        children: 'git repo'
-	    },
-	    doc: {
-	        href: '../documentation',
-	        children: 'api doc'
-	    },
-	    spec: {
-	        href: '../spec',
-	        children: 'spec suite'
-	    },
-	    test: {
-	        href: '../test',
-	        children: 'test case'
-	    },
-	    dist: {
-	        href: '../dist',
-	        children: 'dist test'
-	    }
-	};
-
-	const sitenav = exports.sitenav = current => (0, _.footer)({
-	    className: 'sitenav',
-	    children: Object.keys(sitenavset).map(key => {
-	        const value = sitenavset[key];
-	        if (key === current) delete value.href;
-	        return (0, _.a)(value);
-	    })
-	});
-
-/***/ },
-/* 561 */
-/*!****************************!*\
-  !*** ./common/sitenav.css ***!
-  \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../~/css-loader!./../~/postcss-loader!./sitenav.css */ 562);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./test.css */ 559);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../~/style-loader/addStyles.js */ 328)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./sitenav.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./test.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./test.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -15023,21 +14932,46 @@
 	}
 
 /***/ },
-/* 562 */
-/*!**************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./common/sitenav.css ***!
-  \**************************************************************/
+/* 559 */
+/*!*************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/test.css ***!
+  \*************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../~/css-loader/lib/css-base.js */ 327)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 21)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n.sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
+	exports.push([module.id, "body\n{\n    padding: 0 10px;\n    background: rgba(0, 0, 0, 0.08);\n}\nbody > h1\n{\n    text-align: center;\n}\ninput.filterinput\n{\n    width: 100%;\n    font-size: 20px;\n}\ntable.exampletable\n{\n    margin: 0 auto;\n    width: 1200px;\n}\ntable.exampletable > * > tr > th\n{\n    padding-top: 20px;\n}\ntable.exampletable > * > tr > td\n{\n    padding: 30px 0;\n}\ntable.exampletable > * > tr > td pre.html,\ntable.exampletable > * > tr > td pre.javascript\n{\n    margin-top: 0;\n}\ntable.exampletable > * > tr > td > h2 > code > a:not(:hover)\n{\n    text-decoration : none;\n}\ntable.exampletable > * > tr > td div\n{\n    max-width: 1200px;\n    box-sizing: border-box;\n}\ntable.exampletable > * > tr > td div.dom\n{\n    padding: 10px;\n    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);\n    margin-bottom: 20px;\n    background: white;\n}\ntable.exampletable > * > tr > td span.tag\n{\n    display: inline-block;\n    font: 15px Arial;\n    background: #0a0;\n    color: white;\n    padding: 1px 5px;\n}\n", ""]);
 
 	// exports
 
+
+/***/ },
+/* 560 */,
+/* 561 */
+/*!********************************!*\
+  !*** ./docs/lib/jsbeautify.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _jsBeautify = __webpack_require__(/*! js-beautify */ 10);
+
+	var _jsBeautify2 = _interopRequireDefault(_jsBeautify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const jsb = _jsBeautify2.default.js_beautify;
+	const jsbConfig = { indent_size: 4, wrap_line_length: 150 };
+
+	exports.default = (code, config) => jsb(code, Object.assign(jsbConfig, config));
 
 /***/ }
 /******/ ]);

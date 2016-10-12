@@ -7,7 +7,7 @@
     "url": "git://github.com/aristov/instance.git"
   },
   "license": "MIT",
-  "main": "./dist",
+  "main": "./lib",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel": "^6.5.2",
@@ -36,7 +36,6 @@
     "raw-loader": "^0.5.1",
     "static": "^2.0.0",
     "style-loader": "^0.13.1",
-    "victorica": "0.0.2",
     "webpack": "^1.13.1"
   },
   "scripts": {

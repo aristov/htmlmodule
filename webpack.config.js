@@ -1,35 +1,43 @@
 'use strict';
 
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer'); // fixme
 
 const env = process.env;
 const PROD = env.PROD;
 const plugins = [];
+const postLoaders = [];
 
 if(PROD) {
-    const options = {
+    const uglifyjsOptions = {
         compress : { warnings : false },
         mangle : { keep_fnames : true },
         comments : false
     };
-    const uglifyjs = new webpack.optimize.UglifyJsPlugin(options);
-    plugins.push(uglifyjs);
+    const uglifyjsPlugin = new webpack.optimize.UglifyJsPlugin(uglifyjsOptions);
+    plugins.push(uglifyjsPlugin);
+} else {
+    const documentationLoader = {
+        test : [/\.js$/],
+        exclude : /(node_modules)/,
+        loader : 'documentation'
+    }
+    postLoaders.push(documentationLoader);
+}
+
+
+const entry = {
+    shim : ['./shim'],
+    htmlmodule : ['./lib'],
+    'window.htmlmodule' : ['./lib/window.htmlmodule']
 }
 
 module.exports = {
-    entry : PROD? {
-        shim : ['./shim/shim'],
-        dist : ['./dist/dist'],
-        'dist.global' : ['./dist/dist.global']
-    } : {
-        shim : ['./shim/shim'],
-        dist : ['./dist/dist'],
-        'dist.global' : ['./dist/dist.global'],
-        test : ['./test/test'],
-        spec : ['./spec/spec'],
-        repl : ['./repl/repl']
-    },
+    entry : PROD? entry : Object.assign(entry, {
+        test : ['./docs/lib/test'],
+        spec : ['./docs/lib/spec'],
+        repl : ['./docs/lib/repl']
+    }),
     output : {
         path : __dirname + '/build',
         filename : PROD? 'build.[name].min.js' : 'build.[name].js',
@@ -43,18 +51,15 @@ module.exports = {
             { test : /\.txt$/, loader : 'raw-loader' },
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' },
         ],
-        postLoaders : [{
-            test : [/\.js$/],
-            exclude : /(node_modules)/,
-            loader : 'documentation'
-        }]
+        postLoaders
     },
     plugins,
     resolve : {
         modulesDirectories : ['node_modules']
     },
     documentation : {
-        entry : './dist/dist.js',
+        entry : './lib',
+        output : './docs/api',
         github : true,
         format : 'html'
     },

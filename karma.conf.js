@@ -1,4 +1,4 @@
-module.exports = function (config) {
+module.exports = function(config) {
     const customLaunchers = {
         SL_Chrome: {
             base: 'SauceLabs',
@@ -67,7 +67,7 @@ module.exports = function (config) {
         captureTimeout: 120000,
         customLaunchers,
         browsers: Object.keys(customLaunchers),
-        singleRun: !false,
+        singleRun: true,
         concurrency: Infinity
     })
 }
