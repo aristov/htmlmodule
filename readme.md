@@ -2,8 +2,7 @@
 
 <em>work in progress</em>
 
-[HTML](//html.spec.whatwg.org)
-module provides web application semantics and functionality of native HTML DOM API:
+HTML module provides web application semantics and functionality of native HTML DOM API:
 
 ```js
 const htmlspec = a({ href : 'http://html.spec.whatwg.org', children : 'HTML specification' });

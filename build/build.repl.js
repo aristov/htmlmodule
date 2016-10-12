@@ -958,6 +958,7 @@
 	    }
 	});
 
+	// todo refactor
 	class REPLApp {
 	    clear() {
 	        const selected = testselectbox.query('[selected]');
