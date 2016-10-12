@@ -7,7 +7,7 @@ module provides web application semantics and functionality by simple JavaScript
 
 ## Try now
 
-<a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">
+— <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">
     REPL application
 </a>
 
@@ -43,8 +43,6 @@ const websearch =
 document.body.append(websearch);
 ```
 
-now it works
-
 `websearch` is DOM structure with respective html markup:
 
 ```html
@@ -57,10 +55,10 @@ now it works
 </form>
 ```
 
-## Global script
+<h2 id="globalscript">Global script</h2>
 
 ```html
-<!--fixme-->
+<!--fixme: use cdn-->
 <script src="https://aristov.github.io/htmlmodule/build/build.dist.global.min.js"></script>
 <script>
 const { a, span, div, article, input, fieldset } = HTMLDOM;
@@ -70,9 +68,9 @@ const { a, span, div, article, input, fieldset } = HTMLDOM;
 
 ## API
 
-[documentation](//aristov.github.io/htmlmodule/documentation)
+— [documentation](//aristov.github.io/htmlmodule/documentation)
 
-<h2 id="compatibility">Compatibility</h2>
+## Compatibility
 
 Built-in [shim bundle](/shim/shim.js) fixes browser compatibility.
 For full browser support you must import shim bundle first:
@@ -84,7 +82,7 @@ import 'htmlmodule/shim';
 ```
 
 - shim bundle is used in [unit-testing](#user-content-testing) environments
-- [global script distributive](#user-content-compatibility) includes shim
+- [global script distributive](#user-content-globalscript) includes shim
 
 ## Development
 
@@ -98,10 +96,10 @@ import 'htmlmodule/shim';
 ```
 git clone git@github.com:aristov/htmlmodule.git
 cd htmlmodule
-npm i
+npm install
 ```
 
-to run commands locally, use `./node_modules/.bin/` in your PATH
+to run commands locally, use `./node_modules/.bin/` in your `PATH`
 
 ```
 export PATH=./node_modules/.bin:$PATH
@@ -129,19 +127,19 @@ open in browser [localhost:8080](//localhost:8080/)
 
 <h3 id="testing">Testing</h3>
 
-#### karma
-
-mocha + chai + sinon + karma + sauce
+#### test using node
 
 ```
 npm test
 ```
 
-#### browser
+#### test in browser
 
-[localhost:8080/spec](//localhost:8080/spec)
+- build sources 
+- run dev server
+- open [localhost:8080/spec](//localhost:8080/spec) in browser
 
-#### links
+#### online test suite
 
 Check test suite in your browser
 
