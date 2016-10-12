@@ -3,7 +3,7 @@
 <em>work in progress</em>
 
 [HTML](//html.spec.whatwg.org)
-module provides web application semantics and functionality by simple JavaScript API
+module provides web application semantics and functionality by simple JavaScript API.
 
 ## Try now
 
@@ -43,7 +43,7 @@ const websearch =
 document.body.append(websearch);
 ```
 
-`websearch` is DOM structure with respective html markup:
+`websearch` is DOM structure with respective HTML markup:
 
 ```html
 <form action=//yandex.com/search target=_blank>
@@ -59,7 +59,7 @@ document.body.append(websearch);
 
 ```html
 <!--fixme: use cdn-->
-<script src="https://aristov.github.io/htmlmodule/build/build.dist.global.min.js"></script>
+<script src=https://aristov.github.io/htmlmodule/build/build.dist.global.min.js></script>
 <script>
 const { a, span, div, article, input, fieldset } = HTMLDOM;
 // make magic...
@@ -82,14 +82,14 @@ import 'htmlmodule/shim';
 ```
 
 - shim bundle is used in [unit-testing](#user-content-testing) environments
-- [global script distributive](#user-content-globalscript) includes shim
+- [global script distributive](#user-content-globalscript) includes shim bundle
 
 ## Development
 
 ### Environment
 
- - browser
- - node + webpack
+- browser
+- node + webpack
 
 ### Install
 
@@ -111,37 +111,37 @@ export PATH=./node_modules/.bin:$PATH
 webpack
 ```
 
-use watch mode
+Use watch mode:
 
 ```
 WATCH=true webpack
 ```
 
-run dev server
+Run dev server:
 
 ```
 static
 ```
 
-open in browser [localhost:8080](//localhost:8080/)
+Open in browser [localhost:8080](//localhost:8080/)
 
 <h3 id="testing">Testing</h3>
 
-#### test using node
+#### Test using node
 
 ```
 npm test
 ```
 
-#### test in browser
+#### Test in browser
 
-- build sources 
-- run dev server
-- open [localhost:8080/spec](//localhost:8080/spec) in browser
+0. build sources 
+0. run dev server
+0. open [localhost:8080/spec](//localhost:8080/spec) in browser
 
-#### online test suite
+#### Online test suite
 
-Check test suite in your browser
+Check test suite in your browser:
 
 - [spec suite](//aristov.github.io/htmlmodule/spec)
 - [test case](//aristov.github.io/htmlmodule/test)
