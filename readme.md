@@ -1,10 +1,5 @@
 # htmlmodule
 
-<!--
-todo 
-    browser support (shim)
--->
-
 <em>work in progress</em>
 
 [HTML](//html.spec.whatwg.org)
@@ -28,7 +23,7 @@ npm install htmlmodule
 
 ```js
 // import element assemblers
-import { form, label, input, button } from 'htmlmodule'
+import { form, label, input, button } from 'htmlmodule';
 
 // create application
 const websearch = 
@@ -42,7 +37,7 @@ const websearch =
             ]),
             button('Find')
         ]
-    })
+    });
     
 // insert to document
 document.body.append(websearch);
@@ -62,13 +57,13 @@ now it works
 </form>
 ```
 
-### Browser global script
+## Global script
 
 ```html
 <!--fixme-->
-<script src="https://aristov.github.io/htmlmodule/build/build.dist.min.js"></script>
+<script src="https://aristov.github.io/htmlmodule/build/build.dist.global.min.js"></script>
 <script>
-const { a, span, div, article, input, fieldset } = HTMLDOM
+const { a, span, div, article, input, fieldset } = HTMLDOM;
 // make magic...
 </script> 
 ```
@@ -76,6 +71,20 @@ const { a, span, div, article, input, fieldset } = HTMLDOM
 ## API
 
 [documentation](//aristov.github.io/htmlmodule/documentation)
+
+<h2 id="compatibility">Compatibility</h2>
+
+Built-in [shim bundle](/shim/shim.js) fixes browser compatibility.
+For full browser support you must import shim bundle first:
+
+```js
+import 'htmlmodule/shim';
+
+// rest of your code including `htmlmodule` imports
+```
+
+- shim bundle is used in [unit-testing](#user-content-testing) environments
+- [global script distributive](#user-content-compatibility) includes shim
 
 ## Development
 
@@ -104,13 +113,13 @@ export PATH=./node_modules/.bin:$PATH
 webpack
 ```
 
-watch mode
+use watch mode
 
 ```
 WATCH=true webpack
 ```
 
-dev server
+run dev server
 
 ```
 static
@@ -118,7 +127,7 @@ static
 
 open in browser [localhost:8080](//localhost:8080/)
 
-### Testing
+<h3 id="testing">Testing</h3>
 
 #### karma
 
@@ -134,7 +143,7 @@ npm test
 
 #### links
 
-check test suites in your browser
+Check test suite in your browser
 
 - [spec suite](//aristov.github.io/htmlmodule/spec)
 - [test case](//aristov.github.io/htmlmodule/test)
@@ -144,6 +153,7 @@ check test suites in your browser
 
 <details>
 <summary><strong>The MIT License (MIT)</strong></summary>
+
 Copyright (c) 2016 Viacheslav Aristov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
