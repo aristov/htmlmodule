@@ -16,11 +16,7 @@ Browser creates the same link, when it processes the following markup:
 <a href="http://html.spec.whatwg.org">HTML specification</a>
 ```
 
-## Try now
-
-— <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">
-    REPL application
-</a>
+## Try now — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL application</a>
 
 ## Usage
 
@@ -77,9 +73,7 @@ const { a, span, div, article, input, fieldset } = HTMLDOM;
 </script> 
 ```
 
-## API
-
-— [documentation](//aristov.github.io/htmlmodule/documentation)
+## API — [documentation](//aristov.github.io/htmlmodule/documentation)
 
 ## Compatibility
 
