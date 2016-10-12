@@ -103,16 +103,24 @@ cd htmlmodule
 npm install
 ```
 
+### Build
+
 to run commands locally, use `./node_modules/.bin/` in your `PATH`
 
 ```
 export PATH=./node_modules/.bin:$PATH
 ```
 
-### Build
+build all assets:
 
 ```
 webpack
+```
+
+build minified assets:
+
+```
+PROD=true webpack
 ```
 
 Use watch mode:
