@@ -3,13 +3,18 @@
 <em>work in progress</em>
 
 [HTML](//html.spec.whatwg.org)
-module provides web application semantics and functionality by simple JavaScript API:
+module provides web application semantics and functionality of native HTML DOM API:
 
 ```js
-a({ href : 'http://html.spec.whatwg.org', children : 'HTML specification' });
+const htmlspec = a({ href : 'http://html.spec.whatwg.org', children : 'HTML specification' });
 ```
 
 Code above uses htmlmodule to create DOM hyperlink element with reference to specification.
+Browser creates the same link, when it processes the following markup:
+
+```js
+<a href="http://html.spec.whatwg.org">HTML specification</a>
+```
 
 ## Try now
 
