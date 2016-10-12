@@ -3,7 +3,13 @@
 <em>work in progress</em>
 
 [HTML](//html.spec.whatwg.org)
-module provides web application semantics and functionality by simple JavaScript API.
+module provides web application semantics and functionality by simple JavaScript API:
+
+```js
+a({ href : 'http://html.spec.whatwg.org', children : 'HTML specification' });
+```
+
+Code above uses htmlmodule to create DOM hyperlink element with reference to specification.
 
 ## Try now
 
