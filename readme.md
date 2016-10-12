@@ -105,19 +105,19 @@ npm install
 
 ### Build
 
-to run commands locally, use `./node_modules/.bin/` in your `PATH`
+To run commands locally, use `./node_modules/.bin/` in your `PATH`:
 
 ```
 export PATH=./node_modules/.bin:$PATH
 ```
 
-build all assets:
+Build all assets:
 
 ```
 webpack
 ```
 
-build minified assets:
+Build minified assets:
 
 ```
 PROD=true webpack

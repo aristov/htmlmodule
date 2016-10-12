@@ -20113,7 +20113,7 @@
 	                    assert(element.hasAttributes());
 	                    assert.equal(element.attributes.length, 1);
 	                });
-	                it('proper proper style declaration assigned', function () {
+	                it('proper style declaration assigned', function () {
 	                    assert.equal(element.style.backgroundColor, 'black');
 	                    assert.equal(element.getAttribute('style'), 'background-color: black;');
 	                });
