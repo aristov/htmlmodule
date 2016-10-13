@@ -18,7 +18,9 @@ Browser creates the same link, when it processes the following markup:
 <a href="https://html.spec.whatwg.org">HTML specification</a>
 ```
 
-## Try now — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL machine</a>
+HTML module does not generate markup — it assembles `HTMLAnchorElement` instance from scratch.
+
+## Try now — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL machine!</a>
 
 ## Usage
 

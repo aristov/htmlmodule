@@ -34,9 +34,9 @@ module.exports = function(config) {
     config.set({
         basePath: '',
         frameworks: ['mocha', 'sinon'],
-        files: ['spec/spec.js'],
+        files: ['lib/index.spec.js'],
         exclude: [],
-        preprocessors: { 'spec/spec.js': ['webpack'] },
+        preprocessors: { 'libe/index.spec.js': ['webpack'] },
         webpack: {
             module: {
                 loaders: [
