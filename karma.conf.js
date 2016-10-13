@@ -18,13 +18,13 @@ module.exports = function(config) {
             browserName: 'safari',
             version: '9.0'
         },*/
-        /*SL_MSIE: {
+        /*SL_MSIE11: {
             base: 'SauceLabs',
             platform: 'Windows 8.1',
             browserName: 'internet explorer',
             version: '11'
         },*/
-        /*SL_IE_9: {
+        /*SL_MSIE9: {
             base: 'SauceLabs',
             platform: 'Windows 7',
             browserName: 'internet explorer',
@@ -56,7 +56,7 @@ module.exports = function(config) {
         sauceLabs: {
             username: 'aristov7',
             accessKey: '0e922c40-5658-44fc-ab2b-7be69c51301e',
-            testName: 'Instance.js unit tests',
+            testName: 'htmlmodule spec',
             recordScreenshots: false,
             connectOptions: {
                 port: 5757,

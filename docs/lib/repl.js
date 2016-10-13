@@ -158,14 +158,11 @@ const settingsformnode = form({
 });
 
 document.body.append(
-    siteheading([
-        'htmlmodule ',
-        abbr({
-            title : 'read-eval-print-loop',
-            style : { cursor : 'help' },
-            children : 'repl'
-        })
-    ]),
+    siteheading(abbr({
+        title : 'read-eval-print-loop',
+        style : { cursor : 'help' },
+        children : 'repl'
+    })),
     main({
         className : 'repl',
         children : [

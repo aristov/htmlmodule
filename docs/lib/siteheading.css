@@ -1,0 +1,9 @@
+#siteheading
+{
+    font-family: monospace;
+}
+
+#siteheading > a:not(:hover):not(:focus):not(:active)
+{
+    color: inherit;
+}

@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /*!******************!*\
   !*** multi repl ***!
   \******************/
@@ -51,7 +52,8 @@
 
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -124,7 +126,8 @@
 	});
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -151,7 +154,8 @@
 	}
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -271,7 +275,8 @@
 	});
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -327,7 +332,8 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -355,7 +361,8 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-/* 6 */
+
+/***/ 6:
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -752,8 +759,8 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-/* 7 */,
-/* 8 */
+
+/***/ 8:
 /*!*********************************!*\
   !*** ./docs/lib/siteheading.js ***!
   \*********************************/
@@ -762,19 +769,30 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.siteheading = undefined;
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	const siteheading = exports.siteheading = children => (0, _lib.h1)({ id: 'siteheading', children });
+	__webpack_require__(/*! ./siteheading.css */ 563);
 
-	const styleNode = (0, _lib.style)('#siteheading { font-family: monospace }');
-	document.head.append(styleNode);
+	const MODULE_NAME = 'htmlmodule';
+
+	const siteheading = exports.siteheading = children => {
+	    const isIndex = !/\.html$/.test(location.pathname);
+	    return (0, _lib.h1)({
+	        id: 'siteheading',
+	        children: [(0, _lib.a)({
+	            href: isIndex ? undefined : './',
+	            children: MODULE_NAME
+	        }), ' ', children]
+	    });
+	};
 
 /***/ },
-/* 9 */
+
+/***/ 9:
 /*!*****************************!*\
   !*** ./docs/lib/sitenav.js ***!
   \*****************************/
@@ -826,7 +844,8 @@
 	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
 
 /***/ },
-/* 10 */
+
+/***/ 10:
 /*!******************************!*\
   !*** ./docs/lib/sitenav.css ***!
   \******************************/
@@ -855,7 +874,8 @@
 	}
 
 /***/ },
-/* 11 */
+
+/***/ 11:
 /*!****************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
   \****************************************************************/
@@ -866,13 +886,14 @@
 
 
 	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n#sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 12 */
+
+/***/ 12:
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -930,7 +951,8 @@
 	};
 
 /***/ },
-/* 13 */
+
+/***/ 13:
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1185,7 +1207,8 @@
 
 
 /***/ },
-/* 14 */
+
+/***/ 14:
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
   \**************************/
@@ -1364,11 +1387,11 @@
 	    children: (0, _lib.p)([(0, _lib.label)([globalbox, ' define globally']), (0, _lib.label)(testselectbox), (0, _lib.label)(clearboxnode)])
 	});
 
-	document.body.append((0, _siteheading.siteheading)(['htmlmodule ', (0, _lib.abbr)({
+	document.body.append((0, _siteheading.siteheading)((0, _lib.abbr)({
 	    title: 'read-eval-print-loop',
 	    style: { cursor: 'help' },
 	    children: 'repl'
-	})]), (0, _lib.main)({
+	})), (0, _lib.main)({
 	    className: 'repl',
 	    children: [panel([settingsformnode, jsInput]), panel([(0, _lib.form)({
 	        className: 'settings',
@@ -1454,7 +1477,8 @@
 	evaluate();
 
 /***/ },
-/* 15 */
+
+/***/ 15:
 /*!********************************!*\
   !*** ./util/htmlserializer.js ***!
   \********************************/
@@ -1532,7 +1556,8 @@
 	exports.HTMLSerializer = HTMLSerializer;
 
 /***/ },
-/* 16 */
+
+/***/ 16:
 /*!********************************!*\
   !*** ./docs/lib/jsbeautify.js ***!
   \********************************/
@@ -1556,7 +1581,8 @@
 	exports.default = (code, config) => beautify(code, Object.assign(defConfig, config));
 
 /***/ },
-/* 17 */
+
+/***/ 17:
 /*!***********************************!*\
   !*** ./~/js-beautify/js/index.js ***!
   \***********************************/
@@ -1615,7 +1641,8 @@
 	}
 
 /***/ },
-/* 18 */
+
+/***/ 18:
 /*!******************************************!*\
   !*** ./~/js-beautify/js/lib/beautify.js ***!
   \******************************************/
@@ -1963,7 +1990,8 @@
 	global.js_beautify=js_beautify;}})();
 
 /***/ },
-/* 19 */
+
+/***/ 19:
 /*!**********************************************!*\
   !*** ./~/js-beautify/js/lib/beautify-css.js ***!
   \**********************************************/
@@ -2489,7 +2517,8 @@
 	})();
 
 /***/ },
-/* 20 */
+
+/***/ 20:
 /*!***********************************************!*\
   !*** ./~/js-beautify/js/lib/beautify-html.js ***!
   \***********************************************/
@@ -3525,7 +3554,8 @@
 	})();
 
 /***/ },
-/* 21 */
+
+/***/ 21:
 /*!****************************************!*\
   !*** ./~/codemirror/lib/codemirror.js ***!
   \****************************************/
@@ -4545,7 +4575,8 @@
 	CodeMirror.version="5.19.0";return CodeMirror;});
 
 /***/ },
-/* 22 */
+
+/***/ 22:
 /*!****************************************************!*\
   !*** ./~/codemirror/mode/javascript/javascript.js ***!
   \****************************************************/
@@ -5337,7 +5368,8 @@
 	});
 
 /***/ },
-/* 23 */
+
+/***/ 23:
 /*!**************************************************!*\
   !*** ./~/codemirror/mode/htmlmixed/htmlmixed.js ***!
   \**************************************************/
@@ -5483,7 +5515,8 @@
 	});
 
 /***/ },
-/* 24 */
+
+/***/ 24:
 /*!**************************************!*\
   !*** ./~/codemirror/mode/xml/xml.js ***!
   \**************************************/
@@ -5867,7 +5900,8 @@
 	});
 
 /***/ },
-/* 25 */
+
+/***/ 25:
 /*!**************************************!*\
   !*** ./~/codemirror/mode/css/css.js ***!
   \**************************************/
@@ -6430,7 +6464,8 @@
 	});
 
 /***/ },
-/* 26 */
+
+/***/ 26:
 /*!*****************************************!*\
   !*** ./~/codemirror/lib/codemirror.css ***!
   \*****************************************/
@@ -6459,7 +6494,8 @@
 	}
 
 /***/ },
-/* 27 */
+
+/***/ 27:
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/lib/codemirror.css ***!
   \***************************************************************************/
@@ -6476,7 +6512,8 @@
 
 
 /***/ },
-/* 28 */
+
+/***/ 28:
 /*!**************************************!*\
   !*** ./~/codemirror/theme/night.css ***!
   \**************************************/
@@ -6505,7 +6542,8 @@
 	}
 
 /***/ },
-/* 29 */
+
+/***/ 29:
 /*!************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/night.css ***!
   \************************************************************************/
@@ -6522,7 +6560,8 @@
 
 
 /***/ },
-/* 30 */
+
+/***/ 30:
 /*!***************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-globaldefined.rawjs ***!
   \***************************************************************/
@@ -6531,7 +6570,8 @@
 	module.exports = "form({\n    action : '//yandex.com/search',\n    target : '_blank',\n    children : [\n        label([\n            img({\n                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n                alt : 'Yandex',\n                width : 50\n            }),\n            br(),\n            input({ type : 'search', name : 'text' }),\n            ' '\n        ]),\n        button('Find')\n    ]\n})\n"
 
 /***/ },
-/* 31 */
+
+/***/ 31:
 /*!***************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-exportdefault.rawjs ***!
   \***************************************************************/
@@ -6540,7 +6580,8 @@
 	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
 
 /***/ },
-/* 32 */
+
+/***/ 32:
 /*!************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-importfrom.rawjs ***!
   \************************************************************/
@@ -6549,7 +6590,8 @@
 	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
 
 /***/ },
-/* 33 */
+
+/***/ 33:
 /*!****************************************!*\
   !*** ./docs/lib/test/test-testcase.js ***!
   \****************************************/
@@ -6682,7 +6724,8 @@
 	}), ({ progress }) => progress({ max: '100', value: '70' })];
 
 /***/ },
-/* 34 */
+
+/***/ 34:
 /*!***************************!*\
   !*** ./docs/lib/repl.css ***!
   \***************************/
@@ -6711,7 +6754,8 @@
 	}
 
 /***/ },
-/* 35 */
+
+/***/ 35:
 /*!*************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/repl.css ***!
   \*************************************************************/
@@ -6727,5 +6771,54 @@
 	// exports
 
 
+/***/ },
+
+/***/ 563:
+/*!**********************************!*\
+  !*** ./docs/lib/siteheading.css ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 564);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 564:
+/*!********************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
+
+	// exports
+
+
 /***/ }
-/******/ ]);
+
+/******/ });

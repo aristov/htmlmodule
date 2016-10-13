@@ -3,7 +3,7 @@ import { sitenav } from './sitenav';
 
 const { ul, li, main, code, a } = htmlmodule;
 const listnode = main([
-    siteheading('htmlmodule'),
+    siteheading(),
     ul({
         style : {
             columnCount : 7,

@@ -762,16 +762,26 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.siteheading = undefined;
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	const siteheading = exports.siteheading = children => (0, _lib.h1)({ id: 'siteheading', children });
+	__webpack_require__(/*! ./siteheading.css */ 563);
 
-	const styleNode = (0, _lib.style)('#siteheading { font-family: monospace }');
-	document.head.append(styleNode);
+	const MODULE_NAME = 'htmlmodule';
+
+	const siteheading = exports.siteheading = children => {
+	    const isIndex = !/\.html$/.test(location.pathname);
+	    return (0, _lib.h1)({
+	        id: 'siteheading',
+	        children: [(0, _lib.a)({
+	            href: isIndex ? undefined : './',
+	            children: MODULE_NAME
+	        }), ' ', children]
+	    });
+	};
 
 /***/ },
 /* 9 */
@@ -866,7 +876,7 @@
 
 
 	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n#sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
 
 	// exports
 
@@ -3855,7 +3865,7 @@
 	    }))]
 	});
 
-	document.body.append((0, _siteheading.siteheading)('htmlmodule test'), exampletable(), (0, _sitenav.sitenav)());
+	document.body.append((0, _siteheading.siteheading)('test'), exampletable(), (0, _sitenav.sitenav)());
 
 /***/ },
 /* 390 */
@@ -14970,7 +14980,54 @@
 
 
 	// module
-	exports.push([module.id, "body\n{\n    padding: 0 10px;\n    background: rgba(0, 0, 0, 0.08);\n}\n/*h1#siteheading\n{\n    text-align: center;\n}*/\ninput.filterinput\n{\n    width: 100%;\n    font-size: 20px;\n}\ntable.exampletable\n{\n    /*margin: 0 auto;*/\n    width: 1200px;\n}\ntable.exampletable > * > tr > th\n{\n    padding-top: 20px;\n}\ntable.exampletable > * > tr > td\n{\n    padding: 30px 0;\n}\ntable.exampletable > * > tr > td pre.html,\ntable.exampletable > * > tr > td pre.javascript\n{\n    margin-top: 0;\n}\ntable.exampletable > * > tr > td > h2 > code > a:not(:hover)\n{\n    text-decoration : none;\n}\ntable.exampletable > * > tr > td div\n{\n    max-width: 1200px;\n    box-sizing: border-box;\n}\ntable.exampletable > * > tr > td div.dom\n{\n    padding: 10px;\n    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);\n    margin-bottom: 20px;\n    background: white;\n}\ntable.exampletable > * > tr > td span.tag\n{\n    display: inline-block;\n    font: 15px Arial;\n    background: #0a0;\n    color: white;\n    padding: 1px 5px;\n}\n", ""]);
+	exports.push([module.id, "body\n{\n    background: rgba(0, 0, 0, 0.08);\n}\n/*h1#siteheading\n{\n    text-align: center;\n}*/\ninput.filterinput\n{\n    width: 100%;\n    font-size: 20px;\n}\ntable.exampletable\n{\n    /*margin: 0 auto;*/\n    width: 1200px;\n}\ntable.exampletable > * > tr > th\n{\n    padding-top: 20px;\n}\ntable.exampletable > * > tr > td\n{\n    padding: 30px 0;\n}\ntable.exampletable > * > tr > td pre.html,\ntable.exampletable > * > tr > td pre.javascript\n{\n    margin-top: 0;\n}\ntable.exampletable > * > tr > td > h2 > code > a:not(:hover)\n{\n    text-decoration : none;\n}\ntable.exampletable > * > tr > td div\n{\n    max-width: 1200px;\n    box-sizing: border-box;\n}\ntable.exampletable > * > tr > td div.dom\n{\n    padding: 10px;\n    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);\n    margin-bottom: 20px;\n    background: white;\n}\ntable.exampletable > * > tr > td span.tag\n{\n    display: inline-block;\n    font: 15px Arial;\n    background: #0a0;\n    color: white;\n    padding: 1px 5px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 562 */,
+/* 563 */
+/*!**********************************!*\
+  !*** ./docs/lib/siteheading.css ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 564);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 564 */
+/*!********************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
 
 	// exports
 

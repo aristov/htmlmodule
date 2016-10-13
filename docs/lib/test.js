@@ -87,7 +87,7 @@ const exampletable = () => table({
 });
 
 document.body.append(
-    siteheading('htmlmodule test'),
+    siteheading('test'),
     exampletable(),
     sitenav()
 );

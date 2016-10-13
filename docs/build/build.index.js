@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /*!*******************!*\
   !*** multi index ***!
   \*******************/
@@ -51,7 +52,8 @@
 
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -124,7 +126,8 @@
 	});
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -151,7 +154,8 @@
 	}
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -271,7 +275,8 @@
 	});
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -327,7 +332,8 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -355,7 +361,8 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-/* 6 */
+
+/***/ 6:
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -752,7 +759,8 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-/* 7 */
+
+/***/ 7:
 /*!***************************!*\
   !*** ./docs/lib/index.js ***!
   \***************************/
@@ -765,7 +773,7 @@
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 9);
 
 	const { ul, li, main, code, a } = htmlmodule;
-	const listnode = main([(0, _siteheading.siteheading)('htmlmodule'), ul({
+	const listnode = main([(0, _siteheading.siteheading)(), ul({
 	    style: {
 	        columnCount: 7,
 	        listStyle: 'none'
@@ -780,7 +788,8 @@
 	document.body.append(listnode, (0, _sitenav.sitenav)());
 
 /***/ },
-/* 8 */
+
+/***/ 8:
 /*!*********************************!*\
   !*** ./docs/lib/siteheading.js ***!
   \*********************************/
@@ -789,19 +798,30 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.siteheading = undefined;
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	const siteheading = exports.siteheading = children => (0, _lib.h1)({ id: 'siteheading', children });
+	__webpack_require__(/*! ./siteheading.css */ 563);
 
-	const styleNode = (0, _lib.style)('#siteheading { font-family: monospace }');
-	document.head.append(styleNode);
+	const MODULE_NAME = 'htmlmodule';
+
+	const siteheading = exports.siteheading = children => {
+	    const isIndex = !/\.html$/.test(location.pathname);
+	    return (0, _lib.h1)({
+	        id: 'siteheading',
+	        children: [(0, _lib.a)({
+	            href: isIndex ? undefined : './',
+	            children: MODULE_NAME
+	        }), ' ', children]
+	    });
+	};
 
 /***/ },
-/* 9 */
+
+/***/ 9:
 /*!*****************************!*\
   !*** ./docs/lib/sitenav.js ***!
   \*****************************/
@@ -853,7 +873,8 @@
 	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
 
 /***/ },
-/* 10 */
+
+/***/ 10:
 /*!******************************!*\
   !*** ./docs/lib/sitenav.css ***!
   \******************************/
@@ -882,7 +903,8 @@
 	}
 
 /***/ },
-/* 11 */
+
+/***/ 11:
 /*!****************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
   \****************************************************************/
@@ -893,13 +915,14 @@
 
 
 	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n#sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 12 */
+
+/***/ 12:
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -957,7 +980,8 @@
 	};
 
 /***/ },
-/* 13 */
+
+/***/ 13:
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1211,5 +1235,54 @@
 	}
 
 
+/***/ },
+
+/***/ 563:
+/*!**********************************!*\
+  !*** ./docs/lib/siteheading.css ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 564);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 564:
+/*!********************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
+
+	// exports
+
+
 /***/ }
-/******/ ]);
+
+/******/ });

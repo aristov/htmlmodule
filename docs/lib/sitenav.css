@@ -6,7 +6,3 @@
     display: flex;
     justify-content: space-around;
 }
-#sitenav a:not(:hover)
-{
-    text-decoration: none;
-}

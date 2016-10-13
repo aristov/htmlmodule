@@ -1,6 +1,19 @@
-import { h1, style } from '../../lib';
+import { h1, a } from '../../lib';
+import './siteheading.css';
 
-export const siteheading = children => h1({ id : 'siteheading', children });
+const MODULE_NAME = 'htmlmodule';
 
-const styleNode = style('#siteheading { font-family: monospace }');
-document.head.append(styleNode);
+export const siteheading = children => {
+    const isIndex = !/\.html$/.test(location.pathname);
+    return h1({
+        id : 'siteheading',
+        children : [
+            a({
+                href : isIndex? undefined : './',
+                children : MODULE_NAME
+            }),
+            ' ',
+            children
+        ]
+    });
+}
