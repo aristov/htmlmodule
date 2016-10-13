@@ -40,9 +40,8 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /*!*******************!*\
   !*** multi index ***!
   \*******************/
@@ -52,8 +51,7 @@
 
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -71,7 +69,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _nodeinit[key];
 	    }
 	  });
@@ -83,7 +81,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _domassembler[key];
 	    }
 	  });
@@ -95,7 +93,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _htmlassembler[key];
 	    }
 	  });
@@ -107,7 +105,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _xmldom[key];
 	    }
 	  });
@@ -119,15 +117,14 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _htmldom[key];
 	    }
 	  });
 	});
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -154,8 +151,7 @@
 	}
 
 /***/ },
-
-/***/ 3:
+/* 3 */
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -168,106 +164,144 @@
 	});
 	exports.DOMAssembler = exports.XML_NS_URI = undefined;
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
 
-	const { isArray } = Array;
-	const { document, Element } = window;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var isArray = Array.isArray;
+	var _window = window;
+	var document = _window.document;
+	var Element = _window.Element;
 
 	/**
 	 * - XML namespace
 	 * - provides `Element` DOM interface
 	 * - https://www.w3.org/1999/xml
 	 */
-	const XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
+
+	var XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 	/**
 	 * - Assembler for DOM `Element`
 	 * - `Document.createElementNS` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `Element` initialization
 	 */
-	class DOMAssembler {
-	    /**
-	     * Assign given element to assembler instance
-	     * @param {Element} element node to assign
-	     */
-	    set element(element) {
-	        if (element instanceof Element) {
-	            this.node = element;
-	        } else throw Error('This is not Element');
+
+	var DOMAssembler = exports.DOMAssembler = function () {
+	    function DOMAssembler() {
+	        _classCallCheck(this, DOMAssembler);
 	    }
 
-	    /**
-	     * Get the assigned element
-	     * @returns {Element} assigned node
-	     */
-	    get element() {
-	        if (this.node) return this.node;else throw Error('No element assigned');
-	    }
+	    _createClass(DOMAssembler, [{
+	        key: 'createElement',
 
-	    /**
-	     * Initialize the element with defined properties
-	     * @param {{}} init initializing dictionary object
-	     */
-	    set init(init) {
-	        const element = this.element;
-	        for (let prop in init) {
-	            const value = init[prop];
-	            if (value !== undefined) {
-	                if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
+
+	        /**
+	         * Create the specified element and initialize it by given property set
+	         * @param {String} tagName
+	         * @param {{}} [init]
+	         * @returns {Element} created and initialized DOM `Element`
+	         */
+	        value: function createElement(tagName, init) {
+	            var namespaceURI = this.constructor.namespaceURI;
+
+	            this.element = document.createElementNS(namespaceURI, tagName);
+	            if (init) this.init = (0, _nodeinit.NodeInit)(init);
+	            return this.element;
+	        }
+
+	        /**
+	         * @returns {String} create elements in XML namespace
+	         */
+
+	    }, {
+	        key: 'element',
+
+	        /**
+	         * Assign given element to assembler instance
+	         * @param {Element} element node to assign
+	         */
+	        set: function set(element) {
+	            if (element instanceof Element) {
+	                this.node = element;
+	            } else throw Error('This is not Element');
+	        }
+
+	        /**
+	         * Get the assigned element
+	         * @returns {Element} assigned node
+	         */
+	        ,
+	        get: function get() {
+	            if (this.node) return this.node;else throw Error('No element assigned');
+	        }
+
+	        /**
+	         * Initialize the element with defined properties
+	         * @param {{}} init initializing dictionary object
+	         */
+
+	    }, {
+	        key: 'init',
+	        set: function set(init) {
+	            var element = this.element;
+	            for (var prop in init) {
+	                var value = init[prop];
+	                if (value !== undefined) {
+	                    if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
+	                }
 	            }
 	        }
-	    }
 
-	    /**
-	     * Set attributes on the element
-	     * @param {{}} attrset dictionary object
-	     */
-	    set attrset(attrset) {
-	        const element = this.element;
-	        for (let name in attrset) {
-	            const value = attrset[name];
-	            if (typeof value === 'string') {
-	                element.setAttribute(name, value);
+	        /**
+	         * Set attributes on the element
+	         * @param {{}} attrset dictionary object
+	         */
+
+	    }, {
+	        key: 'attrset',
+	        set: function set(attrset) {
+	            var element = this.element;
+	            for (var name in attrset) {
+	                var value = attrset[name];
+	                if (typeof value === 'string') {
+	                    element.setAttribute(name, value);
+	                }
 	            }
 	        }
-	    }
 
-	    /**
-	     * Append children to the element
-	     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
-	     * @param {Node|String|Array} children child node or string or array of listed
-	     */
-	    set children(children) {
-	        if (isArray(children)) {
-	            children.forEach(child => this.children = child);
-	        } else if (children) {
-	            const child = typeof children === 'string' ? document.createTextNode(children) : children;
-	            this.element.appendChild(child);
+	        /**
+	         * Append children to the element
+	         * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
+	         * @param {Node|String|Array} children child node or string or array of listed
+	         */
+
+	    }, {
+	        key: 'children',
+	        set: function set(children) {
+	            var _this = this;
+
+	            if (isArray(children)) {
+	                children.forEach(function (child) {
+	                    return _this.children = child;
+	                });
+	            } else if (children) {
+	                var child = typeof children === 'string' ? document.createTextNode(children) : children;
+	                this.element.appendChild(child);
+	            }
 	        }
-	    }
+	    }], [{
+	        key: 'namespaceURI',
+	        get: function get() {
+	            return XML_NS_URI;
+	        }
+	    }]);
 
-	    /**
-	     * Create the specified element and initialize it by given property set
-	     * @param {String} tagName
-	     * @param {{}} [init]
-	     * @returns {Element} created and initialized DOM `Element`
-	     */
-	    createElement(tagName, init) {
-	        const { namespaceURI } = this.constructor;
-	        this.element = document.createElementNS(namespaceURI, tagName);
-	        if (init) this.init = (0, _nodeinit.NodeInit)(init);
-	        return this.element;
-	    }
+	    return DOMAssembler;
+	}();
 
-	    /**
-	     * @returns {String} create elements in XML namespace
-	     */
-	    static get namespaceURI() {
-	        return XML_NS_URI;
-	    }
-	}
-
-	exports.DOMAssembler = DOMAssembler;
 	Object.defineProperty(DOMAssembler.prototype, 'node', {
 	    enumerable: true,
 	    writable: true,
@@ -275,8 +309,7 @@
 	});
 
 /***/ },
-
-/***/ 4:
+/* 4 */
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -289,51 +322,79 @@
 	});
 	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	const { assign } = Object;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var assign = Object.assign;
 
 	/**
 	 * - XHTML namespace
 	 * - provides all inherited from `HTMLElement` DOM interfaces
 	 * - https://www.w3.org/1999/xhtml
 	 */
-	const XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
+
+	var XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 	/**
 	 * - Assembler for DOM `HTMLElement`
 	 * - `Document.createElement` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `HTMLElement` initialization
 	 */
-	class HTMLAssembler extends _domassembler.DOMAssembler {
-	  /**
-	   * Assign custom `data-` attributes to the element
-	   * @param {{}} dataset declaration dictionary object
-	   */
-	  set dataset(dataset) {
-	    assign(this.element.dataset, dataset);
+
+	var HTMLAssembler = exports.HTMLAssembler = function (_DOMAssembler) {
+	  _inherits(HTMLAssembler, _DOMAssembler);
+
+	  function HTMLAssembler() {
+	    _classCallCheck(this, HTMLAssembler);
+
+	    return _possibleConstructorReturn(this, (HTMLAssembler.__proto__ || Object.getPrototypeOf(HTMLAssembler)).apply(this, arguments));
 	  }
 
-	  /**
-	   * Assign CSS style declaration to the element
-	   * @param {CSSStyleDeclaration} style declaration dictionary object
-	   */
-	  set style(style) {
-	    assign(this.element.style, style);
-	  }
+	  _createClass(HTMLAssembler, [{
+	    key: 'dataset',
 
-	  /**
-	   * @returns {String} create elements in XHTML namespace
-	   */
-	  static get namespaceURI() {
-	    return XHTML_NS_URI;
-	  }
-	}
-	exports.HTMLAssembler = HTMLAssembler;
+	    /**
+	     * Assign custom `data-` attributes to the element
+	     * @param {{}} dataset declaration dictionary object
+	     */
+	    set: function set(dataset) {
+	      assign(this.element.dataset, dataset);
+	    }
+
+	    /**
+	     * Assign CSS style declaration to the element
+	     * @param {CSSStyleDeclaration} style declaration dictionary object
+	     */
+
+	  }, {
+	    key: 'style',
+	    set: function set(style) {
+	      assign(this.element.style, style);
+	    }
+
+	    /**
+	     * @returns {String} create elements in XHTML namespace
+	     */
+
+	  }], [{
+	    key: 'namespaceURI',
+	    get: function get() {
+	      return XHTML_NS_URI;
+	    }
+	  }]);
+
+	  return HTMLAssembler;
+	}(_domassembler.DOMAssembler);
 
 /***/ },
-
-/***/ 5:
+/* 5 */
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -348,21 +409,30 @@
 
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	const { document } = window;
+	var _window = window;
+	var document = _window.document;
 
-	const assembler = new _domassembler.DOMAssembler();
 
-	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
+	var assembler = new _domassembler.DOMAssembler();
 
-	const element = exports.element = init => xmldom('element', init);
+	var xmldom = exports.xmldom = function xmldom(tagName, init) {
+	  return assembler.createElement(tagName, init);
+	};
 
-	const text = exports.text = text => document.createTextNode(text);
+	var element = exports.element = function element(init) {
+	  return xmldom('element', init);
+	};
 
-	const comment = exports.comment = comment => document.createComment(comment);
+	var text = exports.text = function text(_text) {
+	  return document.createTextNode(_text);
+	};
+
+	var comment = exports.comment = function comment(_comment) {
+	  return document.createComment(_comment);
+	};
 
 /***/ },
-
-/***/ 6:
+/* 6 */
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -377,7 +447,7 @@
 
 	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 4);
 
-	const assembler = new _htmlassembler.HTMLAssembler();
+	var assembler = new _htmlassembler.HTMLAssembler();
 
 	/**
 	 * Creates and initializes the specified element
@@ -386,7 +456,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const htmldom = exports.htmldom = (tagName, init) => assembler.createElement(tagName, init);
+	var htmldom = exports.htmldom = function htmldom(tagName, init) {
+	  return assembler.createElement(tagName, init);
+	};
 
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
@@ -406,7 +478,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const a = exports.a = init => htmldom('a', init);
+	var a = exports.a = function a(init) {
+	  return htmldom('a', init);
+	};
 
 	/**
 	 * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
@@ -420,7 +494,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const abbr = exports.abbr = init => htmldom('abbr', init);
+	var abbr = exports.abbr = function abbr(init) {
+	  return htmldom('abbr', init);
+	};
 
 	/**
 	 * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
@@ -432,7 +508,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const address = exports.address = init => htmldom('address', init);
+	var address = exports.address = function address(init) {
+	  return htmldom('address', init);
+	};
 
 	/**
 	 * [The `area` element](https://html.spec.whatwg.org/#the-area-element)
@@ -452,7 +530,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const area = exports.area = init => htmldom('area', init);
+	var area = exports.area = function area(init) {
+	  return htmldom('area', init);
+	};
 
 	/**
 	 * [The `article` element](https://html.spec.whatwg.org/#the-article-element)
@@ -466,7 +546,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const article = exports.article = init => htmldom('article', init);
+	var article = exports.article = function article(init) {
+	  return htmldom('article', init);
+	};
 
 	/**
 	 * [The `aside` element](https://html.spec.whatwg.org/#the-aside-element)
@@ -479,7 +561,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const aside = exports.aside = init => htmldom('aside', init);
+	var aside = exports.aside = function aside(init) {
+	  return htmldom('aside', init);
+	};
 
 	/**
 	 * [The `audio` element](https://html.spec.whatwg.org/#the-audio-element)
@@ -501,11 +585,17 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const audio = exports.audio = init => htmldom('audio', init);
+	var audio = exports.audio = function audio(init) {
+	  return htmldom('audio', init);
+	};
 
-	const b = exports.b = init => htmldom('b', init);
+	var b = exports.b = function b(init) {
+	  return htmldom('b', init);
+	};
 
-	const base = exports.base = init => htmldom('base', init);
+	var base = exports.base = function base(init) {
+	  return htmldom('base', init);
+	};
 
 	/**
 	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
@@ -517,7 +607,9 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const bdi = exports.bdi = init => htmldom('bdi', init);
+	var bdi = exports.bdi = function bdi(init) {
+	  return htmldom('bdi', init);
+	};
 
 	/**
 	 * [The `bdo` element](https://html.spec.whatwg.org/#the-bdo-element)
@@ -530,213 +622,415 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const bdo = exports.bdo = init => htmldom('bdo', init);
+	var bdo = exports.bdo = function bdo(init) {
+	  return htmldom('bdo', init);
+	};
 
-	const blockquote = exports.blockquote = init => htmldom('blockquote', init);
+	var blockquote = exports.blockquote = function blockquote(init) {
+	  return htmldom('blockquote', init);
+	};
 
-	const body = exports.body = init => htmldom('body', init);
+	var body = exports.body = function body(init) {
+	  return htmldom('body', init);
+	};
 
-	const br = exports.br = init => htmldom('br', init);
+	var br = exports.br = function br(init) {
+	  return htmldom('br', init);
+	};
 
-	const button = exports.button = init => htmldom('button', init);
+	var button = exports.button = function button(init) {
+	  return htmldom('button', init);
+	};
 
-	const canvas = exports.canvas = init => htmldom('canvas', init);
+	var canvas = exports.canvas = function canvas(init) {
+	  return htmldom('canvas', init);
+	};
 
-	const caption = exports.caption = init => htmldom('caption', init);
+	var caption = exports.caption = function caption(init) {
+	  return htmldom('caption', init);
+	};
 
-	const cite = exports.cite = init => htmldom('cite', init);
+	var cite = exports.cite = function cite(init) {
+	  return htmldom('cite', init);
+	};
 
-	const code = exports.code = init => htmldom('code', init);
+	var code = exports.code = function code(init) {
+	  return htmldom('code', init);
+	};
 
-	const col = exports.col = init => htmldom('col', init);
+	var col = exports.col = function col(init) {
+	  return htmldom('col', init);
+	};
 
-	const colgroup = exports.colgroup = init => htmldom('colgroup', init);
+	var colgroup = exports.colgroup = function colgroup(init) {
+	  return htmldom('colgroup', init);
+	};
 
-	const data = exports.data = init => htmldom('data', init);
+	var data = exports.data = function data(init) {
+	  return htmldom('data', init);
+	};
 
-	const datalist = exports.datalist = init => htmldom('datalist', init);
+	var datalist = exports.datalist = function datalist(init) {
+	  return htmldom('datalist', init);
+	};
 
-	const dd = exports.dd = init => htmldom('dd', init);
+	var dd = exports.dd = function dd(init) {
+	  return htmldom('dd', init);
+	};
 
-	const del = exports.del = init => htmldom('del', init);
+	var del = exports.del = function del(init) {
+	  return htmldom('del', init);
+	};
 
-	const details = exports.details = init => htmldom('details', init);
+	var details = exports.details = function details(init) {
+	  return htmldom('details', init);
+	};
 
-	const dfn = exports.dfn = init => htmldom('dfn', init);
+	var dfn = exports.dfn = function dfn(init) {
+	  return htmldom('dfn', init);
+	};
 
-	const dialog = exports.dialog = init => htmldom('dialog', init);
+	var dialog = exports.dialog = function dialog(init) {
+	  return htmldom('dialog', init);
+	};
 
-	const div = exports.div = init => htmldom('div', init);
+	var div = exports.div = function div(init) {
+	  return htmldom('div', init);
+	};
 
-	const dl = exports.dl = init => htmldom('dl', init);
+	var dl = exports.dl = function dl(init) {
+	  return htmldom('dl', init);
+	};
 
-	const dt = exports.dt = init => htmldom('dt', init);
+	var dt = exports.dt = function dt(init) {
+	  return htmldom('dt', init);
+	};
 
-	const em = exports.em = init => htmldom('em', init);
+	var em = exports.em = function em(init) {
+	  return htmldom('em', init);
+	};
 
-	const embed = exports.embed = init => htmldom('embed', init);
+	var embed = exports.embed = function embed(init) {
+	  return htmldom('embed', init);
+	};
 
-	const fieldset = exports.fieldset = init => htmldom('fieldset', init);
+	var fieldset = exports.fieldset = function fieldset(init) {
+	  return htmldom('fieldset', init);
+	};
 
-	const figcaption = exports.figcaption = init => htmldom('figcaption', init);
+	var figcaption = exports.figcaption = function figcaption(init) {
+	  return htmldom('figcaption', init);
+	};
 
-	const figure = exports.figure = init => htmldom('figure', init);
+	var figure = exports.figure = function figure(init) {
+	  return htmldom('figure', init);
+	};
 
-	const footer = exports.footer = init => htmldom('footer', init);
+	var footer = exports.footer = function footer(init) {
+	  return htmldom('footer', init);
+	};
 
-	const form = exports.form = init => htmldom('form', init);
+	var form = exports.form = function form(init) {
+	  return htmldom('form', init);
+	};
 
-	const h1 = exports.h1 = init => htmldom('h1', init);
+	var h1 = exports.h1 = function h1(init) {
+	  return htmldom('h1', init);
+	};
 
-	const h2 = exports.h2 = init => htmldom('h2', init);
+	var h2 = exports.h2 = function h2(init) {
+	  return htmldom('h2', init);
+	};
 
-	const h3 = exports.h3 = init => htmldom('h3', init);
+	var h3 = exports.h3 = function h3(init) {
+	  return htmldom('h3', init);
+	};
 
-	const h4 = exports.h4 = init => htmldom('h4', init);
+	var h4 = exports.h4 = function h4(init) {
+	  return htmldom('h4', init);
+	};
 
-	const h5 = exports.h5 = init => htmldom('h5', init);
+	var h5 = exports.h5 = function h5(init) {
+	  return htmldom('h5', init);
+	};
 
-	const h6 = exports.h6 = init => htmldom('h6', init);
+	var h6 = exports.h6 = function h6(init) {
+	  return htmldom('h6', init);
+	};
 
-	const head = exports.head = init => htmldom('head', init);
+	var head = exports.head = function head(init) {
+	  return htmldom('head', init);
+	};
 
-	const header = exports.header = init => htmldom('header', init);
+	var header = exports.header = function header(init) {
+	  return htmldom('header', init);
+	};
 
-	const hgroup = exports.hgroup = init => htmldom('hgroup', init);
+	var hgroup = exports.hgroup = function hgroup(init) {
+	  return htmldom('hgroup', init);
+	};
 
-	const hr = exports.hr = init => htmldom('hr', init);
+	var hr = exports.hr = function hr(init) {
+	  return htmldom('hr', init);
+	};
 
-	const html = exports.html = init => htmldom('html', init);
+	var html = exports.html = function html(init) {
+	  return htmldom('html', init);
+	};
 
-	const i = exports.i = init => htmldom('i', init);
+	var i = exports.i = function i(init) {
+	  return htmldom('i', init);
+	};
 
-	const iframe = exports.iframe = init => htmldom('iframe', init);
+	var iframe = exports.iframe = function iframe(init) {
+	  return htmldom('iframe', init);
+	};
 
-	const img = exports.img = init => htmldom('img', init);
+	var img = exports.img = function img(init) {
+	  return htmldom('img', init);
+	};
 
-	const input = exports.input = init => htmldom('input', init);
+	var input = exports.input = function input(init) {
+	  return htmldom('input', init);
+	};
 
-	const ins = exports.ins = init => htmldom('ins', init);
+	var ins = exports.ins = function ins(init) {
+	  return htmldom('ins', init);
+	};
 
-	const kbd = exports.kbd = init => htmldom('kbd', init);
+	var kbd = exports.kbd = function kbd(init) {
+	  return htmldom('kbd', init);
+	};
 
-	const keygen = exports.keygen = init => htmldom('keygen', init);
+	var keygen = exports.keygen = function keygen(init) {
+	  return htmldom('keygen', init);
+	};
 
-	const label = exports.label = init => htmldom('label', init);
+	var label = exports.label = function label(init) {
+	  return htmldom('label', init);
+	};
 
-	const legend = exports.legend = init => htmldom('legend', init);
+	var legend = exports.legend = function legend(init) {
+	  return htmldom('legend', init);
+	};
 
-	const li = exports.li = init => htmldom('li', init);
+	var li = exports.li = function li(init) {
+	  return htmldom('li', init);
+	};
 
-	const link = exports.link = init => htmldom('link', init);
+	var link = exports.link = function link(init) {
+	  return htmldom('link', init);
+	};
 
-	const main = exports.main = init => htmldom('main', init);
+	var main = exports.main = function main(init) {
+	  return htmldom('main', init);
+	};
 
-	const map = exports.map = init => htmldom('map', init);
+	var map = exports.map = function map(init) {
+	  return htmldom('map', init);
+	};
 
-	const mark = exports.mark = init => htmldom('mark', init);
+	var mark = exports.mark = function mark(init) {
+	  return htmldom('mark', init);
+	};
 
 	// todo mathdom
 	// export const math = init => mathdom('math', init);
 
-	const menu = exports.menu = init => htmldom('menu', init);
+	var menu = exports.menu = function menu(init) {
+	  return htmldom('menu', init);
+	};
 
-	const menuitem = exports.menuitem = init => htmldom('menuitem', init);
+	var menuitem = exports.menuitem = function menuitem(init) {
+	  return htmldom('menuitem', init);
+	};
 
-	const meta = exports.meta = init => htmldom('meta', init);
+	var meta = exports.meta = function meta(init) {
+	  return htmldom('meta', init);
+	};
 
-	const meter = exports.meter = init => htmldom('meter', init);
+	var meter = exports.meter = function meter(init) {
+	  return htmldom('meter', init);
+	};
 
-	const nav = exports.nav = init => htmldom('nav', init);
+	var nav = exports.nav = function nav(init) {
+	  return htmldom('nav', init);
+	};
 
-	const noscript = exports.noscript = init => htmldom('noscript', init);
+	var noscript = exports.noscript = function noscript(init) {
+	  return htmldom('noscript', init);
+	};
 
-	const object = exports.object = init => htmldom('object', init);
+	var object = exports.object = function object(init) {
+	  return htmldom('object', init);
+	};
 
-	const ol = exports.ol = init => htmldom('ol', init);
+	var ol = exports.ol = function ol(init) {
+	  return htmldom('ol', init);
+	};
 
-	const optgroup = exports.optgroup = init => htmldom('optgroup', init);
+	var optgroup = exports.optgroup = function optgroup(init) {
+	  return htmldom('optgroup', init);
+	};
 
-	const option = exports.option = init => htmldom('option', init);
+	var option = exports.option = function option(init) {
+	  return htmldom('option', init);
+	};
 
-	const output = exports.output = init => htmldom('output', init);
+	var output = exports.output = function output(init) {
+	  return htmldom('output', init);
+	};
 
-	const p = exports.p = init => htmldom('p', init);
+	var p = exports.p = function p(init) {
+	  return htmldom('p', init);
+	};
 
-	const param = exports.param = init => htmldom('param', init);
+	var param = exports.param = function param(init) {
+	  return htmldom('param', init);
+	};
 
-	const picture = exports.picture = init => htmldom('picture', init);
+	var picture = exports.picture = function picture(init) {
+	  return htmldom('picture', init);
+	};
 
-	const pre = exports.pre = init => htmldom('pre', init);
+	var pre = exports.pre = function pre(init) {
+	  return htmldom('pre', init);
+	};
 
-	const progress = exports.progress = init => htmldom('progress', init);
+	var progress = exports.progress = function progress(init) {
+	  return htmldom('progress', init);
+	};
 
-	const q = exports.q = init => htmldom('q', init);
+	var q = exports.q = function q(init) {
+	  return htmldom('q', init);
+	};
 
-	const rp = exports.rp = init => htmldom('rp', init);
+	var rp = exports.rp = function rp(init) {
+	  return htmldom('rp', init);
+	};
 
-	const rt = exports.rt = init => htmldom('rt', init);
+	var rt = exports.rt = function rt(init) {
+	  return htmldom('rt', init);
+	};
 
-	const ruby = exports.ruby = init => htmldom('ruby', init);
+	var ruby = exports.ruby = function ruby(init) {
+	  return htmldom('ruby', init);
+	};
 
-	const s = exports.s = init => htmldom('s', init);
+	var s = exports.s = function s(init) {
+	  return htmldom('s', init);
+	};
 
-	const samp = exports.samp = init => htmldom('samp', init);
+	var samp = exports.samp = function samp(init) {
+	  return htmldom('samp', init);
+	};
 
-	const script = exports.script = init => htmldom('script', init);
+	var script = exports.script = function script(init) {
+	  return htmldom('script', init);
+	};
 
-	const section = exports.section = init => htmldom('section', init);
+	var section = exports.section = function section(init) {
+	  return htmldom('section', init);
+	};
 
-	const select = exports.select = init => htmldom('select', init);
+	var select = exports.select = function select(init) {
+	  return htmldom('select', init);
+	};
 
-	const slot = exports.slot = init => htmldom('slot', init);
+	var slot = exports.slot = function slot(init) {
+	  return htmldom('slot', init);
+	};
 
-	const small = exports.small = init => htmldom('small', init);
+	var small = exports.small = function small(init) {
+	  return htmldom('small', init);
+	};
 
-	const source = exports.source = init => htmldom('source', init);
+	var source = exports.source = function source(init) {
+	  return htmldom('source', init);
+	};
 
-	const span = exports.span = init => htmldom('span', init);
+	var span = exports.span = function span(init) {
+	  return htmldom('span', init);
+	};
 
-	const strong = exports.strong = init => htmldom('strong', init);
+	var strong = exports.strong = function strong(init) {
+	  return htmldom('strong', init);
+	};
 
-	const style = exports.style = init => htmldom('style', init);
+	var style = exports.style = function style(init) {
+	  return htmldom('style', init);
+	};
 
-	const sub = exports.sub = init => htmldom('sub', init);
+	var sub = exports.sub = function sub(init) {
+	  return htmldom('sub', init);
+	};
 
-	const summary = exports.summary = init => htmldom('summary', init);
+	var summary = exports.summary = function summary(init) {
+	  return htmldom('summary', init);
+	};
 
-	const sup = exports.sup = init => htmldom('sup', init);
+	var sup = exports.sup = function sup(init) {
+	  return htmldom('sup', init);
+	};
 
 	// todo svgdom
 	// export const svg = init => svgdom('svg', init);
 
-	const table = exports.table = init => htmldom('table', init);
+	var table = exports.table = function table(init) {
+	  return htmldom('table', init);
+	};
 
-	const tbody = exports.tbody = init => htmldom('tbody', init);
+	var tbody = exports.tbody = function tbody(init) {
+	  return htmldom('tbody', init);
+	};
 
-	const td = exports.td = init => htmldom('td', init);
+	var td = exports.td = function td(init) {
+	  return htmldom('td', init);
+	};
 
-	const template = exports.template = init => htmldom('template', init);
+	var template = exports.template = function template(init) {
+	  return htmldom('template', init);
+	};
 
-	const textarea = exports.textarea = init => htmldom('textarea', init);
+	var textarea = exports.textarea = function textarea(init) {
+	  return htmldom('textarea', init);
+	};
 
-	const tfoot = exports.tfoot = init => htmldom('tfoot', init);
+	var tfoot = exports.tfoot = function tfoot(init) {
+	  return htmldom('tfoot', init);
+	};
 
-	const th = exports.th = init => htmldom('th', init);
+	var th = exports.th = function th(init) {
+	  return htmldom('th', init);
+	};
 
-	const thead = exports.thead = init => htmldom('thead', init);
+	var thead = exports.thead = function thead(init) {
+	  return htmldom('thead', init);
+	};
 
-	const time = exports.time = init => htmldom('time', init);
+	var time = exports.time = function time(init) {
+	  return htmldom('time', init);
+	};
 
-	const title = exports.title = init => htmldom('title', init);
+	var title = exports.title = function title(init) {
+	  return htmldom('title', init);
+	};
 
-	const tr = exports.tr = init => htmldom('tr', init);
+	var tr = exports.tr = function tr(init) {
+	  return htmldom('tr', init);
+	};
 
-	const track = exports.track = init => htmldom('track', init);
+	var track = exports.track = function track(init) {
+	  return htmldom('track', init);
+	};
 
-	const u = exports.u = init => htmldom('u', init);
+	var u = exports.u = function u(init) {
+	  return htmldom('u', init);
+	};
 
-	const ul = exports.ul = init => htmldom('ul', init);
+	var ul = exports.ul = function ul(init) {
+	  return htmldom('ul', init);
+	};
 
 	/**
 	 * [the `var` element](https://html.spec.whatwg.org/#the-var-element)
@@ -752,15 +1046,20 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	const variable = exports.variable = init => htmldom('var', init);
+	var variable = exports.variable = function variable(init) {
+	  return htmldom('var', init);
+	};
 
-	const video = exports.video = init => htmldom('video', init);
+	var video = exports.video = function video(init) {
+	  return htmldom('video', init);
+	};
 
-	const wbr = exports.wbr = init => htmldom('wbr', init);
+	var wbr = exports.wbr = function wbr(init) {
+	  return htmldom('wbr', init);
+	};
 
 /***/ },
-
-/***/ 7:
+/* 7 */
 /*!***************************!*\
   !*** ./docs/lib/index.js ***!
   \***************************/
@@ -768,28 +1067,158 @@
 
 	'use strict';
 
-	var _siteheading = __webpack_require__(/*! ./siteheading */ 562);
+	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
 
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 30);
+	var _sitenav = __webpack_require__(/*! ./sitenav */ 9);
 
-	const { ul, li, main, code, a } = htmlmodule;
-	const listnode = main([(0, _siteheading.siteheading)('htmlmodule'), ul({
+	var _htmlmodule = htmlmodule;
+	var ul = _htmlmodule.ul;
+	var li = _htmlmodule.li;
+	var main = _htmlmodule.main;
+	var code = _htmlmodule.code;
+	var a = _htmlmodule.a;
+
+	var listnode = main([(0, _siteheading.siteheading)('htmlmodule'), ul({
 	    style: {
 	        columnCount: 7,
 	        listStyle: 'none'
 	    },
-	    children: Object.keys(htmlmodule).map(key => li(a({
-	        href: './api#' + key.toLowerCase(),
-	        target: 'blank',
-	        children: code(key)
-	    })))
+	    children: Object.keys(htmlmodule).map(function (key) {
+	        return li(a({
+	            href: './api#' + key.toLowerCase(),
+	            target: 'blank',
+	            children: code(key)
+	        }));
+	    })
 	})]);
 
 	document.body.append(listnode, (0, _sitenav.sitenav)());
 
 /***/ },
+/* 8 */
+/*!*********************************!*\
+  !*** ./docs/lib/siteheading.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 22:
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.siteheading = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	var siteheading = exports.siteheading = function siteheading(children) {
+	  return (0, _lib.h1)({ id: 'siteheading', children: children });
+	};
+
+	var styleNode = (0, _lib.style)('#siteheading { font-family: monospace }');
+	document.head.append(styleNode);
+
+/***/ },
+/* 9 */
+/*!*****************************!*\
+  !*** ./docs/lib/sitenav.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sitenav = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	__webpack_require__(/*! ./sitenav.css */ 10);
+
+	var pathname = location.pathname;
+
+	var children = [(0, _lib.a)({
+	    href: './repl.html',
+	    children: 'repl app'
+	}), (0, _lib.a)({
+	    href: './test.html',
+	    children: 'test case'
+	}), (0, _lib.a)({
+	    href: './spec.html',
+	    children: 'spec suite'
+	}), (0, _lib.a)({
+	    href: '//github.com/aristov/htmlmodule/blob/master/readme.md',
+	    target: '_blank',
+	    children: 'read me'
+	}), (0, _lib.a)({
+	    href: './api/',
+	    target: '_blank',
+	    children: 'api doc'
+	}), (0, _lib.a)({
+	    href: '//github.com/aristov/htmlmodule',
+	    target: '_blank',
+	    children: 'git repo'
+	})];
+
+	children.forEach(function (link) {
+	    if (link.pathname === pathname) link.removeAttribute('href');
+	});
+
+	var sitenavNode = document.getElementById('sitenav');
+	if (sitenavNode) sitenavNode.append.apply(sitenavNode, children);
+
+	var sitenav = exports.sitenav = function sitenav(init) {
+	    return (0, _lib.footer)({ id: 'sitenav', children: children });
+	};
+
+/***/ },
+/* 10 */
+/*!******************************!*\
+  !*** ./docs/lib/sitenav.css ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 11);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 11 */
+/*!****************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n#sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 12 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -847,8 +1276,7 @@
 	};
 
 /***/ },
-
-/***/ 23:
+/* 13 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1102,129 +1530,5 @@
 	}
 
 
-/***/ },
-
-/***/ 30:
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	__webpack_require__(/*! ./sitenav.css */ 31);
-
-	const pathname = location.pathname;
-
-	const children = [(0, _lib.a)({
-	    href: './repl.html',
-	    children: 'repl app'
-	}), (0, _lib.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _lib.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _lib.a)({
-	    href: '//github.com/aristov/htmlmodule/blob/master/readme.md',
-	    target: '_blank',
-	    children: 'read me'
-	}), (0, _lib.a)({
-	    href: './api/',
-	    target: '_blank',
-	    children: 'api doc'
-	}), (0, _lib.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    target: '_blank',
-	    children: 'git repo'
-	})];
-
-	children.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const sitenavNode = document.getElementById('sitenav');
-	if (sitenavNode) sitenavNode.append(...children);
-
-	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
-
-/***/ },
-
-/***/ 31:
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 32);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 23)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 32:
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 22)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n#sitenav a:not(:hover)\n{\n    text-decoration: none;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 562:
-/*!*********************************!*\
-  !*** ./docs/lib/siteheading.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.siteheading = undefined;
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	const siteheading = exports.siteheading = children => (0, _lib.h1)({ id: 'siteheading', children });
-
-	const styleNode = (0, _lib.style)('#siteheading { font-family: monospace }');
-	document.head.append(styleNode);
-
 /***/ }
-
-/******/ });
+/******/ ]);

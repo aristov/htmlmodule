@@ -5,17 +5,20 @@
 HTML module provides web application semantics and functionality of native HTML DOM API:
 
 ```js
-const htmlspec = a({ href : 'http://html.spec.whatwg.org', children : 'HTML specification' });
+const htmlspec = a({ 
+    href : 'https://html.spec.whatwg.org', 
+    children : 'HTML specification' 
+});
 ```
 
 Code above uses htmlmodule to create DOM hyperlink element with reference to specification.
 Browser creates the same link, when it processes the following markup:
 
 ```js
-<a href="http://html.spec.whatwg.org">HTML specification</a>
+<a href="https://html.spec.whatwg.org">HTML specification</a>
 ```
 
-## Try now — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL application</a>
+## Try now — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL machine</a>
 
 ## Usage
 
@@ -88,7 +91,7 @@ import 'htmlmodule/shim';
 ```
 
 - shim bundle is used in [unit-testing](#user-content-testing) environments
-- [global script distributive](#user-content-globalscript) includes shim bundle
+- ["global script" distribution](#user-content-globalscript) includes shim bundle
 
 ## Development
 
@@ -169,7 +172,7 @@ npm test
 
 0. build sources 
 0. run dev server
-0. open [localhost:8080/spec](//localhost:8080/spec) in browser
+0. open [localhost:8080/docs/spec](//localhost:8080/docs/spec) in browser
 
 #### Online test suite
 
@@ -177,14 +180,13 @@ Check test suite in your browser:
 
 - [spec suite](//aristov.github.io/htmlmodule/spec)
 - [test case](//aristov.github.io/htmlmodule/test)
-- [dist test](//aristov.github.io/htmlmodule/dist)
 
 ## License
 
 <details>
 <summary><strong>The MIT License (MIT)</strong></summary>
 
-Copyright (c) 2016 Viacheslav Aristov
+Copyright (c) 2016 Vyacheslav Aristov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
