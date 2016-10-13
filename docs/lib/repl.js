@@ -1,11 +1,10 @@
+import { button, option, select, output, main, div, p, label, input, abbr, form }
+from '../../lib';
+
 import * as htmlmodule from '../../lib';
-import {
-    button, option, select, output, main, div,
-    header, h1, p, label, input, abbr, form, code
-} from '../../lib';
 import { HTMLSerializer } from '../../util/htmlserializer';
 
-import jsb from './jsbeautify'; // fixme => jsbeautify
+import jsbeautify from './jsbeautify';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
@@ -92,7 +91,7 @@ const options = [
         const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
         const elements = textContent.split(', ');
         const id = elements.join('+');
-        return option({ id, textContent, value : jsb(src, { wrap_line_length: 50 }) });
+        return option({ id, textContent, value : jsbeautify(src, { wrap_line_length: 50 }) });
     })
 ];
 

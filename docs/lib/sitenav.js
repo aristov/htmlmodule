@@ -16,7 +16,6 @@ const children = [
         href : './spec.html',
         children : 'spec suite'
     }),
-    '|',
     a({
         href : '//github.com/aristov/htmlmodule/blob/master/readme.md',
         target : '_blank',

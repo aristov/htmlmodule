@@ -817,8 +817,6 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	// fixme => jsbeautify
-
 	const localValue = localStorage.getItem('value');
 	const localGlobal = localStorage.getItem('global');
 
@@ -1117,10 +1115,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const jsb = _jsBeautify2.default.js_beautify;
-	const jsbConfig = { indent_size: 4, wrap_line_length: 150 };
+	const beautify = _jsBeautify2.default.js_beautify;
+	const defConfig = { indent_size: 4, wrap_line_length: 150 };
 
-	exports.default = (code, config) => jsb(code, Object.assign(jsbConfig, config));
+	exports.default = (code, config) => beautify(code, Object.assign(defConfig, config));
 
 /***/ },
 
@@ -6610,7 +6608,7 @@
 	}), (0, _lib.a)({
 	    href: './spec.html',
 	    children: 'spec suite'
-	}), '|', (0, _lib.a)({
+	}), (0, _lib.a)({
 	    href: '//github.com/aristov/htmlmodule/blob/master/readme.md',
 	    target: '_blank',
 	    children: 'read me'

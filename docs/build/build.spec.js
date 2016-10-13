@@ -1115,7 +1115,7 @@
 	}), (0, _lib.a)({
 	    href: './spec.html',
 	    children: 'spec suite'
-	}), '|', (0, _lib.a)({
+	}), (0, _lib.a)({
 	    href: '//github.com/aristov/htmlmodule/blob/master/readme.md',
 	    target: '_blank',
 	    children: 'read me'
