@@ -18,12 +18,12 @@ module.exports = function(config) {
             browserName: 'safari',
             version: '9.0'
         },*/
-        SL_MSIE: {
+        /*SL_MSIE: {
             base: 'SauceLabs',
             platform: 'Windows 8.1',
             browserName: 'internet explorer',
             version: '11'
-        },
+        },*/
         /*SL_IE_9: {
             base: 'SauceLabs',
             platform: 'Windows 7',
@@ -36,7 +36,7 @@ module.exports = function(config) {
         frameworks: ['mocha', 'sinon'],
         files: ['lib/index.spec.js'],
         exclude: [],
-        preprocessors: { 'libe/index.spec.js': ['webpack'] },
+        preprocessors: { 'lib/index.spec.js': ['webpack'] },
         webpack: {
             module: {
                 loaders: [
