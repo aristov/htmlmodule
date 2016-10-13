@@ -1292,19 +1292,30 @@
 	});
 
 	let selectedOption = (0, _lib.option)({
-	    globaldefined: _testGlobaldefined2.default,
-	    id: 'globals',
+	    value: _testGlobaldefined2.default,
+	    id: 'example-with-globals',
 	    selected: true,
 	    textContent: 'example with globals'
 	});
 
-	const options = [(0, _lib.option)({ value: '', children: '—' }), selectedOption, (0, _lib.option)({ value: _testExportdefault2.default, children: 'export default example' }), (0, _lib.option)({ value: _testImportfrom2.default, children: 'full module example' }), _testTestcase2.default.map(fn => {
+	const options = [(0, _lib.option)({ value: '', children: '—' }), selectedOption, (0, _lib.option)({
+	    value: _testExportdefault2.default,
+	    id: 'export-default-example',
+	    children: 'export default example'
+	}), (0, _lib.option)({
+	    value: _testImportfrom2.default,
+	    id: 'full-module-example',
+	    children: 'full module example'
+	}), _testTestcase2.default.map(fn => {
 	    const src = fn.toString();
 	    const match = src.match(/\({ ((?:\w+,? )+)}\)/);
 	    const textContent = match ? match[1].trim() : '?';
 	    const elements = textContent.split(', ');
 	    const id = elements.join('+');
-	    return (0, _lib.option)({ id, textContent, value: (0, _jsbeautify2.default)(src, { wrap_line_length: 50 }) });
+	    return (0, _lib.option)({
+	        id, textContent,
+	        value: (0, _jsbeautify2.default)(src, { wrap_line_length: 50 })
+	    });
 	})];
 
 	function updateTest() {
@@ -1399,9 +1410,9 @@
 
 	jsEditor.on('change', () => evaluate());
 
-	const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
+	const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
 
-	const snippetPart = name => name + `=${ HTMLDOM_VARIABLE_NAME }.` + name;
+	const snippetPart = name => name + `=${ HTMLMODULE_VARIABLE_NAME }.` + name;
 	const snippet = Object.keys(htmlmodule).map(snippetPart).join(', ');
 	const imports = `var ${ snippet }`;
 
@@ -1412,7 +1423,7 @@
 	            const es5 = Babel.transform(code);
 	            const src = globalbox.checked ? [imports, es5.code].join(';\n\n') : es5.code;
 
-	            const fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
+	            const fn = new Function('exports', HTMLMODULE_VARIABLE_NAME, src);
 	            const exports = {
 	                default: () => {
 	                    throw Error('Module is not Exported!');

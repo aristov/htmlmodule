@@ -75,8 +75,8 @@ const modebox = input({
 
 
 let selectedOption = option({
-    globaldefined,
-    id : 'globals',
+    value : globaldefined,
+    id : 'example-with-globals',
     selected : true,
     textContent : 'example with globals'
 });
@@ -84,15 +84,26 @@ let selectedOption = option({
 const options = [
     option({ value : '', children : '—' }),
     selectedOption,
-    option({ value : exportdefault, children : 'export default example' }),
-    option({ value : importfrom, children : 'full module example' }),
+    option({
+        value : exportdefault,
+        id : 'export-default-example',
+        children : 'export default example'
+    }),
+    option({
+        value : importfrom,
+        id : 'full-module-example',
+        children : 'full module example'
+    }),
     testcase.map(fn => {
         const src = fn.toString();
         const match = src.match(/\({ ((?:\w+,? )+)}\)/);
         const textContent = match? match[1].trim() : '?';
         const elements = textContent.split(', ');
         const id = elements.join('+');
-        return option({ id, textContent, value : jsbeautify(src, { wrap_line_length: 50 }) });
+        return option({
+            id, textContent,
+            value : jsbeautify(src, { wrap_line_length: 50 })
+        });
     })
 ];
 
@@ -209,9 +220,9 @@ if(hash && !localValue) {
 
 jsEditor.on('change', () => evaluate());
 
-const HTMLDOM_VARIABLE_NAME = 'HTMLDOM';
+const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
 
-const snippetPart = name => name + `=${HTMLDOM_VARIABLE_NAME}.` + name;
+const snippetPart = name => name + `=${HTMLMODULE_VARIABLE_NAME}.` + name;
 const snippet = Object.keys(htmlmodule).map(snippetPart).join(', ');
 const imports = `var ${ snippet }`;
 
@@ -222,7 +233,7 @@ function evaluate() {
             const es5 = Babel.transform(code);
             const src = globalbox.checked? [imports, es5.code].join(';\n\n') : es5.code;
 
-            const fn = new Function('exports', HTMLDOM_VARIABLE_NAME, src);
+            const fn = new Function('exports', HTMLMODULE_VARIABLE_NAME, src);
             const exports = {
                 default : () => {
                     throw Error('Module is not Exported!');
