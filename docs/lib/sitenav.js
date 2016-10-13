@@ -6,7 +6,7 @@ const pathname = location.pathname;
 const children = [
     a({
         href : './repl.html',
-        children : 'repl app'
+        children : 'repl machine'
     }),
     a({
         href : './test.html',

@@ -805,7 +805,7 @@
 
 	const children = [(0, _lib.a)({
 	    href: './repl.html',
-	    children: 'repl app'
+	    children: 'repl machine'
 	}), (0, _lib.a)({
 	    href: './test.html',
 	    children: 'test case'
@@ -20201,7 +20201,7 @@
 
 	var _chai2 = _interopRequireDefault(_chai);
 
-	var _domequalmarkup = __webpack_require__(/*! ../util/domequalmarkup */ 386);
+	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 567);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20250,7 +20250,7 @@
 	                    assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY="A"></A>');
 	                });
 	                it('hdmldiff works properly', function () {
-	                    assert.equal((0, _domequalmarkup.htmlequal)(element.outerHTML.toUpperCase(), '<a accesskey="A"></a>'), true);
+	                    assert.equal((0, _util.htmlequal)(element.outerHTML.toUpperCase(), '<a accesskey="A"></a>'), true);
 	                });
 	            });
 
@@ -20545,48 +20545,7 @@
 	});
 
 /***/ },
-/* 386 */
-/*!********************************!*\
-  !*** ./util/domequalmarkup.js ***!
-  \********************************/
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	// fixme: clear shit
-
-	const htmlbowl = innerHTML => Object.assign(document.createElement('div'), { innerHTML });
-
-	const htmlequal = exports.htmlequal = (html1, html2) => htmlbowl(html1).isEqualNode(htmlbowl(html2));
-
-	/*const xmlbowl = innerHTML => {
-	    const element = document.createElementNS('https://www.w3.org/1999/xml', 'e');
-	    return Object.assign(element, { innerHTML });
-	};*/
-
-	const parser = new DOMParser();
-	const xmldoc = xml => parser.parseFromString(xml, 'application/xml');
-
-	const xmlequal = exports.xmlequal = (xml1, xml2) => xmldoc(xml1).isEqualNode(xmldoc(xml2));
-
-	// window.htmlequal = htmlequal;
-
-	const domEqualMarkup = exports.domEqualMarkup = (dom, markup) => {
-	    const parser = new DOMParser();
-	    const node = parser.parseFromString(markup, 'application/xml');
-	    return dom.isEqualNode(node);
-	};
-
-	const htmlEqualMarkup = exports.htmlEqualMarkup = (dom, markup) => {
-	    const parser = new DOMParser();
-	    const node = parser.parseFromString(markup, 'application/xhtml');
-	    return dom.isEqualNode(node);
-	};
-
-/***/ },
+/* 386 */,
 /* 387 */
 /*!****************************!*\
   !*** ./lib/xmldom.spec.js ***!
@@ -21011,6 +20970,50 @@
 
 	// exports
 
+
+/***/ },
+/* 565 */,
+/* 566 */,
+/* 567 */
+/*!*************************************!*\
+  !*** ./util/util.domequalmarkup.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// fixme: clear shit
+
+	const htmlbowl = innerHTML => Object.assign(document.createElement('div'), { innerHTML });
+
+	const htmlequal = exports.htmlequal = (html1, html2) => htmlbowl(html1).isEqualNode(htmlbowl(html2));
+
+	/*const xmlbowl = innerHTML => {
+	    const element = document.createElementNS('https://www.w3.org/1999/xml', 'e');
+	    return Object.assign(element, { innerHTML });
+	};*/
+
+	const parser = new DOMParser();
+	const xmldoc = xml => parser.parseFromString(xml, 'application/xml');
+
+	const xmlequal = exports.xmlequal = (xml1, xml2) => xmldoc(xml1).isEqualNode(xmldoc(xml2));
+
+	// window.htmlequal = htmlequal;
+
+	const domEqualMarkup = exports.domEqualMarkup = (dom, markup) => {
+	    const parser = new DOMParser();
+	    const node = parser.parseFromString(markup, 'application/xml');
+	    return dom.isEqualNode(node);
+	};
+
+	const htmlEqualMarkup = exports.htmlEqualMarkup = (dom, markup) => {
+	    const parser = new DOMParser();
+	    const node = parser.parseFromString(markup, 'application/xhtml');
+	    return dom.isEqualNode(node);
+	};
 
 /***/ }
 /******/ ]);

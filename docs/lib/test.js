@@ -1,4 +1,4 @@
-import testcaseraw from 'raw!./test/test-testcase.rawjs';
+import { testCase } from './testcase';
 import {
     a, h2, input, code, span, div, pre,
     table, thead, tbody, tr, th, td,
@@ -7,7 +7,7 @@ import * as htmlmodule from '../../lib';
 import { sitenav } from './sitenav';
 import { siteheading } from './siteheading';
 
-import { HTMLSerializer } from '../../util/htmlserializer';
+import { HTMLSerializer } from '../../util/util.htmlserializer';
 
 import hljs from 'highlight.js/';
 import 'highlight.js/styles/agate.css';
@@ -32,21 +32,12 @@ const filterNode = input({
 
 const tag = children => span({ className : 'tag', children });
 
-const testsrc = testcaseraw.split('\n\n');
-testsrc.shift();
-testsrc.pop();
-const testsrclist = testsrc.map(src => {
-    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
-    const fn = new Function('return ' + src);
-    return { src, fn : fn() };
-});
-
 const exampletable = () => table({
     cellSpacing : 0,
     className : 'exampletable',
     children : [
         thead(tr(th(filterNode))),
-        tbody(rows = testsrclist.map(item => {
+        tbody(rows = testCase.map(item => {
             const element = item.fn(htmlmodule);
             const tagNames = [element.tagName];
             const collection = element.querySelectorAll('*');

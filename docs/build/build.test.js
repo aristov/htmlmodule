@@ -805,7 +805,7 @@
 
 	const children = [(0, _lib.a)({
 	    href: './repl.html',
-	    children: 'repl app'
+	    children: 'repl machine'
 	}), (0, _lib.a)({
 	    href: './test.html',
 	    children: 'test case'
@@ -1196,84 +1196,7 @@
 
 /***/ },
 /* 14 */,
-/* 15 */
-/*!********************************!*\
-  !*** ./util/htmlserializer.js ***!
-  \********************************/
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	// todo refactoring => DOMSerializer
-
-	const map = Array.prototype.map;
-	const assign = Object.assign;
-
-	const epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
-	const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
-
-	const isEmptyTag = node => {
-	    if (node.constructor === Element && !node.hasChildNodes()) return true;
-	    return Boolean(emptyTagSet[node.tagName]);
-	};
-
-	// todo comment support
-	class HTMLSerializer {
-	    constructor(options = {
-	        indent: '    ',
-	        lineBreak: '\n',
-	        level: 0
-	    }) {
-	        assign(this, options);
-	    }
-	    serializeToString(node) {
-	        let {
-	            tagName,
-	            attributes,
-	            childNodes,
-	            innerHTML,
-	            textContent
-	        } = node;
-	        const lineBreak = this.lineBreak;
-	        let indent = this.indent.repeat(this.level);
-	        let result = indent;
-	        if (tagName) {
-	            tagName = tagName.toLowerCase();
-	            result += '<' + tagName;
-	            const hasAttributes = node.hasAttributes();
-	            if (hasAttributes) {
-	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
-	                result += attrset.join('');
-	            }
-	            const hasEndTag = !isEmptyTag(node);
-	            const selfClose = node.constructor === Element ? '/>' : '>';
-	            result += hasEndTag ? '>' : selfClose;
-	            if (hasEndTag && node.hasChildNodes()) {
-	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
-	                if (!hasAttributes && isSingleText) {
-	                    result += node.innerHTML;
-	                    indent = '';
-	                } else {
-	                    this.level++;
-	                    const children = map.call(childNodes, this.serializeToString, this);
-	                    this.level--;
-	                    result += lineBreak + children.join('');
-	                }
-	            } else indent = '';
-	            if (hasEndTag) result += indent + `</${ tagName }>`;
-	        } else {
-	            result += innerHTML || textContent;
-	        }
-	        result += lineBreak;
-	        return result;
-	    }
-	}
-	exports.HTMLSerializer = HTMLSerializer;
-
-/***/ },
+/* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
@@ -1655,9 +1578,7 @@
 
 	'use strict';
 
-	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 566);
-
-	var _testTestcase2 = _interopRequireDefault(_testTestcase);
+	var _testcase = __webpack_require__(/*! ./testcase */ 569);
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
@@ -1667,7 +1588,7 @@
 
 	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
 
-	var _htmlserializer = __webpack_require__(/*! ../../util/htmlserializer */ 15);
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 568);
 
 	var _highlight = __webpack_require__(/*! highlight.js/ */ 390);
 
@@ -1677,11 +1598,11 @@
 
 	__webpack_require__(/*! ./test.css */ 560);
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const serializer = new _htmlserializer.HTMLSerializer();
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	const serializer = new _util.HTMLSerializer();
 
 	let rows;
 
@@ -1700,19 +1621,10 @@
 
 	const tag = children => (0, _lib.span)({ className: 'tag', children });
 
-	const testsrc = _testTestcase2.default.split('\n\n');
-	testsrc.shift();
-	testsrc.pop();
-	const testsrclist = testsrc.map(src => {
-	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
-	    const fn = new Function('return ' + src);
-	    return { src, fn: fn() };
-	});
-
 	const exampletable = () => (0, _lib.table)({
 	    cellSpacing: 0,
 	    className: 'exampletable',
-	    children: [(0, _lib.thead)((0, _lib.tr)((0, _lib.th)(filterNode))), (0, _lib.tbody)(rows = testsrclist.map(item => {
+	    children: [(0, _lib.thead)((0, _lib.tr)((0, _lib.th)(filterNode))), (0, _lib.tbody)(rows = _testcase.testCase.map(item => {
 	        const element = item.fn(htmlmodule);
 	        const tagNames = [element.tagName];
 	        const collection = element.querySelectorAll('*');
@@ -12926,6 +12838,116 @@
 /***/ function(module, exports) {
 
 	module.exports = "export default [\n\n    ({ fieldset, legend, input }) => fieldset([\n        legend('Authorization'),\n        input({ placeholder : 'login', style : { marginRight : '5px' } }),\n        input({ type : 'password', placeholder : 'password' })\n    ]),\n\n    ({ article, h4, img, audio, video }) => article({\n        title : 'Media',\n        children : [\n            h4('Image media'),\n            img({\n                src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',\n                alt : 'Crazy PiPi!'\n            }),\n            h4('Audio media'),\n            audio({\n                controls : true,\n                src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'\n            }),\n            h4('Video media'),\n            video({\n                controls : true,\n                width : '200',\n                src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'\n            })\n        ]\n    }),\n\n    ({ header, nav, a, ul, li }) => header(nav(ul([\n        li(a({\n            href : '/home.html',\n            textContent : 'Go home'\n        })),\n        li(a({\n            href : 'http://github.com/aristov',\n            textContent : 'Github page'\n        })),\n        li(a({\n            href : 'mailto:vv.aristov@gmail.com',\n            textContent : 'Contact me'\n        }))\n    ]))),\n\n    ({ div, ul, li, bdi }) => div({\n        children : ul([\n            li(['User ', bdi('jcranmer'), ': 12 posts.']),\n            li(['User ', bdi('hober'), ': 5 posts.']),\n            li(['User ', bdi('إيان'), ': 3 posts.'])\n        ])\n    }),\n\n    ({ div, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div({\n            children: [\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]\n        })\n    },\n\n    ({ fieldset, legend, button, br, input, output }) => fieldset([\n        legend('Event handlers'),\n        button({\n            style : { marginRight : '10px' },\n            onclick : ({\n                type,\n                target : { tagName },\n                constructor : { name }\n            }) => alert([tagName, type, name, 'handler!'].join(' ')),\n            textContent : 'Show me alert, please...'\n        }),\n        button({\n            style : { marginRight : '10px' },\n            onfocus : ({ target }) => target.textContent = 'Focused!',\n            onblur : ({ target }) => target.textContent = 'Focus wait...',\n            textContent : 'Focus wait...'\n        }),\n        input({\n            style : { marginRight : '10px' },\n            placeholder : 'text input char counter',\n            oninput : ({ target }) => {\n                target.nextElementSibling.value = target.value.length;\n            }\n        }),\n        output({ value : '0' })\n    ]),\n\n    ({ footer, address, small }) => footer([\n        address('vv.aristov@gmail.com'),\n        small('@ All rights free')\n    ]),\n\n    ({ main, sup, sub, i, strong }) => main([\n        'Here comes ',\n        sup('supertext'),\n        ' and ',\n        sub('subtext'),\n        '. Later they are followed by ',\n        i('alternative voice'),\n        ' and ',\n        strong('important!')\n    ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([\n        dt('abbreviations'),\n        dd(abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL')),\n        dt('edits'),\n        dd([ins('inserted'), ' and ', del('deleted'), ' text']),\n        dt('reywords'),\n        dd(b('var, function, export, const')),\n        dt('other'),\n        dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n    ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) => article({\n        className : 'vcard',\n        children : [\n            h2({ className : 'fn', textContent : 'Vyacheslav Aristov' }),\n            address({ className : 'email', textContent : 'vv.aristov@gmail.com' })\n        ]\n    }),\n\n    ({ style }) => style({\n        id : 'greenstyle',\n        textContent : '#greenstyle { display: inline-block; color: green; font-family: monospace }'\n    }),\n\n    ({ script }) => script(\n        'Object.assign(' +\n            'document.currentScript.style, ' +\n            '{ display: \"block\", color: \"blue\", fontFamily : \"monospace\" ' +\n        '})'),\n\n    ({ pre }) => pre(\n`preformatted text\nline break \n    — yet another line break with tab\n  \n  <>&`\n    ),\n\n    ({ blockquote }) => blockquote({\n        cite : 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',\n        textContent : 'The blockquote element represents a section that is quoted from another source.'\n    }),\n\n    ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'),\n\n    ({ div }) => div([\n        'div — like span has no semantics, but',\n        div('div has default `display: block` style')\n    ]),\n\n    ({ p, br }) => p(['b', br(), 'r']),\n\n    ({ p, hr }) => p([\n        'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',\n        hr(),\n        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'\n    ]),\n\n    ({ button }) => button('Push my button'),\n\n    ({ form, label, input, textarea, span }) => form({\n        style : {\n            display : 'flex',\n            flexDirection : 'column',\n            justifyContent : 'space-between',\n            height: '200px'\n        },\n        children : [\n            label([\n                'Text input ',\n                input({ placeholder : 'Fill me' })\n            ]),\n            label([\n                input({ type : 'checkbox' }),\n                ' Simple checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', checked : true }),\n                ' Checked checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', attrset : { checked : '' } }),\n                ' Initially checked checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', indeterminate : true }),\n                ' Indeterminate checkbox'\n            ]),\n            span([\n                label([\n                    input({\n                        type : 'radio',\n                        name : 'chooseproglangradio',\n                        value : 'html'\n                    }),\n                    ' HTML '\n                ]),\n                label([\n                    input({\n                        type : 'radio',\n                        name : 'chooseproglangradio',\n                        value : 'xml'\n                    }),\n                    ' XML'\n                ])\n            ]),\n            input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n        ]\n    }),\n\n    ({ form, label, select, option, br }) => form([\n        label([\n            'Select technology ',\n            select([\n                option('XML'),\n                option('HTML'),\n                option({ selected : true, textContent : 'WAI-ARIA' }),\n                option('RDFS'),\n                option('OWL'),\n                option('SGML'),\n                option('CSS')\n            ])\n        ]),\n        br(),\n        label([\n            'Select technology stack',\n            br(),\n            select({\n                multiple : true,\n                children : [\n                    option('XML'),\n                    option({\n                        attrset : { selected : '' },\n                        textContent : 'HTML'\n                    }),\n                    option('WAI-ARIA'),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ]})\n        ]),\n        br()\n    ]),\n\n    ({ form, input, button }) => form({\n        style : { whiteSpace : 'nowrap' },\n        children : [\n            input({\n                name : 'query',\n                placeholder : 'type your request',\n                type : 'search',\n                style : { marginRight : '5px' }\n            }),\n            button('search')\n        ]\n    }),\n\n    ({ dialog }) => dialog({\n        open : true,\n        style : { position : 'relative', display: 'block' },\n        textContent : 'Hello world!'\n    }),\n\n    ({ iframe, dialog, p, button, script }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([\n        caption('Web technology comparison'),\n        thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n        tbody([\n            [code('tagName'), code('role')],\n            [code('hidden'), code('aria-hidden')],\n            [code('title'), code('aria-label')]\n        ].map(([xml, html]) => tr([ td(xml), td(html) ])))\n    ]),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([\n        h1('First level heading'),\n        h2('Second level heading'),\n        h3('Third level heading'),\n        h4('Fourth level heding'),\n        h5('Fifth level heding'),\n        h6('Sixth level heding in group')\n    ]),\n\n    ({ details, summary, code, em, del, dfn }) => details([\n        summary('Show details'),\n        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ',\n        code('export const code = init => instance.createElement(\\'code\\', init);'),\n        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',\n        dfn('Instance.js — simple and powerfull DOM Element interface')\n    ]),\n\n    ({ article, section, ruby, rt, rp }) => article({\n        title : 'Ruby annotations',\n        children : [\n            section([\n                ruby(['君', rt('くん')]),\n                ruby(['子', rt('し')]),\n                'は',\n                ruby(['和', rt('わ')]),\n                'して',\n                ruby(['同', rt('どう')]),\n                'ぜず。'\n            ]),\n            section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))\n        ]\n    }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) => article({\n        title : 'Various lists',\n        children : [\n            ul([\n                li('Ampeg'),\n                li('Fender'),\n                li('SMB Effects')\n            ]),\n            ol([\n                li('Amsterdam'),\n                li('New York'),\n                li('Moscow')\n            ]),\n            dl([\n                dt('DOM'),\n                dd('Document object model'),\n                dt('XML'),\n                dd('Extensible markup language'),\n                dt('HTML'),\n                dd('Hyper text markup language'),\n                dt('ARIAML'),\n                dd('Accessible rich internet applications markup language')\n            ])\n        ]\n    }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
+
+/***/ },
+/* 567 */,
+/* 568 */
+/*!*************************************!*\
+  !*** ./util/util.htmlserializer.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// todo refactoring => DOMSerializer
+
+	const map = Array.prototype.map;
+	const assign = Object.assign;
+
+	const epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
+	const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
+
+	const isEmptyTag = node => {
+	    if (node.constructor === Element && !node.hasChildNodes()) return true;
+	    return Boolean(emptyTagSet[node.tagName]);
+	};
+
+	// todo comment support
+	class HTMLSerializer {
+	    constructor(options = {
+	        indent: '    ',
+	        lineBreak: '\n',
+	        level: 0
+	    }) {
+	        assign(this, options);
+	    }
+	    serializeToString(node) {
+	        let {
+	            tagName,
+	            attributes,
+	            childNodes,
+	            innerHTML,
+	            textContent
+	        } = node;
+	        const lineBreak = this.lineBreak;
+	        let indent = this.indent.repeat(this.level);
+	        let result = indent;
+	        if (tagName) {
+	            tagName = tagName.toLowerCase();
+	            result += '<' + tagName;
+	            const hasAttributes = node.hasAttributes();
+	            if (hasAttributes) {
+	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
+	                result += attrset.join('');
+	            }
+	            const hasEndTag = !isEmptyTag(node);
+	            const selfClose = node.constructor === Element ? '/>' : '>';
+	            result += hasEndTag ? '>' : selfClose;
+	            if (hasEndTag && node.hasChildNodes()) {
+	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
+	                if (!hasAttributes && isSingleText) {
+	                    result += node.innerHTML;
+	                    indent = '';
+	                } else {
+	                    this.level++;
+	                    const children = map.call(childNodes, this.serializeToString, this);
+	                    this.level--;
+	                    result += lineBreak + children.join('');
+	                }
+	            } else indent = '';
+	            if (hasEndTag) result += indent + `</${ tagName }>`;
+	        } else {
+	            result += innerHTML || textContent;
+	        }
+	        result += lineBreak;
+	        return result;
+	    }
+	}
+	exports.HTMLSerializer = HTMLSerializer;
+
+/***/ },
+/* 569 */
+/*!******************************!*\
+  !*** ./docs/lib/testcase.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.testCase = undefined;
+
+	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 566);
+
+	var _testTestcase2 = _interopRequireDefault(_testTestcase);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const srcChunks = _testTestcase2.default.split('\n\n');
+
+	srcChunks.shift();
+	srcChunks.pop();
+
+	const testCase = exports.testCase = srcChunks.map(src => {
+	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
+	    const fn = new Function('return ' + src);
+	    return { src, fn: fn() };
+	});
 
 /***/ }
 /******/ ]);

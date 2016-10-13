@@ -2,9 +2,7 @@ import { button, option, select, output, main, div, p, label, input, abbr, form 
 from '../../lib';
 
 import * as htmlmodule from '../../lib';
-import { HTMLSerializer } from '../../util/htmlserializer';
-
-import jsbeautify from './jsbeautify';
+import { HTMLSerializer } from '../../util/util.htmlserializer';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
@@ -15,7 +13,7 @@ import 'codemirror/theme/night.css';
 import globaldefined from 'raw!./test/test-globaldefined.rawjs';
 import exportdefault from 'raw!./test/test-exportdefault.rawjs';
 import importfrom from 'raw!./test/test-importfrom.rawjs';
-import testcase from './test/test-testcase';
+import { testCase } from './testcase';
 
 import { sitenav } from './sitenav';
 import { siteheading } from './siteheading';
@@ -94,16 +92,12 @@ const options = [
         id : 'full-module-example',
         children : 'full module example'
     }),
-    testcase.map(fn => {
-        const src = fn.toString();
+    testCase.map(({ src }) => {
         const match = src.match(/\({ ((?:\w+,? )+)}\)/);
         const textContent = match? match[1].trim() : '?';
         const elements = textContent.split(', ');
         const id = elements.join('+');
-        return option({
-            id, textContent,
-            value : jsbeautify(src, { wrap_line_length: 50 })
-        });
+        return option({ id, textContent, value : src });
     })
 ];
 
@@ -236,15 +230,16 @@ function evaluate() {
                     throw Error('Module is not Exported!');
                 }
             };
-            // console.log(fn);
 
             fn(exports, htmlmodule);
 
-            domOutput.textContent = '';
             const node = typeof exports.default === 'function'?
                 exports.default(htmlmodule) :
                 exports.default;
-            domOutput.append(node);
+
+            const firstChild = domOutput.firstChild;
+            if(firstChild) firstChild.replaceWith(node);
+            else domOutput.append(node);
 
             const htmlcode = serializer.serializeToString(node);
             htmlEditor.setValue(htmlcode);

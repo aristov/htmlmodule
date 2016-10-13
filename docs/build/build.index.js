@@ -842,7 +842,7 @@
 
 	const children = [(0, _lib.a)({
 	    href: './repl.html',
-	    children: 'repl app'
+	    children: 'repl machine'
 	}), (0, _lib.a)({
 	    href: './test.html',
 	    children: 'test case'
