@@ -1,6 +1,6 @@
-import testcase from './test/test-testcase.js';
+import testcaseraw from 'raw!./test/test-testcase.rawjs';
 import {
-    a, h1, h2, input, code, span, div, pre,
+    a, h2, input, code, span, div, pre,
     table, thead, tbody, tr, th, td,
 } from '../../lib';
 import * as htmlmodule from '../../lib';
@@ -10,8 +10,6 @@ import { siteheading } from './siteheading';
 import { HTMLSerializer } from '../../util/htmlserializer';
 
 import hljs from 'highlight.js/';
-import jsb from './jsbeautify';
-
 import 'highlight.js/styles/agate.css';
 import './test.css';
 
@@ -34,13 +32,22 @@ const filterNode = input({
 
 const tag = children => span({ className : 'tag', children });
 
+const testsrc = testcaseraw.split('\n\n');
+testsrc.shift();
+testsrc.pop();
+const testsrclist = testsrc.map(src => {
+    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
+    const fn = new Function('return ' + src);
+    return { src, fn : fn() };
+});
+
 const exampletable = () => table({
     cellSpacing : 0,
     className : 'exampletable',
     children : [
         thead(tr(th(filterNode))),
-        tbody(rows = testcase.map(template => {
-            const element = template(htmlmodule);
+        tbody(rows = testsrclist.map(item => {
+            const element = item.fn(htmlmodule);
             const tagNames = [element.tagName];
             const collection = element.querySelectorAll('*');
             const elements = Array.from(collection);
@@ -63,7 +70,7 @@ const exampletable = () => table({
                     tag('Source JS:'),
                     div(srcjscode = pre({
                         className : 'javascript',
-                        children : code(jsb(template.toString()))
+                        children : code(item.src)
                     })),
                     tag('Result DOM:'),
                     div({ className : 'dom', children : element }),
