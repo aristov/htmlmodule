@@ -63,11 +63,13 @@ document.body.append(websearch);
 
 <h2 id="globalscript">Global script</h2>
 
-```html
+Get module by appending script source to page body:
+
 <!--fixme: use cdn-->
-<script src=https://aristov.github.io/htmlmodule/build/build.dist.global.min.js></script>
+```html
+<script src=https://aristov.github.io/htmlmodule/dist/dist.window.htmlmodule.min.js></script>
 <script>
-const { a, span, div, article, input, fieldset } = HTMLDOM;
+const { a, span, div, article, input, fieldset } = window.htmlmodule;
 // make magic...
 </script> 
 ```
@@ -111,16 +113,28 @@ To run commands locally, use `./node_modules/.bin/` in your `PATH`:
 export PATH=./node_modules/.bin:$PATH
 ```
 
-Build all assets:
+Build dist assets:
 
 ```
 webpack
 ```
 
-Build minified assets:
+Build minified dist assets:
 
 ```
-PROD=true webpack
+MIN=true webpack
+```
+
+Build docs, specs, tests and replmachine:
+
+```
+DOCS=true webpack
+```
+
+Disable babel transpiling:
+
+```
+ES6=true webpack
 ```
 
 Use watch mode:
@@ -129,13 +143,19 @@ Use watch mode:
 WATCH=true webpack
 ```
 
+Use dev mode (`DEV = DOCS + ES6 + WATCH`):
+
+```
+DEV=true webpack
+```
+
 Run dev server:
 
 ```
 static
 ```
 
-Open in browser [localhost:8080](//localhost:8080/)
+Open in browser [localhost:8080/docs](//localhost:8080/docs)
 
 <h3 id="testing">Testing</h3>
 
