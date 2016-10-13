@@ -1,5 +1,7 @@
 # htmlmodule
 
+[![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
+
 <em>work in progress</em>
 
 HTML module provides web application semantics and functionality of native HTML DOM API:
