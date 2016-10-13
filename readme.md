@@ -93,7 +93,7 @@ import 'htmlmodule/shim';
 ```
 
 - shim bundle is used in [unit-testing](#user-content-testing) environments
-- ["global script" distribution](#user-content-globalscript) includes shim bundle
+- ["global script" distribution](#user-content-globalscript) includes shim bundle out of the box
 
 ## Development
 
