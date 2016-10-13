@@ -88,7 +88,8 @@ const options = [
     option({ value : importfrom, children : 'full module example' }),
     testcase.map(fn => {
         const src = fn.toString();
-        const textContent = src.match(/\({ ((?:\w+,? )+)}\)/)[1].trim();
+        const match = src.match(/\({ ((?:\w+,? )+)}\)/);
+        const textContent = match? match[1].trim() : '?';
         const elements = textContent.split(', ');
         const id = elements.join('+');
         return option({ id, textContent, value : jsbeautify(src, { wrap_line_length: 50 }) });
@@ -98,7 +99,8 @@ const options = [
 function updateTest() {
     globalbox.checked = testselectbox.value === globaldefined;
     jsEditor.setValue(testselectbox.value + '\n');
-    location.hash = testselectbox.selectedOptions[0].id;
+    const opt = testselectbox.selectedOptions[0];
+    if(opt) location.hash = opt.id;
 }
 
 const testselectbox = select({
@@ -107,7 +109,7 @@ const testselectbox = select({
         const selected = testselectbox.query('[selected]');
         if(selected) selected.removeAttribute('selected');
         const opt = testselectbox.selectedOptions[0];
-        opt.setAttribute('selected', '');
+        if(opt) opt.setAttribute('selected', '');
         updateTest();
     }
 });

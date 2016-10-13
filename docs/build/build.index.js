@@ -69,7 +69,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _nodeinit[key];
 	    }
 	  });
@@ -81,7 +81,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _domassembler[key];
 	    }
 	  });
@@ -93,7 +93,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _htmlassembler[key];
 	    }
 	  });
@@ -105,7 +105,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _xmldom[key];
 	    }
 	  });
@@ -117,7 +117,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function get() {
+	    get: function () {
 	      return _htmldom[key];
 	    }
 	  });
@@ -164,144 +164,106 @@
 	});
 	exports.DOMAssembler = exports.XML_NS_URI = undefined;
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var isArray = Array.isArray;
-	var _window = window;
-	var document = _window.document;
-	var Element = _window.Element;
+	const { isArray } = Array;
+	const { document, Element } = window;
 
 	/**
 	 * - XML namespace
 	 * - provides `Element` DOM interface
 	 * - https://www.w3.org/1999/xml
 	 */
-
-	var XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
+	const XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 	/**
 	 * - Assembler for DOM `Element`
 	 * - `Document.createElementNS` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `Element` initialization
 	 */
-
-	var DOMAssembler = exports.DOMAssembler = function () {
-	    function DOMAssembler() {
-	        _classCallCheck(this, DOMAssembler);
+	class DOMAssembler {
+	    /**
+	     * Assign given element to assembler instance
+	     * @param {Element} element node to assign
+	     */
+	    set element(element) {
+	        if (element instanceof Element) {
+	            this.node = element;
+	        } else throw Error('This is not Element');
 	    }
 
-	    _createClass(DOMAssembler, [{
-	        key: 'createElement',
+	    /**
+	     * Get the assigned element
+	     * @returns {Element} assigned node
+	     */
+	    get element() {
+	        if (this.node) return this.node;else throw Error('No element assigned');
+	    }
 
-
-	        /**
-	         * Create the specified element and initialize it by given property set
-	         * @param {String} tagName
-	         * @param {{}} [init]
-	         * @returns {Element} created and initialized DOM `Element`
-	         */
-	        value: function createElement(tagName, init) {
-	            var namespaceURI = this.constructor.namespaceURI;
-
-	            this.element = document.createElementNS(namespaceURI, tagName);
-	            if (init) this.init = (0, _nodeinit.NodeInit)(init);
-	            return this.element;
-	        }
-
-	        /**
-	         * @returns {String} create elements in XML namespace
-	         */
-
-	    }, {
-	        key: 'element',
-
-	        /**
-	         * Assign given element to assembler instance
-	         * @param {Element} element node to assign
-	         */
-	        set: function set(element) {
-	            if (element instanceof Element) {
-	                this.node = element;
-	            } else throw Error('This is not Element');
-	        }
-
-	        /**
-	         * Get the assigned element
-	         * @returns {Element} assigned node
-	         */
-	        ,
-	        get: function get() {
-	            if (this.node) return this.node;else throw Error('No element assigned');
-	        }
-
-	        /**
-	         * Initialize the element with defined properties
-	         * @param {{}} init initializing dictionary object
-	         */
-
-	    }, {
-	        key: 'init',
-	        set: function set(init) {
-	            var element = this.element;
-	            for (var prop in init) {
-	                var value = init[prop];
-	                if (value !== undefined) {
-	                    if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
-	                }
+	    /**
+	     * Initialize the element with defined properties
+	     * @param {{}} init initializing dictionary object
+	     */
+	    set init(init) {
+	        const element = this.element;
+	        for (let prop in init) {
+	            const value = init[prop];
+	            if (value !== undefined) {
+	                if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
 	            }
 	        }
+	    }
 
-	        /**
-	         * Set attributes on the element
-	         * @param {{}} attrset dictionary object
-	         */
-
-	    }, {
-	        key: 'attrset',
-	        set: function set(attrset) {
-	            var element = this.element;
-	            for (var name in attrset) {
-	                var value = attrset[name];
-	                if (typeof value === 'string') {
-	                    element.setAttribute(name, value);
-	                }
+	    /**
+	     * Set attributes on the element
+	     * @param {{}} attrset dictionary object
+	     */
+	    set attrset(attrset) {
+	        const element = this.element;
+	        for (let name in attrset) {
+	            const value = attrset[name];
+	            if (typeof value === 'string') {
+	                element.setAttribute(name, value);
 	            }
 	        }
+	    }
 
-	        /**
-	         * Append children to the element
-	         * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
-	         * @param {Node|String|Array} children child node or string or array of listed
-	         */
-
-	    }, {
-	        key: 'children',
-	        set: function set(children) {
-	            var _this = this;
-
-	            if (isArray(children)) {
-	                children.forEach(function (child) {
-	                    return _this.children = child;
-	                });
-	            } else if (children) {
-	                var child = typeof children === 'string' ? document.createTextNode(children) : children;
-	                this.element.appendChild(child);
-	            }
+	    /**
+	     * Append children to the element
+	     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
+	     * @param {Node|String|Array} children child node or string or array of listed
+	     */
+	    set children(children) {
+	        if (isArray(children)) {
+	            children.forEach(child => this.children = child);
+	        } else if (children) {
+	            const child = typeof children === 'string' ? document.createTextNode(children) : children;
+	            this.element.appendChild(child);
 	        }
-	    }], [{
-	        key: 'namespaceURI',
-	        get: function get() {
-	            return XML_NS_URI;
-	        }
-	    }]);
+	    }
 
-	    return DOMAssembler;
-	}();
+	    /**
+	     * Create the specified element and initialize it by given property set
+	     * @param {String} tagName
+	     * @param {{}} [init]
+	     * @returns {Element} created and initialized DOM `Element`
+	     */
+	    createElement(tagName, init) {
+	        const { namespaceURI } = this.constructor;
+	        this.element = document.createElementNS(namespaceURI, tagName);
+	        if (init) this.init = (0, _nodeinit.NodeInit)(init);
+	        return this.element;
+	    }
 
+	    /**
+	     * @returns {String} create elements in XML namespace
+	     */
+	    static get namespaceURI() {
+	        return XML_NS_URI;
+	    }
+	}
+
+	exports.DOMAssembler = DOMAssembler;
 	Object.defineProperty(DOMAssembler.prototype, 'node', {
 	    enumerable: true,
 	    writable: true,
@@ -322,76 +284,47 @@
 	});
 	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var assign = Object.assign;
+	const { assign } = Object;
 
 	/**
 	 * - XHTML namespace
 	 * - provides all inherited from `HTMLElement` DOM interfaces
 	 * - https://www.w3.org/1999/xhtml
 	 */
-
-	var XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
+	const XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 	/**
 	 * - Assembler for DOM `HTMLElement`
 	 * - `Document.createElement` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `HTMLElement` initialization
 	 */
-
-	var HTMLAssembler = exports.HTMLAssembler = function (_DOMAssembler) {
-	  _inherits(HTMLAssembler, _DOMAssembler);
-
-	  function HTMLAssembler() {
-	    _classCallCheck(this, HTMLAssembler);
-
-	    return _possibleConstructorReturn(this, (HTMLAssembler.__proto__ || Object.getPrototypeOf(HTMLAssembler)).apply(this, arguments));
+	class HTMLAssembler extends _domassembler.DOMAssembler {
+	  /**
+	   * Assign custom `data-` attributes to the element
+	   * @param {{}} dataset declaration dictionary object
+	   */
+	  set dataset(dataset) {
+	    assign(this.element.dataset, dataset);
 	  }
 
-	  _createClass(HTMLAssembler, [{
-	    key: 'dataset',
+	  /**
+	   * Assign CSS style declaration to the element
+	   * @param {CSSStyleDeclaration} style declaration dictionary object
+	   */
+	  set style(style) {
+	    assign(this.element.style, style);
+	  }
 
-	    /**
-	     * Assign custom `data-` attributes to the element
-	     * @param {{}} dataset declaration dictionary object
-	     */
-	    set: function set(dataset) {
-	      assign(this.element.dataset, dataset);
-	    }
-
-	    /**
-	     * Assign CSS style declaration to the element
-	     * @param {CSSStyleDeclaration} style declaration dictionary object
-	     */
-
-	  }, {
-	    key: 'style',
-	    set: function set(style) {
-	      assign(this.element.style, style);
-	    }
-
-	    /**
-	     * @returns {String} create elements in XHTML namespace
-	     */
-
-	  }], [{
-	    key: 'namespaceURI',
-	    get: function get() {
-	      return XHTML_NS_URI;
-	    }
-	  }]);
-
-	  return HTMLAssembler;
-	}(_domassembler.DOMAssembler);
+	  /**
+	   * @returns {String} create elements in XHTML namespace
+	   */
+	  static get namespaceURI() {
+	    return XHTML_NS_URI;
+	  }
+	}
+	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
 /* 5 */
@@ -409,27 +342,17 @@
 
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	var _window = window;
-	var document = _window.document;
+	const { document } = window;
 
+	const assembler = new _domassembler.DOMAssembler();
 
-	var assembler = new _domassembler.DOMAssembler();
+	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
 
-	var xmldom = exports.xmldom = function xmldom(tagName, init) {
-	  return assembler.createElement(tagName, init);
-	};
+	const element = exports.element = init => xmldom('element', init);
 
-	var element = exports.element = function element(init) {
-	  return xmldom('element', init);
-	};
+	const text = exports.text = text => document.createTextNode(text);
 
-	var text = exports.text = function text(_text) {
-	  return document.createTextNode(_text);
-	};
-
-	var comment = exports.comment = function comment(_comment) {
-	  return document.createComment(_comment);
-	};
+	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
 /* 6 */
@@ -447,7 +370,7 @@
 
 	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 4);
 
-	var assembler = new _htmlassembler.HTMLAssembler();
+	const assembler = new _htmlassembler.HTMLAssembler();
 
 	/**
 	 * Creates and initializes the specified element
@@ -456,9 +379,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var htmldom = exports.htmldom = function htmldom(tagName, init) {
-	  return assembler.createElement(tagName, init);
-	};
+	const htmldom = exports.htmldom = (tagName, init) => assembler.createElement(tagName, init);
 
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
@@ -478,9 +399,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var a = exports.a = function a(init) {
-	  return htmldom('a', init);
-	};
+	const a = exports.a = init => htmldom('a', init);
 
 	/**
 	 * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
@@ -494,9 +413,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var abbr = exports.abbr = function abbr(init) {
-	  return htmldom('abbr', init);
-	};
+	const abbr = exports.abbr = init => htmldom('abbr', init);
 
 	/**
 	 * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
@@ -508,9 +425,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var address = exports.address = function address(init) {
-	  return htmldom('address', init);
-	};
+	const address = exports.address = init => htmldom('address', init);
 
 	/**
 	 * [The `area` element](https://html.spec.whatwg.org/#the-area-element)
@@ -530,9 +445,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var area = exports.area = function area(init) {
-	  return htmldom('area', init);
-	};
+	const area = exports.area = init => htmldom('area', init);
 
 	/**
 	 * [The `article` element](https://html.spec.whatwg.org/#the-article-element)
@@ -546,9 +459,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var article = exports.article = function article(init) {
-	  return htmldom('article', init);
-	};
+	const article = exports.article = init => htmldom('article', init);
 
 	/**
 	 * [The `aside` element](https://html.spec.whatwg.org/#the-aside-element)
@@ -561,9 +472,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var aside = exports.aside = function aside(init) {
-	  return htmldom('aside', init);
-	};
+	const aside = exports.aside = init => htmldom('aside', init);
 
 	/**
 	 * [The `audio` element](https://html.spec.whatwg.org/#the-audio-element)
@@ -585,17 +494,11 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var audio = exports.audio = function audio(init) {
-	  return htmldom('audio', init);
-	};
+	const audio = exports.audio = init => htmldom('audio', init);
 
-	var b = exports.b = function b(init) {
-	  return htmldom('b', init);
-	};
+	const b = exports.b = init => htmldom('b', init);
 
-	var base = exports.base = function base(init) {
-	  return htmldom('base', init);
-	};
+	const base = exports.base = init => htmldom('base', init);
 
 	/**
 	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
@@ -607,9 +510,7 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var bdi = exports.bdi = function bdi(init) {
-	  return htmldom('bdi', init);
-	};
+	const bdi = exports.bdi = init => htmldom('bdi', init);
 
 	/**
 	 * [The `bdo` element](https://html.spec.whatwg.org/#the-bdo-element)
@@ -622,415 +523,213 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var bdo = exports.bdo = function bdo(init) {
-	  return htmldom('bdo', init);
-	};
+	const bdo = exports.bdo = init => htmldom('bdo', init);
 
-	var blockquote = exports.blockquote = function blockquote(init) {
-	  return htmldom('blockquote', init);
-	};
+	const blockquote = exports.blockquote = init => htmldom('blockquote', init);
 
-	var body = exports.body = function body(init) {
-	  return htmldom('body', init);
-	};
+	const body = exports.body = init => htmldom('body', init);
 
-	var br = exports.br = function br(init) {
-	  return htmldom('br', init);
-	};
+	const br = exports.br = init => htmldom('br', init);
 
-	var button = exports.button = function button(init) {
-	  return htmldom('button', init);
-	};
+	const button = exports.button = init => htmldom('button', init);
 
-	var canvas = exports.canvas = function canvas(init) {
-	  return htmldom('canvas', init);
-	};
+	const canvas = exports.canvas = init => htmldom('canvas', init);
 
-	var caption = exports.caption = function caption(init) {
-	  return htmldom('caption', init);
-	};
+	const caption = exports.caption = init => htmldom('caption', init);
 
-	var cite = exports.cite = function cite(init) {
-	  return htmldom('cite', init);
-	};
+	const cite = exports.cite = init => htmldom('cite', init);
 
-	var code = exports.code = function code(init) {
-	  return htmldom('code', init);
-	};
+	const code = exports.code = init => htmldom('code', init);
 
-	var col = exports.col = function col(init) {
-	  return htmldom('col', init);
-	};
+	const col = exports.col = init => htmldom('col', init);
 
-	var colgroup = exports.colgroup = function colgroup(init) {
-	  return htmldom('colgroup', init);
-	};
+	const colgroup = exports.colgroup = init => htmldom('colgroup', init);
 
-	var data = exports.data = function data(init) {
-	  return htmldom('data', init);
-	};
+	const data = exports.data = init => htmldom('data', init);
 
-	var datalist = exports.datalist = function datalist(init) {
-	  return htmldom('datalist', init);
-	};
+	const datalist = exports.datalist = init => htmldom('datalist', init);
 
-	var dd = exports.dd = function dd(init) {
-	  return htmldom('dd', init);
-	};
+	const dd = exports.dd = init => htmldom('dd', init);
 
-	var del = exports.del = function del(init) {
-	  return htmldom('del', init);
-	};
+	const del = exports.del = init => htmldom('del', init);
 
-	var details = exports.details = function details(init) {
-	  return htmldom('details', init);
-	};
+	const details = exports.details = init => htmldom('details', init);
 
-	var dfn = exports.dfn = function dfn(init) {
-	  return htmldom('dfn', init);
-	};
+	const dfn = exports.dfn = init => htmldom('dfn', init);
 
-	var dialog = exports.dialog = function dialog(init) {
-	  return htmldom('dialog', init);
-	};
+	const dialog = exports.dialog = init => htmldom('dialog', init);
 
-	var div = exports.div = function div(init) {
-	  return htmldom('div', init);
-	};
+	const div = exports.div = init => htmldom('div', init);
 
-	var dl = exports.dl = function dl(init) {
-	  return htmldom('dl', init);
-	};
+	const dl = exports.dl = init => htmldom('dl', init);
 
-	var dt = exports.dt = function dt(init) {
-	  return htmldom('dt', init);
-	};
+	const dt = exports.dt = init => htmldom('dt', init);
 
-	var em = exports.em = function em(init) {
-	  return htmldom('em', init);
-	};
+	const em = exports.em = init => htmldom('em', init);
 
-	var embed = exports.embed = function embed(init) {
-	  return htmldom('embed', init);
-	};
+	const embed = exports.embed = init => htmldom('embed', init);
 
-	var fieldset = exports.fieldset = function fieldset(init) {
-	  return htmldom('fieldset', init);
-	};
+	const fieldset = exports.fieldset = init => htmldom('fieldset', init);
 
-	var figcaption = exports.figcaption = function figcaption(init) {
-	  return htmldom('figcaption', init);
-	};
+	const figcaption = exports.figcaption = init => htmldom('figcaption', init);
 
-	var figure = exports.figure = function figure(init) {
-	  return htmldom('figure', init);
-	};
+	const figure = exports.figure = init => htmldom('figure', init);
 
-	var footer = exports.footer = function footer(init) {
-	  return htmldom('footer', init);
-	};
+	const footer = exports.footer = init => htmldom('footer', init);
 
-	var form = exports.form = function form(init) {
-	  return htmldom('form', init);
-	};
+	const form = exports.form = init => htmldom('form', init);
 
-	var h1 = exports.h1 = function h1(init) {
-	  return htmldom('h1', init);
-	};
+	const h1 = exports.h1 = init => htmldom('h1', init);
 
-	var h2 = exports.h2 = function h2(init) {
-	  return htmldom('h2', init);
-	};
+	const h2 = exports.h2 = init => htmldom('h2', init);
 
-	var h3 = exports.h3 = function h3(init) {
-	  return htmldom('h3', init);
-	};
+	const h3 = exports.h3 = init => htmldom('h3', init);
 
-	var h4 = exports.h4 = function h4(init) {
-	  return htmldom('h4', init);
-	};
+	const h4 = exports.h4 = init => htmldom('h4', init);
 
-	var h5 = exports.h5 = function h5(init) {
-	  return htmldom('h5', init);
-	};
+	const h5 = exports.h5 = init => htmldom('h5', init);
 
-	var h6 = exports.h6 = function h6(init) {
-	  return htmldom('h6', init);
-	};
+	const h6 = exports.h6 = init => htmldom('h6', init);
 
-	var head = exports.head = function head(init) {
-	  return htmldom('head', init);
-	};
+	const head = exports.head = init => htmldom('head', init);
 
-	var header = exports.header = function header(init) {
-	  return htmldom('header', init);
-	};
+	const header = exports.header = init => htmldom('header', init);
 
-	var hgroup = exports.hgroup = function hgroup(init) {
-	  return htmldom('hgroup', init);
-	};
+	const hgroup = exports.hgroup = init => htmldom('hgroup', init);
 
-	var hr = exports.hr = function hr(init) {
-	  return htmldom('hr', init);
-	};
+	const hr = exports.hr = init => htmldom('hr', init);
 
-	var html = exports.html = function html(init) {
-	  return htmldom('html', init);
-	};
+	const html = exports.html = init => htmldom('html', init);
 
-	var i = exports.i = function i(init) {
-	  return htmldom('i', init);
-	};
+	const i = exports.i = init => htmldom('i', init);
 
-	var iframe = exports.iframe = function iframe(init) {
-	  return htmldom('iframe', init);
-	};
+	const iframe = exports.iframe = init => htmldom('iframe', init);
 
-	var img = exports.img = function img(init) {
-	  return htmldom('img', init);
-	};
+	const img = exports.img = init => htmldom('img', init);
 
-	var input = exports.input = function input(init) {
-	  return htmldom('input', init);
-	};
+	const input = exports.input = init => htmldom('input', init);
 
-	var ins = exports.ins = function ins(init) {
-	  return htmldom('ins', init);
-	};
+	const ins = exports.ins = init => htmldom('ins', init);
 
-	var kbd = exports.kbd = function kbd(init) {
-	  return htmldom('kbd', init);
-	};
+	const kbd = exports.kbd = init => htmldom('kbd', init);
 
-	var keygen = exports.keygen = function keygen(init) {
-	  return htmldom('keygen', init);
-	};
+	const keygen = exports.keygen = init => htmldom('keygen', init);
 
-	var label = exports.label = function label(init) {
-	  return htmldom('label', init);
-	};
+	const label = exports.label = init => htmldom('label', init);
 
-	var legend = exports.legend = function legend(init) {
-	  return htmldom('legend', init);
-	};
+	const legend = exports.legend = init => htmldom('legend', init);
 
-	var li = exports.li = function li(init) {
-	  return htmldom('li', init);
-	};
+	const li = exports.li = init => htmldom('li', init);
 
-	var link = exports.link = function link(init) {
-	  return htmldom('link', init);
-	};
+	const link = exports.link = init => htmldom('link', init);
 
-	var main = exports.main = function main(init) {
-	  return htmldom('main', init);
-	};
+	const main = exports.main = init => htmldom('main', init);
 
-	var map = exports.map = function map(init) {
-	  return htmldom('map', init);
-	};
+	const map = exports.map = init => htmldom('map', init);
 
-	var mark = exports.mark = function mark(init) {
-	  return htmldom('mark', init);
-	};
+	const mark = exports.mark = init => htmldom('mark', init);
 
 	// todo mathdom
 	// export const math = init => mathdom('math', init);
 
-	var menu = exports.menu = function menu(init) {
-	  return htmldom('menu', init);
-	};
+	const menu = exports.menu = init => htmldom('menu', init);
 
-	var menuitem = exports.menuitem = function menuitem(init) {
-	  return htmldom('menuitem', init);
-	};
+	const menuitem = exports.menuitem = init => htmldom('menuitem', init);
 
-	var meta = exports.meta = function meta(init) {
-	  return htmldom('meta', init);
-	};
+	const meta = exports.meta = init => htmldom('meta', init);
 
-	var meter = exports.meter = function meter(init) {
-	  return htmldom('meter', init);
-	};
+	const meter = exports.meter = init => htmldom('meter', init);
 
-	var nav = exports.nav = function nav(init) {
-	  return htmldom('nav', init);
-	};
+	const nav = exports.nav = init => htmldom('nav', init);
 
-	var noscript = exports.noscript = function noscript(init) {
-	  return htmldom('noscript', init);
-	};
+	const noscript = exports.noscript = init => htmldom('noscript', init);
 
-	var object = exports.object = function object(init) {
-	  return htmldom('object', init);
-	};
+	const object = exports.object = init => htmldom('object', init);
 
-	var ol = exports.ol = function ol(init) {
-	  return htmldom('ol', init);
-	};
+	const ol = exports.ol = init => htmldom('ol', init);
 
-	var optgroup = exports.optgroup = function optgroup(init) {
-	  return htmldom('optgroup', init);
-	};
+	const optgroup = exports.optgroup = init => htmldom('optgroup', init);
 
-	var option = exports.option = function option(init) {
-	  return htmldom('option', init);
-	};
+	const option = exports.option = init => htmldom('option', init);
 
-	var output = exports.output = function output(init) {
-	  return htmldom('output', init);
-	};
+	const output = exports.output = init => htmldom('output', init);
 
-	var p = exports.p = function p(init) {
-	  return htmldom('p', init);
-	};
+	const p = exports.p = init => htmldom('p', init);
 
-	var param = exports.param = function param(init) {
-	  return htmldom('param', init);
-	};
+	const param = exports.param = init => htmldom('param', init);
 
-	var picture = exports.picture = function picture(init) {
-	  return htmldom('picture', init);
-	};
+	const picture = exports.picture = init => htmldom('picture', init);
 
-	var pre = exports.pre = function pre(init) {
-	  return htmldom('pre', init);
-	};
+	const pre = exports.pre = init => htmldom('pre', init);
 
-	var progress = exports.progress = function progress(init) {
-	  return htmldom('progress', init);
-	};
+	const progress = exports.progress = init => htmldom('progress', init);
 
-	var q = exports.q = function q(init) {
-	  return htmldom('q', init);
-	};
+	const q = exports.q = init => htmldom('q', init);
 
-	var rp = exports.rp = function rp(init) {
-	  return htmldom('rp', init);
-	};
+	const rp = exports.rp = init => htmldom('rp', init);
 
-	var rt = exports.rt = function rt(init) {
-	  return htmldom('rt', init);
-	};
+	const rt = exports.rt = init => htmldom('rt', init);
 
-	var ruby = exports.ruby = function ruby(init) {
-	  return htmldom('ruby', init);
-	};
+	const ruby = exports.ruby = init => htmldom('ruby', init);
 
-	var s = exports.s = function s(init) {
-	  return htmldom('s', init);
-	};
+	const s = exports.s = init => htmldom('s', init);
 
-	var samp = exports.samp = function samp(init) {
-	  return htmldom('samp', init);
-	};
+	const samp = exports.samp = init => htmldom('samp', init);
 
-	var script = exports.script = function script(init) {
-	  return htmldom('script', init);
-	};
+	const script = exports.script = init => htmldom('script', init);
 
-	var section = exports.section = function section(init) {
-	  return htmldom('section', init);
-	};
+	const section = exports.section = init => htmldom('section', init);
 
-	var select = exports.select = function select(init) {
-	  return htmldom('select', init);
-	};
+	const select = exports.select = init => htmldom('select', init);
 
-	var slot = exports.slot = function slot(init) {
-	  return htmldom('slot', init);
-	};
+	const slot = exports.slot = init => htmldom('slot', init);
 
-	var small = exports.small = function small(init) {
-	  return htmldom('small', init);
-	};
+	const small = exports.small = init => htmldom('small', init);
 
-	var source = exports.source = function source(init) {
-	  return htmldom('source', init);
-	};
+	const source = exports.source = init => htmldom('source', init);
 
-	var span = exports.span = function span(init) {
-	  return htmldom('span', init);
-	};
+	const span = exports.span = init => htmldom('span', init);
 
-	var strong = exports.strong = function strong(init) {
-	  return htmldom('strong', init);
-	};
+	const strong = exports.strong = init => htmldom('strong', init);
 
-	var style = exports.style = function style(init) {
-	  return htmldom('style', init);
-	};
+	const style = exports.style = init => htmldom('style', init);
 
-	var sub = exports.sub = function sub(init) {
-	  return htmldom('sub', init);
-	};
+	const sub = exports.sub = init => htmldom('sub', init);
 
-	var summary = exports.summary = function summary(init) {
-	  return htmldom('summary', init);
-	};
+	const summary = exports.summary = init => htmldom('summary', init);
 
-	var sup = exports.sup = function sup(init) {
-	  return htmldom('sup', init);
-	};
+	const sup = exports.sup = init => htmldom('sup', init);
 
 	// todo svgdom
 	// export const svg = init => svgdom('svg', init);
 
-	var table = exports.table = function table(init) {
-	  return htmldom('table', init);
-	};
+	const table = exports.table = init => htmldom('table', init);
 
-	var tbody = exports.tbody = function tbody(init) {
-	  return htmldom('tbody', init);
-	};
+	const tbody = exports.tbody = init => htmldom('tbody', init);
 
-	var td = exports.td = function td(init) {
-	  return htmldom('td', init);
-	};
+	const td = exports.td = init => htmldom('td', init);
 
-	var template = exports.template = function template(init) {
-	  return htmldom('template', init);
-	};
+	const template = exports.template = init => htmldom('template', init);
 
-	var textarea = exports.textarea = function textarea(init) {
-	  return htmldom('textarea', init);
-	};
+	const textarea = exports.textarea = init => htmldom('textarea', init);
 
-	var tfoot = exports.tfoot = function tfoot(init) {
-	  return htmldom('tfoot', init);
-	};
+	const tfoot = exports.tfoot = init => htmldom('tfoot', init);
 
-	var th = exports.th = function th(init) {
-	  return htmldom('th', init);
-	};
+	const th = exports.th = init => htmldom('th', init);
 
-	var thead = exports.thead = function thead(init) {
-	  return htmldom('thead', init);
-	};
+	const thead = exports.thead = init => htmldom('thead', init);
 
-	var time = exports.time = function time(init) {
-	  return htmldom('time', init);
-	};
+	const time = exports.time = init => htmldom('time', init);
 
-	var title = exports.title = function title(init) {
-	  return htmldom('title', init);
-	};
+	const title = exports.title = init => htmldom('title', init);
 
-	var tr = exports.tr = function tr(init) {
-	  return htmldom('tr', init);
-	};
+	const tr = exports.tr = init => htmldom('tr', init);
 
-	var track = exports.track = function track(init) {
-	  return htmldom('track', init);
-	};
+	const track = exports.track = init => htmldom('track', init);
 
-	var u = exports.u = function u(init) {
-	  return htmldom('u', init);
-	};
+	const u = exports.u = init => htmldom('u', init);
 
-	var ul = exports.ul = function ul(init) {
-	  return htmldom('ul', init);
-	};
+	const ul = exports.ul = init => htmldom('ul', init);
 
 	/**
 	 * [the `var` element](https://html.spec.whatwg.org/#the-var-element)
@@ -1046,17 +745,11 @@
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
 	 */
-	var variable = exports.variable = function variable(init) {
-	  return htmldom('var', init);
-	};
+	const variable = exports.variable = init => htmldom('var', init);
 
-	var video = exports.video = function video(init) {
-	  return htmldom('video', init);
-	};
+	const video = exports.video = init => htmldom('video', init);
 
-	var wbr = exports.wbr = function wbr(init) {
-	  return htmldom('wbr', init);
-	};
+	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
 /* 7 */
@@ -1071,25 +764,17 @@
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 9);
 
-	var _htmlmodule = htmlmodule;
-	var ul = _htmlmodule.ul;
-	var li = _htmlmodule.li;
-	var main = _htmlmodule.main;
-	var code = _htmlmodule.code;
-	var a = _htmlmodule.a;
-
-	var listnode = main([(0, _siteheading.siteheading)('htmlmodule'), ul({
+	const { ul, li, main, code, a } = htmlmodule;
+	const listnode = main([(0, _siteheading.siteheading)('htmlmodule'), ul({
 	    style: {
 	        columnCount: 7,
 	        listStyle: 'none'
 	    },
-	    children: Object.keys(htmlmodule).map(function (key) {
-	        return li(a({
-	            href: './api#' + key.toLowerCase(),
-	            target: 'blank',
-	            children: code(key)
-	        }));
-	    })
+	    children: Object.keys(htmlmodule).map(key => li(a({
+	        href: './api#' + key.toLowerCase(),
+	        target: 'blank',
+	        children: code(key)
+	    })))
 	})]);
 
 	document.body.append(listnode, (0, _sitenav.sitenav)());
@@ -1110,11 +795,9 @@
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	var siteheading = exports.siteheading = function siteheading(children) {
-	  return (0, _lib.h1)({ id: 'siteheading', children: children });
-	};
+	const siteheading = exports.siteheading = children => (0, _lib.h1)({ id: 'siteheading', children });
 
-	var styleNode = (0, _lib.style)('#siteheading { font-family: monospace }');
+	const styleNode = (0, _lib.style)('#siteheading { font-family: monospace }');
 	document.head.append(styleNode);
 
 /***/ },
@@ -1135,9 +818,9 @@
 
 	__webpack_require__(/*! ./sitenav.css */ 10);
 
-	var pathname = location.pathname;
+	const pathname = location.pathname;
 
-	var children = [(0, _lib.a)({
+	const children = [(0, _lib.a)({
 	    href: './repl.html',
 	    children: 'repl app'
 	}), (0, _lib.a)({
@@ -1160,16 +843,14 @@
 	    children: 'git repo'
 	})];
 
-	children.forEach(function (link) {
+	children.forEach(link => {
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	var sitenavNode = document.getElementById('sitenav');
-	if (sitenavNode) sitenavNode.append.apply(sitenavNode, children);
+	const sitenavNode = document.getElementById('sitenav');
+	if (sitenavNode) sitenavNode.append(...children);
 
-	var sitenav = exports.sitenav = function sitenav(init) {
-	    return (0, _lib.footer)({ id: 'sitenav', children: children });
-	};
+	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
 
 /***/ },
 /* 10 */

@@ -1033,14 +1033,13 @@
 	};
 
 	/**
-	 * [the `var<ins>iable</ins>` element](https://html.spec.whatwg.org/#the-var-element)
+	 * [the `var` element](https://html.spec.whatwg.org/#the-var-element)
 	 * represents a variable.
 	 * This could be an actual variable in a mathematical expression or programming context,
 	 * an identifier representing a constant, a symbol identifying a physical quantity,
 	 * a function parameter, or just be a term used as a placeholder in prose.
 	 *
-	 * `var` is reserved JS keyword
-	 * htmlmodule provides `variable` instead
+	 * **`var` is reserved JS keyword — so use `variable` instead**
 	 *
 	 * Uses HTMLElement interface
 	 * @function variable

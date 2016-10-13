@@ -77,11 +77,11 @@ const { a, span, div, article, input, fieldset } = window.htmlmodule;
 </script> 
 ```
 
-## API — [documentation](//aristov.github.io/htmlmodule/documentation)
+## [API documentation](//aristov.github.io/htmlmodule/api)
 
 ## Compatibility
 
-Built-in [shim bundle](/shim/shim.js) fixes browser compatibility.
+Built-in [shim bundle](/shim) fixes browser compatibility.
 For full browser support you must import shim bundle first:
 
 ```js
@@ -172,14 +172,14 @@ npm test
 
 0. build sources 
 0. run dev server
-0. open [localhost:8080/docs/spec](//localhost:8080/docs/spec) in browser
+0. open [localhost:8080/docs/spec](//localhost:8080/docs/spec.html) in browser
 
 #### Online test suite
 
 Check test suite in your browser:
 
-- [spec suite](//aristov.github.io/htmlmodule/spec)
-- [test case](//aristov.github.io/htmlmodule/test)
+- [spec suite](//aristov.github.io/htmlmodule/spec.html)
+- [test case](//aristov.github.io/htmlmodule/test.html)
 
 ## License
 

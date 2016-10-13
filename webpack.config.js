@@ -74,14 +74,18 @@ module.exports = {
             { test : /\.txt$/, loader : 'raw-loader' },
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' },
         ],
-        postLoaders
+        postLoaders : [{
+            test : [/\.js$/],
+            exclude : /(node_modules)/,
+            loader : 'documentation'
+        }]
     },
     plugins,
     resolve : {
         modulesDirectories : ['node_modules']
     },
     documentation : {
-        entry : './lib/index',
+        entry : './lib/index.js',
         output : './docs/api',
         github : true,
         format : 'html'
