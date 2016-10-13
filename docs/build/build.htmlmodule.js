@@ -135,7 +135,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = NodeInit;
+	exports.NodeInit = NodeInit;
 	/**
 	 * Converts any non-dictionary object argument
 	 * to `NodeInit` dictionary object with `children` property assigned
@@ -162,13 +162,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.XML_NS_URI = undefined;
+	exports.DOMAssembler = exports.XML_NS_URI = undefined;
 
 	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
-
-	var _nodeinit2 = _interopRequireDefault(_nodeinit);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const { isArray } = Array;
 	const { document, Element } = window;
@@ -255,7 +251,7 @@
 	    createElement(tagName, init) {
 	        const { namespaceURI } = this.constructor;
 	        this.element = document.createElementNS(namespaceURI, tagName);
-	        if (init) this.init = (0, _nodeinit2.default)(init);
+	        if (init) this.init = (0, _nodeinit.NodeInit)(init);
 	        return this.element;
 	    }
 
@@ -267,11 +263,7 @@
 	    }
 	}
 
-	exports.default = DOMAssembler; /**
-	                                 * @class DOMAssembler
-	                                 * @property {Node} node assigned
-	                                 */
-
+	exports.DOMAssembler = DOMAssembler;
 	Object.defineProperty(DOMAssembler.prototype, 'node', {
 	    enumerable: true,
 	    writable: true,
@@ -290,13 +282,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.XHTML_NS_URI = undefined;
+	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
-
-	var _domassembler2 = _interopRequireDefault(_domassembler);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const { assign } = Object;
 
@@ -312,7 +300,7 @@
 	 * - `Document.createElement` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `HTMLElement` initialization
 	 */
-	class HTMLAssembler extends _domassembler2.default {
+	class HTMLAssembler extends _domassembler.DOMAssembler {
 	  /**
 	   * Assign custom `data-` attributes to the element
 	   * @param {{}} dataset declaration dictionary object
@@ -336,7 +324,7 @@
 	    return XHTML_NS_URI;
 	  }
 	}
-	exports.default = HTMLAssembler;
+	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
 /* 5 */
@@ -354,13 +342,9 @@
 
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	var _domassembler2 = _interopRequireDefault(_domassembler);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	const { document } = window;
 
-	const assembler = new _domassembler2.default();
+	const assembler = new _domassembler.DOMAssembler();
 
 	const xmldom = exports.xmldom = (tagName, init) => assembler.createElement(tagName, init);
 
@@ -386,11 +370,7 @@
 
 	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 4);
 
-	var _htmlassembler2 = _interopRequireDefault(_htmlassembler);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	const assembler = new _htmlassembler2.default();
+	const assembler = new _htmlassembler.HTMLAssembler();
 
 	/**
 	 * Creates and initializes the specified element

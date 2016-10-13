@@ -9,9 +9,18 @@ const children = [
         children : 'repl app'
     }),
     a({
-        href : '//github.com/aristov/htmlmodule',
+        href : './test.html',
+        children : 'test case'
+    }),
+    a({
+        href : './spec.html',
+        children : 'spec suite'
+    }),
+    '|',
+    a({
+        href : '//github.com/aristov/htmlmodule/blob/master/readme.md',
         target : '_blank',
-        children : 'git repo'
+        children : 'read me'
     }),
     a({
         href : './api/',
@@ -19,16 +28,9 @@ const children = [
         children : 'api doc'
     }),
     a({
-        href : './spec.html',
-        children : 'spec suite'
-    }),
-    a({
-        href : './test.html',
-        children : 'test case'
-    }),
-    a({
-        href : './dist.html',
-        children : 'global test'
+        href : '//github.com/aristov/htmlmodule',
+        target : '_blank',
+        children : 'git repo'
     })
 ];
 

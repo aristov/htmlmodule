@@ -6,7 +6,7 @@
     <style>body { margin: 8px; padding: 0 10px }</style>
 </head>
 <body>
-    <h1 style="font-family:monospace">htmlmodule spec</h1>
+    <h1 id="siteheading">htmlmodule spec</h1>
     <main id=mocha></main>
     <footer id=sitenav></footer>
     <script src=https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js></script>
@@ -14,7 +14,7 @@
     <script>
         mocha.setup('bdd');
     </script>
-    <script src=../build/build.spec.js></script>
+    <script src=./build/build.spec.js></script>
     <script>
         mocha.run();
     </script>

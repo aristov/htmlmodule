@@ -19,6 +19,7 @@ import importfrom from 'raw!./test/test-importfrom.rawjs';
 import testcase from './test/test-testcase';
 
 import { sitenav } from './sitenav';
+import { siteheading } from './siteheading';
 import './repl.css';
 
 const localValue = localStorage.getItem('value');
@@ -145,14 +146,14 @@ const settingsformnode = form({
 });
 
 document.body.append(
-    header(h1([
+    siteheading([
         'htmlmodule ',
         abbr({
             title : 'read-eval-print-loop',
             style : { cursor : 'help' },
             children : 'repl'
         })
-    ])),
+    ]),
     main({
         className : 'repl',
         children : [

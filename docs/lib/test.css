@@ -3,10 +3,10 @@ body
     padding: 0 10px;
     background: rgba(0, 0, 0, 0.08);
 }
-body > h1
+/*h1#siteheading
 {
     text-align: center;
-}
+}*/
 input.filterinput
 {
     width: 100%;
@@ -14,7 +14,7 @@ input.filterinput
 }
 table.exampletable
 {
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     width: 1200px;
 }
 table.exampletable > * > tr > th

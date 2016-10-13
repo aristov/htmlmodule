@@ -5,6 +5,7 @@ import {
 } from '../../lib';
 import * as htmlmodule from '../../lib';
 import { sitenav } from './sitenav';
+import { siteheading } from './siteheading';
 
 import { HTMLSerializer } from '../../util/htmlserializer';
 
@@ -24,7 +25,7 @@ const oninput = ({ target : { value } }) => {
     });
 };
 
-const filterinput = input({
+const filterNode = input({
     type : 'search',
     className : 'filterinput',
     placeholder : 'filter...',
@@ -33,13 +34,11 @@ const filterinput = input({
 
 const tag = children => span({ className : 'tag', children });
 
-const exampletable = table({
+const exampletable = () => table({
     cellSpacing : 0,
     className : 'exampletable',
     children : [
-        thead([
-            tr([th(filterinput)])
-        ]),
+        thead(tr(th(filterNode))),
         tbody(rows = testcase.map(template => {
             const element = template(htmlmodule);
             const tagNames = [element.tagName];
@@ -87,4 +86,8 @@ const exampletable = table({
     ]
 });
 
-document.body.append(h1(code('htmlmodule test')), exampletable, sitenav());
+document.body.append(
+    siteheading('htmlmodule test'),
+    exampletable(),
+    sitenav()
+);
