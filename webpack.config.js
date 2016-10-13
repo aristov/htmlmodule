@@ -14,7 +14,6 @@ const autoprefixer = require('autoprefixer'); // fixme
  */
 const env = process.env;
 const plugins = [];
-const postLoaders = [];
 
 if(env.DEV) Object.assign(env, { DOCS : true, ES6 : true, WATCH : true });
 
@@ -49,12 +48,6 @@ if(env.DOCS) {
         filename : env.MIN? 'build.[name].min.js' : 'build.[name].js',
         pathinfo : !env.MIN
     }
-    const documentationLoader = {
-        test : [/\.js$/],
-        exclude : /(node_modules)/,
-        loader : 'documentation'
-    }
-    postLoaders.push(documentationLoader);
 } else {
     output = {
         path : __dirname + '/dist',

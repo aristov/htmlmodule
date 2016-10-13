@@ -116,19 +116,19 @@ To run commands locally, use `./node_modules/.bin/` in your `PATH`:
 export PATH=./node_modules/.bin:$PATH
 ```
 
-Build dist assets:
+Build distribution assets:
 
 ```
 webpack
 ```
 
-Build minified dist assets:
+Build minified distribution assets:
 
 ```
 MIN=true webpack
 ```
 
-Build docs, specs, tests and replmachine:
+Build docs, specs, tests and repl-machine:
 
 ```
 DOCS=true webpack
