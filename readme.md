@@ -79,6 +79,8 @@ const { a, span, div, article, input, fieldset } = window.htmlmodule;
 </script> 
 ```
 
+Script exposes `htmlmodule` global variable to the `window` object.
+
 ## [API documentation](//aristov.github.io/htmlmodule/api)
 
 ## Compatibility
