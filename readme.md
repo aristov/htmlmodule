@@ -4,7 +4,7 @@
 
 <em>work in progress</em>
 
-HTML module provides web application semantics and functionality of native HTML DOM API:
+HTML module provides web application semantics and functionality of native browser DOM API:
 
 ```js
 const htmlspec = a({ 
@@ -13,14 +13,14 @@ const htmlspec = a({
 });
 ```
 
-Code above uses htmlmodule to create DOM hyperlink element with reference to specification.
-Browser creates the same link, when it processes the following markup:
+The code above uses htmlmodule to create a hyperlink with a reference to specification.
+A browser creates the same link, when it processes the following markup:
 
 ```js
 <a href="https://html.spec.whatwg.org">HTML specification</a>
 ```
 
-HTML module does not generate markup. It assembles `HTMLAnchorElement` instance from scratch.
+HTML module does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
 
 ## Try now
 
@@ -28,7 +28,7 @@ HTML module does not generate markup. It assembles `HTMLAnchorElement` instance 
 
 ## Usage
 
-Use [module bundler](http://webpack.github.io/) and [transpiler](http://babeljs.io) to transform and pack modules for in-browser usage.
+Use a [module bundler](http://webpack.github.io/) and a [transpiler](http://babeljs.io) to transform and pack modules for in-browser usage.
 
 ### Install
 
@@ -60,7 +60,7 @@ const websearch =
 document.body.append(websearch);
 ```
 
-`websearch` is DOM structure with respective HTML markup:
+`websearch` is a DOM structure with the respective HTML markup:
 
 ```html
 <form action=//yandex.com/search target=_blank>
@@ -74,7 +74,7 @@ document.body.append(websearch);
 
 <h2 id="globalscript">Global script</h2>
 
-Get module by appending the script source to page body:
+Get the module by appending the script source to page body:
 
 ```html
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>
@@ -84,24 +84,24 @@ const { a, span, div, article, input, fieldset } = window.htmlmodule;
 </script> 
 ```
 
-Script exposes `htmlmodule` global variable to the `window` object.
-
-## [API documentation](//aristov.github.io/htmlmodule/api)
+The script exposes the `htmlmodule` global variable to the `window` object.
 
 ## Compatibility
 
 Built-in [shim bundle](/shim) fixes browser compatibility.
-For a wide browser support you must include the shim bundle first in any way:
+For a wide browser support you must import the shim bundle first.
+
+- use shim bundle distribution script:
 
 ```html
 <!-- import shim -->
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.shim.min.js></script>
 
-<!-- project source build result -->
+<!-- import project code -->
 <script src=./project.build.js></script>
 ```
 
-or, if you need a single bundle for all:
+- or include shim bundle to a project bundle:
 
 ```js
 import 'htmlmodule/shim';
@@ -111,6 +111,8 @@ import 'htmlmodule/shim';
 
 - shim bundle is used in [unit-testing](#user-content-testing) environments
 - ["global script" distribution](#user-content-globalscript) includes shim bundle out of the box
+
+## [API documentation](//aristov.github.io/htmlmodule/api)
 
 ## Development
 
