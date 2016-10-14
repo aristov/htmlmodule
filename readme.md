@@ -152,13 +152,13 @@ Use watch mode:
 WATCH=true webpack
 ```
 
-Use dev mode (`DEV = DOCS + ES6 + WATCH`):
+Run dev server (`DOCS + ES6 + WATCH`):
 
 ```
-DEV=true webpack
+npm start
 ```
 
-Run dev server:
+Run static server:
 
 ```
 static
