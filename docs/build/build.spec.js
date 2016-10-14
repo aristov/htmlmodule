@@ -804,21 +804,15 @@
 	const pathname = location.pathname;
 
 	const children = [(0, _lib.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _lib.a)({
 	    href: './test.html',
 	    children: 'test case'
 	}), (0, _lib.a)({
 	    href: './spec.html',
 	    children: 'spec suite'
-	}),
-	/*a({
-	    href : '//github.com/aristov/htmlmodule/blob/master/readme.md',
-	    target : '_blank',
-	    children : 'read me'
-	}),*/
-	(0, _lib.a)({
+	}), (0, _lib.a)({
+	    href: './repl.html',
+	    children: 'repl machine'
+	}), (0, _lib.a)({
 	    href: './api/',
 	    target: '_blank',
 	    children: 'api doc'
