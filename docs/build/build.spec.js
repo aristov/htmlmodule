@@ -768,7 +768,7 @@
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	__webpack_require__(/*! ./siteheading.css */ 563);
+	__webpack_require__(/*! ./siteheading.css */ 9);
 
 	const MODULE_NAME = 'htmlmodule';
 
@@ -785,73 +785,25 @@
 
 /***/ },
 /* 9 */
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	__webpack_require__(/*! ./sitenav.css */ 10);
-
-	const pathname = location.pathname;
-
-	const children = [(0, _lib.a)({
-	    href: './api/',
-	    target: '_blank',
-	    children: 'api doc'
-	}), (0, _lib.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _lib.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _lib.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _lib.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    target: '_blank',
-	    children: 'git repo'
-	})];
-
-	children.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const sitenavNode = document.getElementById('sitenav');
-	if (sitenavNode) sitenavNode.append(...children);
-
-	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
-
-/***/ },
-/* 10 */
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
+/*!**********************************!*\
+  !*** ./docs/lib/siteheading.css ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 11);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 10);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -861,24 +813,24 @@
 	}
 
 /***/ },
-/* 11 */
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
+/* 10 */
+/*!********************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
+  \********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
+	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 12 */
+/* 11 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -936,7 +888,7 @@
 	};
 
 /***/ },
-/* 13 */
+/* 12 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1191,8 +1143,100 @@
 
 
 /***/ },
-/* 14 */,
-/* 15 */,
+/* 13 */
+/*!*****************************!*\
+  !*** ./docs/lib/sitenav.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sitenav = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	__webpack_require__(/*! ./sitenav.css */ 14);
+
+	const pathname = location.pathname;
+
+	const children = [(0, _lib.a)({
+	    href: './api/',
+	    target: '_blank',
+	    children: 'api doc'
+	}), (0, _lib.a)({
+	    href: './spec.html',
+	    children: 'spec suite'
+	}), (0, _lib.a)({
+	    href: './repl.html',
+	    children: 'repl machine'
+	}), (0, _lib.a)({
+	    href: './test.html',
+	    children: 'test case'
+	}), (0, _lib.a)({
+	    href: '//github.com/aristov/htmlmodule',
+	    target: '_blank',
+	    children: 'git repo'
+	})];
+
+	children.forEach(link => {
+	    if (link.pathname === pathname) link.removeAttribute('href');
+	});
+
+	const sitenavNode = document.getElementById('sitenav');
+	if (sitenavNode) sitenavNode.append(...children);
+
+	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
+
+/***/ },
+/* 14 */
+/*!******************************!*\
+  !*** ./docs/lib/sitenav.css ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 15);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 15 */
+/*!****************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 16 */,
 /* 17 */,
 /* 18 */,
@@ -11877,7 +11921,7 @@
 
 	__webpack_require__(/*! ./siteheading */ 8);
 
-	__webpack_require__(/*! ./sitenav */ 9);
+	__webpack_require__(/*! ./sitenav */ 13);
 
 /***/ },
 /* 342 */
@@ -20197,7 +20241,7 @@
 
 	var _chai2 = _interopRequireDefault(_chai);
 
-	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 567);
+	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 386);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20541,7 +20585,35 @@
 	});
 
 /***/ },
-/* 386 */,
+/* 386 */
+/*!*************************************!*\
+  !*** ./util/util.domequalmarkup.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	const htmlbowl = innerHTML => Object.assign(document.createElement('div'), { innerHTML });
+
+	const htmlequal = exports.htmlequal = (html1, html2) => htmlbowl(html1).isEqualNode(htmlbowl(html2));
+
+	const parser = new DOMParser();
+	const xmldoc = xml => parser.parseFromString(xml, 'application/xml');
+
+	const xmlequal = exports.xmlequal = (xml1, xml2) => xmldoc(xml1).isEqualNode(xmldoc(xml2));
+
+	const domEqualMarkup = exports.domEqualMarkup = (dom, markup, mime = 'application/xml') => {
+	    const parser = new DOMParser();
+	    const node = parser.parseFromString(markup, mime);
+	    return dom.isEqualNode(node);
+	};
+
+	const htmlEqualMarkup = exports.htmlEqualMarkup = (dom, markup) => domEqualMarkup(dom, markup, 'application/xhtml');
+
+/***/ },
 /* 387 */
 /*!****************************!*\
   !*** ./lib/xmldom.spec.js ***!
@@ -20746,270 +20818,6 @@
 	        });
 	    });
 	});
-
-/***/ },
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
-/* 415 */,
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */,
-/* 433 */,
-/* 434 */,
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */,
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
-/* 446 */,
-/* 447 */,
-/* 448 */,
-/* 449 */,
-/* 450 */,
-/* 451 */,
-/* 452 */,
-/* 453 */,
-/* 454 */,
-/* 455 */,
-/* 456 */,
-/* 457 */,
-/* 458 */,
-/* 459 */,
-/* 460 */,
-/* 461 */,
-/* 462 */,
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */,
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */,
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */,
-/* 487 */,
-/* 488 */,
-/* 489 */,
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */,
-/* 507 */,
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */,
-/* 534 */,
-/* 535 */,
-/* 536 */,
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */,
-/* 541 */,
-/* 542 */,
-/* 543 */,
-/* 544 */,
-/* 545 */,
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
-/* 559 */,
-/* 560 */,
-/* 561 */,
-/* 562 */,
-/* 563 */
-/*!**********************************!*\
-  !*** ./docs/lib/siteheading.css ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 564);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 564 */
-/*!********************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
-  \********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 565 */,
-/* 566 */,
-/* 567 */
-/*!*************************************!*\
-  !*** ./util/util.domequalmarkup.js ***!
-  \*************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	// fixme: clear shit
-
-	const htmlbowl = innerHTML => Object.assign(document.createElement('div'), { innerHTML });
-
-	const htmlequal = exports.htmlequal = (html1, html2) => htmlbowl(html1).isEqualNode(htmlbowl(html2));
-
-	/*const xmlbowl = innerHTML => {
-	    const element = document.createElementNS('https://www.w3.org/1999/xml', 'e');
-	    return Object.assign(element, { innerHTML });
-	};*/
-
-	const parser = new DOMParser();
-	const xmldoc = xml => parser.parseFromString(xml, 'application/xml');
-
-	const xmlequal = exports.xmlequal = (xml1, xml2) => xmldoc(xml1).isEqualNode(xmldoc(xml2));
-
-	// window.htmlequal = htmlequal;
-
-	const domEqualMarkup = exports.domEqualMarkup = (dom, markup) => {
-	    const parser = new DOMParser();
-	    const node = parser.parseFromString(markup, 'application/xml');
-	    return dom.isEqualNode(node);
-	};
-
-	const htmlEqualMarkup = exports.htmlEqualMarkup = (dom, markup) => {
-	    const parser = new DOMParser();
-	    const node = parser.parseFromString(markup, 'application/xhtml');
-	    return dom.isEqualNode(node);
-	};
 
 /***/ }
 /******/ ]);

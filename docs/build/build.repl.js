@@ -40,20 +40,18 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /*!******************!*\
   !*** multi repl ***!
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./docs/lib/repl */14);
+	module.exports = __webpack_require__(/*! ./docs/lib/repl */16);
 
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -126,8 +124,7 @@
 	});
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -154,8 +151,7 @@
 	}
 
 /***/ },
-
-/***/ 3:
+/* 3 */
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -275,8 +271,7 @@
 	});
 
 /***/ },
-
-/***/ 4:
+/* 4 */
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -332,8 +327,7 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-
-/***/ 5:
+/* 5 */
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -361,8 +355,7 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-
-/***/ 6:
+/* 6 */
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -759,8 +752,8 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-
-/***/ 8:
+/* 7 */,
+/* 8 */
 /*!*********************************!*\
   !*** ./docs/lib/siteheading.js ***!
   \*********************************/
@@ -775,7 +768,7 @@
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	__webpack_require__(/*! ./siteheading.css */ 563);
+	__webpack_require__(/*! ./siteheading.css */ 9);
 
 	const MODULE_NAME = 'htmlmodule';
 
@@ -791,76 +784,26 @@
 	};
 
 /***/ },
-
-/***/ 9:
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	__webpack_require__(/*! ./sitenav.css */ 10);
-
-	const pathname = location.pathname;
-
-	const children = [(0, _lib.a)({
-	    href: './api/',
-	    target: '_blank',
-	    children: 'api doc'
-	}), (0, _lib.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _lib.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _lib.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _lib.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    target: '_blank',
-	    children: 'git repo'
-	})];
-
-	children.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const sitenavNode = document.getElementById('sitenav');
-	if (sitenavNode) sitenavNode.append(...children);
-
-	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
-
-/***/ },
-
-/***/ 10:
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
+/* 9 */
+/*!**********************************!*\
+  !*** ./docs/lib/siteheading.css ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 11);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 10);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -870,26 +813,24 @@
 	}
 
 /***/ },
-
-/***/ 11:
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
+/* 10 */
+/*!********************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
+  \********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
+	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-
-/***/ 12:
+/* 11 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -947,8 +888,7 @@
 	};
 
 /***/ },
-
-/***/ 13:
+/* 12 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1203,8 +1143,101 @@
 
 
 /***/ },
+/* 13 */
+/*!*****************************!*\
+  !*** ./docs/lib/sitenav.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 14:
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sitenav = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	__webpack_require__(/*! ./sitenav.css */ 14);
+
+	const pathname = location.pathname;
+
+	const children = [(0, _lib.a)({
+	    href: './api/',
+	    target: '_blank',
+	    children: 'api doc'
+	}), (0, _lib.a)({
+	    href: './spec.html',
+	    children: 'spec suite'
+	}), (0, _lib.a)({
+	    href: './repl.html',
+	    children: 'repl machine'
+	}), (0, _lib.a)({
+	    href: './test.html',
+	    children: 'test case'
+	}), (0, _lib.a)({
+	    href: '//github.com/aristov/htmlmodule',
+	    target: '_blank',
+	    children: 'git repo'
+	})];
+
+	children.forEach(link => {
+	    if (link.pathname === pathname) link.removeAttribute('href');
+	});
+
+	const sitenavNode = document.getElementById('sitenav');
+	if (sitenavNode) sitenavNode.append(...children);
+
+	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
+
+/***/ },
+/* 14 */
+/*!******************************!*\
+  !*** ./docs/lib/sitenav.css ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 15);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 15 */
+/*!****************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 16 */
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
   \**************************/
@@ -1218,13 +1251,13 @@
 
 	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
 
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 9);
+	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
-	var _codemirror = __webpack_require__(/*! ./codemirror */ 571);
+	var _codemirror = __webpack_require__(/*! ./codemirror */ 17);
 
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 568);
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 27);
 
-	var _replcase = __webpack_require__(/*! ./replcase */ 572);
+	var _replcase = __webpack_require__(/*! ./replcase */ 28);
 
 	__webpack_require__(/*! ./repl.css */ 34);
 
@@ -1448,8 +1481,55 @@
 	}
 
 /***/ },
+/* 17 */
+/*!********************************!*\
+  !*** ./docs/lib/codemirror.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 21:
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.markupview = exports.codeedit = undefined;
+
+	var _codemirror = __webpack_require__(/*! codemirror */ 18);
+
+	var _codemirror2 = _interopRequireDefault(_codemirror);
+
+	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 19);
+
+	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 20);
+
+	__webpack_require__(/*! codemirror/lib/codemirror.css */ 23);
+
+	__webpack_require__(/*! codemirror/theme/night.css */ 25);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const codeedit = exports.codeedit = (node, value) => new _codemirror2.default(node, {
+	    value: value,
+	    mode: 'javascript',
+	    theme: 'night',
+	    indentUnit: 4,
+	    tabSize: 2,
+	    indentWithTabs: true,
+	    electricChars: true,
+	    styleActiveLine: true,
+	    autoCloseBrackets: true,
+	    matchBrackets: true,
+	    smartIndent: true
+	});
+
+	const markupview = exports.markupview = node => new _codemirror2.default(node, {
+	    mode: 'htmlmixed',
+	    theme: 'night',
+	    readOnly: true
+	});
+
+/***/ },
+/* 18 */
 /*!****************************************!*\
   !*** ./~/codemirror/lib/codemirror.js ***!
   \****************************************/
@@ -2469,8 +2549,7 @@
 	CodeMirror.version="5.19.0";return CodeMirror;});
 
 /***/ },
-
-/***/ 22:
+/* 19 */
 /*!****************************************************!*\
   !*** ./~/codemirror/mode/javascript/javascript.js ***!
   \****************************************************/
@@ -2483,7 +2562,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 21));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3262,8 +3341,7 @@
 	});
 
 /***/ },
-
-/***/ 23:
+/* 20 */
 /*!**************************************************!*\
   !*** ./~/codemirror/mode/htmlmixed/htmlmixed.js ***!
   \**************************************************/
@@ -3276,7 +3354,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 21), __webpack_require__(/*! ../xml/xml */ 24), __webpack_require__(/*! ../javascript/javascript */ 22), __webpack_require__(/*! ../css/css */ 25));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18), __webpack_require__(/*! ../xml/xml */ 21), __webpack_require__(/*! ../javascript/javascript */ 19), __webpack_require__(/*! ../css/css */ 22));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3409,8 +3487,7 @@
 	});
 
 /***/ },
-
-/***/ 24:
+/* 21 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/xml/xml.js ***!
   \**************************************/
@@ -3423,7 +3500,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 21));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3794,8 +3871,7 @@
 	});
 
 /***/ },
-
-/***/ 25:
+/* 22 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/css/css.js ***!
   \**************************************/
@@ -3808,7 +3884,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 21));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -4358,8 +4434,7 @@
 	});
 
 /***/ },
-
-/***/ 26:
+/* 23 */
 /*!*****************************************!*\
   !*** ./~/codemirror/lib/codemirror.css ***!
   \*****************************************/
@@ -4368,10 +4443,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 27);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 24);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 12)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4388,14 +4463,13 @@
 	}
 
 /***/ },
-
-/***/ 27:
+/* 24 */
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/lib/codemirror.css ***!
   \***************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 11)();
 	// imports
 
 
@@ -4406,8 +4480,7 @@
 
 
 /***/ },
-
-/***/ 28:
+/* 25 */
 /*!**************************************!*\
   !*** ./~/codemirror/theme/night.css ***!
   \**************************************/
@@ -4416,10 +4489,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./night.css */ 29);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./night.css */ 26);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 12)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4436,14 +4509,13 @@
 	}
 
 /***/ },
-
-/***/ 29:
+/* 26 */
 /*!************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/night.css ***!
   \************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 11)();
 	// imports
 
 
@@ -4454,144 +4526,7 @@
 
 
 /***/ },
-
-/***/ 30:
-/*!***************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-globaldefined.rawjs ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "form({\n    action : '//yandex.com/search',\n    target : '_blank',\n    children : [\n        label([\n            img({\n                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n                alt : 'Yandex',\n                width : 50\n            }),\n            br(),\n            input({ type : 'search', name : 'text' }),\n            ' '\n        ]),\n        button('Find')\n    ]\n})\n"
-
-/***/ },
-
-/***/ 31:
-/*!***************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-exportdefault.rawjs ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
-
-/***/ },
-
-/***/ 32:
-/*!************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-importfrom.rawjs ***!
-  \************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
-
-/***/ },
-
-/***/ 34:
-/*!***************************!*\
-  !*** ./docs/lib/repl.css ***!
-  \***************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./repl.css */ 35);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./repl.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./repl.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 35:
-/*!*************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/repl.css ***!
-  \*************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "body\n{\n    /*background: #000;*/\n    padding: 0 10px;\n}\nmain.repl\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n}\ndiv.panel\n{\n    width: 50%;\n}\ndiv.panel > form label\n{\n    margin-right: 20px;\n    user-select: none;\n\n    /* fixme autoprefixer */\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n}\nmain .CodeMirror\n{\n    font-size: 14px;\n}\nmain .jsinput .CodeMirror\n{\n    height: 600px;\n}\nmain .htmloutput\n{\n    position: relative;\n    margin-top: -300px;\n    border-left: 1px solid rgba(255, 255, 255, 0.11);\n}\nmain .htmloutput .CodeMirror\n{\n    height : 300px;\n}\noutput.domoutput\n{\n    height: 600px;\n    overflow: auto;\n    display: block;\n    border: 1px solid black;\n    box-sizing: border-box;\n    padding: 10px;\n    background: #fff;\n}\nmain.invalid pre.htmloutput\n{\n    color: red;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 563:
-/*!**********************************!*\
-  !*** ./docs/lib/siteheading.css ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 564);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 564:
-/*!********************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
-  \********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 566:
-/*!**********************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
-  \**********************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "export default [\n\n    ({ fieldset, legend, input }) => fieldset([\n        legend('Authorization'),\n        input({ placeholder : 'login', style : { marginRight : '5px' } }),\n        input({ type : 'password', placeholder : 'password' })\n    ]),\n\n    ({ article, h4, img, audio, video }) => article({\n        title : 'Media',\n        children : [\n            h4('Image media'),\n            img({\n                src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',\n                alt : 'Crazy PiPi!'\n            }),\n            h4('Audio media'),\n            audio({\n                controls : true,\n                src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'\n            }),\n            h4('Video media'),\n            video({\n                controls : true,\n                width : '200',\n                src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'\n            })\n        ]\n    }),\n\n    ({ header, nav, a, ul, li }) => header(nav(ul([\n        li(a({\n            href : '/home.html',\n            textContent : 'Go home'\n        })),\n        li(a({\n            href : 'http://github.com/aristov',\n            textContent : 'Github page'\n        })),\n        li(a({\n            href : 'mailto:vv.aristov@gmail.com',\n            textContent : 'Contact me'\n        }))\n    ]))),\n\n    ({ div, ul, li, bdi }) => div({\n        children : ul([\n            li(['User ', bdi('jcranmer'), ': 12 posts.']),\n            li(['User ', bdi('hober'), ': 5 posts.']),\n            li(['User ', bdi('إيان'), ': 3 posts.'])\n        ])\n    }),\n\n    ({ div, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div({\n            children: [\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]\n        })\n    },\n\n    ({ fieldset, legend, button, br, input, output }) => fieldset([\n        legend('Event handlers'),\n        button({\n            style : { marginRight : '10px' },\n            onclick : ({\n                type,\n                target : { tagName },\n                constructor : { name }\n            }) => alert([tagName, type, name, 'handler!'].join(' ')),\n            textContent : 'Show me alert, please...'\n        }),\n        button({\n            style : { marginRight : '10px' },\n            onfocus : ({ target }) => target.textContent = 'Focused!',\n            onblur : ({ target }) => target.textContent = 'Focus wait...',\n            textContent : 'Focus wait...'\n        }),\n        input({\n            style : { marginRight : '10px' },\n            placeholder : 'text input char counter',\n            oninput : ({ target }) => {\n                target.nextElementSibling.value = target.value.length;\n            }\n        }),\n        output({ value : '0' })\n    ]),\n\n    ({ footer, address, small }) => footer([\n        address('vv.aristov@gmail.com'),\n        small('@ All rights free')\n    ]),\n\n    ({ main, sup, sub, i, strong }) => main([\n        'Here comes ',\n        sup('supertext'),\n        ' and ',\n        sub('subtext'),\n        '. Later they are followed by ',\n        i('alternative voice'),\n        ' and ',\n        strong('important!')\n    ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([\n        dt('abbreviations'),\n        dd(abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL')),\n        dt('edits'),\n        dd([ins('inserted'), ' and ', del('deleted'), ' text']),\n        dt('reywords'),\n        dd(b('var, function, export, const')),\n        dt('other'),\n        dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n    ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) => article({\n        className : 'vcard',\n        children : [\n            h2({ className : 'fn', textContent : 'Vyacheslav Aristov' }),\n            address({ className : 'email', textContent : 'vv.aristov@gmail.com' })\n        ]\n    }),\n\n    ({ style }) => style({\n        id : 'greenstyle',\n        textContent : '#greenstyle { display: inline-block; color: green; font-family: monospace }'\n    }),\n\n    ({ script }) => script(\n        'Object.assign(' +\n            'document.currentScript.style, ' +\n            '{ display: \"block\", color: \"blue\", fontFamily : \"monospace\" ' +\n        '})'),\n\n    ({ pre }) => pre(\n`preformatted text\nline break \n    — yet another line break with tab\n  \n  <>&`\n    ),\n\n    ({ blockquote }) => blockquote({\n        cite : 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',\n        textContent : 'The blockquote element represents a section that is quoted from another source.'\n    }),\n\n    ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'),\n\n    ({ div }) => div([\n        'div — like span has no semantics, but',\n        div('div has default `display: block` style')\n    ]),\n\n    ({ p, br }) => p(['b', br(), 'r']),\n\n    ({ p, hr }) => p([\n        'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',\n        hr(),\n        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'\n    ]),\n\n    ({ button }) => button('Push my button'),\n\n    ({ form, label, input, textarea, span }) => form({\n        style : {\n            display : 'flex',\n            flexDirection : 'column',\n            justifyContent : 'space-between',\n            height: '200px'\n        },\n        children : [\n            label([\n                'Text input ',\n                input({ placeholder : 'Fill me' })\n            ]),\n            label([\n                input({ type : 'checkbox' }),\n                ' Simple checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', checked : true }),\n                ' Checked checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', attrset : { checked : '' } }),\n                ' Initially checked checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', indeterminate : true }),\n                ' Indeterminate checkbox'\n            ]),\n            span([\n                label([\n                    input({\n                        type : 'radio',\n                        name : 'chooseproglangradio',\n                        value : 'html'\n                    }),\n                    ' HTML '\n                ]),\n                label([\n                    input({\n                        type : 'radio',\n                        name : 'chooseproglangradio',\n                        value : 'xml'\n                    }),\n                    ' XML'\n                ])\n            ]),\n            input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n        ]\n    }),\n\n    ({ form, label, select, option, br }) => form([\n        label([\n            'Select technology ',\n            select([\n                option('XML'),\n                option('HTML'),\n                option({ selected : true, textContent : 'WAI-ARIA' }),\n                option('RDFS'),\n                option('OWL'),\n                option('SGML'),\n                option('CSS')\n            ])\n        ]),\n        br(),\n        label([\n            'Select technology stack',\n            br(),\n            select({\n                multiple : true,\n                children : [\n                    option('XML'),\n                    option({\n                        attrset : { selected : '' },\n                        textContent : 'HTML'\n                    }),\n                    option('WAI-ARIA'),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ]})\n        ]),\n        br()\n    ]),\n\n    ({ form, input, button }) => form({\n        style : { whiteSpace : 'nowrap' },\n        children : [\n            input({\n                name : 'query',\n                placeholder : 'type your request',\n                type : 'search',\n                style : { marginRight : '5px' }\n            }),\n            button('search')\n        ]\n    }),\n\n    ({ dialog }) => dialog({\n        open : true,\n        style : { position : 'relative', display: 'block' },\n        textContent : 'Hello world!'\n    }),\n\n    ({ iframe, dialog, p, button, script }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([\n        caption('Web technology comparison'),\n        thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n        tbody([\n            [code('tagName'), code('role')],\n            [code('hidden'), code('aria-hidden')],\n            [code('title'), code('aria-label')]\n        ].map(([xml, html]) => tr([ td(xml), td(html) ])))\n    ]),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([\n        h1('First level heading'),\n        h2('Second level heading'),\n        h3('Third level heading'),\n        h4('Fourth level heding'),\n        h5('Fifth level heding'),\n        h6('Sixth level heding in group')\n    ]),\n\n    ({ details, summary, code, em, del, dfn }) => details([\n        summary('Show details'),\n        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ',\n        code('export const code = init => instance.createElement(\\'code\\', init);'),\n        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',\n        dfn('Instance.js — simple and powerfull DOM Element interface')\n    ]),\n\n    ({ article, section, ruby, rt, rp }) => article({\n        title : 'Ruby annotations',\n        children : [\n            section([\n                ruby(['君', rt('くん')]),\n                ruby(['子', rt('し')]),\n                'は',\n                ruby(['和', rt('わ')]),\n                'して',\n                ruby(['同', rt('どう')]),\n                'ぜず。'\n            ]),\n            section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))\n        ]\n    }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) => article({\n        title : 'Various lists',\n        children : [\n            ul([\n                li('Ampeg'),\n                li('Fender'),\n                li('SMB Effects')\n            ]),\n            ol([\n                li('Amsterdam'),\n                li('New York'),\n                li('Moscow')\n            ]),\n            dl([\n                dt('DOM'),\n                dd('Document object model'),\n                dt('XML'),\n                dd('Extensible markup language'),\n                dt('HTML'),\n                dd('Hyper text markup language'),\n                dt('ARIAML'),\n                dd('Accessible rich internet applications markup language')\n            ])\n        ]\n    }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
-
-/***/ },
-
-/***/ 568:
+/* 27 */
 /*!*************************************!*\
   !*** ./util/util.htmlserializer.js ***!
   \*************************************/
@@ -4669,8 +4604,69 @@
 	exports.HTMLSerializer = HTMLSerializer;
 
 /***/ },
+/* 28 */
+/*!******************************!*\
+  !*** ./docs/lib/replcase.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 569:
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.testcase = exports.importfrom = exports.exportdefault = exports.globaldefined = undefined;
+
+	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 29);
+
+	var _testGlobaldefined2 = _interopRequireDefault(_testGlobaldefined);
+
+	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 30);
+
+	var _testExportdefault2 = _interopRequireDefault(_testExportdefault);
+
+	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 31);
+
+	var _testImportfrom2 = _interopRequireDefault(_testImportfrom);
+
+	var _testcase = __webpack_require__(/*! ./testcase */ 32);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.globaldefined = _testGlobaldefined2.default;
+	exports.exportdefault = _testExportdefault2.default;
+	exports.importfrom = _testImportfrom2.default;
+	exports.testcase = _testcase.testcase;
+
+/***/ },
+/* 29 */
+/*!***************************************************************!*\
+  !*** ./~/raw-loader!./docs/lib/test/test-globaldefined.rawjs ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "form({\n    action : '//yandex.com/search',\n    target : '_blank',\n    children : [\n        label([\n            img({\n                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n                alt : 'Yandex',\n                width : 50\n            }),\n            br(),\n            input({ type : 'search', name : 'text' }),\n            ' '\n        ]),\n        button('Find')\n    ]\n})\n"
+
+/***/ },
+/* 30 */
+/*!***************************************************************!*\
+  !*** ./~/raw-loader!./docs/lib/test/test-exportdefault.rawjs ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
+
+/***/ },
+/* 31 */
+/*!************************************************************!*\
+  !*** ./~/raw-loader!./docs/lib/test/test-importfrom.rawjs ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
+
+/***/ },
+/* 32 */
 /*!******************************!*\
   !*** ./docs/lib/testcase.js ***!
   \******************************/
@@ -4683,7 +4679,7 @@
 	});
 	exports.testcase = undefined;
 
-	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 566);
+	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 33);
 
 	var _testTestcase2 = _interopRequireDefault(_testTestcase);
 
@@ -4701,90 +4697,59 @@
 	});
 
 /***/ },
+/* 33 */
+/*!**********************************************************!*\
+  !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
+  \**********************************************************/
+/***/ function(module, exports) {
 
-/***/ 571:
-/*!********************************!*\
-  !*** ./docs/lib/codemirror.js ***!
-  \********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.markupview = exports.codeedit = undefined;
-
-	var _codemirror = __webpack_require__(/*! codemirror */ 21);
-
-	var _codemirror2 = _interopRequireDefault(_codemirror);
-
-	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 22);
-
-	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 23);
-
-	__webpack_require__(/*! codemirror/lib/codemirror.css */ 26);
-
-	__webpack_require__(/*! codemirror/theme/night.css */ 28);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	const codeedit = exports.codeedit = (node, value) => new _codemirror2.default(node, {
-	    value: value,
-	    mode: 'javascript',
-	    theme: 'night',
-	    indentUnit: 4,
-	    tabSize: 2,
-	    indentWithTabs: true,
-	    electricChars: true,
-	    styleActiveLine: true,
-	    autoCloseBrackets: true,
-	    matchBrackets: true,
-	    smartIndent: true
-	});
-
-	const markupview = exports.markupview = node => new _codemirror2.default(node, {
-	    mode: 'htmlmixed',
-	    theme: 'night',
-	    readOnly: true
-	});
+	module.exports = "export default [\n\n    ({ fieldset, legend, input }) => fieldset([\n        legend('Authorization'),\n        input({ placeholder : 'login', style : { marginRight : '5px' } }),\n        input({ type : 'password', placeholder : 'password' })\n    ]),\n\n    ({ article, h4, img, audio, video }) => article({\n        title : 'Media',\n        children : [\n            h4('Image media'),\n            img({\n                src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',\n                alt : 'Crazy PiPi!'\n            }),\n            h4('Audio media'),\n            audio({\n                controls : true,\n                src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'\n            }),\n            h4('Video media'),\n            video({\n                controls : true,\n                width : '200',\n                src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'\n            })\n        ]\n    }),\n\n    ({ header, nav, a, ul, li }) => header(nav(ul([\n        li(a({\n            href : '/home.html',\n            textContent : 'Go home'\n        })),\n        li(a({\n            href : 'http://github.com/aristov',\n            textContent : 'Github page'\n        })),\n        li(a({\n            href : 'mailto:vv.aristov@gmail.com',\n            textContent : 'Contact me'\n        }))\n    ]))),\n\n    ({ div, ul, li, bdi }) => div({\n        children : ul([\n            li(['User ', bdi('jcranmer'), ': 12 posts.']),\n            li(['User ', bdi('hober'), ': 5 posts.']),\n            li(['User ', bdi('إيان'), ': 3 posts.'])\n        ])\n    }),\n\n    ({ div, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div({\n            children: [\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]\n        })\n    },\n\n    ({ fieldset, legend, button, br, input, output }) => fieldset([\n        legend('Event handlers'),\n        button({\n            style : { marginRight : '10px' },\n            onclick : ({\n                type,\n                target : { tagName },\n                constructor : { name }\n            }) => alert([tagName, type, name, 'handler!'].join(' ')),\n            textContent : 'Show me alert, please...'\n        }),\n        button({\n            style : { marginRight : '10px' },\n            onfocus : ({ target }) => target.textContent = 'Focused!',\n            onblur : ({ target }) => target.textContent = 'Focus wait...',\n            textContent : 'Focus wait...'\n        }),\n        input({\n            style : { marginRight : '10px' },\n            placeholder : 'text input char counter',\n            oninput : ({ target }) => {\n                target.nextElementSibling.value = target.value.length;\n            }\n        }),\n        output({ value : '0' })\n    ]),\n\n    ({ footer, address, small }) => footer([\n        address('vv.aristov@gmail.com'),\n        small('@ All rights free')\n    ]),\n\n    ({ main, sup, sub, i, strong }) => main([\n        'Here comes ',\n        sup('supertext'),\n        ' and ',\n        sub('subtext'),\n        '. Later they are followed by ',\n        i('alternative voice'),\n        ' and ',\n        strong('important!')\n    ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([\n        dt('abbreviations'),\n        dd(abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL')),\n        dt('edits'),\n        dd([ins('inserted'), ' and ', del('deleted'), ' text']),\n        dt('reywords'),\n        dd(b('var, function, export, const')),\n        dt('other'),\n        dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n    ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) => article({\n        className : 'vcard',\n        children : [\n            h2({ className : 'fn', textContent : 'Vyacheslav Aristov' }),\n            address({ className : 'email', textContent : 'vv.aristov@gmail.com' })\n        ]\n    }),\n\n    ({ style }) => style({\n        id : 'greenstyle',\n        textContent : '#greenstyle { display: inline-block; color: green; font-family: monospace }'\n    }),\n\n    ({ script }) => script(\n        'Object.assign(' +\n            'document.currentScript.style, ' +\n            '{ display: \"block\", color: \"blue\", fontFamily : \"monospace\" ' +\n        '})'),\n\n    ({ pre }) => pre(\n`preformatted text\nline break \n    — yet another line break with tab\n  \n  <>&`\n    ),\n\n    ({ blockquote }) => blockquote({\n        cite : 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',\n        textContent : 'The blockquote element represents a section that is quoted from another source.'\n    }),\n\n    ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'),\n\n    ({ div }) => div([\n        'div — like span has no semantics, but',\n        div('div has default `display: block` style')\n    ]),\n\n    ({ p, br }) => p(['b', br(), 'r']),\n\n    ({ p, hr }) => p([\n        'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',\n        hr(),\n        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'\n    ]),\n\n    ({ button }) => button('Push my button'),\n\n    ({ form, label, input, textarea, span }) => form({\n        style : {\n            display : 'flex',\n            flexDirection : 'column',\n            justifyContent : 'space-between',\n            height: '200px'\n        },\n        children : [\n            label([\n                'Text input ',\n                input({ placeholder : 'Fill me' })\n            ]),\n            label([\n                input({ type : 'checkbox' }),\n                ' Simple checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', checked : true }),\n                ' Checked checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', attrset : { checked : '' } }),\n                ' Initially checked checkbox'\n            ]),\n            label([\n                input({ type : 'checkbox', indeterminate : true }),\n                ' Indeterminate checkbox'\n            ]),\n            span([\n                label([\n                    input({\n                        type : 'radio',\n                        name : 'chooseproglangradio',\n                        value : 'html'\n                    }),\n                    ' HTML '\n                ]),\n                label([\n                    input({\n                        type : 'radio',\n                        name : 'chooseproglangradio',\n                        value : 'xml'\n                    }),\n                    ' XML'\n                ])\n            ]),\n            input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n        ]\n    }),\n\n    ({ form, label, select, option, br }) => form([\n        label([\n            'Select technology ',\n            select([\n                option('XML'),\n                option('HTML'),\n                option({ selected : true, textContent : 'WAI-ARIA' }),\n                option('RDFS'),\n                option('OWL'),\n                option('SGML'),\n                option('CSS')\n            ])\n        ]),\n        br(),\n        label([\n            'Select technology stack',\n            br(),\n            select({\n                multiple : true,\n                children : [\n                    option('XML'),\n                    option({\n                        attrset : { selected : '' },\n                        textContent : 'HTML'\n                    }),\n                    option('WAI-ARIA'),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ]})\n        ]),\n        br()\n    ]),\n\n    ({ form, input, button }) => form({\n        style : { whiteSpace : 'nowrap' },\n        children : [\n            input({\n                name : 'query',\n                placeholder : 'type your request',\n                type : 'search',\n                style : { marginRight : '5px' }\n            }),\n            button('search')\n        ]\n    }),\n\n    ({ dialog }) => dialog({\n        open : true,\n        style : { position : 'relative', display: 'block' },\n        textContent : 'Hello world!'\n    }),\n\n    ({ iframe, dialog, p, button, script }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([\n        caption('Web technology comparison'),\n        thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n        tbody([\n            [code('tagName'), code('role')],\n            [code('hidden'), code('aria-hidden')],\n            [code('title'), code('aria-label')]\n        ].map(([xml, html]) => tr([ td(xml), td(html) ])))\n    ]),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([\n        h1('First level heading'),\n        h2('Second level heading'),\n        h3('Third level heading'),\n        h4('Fourth level heding'),\n        h5('Fifth level heding'),\n        h6('Sixth level heding in group')\n    ]),\n\n    ({ details, summary, code, em, del, dfn }) => details([\n        summary('Show details'),\n        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ',\n        code('export const code = init => instance.createElement(\\'code\\', init);'),\n        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',\n        dfn('Instance.js — simple and powerfull DOM Element interface')\n    ]),\n\n    ({ article, section, ruby, rt, rp }) => article({\n        title : 'Ruby annotations',\n        children : [\n            section([\n                ruby(['君', rt('くん')]),\n                ruby(['子', rt('し')]),\n                'は',\n                ruby(['和', rt('わ')]),\n                'して',\n                ruby(['同', rt('どう')]),\n                'ぜず。'\n            ]),\n            section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))\n        ]\n    }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) => article({\n        title : 'Various lists',\n        children : [\n            ul([\n                li('Ampeg'),\n                li('Fender'),\n                li('SMB Effects')\n            ]),\n            ol([\n                li('Amsterdam'),\n                li('New York'),\n                li('Moscow')\n            ]),\n            dl([\n                dt('DOM'),\n                dd('Document object model'),\n                dt('XML'),\n                dd('Extensible markup language'),\n                dt('HTML'),\n                dd('Hyper text markup language'),\n                dt('ARIAML'),\n                dd('Accessible rich internet applications markup language')\n            ])\n        ]\n    }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
 
 /***/ },
-
-/***/ 572:
-/*!******************************!*\
-  !*** ./docs/lib/replcase.js ***!
-  \******************************/
+/* 34 */
+/*!***************************!*\
+  !*** ./docs/lib/repl.css ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	// style-loader: Adds some css to the DOM by adding a <style> tag
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.testcase = exports.importfrom = exports.exportdefault = exports.globaldefined = undefined;
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./repl.css */ 35);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./repl.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./repl.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
-	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 30);
+/***/ },
+/* 35 */
+/*!*************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/repl.css ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
 
-	var _testGlobaldefined2 = _interopRequireDefault(_testGlobaldefined);
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
+	// imports
 
-	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 31);
 
-	var _testExportdefault2 = _interopRequireDefault(_testExportdefault);
+	// module
+	exports.push([module.id, "body\n{\n    /*background: #000;*/\n    padding: 0 10px;\n}\nmain.repl\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n}\ndiv.panel\n{\n    width: 50%;\n}\ndiv.panel > form label\n{\n    margin-right: 20px;\n    user-select: none;\n\n    /* fixme autoprefixer */\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n}\nmain .CodeMirror\n{\n    font-size: 14px;\n}\nmain .jsinput .CodeMirror\n{\n    height: 600px;\n}\nmain .htmloutput\n{\n    position: relative;\n    margin-top: -300px;\n    border-left: 1px solid rgba(255, 255, 255, 0.11);\n}\nmain .htmloutput .CodeMirror\n{\n    height : 300px;\n}\noutput.domoutput\n{\n    height: 600px;\n    overflow: auto;\n    display: block;\n    border: 1px solid black;\n    box-sizing: border-box;\n    padding: 10px;\n    background: #fff;\n}\nmain.invalid pre.htmloutput\n{\n    color: red;\n}\n", ""]);
 
-	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 32);
+	// exports
 
-	var _testImportfrom2 = _interopRequireDefault(_testImportfrom);
-
-	var _testcase = __webpack_require__(/*! ./testcase */ 569);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.globaldefined = _testGlobaldefined2.default;
-	exports.exportdefault = _testExportdefault2.default;
-	exports.importfrom = _testImportfrom2.default;
-	exports.testcase = _testcase.testcase;
 
 /***/ }
-
-/******/ });
+/******/ ]);

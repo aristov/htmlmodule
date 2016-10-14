@@ -15,7 +15,7 @@ const autoprefixer = require('autoprefixer'); // fixme
 const env = process.env;
 const plugins = [];
 
-if(env.DEV) Object.assign(env, { DOCS : true, ES6 : true, WATCH : true });
+// if(env.DEV) Object.assign(env, { DOCS : true, ES6 : true, WATCH : true });
 
 if(env.MIN) {
     if(env.ES6) throw Error('Minification requires transpiling to ES5')

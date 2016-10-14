@@ -40,9 +40,8 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /*!*******************!*\
   !*** multi index ***!
   \*******************/
@@ -52,8 +51,7 @@
 
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -126,8 +124,7 @@
 	});
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -154,8 +151,7 @@
 	}
 
 /***/ },
-
-/***/ 3:
+/* 3 */
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -275,8 +271,7 @@
 	});
 
 /***/ },
-
-/***/ 4:
+/* 4 */
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -332,8 +327,7 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-
-/***/ 5:
+/* 5 */
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -361,8 +355,7 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-
-/***/ 6:
+/* 6 */
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -759,8 +752,7 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-
-/***/ 7:
+/* 7 */
 /*!***************************!*\
   !*** ./docs/lib/index.js ***!
   \***************************/
@@ -770,7 +762,7 @@
 
 	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
 
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 9);
+	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
 	const { ul, li, main, code, a } = htmlmodule;
 	const listnode = main([(0, _siteheading.siteheading)(), ul({
@@ -788,8 +780,7 @@
 	document.body.append(listnode, (0, _sitenav.sitenav)());
 
 /***/ },
-
-/***/ 8:
+/* 8 */
 /*!*********************************!*\
   !*** ./docs/lib/siteheading.js ***!
   \*********************************/
@@ -804,7 +795,7 @@
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	__webpack_require__(/*! ./siteheading.css */ 563);
+	__webpack_require__(/*! ./siteheading.css */ 9);
 
 	const MODULE_NAME = 'htmlmodule';
 
@@ -820,76 +811,26 @@
 	};
 
 /***/ },
-
-/***/ 9:
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	__webpack_require__(/*! ./sitenav.css */ 10);
-
-	const pathname = location.pathname;
-
-	const children = [(0, _lib.a)({
-	    href: './api/',
-	    target: '_blank',
-	    children: 'api doc'
-	}), (0, _lib.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _lib.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _lib.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _lib.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    target: '_blank',
-	    children: 'git repo'
-	})];
-
-	children.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const sitenavNode = document.getElementById('sitenav');
-	if (sitenavNode) sitenavNode.append(...children);
-
-	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
-
-/***/ },
-
-/***/ 10:
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
+/* 9 */
+/*!**********************************!*\
+  !*** ./docs/lib/siteheading.css ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 11);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 10);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -899,26 +840,24 @@
 	}
 
 /***/ },
-
-/***/ 11:
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
+/* 10 */
+/*!********************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
+  \********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
+	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-
-/***/ 12:
+/* 11 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -976,8 +915,7 @@
 	};
 
 /***/ },
-
-/***/ 13:
+/* 12 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1232,27 +1170,74 @@
 
 
 /***/ },
+/* 13 */
+/*!*****************************!*\
+  !*** ./docs/lib/sitenav.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 563:
-/*!**********************************!*\
-  !*** ./docs/lib/siteheading.css ***!
-  \**********************************/
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sitenav = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	__webpack_require__(/*! ./sitenav.css */ 14);
+
+	const pathname = location.pathname;
+
+	const children = [(0, _lib.a)({
+	    href: './api/',
+	    target: '_blank',
+	    children: 'api doc'
+	}), (0, _lib.a)({
+	    href: './spec.html',
+	    children: 'spec suite'
+	}), (0, _lib.a)({
+	    href: './repl.html',
+	    children: 'repl machine'
+	}), (0, _lib.a)({
+	    href: './test.html',
+	    children: 'test case'
+	}), (0, _lib.a)({
+	    href: '//github.com/aristov/htmlmodule',
+	    target: '_blank',
+	    children: 'git repo'
+	})];
+
+	children.forEach(link => {
+	    if (link.pathname === pathname) link.removeAttribute('href');
+	});
+
+	const sitenavNode = document.getElementById('sitenav');
+	if (sitenavNode) sitenavNode.append(...children);
+
+	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
+
+/***/ },
+/* 14 */
+/*!******************************!*\
+  !*** ./docs/lib/sitenav.css ***!
+  \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 564);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 15);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1262,23 +1247,21 @@
 	}
 
 /***/ },
-
-/***/ 564:
-/*!********************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
-  \********************************************************************/
+/* 15 */
+/*!****************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
+  \****************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
+	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }
-
-/******/ });
+/******/ ]);
