@@ -1,9 +1,9 @@
-import { small, footer, a } from '../../lib';
+import { nav, small, footer, a } from '../../lib';
 import './sitenav.css';
 
 const pathname = location.pathname;
 
-const children = [
+const navlist = [
     a({
         href : './api/',
         target : '_blank',
@@ -28,11 +28,25 @@ const children = [
     })
 ];
 
-children.forEach(link => {
+navlist.forEach(link => {
     if(link.pathname === pathname) link.removeAttribute('href');
 });
 
-const node = document.getElementById('sitenav');
-if(node) node.append(...children, small('assembled by htmlmodule'));
+const assembledby = small([
+    'assembled by ',
+    a({
+        href : 'http://npmjs.org/package/htmlmodule',
+        children : 'htmlmodule'
+    })
+]);
 
-export const sitenav = init => footer({ id : 'sitenav', children });
+const children = [nav(navlist), assembledby];
+
+const node = document.getElementById('sitenav');
+if(node) node.append(...children);
+
+export const sitenav = init =>
+    footer({
+        id : 'sitenav',
+        children
+    });

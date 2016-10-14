@@ -15,7 +15,9 @@
             details, summary, fieldset, legend
         } = htmlmodule;
 
-        const { siteheading, sitenav } = replmodule;
+        const { siteheading, sitenav } = indexmodule;
+
+        const sourcemarkup = code();
 
         const keys = Object.keys(htmlmodule);
         const items = keys.map(function(key) {
@@ -26,23 +28,21 @@
             }))
         });
 
-        function init({ source }) {
-            document.body.append(
-                siteheading(),
-                details([
-                    summary('index.html source'),
-                    code(pre(source))
-                ]),
-                main(fieldset([
-                    legend('htmlmodule index'),
-                    ul(items)
-                ])),
-                sitenav());
-        }
+        document.body.append(
+            siteheading(),
+            details([
+                summary('index.html source'),
+                sourcemarkup
+            ]),
+            main(fieldset([
+                legend('htmlmodule index'),
+                ul(items)
+            ])),
+            sitenav());
 
         fetch('index.html')
             .then(function(response) { return response.text() })
-            .then(function(source) { init({ source }) });
+            .then(function(source) { sourcemarkup.append(pre(source)) });
     }
     </script>
 </body>

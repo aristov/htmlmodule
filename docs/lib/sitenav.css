@@ -1,8 +1,26 @@
 #sitenav
 {
-    font: bold 15px monospace;
+    text-align: center;
+}
+#sitenav nav
+{
     width: 750px;
-    margin: 25px auto 30px;
     display: flex;
     justify-content: space-around;
+    margin: auto;
+}
+#sitenav nav a
+{
+    margin: 25px auto 25px;
+    font: bold 15px monospace;
+}
+#sitenav small
+{
+    position: fixed;
+    right: 15px;
+    bottom: 10px;
+}
+#sitenav small:not(:hover)
+{
+    opacity: 0.3;
 }

@@ -764,7 +764,7 @@
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
-	window.replmodule = { siteheading: _siteheading.siteheading, sitenav: _sitenav.sitenav };
+	window.indexmodule = { siteheading: _siteheading.siteheading, sitenav: _sitenav.sitenav };
 
 /***/ },
 /* 8 */
@@ -1176,7 +1176,7 @@
 
 	const pathname = location.pathname;
 
-	const children = [(0, _lib.a)({
+	const navlist = [(0, _lib.a)({
 	    href: './api/',
 	    target: '_blank',
 	    children: 'api doc'
@@ -1195,14 +1195,24 @@
 	    children: 'git repo'
 	})];
 
-	children.forEach(link => {
+	navlist.forEach(link => {
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	const node = document.getElementById('sitenav');
-	if (node) node.append(...children, (0, _lib.small)('assembled by htmlmodule'));
+	const assembledby = (0, _lib.small)(['assembled by ', (0, _lib.a)({
+	    href: 'http://npmjs.org/package/htmlmodule',
+	    children: 'htmlmodule'
+	})]);
 
-	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
+	const children = [(0, _lib.nav)(navlist), assembledby];
+
+	const node = document.getElementById('sitenav');
+	if (node) node.append(...children);
+
+	const sitenav = exports.sitenav = init => (0, _lib.footer)({
+	    id: 'sitenav',
+	    children
+	});
 
 /***/ },
 /* 14 */
@@ -1245,7 +1255,7 @@
 
 
 	// module
-	exports.push([module.id, "#sitenav\n{\n    font: bold 15px monospace;\n    width: 750px;\n    margin: 25px auto 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n", ""]);
+	exports.push([module.id, "#sitenav\n{\n    text-align: center;\n}\n#sitenav nav\n{\n    width: 750px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    margin: auto;\n}\n#sitenav nav a\n{\n    margin: 25px auto 25px;\n    font: bold 15px monospace;\n}\n#sitenav small\n{\n    position: fixed;\n    right: 15px;\n    bottom: 10px;\n}\n#sitenav small:not(:hover)\n{\n    opacity: 0.3;\n}\n", ""]);
 
 	// exports
 
