@@ -1224,33 +1224,30 @@
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 9);
 
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 568);
-
 	var _codemirror = __webpack_require__(/*! ./codemirror */ 571);
 
-	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 30);
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 568);
 
-	var _testGlobaldefined2 = _interopRequireDefault(_testGlobaldefined);
-
-	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 31);
-
-	var _testExportdefault2 = _interopRequireDefault(_testExportdefault);
-
-	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 32);
-
-	var _testImportfrom2 = _interopRequireDefault(_testImportfrom);
-
-	var _testcase = __webpack_require__(/*! ./testcase */ 569);
+	var _replcase = __webpack_require__(/*! ./replcase */ 572);
 
 	__webpack_require__(/*! ./repl.css */ 34);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	/* ================================================================ */
 
+	// import tests
+
+
+	// import local components
+	// import htmlmodule stuff
 	const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
+
+	// import styles
+
+
+	// import utils
+
 
 	const snippetpart = name => name + '=' + HTMLMODULE_VARIABLE_NAME + '.' + name;
 	const IMPORTS_SNIPPET_PART = Object.keys(htmlmodule).map(snippetpart).join(', ');
@@ -1299,19 +1296,19 @@
 	        updateTest();
 	    },
 	    children: [(0, _lib.option)({ value: '', children: '—' }), (0, _lib.option)({
-	        value: _testGlobaldefined2.default,
+	        value: _replcase.globaldefined,
 	        id: 'example-with-globals',
 	        selected: true,
 	        textContent: 'example with globals'
 	    }), (0, _lib.option)({
-	        value: _testExportdefault2.default,
+	        value: _replcase.exportdefault,
 	        id: 'export-default-example',
 	        children: 'export default example'
 	    }), (0, _lib.option)({
-	        value: _testImportfrom2.default,
+	        value: _replcase.importfrom,
 	        id: 'full-module-example',
 	        children: 'full module example'
-	    }), _testcase.testcase.map(({ src }) => {
+	    }), _replcase.testcase.map(({ src }) => {
 	        const match = src.match(/\({ ((?:\w+,? )+)}\)/);
 	        const textContent = match ? match[1].trim() : '?';
 	        const elements = textContent.split(', ');
@@ -1400,7 +1397,7 @@
 
 	init();
 
-	const codeeditmirror = (0, _codemirror.codeedit)(codeinput, localvalue || _testGlobaldefined2.default);
+	const codeeditmirror = (0, _codemirror.codeedit)(codeinput, localvalue || _replcase.globaldefined);
 	codeeditmirror.on('change', () => evaluate());
 
 	const markupviewmirror = (0, _codemirror.markupview)(markupoutput);
@@ -1450,7 +1447,7 @@
 	    if (selected) location.hash = selected.id;
 
 	    const value = testselectbox.value;
-	    globalbox.checked = value === _testGlobaldefined2.default;
+	    globalbox.checked = value === _replcase.globaldefined;
 	    codeeditmirror.setValue(value + '\n');
 	}
 
@@ -4755,6 +4752,42 @@
 	    theme: 'night',
 	    readOnly: true
 	});
+
+/***/ },
+
+/***/ 572:
+/*!******************************!*\
+  !*** ./docs/lib/replcase.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.testcase = exports.importfrom = exports.exportdefault = exports.globaldefined = undefined;
+
+	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 30);
+
+	var _testGlobaldefined2 = _interopRequireDefault(_testGlobaldefined);
+
+	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 31);
+
+	var _testExportdefault2 = _interopRequireDefault(_testExportdefault);
+
+	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 32);
+
+	var _testImportfrom2 = _interopRequireDefault(_testImportfrom);
+
+	var _testcase = __webpack_require__(/*! ./testcase */ 569);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.globaldefined = _testGlobaldefined2.default;
+	exports.exportdefault = _testExportdefault2.default;
+	exports.importfrom = _testImportfrom2.default;
+	exports.testcase = _testcase.testcase;
 
 /***/ }
 

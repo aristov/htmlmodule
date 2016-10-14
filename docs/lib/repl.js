@@ -1,18 +1,20 @@
+// import htmlmodule stuff
 import * as htmlmodule from '../../lib';
 import { button, option, select, output, main, div, p, label, input, abbr, form }
 from '../../lib';
+
+// import local components
 import { siteheading } from './siteheading';
 import { sitenav } from './sitenav';
-
-import { HTMLSerializer } from '../../util/util.htmlserializer';
-
 import { codeedit, markupview } from './codemirror';
 
-import globaldefined from 'raw!./test/test-globaldefined.rawjs';
-import exportdefault from 'raw!./test/test-exportdefault.rawjs';
-import importfrom from 'raw!./test/test-importfrom.rawjs';
-import { testcase } from './testcase';
+// import utils
+import { HTMLSerializer } from '../../util/util.htmlserializer';
 
+// import tests
+import { globaldefined, exportdefault, importfrom, testcase } from './replcase';
+
+// import styles
 import './repl.css';
 
 /* ================================================================ */
