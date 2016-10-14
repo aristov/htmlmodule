@@ -2,6 +2,10 @@
 
 details
 {
+    margin-bottom: 30px;
+}
+details > summary
+{
     margin-bottom: 20px;
 }
 code > pre
@@ -9,6 +13,7 @@ code > pre
     background: black;
     color: white;
     padding: 12px;
+    margin: 0 0 20px;
 }
 ul
 {

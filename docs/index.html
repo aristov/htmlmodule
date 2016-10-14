@@ -17,7 +17,7 @@
 
         const { siteheading, sitenav } = indexmodule;
 
-        const sourcemarkup = code();
+        const pagesource = details(summary('page source'));
 
         const keys = Object.keys(htmlmodule);
         const items = keys.map(function(key) {
@@ -30,19 +30,24 @@
 
         document.body.append(
             siteheading(),
-            details([
-                summary('index.html source'),
-                sourcemarkup
-            ]),
+            pagesource,
             main(fieldset([
                 legend('htmlmodule index'),
                 ul(items)
             ])),
             sitenav());
 
-        fetch('index.html')
-            .then(function(response) { return response.text() })
-            .then(function(source) { sourcemarkup.append(pre(source)) });
+        Promise.all([
+            fetch('index.html').then(function(response) { return response.text() }),
+            fetch('lib/index.js').then(function(response) { return response.text() }),
+            fetch('lib/index.css').then(function(response) { return response.text() })
+        ]).then(function([html, js, css]) {
+            pagesource.append(
+                'lib/index.js', code(pre(js)),
+                'index.html', code(pre(html)),
+                'lib/index.css', code(pre(css))
+            );
+        });
     }
     </script>
 </body>
