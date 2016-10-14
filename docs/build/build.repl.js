@@ -1360,6 +1360,8 @@
 	    children: 'clear'
 	});
 
+	/* ================================================================ */
+
 	const settingsform = (0, _lib.form)({
 	    className: 'settings',
 	    children: (0, _lib.p)([(0, _lib.label)([globalbox, ' define globally']), (0, _lib.label)(testselectbox), (0, _lib.label)(clearbutton)])
@@ -1373,7 +1375,7 @@
 	    type: 'checkbox',
 	    checked: localStorage.getItem('markupmode') !== 'false',
 	    onchange: ({ target: { checked } }) => {
-	        markupoutput.hidden = !checked;
+	        replmachine.classList.toggle('markupmode', checked);
 	        localStorage.setItem('markupmode', String(checked));
 	        if (checked) evaluate();
 	    }
@@ -1382,16 +1384,11 @@
 	const domoutput = (0, _lib.output)({ className: 'domoutput' });
 
 	const markupoutput = (0, _lib.div)({ className: 'htmloutput', hidden: false });
-	markupoutput.hidden = !markupmodebox.checked;
 
 	/* ================================================================ */
 
-	const app = (0, _lib.div)([(0, _siteheading.siteheading)((0, _lib.abbr)({
-	    title: 'read-eval-print-loop',
-	    style: { cursor: 'help' },
-	    children: 'repl'
-	})), (0, _lib.main)({
-	    className: 'repl',
+	const replmachine = (0, _lib.main)({
+	    className: 'replmachine markupmode',
 	    children: [(0, _lib.div)({
 	        className: 'panel',
 	        children: [settingsform, codeinput]
@@ -1401,7 +1398,16 @@
 	            className: 'settings',
 	            children: (0, _lib.p)((0, _lib.label)([markupmodebox, ' show markup']))
 	        }), domoutput, markupoutput]
-	    })] }), (0, _sitenav.sitenav)()]);
+	    })]
+	});
+
+	/* ================================================================ */
+
+	const app = (0, _lib.div)([(0, _siteheading.siteheading)((0, _lib.abbr)({
+	    title: 'read-eval-print-loop',
+	    style: { cursor: 'help' },
+	    children: 'repl'
+	})), replmachine, (0, _sitenav.sitenav)()]);
 
 	/* ================================================================ */
 
@@ -1421,6 +1427,7 @@
 	            updateTest();
 	        }
 	    }
+	    markupoutput.hidden = !markupmodebox.checked;
 	    document.body.append(app);
 	};
 
@@ -4746,7 +4753,7 @@
 
 
 	// module
-	exports.push([module.id, "body\n{\n    /*background: #000;*/\n    padding: 0 10px;\n}\nmain.repl\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n}\ndiv.panel\n{\n    width: 50%;\n}\ndiv.panel > form label\n{\n    margin-right: 20px;\n    user-select: none;\n\n    /* fixme autoprefixer */\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n}\nmain .CodeMirror\n{\n    font-size: 14px;\n}\nmain .jsinput .CodeMirror\n{\n    height: 600px;\n}\nmain .htmloutput\n{\n    position: relative;\n    margin-top: -300px;\n    border-left: 1px solid rgba(255, 255, 255, 0.11);\n}\nmain .htmloutput .CodeMirror\n{\n    height : 300px;\n}\noutput.domoutput\n{\n    height: 600px;\n    overflow: auto;\n    display: block;\n    border: 1px solid black;\n    box-sizing: border-box;\n    padding: 10px;\n    background: #fff;\n}\nmain.invalid pre.htmloutput\n{\n    color: red;\n}\n", ""]);
+	exports.push([module.id, "body\n{\n    /*background: #000;*/\n    padding: 0 10px;\n}\n.replmachine\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n}\n.replmachine .panel\n{\n    width: 50%;\n}\n.replmachine .panel > form label\n{\n    margin-right: 20px;\n    user-select: none;\n\n    /* fixme autoprefixer */\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n}\n.replmachine .CodeMirror\n{\n    font-size: 14px;\n}\n.replmachine .jsinput .CodeMirror\n{\n    height: 600px;\n}\n.replmachine .domoutput\n{\n    height: 600px;\n    overflow: auto;\n    display: block;\n    border: 1px solid black;\n    box-sizing: border-box;\n    padding: 10px;\n    background: #fff;\n}\n.replmachine .htmloutput\n{\n    position: relative;\n    /*margin-top: -300px;*/\n    display: none;\n    border-left: 1px solid rgba(255, 255, 255, 0.11);\n}\n.replmachine.markupmode .domoutput,\n.replmachine .htmloutput .CodeMirror\n{\n    height: 300px;\n}\n.replmachine.markupmode .htmloutput\n{\n    display: block;\n}\n", ""]);
 
 	// exports
 

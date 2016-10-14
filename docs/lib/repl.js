@@ -111,6 +111,8 @@ const clearbutton = button({
     children : 'clear'
 });
 
+/* ================================================================ */
+
 const settingsform = form({
     className : 'settings',
     children : p([
@@ -128,7 +130,7 @@ const markupmodebox = input({
     type : 'checkbox',
     checked : localStorage.getItem('markupmode') !== 'false',
     onchange : ({ target : { checked }}) => {
-        markupoutput.hidden = !checked;
+        replmachine.classList.toggle('markupmode', checked);
         localStorage.setItem('markupmode', String(checked));
         if(checked) evaluate();
     }
@@ -137,7 +139,32 @@ const markupmodebox = input({
 const domoutput = output({ className : 'domoutput' });
 
 const markupoutput = div({ className : 'htmloutput', hidden : false });
-markupoutput.hidden = !markupmodebox.checked;
+
+/* ================================================================ */
+
+const replmachine = main({
+    className : 'replmachine markupmode',
+    children : [
+        div({
+            className : 'panel',
+            children : [
+                settingsform,
+                codeinput
+            ]
+        }),
+        div({
+            className : 'panel',
+            children : [
+                form({
+                    className : 'settings',
+                    children : p(label([markupmodebox, ' show markup']))
+                }),
+                domoutput,
+                markupoutput
+            ]
+        })
+    ]
+});
 
 /* ================================================================ */
 
@@ -148,28 +175,7 @@ const app = div([
             style : { cursor : 'help' },
             children : 'repl'
         })),
-    main({
-        className : 'repl',
-        children : [
-            div({
-                className : 'panel',
-                children : [
-                    settingsform,
-                    codeinput
-                ]
-            }),
-            div({
-                className : 'panel',
-                children : [
-                    form({
-                        className : 'settings',
-                        children : p(label([markupmodebox, ' show markup']))
-                    }),
-                    domoutput,
-                    markupoutput
-                ]
-            })
-        ]}),
+    replmachine,
     sitenav()
 ]);
 
@@ -192,6 +198,7 @@ const init = () => {
             updateTest();
         }
     }
+    markupoutput.hidden = !markupmodebox.checked;
     document.body.append(app);
 }
 
