@@ -1,7 +1,3 @@
-[hidden]
-{
-    display: none !important;
-}
 body
 {
     /*background: #000;*/
@@ -15,12 +11,13 @@ main.repl
 div.panel
 {
     width: 50%;
-    margin: 5px;
 }
 div.panel > form label
 {
     margin-right: 20px;
     user-select: none;
+
+    /* fixme autoprefixer */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -37,6 +34,7 @@ main .htmloutput
 {
     position: relative;
     margin-top: -300px;
+    border-left: 1px solid rgba(255, 255, 255, 0.11);
 }
 main .htmloutput .CodeMirror
 {

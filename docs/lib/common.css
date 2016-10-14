@@ -1,9 +1,15 @@
+[hidden]
+{
+    display: none !important;
+}
+
+:link:not(:hover):not(:focus):not(:active)
+{
+    text-decoration: none;
+}
+
 body
 {
     margin: 8px;
     padding: 0 10px;
-}
-:link:not(:hover):not(:focus):not(:active)
-{
-    text-decoration: none;
 }
