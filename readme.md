@@ -28,7 +28,7 @@ HTML module does not generate markup. It assembles `HTMLAnchorElement` instance 
 
 ## Usage
 
-Use module bundler to transpile and pack modules for in-browser usage.
+Use [module bundler](http://webpack.github.io/) to transpile and pack modules for in-browser usage.
 
 ### Install
 
@@ -76,9 +76,8 @@ document.body.append(websearch);
 
 Get module by appending script source to page body:
 
-<!--fixme: use cdn-->
 ```html
-<script src=https://aristov.github.io/htmlmodule/dist/dist.window.htmlmodule.min.js></script>
+<script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>
 <script>
 const { a, span, div, article, input, fieldset } = window.htmlmodule;
 // make magic...
@@ -192,4 +191,4 @@ Check test suite in your browser:
 - [spec suite](//aristov.github.io/htmlmodule/spec.html)
 - [test case](//aristov.github.io/htmlmodule/test.html)
 
-## [MIT license](LICENSE)
+## [MIT license](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
