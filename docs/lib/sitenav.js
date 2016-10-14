@@ -5,8 +5,9 @@ const pathname = location.pathname;
 
 const children = [
     a({
-        href : './test.html',
-        children : 'test case'
+        href : './api/',
+        target : '_blank',
+        children : 'api doc'
     }),
     a({
         href : './spec.html',
@@ -17,9 +18,8 @@ const children = [
         children : 'repl machine'
     }),
     a({
-        href : './api/',
-        target : '_blank',
-        children : 'api doc'
+        href : './test.html',
+        children : 'test case'
     }),
     a({
         href : '//github.com/aristov/htmlmodule',
