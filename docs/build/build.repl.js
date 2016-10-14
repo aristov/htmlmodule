@@ -1395,9 +1395,10 @@
 	            updateTest();
 	        }
 	    }
+	    document.body.append(app);
 	};
 
-	document.body.append(app);
+	init();
 
 	const codeeditmirror = (0, _codemirror.codeedit)(codeinput, localvalue || _testGlobaldefined2.default);
 	codeeditmirror.on('change', () => evaluate());

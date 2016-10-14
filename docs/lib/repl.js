@@ -190,9 +190,10 @@ const init = () => {
             updateTest();
         }
     }
+    document.body.append(app);
 }
 
-document.body.append(app);
+init();
 
 const codeeditmirror = codeedit(codeinput, localvalue || globaldefined);
 codeeditmirror.on('change', () => evaluate());
