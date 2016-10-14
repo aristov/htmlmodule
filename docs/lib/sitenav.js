@@ -16,11 +16,11 @@ const children = [
         href : './spec.html',
         children : 'spec suite'
     }),
-    a({
+    /*a({
         href : '//github.com/aristov/htmlmodule/blob/master/readme.md',
         target : '_blank',
         children : 'read me'
-    }),
+    }),*/
     a({
         href : './api/',
         target : '_blank',

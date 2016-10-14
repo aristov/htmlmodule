@@ -820,11 +820,13 @@
 	}), (0, _lib.a)({
 	    href: './spec.html',
 	    children: 'spec suite'
-	}), (0, _lib.a)({
-	    href: '//github.com/aristov/htmlmodule/blob/master/readme.md',
-	    target: '_blank',
-	    children: 'read me'
-	}), (0, _lib.a)({
+	}),
+	/*a({
+	    href : '//github.com/aristov/htmlmodule/blob/master/readme.md',
+	    target : '_blank',
+	    children : 'read me'
+	}),*/
+	(0, _lib.a)({
 	    href: './api/',
 	    target: '_blank',
 	    children: 'api doc'
