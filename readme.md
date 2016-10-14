@@ -20,11 +20,15 @@ Browser creates the same link, when it processes the following markup:
 <a href="https://html.spec.whatwg.org">HTML specification</a>
 ```
 
-HTML module does not generate markup — it assembles `HTMLAnchorElement` instance from scratch.
+HTML module does not generate markup. It assembles `HTMLAnchorElement` instance from scratch.
 
-## Try now — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL machine!</a>
+## Try now
+
+ — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL machine!</a>
 
 ## Usage
+
+Use module bundler to transpile and pack modules for in-browser usage.
 
 ### Install
 
@@ -88,7 +92,7 @@ Script exposes `htmlmodule` global variable to the `window` object.
 ## Compatibility
 
 Built-in [shim bundle](/shim) fixes browser compatibility.
-For full browser support you must import shim bundle first:
+For a wide browser support you must import the shim bundle first:
 
 ```js
 import 'htmlmodule/shim';
@@ -179,6 +183,7 @@ npm test
 0. build sources 
 0. run dev server
 0. open [localhost:8080/docs/spec](//localhost:8080/docs/spec.html) in browser
+
 
 #### Online test suite
 

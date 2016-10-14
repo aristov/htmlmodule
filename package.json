@@ -2,12 +2,23 @@
   "name": "htmlmodule",
   "version": "0.1.0",
   "description": "HTML DOM assembler",
-  "keywords": ["html", "dom", "module", "javascript", "library"],
+  "keywords": [
+    "html",
+    "dom",
+    "module",
+    "javascript",
+    "library"
+  ],
   "homepage": "https://aristov.github.io/htmlmodule",
   "bugs": "https://github.com/aristov/htmlmodule/issues",
   "license": "MIT",
   "author": "Vyacheslav Aristov <vv.aristov@gmail.ru> (http://twitter.com/aristov7)",
-  "files": ["./dist", "./lib", "./shim", "./util"],
+  "files": [
+    "dist/",
+    "lib/",
+    "shim/",
+    "util/"
+  ],
   "main": "./lib",
   "directories": {
     "dist": "./dist",

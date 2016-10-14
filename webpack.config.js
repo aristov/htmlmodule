@@ -10,7 +10,7 @@ const autoprefixer = require('autoprefixer'); // fixme
  *  ES6
  *  WATCH
  *
- *  DEV = DOCS + ES6 + WATCH
+ *  npm start = DOCS + ES6 + WATCH
  */
 const env = process.env;
 const plugins = [];
