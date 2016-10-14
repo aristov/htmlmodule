@@ -1185,8 +1185,8 @@
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	const sitenavNode = document.getElementById('sitenav');
-	if (sitenavNode) sitenavNode.append(...children);
+	const node = document.getElementById('sitenav');
+	if (node) node.append(...children, (0, _lib.small)('assembled by htmlmodule'));
 
 	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
 

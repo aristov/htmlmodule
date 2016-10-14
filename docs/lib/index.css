@@ -1,0 +1,22 @@
+@import url(common.css);
+
+details
+{
+    margin-bottom: 20px;
+}
+code > pre
+{
+    background: black;
+    color: white;
+    padding: 12px;
+}
+ul
+{
+    column-count: 7;
+    list-style: none;
+}
+ul > li
+{
+    line-height: 25px;
+    font-weight: bold;
+}

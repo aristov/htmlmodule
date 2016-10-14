@@ -1,23 +1,49 @@
 <!doctype html>
-<meta charset=utf-8>
-<title>htmlmodule : index</title>
-<link rel=stylesheet href=./lib/common.css>
-<style>
-    ul
-    {
-        padding: 20px 30px;
-        border: 1px solid rgba(0, 0, 0, 0.4);
-    }
-    ul > li
-    {
-        display: inline-block;
-        width: 200px;
-        line-height: 25px;
-        font-weight: bold;
-    }
-</style>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>htmlmodule docs index</title>
+    <link rel=stylesheet href=./lib/index.css>
+</head>
 <body>
     <script src=./build/build.window.htmlmodule.js></script>
-    <!--<script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>-->
     <script src=./build/build.index.js></script>
+    <script>
+    {
+        const {
+            text, a, code, pre, main, ul, li, p,
+            details, summary, fieldset, legend
+        } = htmlmodule;
+
+        const { siteheading, sitenav } = replmodule;
+
+        const keys = Object.keys(htmlmodule);
+        const items = keys.map(function(key) {
+            return li(a({
+                href : './api#' + key.toLowerCase(),
+                target : 'blank',
+                children : code(key)
+            }))
+        });
+
+        function init({ source }) {
+            document.body.append(
+                siteheading(),
+                details([
+                    summary('index.html source'),
+                    code(pre(source))
+                ]),
+                main(fieldset([
+                    legend('htmlmodule index'),
+                    ul(items)
+                ])),
+                sitenav());
+        }
+
+        fetch('index.html')
+            .then(function(response) { return response.text() })
+            .then(function(source) { init({ source }) });
+    }
+    </script>
 </body>
+</html>

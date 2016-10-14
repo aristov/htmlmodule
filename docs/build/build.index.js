@@ -764,20 +764,7 @@
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
-	const { ul, li, main, code, a } = htmlmodule;
-	const listnode = main([(0, _siteheading.siteheading)(), ul({
-	    style: {
-	        columnCount: 7,
-	        listStyle: 'none'
-	    },
-	    children: Object.keys(htmlmodule).map(key => li(a({
-	        href: './api#' + key.toLowerCase(),
-	        target: 'blank',
-	        children: code(key)
-	    })))
-	})]);
-
-	document.body.append(listnode, (0, _sitenav.sitenav)());
+	window.replmodule = { siteheading: _siteheading.siteheading, sitenav: _sitenav.sitenav };
 
 /***/ },
 /* 8 */
@@ -1212,8 +1199,8 @@
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	const sitenavNode = document.getElementById('sitenav');
-	if (sitenavNode) sitenavNode.append(...children);
+	const node = document.getElementById('sitenav');
+	if (node) node.append(...children, (0, _lib.small)('assembled by htmlmodule'));
 
 	const sitenav = exports.sitenav = init => (0, _lib.footer)({ id: 'sitenav', children });
 
