@@ -1248,9 +1248,19 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	/**
-	 * babel polyfill =)
-	 */
+	/* ================================================================ */
+
+	const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
+
+	const snippetpart = name => name + '=' + HTMLMODULE_VARIABLE_NAME + '.' + name;
+	const IMPORTS_SNIPPET_PART = Object.keys(htmlmodule).map(snippetpart).join(', ');
+	const IMPORTS_SNIPPET = 'var ' + IMPORTS_SNIPPET_PART;
+
+	const indexOf = Array.prototype.indexOf;
+	const serializer = new _util.HTMLSerializer();
+
+	/* ================================================================ */
+
 	const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 	const EXPORTS_DEFAULT_RE = /exports\s*\.\s*default\s*=/;
 	const IMPORT_FROM_RE = /import\s*({(?:\s*\w+\s*,)*(?:\s*\w+\s*,?\s*)})\s*from\s*'(\w+)';?/;
@@ -1268,18 +1278,142 @@
 	    };
 	}
 
-	function localSave() {
-	    localStorage.setItem('value', codeeditmirror.getValue());
-	    localStorage.setItem('global', globalbox.checked);
-	    localStorage.setItem('option', String(indexOf.call(testselectboxnode.options, testselectboxnode.selectedOptions[0])));
-	}
+	/* ================================================================ */
+
+	const globalbox = (0, _lib.input)({
+	    type: 'checkbox',
+	    checked: localStorage.getItem('global') !== 'false',
+	    onchange: () => {
+	        evaluate();
+	        const checked = globalbox.checked;
+	        if (checked) testselectbox.value = '';else settingsform.reset();
+	    }
+	});
+
+	const testselectbox = (0, _lib.select)({
+	    onchange: () => {
+	        const selected = testselectbox.query('[selected]');
+	        if (selected) selected.removeAttribute('selected');
+	        const opt = testselectbox.selectedOptions[0];
+	        if (opt) opt.setAttribute('selected', '');
+	        updateTest();
+	    },
+	    children: [(0, _lib.option)({ value: '', children: '—' }), (0, _lib.option)({
+	        value: _testGlobaldefined2.default,
+	        id: 'example-with-globals',
+	        selected: true,
+	        textContent: 'example with globals'
+	    }), (0, _lib.option)({
+	        value: _testExportdefault2.default,
+	        id: 'export-default-example',
+	        children: 'export default example'
+	    }), (0, _lib.option)({
+	        value: _testImportfrom2.default,
+	        id: 'full-module-example',
+	        children: 'full module example'
+	    }), _testcase.testcase.map(({ src }) => {
+	        const match = src.match(/\({ ((?:\w+,? )+)}\)/);
+	        const textContent = match ? match[1].trim() : '?';
+	        const elements = textContent.split(', ');
+	        const id = elements.join('+');
+	        return (0, _lib.option)({ id, textContent, value: src });
+	    })]
+	});
+
+	const clearbutton = (0, _lib.button)({
+	    type: 'reset',
+	    onclick: () => {
+	        const selected = testselectbox.query('[selected]');
+	        if (selected) {
+	            selected.removeAttribute('selected');
+	            selected.selected = false;
+	        }
+	        codeeditmirror.setValue('');
+	        location.hash = '';
+	    },
+	    children: 'clear'
+	});
+
+	const settingsform = (0, _lib.form)({
+	    className: 'settings',
+	    children: (0, _lib.p)([(0, _lib.label)([globalbox, ' define globally']), (0, _lib.label)(testselectbox), (0, _lib.label)(clearbutton)])
+	});
+
+	const codeinput = (0, _lib.div)({ className: 'jsinput' });
+
+	/* ================================================================ */
+
+	const markupmodebox = (0, _lib.input)({
+	    type: 'checkbox',
+	    checked: localStorage.getItem('markupmode') !== 'false',
+	    onchange: ({ target: { checked } }) => {
+	        markupoutput.hidden = !checked;
+	        localStorage.setItem('markupmode', String(checked));
+	        if (checked) evaluate();
+	    }
+	});
+
+	const domoutput = (0, _lib.output)({ className: 'domoutput' });
+
+	const markupoutput = (0, _lib.div)({ className: 'htmloutput', hidden: false });
+	markupoutput.hidden = !markupmodebox.checked;
+
+	/* ================================================================ */
+
+	const app = (0, _lib.div)([(0, _siteheading.siteheading)((0, _lib.abbr)({
+	    title: 'read-eval-print-loop',
+	    style: { cursor: 'help' },
+	    children: 'repl'
+	})), (0, _lib.main)({
+	    className: 'repl',
+	    children: [(0, _lib.div)({
+	        className: 'panel',
+	        children: [settingsform, codeinput]
+	    }), (0, _lib.div)({
+	        className: 'panel',
+	        children: [(0, _lib.form)({
+	            className: 'settings',
+	            children: (0, _lib.p)((0, _lib.label)([markupmodebox, ' show markup']))
+	        }), domoutput, markupoutput]
+	    })] }), (0, _sitenav.sitenav)()]);
+
+	/* ================================================================ */
+
+	const localvalue = localStorage.getItem('value');
+	const localoption = localStorage.getItem('option');
+	const hash = location.hash.replace('#', '');
+
+	const init = () => {
+	    if (localvalue !== null && localoption !== null) {
+	        const option = testselectbox.options[localoption];
+	        if (option) option.selected = true;
+	    } else if (hash) {
+	        const option = document.getElementById(hash);
+	        if (option && 'selected' in option) {
+	            option.selected = true;
+	            option.setAttribute('selected', '');
+	            updateTest();
+	        }
+	    }
+	};
+
+	document.body.append(app);
+
+	const codeeditmirror = (0, _codemirror.codeedit)(codeinput, localvalue || _testGlobaldefined2.default);
+	codeeditmirror.on('change', () => evaluate());
+
+	const markupviewmirror = (0, _codemirror.markupview)(markupoutput);
+
+	evaluate();
+
+	/* ================================================================ */
 
 	function evaluate() {
 	    const code = codeeditmirror.getValue().trim();
 	    if (code) {
 	        try {
 	            const es5 = Babel.transform(code);
-	            const src = globalbox.checked ? [imports, es5.code].join(';\n\n') : es5.code;
+	            const src = globalbox.checked ? [IMPORTS_SNIPPET, es5.code].join(';\n\n') : es5.code;
 
 	            const fn = new Function('exports', HTMLMODULE_VARIABLE_NAME, src);
 	            const exports = {
@@ -1287,7 +1421,6 @@
 	                    throw Error('Module is not Exported!');
 	                }
 	            };
-
 	            fn(exports, htmlmodule);
 
 	            const node = typeof exports.default === 'function' ? exports.default(htmlmodule) : exports.default;
@@ -1297,7 +1430,10 @@
 
 	            const htmlcode = serializer.serializeToString(node);
 	            markupviewmirror.setValue(htmlcode);
-	            localSave();
+
+	            localStorage.setItem('value', codeeditmirror.getValue());
+	            localStorage.setItem('global', globalbox.checked);
+	            localStorage.setItem('option', String(indexOf.call(testselectbox.options, testselectbox.selectedOptions[0])));
 	        } catch (error) {
 	            domoutput.textContent = error;
 	            markupviewmirror.setValue('');
@@ -1308,159 +1444,14 @@
 	    }
 	}
 
-	const panel = children => (0, _lib.div)({ className: 'panel', children });
-
-	const serializer = new _util.HTMLSerializer();
-
-	/**
-	 * define global <checkbox>
-	 */
-	const localglobal = localStorage.getItem('global'); // =D
-	const globalbox = (0, _lib.input)({
-	    type: 'checkbox',
-	    checked: localglobal === null || localglobal === 'true',
-	    onchange: () => {
-	        evaluate();
-	        const checked = globalbox.checked;
-	        if (checked) testselectboxnode.value = '';else settingsform.reset();
-	        // localStorage.setItem('global', String(checked));
-	    }
-	});
-
-	/**
-	 * show markup <checkbox>
-	 */
-	const markupmode = (0, _lib.input)({
-	    type: 'checkbox',
-	    checked: localStorage.getItem('markupmode') === 'true',
-	    onchange: ({ target: { checked } }) => {
-	        markupoutput.hidden = !checked;
-	        localStorage.setItem('markupmode', String(checked));
-	        if (checked) evaluate();
-	    }
-	});
-
-	const options = [(0, _lib.option)({ value: '', children: '—' }), (0, _lib.option)({
-	    value: _testGlobaldefined2.default,
-	    id: 'example-with-globals',
-	    selected: true,
-	    textContent: 'example with globals'
-	}), (0, _lib.option)({
-	    value: _testExportdefault2.default,
-	    id: 'export-default-example',
-	    children: 'export default example'
-	}), (0, _lib.option)({
-	    value: _testImportfrom2.default,
-	    id: 'full-module-example',
-	    children: 'full module example'
-	}), _testcase.testCase.map(({ src }) => {
-	    const match = src.match(/\({ ((?:\w+,? )+)}\)/);
-	    const textContent = match ? match[1].trim() : '?';
-	    const elements = textContent.split(', ');
-	    const id = elements.join('+');
-	    return (0, _lib.option)({ id, textContent, value: src });
-	})];
-
-	const testselectboxnode = (0, _lib.select)({
-	    children: options,
-	    onchange: () => {
-	        const selected = testselectboxnode.query('[selected]');
-	        if (selected) selected.removeAttribute('selected');
-	        const opt = testselectboxnode.selectedOptions[0];
-	        if (opt) opt.setAttribute('selected', '');
-	        updateTest();
-	    }
-	});
-
 	function updateTest() {
-	    globalbox.checked = testselectboxnode.value === _testGlobaldefined2.default;
-	    codeeditmirror.setValue(testselectboxnode.value + '\n');
-	    const opt = testselectboxnode.selectedOptions[0];
-	    if (opt) location.hash = opt.id;
+	    const selected = testselectbox.selectedOptions[0];
+	    if (selected) location.hash = selected.id;
+
+	    const value = testselectbox.value;
+	    globalbox.checked = value === _testGlobaldefined2.default;
+	    codeeditmirror.setValue(value + '\n');
 	}
-
-	/**
-	 * clear <button>
-	 */
-	const clearbuttonnode = (0, _lib.button)({
-	    type: 'reset',
-	    onclick: clearMachine,
-	    children: 'clear'
-	});
-
-	function clearMachine() {
-	    const selected = testselectboxnode.query('[selected]');
-	    if (selected) {
-	        selected.removeAttribute('selected');
-	        selected.selected = false;
-	    }
-	    codeeditmirror.setValue('');
-	    location.hash = '';
-	};
-
-	/**
-	 * code setting <form>
-	 */
-	const settingsform = (0, _lib.form)({
-	    className: 'settings',
-	    children: (0, _lib.p)([(0, _lib.label)([globalbox, ' define globally']), (0, _lib.label)(testselectboxnode), (0, _lib.label)(clearbuttonnode)])
-	});
-
-	const hash = location.hash.replace('#', '');
-
-	const localvalue = localStorage.getItem('value');
-	const localoption = localStorage.getItem('option');
-
-	if (localvalue && localoption) {
-	    const option = testselectboxnode.options[localoption];
-	    if (option) option.selected = true;
-	} else if (hash) {
-	    const option = document.getElementById(hash);
-	    if (option && 'selected' in option) {
-	        option.selected = true;
-	        option.setAttribute('selected', '');
-	        updateTest();
-	    }
-	}
-
-	const codeinput = (0, _lib.div)({ className: 'jsinput' });
-
-	const markupoutput = (0, _lib.div)({ className: 'htmloutput', hidden: false });
-	markupoutput.hidden = !markupmode.checked;
-
-	const domoutput = (0, _lib.output)({ className: 'domoutput' });
-
-	const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
-
-	const snippetPart = name => name + `=${ HTMLMODULE_VARIABLE_NAME }.` + name;
-	const snippet = Object.keys(htmlmodule).map(snippetPart).join(', ');
-
-	const imports = `var ${ snippet }`;
-
-	const indexOf = Array.prototype.indexOf;
-
-	const replmachine = (0, _lib.main)({
-	    className: 'repl',
-	    children: [panel([settingsform, codeinput]), panel([(0, _lib.form)({
-	        className: 'settings',
-	        children: (0, _lib.p)((0, _lib.label)([markupmode, ' show markup']))
-	    }), domoutput, markupoutput])]
-	});
-
-	const replabbr = (0, _lib.abbr)({
-	    title: 'read-eval-print-loop',
-	    style: { cursor: 'help' },
-	    children: 'repl'
-	});
-
-	document.body.append((0, _siteheading.siteheading)(replabbr), replmachine, (0, _sitenav.sitenav)());
-
-	const codeeditmirror = (0, _codemirror.codeedit)(codeinput, localvalue);
-	codeeditmirror.on('change', () => evaluate());
-
-	const markupviewmirror = (0, _codemirror.markupview)(markupoutput, localvalue || _testGlobaldefined2.default);
-
-	evaluate();
 
 /***/ },
 
@@ -4696,7 +4687,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.testCase = undefined;
+	exports.testcase = undefined;
 
 	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 566);
 
@@ -4709,7 +4700,7 @@
 	srcChunks.shift();
 	srcChunks.pop();
 
-	const testCase = exports.testCase = srcChunks.map(src => {
+	const testcase = exports.testcase = srcChunks.map(src => {
 	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
 	    const fn = new Function('return ' + src);
 	    return { src, fn: fn() };

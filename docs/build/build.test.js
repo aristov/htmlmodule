@@ -1624,7 +1624,7 @@
 	const exampletable = () => (0, _lib.table)({
 	    cellSpacing: 0,
 	    className: 'exampletable',
-	    children: [(0, _lib.thead)((0, _lib.tr)((0, _lib.th)(filterNode))), (0, _lib.tbody)(rows = _testcase.testCase.map(item => {
+	    children: [(0, _lib.thead)((0, _lib.tr)((0, _lib.th)(filterNode))), (0, _lib.tbody)(rows = _testcase.testcase.map(item => {
 	        const element = item.fn(htmlmodule);
 	        const tagNames = [element.tagName];
 	        const collection = element.querySelectorAll('*');
@@ -12930,7 +12930,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.testCase = undefined;
+	exports.testcase = undefined;
 
 	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 566);
 
@@ -12943,7 +12943,7 @@
 	srcChunks.shift();
 	srcChunks.pop();
 
-	const testCase = exports.testCase = srcChunks.map(src => {
+	const testcase = exports.testcase = srcChunks.map(src => {
 	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
 	    const fn = new Function('return ' + src);
 	    return { src, fn: fn() };

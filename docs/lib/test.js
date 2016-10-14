@@ -1,4 +1,4 @@
-import { testCase } from './testcase';
+import { testcase } from './testcase';
 import {
     a, h2, input, code, span, div, pre,
     table, thead, tbody, tr, th, td,
@@ -37,7 +37,7 @@ const exampletable = () => table({
     className : 'exampletable',
     children : [
         thead(tr(th(filterNode))),
-        tbody(rows = testCase.map(item => {
+        tbody(rows = testcase.map(item => {
             const element = item.fn(htmlmodule);
             const tagNames = [element.tagName];
             const collection = element.querySelectorAll('*');
