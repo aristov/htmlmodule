@@ -1,12 +1,13 @@
 {
   "name": "htmlmodule",
   "version": "0.1.1",
-  "description": "HTML DOM assembler",
+  "description": "DOM assembler",
   "keywords": [
-    "html",
+    "xml",
     "dom",
-    "module",
+    "html",
     "javascript",
+    "module",
     "library"
   ],
   "homepage": "https://aristov.github.io/htmlmodule",

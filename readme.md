@@ -24,11 +24,11 @@ HTML module does not generate markup. It assembles `HTMLAnchorElement` instance 
 
 ## Try now
 
- — <a href="//aristov.github.io/htmlmodule/repl" title="read-eval-print-loop">REPL machine!</a>
+ — <a href="//aristov.github.io/htmlmodule/repl.html" title="read-eval-print-loop">REPL machine!</a>
 
 ## Usage
 
-Use [module bundler](http://webpack.github.io/) to transpile and pack modules for in-browser usage.
+Use [module bundler](http://webpack.github.io/) and [transpiler](http://babeljs.io) to transform and pack modules for in-browser usage.
 
 ### Install
 
@@ -74,7 +74,7 @@ document.body.append(websearch);
 
 <h2 id="globalscript">Global script</h2>
 
-Get module by appending script source to page body:
+Get module by appending the script source to page body:
 
 ```html
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>
@@ -91,7 +91,17 @@ Script exposes `htmlmodule` global variable to the `window` object.
 ## Compatibility
 
 Built-in [shim bundle](/shim) fixes browser compatibility.
-For a wide browser support you must import the shim bundle first:
+For a wide browser support you must include the shim bundle first in any way:
+
+```html
+<!-- import shim -->
+<script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.shim.min.js></script>
+
+<!-- project source build result -->
+<script src=./project.build.js></script>
+```
+
+or, if you need a single bundle for all:
 
 ```js
 import 'htmlmodule/shim';
@@ -167,7 +177,7 @@ Run static server:
 static
 ```
 
-Open in browser [localhost:8080/docs](//localhost:8080/docs)
+Open in browser [localhost:8080/docs](localhost:8080/docs)
 
 <h3 id="testing">Testing</h3>
 
@@ -179,10 +189,9 @@ npm test
 
 #### Test in browser
 
-0. build sources 
-0. run dev server
-0. open [localhost:8080/docs/spec](//localhost:8080/docs/spec.html) in browser
-
+1. build sources 
+2. run dev server
+3. open [localhost:8080/docs/spec.html](localhost:8080/docs/spec.html) in browser
 
 #### Online test suite
 
