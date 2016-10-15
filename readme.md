@@ -88,16 +88,20 @@ The script exposes the `htmlmodule` global variable to the `window` object.
 
 ## Compatibility
 
-Built-in [shim bundle](/shim/index.js) fixes browser compatibility. It includes:
+The built-in [shim bundle](/shim/index.js) fixes browser compatibility. It includes:
 
 - [Babel polyfill](http://babeljs.io/docs/usage/polyfill/)
 - [dom4 polyfill](https://www.npmjs.com/package/dom4)
 - [some author DOM shims](/shim)
 
-For a wide browser support you must import the shim bundle first.
-There are some ways to get it.
+The shim bundle is used in [unit-testing](#user-content-testing) environments.
 
-- use shim bundle distribution script:
+### The shim bundle setup
+
+For a wide browser support you must import the shim bundle first.
+There are some ways to do this.
+
+#### Use the shim bundle distribution script
 
 ```html
 <!-- minified shim bundle -->
@@ -107,7 +111,7 @@ There are some ways to get it.
 <script src=./project.build.js></script>
 ```
 
-- include shim bundle to a project bundle:
+#### Include the shim bundle to a project bundle
 
 ```js
 import 'htmlmodule/shim';
@@ -115,9 +119,9 @@ import 'htmlmodule/shim';
 // rest of your code including `htmlmodule` imports
 ```
 
-- ["global script" distribution](#user-content-globalscript) is shim-charged out of the box.
+#### Use a shim-charged distribution 
 
-Shim bundle is used in [unit-testing](#user-content-testing) environments.
+[The "global script" distribution](#user-content-globalscript) includes the shim bundle out of the box.
 
 ## [API documentation](//aristov.github.io/htmlmodule/api)
 
