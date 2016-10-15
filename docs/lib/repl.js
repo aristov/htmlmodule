@@ -6,7 +6,7 @@ from '../../lib';
 // import local components
 import { siteheading } from './siteheading';
 import { sitenav } from './sitenav';
-import { codeedit, markupview } from './codemirror';
+import { codeedit, markupview } from './codemirror-preset';
 
 // import utils
 import { HTMLSerializer } from '../../util/util.htmlserializer';

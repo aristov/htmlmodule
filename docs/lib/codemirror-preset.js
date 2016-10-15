@@ -4,11 +4,13 @@ import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 
+const theme = 'night';
+
 export const codeedit = (node, value) =>
     new CodeMirror(node, {
-        value : value,
+        value,
         mode: 'javascript',
-        theme: 'night',
+        theme,
         indentUnit: 4,
         tabSize: 2,
         indentWithTabs: true,
@@ -22,6 +24,6 @@ export const codeedit = (node, value) =>
 export const markupview = (node) =>
     new CodeMirror(node, {
         mode: 'htmlmixed',
-        theme: 'night',
+        theme,
         readOnly: true
     });

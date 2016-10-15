@@ -2,20 +2,26 @@
 <head>
     <meta charset=utf-8>
     <title>htmlmodule spec suite</title>
+
+    <!--mocha stylesheet-->
     <link rel=stylesheet href=https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css>
-    <link rel=stylesheet href=./lib/common.css>
 </head>
 <body>
-    <h1 id="siteheading"><a href='./'>htmlmodule</a> spec</h1>
-    <main id=mocha></main>
-    <footer id=sitenav></footer>
+    <div id=mocha></div>
+
+    <!--shim first-->
+    <script src=./build/build.shim.js></script>
+
+    <!--load frameworks-->
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.min.js></script>
     <script src=https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.min.js"></script>
-    <script>
-        mocha.setup('bdd');
-    </script>
+
+    <!--setup mocha-->
+    <script>window.mocha.setup('bdd');</script>
+
+    <!--charge specs-->
     <script src=./build/build.spec.js></script>
-    <script>
-        mocha.run();
-    </script>
+
+    <!--run mocha-->
+    <script>window.mocha.run();</script>
 </body>

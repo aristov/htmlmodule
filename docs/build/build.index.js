@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /*!*******************!*\
   !*** multi index ***!
   \*******************/
@@ -51,7 +52,8 @@
 
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -124,7 +126,8 @@
 	});
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -151,7 +154,8 @@
 	}
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -271,7 +275,8 @@
 	});
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -327,7 +332,8 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -355,7 +361,8 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-/* 6 */
+
+/***/ 6:
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -752,7 +759,8 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-/* 7 */
+
+/***/ 7:
 /*!***************************!*\
   !*** ./docs/lib/index.js ***!
   \***************************/
@@ -762,33 +770,19 @@
 
 	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
 
+	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 16);
+
+	var _indexapi = __webpack_require__(/*! ./indexapi */ 17);
+
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
-	/**
-	 * Use global `window.htmlmodule` variable
-	 * to test global script distribution bundle,
-	 * already imported by index.html
-	 */
-	const { a, code, pre, main, ul, li, details, summary, fieldset, legend } = htmlmodule;
+	__webpack_require__(/*! ./index.css */ 561);
 
-	const sourcedetails = details(summary('page source'));
-
-	const items = Object.keys(htmlmodule).map(key => {
-	    return li(a({
-	        href: './api#' + key.toLowerCase(),
-	        target: '_blank',
-	        children: key
-	    }));
-	});
-
-	document.body.append((0, _siteheading.siteheading)(), sourcedetails, main(fieldset([legend('htmlmodule API index'), ul(items)])), (0, _sitenav.sitenav)());
-
-	Promise.all([fetch('index.html').then(response => response.text()), fetch('lib/index.js').then(response => response.text()), fetch('lib/index.css').then(response => response.text())]).then(function ([html, babeljs, css]) {
-	    sourcedetails.append('index.html', code(pre(html)), 'lib/index.js => build/build.js (babel transpiled)', code(pre(babeljs)), 'lib/index.css', code(pre(css)));
-	});
+	document.body.append((0, _siteheading.siteheading)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _indexapi.indexapi)(), (0, _sitenav.sitenav)());
 
 /***/ },
-/* 8 */
+
+/***/ 8:
 /*!*********************************!*\
   !*** ./docs/lib/siteheading.js ***!
   \*********************************/
@@ -819,7 +813,8 @@
 	};
 
 /***/ },
-/* 9 */
+
+/***/ 9:
 /*!**********************************!*\
   !*** ./docs/lib/siteheading.css ***!
   \**********************************/
@@ -848,7 +843,8 @@
 	}
 
 /***/ },
-/* 10 */
+
+/***/ 10:
 /*!********************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
   \********************************************************************/
@@ -865,7 +861,8 @@
 
 
 /***/ },
-/* 11 */
+
+/***/ 11:
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -923,7 +920,8 @@
 	};
 
 /***/ },
-/* 12 */
+
+/***/ 12:
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1178,7 +1176,8 @@
 
 
 /***/ },
-/* 13 */
+
+/***/ 13:
 /*!*****************************!*\
   !*** ./docs/lib/sitenav.js ***!
   \*****************************/
@@ -1229,7 +1228,8 @@
 	});
 
 /***/ },
-/* 14 */
+
+/***/ 14:
 /*!******************************!*\
   !*** ./docs/lib/sitenav.css ***!
   \******************************/
@@ -1258,7 +1258,8 @@
 	}
 
 /***/ },
-/* 15 */
+
+/***/ 15:
 /*!****************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
   \****************************************************************/
@@ -1274,5 +1275,234 @@
 	// exports
 
 
+/***/ },
+
+/***/ 16:
+/*!***********************************!*\
+  !*** ./docs/lib/sourcedetails.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sourcefetch = exports.sourcedetails = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	__webpack_require__(/*! ./sourcedetails.css */ 564);
+
+	const sourcedetails = exports.sourcedetails = () => (0, _lib.details)({
+	    id: 'sourcedetails',
+	    children: (0, _lib.summary)('page source')
+	});
+
+	const fetch = window.fetch;
+	const sourcefetch = exports.sourcefetch = node => {
+	    Promise.all([fetch('index.html').then(response => response.text()), fetch('lib/index.js').then(response => response.text()), fetch('lib/index.css').then(response => response.text())]).then(function ([html, js, css]) {
+	        node.append('index.html', (0, _lib.code)((0, _lib.pre)(html)), 'lib/index.js => build/build.js (babel transpiled)', (0, _lib.code)((0, _lib.pre)(js)), 'lib/index.css', (0, _lib.code)((0, _lib.pre)(css)));
+	    });
+	    return node;
+	};
+
+/***/ },
+
+/***/ 17:
+/*!******************************!*\
+  !*** ./docs/lib/indexapi.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.indexapi = undefined;
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	var htmlmodule = _interopRequireWildcard(_lib);
+
+	__webpack_require__(/*! ./indexapi.css */ 566);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	const keys = Object.keys(htmlmodule);
+
+	const indexapi = exports.indexapi = () => (0, _lib.fieldset)({
+	    id: 'indexapi',
+	    children: [(0, _lib.legend)('htmlmodule API index'), (0, _lib.ul)(keys.map(key => (0, _lib.li)((0, _lib.a)({
+	        href: './api#' + key.toLowerCase(),
+	        target: '_blank',
+	        children: key
+	    }))))]
+	});
+
+/***/ },
+
+/***/ 561:
+/*!****************************!*\
+  !*** ./docs/lib/index.css ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./index.css */ 562);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./index.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 562:
+/*!**************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/index.css ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
+	// imports
+	exports.i(__webpack_require__(/*! -!./../../~/css-loader!./common.css */ 563), "");
+
+	// module
+	exports.push([module.id, "\n\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 563:
+/*!********************************************!*\
+  !*** ./~/css-loader!./docs/lib/common.css ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "[hidden]\n{\n    display: none !important;\n}\n\n:link:not(:hover):not(:focus):not(:active)\n{\n    text-decoration: none;\n}\n\nbody\n{\n    margin: 8px;\n    padding: 0 10px;\n    background: #eee;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 564:
+/*!************************************!*\
+  !*** ./docs/lib/sourcedetails.css ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sourcedetails.css */ 565);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sourcedetails.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sourcedetails.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 565:
+/*!**********************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sourcedetails.css ***!
+  \**********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#sourcedetails > summary\n{\n    margin: 25px 0;\n}\n#sourcedetails code > pre\n{\n    background: #333;\n    color: white;\n    padding: 12px;\n    margin: 0 0 20px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 566:
+/*!*******************************!*\
+  !*** ./docs/lib/indexapi.css ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./indexapi.css */ 567);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./indexapi.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./indexapi.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 567:
+/*!*****************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/indexapi.css ***!
+  \*****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#indexapi ul\n{\n    -webkit-column-count: 7;\n       -moz-column-count: 7;\n            column-count: 7;\n    list-style: none;\n}\n#indexapi ul > li\n{\n    line-height: 25px;\n    font-weight: bold;\n    font-family: monospace;\n}\n", ""]);
+
+	// exports
+
+
 /***/ }
-/******/ ]);
+
+/******/ });

@@ -1,0 +1,11 @@
+#sourcedetails > summary
+{
+    margin: 25px 0;
+}
+#sourcedetails code > pre
+{
+    background: #333;
+    color: white;
+    padding: 12px;
+    margin: 0 0 20px;
+}

@@ -1,24 +1,2 @@
 @import url(common.css);
 
-details > summary
-{
-    margin: 25px 0;
-}
-code > pre
-{
-    background: #333;
-    color: white;
-    padding: 12px;
-    margin: 0 0 20px;
-}
-fieldset > ul
-{
-    column-count: 7;
-    list-style: none;
-}
-fieldset > ul > li
-{
-    line-height: 25px;
-    font-weight: bold;
-    font-family: monospace;
-}

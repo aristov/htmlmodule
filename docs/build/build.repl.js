@@ -47,7 +47,7 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./docs/lib/repl */16);
+	module.exports = __webpack_require__(/*! ./docs/lib/repl */18);
 
 
 /***/ },
@@ -1240,7 +1240,9 @@
 
 
 /***/ },
-/* 16 */
+/* 16 */,
+/* 17 */,
+/* 18 */
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
   \**************************/
@@ -1256,11 +1258,11 @@
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
-	var _codemirror = __webpack_require__(/*! ./codemirror */ 17);
+	var _codemirrorPreset = __webpack_require__(/*! ./codemirror-preset */ 19);
 
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 27);
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 29);
 
-	var _replcase = __webpack_require__(/*! ./replcase */ 28);
+	var _replcase = __webpack_require__(/*! ./replcase */ 30);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -1449,10 +1451,10 @@
 
 	init();
 
-	const codeeditmirror = (0, _codemirror.codeedit)(codeinput, localvalue || _replcase.globaldefined);
+	const codeeditmirror = (0, _codemirrorPreset.codeedit)(codeinput, localvalue || _replcase.globaldefined);
 	codeeditmirror.on('change', () => evaluate());
 
-	const markupviewmirror = (0, _codemirror.markupview)(markupoutput);
+	const markupviewmirror = (0, _codemirrorPreset.markupview)(markupoutput);
 
 	evaluate();
 
@@ -1504,10 +1506,10 @@
 	}
 
 /***/ },
-/* 17 */
-/*!********************************!*\
-  !*** ./docs/lib/codemirror.js ***!
-  \********************************/
+/* 19 */
+/*!***************************************!*\
+  !*** ./docs/lib/codemirror-preset.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1517,24 +1519,26 @@
 	});
 	exports.markupview = exports.codeedit = undefined;
 
-	var _codemirror = __webpack_require__(/*! codemirror */ 18);
+	var _codemirror = __webpack_require__(/*! codemirror */ 20);
 
 	var _codemirror2 = _interopRequireDefault(_codemirror);
 
-	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 19);
+	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 21);
 
-	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 20);
+	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 22);
 
-	__webpack_require__(/*! codemirror/lib/codemirror.css */ 23);
+	__webpack_require__(/*! codemirror/lib/codemirror.css */ 25);
 
-	__webpack_require__(/*! codemirror/theme/night.css */ 25);
+	__webpack_require__(/*! codemirror/theme/night.css */ 27);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	const theme = 'night';
+
 	const codeedit = exports.codeedit = (node, value) => new _codemirror2.default(node, {
-	    value: value,
+	    value,
 	    mode: 'javascript',
-	    theme: 'night',
+	    theme,
 	    indentUnit: 4,
 	    tabSize: 2,
 	    indentWithTabs: true,
@@ -1547,12 +1551,12 @@
 
 	const markupview = exports.markupview = node => new _codemirror2.default(node, {
 	    mode: 'htmlmixed',
-	    theme: 'night',
+	    theme,
 	    readOnly: true
 	});
 
 /***/ },
-/* 18 */
+/* 20 */
 /*!****************************************!*\
   !*** ./~/codemirror/lib/codemirror.js ***!
   \****************************************/
@@ -2572,7 +2576,7 @@
 	CodeMirror.version="5.19.0";return CodeMirror;});
 
 /***/ },
-/* 19 */
+/* 21 */
 /*!****************************************************!*\
   !*** ./~/codemirror/mode/javascript/javascript.js ***!
   \****************************************************/
@@ -2585,7 +2589,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 20));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3364,7 +3368,7 @@
 	});
 
 /***/ },
-/* 20 */
+/* 22 */
 /*!**************************************************!*\
   !*** ./~/codemirror/mode/htmlmixed/htmlmixed.js ***!
   \**************************************************/
@@ -3377,7 +3381,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18), __webpack_require__(/*! ../xml/xml */ 21), __webpack_require__(/*! ../javascript/javascript */ 19), __webpack_require__(/*! ../css/css */ 22));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 20), __webpack_require__(/*! ../xml/xml */ 23), __webpack_require__(/*! ../javascript/javascript */ 21), __webpack_require__(/*! ../css/css */ 24));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3510,7 +3514,7 @@
 	});
 
 /***/ },
-/* 21 */
+/* 23 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/xml/xml.js ***!
   \**************************************/
@@ -3523,7 +3527,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 20));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3894,7 +3898,7 @@
 	});
 
 /***/ },
-/* 22 */
+/* 24 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/css/css.js ***!
   \**************************************/
@@ -3907,7 +3911,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 20));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -4457,7 +4461,7 @@
 	});
 
 /***/ },
-/* 23 */
+/* 25 */
 /*!*****************************************!*\
   !*** ./~/codemirror/lib/codemirror.css ***!
   \*****************************************/
@@ -4466,7 +4470,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 24);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 26);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 12)(content, {});
@@ -4486,7 +4490,7 @@
 	}
 
 /***/ },
-/* 24 */
+/* 26 */
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/lib/codemirror.css ***!
   \***************************************************************************/
@@ -4503,7 +4507,7 @@
 
 
 /***/ },
-/* 25 */
+/* 27 */
 /*!**************************************!*\
   !*** ./~/codemirror/theme/night.css ***!
   \**************************************/
@@ -4512,7 +4516,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./night.css */ 26);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./night.css */ 28);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 12)(content, {});
@@ -4532,7 +4536,7 @@
 	}
 
 /***/ },
-/* 26 */
+/* 28 */
 /*!************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/night.css ***!
   \************************************************************************/
@@ -4549,7 +4553,7 @@
 
 
 /***/ },
-/* 27 */
+/* 29 */
 /*!*************************************!*\
   !*** ./util/util.htmlserializer.js ***!
   \*************************************/
@@ -4627,7 +4631,7 @@
 	exports.HTMLSerializer = HTMLSerializer;
 
 /***/ },
-/* 28 */
+/* 30 */
 /*!******************************!*\
   !*** ./docs/lib/replcase.js ***!
   \******************************/
@@ -4640,19 +4644,19 @@
 	});
 	exports.testcase = exports.importfrom = exports.exportdefault = exports.globaldefined = undefined;
 
-	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 29);
+	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 31);
 
 	var _testGlobaldefined2 = _interopRequireDefault(_testGlobaldefined);
 
-	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 30);
+	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 32);
 
 	var _testExportdefault2 = _interopRequireDefault(_testExportdefault);
 
-	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 31);
+	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 33);
 
 	var _testImportfrom2 = _interopRequireDefault(_testImportfrom);
 
-	var _testcase = __webpack_require__(/*! ./testcase */ 32);
+	var _testcase = __webpack_require__(/*! ./testcase */ 34);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4662,7 +4666,7 @@
 	exports.testcase = _testcase.testcase;
 
 /***/ },
-/* 29 */
+/* 31 */
 /*!***************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-globaldefined.rawjs ***!
   \***************************************************************/
@@ -4671,7 +4675,7 @@
 	module.exports = "form({\n    action : '//yandex.com/search',\n    target : '_blank',\n    children : [\n        label([\n            img({\n                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n                alt : 'Yandex',\n                width : 50\n            }),\n            br(),\n            input({ type : 'search', name : 'text' }),\n            ' '\n        ]),\n        button('Find')\n    ]\n})\n"
 
 /***/ },
-/* 30 */
+/* 32 */
 /*!***************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-exportdefault.rawjs ***!
   \***************************************************************/
@@ -4680,7 +4684,7 @@
 	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
 
 /***/ },
-/* 31 */
+/* 33 */
 /*!************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-importfrom.rawjs ***!
   \************************************************************/
@@ -4689,7 +4693,7 @@
 	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
 
 /***/ },
-/* 32 */
+/* 34 */
 /*!******************************!*\
   !*** ./docs/lib/testcase.js ***!
   \******************************/
@@ -4702,7 +4706,7 @@
 	});
 	exports.testcase = undefined;
 
-	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 33);
+	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 35);
 
 	var _testTestcase2 = _interopRequireDefault(_testTestcase);
 
@@ -4720,7 +4724,7 @@
 	});
 
 /***/ },
-/* 33 */
+/* 35 */
 /*!**********************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
   \**********************************************************/
