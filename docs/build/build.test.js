@@ -766,7 +766,7 @@
 	});
 	exports.siteheading = undefined;
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
 	__webpack_require__(/*! ./siteheading.css */ 9);
 
@@ -774,9 +774,9 @@
 
 	const siteheading = exports.siteheading = children => {
 	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _lib.h1)({
+	    return (0, _htmlmodule.h1)({
 	        id: 'siteheading',
-	        children: [(0, _lib.a)({
+	        children: [(0, _htmlmodule.a)({
 	            href: isIndex ? undefined : './',
 	            children: MODULE_NAME
 	        }), ' ', children]
@@ -1156,25 +1156,25 @@
 	});
 	exports.sitenav = undefined;
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
 	__webpack_require__(/*! ./sitenav.css */ 14);
 
 	const pathname = location.pathname;
 
-	const navlist = [(0, _lib.a)({
+	const navlist = [(0, _htmlmodule.a)({
 	    href: './api/',
 	    children: 'api doc'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './spec.html',
 	    children: 'spec suite'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './repl.html',
 	    children: 'repl machine'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './test.html',
 	    children: 'test case'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: '//github.com/aristov/htmlmodule',
 	    children: 'git repo'
 	})];
@@ -1183,14 +1183,14 @@
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	const modulemark = (0, _lib.small)(['assembled by ', (0, _lib.a)({
+	const modulemark = (0, _htmlmodule.small)(['assembled by ', (0, _htmlmodule.a)({
 	    href: 'http://npmjs.org/package/htmlmodule',
 	    children: 'htmlmodule'
 	})]);
 
-	const sitenav = exports.sitenav = () => (0, _lib.footer)({
+	const sitenav = exports.sitenav = () => (0, _htmlmodule.footer)({
 	    id: 'sitenav',
-	    children: [(0, _lib.nav)(navlist), modulemark]
+	    children: [(0, _htmlmodule.nav)(navlist), modulemark]
 	});
 
 /***/ },
@@ -12901,6 +12901,39 @@
 
 	// exports
 
+
+/***/ },
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */
+/*!********************************!*\
+  !*** ./docs/lib/htmlmodule.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	Object.keys(_lib).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _lib[key];
+	    }
+	  });
+	});
 
 /***/ }
 /******/ ]);

@@ -1,9 +1,9 @@
-#indexapi ul
+#apinav ul
 {
     column-count: 7;
     list-style: none;
 }
-#indexapi ul > li
+#apinav ul > li
 {
     line-height: 25px;
     font-weight: bold;

@@ -1,4 +1,4 @@
-import { code, pre, details, summary, } from '../../lib';
+import { code, pre, details, summary, } from './htmlmodule';
 import './sourcedetails.css';
 
 export const sourcedetails = () =>

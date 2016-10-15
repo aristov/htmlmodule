@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /*!******************!*\
   !*** multi repl ***!
   \******************/
@@ -51,7 +52,8 @@
 
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -124,7 +126,8 @@
 	});
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -151,7 +154,8 @@
 	}
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -271,7 +275,8 @@
 	});
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -327,7 +332,8 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -355,7 +361,8 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-/* 6 */
+
+/***/ 6:
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -752,8 +759,8 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-/* 7 */,
-/* 8 */
+
+/***/ 8:
 /*!*********************************!*\
   !*** ./docs/lib/siteheading.js ***!
   \*********************************/
@@ -766,7 +773,7 @@
 	});
 	exports.siteheading = undefined;
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
 	__webpack_require__(/*! ./siteheading.css */ 9);
 
@@ -774,9 +781,9 @@
 
 	const siteheading = exports.siteheading = children => {
 	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _lib.h1)({
+	    return (0, _htmlmodule.h1)({
 	        id: 'siteheading',
-	        children: [(0, _lib.a)({
+	        children: [(0, _htmlmodule.a)({
 	            href: isIndex ? undefined : './',
 	            children: MODULE_NAME
 	        }), ' ', children]
@@ -784,7 +791,8 @@
 	};
 
 /***/ },
-/* 9 */
+
+/***/ 9:
 /*!**********************************!*\
   !*** ./docs/lib/siteheading.css ***!
   \**********************************/
@@ -813,7 +821,8 @@
 	}
 
 /***/ },
-/* 10 */
+
+/***/ 10:
 /*!********************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
   \********************************************************************/
@@ -830,7 +839,8 @@
 
 
 /***/ },
-/* 11 */
+
+/***/ 11:
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -888,7 +898,8 @@
 	};
 
 /***/ },
-/* 12 */
+
+/***/ 12:
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1143,7 +1154,8 @@
 
 
 /***/ },
-/* 13 */
+
+/***/ 13:
 /*!*****************************!*\
   !*** ./docs/lib/sitenav.js ***!
   \*****************************/
@@ -1156,25 +1168,25 @@
 	});
 	exports.sitenav = undefined;
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
 	__webpack_require__(/*! ./sitenav.css */ 14);
 
 	const pathname = location.pathname;
 
-	const navlist = [(0, _lib.a)({
+	const navlist = [(0, _htmlmodule.a)({
 	    href: './api/',
 	    children: 'api doc'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './spec.html',
 	    children: 'spec suite'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './repl.html',
 	    children: 'repl machine'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './test.html',
 	    children: 'test case'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: '//github.com/aristov/htmlmodule',
 	    children: 'git repo'
 	})];
@@ -1183,18 +1195,19 @@
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	const modulemark = (0, _lib.small)(['assembled by ', (0, _lib.a)({
+	const modulemark = (0, _htmlmodule.small)(['assembled by ', (0, _htmlmodule.a)({
 	    href: 'http://npmjs.org/package/htmlmodule',
 	    children: 'htmlmodule'
 	})]);
 
-	const sitenav = exports.sitenav = () => (0, _lib.footer)({
+	const sitenav = exports.sitenav = () => (0, _htmlmodule.footer)({
 	    id: 'sitenav',
-	    children: [(0, _lib.nav)(navlist), modulemark]
+	    children: [(0, _htmlmodule.nav)(navlist), modulemark]
 	});
 
 /***/ },
-/* 14 */
+
+/***/ 14:
 /*!******************************!*\
   !*** ./docs/lib/sitenav.css ***!
   \******************************/
@@ -1223,7 +1236,8 @@
 	}
 
 /***/ },
-/* 15 */
+
+/***/ 15:
 /*!****************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
   \****************************************************************/
@@ -1240,9 +1254,8 @@
 
 
 /***/ },
-/* 16 */,
-/* 17 */,
-/* 18 */
+
+/***/ 18:
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
   \**************************/
@@ -1506,7 +1519,8 @@
 	}
 
 /***/ },
-/* 19 */
+
+/***/ 19:
 /*!***************************************!*\
   !*** ./docs/lib/codemirror-preset.js ***!
   \***************************************/
@@ -1556,7 +1570,8 @@
 	});
 
 /***/ },
-/* 20 */
+
+/***/ 20:
 /*!****************************************!*\
   !*** ./~/codemirror/lib/codemirror.js ***!
   \****************************************/
@@ -2576,7 +2591,8 @@
 	CodeMirror.version="5.19.0";return CodeMirror;});
 
 /***/ },
-/* 21 */
+
+/***/ 21:
 /*!****************************************************!*\
   !*** ./~/codemirror/mode/javascript/javascript.js ***!
   \****************************************************/
@@ -3368,7 +3384,8 @@
 	});
 
 /***/ },
-/* 22 */
+
+/***/ 22:
 /*!**************************************************!*\
   !*** ./~/codemirror/mode/htmlmixed/htmlmixed.js ***!
   \**************************************************/
@@ -3514,7 +3531,8 @@
 	});
 
 /***/ },
-/* 23 */
+
+/***/ 23:
 /*!**************************************!*\
   !*** ./~/codemirror/mode/xml/xml.js ***!
   \**************************************/
@@ -3898,7 +3916,8 @@
 	});
 
 /***/ },
-/* 24 */
+
+/***/ 24:
 /*!**************************************!*\
   !*** ./~/codemirror/mode/css/css.js ***!
   \**************************************/
@@ -4461,7 +4480,8 @@
 	});
 
 /***/ },
-/* 25 */
+
+/***/ 25:
 /*!*****************************************!*\
   !*** ./~/codemirror/lib/codemirror.css ***!
   \*****************************************/
@@ -4490,7 +4510,8 @@
 	}
 
 /***/ },
-/* 26 */
+
+/***/ 26:
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/lib/codemirror.css ***!
   \***************************************************************************/
@@ -4507,7 +4528,8 @@
 
 
 /***/ },
-/* 27 */
+
+/***/ 27:
 /*!**************************************!*\
   !*** ./~/codemirror/theme/night.css ***!
   \**************************************/
@@ -4536,7 +4558,8 @@
 	}
 
 /***/ },
-/* 28 */
+
+/***/ 28:
 /*!************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/night.css ***!
   \************************************************************************/
@@ -4553,7 +4576,8 @@
 
 
 /***/ },
-/* 29 */
+
+/***/ 29:
 /*!*************************************!*\
   !*** ./util/util.htmlserializer.js ***!
   \*************************************/
@@ -4631,7 +4655,8 @@
 	exports.HTMLSerializer = HTMLSerializer;
 
 /***/ },
-/* 30 */
+
+/***/ 30:
 /*!******************************!*\
   !*** ./docs/lib/replcase.js ***!
   \******************************/
@@ -4666,7 +4691,8 @@
 	exports.testcase = _testcase.testcase;
 
 /***/ },
-/* 31 */
+
+/***/ 31:
 /*!***************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-globaldefined.rawjs ***!
   \***************************************************************/
@@ -4675,7 +4701,8 @@
 	module.exports = "form({\n    action : '//yandex.com/search',\n    target : '_blank',\n    children : [\n        label([\n            img({\n                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n                alt : 'Yandex',\n                width : 50\n            }),\n            br(),\n            input({ type : 'search', name : 'text' }),\n            ' '\n        ]),\n        button('Find')\n    ]\n})\n"
 
 /***/ },
-/* 32 */
+
+/***/ 32:
 /*!***************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-exportdefault.rawjs ***!
   \***************************************************************/
@@ -4684,7 +4711,8 @@
 	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
 
 /***/ },
-/* 33 */
+
+/***/ 33:
 /*!************************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-importfrom.rawjs ***!
   \************************************************************/
@@ -4693,7 +4721,8 @@
 	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
 
 /***/ },
-/* 34 */
+
+/***/ 34:
 /*!******************************!*\
   !*** ./docs/lib/testcase.js ***!
   \******************************/
@@ -4724,7 +4753,8 @@
 	});
 
 /***/ },
-/* 35 */
+
+/***/ 35:
 /*!**********************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
   \**********************************************************/
@@ -4732,5 +4762,32 @@
 
 	module.exports = "/**\n * !!! this file requires the additional syntax restrictions !!!\n */\nexport default [\n\n    ({ fieldset, legend, input }) =>\n        fieldset([\n            legend('Authorization'),\n            input({\n                placeholder : 'login',\n                style : { marginRight : '5px' }\n            }),\n            input({\n                type : 'password',\n                placeholder : 'password'\n            })\n        ]),\n\n    ({ article, h4, img, audio, video }) =>\n        article({\n            title : 'Media',\n            children : [\n                h4('Image media'),\n                img({\n                    src : 'http://bit.ly/2e9kIdg',\n                    alt : 'Crazy PiPi!'\n                }),\n                h4('Audio media'),\n                audio({\n                    controls : true,\n                    src : 'http://bit.ly/2e2HCo5'\n                }),\n                h4('Video media'),\n                video({\n                    controls : true,\n                    width : '200',\n                    src : 'http://bit.ly/2ecsnvQ'\n                })\n            ]\n        }),\n\n    ({ div, ul, li, bdi, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div([\n            div([\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]),\n            ul([\n                li([\n                    'User ',\n                    bdi('jcranmer'),\n                    ': 12 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('hober'),\n                    ': 5 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('إيان'),\n                    ': 3 posts.'\n                ])\n            ])\n        ])\n    },\n\n    ({ form, h3, button, label, input, output, div }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height : '160px',\n                width : '300px'\n            },\n            children : [\n                h3('Event handlers'),\n                div([\n                    button({\n                        onclick : ({\n                            type,\n                            target : { tagName },\n                            constructor : { name }\n                        }) => alert([tagName, type, name, 'handler!'].join(' ')),\n                        textContent : 'Show me alert, please...'\n                    }),\n                    input({ type : 'checkbox', children : 'no alerts!' })\n                ]),\n                button({\n                    onfocus : ({ target }) => target.textContent = 'Focused!',\n                    onblur : ({ target }) => target.textContent = 'Focus wait...',\n                    textContent : 'Focus wait...'\n                }),\n                label([\n                    input({\n                        placeholder : 'text input char counter',\n                        oninput : ({ target }) => {\n                            target.nextElementSibling.value = target.value.length;\n                        }\n                    }),\n                    output({ title : 'entered char count', value : '0' })\n                ])\n            ]\n        }),\n\n    ({ footer, address, small }) =>\n        footer([\n            address('vv.aristov@gmail.com'),\n            small('@ All rights free')\n        ]),\n\n    ({ main, sup, sub, i, strong }) =>\n        main([\n            'Here comes ',\n            sup('supertext'),\n            ' and ',\n            sub('subtext'),\n            '. Later they are followed by ',\n            i('alternative voice'),\n            ' and ',\n            strong('important!')\n        ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>\n        dl([\n            dt('Abbreviations'),\n            dd([\n                abbr({\n                    title : 'Extensible markup language',\n                    children : 'XML' }),\n                abbr({\n                    title : 'Scalable vector graphics',\n                    children : 'SVG' }),\n                abbr({\n                    title : 'Interface definition language',\n                    children : 'IDL' })\n            ]),\n            dt('Edits'),\n            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),\n            dt('Keywords'),\n            dd([b('var'), b('function'), b('export'), b('const')]),\n            dt('Other'),\n            dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n        ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) =>\n        article({\n            className : 'vcard',\n            children : [\n                h2({\n                    className : 'fn',\n                    children : 'Vyacheslav Aristov'\n                }),\n                address({\n                    className : 'email',\n                    children : 'vv.aristov@gmail.com'\n                })\n            ]\n        }),\n\n    ({ pre }) => pre(`\n_________________________________________________________\n____________/          _/                      _/________\n___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________\n__________/    _/    _/      _/    _/    _/  _/__________\n_________/    _/    _/      _/    _/    _/  _/___________\n________/    _/      _/_/  _/    _/    _/  _/____________\n_________________________________________________________\n`),\n\n    ({ pre, style, script }) => pre([\n        script(`\n            Object.assign(\n                document.currentScript.style, {\n                    display: 'block',\n                    margin: '20px',\n                    border: '1px solid #ccc',\n                    color: 'blue',\n                    font: 'bold 16px monospace'\n                })`),\n        style({\n            id : 'greenstyle',\n            children : `\n                #greenstyle {\n                    display: block;\n                    margin: 20px;\n                    color: green;\n                    border: 1px solid #ccc;\n                    font: bold 16px monospace;\n                }`\n        }),\n    ]),\n\n    ({ form, label, input, textarea, span }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height: '200px'\n            },\n            children : [\n                label([\n                    'Text input ',\n                    input({ placeholder : 'Fill me' })\n                ]),\n                label([\n                    input({ type : 'checkbox' }),\n                    ' Simple checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', checked : true }),\n                    ' Checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', attrset : { checked : '' } }),\n                    ' Initially checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', indeterminate : true }),\n                    ' Indeterminate checkbox'\n                ]),\n                span([\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'html'\n                        }),\n                        ' HTML '\n                    ]),\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'xml'\n                        }),\n                        ' XML'\n                    ])\n                ]),\n                input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n            ]\n        }),\n\n    ({ form, label, select, option, br }) =>\n        form([\n            label([\n                'Select technology ',\n                select([\n                    option('XML'),\n                    option('HTML'),\n                    option({ selected : true, textContent : 'WAI-ARIA' }),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ])\n            ]),\n            br(),\n            label([\n                'Select technology stack',\n                br(),\n                select({\n                    multiple : true,\n                    children : [\n                        option('XML'),\n                        option({\n                            attrset : { selected : '' },\n                            textContent : 'HTML'\n                        }),\n                        option('WAI-ARIA'),\n                        option('RDFS'),\n                        option('OWL'),\n                        option('SGML'),\n                        option('CSS')\n                    ]})\n            ]),\n        ]),\n\n    ({ form, input, button }) =>\n        form({\n            style : { whiteSpace : 'nowrap' },\n            children : [\n                input({\n                    name : 'query',\n                    placeholder : 'type your request',\n                    type : 'search',\n                    style : { marginRight : '5px' }\n                }),\n                button('search')\n            ]\n        }),\n\n    ({ iframe, dialog, p, button }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>\n        table([\n            caption('relative concept'),\n            thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n            tbody([\n                [code('HTMLElement'), code('roletype')],\n                [code('hidden'), code('aria-hidden')],\n                [code('title'), code('aria-label')],\n                [code('—'), code('aria-pressed')],\n                [code('checked'), code('aria-checked')],\n                [code('selected'), code('aria-selected')],\n                [code('disabled'), code('aria-disabled')],\n                [code('button'), code('button')],\n                [code('a, link, area'), code('link')],\n                [code('input'), code('textbox')],\n                [code('combobox'), code('select')],\n                [code('table'), code('table')]\n            ].map(([xml, html]) => tr([ td(xml), td(html) ])))\n        ]),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>\n        hgroup([\n            h1('First level heading'),\n            h2('Second level heading'),\n            h3('Third level heading'),\n            h4('Fourth level heding'),\n            h5('Fifth level heding'),\n            h6('Sixth level heding in group')\n        ]),\n\n    ({ blockquote }) =>\n        blockquote({\n            cite : 'https://html.spec.whatwg.org/' +\n                'multipage/semantics.html#the-blockquote-element',\n            children : 'The blockquote element represents ' +\n                'a section that is quoted from another source.'\n        }),\n\n    ({ article, section, ruby, rt, rp }) =>\n        article({\n            title : 'Ruby annotations',\n            children : [\n                section([\n                    ruby(['君', rt('くん')]),\n                    ruby(['子', rt('し')]),\n                    'は',\n                    ruby(['和', rt('わ')]),\n                    'して',\n                    ruby(['同', rt('どう')]),\n                    'ぜず。'\n                ]),\n                section(ruby([\n                    '漢',\n                    rp(' ('),\n                    rt('かん'),\n                    rp(')'),\n                    '字',\n                    rp(' ('),\n                    rt('じ'),\n                    rp(')')\n                ]))\n            ]\n        }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) =>\n        article({\n            title : 'Various lists',\n            children : [\n                ul([\n                    li('Node'),\n                    li('Text'),\n                    li('Element'),\n                    li('Comment')\n                ]),\n                ol([\n                    li('Amsterdam'),\n                    li('New York'),\n                    li('Moscow'),\n                    li('Moscow')\n                ]),\n                dl([\n                    dt('DOM'),\n                    dd('Document object model'),\n                    dt('XML'),\n                    dd('Extensible markup language'),\n                    dt('HTML'),\n                    dd('Hyper text markup language'),\n                    dt('ARIAML'),\n                    dd('Accessible rich internet applications markup language')\n                ])\n            ]\n        }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
 
+/***/ },
+
+/***/ 568:
+/*!********************************!*\
+  !*** ./docs/lib/htmlmodule.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	Object.keys(_lib).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _lib[key];
+	    }
+	  });
+	});
+
 /***/ }
-/******/ ]);
+
+/******/ });

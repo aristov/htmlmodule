@@ -772,13 +772,13 @@
 
 	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 16);
 
-	var _indexapi = __webpack_require__(/*! ./indexapi */ 17);
+	var _apinav = __webpack_require__(/*! ./apinav */ 571);
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
 	__webpack_require__(/*! ./index.css */ 561);
 
-	document.body.append((0, _siteheading.siteheading)(), (0, _indexapi.indexapi)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _sitenav.sitenav)());
+	document.body.append((0, _siteheading.siteheading)(), (0, _apinav.indexapi)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _sitenav.sitenav)());
 
 /***/ },
 
@@ -795,7 +795,7 @@
 	});
 	exports.siteheading = undefined;
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
 	__webpack_require__(/*! ./siteheading.css */ 9);
 
@@ -803,9 +803,9 @@
 
 	const siteheading = exports.siteheading = children => {
 	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _lib.h1)({
+	    return (0, _htmlmodule.h1)({
 	        id: 'siteheading',
-	        children: [(0, _lib.a)({
+	        children: [(0, _htmlmodule.a)({
 	            href: isIndex ? undefined : './',
 	            children: MODULE_NAME
 	        }), ' ', children]
@@ -1190,25 +1190,25 @@
 	});
 	exports.sitenav = undefined;
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
 	__webpack_require__(/*! ./sitenav.css */ 14);
 
 	const pathname = location.pathname;
 
-	const navlist = [(0, _lib.a)({
+	const navlist = [(0, _htmlmodule.a)({
 	    href: './api/',
 	    children: 'api doc'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './spec.html',
 	    children: 'spec suite'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './repl.html',
 	    children: 'repl machine'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: './test.html',
 	    children: 'test case'
-	}), (0, _lib.a)({
+	}), (0, _htmlmodule.a)({
 	    href: '//github.com/aristov/htmlmodule',
 	    children: 'git repo'
 	})];
@@ -1217,14 +1217,14 @@
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	const modulemark = (0, _lib.small)(['assembled by ', (0, _lib.a)({
+	const modulemark = (0, _htmlmodule.small)(['assembled by ', (0, _htmlmodule.a)({
 	    href: 'http://npmjs.org/package/htmlmodule',
 	    children: 'htmlmodule'
 	})]);
 
-	const sitenav = exports.sitenav = () => (0, _lib.footer)({
+	const sitenav = exports.sitenav = () => (0, _htmlmodule.footer)({
 	    id: 'sitenav',
-	    children: [(0, _lib.nav)(navlist), modulemark]
+	    children: [(0, _htmlmodule.nav)(navlist), modulemark]
 	});
 
 /***/ },
@@ -1290,65 +1290,31 @@
 	});
 	exports.sourcefetch = exports.sourcedetails = undefined;
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
 	__webpack_require__(/*! ./sourcedetails.css */ 564);
 
-	const sourcedetails = exports.sourcedetails = () => (0, _lib.details)({
+	const sourcedetails = exports.sourcedetails = () => (0, _htmlmodule.details)({
 	    id: 'sourcedetails',
-	    children: (0, _lib.summary)('page source')
+	    children: (0, _htmlmodule.summary)('page source')
 	});
 
 	const fetch = window.fetch;
 	const sourcefetch = exports.sourcefetch = node => {
 	    Promise.all([fetch('index.html').then(response => response.text()), fetch('lib/index.js').then(response => response.text()), fetch('lib/index.css').then(response => response.text())]).then(function ([html, js, css]) {
-	        node.append((0, _lib.code)({
+	        node.append((0, _htmlmodule.code)({
 	            className: 'sourcetitle',
 	            children: 'index.html'
-	        }), (0, _lib.pre)((0, _lib.code)(html)), (0, _lib.code)({
+	        }), (0, _htmlmodule.pre)((0, _htmlmodule.code)(html)), (0, _htmlmodule.code)({
 	            className: 'sourcetitle',
 	            children: 'lib/index.js => build/build.js (babel transpiled)'
-	        }), (0, _lib.pre)((0, _lib.code)(js)), (0, _lib.code)({
+	        }), (0, _htmlmodule.pre)((0, _htmlmodule.code)(js)), (0, _htmlmodule.code)({
 	            className: 'sourcetitle',
 	            children: 'lib/index.css'
-	        }), (0, _lib.pre)((0, _lib.code)(css)));
+	        }), (0, _htmlmodule.pre)((0, _htmlmodule.code)(css)));
 	    });
 	    return node;
 	};
-
-/***/ },
-
-/***/ 17:
-/*!******************************!*\
-  !*** ./docs/lib/indexapi.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.indexapi = undefined;
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	var htmlmodule = _interopRequireWildcard(_lib);
-
-	__webpack_require__(/*! ./indexapi.css */ 566);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	const keys = Object.keys(htmlmodule).map(key => (0, _lib.li)((0, _lib.a)({
-	    href: './api#' + key.toLowerCase(),
-	    target: '_blank',
-	    children: key
-	})));
-
-	const indexapi = exports.indexapi = () => (0, _lib.details)({
-	    id: 'indexapi',
-	    children: [(0, _lib.summary)('API index'), (0, _lib.ul)(keys)]
-	});
 
 /***/ },
 
@@ -1466,16 +1432,42 @@
 
 /***/ },
 
-/***/ 566:
-/*!*******************************!*\
-  !*** ./docs/lib/indexapi.css ***!
-  \*******************************/
+/***/ 568:
+/*!********************************!*\
+  !*** ./docs/lib/htmlmodule.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _lib = __webpack_require__(/*! ../../lib */ 1);
+
+	Object.keys(_lib).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _lib[key];
+	    }
+	  });
+	});
+
+/***/ },
+
+/***/ 569:
+/*!*****************************!*\
+  !*** ./docs/lib/apinav.css ***!
+  \*****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./indexapi.css */ 567);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./apinav.css */ 570);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
@@ -1484,8 +1476,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./indexapi.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./indexapi.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./apinav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./apinav.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1496,10 +1488,10 @@
 
 /***/ },
 
-/***/ 567:
-/*!*****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/indexapi.css ***!
-  \*****************************************************************/
+/***/ 570:
+/*!***************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/apinav.css ***!
+  \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
@@ -1507,10 +1499,44 @@
 
 
 	// module
-	exports.push([module.id, "#indexapi ul\n{\n    -webkit-column-count: 7;\n       -moz-column-count: 7;\n            column-count: 7;\n    list-style: none;\n}\n#indexapi ul > li\n{\n    line-height: 25px;\n    font-weight: bold;\n    font-family: monospace;\n}\n", ""]);
+	exports.push([module.id, "#apinav ul\n{\n    -webkit-column-count: 7;\n       -moz-column-count: 7;\n            column-count: 7;\n    list-style: none;\n}\n#apinav ul > li\n{\n    line-height: 25px;\n    font-weight: bold;\n    font-family: monospace;\n}\n", ""]);
 
 	// exports
 
+
+/***/ },
+
+/***/ 571:
+/*!****************************!*\
+  !*** ./docs/lib/apinav.js ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.indexapi = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
+
+	var htmlmodule = _interopRequireWildcard(_htmlmodule);
+
+	__webpack_require__(/*! ./apinav.css */ 569);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	const keys = Object.keys(htmlmodule);
+
+	const indexapi = exports.indexapi = () => (0, _htmlmodule.details)({
+	    id: 'apinav',
+	    children: [(0, _htmlmodule.summary)('API index'), (0, _htmlmodule.nav)((0, _htmlmodule.ul)(keys.map(key => (0, _htmlmodule.li)((0, _htmlmodule.a)({
+	        href: './api#' + key.toLowerCase(),
+	        target: '_blank',
+	        children: key
+	    })))))]
+	});
 
 /***/ }
 
