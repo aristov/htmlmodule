@@ -2,8 +2,14 @@ export default [
 
     ({ fieldset, legend, input }) => fieldset([
         legend('Authorization'),
-        input({ placeholder : 'login', style : { marginRight : '5px' } }),
-        input({ type : 'password', placeholder : 'password' })
+        input({
+            placeholder : 'login',
+            style : { marginRight : '5px' }
+        }),
+        input({
+            type : 'password',
+            placeholder : 'password'
+        })
     ]),
 
     ({ article, h4, img, audio, video }) => article({
@@ -28,38 +34,48 @@ export default [
         ]
     }),
 
-    ({ header, nav, a, ul, li }) => header(nav(ul([
-        li(a({
-            href : '/home.html',
-            textContent : 'Go home'
-        })),
-        li(a({
-            href : 'http://github.com/aristov',
-            textContent : 'Github page'
-        })),
-        li(a({
-            href : 'mailto:vv.aristov@gmail.com',
-            textContent : 'Contact me'
-        }))
-    ]))),
+    ({ header, nav, a, ul, li }) => header(
+        nav(ul([
+            li(a({
+                href : '/home.html',
+                textContent : 'Go home'
+            })),
+            li(a({
+                href : 'http://github.com/aristov',
+                textContent : 'Github page'
+            })),
+            li(a({
+                href : 'mailto:vv.aristov@gmail.com',
+                textContent : 'Contact me'
+            }))
+        ]))),
 
-    ({ div, ul, li, bdi }) => div({
-        children : ul([
-            li(['User ', bdi('jcranmer'), ': 12 posts.']),
-            li(['User ', bdi('hober'), ': 5 posts.']),
-            li(['User ', bdi('إيان'), ': 3 posts.'])
-        ])
-    }),
-
-    ({ div, bdo }) => {
+    ({ div, ul, li, bdi, bdo }) => {
         const children = 'АРОЗАУПАЛА';
-        return div({
-            children: [
+        return div([
+            div([
                 children,
                 'Н',
                 bdo({ dir : 'rtl', children })
-            ]
-        })
+            ]),
+            ul([
+                li([
+                    'User ',
+                    bdi('jcranmer'),
+                    ': 12 posts.'
+                ]),
+                li([
+                    'User ',
+                    bdi('hober'),
+                    ': 5 posts.'
+                ]),
+                li([
+                    'User ',
+                    bdi('إيان'),
+                    ': 3 posts.'
+                ])
+            ])
+        ])
     },
 
     ({ fieldset, legend, button, br, input, output }) => fieldset([
@@ -73,12 +89,14 @@ export default [
             }) => alert([tagName, type, name, 'handler!'].join(' ')),
             textContent : 'Show me alert, please...'
         }),
+        br(),
         button({
             style : { marginRight : '10px' },
             onfocus : ({ target }) => target.textContent = 'Focused!',
             onblur : ({ target }) => target.textContent = 'Focus wait...',
             textContent : 'Focus wait...'
         }),
+        br(),
         input({
             style : { marginRight : '10px' },
             placeholder : 'text input char counter',
@@ -106,13 +124,23 @@ export default [
     ]),
 
     ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([
-        dt('abbreviations'),
-        dd(abbr('XML, HTML, DOM, WAI-ARIA, RDF, OWL')),
-        dt('edits'),
-        dd([ins('inserted'), ' and ', del('deleted'), ' text']),
-        dt('reywords'),
-        dd(b('var, function, export, const')),
-        dt('other'),
+        dt('Abbreviations'),
+        dd([
+            abbr({
+                title : 'Extensible markup language',
+                children : 'XML' }),
+            abbr({
+                title : 'Scalable vector graphics',
+                children : 'SVG' }),
+            abbr({
+                title : 'Interface definition language',
+                children : 'IDL' })
+        ]),
+        dt('Edits'),
+        dd([ins('Inserted'), ' and ', del('deleted'), ' text']),
+        dt('Keywords'),
+        dd([b('var'), b('function'), b('export'), b('const')]),
+        dt('Other'),
         dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])
     ]),
 
@@ -121,51 +149,45 @@ export default [
     ({ article, h2, address }) => article({
         className : 'vcard',
         children : [
-            h2({ className : 'fn', textContent : 'Vyacheslav Aristov' }),
-            address({ className : 'email', textContent : 'vv.aristov@gmail.com' })
+            h2({
+                className : 'fn',
+                children : 'Vyacheslav Aristov'
+            }),
+            address({
+                className : 'email',
+                children : 'vv.aristov@gmail.com'
+            })
         ]
     }),
 
-    ({ style }) => style({
-        id : 'greenstyle',
-        textContent : '#greenstyle { display: inline-block; color: green; font-family: monospace }'
-    }),
+    ({ pre }) => pre(`
+_________________________________________________________
+____________/          _/                      _/________
+___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________
+__________/    _/    _/      _/    _/    _/  _/__________
+_________/    _/    _/      _/    _/    _/  _/___________
+________/    _/      _/_/  _/    _/    _/  _/____________
+_________________________________________________________
+`),
 
-    ({ script }) => script(
-        'Object.assign(' +
-            'document.currentScript.style, ' +
-            '{ display: "block", color: "blue", fontFamily : "monospace" ' +
-        '})'),
-
-    ({ pre }) => pre(
-`preformatted text
-line break 
-    — yet another line break with tab
-  
-  <>&`
-    ),
-
-    ({ blockquote }) => blockquote({
-        cite : 'https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element',
-        textContent : 'The blockquote element represents a section that is quoted from another source.'
-    }),
-
-    ({ span }) => span('span — the base html element; text wrapper; no semantics, no default style'),
-
-    ({ div }) => div([
-        'div — like span has no semantics, but',
-        div('div has default `display: block` style')
+    ({ pre, style, script }) => pre([
+        script(`
+            Object.assign(
+                document.currentScript.style, {
+                    display: 'block',
+                    color: 'blue',
+                    fontFamily : 'monospace'
+                })`),
+        style({
+            id : 'greenstyle',
+            children : `
+                #greenstyle {
+                    display: block;
+                    color: green;
+                    font-family: monospace
+                }`
+        }),
     ]),
-
-    ({ p, br }) => p(['b', br(), 'r']),
-
-    ({ p, hr }) => p([
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-        hr(),
-        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    ]),
-
-    ({ button }) => button('Push my button'),
 
     ({ form, label, input, textarea, span }) => form({
         style : {
@@ -265,13 +287,7 @@ line break
         ]
     }),
 
-    ({ dialog }) => dialog({
-        open : true,
-        style : { position : 'relative', display: 'block' },
-        textContent : 'Hello world!'
-    }),
-
-    ({ iframe, dialog, p, button, script }) => {
+    ({ iframe, dialog, p, button }) => {
         const onclick = 'event.target.parentElement.close()';
         const srcdom = dialog([
             p('Close dialog?'),
@@ -294,32 +310,42 @@ line break
         return context;
     },
 
-    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => table([
-        caption('Web technology comparison'),
-        thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),
-        tbody([
-            [code('tagName'), code('role')],
-            [code('hidden'), code('aria-hidden')],
-            [code('title'), code('aria-label')]
-        ].map(([xml, html]) => tr([ td(xml), td(html) ])))
-    ]),
+    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>
+        table([
+            caption('relative concept'),
+            thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),
+            tbody([
+                [code('HTMLElement'), code('roletype')],
+                [code('hidden'), code('aria-hidden')],
+                [code('title'), code('aria-label')],
+                [code('—'), code('aria-pressed')],
+                [code('checked'), code('aria-checked')],
+                [code('selected'), code('aria-selected')],
+                [code('disabled'), code('aria-disabled')],
+                [code('button'), code('button')],
+                [code('a, link, area'), code('link')],
+                [code('input'), code('textbox')],
+                [code('combobox'), code('select')],
+                [code('table'), code('table')]
+            ].map(([xml, html]) => tr([ td(xml), td(html) ])))
+        ]),
 
-    ({ hgroup, h1, h2, h3, h4, h5, h6 }) => hgroup([
-        h1('First level heading'),
-        h2('Second level heading'),
-        h3('Third level heading'),
-        h4('Fourth level heding'),
-        h5('Fifth level heding'),
-        h6('Sixth level heding in group')
-    ]),
+    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>
+        hgroup([
+            h1('First level heading'),
+            h2('Second level heading'),
+            h3('Third level heading'),
+            h4('Fourth level heding'),
+            h5('Fifth level heding'),
+            h6('Sixth level heding in group')
+        ]),
 
-    ({ details, summary, code, em, del, dfn }) => details([
-        summary('Show details'),
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ',
-        code('export const code = init => instance.createElement(\'code\', init);'),
-        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        dfn('Instance.js — simple and powerfull DOM Element interface')
-    ]),
+    ({ blockquote }) => blockquote({
+        cite : 'https://html.spec.whatwg.org/' +
+            'multipage/semantics.html#the-blockquote-element',
+        children : 'The blockquote element represents ' +
+            'a section that is quoted from another source.'
+    }),
 
     ({ article, section, ruby, rt, rp }) => article({
         title : 'Ruby annotations',
@@ -333,7 +359,16 @@ line break
                 ruby(['同', rt('どう')]),
                 'ぜず。'
             ]),
-            section(ruby(['漢', rp(' ('), rt('かん'), rp(')'), '字', rp(' ('), rt('じ'), rp(')')]))
+            section(ruby([
+                '漢',
+                rp(' ('),
+                rt('かん'),
+                rp(')'),
+                '字',
+                rp(' ('),
+                rt('じ'),
+                rp(')')
+            ]))
         ]
     }),
 

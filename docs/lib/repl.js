@@ -30,6 +30,10 @@ const serializer = new HTMLSerializer;
 const EXPORT_DEFAULT_RE = /export\s+default\s+/;
 const EXPORTS_DEFAULT_RE = /exports\s*\.\s*default\s*=/;
 const IMPORT_FROM_RE = /import\s*({(?:\s*\w+\s*,)*(?:\s*\w+\s*,?\s*)})\s*from\s*'(\w+)';?/;
+const OBJECT_DESTRUCTURING_RE = /\({\s((?:\w+\s*,?\s*)+)}\)/;
+
+/* ================================================================ */
+
 if(!window.Babel) {
     window.Babel = {
         transform : code => {
@@ -47,14 +51,15 @@ if(!window.Babel) {
 
 /* ================================================================ */
 
+const checked = localStorage.getItem('global') !== 'false';
 const globalbox = input({
     type : 'checkbox',
-    checked : localStorage.getItem('global') !== 'false',
-    onchange : () => {
+    checked,
+    attrset : { checked : checked? '' : undefined },
+    onchange : ({ target }) => {
         evaluate();
-        const checked = globalbox.checked;
+        const checked = target.checked;
         if(checked) testselectbox.value = '';
-        else settingsform.reset();
     }
 });
 
@@ -67,12 +72,17 @@ const testselectbox = select({
         updateTest();
     },
     children : [
-        option({ value : '', children : '—' }),
+        option({
+            value : '',
+            dataset : { global : 'true' },
+            children : '—'
+        }),
         option({
             value : globaldefined,
             id : 'example-with-globals',
             selected : true,
-            textContent : 'example with globals'
+            dataset : { global : 'true' },
+            children : 'example with globals'
         }),
         option({
             value : exportdefault,
@@ -85,7 +95,7 @@ const testselectbox = select({
             children : 'full module example'
         }),
         testcase.map(({ src }) => {
-            const match = src.match(/\({ ((?:\w+,? )+)}\)/);
+            const match = src.match(OBJECT_DESTRUCTURING_RE);
             const textContent = match? match[1].trim() : '?';
             const elements = textContent.split(', ');
             const id = elements.join('+');
@@ -95,7 +105,7 @@ const testselectbox = select({
 });
 
 const clearbutton = button({
-    type : 'reset',
+    type : 'button',
     onclick : () => {
         const selected = testselectbox.query('[selected]');
         if(selected) {
@@ -103,7 +113,11 @@ const clearbutton = button({
             selected.selected = false;
         }
         codeeditmirror.setValue('');
+        globalbox.checked = true;
         location.hash = '';
+        localStorage.removeItem('value');
+        localStorage.removeItem('global');
+        localStorage.removeItem('option');
     },
     children : 'clear'
 });
@@ -183,7 +197,7 @@ const localoption = localStorage.getItem('option');
 const hash = location.hash.replace('#', '');
 
 const init = () => {
-    if(localvalue !== null && localoption !== null) {
+    /*if(localvalue !== null && localoption !== null) {
         const option = testselectbox.options[localoption];
         if(option) option.selected = true;
     } else
@@ -194,7 +208,7 @@ const init = () => {
             option.setAttribute('selected', '');
             updateTest();
         }
-    }
+    }*/
     markupoutput.hidden = !markupmodebox.checked;
     document.body.append(app);
 }
@@ -256,9 +270,9 @@ function evaluate() {
 
 function updateTest() {
     const selected = testselectbox.selectedOptions[0];
-    if(selected) location.hash = selected.id;
-
-    const value = testselectbox.value
-    globalbox.checked = value === globaldefined;
-    codeeditmirror.setValue(value + '\n');
+    if(selected) {
+        location.hash = selected.id;
+        globalbox.checked = selected.dataset.global === 'true';
+        codeeditmirror.setValue(selected.value + '\n');
+    }
 }
