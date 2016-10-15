@@ -8,44 +8,21 @@ import { siteheading } from './siteheading';
 import { sitenav } from './sitenav';
 import { codeedit, markupview } from './codemirror-preset';
 
-// import utils
-import { HTMLSerializer } from '../../util/util.htmlserializer';
-
 // import tests
 import { globaldefined, exportdefault, importfrom, testcase } from './replcase';
 
 /* ================================================================ */
 
-const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
-
-const snippetpart = name => name + '=' + HTMLMODULE_VARIABLE_NAME + '.' + name;
-const IMPORTS_SNIPPET_PART = Object.keys(htmlmodule).map(snippetpart).join(', ');
-const IMPORTS_SNIPPET = 'var ' + IMPORTS_SNIPPET_PART;
-
-const indexOf = Array.prototype.indexOf;
-const serializer = new HTMLSerializer;
-
-/* ================================================================ */
-
-const EXPORT_DEFAULT_RE = /export\s+default\s+/;
-const EXPORTS_DEFAULT_RE = /exports\s*\.\s*default\s*=/;
-const IMPORT_FROM_RE = /import\s*({(?:\s*\w+\s*,)*(?:\s*\w+\s*,?\s*)})\s*from\s*'(\w+)';?/;
 const OBJECT_DESTRUCTURING_RE = /\({\s((?:\w+\s*,?\s*)+)}\)/;
 
 /* ================================================================ */
 
-if(!window.Babel) {
-    window.Babel = {
-        transform : code => {
-            code = code.replace(IMPORT_FROM_RE, 'const $1 = $2;');
-            if(EXPORT_DEFAULT_RE.test(code)) {
-                code = code.replace(EXPORT_DEFAULT_RE, 'exports.default = ');
-            }
-            else if(!EXPORTS_DEFAULT_RE.test(code)) {
-                code = 'exports.default = ' + code;
-            }
-            return { code };
-        }
+function updateTest() {
+    const selected = testselectbox.selectedOptions[0];
+    if(selected) {
+        location.hash = selected.id;
+        globalbox.checked = selected.dataset.global === 'true';
+        codeeditmirror.setValue(selected.value + '\n');
     }
 }
 
@@ -224,58 +201,3 @@ codeeditmirror.on('change', () => evaluate());
 const markupviewmirror = markupview(markupoutput);
 
 evaluate();
-
-/* ================================================================ */
-
-function evaluate() {
-    const code = codeeditmirror.getValue().trim();
-    if(code) {
-        try {
-            const es5 = Babel.transform(code);
-            const src = globalbox.checked?
-                [IMPORTS_SNIPPET, es5.code].join(';\n\n') :
-                es5.code;
-
-            const fn = new Function('exports', HTMLMODULE_VARIABLE_NAME, src);
-            const exports = {
-                default : () => {
-                    throw Error('Module is not Exported!')
-                }
-            }
-            fn(exports, htmlmodule);
-
-            const node = typeof exports.default === 'function'?
-                exports.default(htmlmodule) :
-                exports.default;
-
-            const firstChild = domoutput.firstChild;
-            if(firstChild) firstChild.replaceWith(node);
-            else domoutput.append(node);
-
-            const htmlcode = serializer.serializeToString(node);
-            markupviewmirror.setValue(htmlcode);
-
-            localStorage.setItem('value', codeeditmirror.getValue());
-            localStorage.setItem('global', globalbox.checked);
-            localStorage.setItem('option',
-                String(indexOf.call(testselectbox.options,
-                    testselectbox.selectedOptions[0])));
-        }
-        catch(error) {
-            domoutput.textContent = error;
-            markupviewmirror.setValue('');
-        }
-    } else {
-        domoutput.textContent = '';
-        markupviewmirror.setValue('');
-    }
-}
-
-function updateTest() {
-    const selected = testselectbox.selectedOptions[0];
-    if(selected) {
-        location.hash = selected.id;
-        globalbox.checked = selected.dataset.global === 'true';
-        codeeditmirror.setValue(selected.value + '\n');
-    }
-}
