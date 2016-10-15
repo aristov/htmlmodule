@@ -1,54 +1,43 @@
+/**
+ * !!! this file requires the additional syntax restrictions !!!
+ */
 export default [
 
-    ({ fieldset, legend, input }) => fieldset([
-        legend('Authorization'),
-        input({
-            placeholder : 'login',
-            style : { marginRight : '5px' }
-        }),
-        input({
-            type : 'password',
-            placeholder : 'password'
-        })
-    ]),
-
-    ({ article, h4, img, audio, video }) => article({
-        title : 'Media',
-        children : [
-            h4('Image media'),
-            img({
-                src : 'https://ru.gravatar.com/userimage/52340111/ab1960afc0c60ebb85f9c7ea8ab66514.jpg?size=200',
-                alt : 'Crazy PiPi!'
+    ({ fieldset, legend, input }) =>
+        fieldset([
+            legend('Authorization'),
+            input({
+                placeholder : 'login',
+                style : { marginRight : '5px' }
             }),
-            h4('Audio media'),
-            audio({
-                controls : true,
-                src : 'https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg'
-            }),
-            h4('Video media'),
-            video({
-                controls : true,
-                width : '200',
-                src : 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Video_Vortex_-_Open_Beelden_-_70605.ogv'
+            input({
+                type : 'password',
+                placeholder : 'password'
             })
-        ]
-    }),
+        ]),
 
-    ({ header, nav, a, ul, li }) => header(
-        nav(ul([
-            li(a({
-                href : '/home.html',
-                textContent : 'Go home'
-            })),
-            li(a({
-                href : 'http://github.com/aristov',
-                textContent : 'Github page'
-            })),
-            li(a({
-                href : 'mailto:vv.aristov@gmail.com',
-                textContent : 'Contact me'
-            }))
-        ]))),
+    ({ article, h4, img, audio, video }) =>
+        article({
+            title : 'Media',
+            children : [
+                h4('Image media'),
+                img({
+                    src : 'http://bit.ly/2e9kIdg',
+                    alt : 'Crazy PiPi!'
+                }),
+                h4('Audio media'),
+                audio({
+                    controls : true,
+                    src : 'http://bit.ly/2e2HCo5'
+                }),
+                h4('Video media'),
+                video({
+                    controls : true,
+                    width : '200',
+                    src : 'http://bit.ly/2ecsnvQ'
+                })
+            ]
+        }),
 
     ({ div, ul, li, bdi, bdo }) => {
         const children = 'АРОЗАУПАЛА';
@@ -78,87 +67,101 @@ export default [
         ])
     },
 
-    ({ fieldset, legend, button, br, input, output }) => fieldset([
-        legend('Event handlers'),
-        button({
-            style : { marginRight : '10px' },
-            onclick : ({
-                type,
-                target : { tagName },
-                constructor : { name }
-            }) => alert([tagName, type, name, 'handler!'].join(' ')),
-            textContent : 'Show me alert, please...'
+    ({ form, h3, button, label, input, output, div }) =>
+        form({
+            style : {
+                display : 'flex',
+                flexDirection : 'column',
+                justifyContent : 'space-between',
+                height : '160px',
+                width : '300px'
+            },
+            children : [
+                h3('Event handlers'),
+                div([
+                    button({
+                        onclick : ({
+                            type,
+                            target : { tagName },
+                            constructor : { name }
+                        }) => alert([tagName, type, name, 'handler!'].join(' ')),
+                        textContent : 'Show me alert, please...'
+                    }),
+                    input({ type : 'checkbox', children : 'no alerts!' })
+                ]),
+                button({
+                    onfocus : ({ target }) => target.textContent = 'Focused!',
+                    onblur : ({ target }) => target.textContent = 'Focus wait...',
+                    textContent : 'Focus wait...'
+                }),
+                label([
+                    input({
+                        placeholder : 'text input char counter',
+                        oninput : ({ target }) => {
+                            target.nextElementSibling.value = target.value.length;
+                        }
+                    }),
+                    output({ title : 'entered char count', value : '0' })
+                ])
+            ]
         }),
-        br(),
-        button({
-            style : { marginRight : '10px' },
-            onfocus : ({ target }) => target.textContent = 'Focused!',
-            onblur : ({ target }) => target.textContent = 'Focus wait...',
-            textContent : 'Focus wait...'
-        }),
-        br(),
-        input({
-            style : { marginRight : '10px' },
-            placeholder : 'text input char counter',
-            oninput : ({ target }) => {
-                target.nextElementSibling.value = target.value.length;
-            }
-        }),
-        output({ value : '0' })
-    ]),
 
-    ({ footer, address, small }) => footer([
-        address('vv.aristov@gmail.com'),
-        small('@ All rights free')
-    ]),
-
-    ({ main, sup, sub, i, strong }) => main([
-        'Here comes ',
-        sup('supertext'),
-        ' and ',
-        sub('subtext'),
-        '. Later they are followed by ',
-        i('alternative voice'),
-        ' and ',
-        strong('important!')
-    ]),
-
-    ({ dl, dt, dd, abbr, ins, del, b, s, em }) => dl([
-        dt('Abbreviations'),
-        dd([
-            abbr({
-                title : 'Extensible markup language',
-                children : 'XML' }),
-            abbr({
-                title : 'Scalable vector graphics',
-                children : 'SVG' }),
-            abbr({
-                title : 'Interface definition language',
-                children : 'IDL' })
+    ({ footer, address, small }) =>
+        footer([
+            address('vv.aristov@gmail.com'),
+            small('@ All rights free')
         ]),
-        dt('Edits'),
-        dd([ins('Inserted'), ' and ', del('deleted'), ' text']),
-        dt('Keywords'),
-        dd([b('var'), b('function'), b('export'), b('const')]),
-        dt('Other'),
-        dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])
-    ]),
+
+    ({ main, sup, sub, i, strong }) =>
+        main([
+            'Here comes ',
+            sup('supertext'),
+            ' and ',
+            sub('subtext'),
+            '. Later they are followed by ',
+            i('alternative voice'),
+            ' and ',
+            strong('important!')
+        ]),
+
+    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>
+        dl([
+            dt('Abbreviations'),
+            dd([
+                abbr({
+                    title : 'Extensible markup language',
+                    children : 'XML' }),
+                abbr({
+                    title : 'Scalable vector graphics',
+                    children : 'SVG' }),
+                abbr({
+                    title : 'Interface definition language',
+                    children : 'IDL' })
+            ]),
+            dt('Edits'),
+            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),
+            dt('Keywords'),
+            dd([b('var'), b('function'), b('export'), b('const')]),
+            dt('Other'),
+            dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])
+        ]),
 
     ({ aside }) => aside('Your advert may be here!'),
 
-    ({ article, h2, address }) => article({
-        className : 'vcard',
-        children : [
-            h2({
-                className : 'fn',
-                children : 'Vyacheslav Aristov'
-            }),
-            address({
-                className : 'email',
-                children : 'vv.aristov@gmail.com'
-            })
-        ]
-    }),
+    ({ article, h2, address }) =>
+        article({
+            className : 'vcard',
+            children : [
+                h2({
+                    className : 'fn',
+                    children : 'Vyacheslav Aristov'
+                }),
+                address({
+                    className : 'email',
+                    children : 'vv.aristov@gmail.com'
+                })
+            ]
+        }),
 
     ({ pre }) => pre(`
 _________________________________________________________
@@ -175,117 +178,123 @@ _________________________________________________________
             Object.assign(
                 document.currentScript.style, {
                     display: 'block',
+                    margin: '20px',
+                    border: '1px solid #ccc',
                     color: 'blue',
-                    fontFamily : 'monospace'
+                    font: 'bold 16px monospace'
                 })`),
         style({
             id : 'greenstyle',
             children : `
                 #greenstyle {
                     display: block;
+                    margin: 20px;
                     color: green;
-                    font-family: monospace
+                    border: 1px solid #ccc;
+                    font: bold 16px monospace;
                 }`
         }),
     ]),
 
-    ({ form, label, input, textarea, span }) => form({
-        style : {
-            display : 'flex',
-            flexDirection : 'column',
-            justifyContent : 'space-between',
-            height: '200px'
-        },
-        children : [
-            label([
-                'Text input ',
-                input({ placeholder : 'Fill me' })
-            ]),
-            label([
-                input({ type : 'checkbox' }),
-                ' Simple checkbox'
-            ]),
-            label([
-                input({ type : 'checkbox', checked : true }),
-                ' Checked checkbox'
-            ]),
-            label([
-                input({ type : 'checkbox', attrset : { checked : '' } }),
-                ' Initially checked checkbox'
-            ]),
-            label([
-                input({ type : 'checkbox', indeterminate : true }),
-                ' Indeterminate checkbox'
-            ]),
-            span([
+    ({ form, label, input, textarea, span }) =>
+        form({
+            style : {
+                display : 'flex',
+                flexDirection : 'column',
+                justifyContent : 'space-between',
+                height: '200px'
+            },
+            children : [
                 label([
-                    input({
-                        type : 'radio',
-                        name : 'chooseproglangradio',
-                        value : 'html'
-                    }),
-                    ' HTML '
+                    'Text input ',
+                    input({ placeholder : 'Fill me' })
                 ]),
                 label([
-                    input({
-                        type : 'radio',
-                        name : 'chooseproglangradio',
-                        value : 'xml'
-                    }),
-                    ' XML'
-                ])
-            ]),
-            input({ type : 'reset', style : { margin : '0 auto 0 0' } })
-        ]
-    }),
+                    input({ type : 'checkbox' }),
+                    ' Simple checkbox'
+                ]),
+                label([
+                    input({ type : 'checkbox', checked : true }),
+                    ' Checked checkbox'
+                ]),
+                label([
+                    input({ type : 'checkbox', attrset : { checked : '' } }),
+                    ' Initially checked checkbox'
+                ]),
+                label([
+                    input({ type : 'checkbox', indeterminate : true }),
+                    ' Indeterminate checkbox'
+                ]),
+                span([
+                    label([
+                        input({
+                            type : 'radio',
+                            name : 'chooseproglangradio',
+                            value : 'html'
+                        }),
+                        ' HTML '
+                    ]),
+                    label([
+                        input({
+                            type : 'radio',
+                            name : 'chooseproglangradio',
+                            value : 'xml'
+                        }),
+                        ' XML'
+                    ])
+                ]),
+                input({ type : 'reset', style : { margin : '0 auto 0 0' } })
+            ]
+        }),
 
-    ({ form, label, select, option, br }) => form([
-        label([
-            'Select technology ',
-            select([
-                option('XML'),
-                option('HTML'),
-                option({ selected : true, textContent : 'WAI-ARIA' }),
-                option('RDFS'),
-                option('OWL'),
-                option('SGML'),
-                option('CSS')
-            ])
-        ]),
-        br(),
-        label([
-            'Select technology stack',
-            br(),
-            select({
-                multiple : true,
-                children : [
+    ({ form, label, select, option, br }) =>
+        form([
+            label([
+                'Select technology ',
+                select([
                     option('XML'),
-                    option({
-                        attrset : { selected : '' },
-                        textContent : 'HTML'
-                    }),
-                    option('WAI-ARIA'),
+                    option('HTML'),
+                    option({ selected : true, textContent : 'WAI-ARIA' }),
                     option('RDFS'),
                     option('OWL'),
                     option('SGML'),
                     option('CSS')
-                ]})
+                ])
+            ]),
+            br(),
+            label([
+                'Select technology stack',
+                br(),
+                select({
+                    multiple : true,
+                    children : [
+                        option('XML'),
+                        option({
+                            attrset : { selected : '' },
+                            textContent : 'HTML'
+                        }),
+                        option('WAI-ARIA'),
+                        option('RDFS'),
+                        option('OWL'),
+                        option('SGML'),
+                        option('CSS')
+                    ]})
+            ]),
         ]),
-        br()
-    ]),
 
-    ({ form, input, button }) => form({
-        style : { whiteSpace : 'nowrap' },
-        children : [
-            input({
-                name : 'query',
-                placeholder : 'type your request',
-                type : 'search',
-                style : { marginRight : '5px' }
-            }),
-            button('search')
-        ]
-    }),
+    ({ form, input, button }) =>
+        form({
+            style : { whiteSpace : 'nowrap' },
+            children : [
+                input({
+                    name : 'query',
+                    placeholder : 'type your request',
+                    type : 'search',
+                    style : { marginRight : '5px' }
+                }),
+                button('search')
+            ]
+        }),
 
     ({ iframe, dialog, p, button }) => {
         const onclick = 'event.target.parentElement.close()';
@@ -340,63 +349,68 @@ _________________________________________________________
             h6('Sixth level heding in group')
         ]),
 
-    ({ blockquote }) => blockquote({
-        cite : 'https://html.spec.whatwg.org/' +
-            'multipage/semantics.html#the-blockquote-element',
-        children : 'The blockquote element represents ' +
-            'a section that is quoted from another source.'
-    }),
+    ({ blockquote }) =>
+        blockquote({
+            cite : 'https://html.spec.whatwg.org/' +
+                'multipage/semantics.html#the-blockquote-element',
+            children : 'The blockquote element represents ' +
+                'a section that is quoted from another source.'
+        }),
 
-    ({ article, section, ruby, rt, rp }) => article({
-        title : 'Ruby annotations',
-        children : [
-            section([
-                ruby(['君', rt('くん')]),
-                ruby(['子', rt('し')]),
-                'は',
-                ruby(['和', rt('わ')]),
-                'して',
-                ruby(['同', rt('どう')]),
-                'ぜず。'
-            ]),
-            section(ruby([
-                '漢',
-                rp(' ('),
-                rt('かん'),
-                rp(')'),
-                '字',
-                rp(' ('),
-                rt('じ'),
-                rp(')')
-            ]))
-        ]
-    }),
+    ({ article, section, ruby, rt, rp }) =>
+        article({
+            title : 'Ruby annotations',
+            children : [
+                section([
+                    ruby(['君', rt('くん')]),
+                    ruby(['子', rt('し')]),
+                    'は',
+                    ruby(['和', rt('わ')]),
+                    'して',
+                    ruby(['同', rt('どう')]),
+                    'ぜず。'
+                ]),
+                section(ruby([
+                    '漢',
+                    rp(' ('),
+                    rt('かん'),
+                    rp(')'),
+                    '字',
+                    rp(' ('),
+                    rt('じ'),
+                    rp(')')
+                ]))
+            ]
+        }),
 
-    ({ article, ul, li, ol, dl, dt, dd }) => article({
-        title : 'Various lists',
-        children : [
-            ul([
-                li('Ampeg'),
-                li('Fender'),
-                li('SMB Effects')
-            ]),
-            ol([
-                li('Amsterdam'),
-                li('New York'),
-                li('Moscow')
-            ]),
-            dl([
-                dt('DOM'),
-                dd('Document object model'),
-                dt('XML'),
-                dd('Extensible markup language'),
-                dt('HTML'),
-                dd('Hyper text markup language'),
-                dt('ARIAML'),
-                dd('Accessible rich internet applications markup language')
-            ])
-        ]
-    }),
+    ({ article, ul, li, ol, dl, dt, dd }) =>
+        article({
+            title : 'Various lists',
+            children : [
+                ul([
+                    li('Node'),
+                    li('Text'),
+                    li('Element'),
+                    li('Comment')
+                ]),
+                ol([
+                    li('Amsterdam'),
+                    li('New York'),
+                    li('Moscow'),
+                    li('Moscow')
+                ]),
+                dl([
+                    dt('DOM'),
+                    dd('Document object model'),
+                    dt('XML'),
+                    dd('Extensible markup language'),
+                    dt('HTML'),
+                    dd('Hyper text markup language'),
+                    dt('ARIAML'),
+                    dd('Accessible rich internet applications markup language')
+                ])
+            ]
+        }),
 
     ({ progress }) => progress({ max : '100', value : '70' })
 

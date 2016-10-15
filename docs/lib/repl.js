@@ -104,6 +104,8 @@ const testselectbox = select({
     ]
 });
 
+/* ================================================================ */
+
 const clearbutton = button({
     type : 'button',
     onclick : () => {
@@ -113,6 +115,7 @@ const clearbutton = button({
             selected.selected = false;
         }
         codeeditmirror.setValue('');
+        // caseselectbox.value = '';
         globalbox.checked = true;
         location.hash = '';
         localStorage.removeItem('value');
@@ -120,6 +123,18 @@ const clearbutton = button({
         localStorage.removeItem('option');
     },
     children : 'clear'
+});
+
+/* ================================================================ */
+
+const markupmodebox = input({
+    type : 'checkbox',
+    checked : localStorage.getItem('markupmode') !== 'false',
+    onchange : ({ target : { checked }}) => {
+        replmachine.classList.toggle('markupmode', checked);
+        localStorage.setItem('markupmode', String(checked));
+        if(checked) evaluate();
+    }
 });
 
 /* ================================================================ */
@@ -134,18 +149,6 @@ const settingsform = form({
 });
 
 const codeinput = div({ className : 'jsinput' });
-
-/* ================================================================ */
-
-const markupmodebox = input({
-    type : 'checkbox',
-    checked : localStorage.getItem('markupmode') !== 'false',
-    onchange : ({ target : { checked }}) => {
-        replmachine.classList.toggle('markupmode', checked);
-        localStorage.setItem('markupmode', String(checked));
-        if(checked) evaluate();
-    }
-});
 
 const domoutput = output({ className : 'domoutput' });
 
@@ -197,7 +200,7 @@ const localoption = localStorage.getItem('option');
 const hash = location.hash.replace('#', '');
 
 const init = () => {
-    /*if(localvalue !== null && localoption !== null) {
+    if(localvalue !== null && localoption !== null) {
         const option = testselectbox.options[localoption];
         if(option) option.selected = true;
     } else
@@ -208,7 +211,7 @@ const init = () => {
             option.setAttribute('selected', '');
             updateTest();
         }
-    }*/
+    }
     markupoutput.hidden = !markupmodebox.checked;
     document.body.append(app);
 }
