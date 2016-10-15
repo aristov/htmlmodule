@@ -30,7 +30,7 @@ The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` 
 
 Use a [module bundler](http://webpack.github.io/) and a [transpiler](http://babeljs.io) to transform and pack modules for in-browser usage.
 
-### Install
+### Installation
 
 ```
 npm install htmlmodule
@@ -60,7 +60,7 @@ const websearch =
 document.body.append(websearch);
 ```
 
-The `websearch` variable is a DOM structure with the respective HTML markup:
+Just created `websearch` variable is a DOM structure with the respective HTML markup:
 
 ```html
 <form action=//yandex.com/search target=_blank>
@@ -94,7 +94,7 @@ The built-in [shim bundle](/shim/index.js) fixes browser compatibility. It inclu
 - [dom4 polyfill](https://www.npmjs.com/package/dom4)
 - [some author DOM shims](/shim)
 
-The shim bundle is used in [unit-testing](#user-content-testing) environments.
+The shim bundle is used in the [unit-testing](#user-content-testing) environments.
 
 ### Shim bundle setup
 
@@ -206,12 +206,10 @@ npm test
 
 #### Test in browser
 
-Run dev/static server and open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser.
+Run dev + static server and open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser.
 
 #### Online tests
 
-Check [spec suite](//aristov.github.io/htmlmodule/spec.html)
-and [test case](//aristov.github.io/htmlmodule/test.html) 
-in your browser:
+Check [spec suite](//aristov.github.io/htmlmodule/spec.html) and [test case](//aristov.github.io/htmlmodule/test.html) in your browser.
 
 ## [MIT license](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
