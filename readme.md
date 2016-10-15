@@ -4,7 +4,7 @@
 
 <em>work in progress</em>
 
-HTML module provides web application semantics and functionality of native browser DOM API:
+The htmlmodule provides web application semantics and functionality of native browser DOM API:
 
 ```js
 const htmlspec = a({ 
@@ -20,7 +20,7 @@ A browser creates the same link, when it processes the following markup:
 <a href="https://html.spec.whatwg.org">HTML specification</a>
 ```
 
-HTML module does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
+The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
 
 ## Try now
 
@@ -202,9 +202,7 @@ npm test
 
 #### Test in browser
 
-1. build sources 
-2. run dev server
-3. open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser
+Run dev/static server and open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser.
 
 #### Online test suite
 
