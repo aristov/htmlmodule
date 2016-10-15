@@ -1788,7 +1788,7 @@
 
 	    const id = tagNames.join('+').toLowerCase();
 	    const row = (0, _lib.article)({
-	        className: tagNames.join(' ').toLowerCase(),
+	        className: ['filteritem', ...tagNames].join(' ').toLowerCase(),
 	        children: [(0, _lib.h1)((0, _lib.a)({
 	            id, href: '#' + id,
 	            className: 'testheading',
@@ -1811,6 +1811,8 @@
 	    return row;
 	});
 
+	const ITEM_SELECTOR = 'article.filteritem.';
+
 	document.body.append((0, _lib.header)([(0, _siteheading.siteheading)('test'), (0, _lib.div)({
 	    className: 'filterpane',
 	    children: (0, _lib.input)({
@@ -1818,14 +1820,12 @@
 	        className: 'filterbox',
 	        placeholder: 'filter...',
 	        oninput: ({ target: { value } }) => {
-	            if (value = value.trim()) {
-	                const chunks = value.toLowerCase().split(/[\s\.,-]+/);
+	            if (value = value.trim().toLowerCase()) {
+	                const query = ITEM_SELECTOR + value.replace(/[\s\.,-]+/g, ',' + ITEM_SELECTOR);
 	                items.forEach(item => item.hidden = true);
 	                try {
-	                    chunks.forEach(query => {
-	                        const collection = document.querySelectorAll('.' + query);
-	                        Array.from(collection).forEach(node => node.hidden = false);
-	                    });
+	                    const collection = document.querySelectorAll(query);
+	                    Array.from(collection).forEach(node => node.hidden = false);
 	                } catch (e) {}
 	            } else {
 	                items.forEach(item => item.hidden = false);

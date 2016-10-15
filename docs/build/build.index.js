@@ -764,7 +764,28 @@
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
 
-	window.indexmodule = { siteheading: _siteheading.siteheading, sitenav: _sitenav.sitenav };
+	/**
+	 * Use global `window.htmlmodule` variable
+	 * to test global script distribution bundle,
+	 * already imported by index.html
+	 */
+	const { a, code, pre, main, ul, li, details, summary, fieldset, legend } = htmlmodule;
+
+	const sourcedetails = details(summary('page source'));
+
+	const items = Object.keys(htmlmodule).map(key => {
+	    return li(a({
+	        href: './api#' + key.toLowerCase(),
+	        target: '_blank',
+	        children: key
+	    }));
+	});
+
+	document.body.append((0, _siteheading.siteheading)(), sourcedetails, main(fieldset([legend('htmlmodule API index'), ul(items)])), (0, _sitenav.sitenav)());
+
+	Promise.all([fetch('index.html').then(response => response.text()), fetch('lib/index.js').then(response => response.text()), fetch('lib/index.css').then(response => response.text())]).then(function ([html, babeljs, css]) {
+	    sourcedetails.append('index.html', code(pre(html)), 'lib/index.js => build/build.js (babel transpiled)', code(pre(babeljs)), 'lib/index.css', code(pre(css)));
+	});
 
 /***/ },
 /* 8 */
