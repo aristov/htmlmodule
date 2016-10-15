@@ -4,9 +4,10 @@ import './apinav.css';
 
 const keys = Object.keys(htmlmodule);
 
-export const indexapi = () =>
+export const apinav = () =>
     details({
         id : 'apinav',
+        className : 'sitedetails',
         children : [
             summary('API index'),
             nav(ul(keys.map(key => li(a({

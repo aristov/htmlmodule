@@ -1,12 +1,14 @@
 import { siteheading } from './siteheading';
+import { specwin } from './specwin';
 import { sourcedetails, sourcefetch } from './sourcedetails';
-import { indexapi } from './apinav';
+import { apinav } from './apinav';
 import { sitenav } from './sitenav';
 
 import './index.css';
 
 document.body.append(
     siteheading(),
-    indexapi(),
+    specwin(),
+    apinav(),
     sourcefetch(sourcedetails()),
     sitenav());

@@ -770,6 +770,8 @@
 
 	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
 
+	var _specwin = __webpack_require__(/*! ./specwin */ 572);
+
 	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 16);
 
 	var _apinav = __webpack_require__(/*! ./apinav */ 571);
@@ -778,7 +780,7 @@
 
 	__webpack_require__(/*! ./index.css */ 561);
 
-	document.body.append((0, _siteheading.siteheading)(), (0, _apinav.indexapi)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _sitenav.sitenav)());
+	document.body.append((0, _siteheading.siteheading)(), (0, _specwin.specwin)(), (0, _apinav.apinav)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _sitenav.sitenav)());
 
 /***/ },
 
@@ -1296,7 +1298,8 @@
 
 	const sourcedetails = exports.sourcedetails = () => (0, _htmlmodule.details)({
 	    id: 'sourcedetails',
-	    children: (0, _htmlmodule.summary)('page source')
+	    className: 'sitedetails',
+	    children: (0, _htmlmodule.summary)('Page source')
 	});
 
 	const fetch = window.fetch;
@@ -1359,7 +1362,7 @@
 	exports.i(__webpack_require__(/*! -!./../../~/css-loader!./common.css */ 563), "");
 
 	// module
-	exports.push([module.id, "\n\n", ""]);
+	exports.push([module.id, ".sitedetails > summary\n{\n    margin: 20px 0;\n}\n\n\n", ""]);
 
 	// exports
 
@@ -1425,7 +1428,7 @@
 
 
 	// module
-	exports.push([module.id, "#sourcedetails > summary\n{\n    margin: 25px 0;\n}\n#sourcedetails pre\n{\n    margin-top: 1px;\n}\n#sourcedetails pre > code\n{\n    display: block;\n    background: #333;\n    color: white;\n    padding: 12px;\n    margin-bottom: 20px;\n}\n", ""]);
+	exports.push([module.id, "#sourcedetails pre\n{\n    margin-top: 1px;\n}\n#sourcedetails pre > code\n{\n    display: block;\n    background: #333;\n    color: white;\n    padding: 12px;\n    margin-bottom: 20px;\n}\n", ""]);
 
 	// exports
 
@@ -1517,7 +1520,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.indexapi = undefined;
+	exports.apinav = undefined;
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
 
@@ -1529,13 +1532,41 @@
 
 	const keys = Object.keys(htmlmodule);
 
-	const indexapi = exports.indexapi = () => (0, _htmlmodule.details)({
+	const apinav = exports.apinav = () => (0, _htmlmodule.details)({
 	    id: 'apinav',
+	    className: 'sitedetails',
 	    children: [(0, _htmlmodule.summary)('API index'), (0, _htmlmodule.nav)((0, _htmlmodule.ul)(keys.map(key => (0, _htmlmodule.li)((0, _htmlmodule.a)({
 	        href: './api#' + key.toLowerCase(),
 	        target: '_blank',
 	        children: key
 	    })))))]
+	});
+
+/***/ },
+
+/***/ 572:
+/*!*****************************!*\
+  !*** ./docs/lib/specwin.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.specwin = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 568);
+
+	const specwin = exports.specwin = () => (0, _htmlmodule.details)({
+	    id: 'specwin',
+	    className: 'sitedetails',
+	    children: [(0, _htmlmodule.summary)('Spec suite'), (0, _htmlmodule.iframe)({
+	        src: 'spec.html',
+	        width: '100%',
+	        height: '600px'
+	    })]
 	});
 
 /***/ }

@@ -4,7 +4,8 @@ import './sourcedetails.css';
 export const sourcedetails = () =>
     details({
         id : 'sourcedetails',
-        children : summary('page source')
+        className : 'sitedetails',
+        children : summary('Page source')
     });
 
 const fetch = window.fetch;
