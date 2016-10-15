@@ -60,7 +60,7 @@ const websearch =
 document.body.append(websearch);
 ```
 
-`websearch` is a DOM structure with the respective HTML markup:
+The `websearch` variable is a DOM structure with the respective HTML markup:
 
 ```html
 <form action=//yandex.com/search target=_blank>
@@ -72,7 +72,7 @@ document.body.append(websearch);
 </form>
 ```
 
-<h2 id="globalscript">Global script</h2>
+<h2 id="globalscript">Global script distribution</h2>
 
 Get the module by appending the script source to page body:
 
@@ -96,7 +96,7 @@ The built-in [shim bundle](/shim/index.js) fixes browser compatibility. It inclu
 
 The shim bundle is used in [unit-testing](#user-content-testing) environments.
 
-### The shim bundle setup
+### Shim bundle setup
 
 For a wide browser support you must import the shim bundle first.
 There are some ways to do this.
