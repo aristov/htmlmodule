@@ -16,8 +16,8 @@ const htmlspec = a({
 The code above uses htmlmodule to create a hyperlink with a reference to specification.
 A browser creates the same link, when it processes the following markup:
 
-```js
-<a href="https://html.spec.whatwg.org">HTML specification</a>
+```html
+<a href=https://html.spec.whatwg.org>HTML specification</a>
 ```
 
 The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
@@ -154,6 +154,8 @@ Build distribution assets:
 webpack
 ```
 
+#### Options
+
 Build minified distribution assets:
 
 ```
@@ -171,6 +173,8 @@ Disable babel transpiling:
 ```
 ES6=true webpack
 ```
+
+### Develop
 
 Use watch mode:
 
@@ -204,11 +208,10 @@ npm test
 
 Run dev/static server and open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser.
 
-#### Online test suite
+#### Online tests
 
-Check test suite in your browser:
-
-- [spec suite](//aristov.github.io/htmlmodule/spec.html)
-- [test case](//aristov.github.io/htmlmodule/test.html)
+Check [spec suite](//aristov.github.io/htmlmodule/spec.html)
+and [test case](//aristov.github.io/htmlmodule/test.html) 
+in your browser:
 
 ## [MIT license](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
