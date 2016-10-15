@@ -1164,7 +1164,6 @@
 
 	const navlist = [(0, _lib.a)({
 	    href: './api/',
-	    target: '_blank',
 	    children: 'api doc'
 	}), (0, _lib.a)({
 	    href: './spec.html',
@@ -1177,7 +1176,6 @@
 	    children: 'test case'
 	}), (0, _lib.a)({
 	    href: '//github.com/aristov/htmlmodule',
-	    target: '_blank',
 	    children: 'git repo'
 	})];
 
@@ -1185,19 +1183,14 @@
 	    if (link.pathname === pathname) link.removeAttribute('href');
 	});
 
-	const assembledby = (0, _lib.small)(['assembled by ', (0, _lib.a)({
+	const modulemark = (0, _lib.small)(['assembled by ', (0, _lib.a)({
 	    href: 'http://npmjs.org/package/htmlmodule',
 	    children: 'htmlmodule'
 	})]);
 
-	const children = [(0, _lib.nav)(navlist), assembledby];
-
-	const node = document.getElementById('sitenav');
-	if (node) node.append(...children);
-
-	const sitenav = exports.sitenav = init => (0, _lib.footer)({
+	const sitenav = exports.sitenav = () => (0, _lib.footer)({
 	    id: 'sitenav',
-	    children
+	    children: [(0, _lib.nav)(navlist), modulemark]
 	});
 
 /***/ },
@@ -11931,7 +11924,12 @@
 
 	__webpack_require__(/*! ./siteheading */ 8);
 
-	__webpack_require__(/*! ./sitenav */ 13);
+	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
+
+	try {
+	    const node = document.getElementById('sitenav');
+	    if (node) node.replaceWith((0, _sitenav.sitenav)());
+	} catch (e) {}
 
 /***/ },
 /* 342 */

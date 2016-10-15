@@ -14,9 +14,6 @@ import { HTMLSerializer } from '../../util/util.htmlserializer';
 // import tests
 import { globaldefined, exportdefault, importfrom, testcase } from './replcase';
 
-// import styles
-import './repl.css';
-
 /* ================================================================ */
 
 const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
