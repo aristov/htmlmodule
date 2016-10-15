@@ -88,20 +88,26 @@ The script exposes the `htmlmodule` global variable to the `window` object.
 
 ## Compatibility
 
-Built-in [shim bundle](/shim) fixes browser compatibility.
+Built-in [shim bundle](/shim/index.js) fixes browser compatibility. It includes:
+
+- [Babel polyfill](http://babeljs.io/docs/usage/polyfill/)
+- [dom4 polyfill](https://www.npmjs.com/package/dom4)
+- [some author DOM shims](/shim)
+
 For a wide browser support you must import the shim bundle first.
+There are some ways to get it.
 
 - use shim bundle distribution script:
 
 ```html
-<!-- import shim -->
+<!-- minified shim bundle -->
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.shim.min.js></script>
 
-<!-- import project code -->
+<!-- project code with htmlmodule imports -->
 <script src=./project.build.js></script>
 ```
 
-- or include shim bundle to a project bundle:
+- include shim bundle to a project bundle:
 
 ```js
 import 'htmlmodule/shim';
@@ -109,8 +115,9 @@ import 'htmlmodule/shim';
 // rest of your code including `htmlmodule` imports
 ```
 
-- shim bundle is used in [unit-testing](#user-content-testing) environments
-- ["global script" distribution](#user-content-globalscript) includes shim bundle out of the box
+- ["global script" distribution](#user-content-globalscript) is shim-charged out of the box.
+
+Shim bundle is used in [unit-testing](#user-content-testing) environments.
 
 ## [API documentation](//aristov.github.io/htmlmodule/api)
 
@@ -179,7 +186,7 @@ Run static server:
 static
 ```
 
-Open in browser [localhost:8080/docs](localhost:8080/docs)
+Open in browser [localhost:8080/docs](http://localhost:8080/docs)
 
 <h3 id="testing">Testing</h3>
 
@@ -193,7 +200,7 @@ npm test
 
 1. build sources 
 2. run dev server
-3. open [localhost:8080/docs/spec.html](localhost:8080/docs/spec.html) in browser
+3. open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser
 
 #### Online test suite
 
