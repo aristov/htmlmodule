@@ -778,7 +778,7 @@
 
 	__webpack_require__(/*! ./index.css */ 561);
 
-	document.body.append((0, _siteheading.siteheading)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _indexapi.indexapi)(), (0, _sitenav.sitenav)());
+	document.body.append((0, _siteheading.siteheading)(), (0, _indexapi.indexapi)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _sitenav.sitenav)());
 
 /***/ },
 
@@ -1302,7 +1302,16 @@
 	const fetch = window.fetch;
 	const sourcefetch = exports.sourcefetch = node => {
 	    Promise.all([fetch('index.html').then(response => response.text()), fetch('lib/index.js').then(response => response.text()), fetch('lib/index.css').then(response => response.text())]).then(function ([html, js, css]) {
-	        node.append('index.html', (0, _lib.code)((0, _lib.pre)(html)), 'lib/index.js => build/build.js (babel transpiled)', (0, _lib.code)((0, _lib.pre)(js)), 'lib/index.css', (0, _lib.code)((0, _lib.pre)(css)));
+	        node.append((0, _lib.code)({
+	            className: 'sourcetitle',
+	            children: 'index.html'
+	        }), (0, _lib.pre)((0, _lib.code)(html)), (0, _lib.code)({
+	            className: 'sourcetitle',
+	            children: 'lib/index.js => build/build.js (babel transpiled)'
+	        }), (0, _lib.pre)((0, _lib.code)(js)), (0, _lib.code)({
+	            className: 'sourcetitle',
+	            children: 'lib/index.css'
+	        }), (0, _lib.pre)((0, _lib.code)(css)));
 	    });
 	    return node;
 	};
@@ -1330,15 +1339,15 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	const keys = Object.keys(htmlmodule);
+	const keys = Object.keys(htmlmodule).map(key => (0, _lib.li)((0, _lib.a)({
+	    href: './api#' + key.toLowerCase(),
+	    target: '_blank',
+	    children: key
+	})));
 
-	const indexapi = exports.indexapi = () => (0, _lib.fieldset)({
+	const indexapi = exports.indexapi = () => (0, _lib.details)({
 	    id: 'indexapi',
-	    children: [(0, _lib.legend)('htmlmodule API index'), (0, _lib.ul)(keys.map(key => (0, _lib.li)((0, _lib.a)({
-	        href: './api#' + key.toLowerCase(),
-	        target: '_blank',
-	        children: key
-	    }))))]
+	    children: [(0, _lib.summary)('API index'), (0, _lib.ul)(keys)]
 	});
 
 /***/ },
@@ -1450,7 +1459,7 @@
 
 
 	// module
-	exports.push([module.id, "#sourcedetails > summary\n{\n    margin: 25px 0;\n}\n#sourcedetails code > pre\n{\n    background: #333;\n    color: white;\n    padding: 12px;\n    margin: 0 0 20px;\n}\n", ""]);
+	exports.push([module.id, "#sourcedetails > summary\n{\n    margin: 25px 0;\n}\n#sourcedetails pre\n{\n    margin-top: 1px;\n}\n#sourcedetails pre > code\n{\n    display: block;\n    background: #333;\n    color: white;\n    padding: 12px;\n    margin-bottom: 20px;\n}\n", ""]);
 
 	// exports
 

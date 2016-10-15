@@ -7,6 +7,6 @@ import './index.css';
 
 document.body.append(
     siteheading(),
-    sourcefetch(sourcedetails()),
     indexapi(),
+    sourcefetch(sourcedetails()),
     sitenav());

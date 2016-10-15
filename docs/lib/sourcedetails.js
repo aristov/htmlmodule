@@ -15,9 +15,21 @@ export const sourcefetch = node => {
         fetch('lib/index.css').then(response => response.text())
     ]).then(function([html, js, css]) {
         node.append(
-            'index.html', code(pre(html)),
-            'lib/index.js => build/build.js (babel transpiled)', code(pre(js)),
-            'lib/index.css', code(pre(css)));
+            code({
+                className : 'sourcetitle',
+                children : 'index.html'
+            }),
+            pre(code(html)),
+            code({
+                className : 'sourcetitle',
+                children : 'lib/index.js => build/build.js (babel transpiled)'
+            }),
+            pre(code(js)),
+            code({
+                className : 'sourcetitle',
+                children : 'lib/index.css'
+            }),
+            pre(code(css)));
     });
     return node;
 }
