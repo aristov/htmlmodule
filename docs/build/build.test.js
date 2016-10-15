@@ -1743,8 +1743,6 @@
 
 	'use strict';
 
-	var _testcase = __webpack_require__(/*! ./testcase */ 32);
-
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
 	var htmlmodule = _interopRequireWildcard(_lib);
@@ -1761,7 +1759,7 @@
 
 	__webpack_require__(/*! highlight.js/styles/agate.css */ 558);
 
-	__webpack_require__(/*! ./test.css */ 560);
+	var _testcase = __webpack_require__(/*! ./testcase */ 32);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1769,65 +1767,75 @@
 
 	const serializer = new _util.HTMLSerializer();
 
-	let rows;
+	const items = _testcase.testcase.map(item => {
+	    const element = item.fn(htmlmodule);
+	    const tagNames = [element.tagName];
+	    const collection = element.querySelectorAll('*');
+	    const elements = Array.from(collection);
 
-	const oninput = ({ target: { value } }) => {
-	    rows.forEach(row => {
-	        row.hidden = !row.className.includes(value.toUpperCase());
+	    elements.forEach(({ tagName }) => {
+	        if (!tagNames.includes(tagName)) tagNames.push(tagName);
 	    });
-	};
 
-	const filterNode = (0, _lib.input)({
-	    type: 'search',
-	    className: 'filterinput',
-	    placeholder: 'filter...',
-	    oninput
+	    const srccodepre = (0, _lib.pre)({
+	        className: 'javascript',
+	        children: (0, _lib.code)(item.src)
+	    });
+	    const resmarkuppre = (0, _lib.pre)({
+	        className: 'html',
+	        children: (0, _lib.code)(serializer.serializeToString(element))
+	    });
+
+	    const id = tagNames.join('+').toLowerCase();
+	    const row = (0, _lib.article)({
+	        className: tagNames.join(' ').toLowerCase(),
+	        children: [(0, _lib.h1)((0, _lib.a)({
+	            id, href: '#' + id,
+	            className: 'testheading',
+	            children: tagNames.join(', ').toLowerCase()
+	        })), (0, _lib.section)([(0, _lib.h1)({
+	            className: 'sectionheading',
+	            children: 'source js'
+	        }), srccodepre]), (0, _lib.section)([(0, _lib.h1)({
+	            className: 'sectionheading',
+	            children: 'result dom'
+	        }), (0, _lib.output)({
+	            className: 'domoutput',
+	            children: element
+	        })]), (0, _lib.section)([(0, _lib.h1)({ className: 'sectionheading', children: 'resprective html' }), resmarkuppre])]
+	    });
+
+	    _highlight2.default.highlightBlock(srccodepre);
+	    _highlight2.default.highlightBlock(resmarkuppre);
+
+	    return row;
 	});
 
-	const tag = children => (0, _lib.span)({ className: 'tag', children });
-
-	const exampletable = () => (0, _lib.table)({
-	    cellSpacing: 0,
-	    className: 'exampletable',
-	    children: [(0, _lib.thead)((0, _lib.tr)((0, _lib.th)(filterNode))), (0, _lib.tbody)(rows = _testcase.testcase.map(item => {
-	        const element = item.fn(htmlmodule);
-	        const tagNames = [element.tagName];
-	        const collection = element.querySelectorAll('*');
-	        const elements = Array.from(collection);
-
-	        elements.forEach(({ tagName }) => {
-	            if (!tagNames.includes(tagName)) tagNames.push(tagName);
-	        });
-
-	        let srcjscode, resulthtmlcode;
-
-	        const id = tagNames.join('+');
-	        const row = (0, _lib.tr)({
-	            className: tagNames.join(' '),
-	            children: (0, _lib.td)([(0, _lib.h2)((0, _lib.code)((0, _lib.a)({
-	                id,
-	                href: '#' + id,
-	                children: tagNames.join(', ')
-	            }))), tag('Source JS:'), (0, _lib.div)(srcjscode = (0, _lib.pre)({
-	                className: 'javascript',
-	                children: (0, _lib.code)(item.src)
-	            })), tag('Result DOM:'), (0, _lib.div)({ className: 'dom', children: element }), tag('Result HTML:'), (0, _lib.div)({
-	                className: '',
-	                children: resulthtmlcode = (0, _lib.pre)({
-	                    className: 'html',
-	                    children: (0, _lib.code)(serializer.serializeToString(element))
-	                })
-	            })])
-	        });
-
-	        _highlight2.default.highlightBlock(srcjscode);
-	        _highlight2.default.highlightBlock(resulthtmlcode);
-
-	        return row;
-	    }))]
-	});
-
-	document.body.append((0, _siteheading.siteheading)('test'), exampletable(), (0, _sitenav.sitenav)());
+	document.body.append((0, _lib.header)([(0, _siteheading.siteheading)('test'), (0, _lib.div)({
+	    className: 'filterpane',
+	    children: (0, _lib.input)({
+	        type: 'search',
+	        className: 'filterbox',
+	        placeholder: 'filter...',
+	        oninput: ({ target: { value } }) => {
+	            if (value = value.trim()) {
+	                const chunks = value.toLowerCase().split(/[\s\.,-]+/);
+	                items.forEach(item => item.hidden = true);
+	                try {
+	                    chunks.forEach(query => {
+	                        const collection = document.querySelectorAll('.' + query);
+	                        Array.from(collection).forEach(node => node.hidden = false);
+	                    });
+	                } catch (e) {}
+	            } else {
+	                items.forEach(item => item.hidden = false);
+	            }
+	        }
+	    })
+	})]), (0, _lib.main)({
+	    className: 'testcase',
+	    children: items
+	}), (0, _sitenav.sitenav)());
 
 /***/ },
 /* 390 */
@@ -12897,52 +12905,6 @@
 
 	// module
 	exports.push([module.id, "/*!\n * Agate by Taufik Nurrohman <https://github.com/tovic>\n * ----------------------------------------------------\n *\n * #ade5fc\n * #a2fca2\n * #c6b4f0\n * #d36363\n * #fcc28c\n * #fc9b9b\n * #ffa\n * #fff\n * #333\n * #62c8f3\n * #888\n *\n */\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #333;\n  color: white;\n}\n\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-code,\n.hljs-emphasis {\n  font-style: italic;\n}\n\n.hljs-tag {\n  color: #62c8f3;\n}\n\n.hljs-variable,\n.hljs-template-variable,\n.hljs-selector-id,\n.hljs-selector-class {\n  color: #ade5fc;\n}\n\n.hljs-string,\n.hljs-bullet {\n  color: #a2fca2;\n}\n\n.hljs-type,\n.hljs-title,\n.hljs-section,\n.hljs-attribute,\n.hljs-quote,\n.hljs-built_in,\n.hljs-builtin-name {\n  color: #ffa;\n}\n\n.hljs-number,\n.hljs-symbol,\n.hljs-bullet {\n  color: #d36363;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal {\n  color: #fcc28c;\n}\n\n.hljs-comment,\n.hljs-deletion,\n.hljs-code {\n  color: #888;\n}\n\n.hljs-regexp,\n.hljs-link {\n  color: #c6b4f0;\n}\n\n.hljs-meta {\n  color: #fc9b9b;\n}\n\n.hljs-deletion {\n  background-color: #fc9b9b;\n  color: #333;\n}\n\n.hljs-addition {\n  background-color: #a2fca2;\n  color: #333;\n}\n\n.hljs a {\n  color: inherit;\n}\n\n.hljs a:focus,\n.hljs a:hover {\n  color: inherit;\n  text-decoration: underline;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 560 */
-/*!***************************!*\
-  !*** ./docs/lib/test.css ***!
-  \***************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./test.css */ 561);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./test.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./test.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 561 */
-/*!*************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/test.css ***!
-  \*************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "body\n{\n    background: rgba(0, 0, 0, 0.08);\n}\n/*h1#siteheading\n{\n    text-align: center;\n}*/\ninput.filterinput\n{\n    width: 100%;\n    font-size: 20px;\n}\ntable.exampletable\n{\n    /*margin: 0 auto;*/\n    width: 1200px;\n}\ntable.exampletable > * > tr > th\n{\n    padding-top: 20px;\n}\ntable.exampletable > * > tr > td\n{\n    padding: 30px 0;\n}\ntable.exampletable > * > tr > td pre.html,\ntable.exampletable > * > tr > td pre.javascript\n{\n    margin-top: 0;\n}\ntable.exampletable > * > tr > td > h2 > code > a:not(:hover)\n{\n    text-decoration : none;\n}\ntable.exampletable > * > tr > td div\n{\n    max-width: 1200px;\n    box-sizing: border-box;\n}\ntable.exampletable > * > tr > td div.dom\n{\n    padding: 10px;\n    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);\n    margin-bottom: 20px;\n    background: white;\n}\ntable.exampletable > * > tr > td span.tag\n{\n    display: inline-block;\n    font: 15px Arial;\n    background: #0a0;\n    color: white;\n    padding: 1px 5px;\n}\n", ""]);
 
 	// exports
 

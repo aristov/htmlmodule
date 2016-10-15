@@ -1,91 +1,106 @@
-import { testcase } from './testcase';
-import {
-    a, h2, input, code, span, div, pre,
-    table, thead, tbody, tr, th, td,
-} from '../../lib';
 import * as htmlmodule from '../../lib';
+import { a, h1, input, code, div, pre, header, main, section, article, output }
+from '../../lib';
+
 import { sitenav } from './sitenav';
 import { siteheading } from './siteheading';
 
 import { HTMLSerializer } from '../../util/util.htmlserializer';
 
-import hljs from 'highlight.js/';
+import highlight from 'highlight.js/';
 import 'highlight.js/styles/agate.css';
-import './test.css';
+
+import { testcase } from './testcase';
 
 const serializer = new HTMLSerializer;
 
-let rows;
+const items = testcase.map(item => {
+    const element = item.fn(htmlmodule);
+    const tagNames = [element.tagName];
+    const collection = element.querySelectorAll('*');
+    const elements = Array.from(collection);
 
-const oninput = ({ target : { value } }) => {
-    rows.forEach(row => {
-        row.hidden = !row.className.includes(value.toUpperCase());
+    elements.forEach(({ tagName }) => {
+        if(!tagNames.includes(tagName)) tagNames.push(tagName);
     });
-};
 
-const filterNode = input({
-    type : 'search',
-    className : 'filterinput',
-    placeholder : 'filter...',
-    oninput
-});
+    const srccodepre = pre({
+        className : 'javascript',
+        children : code(item.src)
+    });
+    const resmarkuppre = pre({
+        className : 'html',
+        children : code(serializer.serializeToString(element))
+    });
 
-const tag = children => span({ className : 'tag', children });
+    const id = tagNames.join('+').toLowerCase();
+    const row = article({
+        className : tagNames.join(' ').toLowerCase(),
+        children : [
+            h1(a({
+                id, href : '#' + id,
+                className : 'testheading',
+                children : tagNames.join(', ').toLowerCase()
+            })),
+            section([
+                h1({
+                    className : 'sectionheading',
+                    children : 'source js'
+                }),
+                srccodepre
+            ]),
+            section([
+                h1({
+                    className : 'sectionheading',
+                    children : 'result dom'
+                }),
+                output({
+                    className : 'domoutput',
+                    children : element
+                })
+            ]),
+            section([
+                h1({ className : 'sectionheading', children : 'resprective html' }),
+                resmarkuppre
+            ])
+        ]
+    });
 
-const exampletable = () => table({
-    cellSpacing : 0,
-    className : 'exampletable',
-    children : [
-        thead(tr(th(filterNode))),
-        tbody(rows = testcase.map(item => {
-            const element = item.fn(htmlmodule);
-            const tagNames = [element.tagName];
-            const collection = element.querySelectorAll('*');
-            const elements = Array.from(collection);
+    highlight.highlightBlock(srccodepre);
+    highlight.highlightBlock(resmarkuppre);
 
-            elements.forEach(({ tagName }) => {
-                if(!tagNames.includes(tagName)) tagNames.push(tagName);
-            });
-
-            let srcjscode, resulthtmlcode;
-
-            const id = tagNames.join('+');
-            const row = tr({
-                className : tagNames.join(' '),
-                children : td([
-                    h2(code(a({
-                        id,
-                        href : '#' + id,
-                        children : tagNames.join(', ')
-                    }))),
-                    tag('Source JS:'),
-                    div(srcjscode = pre({
-                        className : 'javascript',
-                        children : code(item.src)
-                    })),
-                    tag('Result DOM:'),
-                    div({ className : 'dom', children : element }),
-                    tag('Result HTML:'),
-                    div({
-                        className : '',
-                        children : resulthtmlcode = pre({
-                            className : 'html',
-                            children : code(serializer.serializeToString(element))
-                        })
-                    })
-                ])
-            });
-
-            hljs.highlightBlock(srcjscode);
-            hljs.highlightBlock(resulthtmlcode);
-
-            return row;
-        }))
-    ]
+    return row;
 });
 
 document.body.append(
-    siteheading('test'),
-    exampletable(),
+    header([
+        siteheading('test'),
+        div({
+            className : 'filterpane',
+            children : input({
+                type : 'search',
+                className : 'filterbox',
+                placeholder : 'filter...',
+                oninput : ({ target : { value } }) => {
+                    if(value = value.trim()) {
+                        const chunks = value.toLowerCase().split(/[\s\.,-]+/);
+                        items.forEach(item => item.hidden = true);
+                        try {
+                            chunks.forEach(query => {
+                                const collection = document.querySelectorAll('.' + query);
+                                Array.from(collection).forEach(node => node.hidden = false);
+                            });
+                        } catch(e) {}
+                    } else {
+                        items.forEach(item => item.hidden = false);
+                    }
+                }
+            })
+        }),
+    ]),
+    main({
+        className : 'testcase',
+        children : items
+    }),
     sitenav()
 );
