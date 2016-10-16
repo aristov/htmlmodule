@@ -3,6 +3,25 @@
  */
 export default [
 
+    ({ form, label, img, br, input, button }) =>
+        form({
+            action : 'https://yandex.com/search',
+            target : '_blank',
+            children : [
+                label([
+                    img({
+                        src : 'http://bit.ly/2dtCSIn',
+                        alt : 'Yandex',
+                        width : 50
+                    }),
+                    br(),
+                    input({ type : 'search', name : 'text' }),
+                    ' '
+                ]),
+                button('Find')
+            ]
+        }),
+
     ({ fieldset, legend, input }) =>
         fieldset([
             legend('Authorization'),
@@ -67,8 +86,8 @@ export default [
         ])
     },
 
-    ({ form, h3, button, label, input, output, div }) =>
-        form({
+    ({ fieldset, legend, button, label, input, output, div }) =>
+        fieldset({
             style : {
                 display : 'flex',
                 flexDirection : 'column',
@@ -77,7 +96,7 @@ export default [
                 width : '300px'
             },
             children : [
-                h3('Event handlers'),
+                legend('Event handlers'),
                 div([
                     button({
                         onclick : ({
@@ -130,13 +149,18 @@ export default [
             dd([
                 abbr({
                     title : 'Extensible markup language',
-                    children : 'XML' }),
+                    children : 'XML'
+                }),
+                ' ',
                 abbr({
                     title : 'Scalable vector graphics',
-                    children : 'SVG' }),
+                    children : 'SVG'
+                }),
+                ' ',
                 abbr({
                     title : 'Interface definition language',
-                    children : 'IDL' })
+                    children : 'IDL'
+                })
             ]),
             dt('Edits'),
             dd([ins('Inserted'), ' and ', del('deleted'), ' text']),

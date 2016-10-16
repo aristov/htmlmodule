@@ -768,8 +768,6 @@
 
 	'use strict';
 
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
 	var _siteheading = __webpack_require__(/*! ./siteheading */ 10);
 
 	var _specwin = __webpack_require__(/*! ./specwin */ 15);
@@ -778,29 +776,98 @@
 
 	var _apinav = __webpack_require__(/*! ./apinav */ 19);
 
-	var _codemirror = __webpack_require__(/*! ./codemirror */ 571);
+	var _repl = __webpack_require__(/*! ./repl */ 28);
 
 	var _sitenav = __webpack_require__(/*! ./sitenav */ 22);
 
 	__webpack_require__(/*! ./index.css */ 25);
 
-	const input = (0, _codemirror.codebox)({ value: _codemirror.codebox.toString() });
-	// import { repl } from './repl';
-
-	const output = (0, _codemirror.markupbox)({ value: document.body.outerHTML });
-
 	document.body.append((0, _siteheading.siteheading)(),
 	// specwin(),
 	// apinav(),
 	// sourcefetch(sourcedetails()),
-	// repl(),
+	(0, _repl.repl)(),
 	// input.element,
 	// hr(),
 	// output.element,
 	(0, _sitenav.sitenav)());
 
-	input.mirror.refresh();
-	output.mirror.refresh();
+	(0, _repl.replstart)();
+
+/***/ },
+
+/***/ 8:
+/*!*********************************!*\
+  !*** ./docs/lib/REPLMachine.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.REPLMachine = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	const VAR_NAME_EXPORTS = 'exports';
+
+	class REPLMachine {
+	    constructor({
+	        value = '',
+	        input = (0, _htmlmodule.input)({ value }),
+	        output = (0, _htmlmodule.output)()
+	    } = {}) {
+	        this.input = input;
+	        this.output = output;
+	    }
+	    get exports() {
+	        return {
+	            default: () => {
+	                throw Error('The default module is not exported');
+	            }
+	        };
+	    }
+	    loop() {
+	        this.read(this.input.value);
+	    }
+	    read(source) {
+	        try {
+	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
+	            this.eval(evaluable);
+	            return evaluable;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    eval(evaluable) {
+	        try {
+	            const exports = this.exports;
+	            const value = evaluable(exports);
+	            this.print(value);
+	            return value;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    print(value) {
+	        try {
+	            this.output.value = value;
+	        } catch (error) {
+	            this.output.value = error;
+	        }
+	    }
+	    onerror(error) {
+	        this.print(error);
+	    }
+	}
+
+	exports.REPLMachine = REPLMachine;
+	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
+	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
 
 /***/ },
 
@@ -1566,7 +1633,7 @@
 	exports.i(__webpack_require__(/*! -!./../../~/css-loader!./common.css */ 27), "");
 
 	// module
-	exports.push([module.id, ".sitedetails > summary\n{\n    margin: 20px 0;\n}\n", ""]);
+	exports.push([module.id, ".sitedetails > summary\n{\n    margin: 20px 0;\n}\n\n.replmachine\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n}\n.replmachine > section\n{\n    width: 50%;\n    box-sizing: border-box;\n}\n.replmachine .replinput .CodeMirror\n{\n    height: 600px;\n}\n.replmachine .reploutput .CodeMirror\n{\n    height: 300px;\n    border-left: 1px solid #666;\n}\n.replmachine .outputwin\n{\n    width: 100%;\n    height: 300px;\n    box-sizing: border-box;\n    margin-bottom: -4px;\n    background-color: white;\n}\n", ""]);
 
 	// exports
 
@@ -1588,6 +1655,166 @@
 
 	// exports
 
+
+/***/ },
+
+/***/ 28:
+/*!**************************!*\
+  !*** ./docs/lib/repl.js ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.replstart = exports.replrefresh = exports.repl = undefined;
+
+	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 8);
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	var htmlmodule = _interopRequireWildcard(_htmlmodule);
+
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 29);
+
+	var _codemirror = __webpack_require__(/*! ./codemirror */ 571);
+
+	var _testcase = __webpack_require__(/*! ./testcase */ 44);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	const replinput = (0, _codemirror.codebox)({
+	    className: 'replinput',
+	    value: _testcase.testcase[0].src
+	});
+
+	const reploutput = (0, _codemirror.markupbox)({
+	    className: 'reploutput'
+	});
+
+	const outputwin = (0, _htmlmodule.iframe)({
+	    className: 'outputwin'
+	});
+
+	const serializer = new _util.HTMLSerializer();
+
+	const replmachine = new _REPLMachine.REPLMachine({
+	    input: replinput,
+	    output: {
+	        set value(value) {
+	            const body = outputwin.contentDocument.body;
+	            if (value instanceof Error) {
+	                body.textContent = value;
+	                reploutput.value = '';
+	            } else {
+	                try {
+	                    const node = typeof value === 'function' ? value(htmlmodule) : value;
+	                    body.innerHTML = '';
+	                    body.appendChild(node);
+	                    reploutput.value = serializer.serializeToString(node);
+	                } catch (error) {
+	                    body.textContent = error;
+	                }
+	            }
+	        }
+	    }
+	});
+
+	const repl = exports.repl = () => (0, _htmlmodule.main)({
+	    className: 'replmachine',
+	    children: [(0, _htmlmodule.section)(replinput.element), (0, _htmlmodule.section)([outputwin, reploutput.element])]
+	});
+
+	const replrefresh = exports.replrefresh = () => {
+	    replinput.mirror.refresh();
+	    reploutput.mirror.refresh();
+	};
+	const replstart = exports.replstart = () => {
+	    replrefresh();
+	    replinput.mirror.on('change', () => replmachine.loop());
+	    replmachine.loop();
+	};
+
+/***/ },
+
+/***/ 29:
+/*!*************************************!*\
+  !*** ./util/util.htmlserializer.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// todo refactoring => DOMSerializer
+
+	const map = Array.prototype.map;
+	const assign = Object.assign;
+
+	const epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
+	const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
+
+	const isEmptyTag = node => {
+	    if (node.constructor === Element && !node.hasChildNodes()) return true;
+	    return Boolean(emptyTagSet[node.tagName]);
+	};
+
+	// todo comment support
+	class HTMLSerializer {
+	    constructor(options = {
+	        indent: '    ',
+	        lineBreak: '\n',
+	        level: 0
+	    }) {
+	        assign(this, options);
+	    }
+	    serializeToString(node) {
+	        let {
+	            tagName,
+	            attributes,
+	            childNodes,
+	            innerHTML,
+	            textContent
+	        } = node;
+	        const lineBreak = this.lineBreak;
+	        let indent = this.indent.repeat(this.level);
+	        let result = indent;
+	        if (tagName) {
+	            tagName = tagName.toLowerCase();
+	            result += '<' + tagName;
+	            const hasAttributes = node.hasAttributes();
+	            if (hasAttributes) {
+	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
+	                result += attrset.join('');
+	            }
+	            const hasEndTag = !isEmptyTag(node);
+	            const selfClose = node.constructor === Element ? '/>' : '>';
+	            result += hasEndTag ? '>' : selfClose;
+	            if (hasEndTag && node.hasChildNodes()) {
+	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
+	                if (!hasAttributes && isSingleText) {
+	                    result += node.innerHTML;
+	                    indent = '';
+	                } else {
+	                    this.level++;
+	                    const children = map.call(childNodes, this.serializeToString, this);
+	                    this.level--;
+	                    result += lineBreak + children.join('');
+	                }
+	            } else indent = '';
+	            if (hasEndTag) result += indent + `</${ tagName }>`;
+	        } else {
+	            result += innerHTML || textContent;
+	        }
+	        result += lineBreak;
+	        return result;
+	    }
+	}
+	exports.HTMLSerializer = HTMLSerializer;
 
 /***/ },
 
@@ -4597,6 +4824,48 @@
 
 /***/ },
 
+/***/ 44:
+/*!******************************!*\
+  !*** ./docs/lib/testcase.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.testcase = undefined;
+
+	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 45);
+
+	var _testTestcase2 = _interopRequireDefault(_testTestcase);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const chunks = _testTestcase2.default.split('\n\n');
+
+	chunks.shift();
+	chunks.pop();
+
+	const testcase = exports.testcase = chunks.map(src => {
+	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
+	    const fn = new Function('return ' + src);
+	    return { src, fn: fn() };
+	});
+
+/***/ },
+
+/***/ 45:
+/*!**********************************************************!*\
+  !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "/**\n * !!! this file requires the additional syntax restrictions !!!\n */\nexport default [\n\n    ({ form, label, img, br, input, button }) =>\n        form({\n            action : 'https://yandex.com/search',\n            target : '_blank',\n            children : [\n                label([\n                    img({\n                        src : 'http://bit.ly/2dtCSIn',\n                        alt : 'Yandex',\n                        width : 50\n                    }),\n                    br(),\n                    input({ type : 'search', name : 'text' }),\n                    ' '\n                ]),\n                button('Find')\n            ]\n        }),\n\n    ({ fieldset, legend, input }) =>\n        fieldset([\n            legend('Authorization'),\n            input({\n                placeholder : 'login',\n                style : { marginRight : '5px' }\n            }),\n            input({\n                type : 'password',\n                placeholder : 'password'\n            })\n        ]),\n\n    ({ article, h4, img, audio, video }) =>\n        article({\n            title : 'Media',\n            children : [\n                h4('Image media'),\n                img({\n                    src : 'http://bit.ly/2e9kIdg',\n                    alt : 'Crazy PiPi!'\n                }),\n                h4('Audio media'),\n                audio({\n                    controls : true,\n                    src : 'http://bit.ly/2e2HCo5'\n                }),\n                h4('Video media'),\n                video({\n                    controls : true,\n                    width : '200',\n                    src : 'http://bit.ly/2ecsnvQ'\n                })\n            ]\n        }),\n\n    ({ div, ul, li, bdi, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div([\n            div([\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]),\n            ul([\n                li([\n                    'User ',\n                    bdi('jcranmer'),\n                    ': 12 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('hober'),\n                    ': 5 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('إيان'),\n                    ': 3 posts.'\n                ])\n            ])\n        ])\n    },\n\n    ({ fieldset, legend, button, label, input, output, div }) =>\n        fieldset({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height : '160px',\n                width : '300px'\n            },\n            children : [\n                legend('Event handlers'),\n                div([\n                    button({\n                        onclick : ({\n                            type,\n                            target : { tagName },\n                            constructor : { name }\n                        }) => alert([tagName, type, name, 'handler!'].join(' ')),\n                        textContent : 'Show me alert, please...'\n                    }),\n                    input({ type : 'checkbox', children : 'no alerts!' })\n                ]),\n                button({\n                    onfocus : ({ target }) => target.textContent = 'Focused!',\n                    onblur : ({ target }) => target.textContent = 'Focus wait...',\n                    textContent : 'Focus wait...'\n                }),\n                label([\n                    input({\n                        placeholder : 'text input char counter',\n                        oninput : ({ target }) => {\n                            target.nextElementSibling.value = target.value.length;\n                        }\n                    }),\n                    output({ title : 'entered char count', value : '0' })\n                ])\n            ]\n        }),\n\n    ({ footer, address, small }) =>\n        footer([\n            address('vv.aristov@gmail.com'),\n            small('@ All rights free')\n        ]),\n\n    ({ main, sup, sub, i, strong }) =>\n        main([\n            'Here comes ',\n            sup('supertext'),\n            ' and ',\n            sub('subtext'),\n            '. Later they are followed by ',\n            i('alternative voice'),\n            ' and ',\n            strong('important!')\n        ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>\n        dl([\n            dt('Abbreviations'),\n            dd([\n                abbr({\n                    title : 'Extensible markup language',\n                    children : 'XML'\n                }),\n                ' ',\n                abbr({\n                    title : 'Scalable vector graphics',\n                    children : 'SVG'\n                }),\n                ' ',\n                abbr({\n                    title : 'Interface definition language',\n                    children : 'IDL'\n                })\n            ]),\n            dt('Edits'),\n            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),\n            dt('Keywords'),\n            dd([b('var'), b('function'), b('export'), b('const')]),\n            dt('Other'),\n            dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n        ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) =>\n        article({\n            className : 'vcard',\n            children : [\n                h2({\n                    className : 'fn',\n                    children : 'Vyacheslav Aristov'\n                }),\n                address({\n                    className : 'email',\n                    children : 'vv.aristov@gmail.com'\n                })\n            ]\n        }),\n\n    ({ pre }) => pre(`\n_________________________________________________________\n____________/          _/                      _/________\n___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________\n__________/    _/    _/      _/    _/    _/  _/__________\n_________/    _/    _/      _/    _/    _/  _/___________\n________/    _/      _/_/  _/    _/    _/  _/____________\n_________________________________________________________\n`),\n\n    ({ pre, style, script }) => pre([\n        script(`\n            Object.assign(\n                document.currentScript.style, {\n                    display: 'block',\n                    margin: '20px',\n                    border: '1px solid #ccc',\n                    color: 'blue',\n                    font: 'bold 16px monospace'\n                })`),\n        style({\n            id : 'greenstyle',\n            children : `\n                #greenstyle {\n                    display: block;\n                    margin: 20px;\n                    color: green;\n                    border: 1px solid #ccc;\n                    font: bold 16px monospace;\n                }`\n        }),\n    ]),\n\n    ({ form, label, input, textarea, span }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height: '200px'\n            },\n            children : [\n                label([\n                    'Text input ',\n                    input({ placeholder : 'Fill me' })\n                ]),\n                label([\n                    input({ type : 'checkbox' }),\n                    ' Simple checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', checked : true }),\n                    ' Checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', attrset : { checked : '' } }),\n                    ' Initially checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', indeterminate : true }),\n                    ' Indeterminate checkbox'\n                ]),\n                span([\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'html'\n                        }),\n                        ' HTML '\n                    ]),\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'xml'\n                        }),\n                        ' XML'\n                    ])\n                ]),\n                input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n            ]\n        }),\n\n    ({ form, label, select, option, br }) =>\n        form([\n            label([\n                'Select technology ',\n                select([\n                    option('XML'),\n                    option('HTML'),\n                    option({ selected : true, textContent : 'WAI-ARIA' }),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ])\n            ]),\n            br(),\n            label([\n                'Select technology stack',\n                br(),\n                select({\n                    multiple : true,\n                    children : [\n                        option('XML'),\n                        option({\n                            attrset : { selected : '' },\n                            textContent : 'HTML'\n                        }),\n                        option('WAI-ARIA'),\n                        option('RDFS'),\n                        option('OWL'),\n                        option('SGML'),\n                        option('CSS')\n                    ]})\n            ]),\n        ]),\n\n    ({ form, input, button }) =>\n        form({\n            style : { whiteSpace : 'nowrap' },\n            children : [\n                input({\n                    name : 'query',\n                    placeholder : 'type your request',\n                    type : 'search',\n                    style : { marginRight : '5px' }\n                }),\n                button('search')\n            ]\n        }),\n\n    ({ iframe, dialog, p, button }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>\n        table({\n            style : { width : '100%', textAlign : 'center' },\n            children : [\n                caption('Relative concept'),\n                thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n                tbody([\n                    ['HTMLElement', 'roletype'],\n                    ['hidden', 'aria-hidden'],\n                    ['title', 'aria-label'],\n                    ['—', 'aria-pressed'],\n                    ['checked', 'aria-checked'],\n                    ['selected', 'aria-selected'],\n                    ['disabled', 'aria-disabled'],\n                    ['button', 'button'],\n                    ['a, link, area', 'link'],\n                    ['input', 'textbox'],\n                    ['combobox', 'select'],\n                    ['table', 'table']\n                ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))\n            ]\n        }),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>\n        hgroup([\n            h1('First level heading'),\n            h2('Second level heading'),\n            h3('Third level heading'),\n            h4('Fourth level heding'),\n            h5('Fifth level heding'),\n            h6('Sixth level heding in group')\n        ]),\n\n    ({ blockquote }) =>\n        blockquote({\n            cite : 'https://html.spec.whatwg.org/' +\n                'multipage/semantics.html#the-blockquote-element',\n            children : 'The blockquote element represents ' +\n                'a section that is quoted from another source.'\n        }),\n\n    ({ article, section, ruby, rt, rp }) =>\n        article({\n            title : 'Ruby annotations',\n            children : [\n                section([\n                    ruby(['君', rt('くん')]),\n                    ruby(['子', rt('し')]),\n                    'は',\n                    ruby(['和', rt('わ')]),\n                    'して',\n                    ruby(['同', rt('どう')]),\n                    'ぜず。'\n                ]),\n                section(ruby([\n                    '漢',\n                    rp(' ('),\n                    rt('かん'),\n                    rp(')'),\n                    '字',\n                    rp(' ('),\n                    rt('じ'),\n                    rp(')')\n                ]))\n            ]\n        }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) =>\n        article({\n            title : 'Various lists',\n            children : [\n                ul([\n                    li('Node'),\n                    li('Text'),\n                    li('Element'),\n                    li('Comment')\n                ]),\n                ol([\n                    li('Amsterdam'),\n                    li('New York'),\n                    li('Moscow'),\n                    li('Moscow')\n                ]),\n                dl([\n                    dt('DOM'),\n                    dd('Document object model'),\n                    dt('XML'),\n                    dd('Extensible markup language'),\n                    dt('HTML'),\n                    dd('Hyper text markup language'),\n                    dt('ARIAML'),\n                    dd('Accessible rich internet applications markup language')\n                ])\n            ]\n        }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
+
+/***/ },
+
 /***/ 571:
 /*!********************************!*\
   !*** ./docs/lib/codemirror.js ***!
@@ -4653,7 +4922,7 @@
 	        this.createElement('div', (0, _htmlmodule.NodeInit)(init));
 	    }
 	    set value(value) {
-	        this.mirror.setValue(value);
+	        this.mirror.setValue(value && value.toString());
 	    }
 	    get value() {
 	        return this.mirror.getValue();
@@ -4665,9 +4934,6 @@
 	    }
 	    createMirror(options) {
 	        return this.mirror = new _codemirror2.default(this.element, options);
-	    }
-	    static get options() {
-	        return _codemirror2.default.defaults;
 	    }
 	}
 

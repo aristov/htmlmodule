@@ -11,9 +11,8 @@ export class REPLMachine {
         input = htmlinput({ value }),
         output = htmloutput(),
     } = {}) {
-        this.input = input({ value });
-        this.output = output();
-        this.loop();
+        this.input = input;
+        this.output = output;
     }
     get exports() {
         return {
@@ -23,37 +22,41 @@ export class REPLMachine {
         };
     }
     loop() {
-        this.input.oninput = this.oninput.bind(this);
         this.read(this.input.value);
     }
     read(source) {
         try {
             const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
             this.eval(evaluable);
+            return evaluable;
         }
         catch(error) {
             this.onerror(error);
+            return error;
         }
     }
     eval(evaluable) {
         try {
             const exports = this.exports;
-            const result = evaluable(exports);
-            this.print(result, exports);
+            const value = evaluable(exports);
+            this.print(value);
+            return value;
         }
         catch(error) {
-            this.onerror(error, evaluable);
+            this.onerror(error);
+            return error;
         }
     }
-    print(result) {
-        this.output.value = result;
+    print(value) {
+        try {
+            this.output.value = value;
+        }
+        catch(error) {
+            this.output.value = error;
+        }
     }
-    oninput() {
-        this.read(this.input.value);
-    }
-    onerror(error, ...args) {
-        this.input.invalid = true;
-        this.print(error, ...args);
+    onerror(error) {
+        this.print(error);
     }
 }
 

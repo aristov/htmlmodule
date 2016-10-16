@@ -34,7 +34,7 @@ export class CodeMirrorAssembler extends HTMLAssembler {
         this.createElement('div', NodeInit(init));
     }
     set value(value) {
-        this.mirror.setValue(value);
+        this.mirror.setValue(value && value.toString());
     }
     get value() {
         return this.mirror.getValue();
@@ -46,9 +46,6 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     }
     createMirror(options) {
         return this.mirror = new CodeMirror(this.element, options);
-    }
-    static get options() {
-        return CodeMirror.defaults;
     }
 }
 
