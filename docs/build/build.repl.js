@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /*!******************!*\
   !*** multi repl ***!
   \******************/
@@ -51,7 +52,8 @@
 
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -124,7 +126,8 @@
 	});
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -151,7 +154,8 @@
 	}
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -271,7 +275,8 @@
 	});
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -327,7 +332,8 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -355,7 +361,8 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-/* 6 */
+
+/***/ 6:
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -752,9 +759,81 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-/* 7 */,
-/* 8 */,
-/* 9 */
+
+/***/ 8:
+/*!*********************************!*\
+  !*** ./docs/lib/REPLMachine.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.REPLMachine = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	const VAR_NAME_EXPORTS = 'exports';
+
+	class REPLMachine {
+	    constructor({
+	        value = '',
+	        input = (0, _htmlmodule.input)({ value }),
+	        output = (0, _htmlmodule.output)()
+	    } = {}) {
+	        this.input = input({ value });
+	        this.output = output();
+	        this.loop();
+	    }
+	    get exports() {
+	        return {
+	            default: () => {
+	                throw Error('The default module is not exported');
+	            }
+	        };
+	    }
+	    loop() {
+	        this.input.oninput = this.oninput.bind(this);
+	        this.read(this.input.value);
+	    }
+	    read(source) {
+	        try {
+	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
+	            this.eval(evaluable);
+	        } catch (error) {
+	            this.onerror(error);
+	        }
+	    }
+	    eval(evaluable) {
+	        try {
+	            const exports = this.exports;
+	            const result = evaluable(exports);
+	            this.print(result, exports);
+	        } catch (error) {
+	            this.onerror(error, evaluable);
+	        }
+	    }
+	    print(result) {
+	        this.output.value = result;
+	    }
+	    oninput() {
+	        this.read(this.input.value);
+	    }
+	    onerror(error, ...args) {
+	        this.input.invalid = true;
+	        this.print(error, ...args);
+	    }
+	}
+
+	exports.REPLMachine = REPLMachine;
+	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
+	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
+
+/***/ },
+
+/***/ 9:
 /*!********************************!*\
   !*** ./docs/lib/htmlmodule.js ***!
   \********************************/
@@ -779,84 +858,8 @@
 	});
 
 /***/ },
-/* 10 */
-/*!*********************************!*\
-  !*** ./docs/lib/siteheading.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.siteheading = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	__webpack_require__(/*! ./siteheading.css */ 11);
-
-	const MODULE_NAME = 'htmlmodule';
-
-	const siteheading = exports.siteheading = children => {
-	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _htmlmodule.h1)({
-	        id: 'siteheading',
-	        children: [(0, _htmlmodule.a)({
-	            href: isIndex ? undefined : './',
-	            children: MODULE_NAME
-	        }), ' ', children]
-	    });
-	};
-
-/***/ },
-/* 11 */
-/*!**********************************!*\
-  !*** ./docs/lib/siteheading.css ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 12);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 12 */
-/*!********************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
-  \********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 13 */
+/***/ 13:
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -914,7 +917,8 @@
 	};
 
 /***/ },
-/* 14 */
+
+/***/ 14:
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1169,114 +1173,8 @@
 
 
 /***/ },
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	__webpack_require__(/*! ./sitenav.css */ 23);
-
-	const pathname = location.pathname;
-
-	const navlist = [(0, _htmlmodule.a)({
-	    href: './api/',
-	    children: 'api doc'
-	}), (0, _htmlmodule.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _htmlmodule.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _htmlmodule.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _htmlmodule.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    children: 'git repo'
-	})];
-
-	navlist.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const modulemark = (0, _htmlmodule.small)(['assembled by ', (0, _htmlmodule.a)({
-	    href: 'http://npmjs.org/package/htmlmodule',
-	    children: 'htmlmodule'
-	})]);
-
-	const sitenav = exports.sitenav = () => (0, _htmlmodule.footer)({
-	    id: 'sitenav',
-	    children: [(0, _htmlmodule.nav)(navlist), modulemark]
-	});
-
-/***/ },
-/* 23 */
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 24);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 24 */
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#sitenav\n{\n    text-align: center;\n}\n#sitenav nav\n{\n    width: 750px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    margin: auto;\n}\n#sitenav nav a\n{\n    margin: 25px auto 25px;\n    font: bold 15px monospace;\n}\n#sitenav small\n{\n    position: fixed;\n    right: 15px;\n    bottom: 10px;\n}\n#sitenav small:not(:hover)\n{\n    opacity: 0.3;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */
+/***/ 28:
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
   \**************************/
@@ -1284,330 +1182,36 @@
 
 	'use strict';
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	var htmlmodule = _interopRequireWildcard(_lib);
-
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 29);
-
-	var _siteheading = __webpack_require__(/*! ./siteheading */ 10);
-
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 22);
-
-	var _codemirrorPreset = __webpack_require__(/*! ./codemirror-preset */ 30);
-
-	var _replcase = __webpack_require__(/*! ./replcase */ 40);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	/* ================================================================ */
-
-	// import local components
-	const OBJECT_DESTRUCTURING_RE = /\({\s((?:\w+\s*,?\s*)+)}\)/;
-
-	/* ================================================================ */
-
-	// import tests
-	// import htmlmodule stuff
-	function updateTest() {
-	    const selected = testselectbox.selectedOptions[0];
-	    if (selected) {
-	        location.hash = selected.id;
-	        globalbox.checked = selected.dataset.global === 'true';
-	        codeeditmirror.setValue(selected.value + '\n');
-	    }
-	}
-
-	/* ================================================================ */
-
-	const checked = localStorage.getItem('global') !== 'false';
-	const globalbox = (0, _lib.input)({
-	    type: 'checkbox',
-	    checked,
-	    attrset: { checked: checked ? '' : undefined },
-	    onchange: ({ target }) => {
-	        evaluate();
-	        const checked = target.checked;
-	        if (checked) testselectbox.value = '';
-	    }
-	});
-
-	const testselectbox = (0, _lib.select)({
-	    onchange: () => {
-	        const selected = testselectbox.query('[selected]');
-	        if (selected) selected.removeAttribute('selected');
-	        const opt = testselectbox.selectedOptions[0];
-	        if (opt) opt.setAttribute('selected', '');
-	        updateTest();
-	    },
-	    children: [(0, _lib.option)({
-	        value: '',
-	        dataset: { global: 'true' },
-	        children: '—'
-	    }), (0, _lib.option)({
-	        value: _replcase.globaldefined,
-	        id: 'example-with-globals',
-	        selected: true,
-	        dataset: { global: 'true' },
-	        children: 'example with globals'
-	    }), (0, _lib.option)({
-	        value: _replcase.exportdefault,
-	        id: 'export-default-example',
-	        children: 'export default example'
-	    }), (0, _lib.option)({
-	        value: _replcase.importfrom,
-	        id: 'full-module-example',
-	        children: 'full module example'
-	    }), _replcase.testcase.map(({ src }) => {
-	        const match = src.match(OBJECT_DESTRUCTURING_RE);
-	        const textContent = match ? match[1].trim() : '?';
-	        const elements = textContent.split(', ');
-	        const id = elements.join('+');
-	        return (0, _lib.option)({ id, textContent, value: src });
-	    })]
-	});
-
-	/* ================================================================ */
-
-	const clearbutton = (0, _lib.button)({
-	    type: 'button',
-	    onclick: () => {
-	        const selected = testselectbox.query('[selected]');
-	        if (selected) {
-	            selected.removeAttribute('selected');
-	            selected.selected = false;
-	        }
-	        codeeditmirror.setValue('');
-	        // caseselectbox.value = '';
-	        globalbox.checked = true;
-	        location.hash = '';
-	        localStorage.removeItem('value');
-	        localStorage.removeItem('global');
-	        localStorage.removeItem('option');
-	    },
-	    children: 'clear'
-	});
-
-	/* ================================================================ */
-
-	const markupmodebox = (0, _lib.input)({
-	    type: 'checkbox',
-	    checked: localStorage.getItem('markupmode') !== 'false',
-	    onchange: ({ target: { checked } }) => {
-	        replmachine.classList.toggle('markupmode', checked);
-	        localStorage.setItem('markupmode', String(checked));
-	        if (checked) evaluate();
-	    }
-	});
-
-	/* ================================================================ */
-
-	const settingsform = (0, _lib.form)({
-	    className: 'settings',
-	    children: (0, _lib.p)([(0, _lib.label)([globalbox, ' define globally']), (0, _lib.label)(testselectbox), (0, _lib.label)(clearbutton)])
-	});
-
-	const codeinput = (0, _lib.div)({ className: 'jsinput' });
-
-	const domoutput = (0, _lib.output)({ className: 'domoutput' });
-
-	const markupoutput = (0, _lib.div)({ className: 'htmloutput', hidden: false });
-
-	/* ================================================================ */
-
-	const replmachine = (0, _lib.main)({
-	    className: 'replmachine markupmode',
-	    children: [(0, _lib.div)({
-	        className: 'panel',
-	        children: [settingsform, codeinput]
-	    }), (0, _lib.div)({
-	        className: 'panel',
-	        children: [(0, _lib.form)({
-	            className: 'settings',
-	            children: (0, _lib.p)((0, _lib.label)([markupmodebox, ' show markup']))
-	        }), domoutput, markupoutput]
-	    })]
-	});
-
-	/* ================================================================ */
-
-	const app = (0, _lib.div)([(0, _siteheading.siteheading)((0, _lib.abbr)({
-	    title: 'read-eval-print-loop',
-	    style: { cursor: 'help' },
-	    children: 'repl'
-	})), replmachine, (0, _sitenav.sitenav)()]);
-
-	/* ================================================================ */
-
-	const localvalue = localStorage.getItem('value');
-	const localoption = localStorage.getItem('option');
-	const hash = location.hash.replace('#', '');
-
-	const init = () => {
-	    if (localvalue !== null && localoption !== null) {
-	        const option = testselectbox.options[localoption];
-	        if (option) option.selected = true;
-	    } else if (hash) {
-	        const option = document.getElementById(hash);
-	        if (option && 'selected' in option) {
-	            option.selected = true;
-	            option.setAttribute('selected', '');
-	            updateTest();
-	        }
-	    }
-	    markupoutput.hidden = !markupmodebox.checked;
-	    document.body.append(app);
-	};
-
-	init();
-
-	const codeeditmirror = (0, _codemirrorPreset.codeedit)(codeinput, localvalue || _replcase.globaldefined);
-	codeeditmirror.on('change', () => evaluate());
-
-	const markupviewmirror = (0, _codemirrorPreset.markupview)(markupoutput);
-
-	evaluate();
-
-/***/ },
-/* 29 */
-/*!*************************************!*\
-  !*** ./util/util.htmlserializer.js ***!
-  \*************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	// todo refactoring => DOMSerializer
+	exports.repl = exports.HTMLREPLMachine = undefined;
 
-	const map = Array.prototype.map;
-	const assign = Object.assign;
-
-	const epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
-	const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
-
-	const isEmptyTag = node => {
-	    if (node.constructor === Element && !node.hasChildNodes()) return true;
-	    return Boolean(emptyTagSet[node.tagName]);
-	};
-
-	// todo comment support
-	class HTMLSerializer {
-	    constructor(options = {
-	        indent: '    ',
-	        lineBreak: '\n',
-	        level: 0
-	    }) {
-	        assign(this, options);
-	    }
-	    serializeToString(node) {
-	        let {
-	            tagName,
-	            attributes,
-	            childNodes,
-	            innerHTML,
-	            textContent
-	        } = node;
-	        const lineBreak = this.lineBreak;
-	        let indent = this.indent.repeat(this.level);
-	        let result = indent;
-	        if (tagName) {
-	            tagName = tagName.toLowerCase();
-	            result += '<' + tagName;
-	            const hasAttributes = node.hasAttributes();
-	            if (hasAttributes) {
-	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
-	                result += attrset.join('');
-	            }
-	            const hasEndTag = !isEmptyTag(node);
-	            const selfClose = node.constructor === Element ? '/>' : '>';
-	            result += hasEndTag ? '>' : selfClose;
-	            if (hasEndTag && node.hasChildNodes()) {
-	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
-	                if (!hasAttributes && isSingleText) {
-	                    result += node.innerHTML;
-	                    indent = '';
-	                } else {
-	                    this.level++;
-	                    const children = map.call(childNodes, this.serializeToString, this);
-	                    this.level--;
-	                    result += lineBreak + children.join('');
-	                }
-	            } else indent = '';
-	            if (hasEndTag) result += indent + `</${ tagName }>`;
-	        } else {
-	            result += innerHTML || textContent;
-	        }
-	        result += lineBreak;
-	        return result;
-	    }
-	}
-	exports.HTMLSerializer = HTMLSerializer;
-
-/***/ },
-/* 30 */
-/*!***************************************!*\
-  !*** ./docs/lib/codemirror-preset.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.markupview = exports.codeedit = undefined;
+	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 8);
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	var _codemirror = __webpack_require__(/*! codemirror */ 31);
+	var _codemirror = __webpack_require__(/*! ./codemirror */ 571);
 
-	var _codemirror2 = _interopRequireDefault(_codemirror);
+	// const replmachine = new REPLMachine;
 
-	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 32);
+	class HTMLREPLMachine extends _REPLMachine.REPLMachine {}
 
-	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 33);
-
-	__webpack_require__(/*! codemirror/lib/codemirror.css */ 36);
-
-	__webpack_require__(/*! codemirror/theme/night.css */ 38);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	const theme = 'night';
-
-	class CodeInput {
-	    constructor(options) {
-	        const node = (0, _htmlmodule.div)();
-	    }
-	    static get options() {
-	        return {
-	            mode: 'javascript',
-	            indentUnit: 4,
-	            tabSize: 2,
-	            indentWithTabs: true,
-	            electricChars: true,
-	            styleActiveLine: true,
-	            autoCloseBrackets: true,
-	            matchBrackets: true,
-	            smartIndent: true,
-	            theme
-	        };
-	    }
-	}
-
-	const codeedit = exports.codeedit = (node, value) => new _codemirror2.default(node, options);
-
-	const markupview = exports.markupview = node => new _codemirror2.default(node, {
-	    mode: 'htmlmixed',
-	    readOnly: true,
-	    theme
+	exports.HTMLREPLMachine = HTMLREPLMachine;
+	const repl = exports.repl = () => (0, _htmlmodule.main)({
+	    className: 'replmachine',
+	    children: [(0, _htmlmodule.div)({
+	        className: 'panel',
+	        children: (0, _codemirror.codebox)().element
+	    }), (0, _htmlmodule.div)({
+	        className: 'panel',
+	        children: (0, _codemirror.markupbox)().element
+	    })]
 	});
 
 /***/ },
-/* 31 */
+
+/***/ 31:
 /*!****************************************!*\
   !*** ./~/codemirror/lib/codemirror.js ***!
   \****************************************/
@@ -2627,7 +2231,8 @@
 	CodeMirror.version="5.19.0";return CodeMirror;});
 
 /***/ },
-/* 32 */
+
+/***/ 32:
 /*!****************************************************!*\
   !*** ./~/codemirror/mode/javascript/javascript.js ***!
   \****************************************************/
@@ -3419,7 +3024,8 @@
 	});
 
 /***/ },
-/* 33 */
+
+/***/ 33:
 /*!**************************************************!*\
   !*** ./~/codemirror/mode/htmlmixed/htmlmixed.js ***!
   \**************************************************/
@@ -3565,7 +3171,8 @@
 	});
 
 /***/ },
-/* 34 */
+
+/***/ 34:
 /*!**************************************!*\
   !*** ./~/codemirror/mode/xml/xml.js ***!
   \**************************************/
@@ -3949,7 +3556,8 @@
 	});
 
 /***/ },
-/* 35 */
+
+/***/ 35:
 /*!**************************************!*\
   !*** ./~/codemirror/mode/css/css.js ***!
   \**************************************/
@@ -4512,7 +4120,8 @@
 	});
 
 /***/ },
-/* 36 */
+
+/***/ 36:
 /*!*****************************************!*\
   !*** ./~/codemirror/lib/codemirror.css ***!
   \*****************************************/
@@ -4541,7 +4150,8 @@
 	}
 
 /***/ },
-/* 37 */
+
+/***/ 37:
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/lib/codemirror.css ***!
   \***************************************************************************/
@@ -4558,7 +4168,8 @@
 
 
 /***/ },
-/* 38 */
+
+/***/ 38:
 /*!**************************************!*\
   !*** ./~/codemirror/theme/night.css ***!
   \**************************************/
@@ -4587,7 +4198,8 @@
 	}
 
 /***/ },
-/* 39 */
+
+/***/ 39:
 /*!************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/night.css ***!
   \************************************************************************/
@@ -4604,72 +4216,11 @@
 
 
 /***/ },
-/* 40 */
-/*!******************************!*\
-  !*** ./docs/lib/replcase.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.testcase = exports.importfrom = exports.exportdefault = exports.globaldefined = undefined;
-
-	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 41);
-
-	var _testGlobaldefined2 = _interopRequireDefault(_testGlobaldefined);
-
-	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 42);
-
-	var _testExportdefault2 = _interopRequireDefault(_testExportdefault);
-
-	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 43);
-
-	var _testImportfrom2 = _interopRequireDefault(_testImportfrom);
-
-	var _testcase = __webpack_require__(/*! ./testcase */ 44);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.globaldefined = _testGlobaldefined2.default;
-	exports.exportdefault = _testExportdefault2.default;
-	exports.importfrom = _testImportfrom2.default;
-	exports.testcase = _testcase.testcase;
-
-/***/ },
-/* 41 */
-/*!***************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-globaldefined.rawjs ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "form({\n    action : '//yandex.com/search',\n    target : '_blank',\n    children : [\n        label([\n            img({\n                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n                alt : 'Yandex',\n                width : 50\n            }),\n            br(),\n            input({ type : 'search', name : 'text' }),\n            ' '\n        ]),\n        button('Find')\n    ]\n})\n"
-
-/***/ },
-/* 42 */
-/*!***************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-exportdefault.rawjs ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
-
-/***/ },
-/* 43 */
-/*!************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-importfrom.rawjs ***!
-  \************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
-
-/***/ },
-/* 44 */
-/*!******************************!*\
-  !*** ./docs/lib/testcase.js ***!
-  \******************************/
+/***/ 571:
+/*!********************************!*\
+  !*** ./docs/lib/codemirror.js ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4677,33 +4228,86 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.testcase = undefined;
+	exports.markupbox = exports.codebox = exports.CodeMirrorAssembler = undefined;
 
-	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 45);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	var _testTestcase2 = _interopRequireDefault(_testTestcase);
+	var _codemirror = __webpack_require__(/*! codemirror */ 31);
+
+	var _codemirror2 = _interopRequireDefault(_codemirror);
+
+	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 32);
+
+	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 33);
+
+	__webpack_require__(/*! codemirror/lib/codemirror.css */ 36);
+
+	__webpack_require__(/*! codemirror/theme/night.css */ 38);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const srcChunks = _testTestcase2.default.split('\n\n');
+	const CODE_BOX_DEFAULTS = {
+	    mode: 'javascript',
+	    indentUnit: 4,
+	    tabSize: 2,
+	    indentWithTabs: true,
+	    electricChars: true,
+	    styleActiveLine: true,
+	    autoCloseBrackets: true,
+	    matchBrackets: true,
+	    smartIndent: true,
+	    theme: 'night'
+	};
 
-	srcChunks.shift();
-	srcChunks.pop();
+	const MARKUP_BOX_DEFAULTS = {
+	    mode: 'htmlmixed',
+	    readOnly: true,
+	    theme: 'night'
+	};
 
-	const testcase = exports.testcase = srcChunks.map(src => {
-	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
-	    const fn = new Function('return ' + src);
-	    return { src, fn: fn() };
-	});
+	/*================================================================*/
 
-/***/ },
-/* 45 */
-/*!**********************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
-  \**********************************************************/
-/***/ function(module, exports) {
+	class CodeMirrorAssembler extends _htmlmodule.HTMLAssembler {
+	    constructor(init) {
+	        super(init);
+	        this.createElement('div', (0, _htmlmodule.NodeInit)(init));
+	    }
+	    set value(value) {
+	        this.mirror.setValue(value);
+	    }
+	    get value() {
+	        return this.mirror.getValue();
+	    }
+	    createElement(tagName, init) {
+	        super.createElement(tagName);
+	        this.createMirror(init.options);
+	        this.init = init;
+	    }
+	    createMirror(options) {
+	        return this.mirror = new _codemirror2.default(this.element, options);
+	    }
+	    static get options() {
+	        return _codemirror2.default.defaults;
+	    }
+	}
 
-	module.exports = "/**\n * !!! this file requires the additional syntax restrictions !!!\n */\nexport default [\n\n    ({ fieldset, legend, input }) =>\n        fieldset([\n            legend('Authorization'),\n            input({\n                placeholder : 'login',\n                style : { marginRight : '5px' }\n            }),\n            input({\n                type : 'password',\n                placeholder : 'password'\n            })\n        ]),\n\n    ({ article, h4, img, audio, video }) =>\n        article({\n            title : 'Media',\n            children : [\n                h4('Image media'),\n                img({\n                    src : 'http://bit.ly/2e9kIdg',\n                    alt : 'Crazy PiPi!'\n                }),\n                h4('Audio media'),\n                audio({\n                    controls : true,\n                    src : 'http://bit.ly/2e2HCo5'\n                }),\n                h4('Video media'),\n                video({\n                    controls : true,\n                    width : '200',\n                    src : 'http://bit.ly/2ecsnvQ'\n                })\n            ]\n        }),\n\n    ({ div, ul, li, bdi, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div([\n            div([\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]),\n            ul([\n                li([\n                    'User ',\n                    bdi('jcranmer'),\n                    ': 12 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('hober'),\n                    ': 5 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('إيان'),\n                    ': 3 posts.'\n                ])\n            ])\n        ])\n    },\n\n    ({ form, h3, button, label, input, output, div }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height : '160px',\n                width : '300px'\n            },\n            children : [\n                h3('Event handlers'),\n                div([\n                    button({\n                        onclick : ({\n                            type,\n                            target : { tagName },\n                            constructor : { name }\n                        }) => alert([tagName, type, name, 'handler!'].join(' ')),\n                        textContent : 'Show me alert, please...'\n                    }),\n                    input({ type : 'checkbox', children : 'no alerts!' })\n                ]),\n                button({\n                    onfocus : ({ target }) => target.textContent = 'Focused!',\n                    onblur : ({ target }) => target.textContent = 'Focus wait...',\n                    textContent : 'Focus wait...'\n                }),\n                label([\n                    input({\n                        placeholder : 'text input char counter',\n                        oninput : ({ target }) => {\n                            target.nextElementSibling.value = target.value.length;\n                        }\n                    }),\n                    output({ title : 'entered char count', value : '0' })\n                ])\n            ]\n        }),\n\n    ({ footer, address, small }) =>\n        footer([\n            address('vv.aristov@gmail.com'),\n            small('@ All rights free')\n        ]),\n\n    ({ main, sup, sub, i, strong }) =>\n        main([\n            'Here comes ',\n            sup('supertext'),\n            ' and ',\n            sub('subtext'),\n            '. Later they are followed by ',\n            i('alternative voice'),\n            ' and ',\n            strong('important!')\n        ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>\n        dl([\n            dt('Abbreviations'),\n            dd([\n                abbr({\n                    title : 'Extensible markup language',\n                    children : 'XML' }),\n                abbr({\n                    title : 'Scalable vector graphics',\n                    children : 'SVG' }),\n                abbr({\n                    title : 'Interface definition language',\n                    children : 'IDL' })\n            ]),\n            dt('Edits'),\n            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),\n            dt('Keywords'),\n            dd([b('var'), b('function'), b('export'), b('const')]),\n            dt('Other'),\n            dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n        ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) =>\n        article({\n            className : 'vcard',\n            children : [\n                h2({\n                    className : 'fn',\n                    children : 'Vyacheslav Aristov'\n                }),\n                address({\n                    className : 'email',\n                    children : 'vv.aristov@gmail.com'\n                })\n            ]\n        }),\n\n    ({ pre }) => pre(`\n_________________________________________________________\n____________/          _/                      _/________\n___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________\n__________/    _/    _/      _/    _/    _/  _/__________\n_________/    _/    _/      _/    _/    _/  _/___________\n________/    _/      _/_/  _/    _/    _/  _/____________\n_________________________________________________________\n`),\n\n    ({ pre, style, script }) => pre([\n        script(`\n            Object.assign(\n                document.currentScript.style, {\n                    display: 'block',\n                    margin: '20px',\n                    border: '1px solid #ccc',\n                    color: 'blue',\n                    font: 'bold 16px monospace'\n                })`),\n        style({\n            id : 'greenstyle',\n            children : `\n                #greenstyle {\n                    display: block;\n                    margin: 20px;\n                    color: green;\n                    border: 1px solid #ccc;\n                    font: bold 16px monospace;\n                }`\n        }),\n    ]),\n\n    ({ form, label, input, textarea, span }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height: '200px'\n            },\n            children : [\n                label([\n                    'Text input ',\n                    input({ placeholder : 'Fill me' })\n                ]),\n                label([\n                    input({ type : 'checkbox' }),\n                    ' Simple checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', checked : true }),\n                    ' Checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', attrset : { checked : '' } }),\n                    ' Initially checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', indeterminate : true }),\n                    ' Indeterminate checkbox'\n                ]),\n                span([\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'html'\n                        }),\n                        ' HTML '\n                    ]),\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'xml'\n                        }),\n                        ' XML'\n                    ])\n                ]),\n                input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n            ]\n        }),\n\n    ({ form, label, select, option, br }) =>\n        form([\n            label([\n                'Select technology ',\n                select([\n                    option('XML'),\n                    option('HTML'),\n                    option({ selected : true, textContent : 'WAI-ARIA' }),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ])\n            ]),\n            br(),\n            label([\n                'Select technology stack',\n                br(),\n                select({\n                    multiple : true,\n                    children : [\n                        option('XML'),\n                        option({\n                            attrset : { selected : '' },\n                            textContent : 'HTML'\n                        }),\n                        option('WAI-ARIA'),\n                        option('RDFS'),\n                        option('OWL'),\n                        option('SGML'),\n                        option('CSS')\n                    ]})\n            ]),\n        ]),\n\n    ({ form, input, button }) =>\n        form({\n            style : { whiteSpace : 'nowrap' },\n            children : [\n                input({\n                    name : 'query',\n                    placeholder : 'type your request',\n                    type : 'search',\n                    style : { marginRight : '5px' }\n                }),\n                button('search')\n            ]\n        }),\n\n    ({ iframe, dialog, p, button }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>\n        table({\n            style : { width : '100%', textAlign : 'center' },\n            children : [\n                caption('Relative concept'),\n                thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n                tbody([\n                    ['HTMLElement', 'roletype'],\n                    ['hidden', 'aria-hidden'],\n                    ['title', 'aria-label'],\n                    ['—', 'aria-pressed'],\n                    ['checked', 'aria-checked'],\n                    ['selected', 'aria-selected'],\n                    ['disabled', 'aria-disabled'],\n                    ['button', 'button'],\n                    ['a, link, area', 'link'],\n                    ['input', 'textbox'],\n                    ['combobox', 'select'],\n                    ['table', 'table']\n                ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))\n            ]\n        }),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>\n        hgroup([\n            h1('First level heading'),\n            h2('Second level heading'),\n            h3('Third level heading'),\n            h4('Fourth level heding'),\n            h5('Fifth level heding'),\n            h6('Sixth level heding in group')\n        ]),\n\n    ({ blockquote }) =>\n        blockquote({\n            cite : 'https://html.spec.whatwg.org/' +\n                'multipage/semantics.html#the-blockquote-element',\n            children : 'The blockquote element represents ' +\n                'a section that is quoted from another source.'\n        }),\n\n    ({ article, section, ruby, rt, rp }) =>\n        article({\n            title : 'Ruby annotations',\n            children : [\n                section([\n                    ruby(['君', rt('くん')]),\n                    ruby(['子', rt('し')]),\n                    'は',\n                    ruby(['和', rt('わ')]),\n                    'して',\n                    ruby(['同', rt('どう')]),\n                    'ぜず。'\n                ]),\n                section(ruby([\n                    '漢',\n                    rp(' ('),\n                    rt('かん'),\n                    rp(')'),\n                    '字',\n                    rp(' ('),\n                    rt('じ'),\n                    rp(')')\n                ]))\n            ]\n        }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) =>\n        article({\n            title : 'Various lists',\n            children : [\n                ul([\n                    li('Node'),\n                    li('Text'),\n                    li('Element'),\n                    li('Comment')\n                ]),\n                ol([\n                    li('Amsterdam'),\n                    li('New York'),\n                    li('Moscow'),\n                    li('Moscow')\n                ]),\n                dl([\n                    dt('DOM'),\n                    dd('Document object model'),\n                    dt('XML'),\n                    dd('Extensible markup language'),\n                    dt('HTML'),\n                    dd('Hyper text markup language'),\n                    dt('ARIAML'),\n                    dd('Accessible rich internet applications markup language')\n                ])\n            ]\n        }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
+	exports.CodeMirrorAssembler = CodeMirrorAssembler;
+	Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable: true, value: null });
+
+	const codemirror = (init = {}) => new CodeMirrorAssembler(init);
+
+	/*================================================================*/
+
+	const codebox = exports.codebox = (init = {}) => {
+	    if (!init.options) init.options = CODE_BOX_DEFAULTS;
+	    return codemirror(init);
+	};
+
+	const markupbox = exports.markupbox = (init = {}) => {
+	    if (!init.options) init.options = MARKUP_BOX_DEFAULTS;
+	    return codemirror(init);
+	};
 
 /***/ }
-/******/ ]);
+
+/******/ });

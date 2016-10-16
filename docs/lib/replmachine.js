@@ -1,9 +1,16 @@
-import { input, output } from './htmlmodule';
+import {
+    input as htmlinput,
+    output as htmloutput
+} from './htmlmodule';
 
 const VAR_NAME_EXPORTS = 'exports';
 
 export class REPLMachine {
-    constructor({ value = '' } = {}) {
+    constructor({
+        value = '',
+        input = htmlinput({ value }),
+        output = htmloutput(),
+    } = {}) {
         this.input = input({ value });
         this.output = output();
         this.loop();
