@@ -3,6 +3,8 @@ import * as htmlmodule from '../../lib';
 import { button, option, select, output, main, div, p, label, input, abbr, form }
 from '../../lib';
 
+import { HTMLSerializer } from '../../util/util.htmlserializer';
+
 // import local components
 import { siteheading } from './siteheading';
 import { sitenav } from './sitenav';

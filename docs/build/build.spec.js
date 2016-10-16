@@ -48,7 +48,7 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./docs/lib/spec */349);
+	module.exports = __webpack_require__(/*! ./docs/lib/spec */351);
 
 
 /***/ },
@@ -760,7 +760,7 @@
 
 /***/ },
 
-/***/ 349:
+/***/ 351:
 /*!**************************!*\
   !*** ./docs/lib/spec.js ***!
   \**************************/
@@ -768,11 +768,11 @@
 
 	'use strict';
 
-	__webpack_require__(/*! ../../lib/index.spec */ 350);
+	__webpack_require__(/*! ../../lib/index.spec */ 352);
 
 /***/ },
 
-/***/ 350:
+/***/ 352:
 /*!***************************!*\
   !*** ./lib/index.spec.js ***!
   \***************************/
@@ -780,19 +780,19 @@
 
 	'use strict';
 
-	__webpack_require__(/*! ./nodeinit.spec */ 351);
+	__webpack_require__(/*! ./nodeinit.spec */ 353);
 
-	__webpack_require__(/*! ./domassembler.spec */ 392);
+	__webpack_require__(/*! ./domassembler.spec */ 394);
 
-	__webpack_require__(/*! ./htmlassembler.spec */ 393);
+	__webpack_require__(/*! ./htmlassembler.spec */ 395);
 
-	__webpack_require__(/*! ./xmldom.spec */ 395);
+	__webpack_require__(/*! ./xmldom.spec */ 397);
 
-	__webpack_require__(/*! ./htmldom.spec */ 396);
+	__webpack_require__(/*! ./htmldom.spec */ 398);
 
 /***/ },
 
-/***/ 351:
+/***/ 353:
 /*!******************************!*\
   !*** ./lib/nodeinit.spec.js ***!
   \******************************/
@@ -802,7 +802,7 @@
 
 	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
 
-	var _chai = __webpack_require__(/*! chai */ 352);
+	var _chai = __webpack_require__(/*! chai */ 354);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
@@ -842,7 +842,7 @@
 
 /***/ },
 
-/***/ 352:
+/***/ 354:
 /*!*************************!*\
   !*** ./~/chai/index.js ***!
   \*************************/
@@ -850,11 +850,11 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/chai */ 353);
+	module.exports = __webpack_require__(/*! ./lib/chai */ 355);
 
 /***/ },
 
-/***/ 353:
+/***/ 355:
 /*!****************************!*\
   !*** ./~/chai/lib/chai.js ***!
   \****************************/
@@ -881,13 +881,13 @@
 	 * Assertion Error
 	 */
 
-	_exports.AssertionError = __webpack_require__(/*! assertion-error */ 354);
+	_exports.AssertionError = __webpack_require__(/*! assertion-error */ 356);
 
 	/*!
 	 * Utils for plugins (not exported)
 	 */
 
-	var util = __webpack_require__(/*! ./chai/utils */ 355);
+	var util = __webpack_require__(/*! ./chai/utils */ 357);
 
 	/**
 	 * # .use(function)
@@ -918,47 +918,47 @@
 	 * Configuration
 	 */
 
-	var config = __webpack_require__(/*! ./chai/config */ 368);
+	var config = __webpack_require__(/*! ./chai/config */ 370);
 	_exports.config = config;
 
 	/*!
 	 * Primary `Assertion` prototype
 	 */
 
-	var assertion = __webpack_require__(/*! ./chai/assertion */ 387);
+	var assertion = __webpack_require__(/*! ./chai/assertion */ 389);
 	_exports.use(assertion);
 
 	/*!
 	 * Core Assertions
 	 */
 
-	var core = __webpack_require__(/*! ./chai/core/assertions */ 388);
+	var core = __webpack_require__(/*! ./chai/core/assertions */ 390);
 	_exports.use(core);
 
 	/*!
 	 * Expect interface
 	 */
 
-	var expect = __webpack_require__(/*! ./chai/interface/expect */ 389);
+	var expect = __webpack_require__(/*! ./chai/interface/expect */ 391);
 	_exports.use(expect);
 
 	/*!
 	 * Should interface
 	 */
 
-	var should = __webpack_require__(/*! ./chai/interface/should */ 390);
+	var should = __webpack_require__(/*! ./chai/interface/should */ 392);
 	_exports.use(should);
 
 	/*!
 	 * Assert interface
 	 */
 
-	var assert = __webpack_require__(/*! ./chai/interface/assert */ 391);
+	var assert = __webpack_require__(/*! ./chai/interface/assert */ 393);
 	_exports.use(assert);
 
 /***/ },
 
-/***/ 354:
+/***/ 356:
 /*!*******************************************!*\
   !*** ./~/chai/~/assertion-error/index.js ***!
   \*******************************************/
@@ -1085,7 +1085,7 @@
 
 /***/ },
 
-/***/ 355:
+/***/ 357:
 /*!****************************************!*\
   !*** ./~/chai/lib/chai/utils/index.js ***!
   \****************************************/
@@ -1109,124 +1109,124 @@
 	 * test utility
 	 */
 
-	_exports.test = __webpack_require__(/*! ./test */ 356);
+	_exports.test = __webpack_require__(/*! ./test */ 358);
 
 	/*!
 	 * type utility
 	 */
 
-	_exports.type = __webpack_require__(/*! type-detect */ 358);
+	_exports.type = __webpack_require__(/*! type-detect */ 360);
 
 	/*!
 	 * expectTypes utility
 	 */
-	_exports.expectTypes = __webpack_require__(/*! ./expectTypes */ 360);
+	_exports.expectTypes = __webpack_require__(/*! ./expectTypes */ 362);
 
 	/*!
 	 * message utility
 	 */
 
-	_exports.getMessage = __webpack_require__(/*! ./getMessage */ 361);
+	_exports.getMessage = __webpack_require__(/*! ./getMessage */ 363);
 
 	/*!
 	 * actual utility
 	 */
 
-	_exports.getActual = __webpack_require__(/*! ./getActual */ 362);
+	_exports.getActual = __webpack_require__(/*! ./getActual */ 364);
 
 	/*!
 	 * Inspect util
 	 */
 
-	_exports.inspect = __webpack_require__(/*! ./inspect */ 363);
+	_exports.inspect = __webpack_require__(/*! ./inspect */ 365);
 
 	/*!
 	 * Object Display util
 	 */
 
-	_exports.objDisplay = __webpack_require__(/*! ./objDisplay */ 367);
+	_exports.objDisplay = __webpack_require__(/*! ./objDisplay */ 369);
 
 	/*!
 	 * Flag utility
 	 */
 
-	_exports.flag = __webpack_require__(/*! ./flag */ 357);
+	_exports.flag = __webpack_require__(/*! ./flag */ 359);
 
 	/*!
 	 * Flag transferring utility
 	 */
 
-	_exports.transferFlags = __webpack_require__(/*! ./transferFlags */ 369);
+	_exports.transferFlags = __webpack_require__(/*! ./transferFlags */ 371);
 
 	/*!
 	 * Deep equal utility
 	 */
 
-	_exports.eql = __webpack_require__(/*! deep-eql */ 370);
+	_exports.eql = __webpack_require__(/*! deep-eql */ 372);
 
 	/*!
 	 * Deep path value
 	 */
 
-	_exports.getPathValue = __webpack_require__(/*! ./getPathValue */ 378);
+	_exports.getPathValue = __webpack_require__(/*! ./getPathValue */ 380);
 
 	/*!
 	 * Deep path info
 	 */
 
-	_exports.getPathInfo = __webpack_require__(/*! ./getPathInfo */ 379);
+	_exports.getPathInfo = __webpack_require__(/*! ./getPathInfo */ 381);
 
 	/*!
 	 * Check if a property exists
 	 */
 
-	_exports.hasProperty = __webpack_require__(/*! ./hasProperty */ 380);
+	_exports.hasProperty = __webpack_require__(/*! ./hasProperty */ 382);
 
 	/*!
 	 * Function name
 	 */
 
-	_exports.getName = __webpack_require__(/*! ./getName */ 364);
+	_exports.getName = __webpack_require__(/*! ./getName */ 366);
 
 	/*!
 	 * add Property
 	 */
 
-	_exports.addProperty = __webpack_require__(/*! ./addProperty */ 381);
+	_exports.addProperty = __webpack_require__(/*! ./addProperty */ 383);
 
 	/*!
 	 * add Method
 	 */
 
-	_exports.addMethod = __webpack_require__(/*! ./addMethod */ 382);
+	_exports.addMethod = __webpack_require__(/*! ./addMethod */ 384);
 
 	/*!
 	 * overwrite Property
 	 */
 
-	_exports.overwriteProperty = __webpack_require__(/*! ./overwriteProperty */ 383);
+	_exports.overwriteProperty = __webpack_require__(/*! ./overwriteProperty */ 385);
 
 	/*!
 	 * overwrite Method
 	 */
 
-	_exports.overwriteMethod = __webpack_require__(/*! ./overwriteMethod */ 384);
+	_exports.overwriteMethod = __webpack_require__(/*! ./overwriteMethod */ 386);
 
 	/*!
 	 * Add a chainable method
 	 */
 
-	_exports.addChainableMethod = __webpack_require__(/*! ./addChainableMethod */ 385);
+	_exports.addChainableMethod = __webpack_require__(/*! ./addChainableMethod */ 387);
 
 	/*!
 	 * Overwrite chainable method
 	 */
 
-	_exports.overwriteChainableMethod = __webpack_require__(/*! ./overwriteChainableMethod */ 386);
+	_exports.overwriteChainableMethod = __webpack_require__(/*! ./overwriteChainableMethod */ 388);
 
 /***/ },
 
-/***/ 356:
+/***/ 358:
 /*!***************************************!*\
   !*** ./~/chai/lib/chai/utils/test.js ***!
   \***************************************/
@@ -1244,7 +1244,7 @@
 	 * Module dependancies
 	 */
 
-	var flag = __webpack_require__(/*! ./flag */ 357);
+	var flag = __webpack_require__(/*! ./flag */ 359);
 
 	/**
 	 * # test(object, expression)
@@ -1265,7 +1265,7 @@
 
 /***/ },
 
-/***/ 357:
+/***/ 359:
 /*!***************************************!*\
   !*** ./~/chai/lib/chai/utils/flag.js ***!
   \***************************************/
@@ -1309,7 +1309,7 @@
 
 /***/ },
 
-/***/ 358:
+/***/ 360:
 /*!***************************************!*\
   !*** ./~/chai/~/type-detect/index.js ***!
   \***************************************/
@@ -1317,11 +1317,11 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/type */ 359);
+	module.exports = __webpack_require__(/*! ./lib/type */ 361);
 
 /***/ },
 
-/***/ 359:
+/***/ 361:
 /*!******************************************!*\
   !*** ./~/chai/~/type-detect/lib/type.js ***!
   \******************************************/
@@ -1466,7 +1466,7 @@
 
 /***/ },
 
-/***/ 360:
+/***/ 362:
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/expectTypes.js ***!
   \**********************************************/
@@ -1494,9 +1494,9 @@
 	 * @api public
 	 */
 
-	var AssertionError = __webpack_require__(/*! assertion-error */ 354);
-	var flag = __webpack_require__(/*! ./flag */ 357);
-	var type = __webpack_require__(/*! type-detect */ 358);
+	var AssertionError = __webpack_require__(/*! assertion-error */ 356);
+	var flag = __webpack_require__(/*! ./flag */ 359);
+	var type = __webpack_require__(/*! type-detect */ 360);
 
 	module.exports = function (obj, types) {
 	  var obj = flag(obj, 'object');
@@ -1521,7 +1521,7 @@
 
 /***/ },
 
-/***/ 361:
+/***/ 363:
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/utils/getMessage.js ***!
   \*********************************************/
@@ -1539,10 +1539,10 @@
 	 * Module dependancies
 	 */
 
-	var flag = __webpack_require__(/*! ./flag */ 357),
-	    getActual = __webpack_require__(/*! ./getActual */ 362),
-	    inspect = __webpack_require__(/*! ./inspect */ 363),
-	    objDisplay = __webpack_require__(/*! ./objDisplay */ 367);
+	var flag = __webpack_require__(/*! ./flag */ 359),
+	    getActual = __webpack_require__(/*! ./getActual */ 364),
+	    inspect = __webpack_require__(/*! ./inspect */ 365),
+	    objDisplay = __webpack_require__(/*! ./objDisplay */ 369);
 
 	/**
 	 * ### .getMessage(object, message, negateMessage)
@@ -1586,7 +1586,7 @@
 
 /***/ },
 
-/***/ 362:
+/***/ 364:
 /*!********************************************!*\
   !*** ./~/chai/lib/chai/utils/getActual.js ***!
   \********************************************/
@@ -1617,7 +1617,7 @@
 
 /***/ },
 
-/***/ 363:
+/***/ 365:
 /*!******************************************!*\
   !*** ./~/chai/lib/chai/utils/inspect.js ***!
   \******************************************/
@@ -1628,9 +1628,9 @@
 	// This is (almost) directly from Node.js utils
 	// https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js
 
-	var getName = __webpack_require__(/*! ./getName */ 364);
-	var getProperties = __webpack_require__(/*! ./getProperties */ 365);
-	var getEnumerableProperties = __webpack_require__(/*! ./getEnumerableProperties */ 366);
+	var getName = __webpack_require__(/*! ./getName */ 366);
+	var getProperties = __webpack_require__(/*! ./getProperties */ 367);
+	var getEnumerableProperties = __webpack_require__(/*! ./getEnumerableProperties */ 368);
 
 	module.exports = inspect;
 
@@ -1943,7 +1943,7 @@
 
 /***/ },
 
-/***/ 364:
+/***/ 366:
 /*!******************************************!*\
   !*** ./~/chai/lib/chai/utils/getName.js ***!
   \******************************************/
@@ -1976,7 +1976,7 @@
 
 /***/ },
 
-/***/ 365:
+/***/ 367:
 /*!************************************************!*\
   !*** ./~/chai/lib/chai/utils/getProperties.js ***!
   \************************************************/
@@ -2023,7 +2023,7 @@
 
 /***/ },
 
-/***/ 366:
+/***/ 368:
 /*!**********************************************************!*\
   !*** ./~/chai/lib/chai/utils/getEnumerableProperties.js ***!
   \**********************************************************/
@@ -2060,7 +2060,7 @@
 
 /***/ },
 
-/***/ 367:
+/***/ 369:
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/utils/objDisplay.js ***!
   \*********************************************/
@@ -2078,8 +2078,8 @@
 	 * Module dependancies
 	 */
 
-	var inspect = __webpack_require__(/*! ./inspect */ 363);
-	var config = __webpack_require__(/*! ../config */ 368);
+	var inspect = __webpack_require__(/*! ./inspect */ 365);
+	var config = __webpack_require__(/*! ../config */ 370);
 
 	/**
 	 * ### .objDisplay (object)
@@ -2117,7 +2117,7 @@
 
 /***/ },
 
-/***/ 368:
+/***/ 370:
 /*!***********************************!*\
   !*** ./~/chai/lib/chai/config.js ***!
   \***********************************/
@@ -2183,7 +2183,7 @@
 
 /***/ },
 
-/***/ 369:
+/***/ 371:
 /*!************************************************!*\
   !*** ./~/chai/lib/chai/utils/transferFlags.js ***!
   \************************************************/
@@ -2238,7 +2238,7 @@
 
 /***/ },
 
-/***/ 370:
+/***/ 372:
 /*!************************************!*\
   !*** ./~/chai/~/deep-eql/index.js ***!
   \************************************/
@@ -2246,11 +2246,11 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/eql */ 371);
+	module.exports = __webpack_require__(/*! ./lib/eql */ 373);
 
 /***/ },
 
-/***/ 371:
+/***/ 373:
 /*!**************************************!*\
   !*** ./~/chai/~/deep-eql/lib/eql.js ***!
   \**************************************/
@@ -2268,7 +2268,7 @@
 	 * Module dependencies
 	 */
 
-	var type = __webpack_require__(/*! type-detect */ 372);
+	var type = __webpack_require__(/*! type-detect */ 374);
 
 	/*!
 	 * Buffer.isBuffer browser shim
@@ -2276,7 +2276,7 @@
 
 	var Buffer;
 	try {
-	  Buffer = __webpack_require__(/*! buffer */ 374).Buffer;
+	  Buffer = __webpack_require__(/*! buffer */ 376).Buffer;
 	} catch (ex) {
 	  Buffer = {};
 	  Buffer.isBuffer = function () {
@@ -2519,7 +2519,7 @@
 
 /***/ },
 
-/***/ 372:
+/***/ 374:
 /*!**************************************************!*\
   !*** ./~/chai/~/deep-eql/~/type-detect/index.js ***!
   \**************************************************/
@@ -2527,11 +2527,11 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/type */ 373);
+	module.exports = __webpack_require__(/*! ./lib/type */ 375);
 
 /***/ },
 
-/***/ 373:
+/***/ 375:
 /*!*****************************************************!*\
   !*** ./~/chai/~/deep-eql/~/type-detect/lib/type.js ***!
   \*****************************************************/
@@ -2684,7 +2684,7 @@
 
 /***/ },
 
-/***/ 374:
+/***/ 376:
 /*!*******************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/index.js ***!
   \*******************************************************/
@@ -2700,9 +2700,9 @@
 
 	'use strict';
 
-	var base64 = __webpack_require__(/*! base64-js */ 375);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 376);
-	var isArray = __webpack_require__(/*! isarray */ 377);
+	var base64 = __webpack_require__(/*! base64-js */ 377);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 378);
+	var isArray = __webpack_require__(/*! isarray */ 379);
 
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -4427,11 +4427,11 @@
 	function isnan(val) {
 	  return val !== val; // eslint-disable-line no-self-compare
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/buffer/index.js */ 374).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/buffer/index.js */ 376).Buffer, (function() { return this; }())))
 
 /***/ },
 
-/***/ 375:
+/***/ 377:
 /*!*******************************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/~/base64-js/index.js ***!
   \*******************************************************************/
@@ -4554,7 +4554,7 @@
 
 /***/ },
 
-/***/ 376:
+/***/ 378:
 /*!*****************************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/~/ieee754/index.js ***!
   \*****************************************************************/
@@ -4649,7 +4649,7 @@
 
 /***/ },
 
-/***/ 377:
+/***/ 379:
 /*!*****************************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/~/isarray/index.js ***!
   \*****************************************************************/
@@ -4665,7 +4665,7 @@
 
 /***/ },
 
-/***/ 378:
+/***/ 380:
 /*!***********************************************!*\
   !*** ./~/chai/lib/chai/utils/getPathValue.js ***!
   \***********************************************/
@@ -4680,7 +4680,7 @@
 	 * MIT Licensed
 	 */
 
-	var getPathInfo = __webpack_require__(/*! ./getPathInfo */ 379);
+	var getPathInfo = __webpack_require__(/*! ./getPathInfo */ 381);
 
 	/**
 	 * ### .getPathValue(path, object)
@@ -4719,7 +4719,7 @@
 
 /***/ },
 
-/***/ 379:
+/***/ 381:
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/getPathInfo.js ***!
   \**********************************************/
@@ -4733,7 +4733,7 @@
 	 * MIT Licensed
 	 */
 
-	var hasProperty = __webpack_require__(/*! ./hasProperty */ 380);
+	var hasProperty = __webpack_require__(/*! ./hasProperty */ 382);
 
 	/**
 	 * ### .getPathInfo(path, object)
@@ -4835,7 +4835,7 @@
 
 /***/ },
 
-/***/ 380:
+/***/ 382:
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/hasProperty.js ***!
   \**********************************************/
@@ -4849,7 +4849,7 @@
 	 * MIT Licensed
 	 */
 
-	var type = __webpack_require__(/*! type-detect */ 358);
+	var type = __webpack_require__(/*! type-detect */ 360);
 
 	/**
 	 * ### .hasProperty(object, name)
@@ -4908,7 +4908,7 @@
 
 /***/ },
 
-/***/ 381:
+/***/ 383:
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/addProperty.js ***!
   \**********************************************/
@@ -4922,8 +4922,8 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(/*! ../config */ 368);
-	var flag = __webpack_require__(/*! ./flag */ 357);
+	var config = __webpack_require__(/*! ../config */ 370);
+	var flag = __webpack_require__(/*! ./flag */ 359);
 
 	/**
 	 * ### addProperty (ctx, name, getter)
@@ -4965,7 +4965,7 @@
 
 /***/ },
 
-/***/ 382:
+/***/ 384:
 /*!********************************************!*\
   !*** ./~/chai/lib/chai/utils/addMethod.js ***!
   \********************************************/
@@ -4979,7 +4979,7 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(/*! ../config */ 368);
+	var config = __webpack_require__(/*! ../config */ 370);
 
 	/**
 	 * ### .addMethod (ctx, name, method)
@@ -5006,7 +5006,7 @@
 	 * @name addMethod
 	 * @api public
 	 */
-	var flag = __webpack_require__(/*! ./flag */ 357);
+	var flag = __webpack_require__(/*! ./flag */ 359);
 
 	module.exports = function (ctx, name, method) {
 	  ctx[name] = function () {
@@ -5019,7 +5019,7 @@
 
 /***/ },
 
-/***/ 383:
+/***/ 385:
 /*!****************************************************!*\
   !*** ./~/chai/lib/chai/utils/overwriteProperty.js ***!
   \****************************************************/
@@ -5083,7 +5083,7 @@
 
 /***/ },
 
-/***/ 384:
+/***/ 386:
 /*!**************************************************!*\
   !*** ./~/chai/lib/chai/utils/overwriteMethod.js ***!
   \**************************************************/
@@ -5147,7 +5147,7 @@
 
 /***/ },
 
-/***/ 385:
+/***/ 387:
 /*!*****************************************************!*\
   !*** ./~/chai/lib/chai/utils/addChainableMethod.js ***!
   \*****************************************************/
@@ -5165,9 +5165,9 @@
 	 * Module dependencies
 	 */
 
-	var transferFlags = __webpack_require__(/*! ./transferFlags */ 369);
-	var flag = __webpack_require__(/*! ./flag */ 357);
-	var config = __webpack_require__(/*! ../config */ 368);
+	var transferFlags = __webpack_require__(/*! ./transferFlags */ 371);
+	var flag = __webpack_require__(/*! ./flag */ 359);
+	var config = __webpack_require__(/*! ../config */ 370);
 
 	/*!
 	 * Module variables
@@ -5268,7 +5268,7 @@
 
 /***/ },
 
-/***/ 386:
+/***/ 388:
 /*!***********************************************************!*\
   !*** ./~/chai/lib/chai/utils/overwriteChainableMethod.js ***!
   \***********************************************************/
@@ -5333,7 +5333,7 @@
 
 /***/ },
 
-/***/ 387:
+/***/ 389:
 /*!**************************************!*\
   !*** ./~/chai/lib/chai/assertion.js ***!
   \**************************************/
@@ -5348,7 +5348,7 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(/*! ./config */ 368);
+	var config = __webpack_require__(/*! ./config */ 370);
 
 	module.exports = function (_chai, util) {
 	  /*!
@@ -5474,7 +5474,7 @@
 
 /***/ },
 
-/***/ 388:
+/***/ 390:
 /*!********************************************!*\
   !*** ./~/chai/lib/chai/core/assertions.js ***!
   \********************************************/
@@ -7082,7 +7082,7 @@
 
 /***/ },
 
-/***/ 389:
+/***/ 391:
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/interface/expect.js ***!
   \*********************************************/
@@ -7127,7 +7127,7 @@
 
 /***/ },
 
-/***/ 390:
+/***/ 392:
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/interface/should.js ***!
   \*********************************************/
@@ -7339,7 +7339,7 @@
 
 /***/ },
 
-/***/ 391:
+/***/ 393:
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/interface/assert.js ***!
   \*********************************************/
@@ -8965,7 +8965,7 @@
 
 /***/ },
 
-/***/ 392:
+/***/ 394:
 /*!**********************************!*\
   !*** ./lib/domassembler.spec.js ***!
   \**********************************/
@@ -8975,7 +8975,7 @@
 
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
 
-	var _chai = __webpack_require__(/*! chai */ 352);
+	var _chai = __webpack_require__(/*! chai */ 354);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
@@ -9118,7 +9118,7 @@
 
 /***/ },
 
-/***/ 393:
+/***/ 395:
 /*!***********************************!*\
   !*** ./lib/htmlassembler.spec.js ***!
   \***********************************/
@@ -9128,11 +9128,11 @@
 
 	var _htmlassembler = __webpack_require__(/*! ./htmlassembler.js */ 4);
 
-	var _chai = __webpack_require__(/*! chai */ 352);
+	var _chai = __webpack_require__(/*! chai */ 354);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
-	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 394);
+	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 396);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9477,7 +9477,7 @@
 
 /***/ },
 
-/***/ 394:
+/***/ 396:
 /*!*************************************!*\
   !*** ./util/util.domequalmarkup.js ***!
   \*************************************/
@@ -9507,7 +9507,7 @@
 
 /***/ },
 
-/***/ 395:
+/***/ 397:
 /*!****************************!*\
   !*** ./lib/xmldom.spec.js ***!
   \****************************/
@@ -9517,7 +9517,7 @@
 
 	var _index = __webpack_require__(/*! ./index */ 1);
 
-	var _chai = __webpack_require__(/*! chai */ 352);
+	var _chai = __webpack_require__(/*! chai */ 354);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
@@ -9619,7 +9619,7 @@
 
 /***/ },
 
-/***/ 396:
+/***/ 398:
 /*!*****************************!*\
   !*** ./lib/htmldom.spec.js ***!
   \*****************************/
@@ -9629,7 +9629,7 @@
 
 	var _htmldom = __webpack_require__(/*! ./htmldom */ 6);
 
-	var _chai = __webpack_require__(/*! chai */ 352);
+	var _chai = __webpack_require__(/*! chai */ 354);
 
 	var _chai2 = _interopRequireDefault(_chai);
 

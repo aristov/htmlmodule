@@ -760,24 +760,38 @@
 
 	'use strict';
 
-	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
+	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 8);
 
-	var _specwin = __webpack_require__(/*! ./specwin */ 14);
+	var _siteheading = __webpack_require__(/*! ./siteheading */ 10);
 
-	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 15);
+	var _specwin = __webpack_require__(/*! ./specwin */ 15);
 
-	var _apinav = __webpack_require__(/*! ./apinav */ 18);
+	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 16);
 
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 21);
+	var _apinav = __webpack_require__(/*! ./apinav */ 19);
 
-	__webpack_require__(/*! ./index.css */ 24);
+	var _sitenav = __webpack_require__(/*! ./sitenav */ 22);
 
-	document.body.append((0, _siteheading.siteheading)(), (0, _specwin.specwin)(), (0, _apinav.apinav)(), (0, _sourcedetails.sourcefetch)((0, _sourcedetails.sourcedetails)()), (0, _sitenav.sitenav)());
+	__webpack_require__(/*! ./index.css */ 25);
+
+	/** variables **/
+
+	const replmachine = new _REPLMachine.REPLMachine();
+
+	/** variables **/
+
+	/** imports **/
+
+	document.body.append((0, _siteheading.siteheading)(),
+	// specwin(),
+	// apinav(),
+	// sourcefetch(sourcedetails()),
+	replmachine.input, replmachine.output, (0, _sitenav.sitenav)());
 
 /***/ },
 /* 8 */
 /*!*********************************!*\
-  !*** ./docs/lib/siteheading.js ***!
+  !*** ./docs/lib/REPLMachine.js ***!
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -786,24 +800,61 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.siteheading = undefined;
+	exports.REPLMachine = undefined;
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	__webpack_require__(/*! ./siteheading.css */ 10);
+	const VAR_NAME_EXPORTS = 'exports';
 
-	const MODULE_NAME = 'htmlmodule';
+	class REPLMachine {
+	    constructor({ value = '' } = {}) {
+	        this.input = (0, _htmlmodule.input)({ value });
+	        this.output = (0, _htmlmodule.output)();
+	        this.loop();
+	    }
+	    get exports() {
+	        return {
+	            default: () => {
+	                throw Error('The default module is not exported');
+	            }
+	        };
+	    }
+	    loop() {
+	        this.input.oninput = this.oninput.bind(this);
+	        this.read(this.input.value);
+	    }
+	    read(source) {
+	        try {
+	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
+	            this.eval(evaluable);
+	        } catch (error) {
+	            this.onerror(error);
+	        }
+	    }
+	    eval(evaluable) {
+	        try {
+	            const exports = this.exports;
+	            const result = evaluable(exports);
+	            this.print(result, exports);
+	        } catch (error) {
+	            this.onerror(error, evaluable);
+	        }
+	    }
+	    print(result) {
+	        this.output.value = result;
+	    }
+	    oninput() {
+	        this.read(this.input.value);
+	    }
+	    onerror(error, ...args) {
+	        this.input.invalid = true;
+	        this.print(error, ...args);
+	    }
+	}
 
-	const siteheading = exports.siteheading = children => {
-	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _htmlmodule.h1)({
-	        id: 'siteheading',
-	        children: [(0, _htmlmodule.a)({
-	            href: isIndex ? undefined : './',
-	            children: MODULE_NAME
-	        }), ' ', children]
-	    });
-	};
+	exports.REPLMachine = REPLMachine;
+	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
+	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
 
 /***/ },
 /* 9 */
@@ -832,6 +883,37 @@
 
 /***/ },
 /* 10 */
+/*!*********************************!*\
+  !*** ./docs/lib/siteheading.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.siteheading = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	__webpack_require__(/*! ./siteheading.css */ 11);
+
+	const MODULE_NAME = 'htmlmodule';
+
+	const siteheading = exports.siteheading = children => {
+	    const isIndex = !/\.html$/.test(location.pathname);
+	    return (0, _htmlmodule.h1)({
+	        id: 'siteheading',
+	        children: [(0, _htmlmodule.a)({
+	            href: isIndex ? undefined : './',
+	            children: MODULE_NAME
+	        }), ' ', children]
+	    });
+	};
+
+/***/ },
+/* 11 */
 /*!**********************************!*\
   !*** ./docs/lib/siteheading.css ***!
   \**********************************/
@@ -840,10 +922,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 11);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 12);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -860,13 +942,13 @@
 	}
 
 /***/ },
-/* 11 */
+/* 12 */
 /*!********************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
   \********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
 	// imports
 
 
@@ -877,7 +959,7 @@
 
 
 /***/ },
-/* 12 */
+/* 13 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -935,7 +1017,7 @@
 	};
 
 /***/ },
-/* 13 */
+/* 14 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1190,7 +1272,7 @@
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /*!*****************************!*\
   !*** ./docs/lib/specwin.js ***!
   \*****************************/
@@ -1216,7 +1298,7 @@
 	});
 
 /***/ },
-/* 15 */
+/* 16 */
 /*!***********************************!*\
   !*** ./docs/lib/sourcedetails.js ***!
   \***********************************/
@@ -1231,7 +1313,7 @@
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	__webpack_require__(/*! ./sourcedetails.css */ 16);
+	__webpack_require__(/*! ./sourcedetails.css */ 17);
 
 	const sourcedetails = exports.sourcedetails = () => (0, _htmlmodule.details)({
 	    id: 'sourcedetails',
@@ -1257,7 +1339,7 @@
 	};
 
 /***/ },
-/* 16 */
+/* 17 */
 /*!************************************!*\
   !*** ./docs/lib/sourcedetails.css ***!
   \************************************/
@@ -1266,10 +1348,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sourcedetails.css */ 17);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sourcedetails.css */ 18);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1286,13 +1368,13 @@
 	}
 
 /***/ },
-/* 17 */
+/* 18 */
 /*!**********************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sourcedetails.css ***!
   \**********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
 	// imports
 
 
@@ -1303,7 +1385,7 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /*!****************************!*\
   !*** ./docs/lib/apinav.js ***!
   \****************************/
@@ -1320,7 +1402,7 @@
 
 	var htmlmodule = _interopRequireWildcard(_htmlmodule);
 
-	__webpack_require__(/*! ./apinav.css */ 19);
+	__webpack_require__(/*! ./apinav.css */ 20);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -1337,7 +1419,7 @@
 	});
 
 /***/ },
-/* 19 */
+/* 20 */
 /*!*****************************!*\
   !*** ./docs/lib/apinav.css ***!
   \*****************************/
@@ -1346,10 +1428,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./apinav.css */ 20);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./apinav.css */ 21);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1366,13 +1448,13 @@
 	}
 
 /***/ },
-/* 20 */
+/* 21 */
 /*!***************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/apinav.css ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
 	// imports
 
 
@@ -1383,7 +1465,7 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /*!*****************************!*\
   !*** ./docs/lib/sitenav.js ***!
   \*****************************/
@@ -1398,7 +1480,7 @@
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	__webpack_require__(/*! ./sitenav.css */ 22);
+	__webpack_require__(/*! ./sitenav.css */ 23);
 
 	const pathname = location.pathname;
 
@@ -1434,7 +1516,7 @@
 	});
 
 /***/ },
-/* 22 */
+/* 23 */
 /*!******************************!*\
   !*** ./docs/lib/sitenav.css ***!
   \******************************/
@@ -1443,10 +1525,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 23);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 24);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1463,13 +1545,13 @@
 	}
 
 /***/ },
-/* 23 */
+/* 24 */
 /*!****************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
   \****************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
 	// imports
 
 
@@ -1480,7 +1562,7 @@
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /*!****************************!*\
   !*** ./docs/lib/index.css ***!
   \****************************/
@@ -1489,10 +1571,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./index.css */ 25);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./index.css */ 26);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1509,15 +1591,15 @@
 	}
 
 /***/ },
-/* 25 */
+/* 26 */
 /*!**************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/index.css ***!
   \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
 	// imports
-	exports.i(__webpack_require__(/*! -!./../../~/css-loader!./common.css */ 26), "");
+	exports.i(__webpack_require__(/*! -!./../../~/css-loader!./common.css */ 27), "");
 
 	// module
 	exports.push([module.id, ".sitedetails > summary\n{\n    margin: 20px 0;\n}\n\n\n", ""]);
@@ -1526,13 +1608,13 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /*!********************************************!*\
   !*** ./~/css-loader!./docs/lib/common.css ***!
   \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
 	// imports
 
 

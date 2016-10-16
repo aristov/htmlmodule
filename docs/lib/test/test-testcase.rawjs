@@ -320,24 +320,27 @@ _________________________________________________________
     },
 
     ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>
-        table([
-            caption('relative concept'),
-            thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),
-            tbody([
-                [code('HTMLElement'), code('roletype')],
-                [code('hidden'), code('aria-hidden')],
-                [code('title'), code('aria-label')],
-                [code('—'), code('aria-pressed')],
-                [code('checked'), code('aria-checked')],
-                [code('selected'), code('aria-selected')],
-                [code('disabled'), code('aria-disabled')],
-                [code('button'), code('button')],
-                [code('a, link, area'), code('link')],
-                [code('input'), code('textbox')],
-                [code('combobox'), code('select')],
-                [code('table'), code('table')]
-            ].map(([xml, html]) => tr([ td(xml), td(html) ])))
-        ]),
+        table({
+            style : { width : '100%', textAlign : 'center' },
+            children : [
+                caption('Relative concept'),
+                thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),
+                tbody([
+                    ['HTMLElement', 'roletype'],
+                    ['hidden', 'aria-hidden'],
+                    ['title', 'aria-label'],
+                    ['—', 'aria-pressed'],
+                    ['checked', 'aria-checked'],
+                    ['selected', 'aria-selected'],
+                    ['disabled', 'aria-disabled'],
+                    ['button', 'button'],
+                    ['a, link, area', 'link'],
+                    ['input', 'textbox'],
+                    ['combobox', 'select'],
+                    ['table', 'table']
+                ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))
+            ]
+        }),
 
     ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>
         hgroup([
