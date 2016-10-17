@@ -1,24 +1,22 @@
 import { REPLMachine } from './REPLMachine';
-import { main, section, iframe } from './htmlmodule';
-import * as htmlmodule from './htmlmodule';
 import { HTMLSerializer } from '../../util/util.htmlserializer';
+import * as htmlmodule from './htmlmodule';
+import { main, section, iframe, details, summary } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
 import { testcase } from './testcase';
 
-const replinput = codebox({
-    className : 'replinput',
-    value : testcase[0].src
-});
-
-const reploutput = markupbox({
-    className : 'reploutput'
-});
-
-const outputwin = iframe({
-    className : 'outputwin'
-});
+const OUTPUTWIN_FULL_HEIGHT = 600;
+const OUTPUTWIN_HALF_HEIGHT = 300;
 
 const serializer = new HTMLSerializer;
+
+/*----------------------------------------------------------------*/
+
+const replinput = codebox({ className : 'replinput', value : testcase[0].src });
+
+const reploutput = markupbox({ className : 'reploutput' });
+
+const outputwin = iframe({ className : 'outputwin' });
 
 const replmachine = new REPLMachine({
     input : replinput,
@@ -45,6 +43,21 @@ const replmachine = new REPLMachine({
     }
 });
 
+const markupview = details({
+    className : 'markupview',
+    ontoggle : () => replrefresh(),
+    open : true,
+    children : [
+        summary({
+            className : 'markuptoggle',
+            children : 'markup'
+        }),
+        reploutput.element
+    ]
+});
+
+/*----------------------------------------------------------------*/
+
 export const repl = () =>
     main({
         className : 'replmachine',
@@ -52,7 +65,7 @@ export const repl = () =>
             section(replinput.element),
             section([
                 outputwin,
-                reploutput.element
+                markupview
             ])
         ]
     });
@@ -60,9 +73,17 @@ export const repl = () =>
 export const replrefresh = () => {
     replinput.mirror.refresh();
     reploutput.mirror.refresh();
+    outputwin.height = markupview.open?
+        OUTPUTWIN_HALF_HEIGHT :
+        OUTPUTWIN_FULL_HEIGHT;
 }
 export const replstart = () => {
     replrefresh();
     replinput.mirror.on('change', () => replmachine.loop());
     replmachine.loop();
 }
+
+/**
+ * HMREPLMachine
+ * htmodulerepl
+ */

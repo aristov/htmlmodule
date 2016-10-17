@@ -6,7 +6,7 @@ chunks.shift();
 chunks.pop();
 
 export const testcase = chunks.map(src => {
-    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
+    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '') + '';
     const fn = new Function('return ' + src);
     return { src, fn : fn() };
 });

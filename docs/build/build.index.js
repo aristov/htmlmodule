@@ -40,9 +40,8 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /*!*******************!*\
   !*** multi index ***!
   \*******************/
@@ -52,8 +51,7 @@
 
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -126,8 +124,7 @@
 	});
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -154,8 +151,7 @@
 	}
 
 /***/ },
-
-/***/ 3:
+/* 3 */
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -275,8 +271,7 @@
 	});
 
 /***/ },
-
-/***/ 4:
+/* 4 */
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -332,8 +327,7 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-
-/***/ 5:
+/* 5 */
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -361,8 +355,7 @@
 	const comment = exports.comment = comment => document.createComment(comment);
 
 /***/ },
-
-/***/ 6:
+/* 6 */
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
@@ -759,8 +752,7 @@
 	const wbr = exports.wbr = init => htmldom('wbr', init);
 
 /***/ },
-
-/***/ 7:
+/* 7 */
 /*!***************************!*\
   !*** ./docs/lib/index.js ***!
   \***************************/
@@ -768,19 +760,19 @@
 
 	'use strict';
 
-	var _siteheading = __webpack_require__(/*! ./siteheading */ 10);
+	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
 
-	var _specwin = __webpack_require__(/*! ./specwin */ 15);
+	var _specwin = __webpack_require__(/*! ./specwin */ 14);
 
-	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 16);
+	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 15);
 
-	var _apinav = __webpack_require__(/*! ./apinav */ 19);
+	var _apinav = __webpack_require__(/*! ./apinav */ 18);
 
-	var _repl = __webpack_require__(/*! ./repl */ 28);
+	var _repl = __webpack_require__(/*! ./repl */ 21);
 
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 22);
+	var _sitenav = __webpack_require__(/*! ./sitenav */ 36);
 
-	__webpack_require__(/*! ./index.css */ 25);
+	__webpack_require__(/*! ./index.css */ 39);
 
 	document.body.append((0, _siteheading.siteheading)(),
 	// specwin(),
@@ -795,10 +787,9 @@
 	(0, _repl.replstart)();
 
 /***/ },
-
-/***/ 8:
+/* 8 */
 /*!*********************************!*\
-  !*** ./docs/lib/REPLMachine.js ***!
+  !*** ./docs/lib/siteheading.js ***!
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -807,71 +798,27 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.REPLMachine = undefined;
+	exports.siteheading = undefined;
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	const VAR_NAME_EXPORTS = 'exports';
+	__webpack_require__(/*! ./siteheading.css */ 10);
 
-	class REPLMachine {
-	    constructor({
-	        value = '',
-	        input = (0, _htmlmodule.input)({ value }),
-	        output = (0, _htmlmodule.output)()
-	    } = {}) {
-	        this.input = input;
-	        this.output = output;
-	    }
-	    get exports() {
-	        return {
-	            default: () => {
-	                throw Error('The default module is not exported');
-	            }
-	        };
-	    }
-	    loop() {
-	        this.read(this.input.value);
-	    }
-	    read(source) {
-	        try {
-	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
-	            this.eval(evaluable);
-	            return evaluable;
-	        } catch (error) {
-	            this.onerror(error);
-	            return error;
-	        }
-	    }
-	    eval(evaluable) {
-	        try {
-	            const exports = this.exports;
-	            const value = evaluable(exports);
-	            this.print(value);
-	            return value;
-	        } catch (error) {
-	            this.onerror(error);
-	            return error;
-	        }
-	    }
-	    print(value) {
-	        try {
-	            this.output.value = value;
-	        } catch (error) {
-	            this.output.value = error;
-	        }
-	    }
-	    onerror(error) {
-	        this.print(error);
-	    }
-	}
+	const MODULE_NAME = 'htmlmodule';
 
-	exports.REPLMachine = REPLMachine;
-	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
-	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
+	const siteheading = exports.siteheading = children => {
+	    const isIndex = !/\.html$/.test(location.pathname);
+	    return (0, _htmlmodule.h1)({
+	        id: 'siteheading',
+	        children: [(0, _htmlmodule.a)({
+	            href: isIndex ? undefined : './',
+	            children: MODULE_NAME
+	        }), ' ', children]
+	    });
+	};
 
 /***/ },
-
-/***/ 9:
+/* 9 */
 /*!********************************!*\
   !*** ./docs/lib/htmlmodule.js ***!
   \********************************/
@@ -896,40 +843,7 @@
 	});
 
 /***/ },
-
-/***/ 10:
-/*!*********************************!*\
-  !*** ./docs/lib/siteheading.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.siteheading = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	__webpack_require__(/*! ./siteheading.css */ 11);
-
-	const MODULE_NAME = 'htmlmodule';
-
-	const siteheading = exports.siteheading = children => {
-	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _htmlmodule.h1)({
-	        id: 'siteheading',
-	        children: [(0, _htmlmodule.a)({
-	            href: isIndex ? undefined : './',
-	            children: MODULE_NAME
-	        }), ' ', children]
-	    });
-	};
-
-/***/ },
-
-/***/ 11:
+/* 10 */
 /*!**********************************!*\
   !*** ./docs/lib/siteheading.css ***!
   \**********************************/
@@ -938,10 +852,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 12);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 11);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -958,14 +872,13 @@
 	}
 
 /***/ },
-
-/***/ 12:
+/* 11 */
 /*!********************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
   \********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
 	// imports
 
 
@@ -976,8 +889,7 @@
 
 
 /***/ },
-
-/***/ 13:
+/* 12 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -1035,8 +947,7 @@
 	};
 
 /***/ },
-
-/***/ 14:
+/* 13 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1291,8 +1202,7 @@
 
 
 /***/ },
-
-/***/ 15:
+/* 14 */
 /*!*****************************!*\
   !*** ./docs/lib/specwin.js ***!
   \*****************************/
@@ -1318,8 +1228,7 @@
 	});
 
 /***/ },
-
-/***/ 16:
+/* 15 */
 /*!***********************************!*\
   !*** ./docs/lib/sourcedetails.js ***!
   \***********************************/
@@ -1334,7 +1243,7 @@
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	__webpack_require__(/*! ./sourcedetails.css */ 17);
+	__webpack_require__(/*! ./sourcedetails.css */ 16);
 
 	const sourcedetails = exports.sourcedetails = () => (0, _htmlmodule.details)({
 	    id: 'sourcedetails',
@@ -1360,8 +1269,7 @@
 	};
 
 /***/ },
-
-/***/ 17:
+/* 16 */
 /*!************************************!*\
   !*** ./docs/lib/sourcedetails.css ***!
   \************************************/
@@ -1370,10 +1278,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sourcedetails.css */ 18);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sourcedetails.css */ 17);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1390,14 +1298,13 @@
 	}
 
 /***/ },
-
-/***/ 18:
+/* 17 */
 /*!**********************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sourcedetails.css ***!
   \**********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
 	// imports
 
 
@@ -1408,8 +1315,7 @@
 
 
 /***/ },
-
-/***/ 19:
+/* 18 */
 /*!****************************!*\
   !*** ./docs/lib/apinav.js ***!
   \****************************/
@@ -1426,7 +1332,7 @@
 
 	var htmlmodule = _interopRequireWildcard(_htmlmodule);
 
-	__webpack_require__(/*! ./apinav.css */ 20);
+	__webpack_require__(/*! ./apinav.css */ 19);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -1443,8 +1349,7 @@
 	});
 
 /***/ },
-
-/***/ 20:
+/* 19 */
 /*!*****************************!*\
   !*** ./docs/lib/apinav.css ***!
   \*****************************/
@@ -1453,10 +1358,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./apinav.css */ 21);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./apinav.css */ 20);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1473,14 +1378,13 @@
 	}
 
 /***/ },
-
-/***/ 21:
+/* 20 */
 /*!***************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./docs/lib/apinav.css ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
 	// imports
 
 
@@ -1491,174 +1395,7 @@
 
 
 /***/ },
-
-/***/ 22:
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	__webpack_require__(/*! ./sitenav.css */ 23);
-
-	const pathname = location.pathname;
-
-	const navlist = [(0, _htmlmodule.a)({
-	    href: './api/',
-	    children: 'api doc'
-	}), (0, _htmlmodule.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _htmlmodule.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _htmlmodule.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _htmlmodule.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    children: 'git repo'
-	})];
-
-	navlist.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const modulemark = (0, _htmlmodule.small)(['assembled by ', (0, _htmlmodule.a)({
-	    href: 'http://npmjs.org/package/htmlmodule',
-	    children: 'htmlmodule'
-	})]);
-
-	const sitenav = exports.sitenav = () => (0, _htmlmodule.footer)({
-	    id: 'sitenav',
-	    children: [(0, _htmlmodule.nav)(navlist), modulemark]
-	});
-
-/***/ },
-
-/***/ 23:
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 24);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 24:
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#sitenav\n{\n    text-align: center;\n}\n#sitenav nav\n{\n    width: 750px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    margin: auto;\n}\n#sitenav nav a\n{\n    margin: 25px auto 25px;\n    font: bold 15px monospace;\n}\n#sitenav small\n{\n    position: fixed;\n    right: 15px;\n    bottom: 10px;\n}\n#sitenav small:not(:hover)\n{\n    opacity: 0.3;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 25:
-/*!****************************!*\
-  !*** ./docs/lib/index.css ***!
-  \****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./index.css */ 26);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 14)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./index.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./index.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 26:
-/*!**************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/index.css ***!
-  \**************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
-	// imports
-	exports.i(__webpack_require__(/*! -!./../../~/css-loader!./common.css */ 27), "");
-
-	// module
-	exports.push([module.id, ".sitedetails > summary\n{\n    margin: 20px 0;\n}\n\n.replmachine\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n}\n.replmachine > section\n{\n    width: 50%;\n    box-sizing: border-box;\n}\n.replmachine .replinput .CodeMirror\n{\n    height: 600px;\n}\n.replmachine .reploutput .CodeMirror\n{\n    height: 300px;\n    border-left: 1px solid #666;\n}\n.replmachine .outputwin\n{\n    width: 100%;\n    height: 300px;\n    box-sizing: border-box;\n    margin-bottom: -4px;\n    background-color: white;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 27:
-/*!********************************************!*\
-  !*** ./~/css-loader!./docs/lib/common.css ***!
-  \********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 13)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "[hidden]\n{\n    display: none !important;\n}\n\n:link:not(:hover):not(:focus):not(:active)\n{\n    text-decoration: none;\n}\n\nbody\n{\n    margin: 8px;\n    padding: 0 10px;\n    background: #eee;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 28:
+/* 21 */
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
   \**************************/
@@ -1671,34 +1408,32 @@
 	});
 	exports.replstart = exports.replrefresh = exports.repl = undefined;
 
-	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 8);
+	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 22);
+
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 23);
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
 	var htmlmodule = _interopRequireWildcard(_htmlmodule);
 
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 29);
+	var _codemirror = __webpack_require__(/*! ./codemirror */ 24);
 
-	var _codemirror = __webpack_require__(/*! ./codemirror */ 571);
-
-	var _testcase = __webpack_require__(/*! ./testcase */ 44);
+	var _testcase = __webpack_require__(/*! ./testcase */ 34);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	const replinput = (0, _codemirror.codebox)({
-	    className: 'replinput',
-	    value: _testcase.testcase[0].src
-	});
-
-	const reploutput = (0, _codemirror.markupbox)({
-	    className: 'reploutput'
-	});
-
-	const outputwin = (0, _htmlmodule.iframe)({
-	    className: 'outputwin'
-	});
+	const OUTPUTWIN_FULL_HEIGHT = 600;
+	const OUTPUTWIN_HALF_HEIGHT = 300;
 
 	const serializer = new _util.HTMLSerializer();
+
+	/*----------------------------------------------------------------*/
+
+	const replinput = (0, _codemirror.codebox)({ className: 'replinput', value: _testcase.testcase[0].src });
+
+	const reploutput = (0, _codemirror.markupbox)({ className: 'reploutput' });
+
+	const outputwin = (0, _htmlmodule.iframe)({ className: 'outputwin' });
 
 	const replmachine = new _REPLMachine.REPLMachine({
 	    input: replinput,
@@ -1722,14 +1457,27 @@
 	    }
 	});
 
+	const markupview = (0, _htmlmodule.details)({
+	    className: 'markupview',
+	    ontoggle: () => replrefresh(),
+	    open: true,
+	    children: [(0, _htmlmodule.summary)({
+	        className: 'markuptoggle',
+	        children: 'markup'
+	    }), reploutput.element]
+	});
+
+	/*----------------------------------------------------------------*/
+
 	const repl = exports.repl = () => (0, _htmlmodule.main)({
 	    className: 'replmachine',
-	    children: [(0, _htmlmodule.section)(replinput.element), (0, _htmlmodule.section)([outputwin, reploutput.element])]
+	    children: [(0, _htmlmodule.section)(replinput.element), (0, _htmlmodule.section)([outputwin, markupview])]
 	});
 
 	const replrefresh = exports.replrefresh = () => {
 	    replinput.mirror.refresh();
 	    reploutput.mirror.refresh();
+	    outputwin.height = markupview.open ? OUTPUTWIN_HALF_HEIGHT : OUTPUTWIN_FULL_HEIGHT;
 	};
 	const replstart = exports.replstart = () => {
 	    replrefresh();
@@ -1737,9 +1485,87 @@
 	    replmachine.loop();
 	};
 
-/***/ },
+	/**
+	 * HMREPLMachine
+	 * htmodulerepl
+	 */
 
-/***/ 29:
+/***/ },
+/* 22 */
+/*!*********************************!*\
+  !*** ./docs/lib/REPLMachine.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.REPLMachine = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	const VAR_NAME_EXPORTS = 'exports';
+
+	class REPLMachine {
+	    constructor({
+	        value = '',
+	        input = (0, _htmlmodule.input)({ value }),
+	        output = (0, _htmlmodule.output)()
+	    } = {}) {
+	        this.input = input;
+	        this.output = output;
+	    }
+	    get exports() {
+	        return {
+	            default: () => {
+	                throw Error('The default module is not exported');
+	            }
+	        };
+	    }
+	    loop() {
+	        this.read(this.input.value);
+	    }
+	    read(source) {
+	        try {
+	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
+	            this.eval(evaluable);
+	            return evaluable;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    eval(evaluable) {
+	        try {
+	            const exports = this.exports;
+	            const value = evaluable(exports);
+	            this.print(value);
+	            return value;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    print(value) {
+	        try {
+	            this.output.value = value;
+	        } catch (error) {
+	            this.output.value = error;
+	        }
+	    }
+	    onerror(error) {
+	        this.print(error);
+	    }
+	}
+
+	exports.REPLMachine = REPLMachine;
+	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
+	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
+
+/***/ },
+/* 23 */
 /*!*************************************!*\
   !*** ./util/util.htmlserializer.js ***!
   \*************************************/
@@ -1817,8 +1643,96 @@
 	exports.HTMLSerializer = HTMLSerializer;
 
 /***/ },
+/* 24 */
+/*!********************************!*\
+  !*** ./docs/lib/codemirror.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 31:
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.markupbox = exports.codebox = exports.CodeMirrorAssembler = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	var _codemirror = __webpack_require__(/*! codemirror */ 25);
+
+	var _codemirror2 = _interopRequireDefault(_codemirror);
+
+	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 26);
+
+	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 27);
+
+	__webpack_require__(/*! codemirror/lib/codemirror.css */ 30);
+
+	__webpack_require__(/*! codemirror/theme/night.css */ 32);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const CODE_BOX_DEFAULTS = {
+	    mode: 'javascript',
+	    indentUnit: 4,
+	    tabSize: 2,
+	    indentWithTabs: true,
+	    electricChars: true,
+	    styleActiveLine: true,
+	    autoCloseBrackets: true,
+	    matchBrackets: true,
+	    smartIndent: true,
+	    theme: 'night'
+	};
+
+	const MARKUP_BOX_DEFAULTS = {
+	    mode: 'htmlmixed',
+	    readOnly: true,
+	    theme: 'night'
+	};
+
+	/*================================================================*/
+
+	class CodeMirrorAssembler extends _htmlmodule.HTMLAssembler {
+	    constructor(init) {
+	        super(init);
+	        this.createElement('div', (0, _htmlmodule.NodeInit)(init));
+	    }
+	    set value(value) {
+	        this.mirror.setValue(value && value.toString());
+	    }
+	    get value() {
+	        return this.mirror.getValue();
+	    }
+	    createElement(tagName, init) {
+	        super.createElement(tagName);
+	        this.createMirror(init.options);
+	        this.init = init;
+	    }
+	    createMirror(options) {
+	        return this.mirror = new _codemirror2.default(this.element, options);
+	    }
+	}
+
+	exports.CodeMirrorAssembler = CodeMirrorAssembler;
+	Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable: true, value: null });
+
+	const codemirror = (init = {}) => new CodeMirrorAssembler(init);
+
+	/*================================================================*/
+
+	const codebox = exports.codebox = (init = {}) => {
+	    if (!init.options) init.options = CODE_BOX_DEFAULTS;
+	    return codemirror(init);
+	};
+
+	const markupbox = exports.markupbox = (init = {}) => {
+	    if (!init.options) init.options = MARKUP_BOX_DEFAULTS;
+	    return codemirror(init);
+	};
+
+/***/ },
+/* 25 */
 /*!****************************************!*\
   !*** ./~/codemirror/lib/codemirror.js ***!
   \****************************************/
@@ -2838,8 +2752,7 @@
 	CodeMirror.version="5.19.0";return CodeMirror;});
 
 /***/ },
-
-/***/ 32:
+/* 26 */
 /*!****************************************************!*\
   !*** ./~/codemirror/mode/javascript/javascript.js ***!
   \****************************************************/
@@ -2852,7 +2765,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 31));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3631,8 +3544,7 @@
 	});
 
 /***/ },
-
-/***/ 33:
+/* 27 */
 /*!**************************************************!*\
   !*** ./~/codemirror/mode/htmlmixed/htmlmixed.js ***!
   \**************************************************/
@@ -3645,7 +3557,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 31), __webpack_require__(/*! ../xml/xml */ 34), __webpack_require__(/*! ../javascript/javascript */ 32), __webpack_require__(/*! ../css/css */ 35));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25), __webpack_require__(/*! ../xml/xml */ 28), __webpack_require__(/*! ../javascript/javascript */ 26), __webpack_require__(/*! ../css/css */ 29));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3778,8 +3690,7 @@
 	});
 
 /***/ },
-
-/***/ 34:
+/* 28 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/xml/xml.js ***!
   \**************************************/
@@ -3792,7 +3703,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 31));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -4163,8 +4074,7 @@
 	});
 
 /***/ },
-
-/***/ 35:
+/* 29 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/css/css.js ***!
   \**************************************/
@@ -4177,7 +4087,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 31));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -4727,8 +4637,7 @@
 	});
 
 /***/ },
-
-/***/ 36:
+/* 30 */
 /*!*****************************************!*\
   !*** ./~/codemirror/lib/codemirror.css ***!
   \*****************************************/
@@ -4737,10 +4646,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 37);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 31);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 14)(content, {});
+	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4757,14 +4666,13 @@
 	}
 
 /***/ },
-
-/***/ 37:
+/* 31 */
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/lib/codemirror.css ***!
   \***************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 13)();
+	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 12)();
 	// imports
 
 
@@ -4775,8 +4683,7 @@
 
 
 /***/ },
-
-/***/ 38:
+/* 32 */
 /*!**************************************!*\
   !*** ./~/codemirror/theme/night.css ***!
   \**************************************/
@@ -4785,10 +4692,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./night.css */ 39);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./night.css */ 33);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 14)(content, {});
+	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4805,14 +4712,13 @@
 	}
 
 /***/ },
-
-/***/ 39:
+/* 33 */
 /*!************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/night.css ***!
   \************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 13)();
+	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 12)();
 	// imports
 
 
@@ -4823,8 +4729,7 @@
 
 
 /***/ },
-
-/***/ 44:
+/* 34 */
 /*!******************************!*\
   !*** ./docs/lib/testcase.js ***!
   \******************************/
@@ -4837,7 +4742,7 @@
 	});
 	exports.testcase = undefined;
 
-	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 45);
+	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 35);
 
 	var _testTestcase2 = _interopRequireDefault(_testTestcase);
 
@@ -4849,27 +4754,25 @@
 	chunks.pop();
 
 	const testcase = exports.testcase = chunks.map(src => {
-	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
+	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '') + '';
 	    const fn = new Function('return ' + src);
 	    return { src, fn: fn() };
 	});
 
 /***/ },
-
-/***/ 45:
+/* 35 */
 /*!**********************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
   \**********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "/**\n * !!! this file requires the additional syntax restrictions !!!\n */\nexport default [\n\n    ({ form, label, img, br, input, button }) =>\n        form({\n            action : 'https://yandex.com/search',\n            target : '_blank',\n            children : [\n                label([\n                    img({\n                        src : 'http://bit.ly/2dtCSIn',\n                        alt : 'Yandex',\n                        width : 50\n                    }),\n                    br(),\n                    input({ type : 'search', name : 'text' }),\n                    ' '\n                ]),\n                button('Find')\n            ]\n        }),\n\n    ({ fieldset, legend, input }) =>\n        fieldset([\n            legend('Authorization'),\n            input({\n                placeholder : 'login',\n                style : { marginRight : '5px' }\n            }),\n            input({\n                type : 'password',\n                placeholder : 'password'\n            })\n        ]),\n\n    ({ article, h4, img, audio, video }) =>\n        article({\n            title : 'Media',\n            children : [\n                h4('Image media'),\n                img({\n                    src : 'http://bit.ly/2e9kIdg',\n                    alt : 'Crazy PiPi!'\n                }),\n                h4('Audio media'),\n                audio({\n                    controls : true,\n                    src : 'http://bit.ly/2e2HCo5'\n                }),\n                h4('Video media'),\n                video({\n                    controls : true,\n                    width : '200',\n                    src : 'http://bit.ly/2ecsnvQ'\n                })\n            ]\n        }),\n\n    ({ div, ul, li, bdi, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div([\n            div([\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]),\n            ul([\n                li([\n                    'User ',\n                    bdi('jcranmer'),\n                    ': 12 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('hober'),\n                    ': 5 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('إيان'),\n                    ': 3 posts.'\n                ])\n            ])\n        ])\n    },\n\n    ({ fieldset, legend, button, label, input, output, div }) =>\n        fieldset({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height : '160px',\n                width : '300px'\n            },\n            children : [\n                legend('Event handlers'),\n                div([\n                    button({\n                        onclick : ({\n                            type,\n                            target : { tagName },\n                            constructor : { name }\n                        }) => alert([tagName, type, name, 'handler!'].join(' ')),\n                        textContent : 'Show me alert, please...'\n                    }),\n                    input({ type : 'checkbox', children : 'no alerts!' })\n                ]),\n                button({\n                    onfocus : ({ target }) => target.textContent = 'Focused!',\n                    onblur : ({ target }) => target.textContent = 'Focus wait...',\n                    textContent : 'Focus wait...'\n                }),\n                label([\n                    input({\n                        placeholder : 'text input char counter',\n                        oninput : ({ target }) => {\n                            target.nextElementSibling.value = target.value.length;\n                        }\n                    }),\n                    output({ title : 'entered char count', value : '0' })\n                ])\n            ]\n        }),\n\n    ({ footer, address, small }) =>\n        footer([\n            address('vv.aristov@gmail.com'),\n            small('@ All rights free')\n        ]),\n\n    ({ main, sup, sub, i, strong }) =>\n        main([\n            'Here comes ',\n            sup('supertext'),\n            ' and ',\n            sub('subtext'),\n            '. Later they are followed by ',\n            i('alternative voice'),\n            ' and ',\n            strong('important!')\n        ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>\n        dl([\n            dt('Abbreviations'),\n            dd([\n                abbr({\n                    title : 'Extensible markup language',\n                    children : 'XML'\n                }),\n                ' ',\n                abbr({\n                    title : 'Scalable vector graphics',\n                    children : 'SVG'\n                }),\n                ' ',\n                abbr({\n                    title : 'Interface definition language',\n                    children : 'IDL'\n                })\n            ]),\n            dt('Edits'),\n            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),\n            dt('Keywords'),\n            dd([b('var'), b('function'), b('export'), b('const')]),\n            dt('Other'),\n            dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n        ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) =>\n        article({\n            className : 'vcard',\n            children : [\n                h2({\n                    className : 'fn',\n                    children : 'Vyacheslav Aristov'\n                }),\n                address({\n                    className : 'email',\n                    children : 'vv.aristov@gmail.com'\n                })\n            ]\n        }),\n\n    ({ pre }) => pre(`\n_________________________________________________________\n____________/          _/                      _/________\n___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________\n__________/    _/    _/      _/    _/    _/  _/__________\n_________/    _/    _/      _/    _/    _/  _/___________\n________/    _/      _/_/  _/    _/    _/  _/____________\n_________________________________________________________\n`),\n\n    ({ pre, style, script }) => pre([\n        script(`\n            Object.assign(\n                document.currentScript.style, {\n                    display: 'block',\n                    margin: '20px',\n                    border: '1px solid #ccc',\n                    color: 'blue',\n                    font: 'bold 16px monospace'\n                })`),\n        style({\n            id : 'greenstyle',\n            children : `\n                #greenstyle {\n                    display: block;\n                    margin: 20px;\n                    color: green;\n                    border: 1px solid #ccc;\n                    font: bold 16px monospace;\n                }`\n        }),\n    ]),\n\n    ({ form, label, input, textarea, span }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height: '200px'\n            },\n            children : [\n                label([\n                    'Text input ',\n                    input({ placeholder : 'Fill me' })\n                ]),\n                label([\n                    input({ type : 'checkbox' }),\n                    ' Simple checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', checked : true }),\n                    ' Checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', attrset : { checked : '' } }),\n                    ' Initially checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', indeterminate : true }),\n                    ' Indeterminate checkbox'\n                ]),\n                span([\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'html'\n                        }),\n                        ' HTML '\n                    ]),\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'xml'\n                        }),\n                        ' XML'\n                    ])\n                ]),\n                input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n            ]\n        }),\n\n    ({ form, label, select, option, br }) =>\n        form([\n            label([\n                'Select technology ',\n                select([\n                    option('XML'),\n                    option('HTML'),\n                    option({ selected : true, textContent : 'WAI-ARIA' }),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ])\n            ]),\n            br(),\n            label([\n                'Select technology stack',\n                br(),\n                select({\n                    multiple : true,\n                    children : [\n                        option('XML'),\n                        option({\n                            attrset : { selected : '' },\n                            textContent : 'HTML'\n                        }),\n                        option('WAI-ARIA'),\n                        option('RDFS'),\n                        option('OWL'),\n                        option('SGML'),\n                        option('CSS')\n                    ]})\n            ]),\n        ]),\n\n    ({ form, input, button }) =>\n        form({\n            style : { whiteSpace : 'nowrap' },\n            children : [\n                input({\n                    name : 'query',\n                    placeholder : 'type your request',\n                    type : 'search',\n                    style : { marginRight : '5px' }\n                }),\n                button('search')\n            ]\n        }),\n\n    ({ iframe, dialog, p, button }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>\n        table({\n            style : { width : '100%', textAlign : 'center' },\n            children : [\n                caption('Relative concept'),\n                thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n                tbody([\n                    ['HTMLElement', 'roletype'],\n                    ['hidden', 'aria-hidden'],\n                    ['title', 'aria-label'],\n                    ['—', 'aria-pressed'],\n                    ['checked', 'aria-checked'],\n                    ['selected', 'aria-selected'],\n                    ['disabled', 'aria-disabled'],\n                    ['button', 'button'],\n                    ['a, link, area', 'link'],\n                    ['input', 'textbox'],\n                    ['combobox', 'select'],\n                    ['table', 'table']\n                ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))\n            ]\n        }),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>\n        hgroup([\n            h1('First level heading'),\n            h2('Second level heading'),\n            h3('Third level heading'),\n            h4('Fourth level heding'),\n            h5('Fifth level heding'),\n            h6('Sixth level heding in group')\n        ]),\n\n    ({ blockquote }) =>\n        blockquote({\n            cite : 'https://html.spec.whatwg.org/' +\n                'multipage/semantics.html#the-blockquote-element',\n            children : 'The blockquote element represents ' +\n                'a section that is quoted from another source.'\n        }),\n\n    ({ article, section, ruby, rt, rp }) =>\n        article({\n            title : 'Ruby annotations',\n            children : [\n                section([\n                    ruby(['君', rt('くん')]),\n                    ruby(['子', rt('し')]),\n                    'は',\n                    ruby(['和', rt('わ')]),\n                    'して',\n                    ruby(['同', rt('どう')]),\n                    'ぜず。'\n                ]),\n                section(ruby([\n                    '漢',\n                    rp(' ('),\n                    rt('かん'),\n                    rp(')'),\n                    '字',\n                    rp(' ('),\n                    rt('じ'),\n                    rp(')')\n                ]))\n            ]\n        }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) =>\n        article({\n            title : 'Various lists',\n            children : [\n                ul([\n                    li('Node'),\n                    li('Text'),\n                    li('Element'),\n                    li('Comment')\n                ]),\n                ol([\n                    li('Amsterdam'),\n                    li('New York'),\n                    li('Moscow'),\n                    li('Moscow')\n                ]),\n                dl([\n                    dt('DOM'),\n                    dd('Document object model'),\n                    dt('XML'),\n                    dd('Extensible markup language'),\n                    dt('HTML'),\n                    dd('Hyper text markup language'),\n                    dt('ARIAML'),\n                    dd('Accessible rich internet applications markup language')\n                ])\n            ]\n        }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
+	module.exports = "/**\n * !!! THIS FILE REQUIRES THE ADDITIONAL SYNTAX RESTRICTIONS !!!\n */\nexport default [\n\n    ({ form, label, img, br, input, button }) =>\n        form({\n            action : 'https://yandex.ru/search',\n            target : '_blank',\n            children : [\n                label([\n                    img({\n                        src : 'http://bit.ly/2dgU2dO',\n                        alt : 'Яндекс',\n                        width : 50\n                    }),\n                    br(),\n                    input({\n                        type : 'search',\n                        name : 'text'\n                    }),\n                    ' '\n                ]),\n                button('Найти')\n            ]\n        }),\n\n    ({ fieldset, legend, input }) =>\n        fieldset([\n            legend('Authorization'),\n            input({\n                placeholder : 'login',\n                style : { marginRight : '5px' }\n            }),\n            input({\n                type : 'password',\n                placeholder : 'password'\n            })\n        ]),\n\n    ({ article, h4, img, audio, video }) =>\n        article({\n            title : 'Media',\n            children : [\n                h4('Image media'),\n                img({\n                    src : 'http://bit.ly/2e9kIdg',\n                    alt : 'Crazy PiPi!'\n                }),\n                h4('Audio media'),\n                audio({\n                    controls : true,\n                    src : 'http://bit.ly/2e2HCo5'\n                }),\n                h4('Video media'),\n                video({\n                    controls : true,\n                    width : '200',\n                    src : 'http://bit.ly/2ecsnvQ'\n                })\n            ]\n        }),\n\n    ({ div, ul, li, bdi, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div([\n            div([\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]),\n            ul([\n                li([\n                    'User ',\n                    bdi('jcranmer'),\n                    ': 12 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('hober'),\n                    ': 5 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('إيان'),\n                    ': 3 posts.'\n                ])\n            ])\n        ])\n    },\n\n    ({ fieldset, legend, button, label, input, output, div }) =>\n        fieldset({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height : '160px',\n                width : '300px'\n            },\n            children : [\n                legend('Event handlers'),\n                div([\n                    button({\n                        onclick : ({\n                            type,\n                            target : { tagName },\n                            constructor : { name }\n                        }) => alert([tagName, type, name, 'handler!'].join(' ')),\n                        textContent : 'Show me alert, please...'\n                    }),\n                    input({ type : 'checkbox', children : 'no alerts!' })\n                ]),\n                button({\n                    onfocus : ({ target }) => target.textContent = 'Focused!',\n                    onblur : ({ target }) => target.textContent = 'Focus wait...',\n                    textContent : 'Focus wait...'\n                }),\n                label([\n                    input({\n                        placeholder : 'text input char counter',\n                        oninput : ({ target }) => {\n                            target.nextElementSibling.value = target.value.length;\n                        }\n                    }),\n                    output({ title : 'entered char count', value : '0' })\n                ])\n            ]\n        }),\n\n    ({ footer, address, small }) =>\n        footer([\n            address('vv.aristov@gmail.com'),\n            small('@ All rights free')\n        ]),\n\n    ({ main, sup, sub, i, strong }) =>\n        main([\n            'Here comes ',\n            sup('supertext'),\n            ' and ',\n            sub('subtext'),\n            '. Later they are followed by ',\n            i('alternative voice'),\n            ' and ',\n            strong('important!')\n        ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>\n        dl([\n            dt('Abbreviations'),\n            dd([\n                abbr({\n                    title : 'Extensible markup language',\n                    children : 'XML'\n                }),\n                ' ',\n                abbr({\n                    title : 'Scalable vector graphics',\n                    children : 'SVG'\n                }),\n                ' ',\n                abbr({\n                    title : 'Interface definition language',\n                    children : 'IDL'\n                })\n            ]),\n            dt('Edits'),\n            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),\n            dt('Keywords'),\n            dd([b('var'), b('function'), b('export'), b('const')]),\n            dt('Other'),\n            dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n        ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) =>\n        article({\n            className : 'vcard',\n            children : [\n                h2({\n                    className : 'fn',\n                    children : 'Vyacheslav Aristov'\n                }),\n                address({\n                    className : 'email',\n                    children : 'vv.aristov@gmail.com'\n                })\n            ]\n        }),\n\n    ({ pre }) => pre(`\n_________________________________________________________\n____________/          _/                      _/________\n___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________\n__________/    _/    _/      _/    _/    _/  _/__________\n_________/    _/    _/      _/    _/    _/  _/___________\n________/    _/      _/_/  _/    _/    _/  _/____________\n_________________________________________________________\n`),\n\n    ({ pre, style, script }) => pre([\n        script(`\n            Object.assign(\n                document.currentScript.style, {\n                    display: 'block',\n                    margin: '20px',\n                    border: '1px solid #ccc',\n                    color: 'blue',\n                    font: 'bold 16px monospace'\n                })`),\n        style({\n            id : 'greenstyle',\n            children : `\n                #greenstyle {\n                    display: block;\n                    margin: 20px;\n                    color: green;\n                    border: 1px solid #ccc;\n                    font: bold 16px monospace;\n                }`\n        }),\n    ]),\n\n    ({ form, label, input, textarea, span }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height: '200px'\n            },\n            children : [\n                label([\n                    'Text input ',\n                    input({ placeholder : 'Fill me' })\n                ]),\n                label([\n                    input({ type : 'checkbox' }),\n                    ' Simple checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', checked : true }),\n                    ' Checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', attrset : { checked : '' } }),\n                    ' Initially checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', indeterminate : true }),\n                    ' Indeterminate checkbox'\n                ]),\n                span([\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'html'\n                        }),\n                        ' HTML '\n                    ]),\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'xml'\n                        }),\n                        ' XML'\n                    ])\n                ]),\n                input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n            ]\n        }),\n\n    ({ form, label, select, option, br }) =>\n        form([\n            label([\n                'Select technology ',\n                select([\n                    option('XML'),\n                    option('HTML'),\n                    option({ selected : true, textContent : 'WAI-ARIA' }),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ])\n            ]),\n            br(),\n            label([\n                'Select technology stack',\n                br(),\n                select({\n                    multiple : true,\n                    children : [\n                        option('XML'),\n                        option({\n                            attrset : { selected : '' },\n                            textContent : 'HTML'\n                        }),\n                        option('WAI-ARIA'),\n                        option('RDFS'),\n                        option('OWL'),\n                        option('SGML'),\n                        option('CSS')\n                    ]})\n            ]),\n        ]),\n\n    ({ form, input, button }) =>\n        form({\n            style : { whiteSpace : 'nowrap' },\n            children : [\n                input({\n                    name : 'query',\n                    placeholder : 'type your request',\n                    type : 'search',\n                    style : { marginRight : '5px' }\n                }),\n                button('search')\n            ]\n        }),\n\n    ({ iframe, dialog, p, button }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>\n        table({\n            style : { width : '100%', textAlign : 'center' },\n            children : [\n                caption('Relative concept'),\n                thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n                tbody([\n                    ['HTMLElement', 'roletype'],\n                    ['hidden', 'aria-hidden'],\n                    ['title', 'aria-label'],\n                    ['—', 'aria-pressed'],\n                    ['checked', 'aria-checked'],\n                    ['selected', 'aria-selected'],\n                    ['disabled', 'aria-disabled'],\n                    ['button', 'button'],\n                    ['a, link, area', 'link'],\n                    ['input', 'textbox'],\n                    ['combobox', 'select'],\n                    ['table', 'table']\n                ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))\n            ]\n        }),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>\n        hgroup([\n            h1('First level heading'),\n            h2('Second level heading'),\n            h3('Third level heading'),\n            h4('Fourth level heding'),\n            h5('Fifth level heding'),\n            h6('Sixth level heding in group')\n        ]),\n\n    ({ blockquote }) =>\n        blockquote({\n            cite : 'https://html.spec.whatwg.org/' +\n                'multipage/semantics.html#the-blockquote-element',\n            children : 'The blockquote element represents ' +\n                'a section that is quoted from another source.'\n        }),\n\n    ({ article, section, ruby, rt, rp }) =>\n        article({\n            title : 'Ruby annotations',\n            children : [\n                section([\n                    ruby(['君', rt('くん')]),\n                    ruby(['子', rt('し')]),\n                    'は',\n                    ruby(['和', rt('わ')]),\n                    'して',\n                    ruby(['同', rt('どう')]),\n                    'ぜず。'\n                ]),\n                section(ruby([\n                    '漢',\n                    rp(' ('),\n                    rt('かん'),\n                    rp(')'),\n                    '字',\n                    rp(' ('),\n                    rt('じ'),\n                    rp(')')\n                ]))\n            ]\n        }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) =>\n        article({\n            title : 'Various lists',\n            children : [\n                ul([\n                    li('Node'),\n                    li('Text'),\n                    li('Element'),\n                    li('Comment')\n                ]),\n                ol([\n                    li('Amsterdam'),\n                    li('New York'),\n                    li('Moscow'),\n                    li('Moscow')\n                ]),\n                dl([\n                    dt('DOM'),\n                    dd('Document object model'),\n                    dt('XML'),\n                    dd('Extensible markup language'),\n                    dt('HTML'),\n                    dd('Hyper text markup language'),\n                    dt('ARIAML'),\n                    dd('Accessible rich internet applications markup language')\n                ])\n            ]\n        }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
 
 /***/ },
-
-/***/ 571:
-/*!********************************!*\
-  !*** ./docs/lib/codemirror.js ***!
-  \********************************/
+/* 36 */
+/*!*****************************!*\
+  !*** ./docs/lib/sitenav.js ***!
+  \*****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4877,83 +4780,153 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.markupbox = exports.codebox = exports.CodeMirrorAssembler = undefined;
+	exports.sitenav = undefined;
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	var _codemirror = __webpack_require__(/*! codemirror */ 31);
+	__webpack_require__(/*! ./sitenav.css */ 37);
 
-	var _codemirror2 = _interopRequireDefault(_codemirror);
+	const pathname = location.pathname;
 
-	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 32);
+	const navlist = [(0, _htmlmodule.a)({
+	    href: './api/',
+	    children: 'api doc'
+	}), (0, _htmlmodule.a)({
+	    href: './spec.html',
+	    children: 'spec suite'
+	}), (0, _htmlmodule.a)({
+	    href: './repl.html',
+	    children: 'repl machine'
+	}), (0, _htmlmodule.a)({
+	    href: './test.html',
+	    children: 'test case'
+	}), (0, _htmlmodule.a)({
+	    href: '//github.com/aristov/htmlmodule',
+	    children: 'git repo'
+	})];
 
-	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 33);
+	navlist.forEach(link => {
+	    if (link.pathname === pathname) link.removeAttribute('href');
+	});
 
-	__webpack_require__(/*! codemirror/lib/codemirror.css */ 36);
+	const modulemark = (0, _htmlmodule.small)(['assembled by ', (0, _htmlmodule.a)({
+	    href: 'http://npmjs.org/package/htmlmodule',
+	    children: 'htmlmodule'
+	})]);
 
-	__webpack_require__(/*! codemirror/theme/night.css */ 38);
+	const sitenav = exports.sitenav = () => (0, _htmlmodule.footer)({
+	    id: 'sitenav',
+	    children: [(0, _htmlmodule.nav)(navlist), modulemark]
+	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+/***/ },
+/* 37 */
+/*!******************************!*\
+  !*** ./docs/lib/sitenav.css ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
 
-	const CODE_BOX_DEFAULTS = {
-	    mode: 'javascript',
-	    indentUnit: 4,
-	    tabSize: 2,
-	    indentWithTabs: true,
-	    electricChars: true,
-	    styleActiveLine: true,
-	    autoCloseBrackets: true,
-	    matchBrackets: true,
-	    smartIndent: true,
-	    theme: 'night'
-	};
+	// style-loader: Adds some css to the DOM by adding a <style> tag
 
-	const MARKUP_BOX_DEFAULTS = {
-	    mode: 'htmlmixed',
-	    readOnly: true,
-	    theme: 'night'
-	};
-
-	/*================================================================*/
-
-	class CodeMirrorAssembler extends _htmlmodule.HTMLAssembler {
-	    constructor(init) {
-	        super(init);
-	        this.createElement('div', (0, _htmlmodule.NodeInit)(init));
-	    }
-	    set value(value) {
-	        this.mirror.setValue(value && value.toString());
-	    }
-	    get value() {
-	        return this.mirror.getValue();
-	    }
-	    createElement(tagName, init) {
-	        super.createElement(tagName);
-	        this.createMirror(init.options);
-	        this.init = init;
-	    }
-	    createMirror(options) {
-	        return this.mirror = new _codemirror2.default(this.element, options);
-	    }
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 38);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
 	}
 
-	exports.CodeMirrorAssembler = CodeMirrorAssembler;
-	Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable: true, value: null });
+/***/ },
+/* 38 */
+/*!****************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
 
-	const codemirror = (init = {}) => new CodeMirrorAssembler(init);
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	// imports
 
-	/*================================================================*/
 
-	const codebox = exports.codebox = (init = {}) => {
-	    if (!init.options) init.options = CODE_BOX_DEFAULTS;
-	    return codemirror(init);
-	};
+	// module
+	exports.push([module.id, "#sitenav\n{\n    text-align: center;\n}\n#sitenav nav\n{\n    width: 750px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    margin: auto;\n}\n#sitenav nav a\n{\n    margin: 25px auto 25px;\n    font: bold 15px monospace;\n}\n#sitenav small\n{\n    position: fixed;\n    right: 15px;\n    bottom: 10px;\n}\n#sitenav small:not(:hover)\n{\n    opacity: 0.3;\n}\n", ""]);
 
-	const markupbox = exports.markupbox = (init = {}) => {
-	    if (!init.options) init.options = MARKUP_BOX_DEFAULTS;
-	    return codemirror(init);
-	};
+	// exports
+
+
+/***/ },
+/* 39 */
+/*!****************************!*\
+  !*** ./docs/lib/index.css ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./index.css */ 40);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./index.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 40 */
+/*!**************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/index.css ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	// imports
+	exports.i(__webpack_require__(/*! -!./../../~/css-loader!./common.css */ 41), "");
+
+	// module
+	exports.push([module.id, ".sitedetails > summary\n{\n    margin: 20px 0;\n}\n\n.replmachine\n{\n    display : -webkit-box;\n    display : -ms-flexbox;\n    display : flex;\n    -ms-flex-pack : distribute;\n        justify-content : space-around;\n    margin : 40px 0 20px;\n}\n.replmachine > section\n{\n    position: relative;\n    width: 50%;\n    box-sizing: border-box;\n}\n.replmachine .replinput .CodeMirror\n{\n    height: 600px;\n}\n.replmachine .reploutput .CodeMirror\n{\n    height: 300px;\n    border-left: 1px solid #666;\n}\n.replmachine .outputwin\n{\n    width: 100%;\n    box-sizing: border-box;\n    margin-bottom: -4px;\n    background-color: white;\n}\n.replmachine .markuptoggle\n{\n    position: absolute;\n    right: 0;\n    bottom: 0;\n    background: white;\n    z-index: 10;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 41 */
+/*!********************************************!*\
+  !*** ./~/css-loader!./docs/lib/common.css ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "[hidden]\n{\n    display: none !important;\n}\n\n:link:not(:hover):not(:focus):not(:active)\n{\n    text-decoration: none;\n}\n\nbody\n{\n    margin: 8px;\n    padding: 0 10px;\n    background: #eee;\n}\n", ""]);
+
+	// exports
+
 
 /***/ }
-
-/******/ });
+/******/ ]);

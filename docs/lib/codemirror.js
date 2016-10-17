@@ -17,7 +17,8 @@ const CODE_BOX_DEFAULTS = {
     autoCloseBrackets: true,
     matchBrackets: true,
     smartIndent: true,
-    theme : 'night'
+    theme : 'night',
+    // theme : 'default'
 };
 
 const MARKUP_BOX_DEFAULTS = {
