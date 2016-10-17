@@ -3,6 +3,34 @@
  */
 export default [
 
+    ({ style, dl, dt, dd, abbr, ins, del, b, s, em }) =>
+        dl([
+            style('* { font-size: 50px }'),
+            dt('Abbreviations'),
+            dd([
+                abbr({
+                    title : 'Extensible markup language',
+                    children : 'XML'
+                }),
+                ' ',
+                abbr({
+                    title : 'Scalable vector graphics',
+                    children : 'SVG'
+                }),
+                ' ',
+                abbr({
+                    title : 'Interface definition language',
+                    children : 'IDL'
+                })
+            ]),
+            dt('Edits'),
+            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),
+            dt('Keywords'),
+            dd([b('var'), b('function'), b('export'), b('const')]),
+            dt('Other'),
+            dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])
+        ]),
+
     ({ form, label, img, br, input, button }) =>
         form({
             action : 'https://yandex.ru/search',
@@ -152,33 +180,6 @@ export default [
             i('alternative voice'),
             ' and ',
             strong('important!')
-        ]),
-
-    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>
-        dl([
-            dt('Abbreviations'),
-            dd([
-                abbr({
-                    title : 'Extensible markup language',
-                    children : 'XML'
-                }),
-                ' ',
-                abbr({
-                    title : 'Scalable vector graphics',
-                    children : 'SVG'
-                }),
-                ' ',
-                abbr({
-                    title : 'Interface definition language',
-                    children : 'IDL'
-                })
-            ]),
-            dt('Edits'),
-            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),
-            dt('Keywords'),
-            dd([b('var'), b('function'), b('export'), b('const')]),
-            dt('Other'),
-            dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])
         ]),
 
     ({ aside }) => aside('Your advert may be here!'),
@@ -452,6 +453,6 @@ _________________________________________________________
 
     ({ progress }) => progress({ max : '100', value : '70' }),
 
-    htmlmodule => {}
+    htmlmodule => {} // the empty snippet
 
 ];

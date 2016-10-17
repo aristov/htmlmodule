@@ -8,7 +8,7 @@ import { sitenav } from './sitenav';
 import './index.css';
 
 document.body.append(
-    siteheading(),
+    // siteheading(),
     // specwin(),
     // apinav(),
     // sourcefetch(sourcedetails()),
@@ -16,6 +16,7 @@ document.body.append(
     // input.element,
     // hr(),
     // output.element,
-    sitenav());
+    // sitenav()
+);
 
 replstart();

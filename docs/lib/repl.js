@@ -20,9 +20,9 @@ const replinput = codebox({
     value : testcase[testindex].src
 });
 
-const reploutput = markupbox({ className : 'reploutput' });
+const reploutputcode = markupbox({ className : 'reploutputcode' });
 
-const outputwin = iframe({ className : 'outputwin' });
+const reploutputwin = iframe({ className : 'reploutputwin' });
 
 const markupview = details({
     className : 'markupview',
@@ -33,7 +33,7 @@ const markupview = details({
             className : 'markuptoggle',
             children : 'markup'
         }),
-        reploutput.element
+        reploutputcode.element
     ]
 });
 
@@ -62,41 +62,45 @@ export const repl = () =>
                     children : 'next'
                 }),
             ]),
-            section([outputwin, markupview])
+            section([reploutputwin, markupview])
         ]
     });
 
 /*----------------------------------------------------------------*/
 
-const replmachine = new REPLMachine({
-    input : replinput,
-    output : {
-        set value(value) {
-            const body = outputwin.contentDocument.body;
-            body.innerHTML = '';
-            reploutput.value = '';
-            if(value instanceof Error) {
-                body.textContent = value;
-            } else {
-                try {
-                    const node = typeof value === 'function'? value(htmlmodule) : value;
-                    if(node) {
-                        body.appendChild(node);
-                        reploutput.value = serializer.serializeToString(node);
+const output = {
+    set value(value) {
+        const body = reploutputwin.contentDocument.body;
+        body.innerHTML = '';
+        if(markupview.open) reploutputcode.value = '';
+        if(value instanceof Error) {
+            body.textContent = value;
+        } else {
+            try {
+                const node = typeof value === 'function'? value(htmlmodule) : value;
+                if(node) {
+                    body.appendChild(node);
+                    if(markupview.open) {
+                        reploutputcode.value = serializer.serializeToString(node);
                     }
                 }
-                catch(error) {
-                    body.textContent = error;
-                }
+            }
+            catch(error) {
+                body.textContent = error;
             }
         }
     }
-});
+}
+
+const replmachine = new REPLMachine({ input : replinput, output });
 
 export const replrefresh = () => {
     replinput.mirror.refresh();
-    reploutput.mirror.refresh();
-    outputwin.height = markupview.open? OUTPUTWIN_HALF_HEIGHT : OUTPUTWIN_FULL_HEIGHT;
+    reploutputcode.mirror.refresh();
+    // outputwin.height = markupview.open? OUTPUTWIN_HALF_HEIGHT : OUTPUTWIN_FULL_HEIGHT;
+    reploutputwin.height = markupview.open?
+        (window.innerHeight - reploutputcode.element.clientHeight) + 'px' :
+        '100%';
 }
 
 export const replstart = () => {
@@ -104,3 +108,5 @@ export const replstart = () => {
     replinput.mirror.on('change', () => replmachine.loop());
     replmachine.loop();
 }
+
+window.onresize = () => replrefresh();
