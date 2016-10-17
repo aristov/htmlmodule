@@ -10,3 +10,7 @@ export const testcase = chunks.map(src => {
     const fn = new Function('return ' + src);
     return { src, fn : fn() };
 });
+
+/*export class TestCase {
+    constructor() {}
+}*/

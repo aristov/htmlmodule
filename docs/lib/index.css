@@ -40,4 +40,26 @@
     bottom: 0;
     background: white;
     z-index: 10;
+    cursor: default;
+}
+.replmachine .prevbutton,
+.replmachine .nextbutton
+{
+    position: absolute;
+    bottom: 1px;
+    z-index: 10;
+}
+.replmachine .markuptoggle:not(:hover):not(:focus),
+.replmachine .prevbutton:not(:hover):not(:focus),
+.replmachine .nextbutton:not(:hover):not(:focus)
+{
+    opacity: 0.7;
+}
+.replmachine .prevbutton
+{
+    left: 1px;
+}
+.replmachine .nextbutton
+{
+    right: 1px;
 }

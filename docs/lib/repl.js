@@ -1,7 +1,7 @@
 import { REPLMachine } from './REPLMachine';
 import { HTMLSerializer } from '../../util/util.htmlserializer';
 import * as htmlmodule from './htmlmodule';
-import { main, section, iframe, details, summary } from './htmlmodule';
+import { main, section, iframe, button, details, summary } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
 import { testcase } from './testcase';
 
@@ -10,13 +10,66 @@ const OUTPUTWIN_HALF_HEIGHT = 300;
 
 const serializer = new HTMLSerializer;
 
+const lastindex = testcase.length - 1;
+let testindex = 0;
+
 /*----------------------------------------------------------------*/
 
-const replinput = codebox({ className : 'replinput', value : testcase[0].src });
+const replinput = codebox({
+    className : 'replinput',
+    value : testcase[testindex].src
+});
 
 const reploutput = markupbox({ className : 'reploutput' });
 
 const outputwin = iframe({ className : 'outputwin' });
+
+const markupview = details({
+    className : 'markupview',
+    ontoggle : () => replrefresh(),
+    open : true,
+    children : [
+        summary({
+            className : 'markuptoggle',
+            children : 'markup'
+        }),
+        reploutput.element
+    ]
+});
+
+/*----------------------------------------------------------------*/
+
+export const repl = () =>
+    main({
+        className : 'replmachine',
+        children : [
+            section([
+                replinput.element,
+                button({
+                    className : 'prevbutton',
+                    onclick : () => {
+                        testindex = testindex === 0? lastindex : testindex - 1;
+                        replinput.value = testcase[testindex].src;
+                    },
+                    children : 'prev'
+                }),
+                button({
+                    className : 'nextbutton',
+                    onclick : () => {
+                        testindex = testindex > lastindex? 0 : testindex + 1;
+                        replinput.value = testcase[testindex].src;
+                    },
+                    children : 'next'
+                }),
+            ]),
+            section([
+                outputwin,
+                markupview
+            ])
+        ]
+    });
+
+/*----------------------------------------------------------------*/
 
 const replmachine = new REPLMachine({
     input : replinput,
@@ -42,33 +95,6 @@ const replmachine = new REPLMachine({
         }
     }
 });
-
-const markupview = details({
-    className : 'markupview',
-    ontoggle : () => replrefresh(),
-    open : true,
-    children : [
-        summary({
-            className : 'markuptoggle',
-            children : 'markup'
-        }),
-        reploutput.element
-    ]
-});
-
-/*----------------------------------------------------------------*/
-
-export const repl = () =>
-    main({
-        className : 'replmachine',
-        children : [
-            section(replinput.element),
-            section([
-                outputwin,
-                markupview
-            ])
-        ]
-    });
 
 export const replrefresh = () => {
     replinput.mirror.refresh();
