@@ -24,7 +24,6 @@ const reploutputwin = iframe({ className : 'reploutputwin' });
 const markupview = details({
     className : 'markupview',
     ontoggle : () => replrefresh(),
-    open : true,
     children : [
         summary({
             className : 'markuptoggle',
@@ -91,18 +90,18 @@ const output = {
 
 const replmachine = new REPLMachine({ input : replinput, output });
 
-export const replrefresh = () => {
-    replinput.mirror.refresh();
-    reploutputcode.mirror.refresh();
+export function replrefresh() {
     reploutputwin.height = markupview.open?
         (window.innerHeight - reploutputcode.element.clientHeight) + 'px' :
         '100%';
+    replinput.mirror.refresh();
+    reploutputcode.mirror.refresh();
+    replmachine.loop();
 }
 
-export const replstart = () => {
+export function replstart() {
     replrefresh();
     replinput.mirror.on('change', () => replmachine.loop());
-    replmachine.loop();
 }
 
 window.onresize = () => replrefresh();

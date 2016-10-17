@@ -3,7 +3,7 @@
  */
 export default [
 
-    ({ style, dl, dt, dd, abbr, ins, del, b, s, em }) =>
+    ({ style, dl, dt, dd, abbr, ins, del, b, s, em, code }) =>
         dl([
             style('* { font-size: 30px }'),
             dt('Abbreviations'),
@@ -25,8 +25,8 @@ export default [
             ]),
             dt('Edits'),
             dd([ins('Inserted'), ' and ', del('deleted'), ' text']),
-            dt('Keywords'),
-            dd([b('var'), b('function'), b('export'), b('const')]),
+            dt('Code keywords'),
+            dd(code([b('var'), ' ', b('function'), ' ', b('export'), ' ', b('const')])),
             dt('Other'),
             dd([s('don\'t stroke me!'), ' + ', em('emphasize!')])
         ]),
@@ -73,7 +73,8 @@ export default [
                 h4('Image media'),
                 img({
                     src : 'http://bit.ly/2e9kIdg',
-                    alt : 'Crazy PiPi!'
+                    alt : 'Crazy PiPi!',
+                    width: 100
                 }),
                 h4('Audio media'),
                 audio({
