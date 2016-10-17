@@ -450,6 +450,8 @@ _________________________________________________________
             ]
         }),
 
-    ({ progress }) => progress({ max : '100', value : '70' })
+    ({ progress }) => progress({ max : '100', value : '70' }),
+
+    htmlmodule => {}
 
 ];

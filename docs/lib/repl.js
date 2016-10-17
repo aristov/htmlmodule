@@ -56,16 +56,13 @@ export const repl = () =>
                 button({
                     className : 'nextbutton',
                     onclick : () => {
-                        testindex = testindex > lastindex? 0 : testindex + 1;
+                        testindex = testindex === lastindex? 0 : testindex + 1;
                         replinput.value = testcase[testindex].src;
                     },
                     children : 'next'
                 }),
             ]),
-            section([
-                outputwin,
-                markupview
-            ])
+            section([outputwin, markupview])
         ]
     });
 
@@ -76,17 +73,17 @@ const replmachine = new REPLMachine({
     output : {
         set value(value) {
             const body = outputwin.contentDocument.body;
+            body.innerHTML = '';
+            reploutput.value = '';
             if(value instanceof Error) {
                 body.textContent = value;
-                reploutput.value = '';
             } else {
                 try {
-                    const node = typeof value === 'function'?
-                        value(htmlmodule) :
-                        value;
-                    body.innerHTML = '';
-                    body.appendChild(node);
-                    reploutput.value = serializer.serializeToString(node);
+                    const node = typeof value === 'function'? value(htmlmodule) : value;
+                    if(node) {
+                        body.appendChild(node);
+                        reploutput.value = serializer.serializeToString(node);
+                    }
                 }
                 catch(error) {
                     body.textContent = error;
@@ -99,17 +96,11 @@ const replmachine = new REPLMachine({
 export const replrefresh = () => {
     replinput.mirror.refresh();
     reploutput.mirror.refresh();
-    outputwin.height = markupview.open?
-        OUTPUTWIN_HALF_HEIGHT :
-        OUTPUTWIN_FULL_HEIGHT;
+    outputwin.height = markupview.open? OUTPUTWIN_HALF_HEIGHT : OUTPUTWIN_FULL_HEIGHT;
 }
+
 export const replstart = () => {
     replrefresh();
     replinput.mirror.on('change', () => replmachine.loop());
     replmachine.loop();
 }
-
-/**
- * HMREPLMachine
- * htmodulerepl
- */
