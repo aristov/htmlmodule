@@ -26,6 +26,7 @@ const markupview = details({
     ontoggle : () => replrefresh(),
     children : [
         summary({
+            id : 'markuptoggle',
             className : 'markuptoggle',
             children : 'markup'
         }),
@@ -42,6 +43,7 @@ export const repl = () =>
             section([
                 replinput.element,
                 button({
+                    id : 'replbuttonprev',
                     className : 'prevbutton',
                     onclick : () => {
                         testindex = testindex === 0? lastindex : testindex - 1;
@@ -50,6 +52,7 @@ export const repl = () =>
                     children : 'prev'
                 }),
                 button({
+                    id : 'replbuttonnext',
                     className : 'nextbutton',
                     onclick : () => {
                         testindex = testindex === lastindex? 0 : testindex + 1;
