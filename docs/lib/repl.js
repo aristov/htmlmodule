@@ -24,6 +24,7 @@ const reploutputwin = iframe({ className : 'reploutputwin' });
 const markupview = details({
     className : 'markupview',
     ontoggle : () => replrefresh(),
+    open : true,
     children : [
         summary({
             id : 'markuptoggle',

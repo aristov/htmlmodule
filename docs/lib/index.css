@@ -92,10 +92,6 @@ main,
 
 /* customize codemirror theme */
 
-.replmachine .CodeMirror
-{
-    font-size: 16px;
-}
 .replmachine .CodeMirror .CodeMirror-scroll
 {
     padding: 8px;
