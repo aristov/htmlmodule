@@ -3,6 +3,53 @@
  */
 export default [
 
+    ({ fieldset, legend, button, label, input, output, div }) => {
+        const alertbutton = button({
+            onclick : ({
+                type,
+                target : { tagName },
+                constructor : { name }
+            }) => alert([tagName, type, name, 'handler!'].join(' ')),
+            textContent : 'Show me alert, please...'
+        });
+        const noalertbox = label([
+            input({
+                type : 'checkbox',
+                onchange : ({ target }) => {
+                    alertbutton.disabled = target.checked;
+                },
+            }),
+            ' no alerts!'
+        ]);
+        return fieldset({
+            style : {
+                display : 'flex',
+                flexDirection : 'column',
+                justifyContent : 'space-between',
+                height : '260px',
+                width : '300px'
+            },
+            children : [
+                legend('Event handlers'),
+                div([alertbutton, noalertbox]),
+                button({
+                    onfocus : ({ target }) => target.textContent = 'Focused!',
+                    onblur : ({ target }) => target.textContent = 'Focus wait...',
+                    textContent : 'Focus wait...'
+                }),
+                label([
+                    input({
+                        placeholder : 'text input char counter',
+                        oninput : ({ target }) => {
+                            target.nextElementSibling.value = target.value.length;
+                        }
+                    }),
+                    output({ title : 'entered char count', value : '0' })
+                ])
+            ]
+        })
+    },
+
     ({ style, dl, dt, dd, abbr, ins, del, b, s, em, code }) =>
         dl([
             style('* { font-size: 30px }'),
@@ -116,53 +163,6 @@ export default [
                 ])
             ])
         ])
-    },
-
-    ({ fieldset, legend, button, label, input, output, div }) => {
-        const alertbutton = button({
-            onclick : ({
-                type,
-                target : { tagName },
-                constructor : { name }
-            }) => alert([tagName, type, name, 'handler!'].join(' ')),
-            textContent : 'Show me alert, please...'
-        });
-        const noalertbox = label([
-            input({
-                type : 'checkbox',
-                onchange : ({ target }) => {
-                    alertbutton.disabled = target.checked;
-                },
-            }),
-            ' no alerts!'
-        ]);
-        return fieldset({
-            style : {
-                display : 'flex',
-                flexDirection : 'column',
-                justifyContent : 'space-between',
-                height : '260px',
-                width : '300px'
-            },
-            children : [
-                legend('Event handlers'),
-                div([alertbutton, noalertbox]),
-                button({
-                    onfocus : ({ target }) => target.textContent = 'Focused!',
-                    onblur : ({ target }) => target.textContent = 'Focus wait...',
-                    textContent : 'Focus wait...'
-                }),
-                label([
-                    input({
-                        placeholder : 'text input char counter',
-                        oninput : ({ target }) => {
-                            target.nextElementSibling.value = target.value.length;
-                        }
-                    }),
-                    output({ title : 'entered char count', value : '0' })
-                ])
-            ]
-        })
     },
 
     ({ footer, address, small }) =>

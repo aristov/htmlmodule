@@ -5,26 +5,41 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/night.css';
+
+/**
+ * good themes:
+ *  - lesser-dark
+ *  - material
+ *  - erlang-dark
+ *  - mbo
+ *  - night
+ *  - paraiso-dark
+ *  - rubyblue
+ *  - the-matrix
+ */
+
+import 'codemirror/theme/rubyblue.css';
+const theme = 'rubyblue';
 
 const CODE_BOX_DEFAULTS = {
-    mode: 'javascript',
-    indentUnit: 4,
-    tabSize: 2,
-    indentWithTabs: true,
-    electricChars: true,
-    styleActiveLine: true,
-    autoCloseBrackets: true,
-    matchBrackets: true,
-    smartIndent: true,
-    theme : 'night',
-    // theme : 'default'
+    mode : 'javascript',
+    indentUnit : 4,
+    tabSize : 2,
+    indentWithTabs : true,
+    electricChars : true,
+    styleActiveLine : true,
+    autoCloseBrackets : true,
+    matchBrackets : true,
+    smartIndent : true,
+    // lineNumbers : true,
+    theme
 };
 
 const MARKUP_BOX_DEFAULTS = {
     mode : 'htmlmixed',
     readOnly : true,
-    theme : 'night'
+    // lineNumbers : true,
+    theme
 };
 
 /*================================================================*/
@@ -50,7 +65,7 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     }
 }
 
-Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable : true, value : null });
+Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable  : true, value  : null });
 
 const codemirror = (init = {}) => new CodeMirrorAssembler(init);
 
