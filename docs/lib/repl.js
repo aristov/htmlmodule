@@ -91,9 +91,10 @@ const output = {
 const replmachine = new REPLMachine({ input : replinput, output });
 
 export function replrefresh() {
+    const innerHeight = window.innerHeight;
     reploutputwin.height = markupview.open?
-        (window.innerHeight - reploutputcode.element.clientHeight) + 'px' :
-        '100%';
+        (innerHeight - reploutputcode.element.clientHeight) + 'px' :
+        innerHeight + 'px';
     replinput.mirror.refresh();
     reploutputcode.mirror.refresh();
     replmachine.loop();
