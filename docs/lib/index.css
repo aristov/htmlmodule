@@ -18,7 +18,6 @@ main,
 {
     display : flex;
     justify-content : space-around;
-    /*margin : 40px 0 20px;*/
 }
 .replmachine > section
 {
@@ -30,11 +29,10 @@ main,
 {
     font-size: 15px;
 }
-/*.replmachine .replinput .CodeMirror
+.replmachine .CodeMirror .CodeMirror-scroll
 {
-    height: 600px;
-}*/
-
+    padding: 8px;
+}
 .replmachine .reploutputcode
 {
     border-left: 1px solid #444;
@@ -67,8 +65,8 @@ main,
 .replmachine .markuptoggle
 {
     position: absolute;
-    right: 2px;
-    bottom: 2px;
+    right: 9px;
+    bottom: 9px;
     background: white;
     z-index: 10;
     cursor: default;
@@ -80,7 +78,7 @@ main,
 .replmachine .nextbutton
 {
     position: absolute;
-    bottom: 0;
+    bottom: 8px;
     z-index: 10;
 }
 .replmachine .markuptoggle:not(:hover):not(:focus),
@@ -91,9 +89,9 @@ main,
 }
 .replmachine .prevbutton
 {
-    left: 1px;
+    left: 8px;
 }
 .replmachine .nextbutton
 {
-    right: 1px;
+    right: 8px;
 }

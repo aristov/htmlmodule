@@ -5,7 +5,7 @@ export default [
 
     ({ style, dl, dt, dd, abbr, ins, del, b, s, em }) =>
         dl([
-            style('* { font-size: 50px }'),
+            style('* { font-size: 30px }'),
             dt('Abbreviations'),
             dd([
                 abbr({
@@ -184,7 +184,7 @@ export default [
 
     ({ aside }) => aside('Your advert may be here!'),
 
-    ({ article, h2, address }) =>
+    ({ article, h2, address, a }) =>
         article({
             className : 'vcard',
             children : [
@@ -194,7 +194,10 @@ export default [
                 }),
                 address({
                     className : 'email',
-                    children : 'vv.aristov@gmail.com'
+                    children : a({
+                        href : 'mailto:vv.aristov@gmail.com',
+                        children : 'vv.aristov@gmail.com'
+                    })
                 })
             ]
         }),

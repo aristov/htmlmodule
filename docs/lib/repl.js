@@ -5,9 +5,6 @@ import { main, section, iframe, button, details, summary } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
 import { testcase } from './testcase';
 
-const OUTPUTWIN_FULL_HEIGHT = 600;
-const OUTPUTWIN_HALF_HEIGHT = 300;
-
 const serializer = new HTMLSerializer;
 
 const lastindex = testcase.length - 1;
@@ -97,7 +94,6 @@ const replmachine = new REPLMachine({ input : replinput, output });
 export const replrefresh = () => {
     replinput.mirror.refresh();
     reploutputcode.mirror.refresh();
-    // outputwin.height = markupview.open? OUTPUTWIN_HALF_HEIGHT : OUTPUTWIN_FULL_HEIGHT;
     reploutputwin.height = markupview.open?
         (window.innerHeight - reploutputcode.element.clientHeight) + 'px' :
         '100%';
