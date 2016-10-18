@@ -794,11 +794,11 @@
 	    value: _testcase.testcase[testindex].src
 	});
 
-	const reploutputcode = (0, _codemirror.markupbox)({ className: 'reploutputcode' });
-
 	const reploutputwin = (0, _htmlmodule.iframe)({ className: 'reploutputwin' });
 
-	const markupview = (0, _htmlmodule.details)({
+	const reploutputcode = (0, _codemirror.markupbox)({ className: 'reploutputcode' });
+
+	const replmarkupview = (0, _htmlmodule.details)({
 	    className: 'markupview',
 	    ontoggle: () => replrefresh(),
 	    open: true,
@@ -829,7 +829,7 @@
 	            replinput.value = _testcase.testcase[testindex].src;
 	        },
 	        children: 'next'
-	    })]), (0, _htmlmodule.section)([reploutputwin, markupview])]
+	    })]), (0, _htmlmodule.section)([reploutputwin, replmarkupview])]
 	});
 
 	/*----------------------------------------------------------------*/
@@ -838,7 +838,7 @@
 	    set value(value) {
 	        const body = reploutputwin.contentDocument.body;
 	        body.innerHTML = '';
-	        if (markupview.open) reploutputcode.value = '';
+	        if (replmarkupview.open) reploutputcode.value = '';
 	        if (value instanceof Error) {
 	            body.textContent = value;
 	        } else {
@@ -846,7 +846,7 @@
 	                const node = typeof value === 'function' ? value(htmlmodule) : value;
 	                if (node) {
 	                    body.appendChild(node);
-	                    if (markupview.open) {
+	                    if (replmarkupview.open) {
 	                        reploutputcode.value = serializer.serializeToString(node);
 	                    }
 	                }
@@ -861,7 +861,7 @@
 
 	function replrefresh() {
 	    const innerHeight = window.innerHeight;
-	    reploutputwin.height = markupview.open ? innerHeight - reploutputcode.element.clientHeight + 'px' : innerHeight + 'px';
+	    reploutputwin.height = replmarkupview.open ? innerHeight - reploutputcode.element.clientHeight + 'px' : innerHeight + 'px';
 	    replinput.mirror.refresh();
 	    reploutputcode.mirror.refresh();
 	    replmachine.loop();
@@ -4518,7 +4518,7 @@
   \************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "htmlmodule => {\n    const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;\n\n    return section([\n        h1({\n            style : { fontFamily : '' },\n            children : 'Welcome!'\n        }),\n        p([\n            'You are inside the ',\n            abbr({\n                title : 'read-eval-print-loop',\n                children : 'REPL'\n            }),\n            '-machine. It was instantly assembled by the ',\n            a({\n                title : 'DOM assembler library',\n                href : 'https://npmjs.org/package/htmlmodule',\n                rel : 'external',\n                children : 'htmlmodule'\n            }),\n            ' on a page load.'\n        ]),\n        p([\n            'You may focus the left code editor and change ',\n            'the source code of the document that you are reading now.'\n        ]),\n        nav([\n            p([\n                'There are some usage code examples provided: ',\n                'try the ',\n                a({\n                    href : '#replbuttonprev',\n                    target : '_parent',\n                    rel : 'prev',\n                    children : 'prev'\n                }),\n                ' and the ',\n                a({\n                    href : '#replbuttonnext',\n                    target : '_parent',\n                    rel : 'next',\n                    children : 'next'\n                }),\n                ' buttons on the bottom of your screen.'\n            ]),\n            p([\n                'Use the ',\n                a({\n                    href : '#markuptoggle',\n                    target : '_parent',\n                    rel : 'alternate',\n                    children : 'markup'\n                }),\n                ' summary button to toggle ',\n                abbr({\n                    title : 'Hyper text markup language',\n                    children : 'HTML'\n                }),\n                '-markup details. It presents a stringified ',\n                abbr({\n                    title : 'Document object model',\n                    children : 'DOM'\n                }),\n                ' of the evaluation result.'\n            ])\n        ]),\n        p([\n            'If you wanna more details, take a look at the:'\n        ]),\n        nav(ul([\n            li(a({\n                href : 'spec.html',\n                target : '_blank',\n                children : 'Spec suite'\n            })),\n            li(a({\n                href : 'api/',\n                target : '_blank',\n                rel : 'help',\n                children : [abbr({\n                    title : 'Application programming interface',\n                    children : 'API'\n                }), ' documentation']\n            })),\n            li(a({\n                href : 'https://github.com/aristov/htmlmodule',\n                target : '_blank',\n                rel : 'external',\n                children : 'Github repo'\n            })),\n        ])),\n        p('Enjoy!'),\n        style([\n            'body { font: 17px sans-serif }',\n            'a[href][rel~=external]:not(:active) { color: #040 }',\n            'a[href][rel~=help]:not(:active) { cursor: help }'\n        ])\n    ]);\n}\n"
+	module.exports = "htmlmodule => {\n\n    const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;\n\n    return section([\n        h1('Welcome!'),\n        p([\n            'You are inside the ',\n            abbr({\n                title : 'read-eval-print-loop',\n                children : 'REPL'\n            }),\n            '-machine. It was instantly assembled by ',\n            a({\n                title : 'DOM assembler library',\n                href : 'https://npmjs.org/package/htmlmodule',\n                rel : 'external',\n                children : 'htmlmodule'\n            }),\n            ' on the page load.'\n        ]),\n        p([\n            'You may focus the left code editor and change ',\n            'the source code of the document that you are reading now.'\n        ]),\n        nav([\n            p([\n                'There are some usage code examples provided: ',\n                'try the ',\n                a({\n                    href : '#replbuttonprev',\n                    target : '_parent',\n                    rel : 'prev',\n                    children : 'prev'\n                }),\n                ' and the ',\n                a({\n                    href : '#replbuttonnext',\n                    target : '_parent',\n                    rel : 'next',\n                    children : 'next'\n                }),\n                ' buttons on the bottom of your screen.'\n            ]),\n            p([\n                'Use the ',\n                a({\n                    href : '#markuptoggle',\n                    target : '_parent',\n                    rel : 'alternate',\n                    children : 'markup'\n                }),\n                ' summary button to toggle the ',\n                abbr({\n                    title : 'Hyper text markup language',\n                    children : 'HTML'\n                }),\n                '-markup details. It represents a stringified ',\n                abbr({\n                    title : 'Document object model',\n                    children : 'DOM'\n                }),\n                ' structure of the evaluation result.'\n            ])\n        ]),\n        p('If you wanna more details, take a look at the:'),\n        nav(ul([\n            li(a({\n                href : 'spec.html',\n                target : '_blank',\n                children : 'Spec suite'\n            })),\n            li(a({\n                href : 'api/',\n                target : '_blank',\n                rel : 'help',\n                children : [abbr({\n                    title : 'Application programming interface',\n                    children : 'API'\n                }), ' documentation']\n            })),\n            li(a({\n                href : 'https://github.com/aristov/htmlmodule',\n                target : '_blank',\n                rel : 'external',\n                children : 'Github repo'\n            })),\n        ])),\n        p('Enjoy!'),\n        style([\n            'body { font: 17px sans-serif }',\n            'a[href][rel~=external]:not(:active) { color: #040 }',\n            'a[href][rel~=help]:not(:active) { cursor: help }'\n        ])\n    ]);\n}\n"
 
 /***/ }
 /******/ ]);

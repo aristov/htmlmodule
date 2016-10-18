@@ -17,11 +17,11 @@ const replinput = codebox({
     value : testcase[testindex].src
 });
 
-const reploutputcode = markupbox({ className : 'reploutputcode' });
-
 const reploutputwin = iframe({ className : 'reploutputwin' });
 
-const markupview = details({
+const reploutputcode = markupbox({ className : 'reploutputcode' });
+
+const replmarkupview = details({
     className : 'markupview',
     ontoggle : () => replrefresh(),
     open : true,
@@ -62,7 +62,7 @@ export const repl = () =>
                     children : 'next'
                 }),
             ]),
-            section([reploutputwin, markupview])
+            section([reploutputwin, replmarkupview])
         ]
     });
 
@@ -72,7 +72,7 @@ const output = {
     set value(value) {
         const body = reploutputwin.contentDocument.body;
         body.innerHTML = '';
-        if(markupview.open) reploutputcode.value = '';
+        if(replmarkupview.open) reploutputcode.value = '';
         if(value instanceof Error) {
             body.textContent = value;
         } else {
@@ -80,7 +80,7 @@ const output = {
                 const node = typeof value === 'function'? value(htmlmodule) : value;
                 if(node) {
                     body.appendChild(node);
-                    if(markupview.open) {
+                    if(replmarkupview.open) {
                         reploutputcode.value = serializer.serializeToString(node);
                     }
                 }
@@ -96,7 +96,7 @@ const replmachine = new REPLMachine({ input : replinput, output });
 
 export function replrefresh() {
     const innerHeight = window.innerHeight;
-    reploutputwin.height = markupview.open?
+    reploutputwin.height = replmarkupview.open?
         (innerHeight - reploutputcode.element.clientHeight) + 'px' :
         innerHeight + 'px';
     replinput.mirror.refresh();

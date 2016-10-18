@@ -1,25 +1,23 @@
 htmlmodule => {
+
     const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;
 
     return section([
-        h1({
-            style : { fontFamily : '' },
-            children : 'Welcome!'
-        }),
+        h1('Welcome!'),
         p([
             'You are inside the ',
             abbr({
                 title : 'read-eval-print-loop',
                 children : 'REPL'
             }),
-            '-machine. It was instantly assembled by the ',
+            '-machine. It was instantly assembled by ',
             a({
                 title : 'DOM assembler library',
                 href : 'https://npmjs.org/package/htmlmodule',
                 rel : 'external',
                 children : 'htmlmodule'
             }),
-            ' on a page load.'
+            ' on the page load.'
         ]),
         p([
             'You may focus the left code editor and change ',
@@ -52,22 +50,20 @@ htmlmodule => {
                     rel : 'alternate',
                     children : 'markup'
                 }),
-                ' summary button to toggle ',
+                ' summary button to toggle the ',
                 abbr({
                     title : 'Hyper text markup language',
                     children : 'HTML'
                 }),
-                '-markup details. It presents a stringified ',
+                '-markup details. It represents a stringified ',
                 abbr({
                     title : 'Document object model',
                     children : 'DOM'
                 }),
-                ' of the evaluation result.'
+                ' structure of the evaluation result.'
             ])
         ]),
-        p([
-            'If you wanna more details, take a look at the:'
-        ]),
+        p('If you wanna more details, take a look at the:'),
         nav(ul([
             li(a({
                 href : 'spec.html',
