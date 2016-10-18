@@ -1,7 +1,9 @@
 # htmlmodule
 
-<!--[![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)-->
-[![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
+[![NPM version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
+[![Build status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
+[![dependencies status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
+[![devDependencies status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
 
 <em>work in progress</em>
 

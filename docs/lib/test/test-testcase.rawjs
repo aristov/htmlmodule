@@ -400,6 +400,8 @@ _________________________________________________________
                 'a section that is quoted from another source.'
         }),
 
+    ({ progress }) => progress({ max : '100', value : '70' }),
+
     ({ article, section, ruby, rt, rp }) =>
         article({
             title : 'Ruby annotations',
@@ -437,10 +439,10 @@ _________________________________________________________
                     li('Comment')
                 ]),
                 ol([
-                    li('Amsterdam'),
-                    li('New York'),
-                    li('Moscow'),
-                    li('Moscow')
+                    li('form'),
+                    li('input'),
+                    li('textarea'),
+                    li('select')
                 ]),
                 dl([
                     dt('DOM'),
@@ -449,14 +451,10 @@ _________________________________________________________
                     dd('Extensible markup language'),
                     dt('HTML'),
                     dd('Hyper text markup language'),
-                    dt('ARIAML'),
-                    dd('Accessible rich internet applications markup language')
+                    dt('SVG'),
+                    dd('Scalable vector graphics')
                 ])
             ]
         }),
-
-    ({ progress }) => progress({ max : '100', value : '70' }),
-
-    htmlmodule => {} // the empty snippet
 
 ];
