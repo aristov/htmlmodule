@@ -1,0 +1,12 @@
+#sourcedetails pre
+{
+    margin-top: 1px;
+}
+#sourcedetails pre > code
+{
+    display: block;
+    background: #333;
+    color: white;
+    padding: 12px;
+    margin-bottom: 20px;
+}

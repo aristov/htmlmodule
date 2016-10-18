@@ -47,7 +47,7 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./docs/lib/repl */16);
+	module.exports = __webpack_require__(/*! ./docs/lib/repl */21);
 
 
 /***/ },
@@ -753,84 +753,35 @@
 
 /***/ },
 /* 7 */,
-/* 8 */
-/*!*********************************!*\
-  !*** ./docs/lib/siteheading.js ***!
-  \*********************************/
+/* 8 */,
+/* 9 */
+/*!********************************!*\
+  !*** ./docs/lib/htmlmodule.js ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	exports.siteheading = undefined;
 
 	var _lib = __webpack_require__(/*! ../../lib */ 1);
 
-	__webpack_require__(/*! ./siteheading.css */ 9);
-
-	const MODULE_NAME = 'htmlmodule';
-
-	const siteheading = exports.siteheading = children => {
-	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _lib.h1)({
-	        id: 'siteheading',
-	        children: [(0, _lib.a)({
-	            href: isIndex ? undefined : './',
-	            children: MODULE_NAME
-	        }), ' ', children]
-	    });
-	};
+	Object.keys(_lib).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _lib[key];
+	    }
+	  });
+	});
 
 /***/ },
-/* 9 */
-/*!**********************************!*\
-  !*** ./docs/lib/siteheading.css ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 10);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 10 */
-/*!********************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
-  \********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 11 */
+/* 10 */,
+/* 11 */,
+/* 12 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -888,7 +839,7 @@
 	};
 
 /***/ },
-/* 12 */
+/* 13 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -1143,104 +1094,14 @@
 
 
 /***/ },
-/* 13 */
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	__webpack_require__(/*! ./sitenav.css */ 14);
-
-	const pathname = location.pathname;
-
-	const navlist = [(0, _lib.a)({
-	    href: './api/',
-	    children: 'api doc'
-	}), (0, _lib.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _lib.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _lib.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _lib.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    children: 'git repo'
-	})];
-
-	navlist.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const modulemark = (0, _lib.small)(['assembled by ', (0, _lib.a)({
-	    href: 'http://npmjs.org/package/htmlmodule',
-	    children: 'htmlmodule'
-	})]);
-
-	const sitenav = exports.sitenav = () => (0, _lib.footer)({
-	    id: 'sitenav',
-	    children: [(0, _lib.nav)(navlist), modulemark]
-	});
-
-/***/ },
-/* 14 */
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 15);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 15 */
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 11)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#sitenav\n{\n    text-align: center;\n}\n#sitenav nav\n{\n    width: 750px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    margin: auto;\n}\n#sitenav nav a\n{\n    margin: 25px auto 25px;\n    font: bold 15px monospace;\n}\n#sitenav small\n{\n    position: fixed;\n    right: 15px;\n    bottom: 10px;\n}\n#sitenav small:not(:hover)\n{\n    opacity: 0.3;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 16 */
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
   \**************************/
@@ -1248,263 +1109,273 @@
 
 	'use strict';
 
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.repl = undefined;
+	exports.replrefresh = replrefresh;
+	exports.replstart = replstart;
 
-	var htmlmodule = _interopRequireWildcard(_lib);
+	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 22);
 
-	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 23);
 
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 13);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
 
-	var _codemirror = __webpack_require__(/*! ./codemirror */ 17);
+	var htmlmodule = _interopRequireWildcard(_htmlmodule);
 
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 27);
+	var _codemirror = __webpack_require__(/*! ./codemirror */ 24);
 
-	var _replcase = __webpack_require__(/*! ./replcase */ 28);
+	var _testcase = __webpack_require__(/*! ./testcase */ 34);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	/* ================================================================ */
-
-	// import utils
-	const HTMLMODULE_VARIABLE_NAME = 'htmlmodule';
-
-	// import tests
-
-
-	// import local components
-	// import htmlmodule stuff
-
-
-	const snippetpart = name => name + '=' + HTMLMODULE_VARIABLE_NAME + '.' + name;
-	const IMPORTS_SNIPPET_PART = Object.keys(htmlmodule).map(snippetpart).join(', ');
-	const IMPORTS_SNIPPET = 'var ' + IMPORTS_SNIPPET_PART;
-
-	const indexOf = Array.prototype.indexOf;
 	const serializer = new _util.HTMLSerializer();
 
-	/* ================================================================ */
+	const lastindex = _testcase.testcase.length - 1;
+	let testindex = 0;
 
-	const EXPORT_DEFAULT_RE = /export\s+default\s+/;
-	const EXPORTS_DEFAULT_RE = /exports\s*\.\s*default\s*=/;
-	const IMPORT_FROM_RE = /import\s*({(?:\s*\w+\s*,)*(?:\s*\w+\s*,?\s*)})\s*from\s*'(\w+)';?/;
-	const OBJECT_DESTRUCTURING_RE = /\({\s((?:\w+\s*,?\s*)+)}\)/;
+	/*----------------------------------------------------------------*/
 
-	/* ================================================================ */
+	const replinput = (0, _codemirror.codebox)({
+	    className: 'replinput',
+	    value: _testcase.testcase[testindex].src
+	});
 
-	if (!window.Babel) {
-	    window.Babel = {
-	        transform: code => {
-	            code = code.replace(IMPORT_FROM_RE, 'const $1 = $2;');
-	            if (EXPORT_DEFAULT_RE.test(code)) {
-	                code = code.replace(EXPORT_DEFAULT_RE, 'exports.default = ');
-	            } else if (!EXPORTS_DEFAULT_RE.test(code)) {
-	                code = 'exports.default = ' + code;
+	const reploutputcode = (0, _codemirror.markupbox)({ className: 'reploutputcode' });
+
+	const reploutputwin = (0, _htmlmodule.iframe)({ className: 'reploutputwin' });
+
+	const markupview = (0, _htmlmodule.details)({
+	    className: 'markupview',
+	    ontoggle: () => replrefresh(),
+	    open: true,
+	    children: [(0, _htmlmodule.summary)({
+	        id: 'markuptoggle',
+	        className: 'markuptoggle',
+	        children: 'markup'
+	    }), reploutputcode.element]
+	});
+
+	/*----------------------------------------------------------------*/
+
+	const repl = exports.repl = () => (0, _htmlmodule.main)({
+	    className: 'replmachine',
+	    children: [(0, _htmlmodule.section)([replinput.element, (0, _htmlmodule.button)({
+	        id: 'replbuttonprev',
+	        className: 'prevbutton',
+	        onclick: () => {
+	            testindex = testindex === 0 ? lastindex : testindex - 1;
+	            replinput.value = _testcase.testcase[testindex].src;
+	        },
+	        children: 'prev'
+	    }), (0, _htmlmodule.button)({
+	        id: 'replbuttonnext',
+	        className: 'nextbutton',
+	        onclick: () => {
+	            testindex = testindex === lastindex ? 0 : testindex + 1;
+	            replinput.value = _testcase.testcase[testindex].src;
+	        },
+	        children: 'next'
+	    })]), (0, _htmlmodule.section)([reploutputwin, markupview])]
+	});
+
+	/*----------------------------------------------------------------*/
+
+	const output = {
+	    set value(value) {
+	        const body = reploutputwin.contentDocument.body;
+	        body.innerHTML = '';
+	        if (markupview.open) reploutputcode.value = '';
+	        if (value instanceof Error) {
+	            body.textContent = value;
+	        } else {
+	            try {
+	                const node = typeof value === 'function' ? value(htmlmodule) : value;
+	                if (node) {
+	                    body.appendChild(node);
+	                    if (markupview.open) {
+	                        reploutputcode.value = serializer.serializeToString(node);
+	                    }
+	                }
+	            } catch (error) {
+	                body.textContent = error;
 	            }
-	            return { code };
-	        }
-	    };
-	}
-
-	/* ================================================================ */
-
-	const checked = localStorage.getItem('global') !== 'false';
-	const globalbox = (0, _lib.input)({
-	    type: 'checkbox',
-	    checked,
-	    attrset: { checked: checked ? '' : undefined },
-	    onchange: ({ target }) => {
-	        evaluate();
-	        const checked = target.checked;
-	        if (checked) testselectbox.value = '';
-	    }
-	});
-
-	const testselectbox = (0, _lib.select)({
-	    onchange: () => {
-	        const selected = testselectbox.query('[selected]');
-	        if (selected) selected.removeAttribute('selected');
-	        const opt = testselectbox.selectedOptions[0];
-	        if (opt) opt.setAttribute('selected', '');
-	        updateTest();
-	    },
-	    children: [(0, _lib.option)({
-	        value: '',
-	        dataset: { global: 'true' },
-	        children: '—'
-	    }), (0, _lib.option)({
-	        value: _replcase.globaldefined,
-	        id: 'example-with-globals',
-	        selected: true,
-	        dataset: { global: 'true' },
-	        children: 'example with globals'
-	    }), (0, _lib.option)({
-	        value: _replcase.exportdefault,
-	        id: 'export-default-example',
-	        children: 'export default example'
-	    }), (0, _lib.option)({
-	        value: _replcase.importfrom,
-	        id: 'full-module-example',
-	        children: 'full module example'
-	    }), _replcase.testcase.map(({ src }) => {
-	        const match = src.match(OBJECT_DESTRUCTURING_RE);
-	        const textContent = match ? match[1].trim() : '?';
-	        const elements = textContent.split(', ');
-	        const id = elements.join('+');
-	        return (0, _lib.option)({ id, textContent, value: src });
-	    })]
-	});
-
-	/* ================================================================ */
-
-	const clearbutton = (0, _lib.button)({
-	    type: 'button',
-	    onclick: () => {
-	        const selected = testselectbox.query('[selected]');
-	        if (selected) {
-	            selected.removeAttribute('selected');
-	            selected.selected = false;
-	        }
-	        codeeditmirror.setValue('');
-	        // caseselectbox.value = '';
-	        globalbox.checked = true;
-	        location.hash = '';
-	        localStorage.removeItem('value');
-	        localStorage.removeItem('global');
-	        localStorage.removeItem('option');
-	    },
-	    children: 'clear'
-	});
-
-	/* ================================================================ */
-
-	const markupmodebox = (0, _lib.input)({
-	    type: 'checkbox',
-	    checked: localStorage.getItem('markupmode') !== 'false',
-	    onchange: ({ target: { checked } }) => {
-	        replmachine.classList.toggle('markupmode', checked);
-	        localStorage.setItem('markupmode', String(checked));
-	        if (checked) evaluate();
-	    }
-	});
-
-	/* ================================================================ */
-
-	const settingsform = (0, _lib.form)({
-	    className: 'settings',
-	    children: (0, _lib.p)([(0, _lib.label)([globalbox, ' define globally']), (0, _lib.label)(testselectbox), (0, _lib.label)(clearbutton)])
-	});
-
-	const codeinput = (0, _lib.div)({ className: 'jsinput' });
-
-	const domoutput = (0, _lib.output)({ className: 'domoutput' });
-
-	const markupoutput = (0, _lib.div)({ className: 'htmloutput', hidden: false });
-
-	/* ================================================================ */
-
-	const replmachine = (0, _lib.main)({
-	    className: 'replmachine markupmode',
-	    children: [(0, _lib.div)({
-	        className: 'panel',
-	        children: [settingsform, codeinput]
-	    }), (0, _lib.div)({
-	        className: 'panel',
-	        children: [(0, _lib.form)({
-	            className: 'settings',
-	            children: (0, _lib.p)((0, _lib.label)([markupmodebox, ' show markup']))
-	        }), domoutput, markupoutput]
-	    })]
-	});
-
-	/* ================================================================ */
-
-	const app = (0, _lib.div)([(0, _siteheading.siteheading)((0, _lib.abbr)({
-	    title: 'read-eval-print-loop',
-	    style: { cursor: 'help' },
-	    children: 'repl'
-	})), replmachine, (0, _sitenav.sitenav)()]);
-
-	/* ================================================================ */
-
-	const localvalue = localStorage.getItem('value');
-	const localoption = localStorage.getItem('option');
-	const hash = location.hash.replace('#', '');
-
-	const init = () => {
-	    if (localvalue !== null && localoption !== null) {
-	        const option = testselectbox.options[localoption];
-	        if (option) option.selected = true;
-	    } else if (hash) {
-	        const option = document.getElementById(hash);
-	        if (option && 'selected' in option) {
-	            option.selected = true;
-	            option.setAttribute('selected', '');
-	            updateTest();
 	        }
 	    }
-	    markupoutput.hidden = !markupmodebox.checked;
-	    document.body.append(app);
 	};
 
-	init();
+	const replmachine = new _REPLMachine.REPLMachine({ input: replinput, output });
 
-	const codeeditmirror = (0, _codemirror.codeedit)(codeinput, localvalue || _replcase.globaldefined);
-	codeeditmirror.on('change', () => evaluate());
-
-	const markupviewmirror = (0, _codemirror.markupview)(markupoutput);
-
-	evaluate();
-
-	/* ================================================================ */
-
-	function evaluate() {
-	    const code = codeeditmirror.getValue().trim();
-	    if (code) {
-	        try {
-	            const es5 = Babel.transform(code);
-	            const src = globalbox.checked ? [IMPORTS_SNIPPET, es5.code].join(';\n\n') : es5.code;
-
-	            const fn = new Function('exports', HTMLMODULE_VARIABLE_NAME, src);
-	            const exports = {
-	                default: () => {
-	                    throw Error('Module is not Exported!');
-	                }
-	            };
-	            fn(exports, htmlmodule);
-
-	            const node = typeof exports.default === 'function' ? exports.default(htmlmodule) : exports.default;
-
-	            const firstChild = domoutput.firstChild;
-	            if (firstChild) firstChild.replaceWith(node);else domoutput.append(node);
-
-	            const htmlcode = serializer.serializeToString(node);
-	            markupviewmirror.setValue(htmlcode);
-
-	            localStorage.setItem('value', codeeditmirror.getValue());
-	            localStorage.setItem('global', globalbox.checked);
-	            localStorage.setItem('option', String(indexOf.call(testselectbox.options, testselectbox.selectedOptions[0])));
-	        } catch (error) {
-	            domoutput.textContent = error;
-	            markupviewmirror.setValue('');
-	        }
-	    } else {
-	        domoutput.textContent = '';
-	        markupviewmirror.setValue('');
-	    }
+	function replrefresh() {
+	    const innerHeight = window.innerHeight;
+	    reploutputwin.height = markupview.open ? innerHeight - reploutputcode.element.clientHeight + 'px' : innerHeight + 'px';
+	    replinput.mirror.refresh();
+	    reploutputcode.mirror.refresh();
+	    replmachine.loop();
 	}
 
-	function updateTest() {
-	    const selected = testselectbox.selectedOptions[0];
-	    if (selected) {
-	        location.hash = selected.id;
-	        globalbox.checked = selected.dataset.global === 'true';
-	        codeeditmirror.setValue(selected.value + '\n');
-	    }
+	function replstart() {
+	    replrefresh();
+	    replinput.mirror.on('change', () => replmachine.loop());
 	}
+
+	window.onresize = () => replrefresh();
 
 /***/ },
-/* 17 */
+/* 22 */
+/*!*********************************!*\
+  !*** ./docs/lib/REPLMachine.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.REPLMachine = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	const VAR_NAME_EXPORTS = 'exports';
+
+	class REPLMachine {
+	    constructor({
+	        value = '',
+	        input = (0, _htmlmodule.input)({ value }),
+	        output = (0, _htmlmodule.output)()
+	    } = {}) {
+	        this.input = input;
+	        this.output = output;
+	    }
+	    get exports() {
+	        return {
+	            default: () => {
+	                throw Error('The default module is not exported');
+	            }
+	        };
+	    }
+	    loop() {
+	        this.read(this.input.value);
+	    }
+	    read(source) {
+	        try {
+	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
+	            this.eval(evaluable);
+	            return evaluable;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    eval(evaluable) {
+	        try {
+	            const exports = this.exports;
+	            const value = evaluable(exports);
+	            this.print(value);
+	            return value;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    print(value) {
+	        try {
+	            this.output.value = value;
+	        } catch (error) {
+	            this.output.value = error;
+	        }
+	    }
+	    onerror(error) {
+	        this.print(error);
+	    }
+	}
+
+	exports.REPLMachine = REPLMachine;
+	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
+	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
+
+/***/ },
+/* 23 */
+/*!*************************************!*\
+  !*** ./util/util.htmlserializer.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// todo refactoring => DOMSerializer
+
+	const map = Array.prototype.map;
+	const assign = Object.assign;
+
+	const epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
+	const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
+
+	const isEmptyTag = node => {
+	    if (node.constructor === Element && !node.hasChildNodes()) return true;
+	    return Boolean(emptyTagSet[node.tagName]);
+	};
+
+	// todo comment support
+	class HTMLSerializer {
+	    constructor(options = {
+	        indent: '    ',
+	        lineBreak: '\n',
+	        level: 0
+	    }) {
+	        assign(this, options);
+	    }
+	    serializeToString(node) {
+	        let {
+	            tagName,
+	            attributes,
+	            childNodes,
+	            innerHTML,
+	            textContent
+	        } = node;
+	        const lineBreak = this.lineBreak;
+	        let indent = this.indent.repeat(this.level);
+	        let result = indent;
+	        if (tagName) {
+	            tagName = tagName.toLowerCase();
+	            result += '<' + tagName;
+	            const hasAttributes = node.hasAttributes();
+	            if (hasAttributes) {
+	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
+	                result += attrset.join('');
+	            }
+	            const hasEndTag = !isEmptyTag(node);
+	            const selfClose = node.constructor === Element ? '/>' : '>';
+	            result += hasEndTag ? '>' : selfClose;
+	            if (hasEndTag && node.hasChildNodes()) {
+	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
+	                if (!hasAttributes && isSingleText) {
+	                    result += node.innerHTML;
+	                    indent = '';
+	                } else {
+	                    this.level++;
+	                    const children = map.call(childNodes, this.serializeToString, this);
+	                    this.level--;
+	                    result += lineBreak + children.join('');
+	                }
+	            } else indent = '';
+	            if (hasEndTag) result += indent + `</${ tagName }>`;
+	        } else {
+	            result += innerHTML || textContent;
+	        }
+	        result += lineBreak;
+	        return result;
+	    }
+	}
+	exports.HTMLSerializer = HTMLSerializer;
+
+/***/ },
+/* 24 */
 /*!********************************!*\
   !*** ./docs/lib/codemirror.js ***!
   \********************************/
@@ -1515,26 +1386,40 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.markupview = exports.codeedit = undefined;
+	exports.markupbox = exports.codebox = exports.CodeMirrorAssembler = undefined;
 
-	var _codemirror = __webpack_require__(/*! codemirror */ 18);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
+
+	var _codemirror = __webpack_require__(/*! codemirror */ 25);
 
 	var _codemirror2 = _interopRequireDefault(_codemirror);
 
-	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 19);
+	__webpack_require__(/*! codemirror/mode/javascript/javascript */ 26);
 
-	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 20);
+	__webpack_require__(/*! codemirror/mode/htmlmixed/htmlmixed */ 27);
 
-	__webpack_require__(/*! codemirror/lib/codemirror.css */ 23);
+	__webpack_require__(/*! codemirror/lib/codemirror.css */ 30);
 
-	__webpack_require__(/*! codemirror/theme/night.css */ 25);
+	__webpack_require__(/*! codemirror/theme/rubyblue.css */ 32);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const codeedit = exports.codeedit = (node, value) => new _codemirror2.default(node, {
-	    value: value,
+	const theme = 'rubyblue';
+
+	/**
+	 * good themes:
+	 *  - lesser-dark
+	 *  - material
+	 *  - erlang-dark
+	 *  - mbo
+	 *  - night
+	 *  - paraiso-dark
+	 *  - rubyblue
+	 *  - the-matrix
+	 */
+
+	const CODE_BOX_DEFAULTS = {
 	    mode: 'javascript',
-	    theme: 'night',
 	    indentUnit: 4,
 	    tabSize: 2,
 	    indentWithTabs: true,
@@ -1542,17 +1427,60 @@
 	    styleActiveLine: true,
 	    autoCloseBrackets: true,
 	    matchBrackets: true,
-	    smartIndent: true
-	});
+	    smartIndent: true,
+	    // lineNumbers : true,
+	    theme
+	};
 
-	const markupview = exports.markupview = node => new _codemirror2.default(node, {
+	const MARKUP_BOX_DEFAULTS = {
 	    mode: 'htmlmixed',
-	    theme: 'night',
-	    readOnly: true
-	});
+	    readOnly: true,
+	    // lineNumbers : true,
+	    theme
+	};
+
+	/*================================================================*/
+
+	class CodeMirrorAssembler extends _htmlmodule.HTMLAssembler {
+	    constructor(init) {
+	        super(init);
+	        this.createElement('div', (0, _htmlmodule.NodeInit)(init));
+	    }
+	    set value(value) {
+	        this.mirror.setValue(value && value.toString());
+	    }
+	    get value() {
+	        return this.mirror.getValue();
+	    }
+	    createElement(tagName, init) {
+	        super.createElement(tagName);
+	        this.createMirror(init.options);
+	        this.init = init;
+	    }
+	    createMirror(options) {
+	        return this.mirror = new _codemirror2.default(this.element, options);
+	    }
+	}
+
+	exports.CodeMirrorAssembler = CodeMirrorAssembler;
+	Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable: true, value: null });
+
+	const codemirror = (init = {}) => new CodeMirrorAssembler(init);
+
+	/*================================================================*/
+
+	const codebox = exports.codebox = (init = {}) => {
+	    if (!init.options) init.options = CODE_BOX_DEFAULTS;
+	    return codemirror(init);
+	};
+
+	const markupbox = exports.markupbox = (init = {}) => {
+	    if (!init.options) init.options = MARKUP_BOX_DEFAULTS;
+	    return codemirror(init);
+	};
 
 /***/ },
-/* 18 */
+/* 25 */
 /*!****************************************!*\
   !*** ./~/codemirror/lib/codemirror.js ***!
   \****************************************/
@@ -2572,7 +2500,7 @@
 	CodeMirror.version="5.19.0";return CodeMirror;});
 
 /***/ },
-/* 19 */
+/* 26 */
 /*!****************************************************!*\
   !*** ./~/codemirror/mode/javascript/javascript.js ***!
   \****************************************************/
@@ -2585,7 +2513,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3364,7 +3292,7 @@
 	});
 
 /***/ },
-/* 20 */
+/* 27 */
 /*!**************************************************!*\
   !*** ./~/codemirror/mode/htmlmixed/htmlmixed.js ***!
   \**************************************************/
@@ -3377,7 +3305,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18), __webpack_require__(/*! ../xml/xml */ 21), __webpack_require__(/*! ../javascript/javascript */ 19), __webpack_require__(/*! ../css/css */ 22));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25), __webpack_require__(/*! ../xml/xml */ 28), __webpack_require__(/*! ../javascript/javascript */ 26), __webpack_require__(/*! ../css/css */ 29));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3510,7 +3438,7 @@
 	});
 
 /***/ },
-/* 21 */
+/* 28 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/xml/xml.js ***!
   \**************************************/
@@ -3523,7 +3451,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -3894,7 +3822,7 @@
 	});
 
 /***/ },
-/* 22 */
+/* 29 */
 /*!**************************************!*\
   !*** ./~/codemirror/mode/css/css.js ***!
   \**************************************/
@@ -3907,7 +3835,7 @@
 
 	(function (mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(/*! ../../lib/codemirror */ 18));else if (typeof define == "function" && define.amd) // AMD
+	    mod(__webpack_require__(/*! ../../lib/codemirror */ 25));else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);else // Plain browser env
 	    mod(CodeMirror);
 	})(function (CodeMirror) {
@@ -4457,7 +4385,7 @@
 	});
 
 /***/ },
-/* 23 */
+/* 30 */
 /*!*****************************************!*\
   !*** ./~/codemirror/lib/codemirror.css ***!
   \*****************************************/
@@ -4466,10 +4394,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 24);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./codemirror.css */ 31);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 12)(content, {});
+	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4486,13 +4414,13 @@
 	}
 
 /***/ },
-/* 24 */
+/* 31 */
 /*!***************************************************************************!*\
   !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/lib/codemirror.css ***!
   \***************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 11)();
+	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 12)();
 	// imports
 
 
@@ -4503,26 +4431,26 @@
 
 
 /***/ },
-/* 25 */
-/*!**************************************!*\
-  !*** ./~/codemirror/theme/night.css ***!
-  \**************************************/
+/* 32 */
+/*!*****************************************!*\
+  !*** ./~/codemirror/theme/rubyblue.css ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./night.css */ 26);
+	var content = __webpack_require__(/*! !./../../css-loader!./../../postcss-loader!./rubyblue.css */ 33);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 12)(content, {});
+	var update = __webpack_require__(/*! ./../../style-loader/addStyles.js */ 13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../css-loader/index.js!./../../postcss-loader/index.js!./night.css", function() {
-				var newContent = require("!!./../../css-loader/index.js!./../../postcss-loader/index.js!./night.css");
+			module.hot.accept("!!./../../css-loader/index.js!./../../postcss-loader/index.js!./rubyblue.css", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../postcss-loader/index.js!./rubyblue.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4532,164 +4460,24 @@
 	}
 
 /***/ },
-/* 26 */
-/*!************************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/night.css ***!
-  \************************************************************************/
+/* 33 */
+/*!***************************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./~/codemirror/theme/rubyblue.css ***!
+  \***************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 11)();
+	exports = module.exports = __webpack_require__(/*! ./../../css-loader/lib/css-base.js */ 12)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "/* Loosely based on the Midnight Textmate theme */\n\n.cm-s-night.CodeMirror { background: #0a001f; color: #f8f8f8; }\n.cm-s-night div.CodeMirror-selected { background: #447; }\n.cm-s-night .CodeMirror-line::-moz-selection, .cm-s-night .CodeMirror-line > span::-moz-selection, .cm-s-night .CodeMirror-line > span > span::-moz-selection { background: rgba(68, 68, 119, .99); }\n.cm-s-night .CodeMirror-line::selection, .cm-s-night .CodeMirror-line > span::selection, .cm-s-night .CodeMirror-line > span > span::selection { background: rgba(68, 68, 119, .99); }\n.cm-s-night .CodeMirror-line::-moz-selection, .cm-s-night .CodeMirror-line > span::-moz-selection, .cm-s-night .CodeMirror-line > span > span::-moz-selection { background: rgba(68, 68, 119, .99); }\n.cm-s-night .CodeMirror-gutters { background: #0a001f; border-right: 1px solid #aaa; }\n.cm-s-night .CodeMirror-guttermarker { color: white; }\n.cm-s-night .CodeMirror-guttermarker-subtle { color: #bbb; }\n.cm-s-night .CodeMirror-linenumber { color: #f8f8f8; }\n.cm-s-night .CodeMirror-cursor { border-left: 1px solid white; }\n\n.cm-s-night span.cm-comment { color: #8900d1; }\n.cm-s-night span.cm-atom { color: #845dc4; }\n.cm-s-night span.cm-number, .cm-s-night span.cm-attribute { color: #ffd500; }\n.cm-s-night span.cm-keyword { color: #599eff; }\n.cm-s-night span.cm-string { color: #37f14a; }\n.cm-s-night span.cm-meta { color: #7678e2; }\n.cm-s-night span.cm-variable-2, .cm-s-night span.cm-tag { color: #99b2ff; }\n.cm-s-night span.cm-variable-3, .cm-s-night span.cm-def { color: white; }\n.cm-s-night span.cm-bracket { color: #8da6ce; }\n.cm-s-night span.cm-builtin, .cm-s-night span.cm-special { color: #ff9e59; }\n.cm-s-night span.cm-link { color: #845dc4; }\n.cm-s-night span.cm-error { color: #9d1e15; }\n\n.cm-s-night .CodeMirror-activeline-background { background: #1C005A; }\n.cm-s-night .CodeMirror-matchingbracket { outline:1px solid grey; color:white !important; }\n", ""]);
+	exports.push([module.id, ".cm-s-rubyblue.CodeMirror { background: #112435; color: white; }\n.cm-s-rubyblue div.CodeMirror-selected { background: #38566F; }\n.cm-s-rubyblue .CodeMirror-line::-moz-selection, .cm-s-rubyblue .CodeMirror-line > span::-moz-selection, .cm-s-rubyblue .CodeMirror-line > span > span::-moz-selection { background: rgba(56, 86, 111, 0.99); }\n.cm-s-rubyblue .CodeMirror-line::selection, .cm-s-rubyblue .CodeMirror-line > span::selection, .cm-s-rubyblue .CodeMirror-line > span > span::selection { background: rgba(56, 86, 111, 0.99); }\n.cm-s-rubyblue .CodeMirror-line::-moz-selection, .cm-s-rubyblue .CodeMirror-line > span::-moz-selection, .cm-s-rubyblue .CodeMirror-line > span > span::-moz-selection { background: rgba(56, 86, 111, 0.99); }\n.cm-s-rubyblue .CodeMirror-gutters { background: #1F4661; border-right: 7px solid #3E7087; }\n.cm-s-rubyblue .CodeMirror-guttermarker { color: white; }\n.cm-s-rubyblue .CodeMirror-guttermarker-subtle { color: #3E7087; }\n.cm-s-rubyblue .CodeMirror-linenumber { color: white; }\n.cm-s-rubyblue .CodeMirror-cursor { border-left: 1px solid white; }\n\n.cm-s-rubyblue span.cm-comment { color: #999; font-style:italic; line-height: 1em; }\n.cm-s-rubyblue span.cm-atom { color: #F4C20B; }\n.cm-s-rubyblue span.cm-number, .cm-s-rubyblue span.cm-attribute { color: #82C6E0; }\n.cm-s-rubyblue span.cm-keyword { color: #F0F; }\n.cm-s-rubyblue span.cm-string { color: #F08047; }\n.cm-s-rubyblue span.cm-meta { color: #F0F; }\n.cm-s-rubyblue span.cm-variable-2, .cm-s-rubyblue span.cm-tag { color: #7BD827; }\n.cm-s-rubyblue span.cm-variable-3, .cm-s-rubyblue span.cm-def { color: white; }\n.cm-s-rubyblue span.cm-bracket { color: #F0F; }\n.cm-s-rubyblue span.cm-link { color: #F4C20B; }\n.cm-s-rubyblue span.CodeMirror-matchingbracket { color:#F0F !important; }\n.cm-s-rubyblue span.cm-builtin, .cm-s-rubyblue span.cm-special { color: #FF9D00; }\n.cm-s-rubyblue span.cm-error { color: #AF2018; }\n\n.cm-s-rubyblue .CodeMirror-activeline-background { background: #173047; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 27 */
-/*!*************************************!*\
-  !*** ./util/util.htmlserializer.js ***!
-  \*************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	// todo refactoring => DOMSerializer
-
-	const map = Array.prototype.map;
-	const assign = Object.assign;
-
-	const epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
-	const emptyTagSet = epmtyTagList.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
-
-	const isEmptyTag = node => {
-	    if (node.constructor === Element && !node.hasChildNodes()) return true;
-	    return Boolean(emptyTagSet[node.tagName]);
-	};
-
-	// todo comment support
-	class HTMLSerializer {
-	    constructor(options = {
-	        indent: '    ',
-	        lineBreak: '\n',
-	        level: 0
-	    }) {
-	        assign(this, options);
-	    }
-	    serializeToString(node) {
-	        let {
-	            tagName,
-	            attributes,
-	            childNodes,
-	            innerHTML,
-	            textContent
-	        } = node;
-	        const lineBreak = this.lineBreak;
-	        let indent = this.indent.repeat(this.level);
-	        let result = indent;
-	        if (tagName) {
-	            tagName = tagName.toLowerCase();
-	            result += '<' + tagName;
-	            const hasAttributes = node.hasAttributes();
-	            if (hasAttributes) {
-	                const attrset = map.call(attributes, ({ name, value }) => ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`);
-	                result += attrset.join('');
-	            }
-	            const hasEndTag = !isEmptyTag(node);
-	            const selfClose = node.constructor === Element ? '/>' : '>';
-	            result += hasEndTag ? '>' : selfClose;
-	            if (hasEndTag && node.hasChildNodes()) {
-	                const isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
-	                if (!hasAttributes && isSingleText) {
-	                    result += node.innerHTML;
-	                    indent = '';
-	                } else {
-	                    this.level++;
-	                    const children = map.call(childNodes, this.serializeToString, this);
-	                    this.level--;
-	                    result += lineBreak + children.join('');
-	                }
-	            } else indent = '';
-	            if (hasEndTag) result += indent + `</${ tagName }>`;
-	        } else {
-	            result += innerHTML || textContent;
-	        }
-	        result += lineBreak;
-	        return result;
-	    }
-	}
-	exports.HTMLSerializer = HTMLSerializer;
-
-/***/ },
-/* 28 */
-/*!******************************!*\
-  !*** ./docs/lib/replcase.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.testcase = exports.importfrom = exports.exportdefault = exports.globaldefined = undefined;
-
-	var _testGlobaldefined = __webpack_require__(/*! raw!./test/test-globaldefined.rawjs */ 29);
-
-	var _testGlobaldefined2 = _interopRequireDefault(_testGlobaldefined);
-
-	var _testExportdefault = __webpack_require__(/*! raw!./test/test-exportdefault.rawjs */ 30);
-
-	var _testExportdefault2 = _interopRequireDefault(_testExportdefault);
-
-	var _testImportfrom = __webpack_require__(/*! raw!./test/test-importfrom.rawjs */ 31);
-
-	var _testImportfrom2 = _interopRequireDefault(_testImportfrom);
-
-	var _testcase = __webpack_require__(/*! ./testcase */ 32);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.globaldefined = _testGlobaldefined2.default;
-	exports.exportdefault = _testExportdefault2.default;
-	exports.importfrom = _testImportfrom2.default;
-	exports.testcase = _testcase.testcase;
-
-/***/ },
-/* 29 */
-/*!***************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-globaldefined.rawjs ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "form({\n    action : '//yandex.com/search',\n    target : '_blank',\n    children : [\n        label([\n            img({\n                src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n                alt : 'Yandex',\n                width : 50\n            }),\n            br(),\n            input({ type : 'search', name : 'text' }),\n            ' '\n        ]),\n        button('Find')\n    ]\n})\n"
-
-/***/ },
-/* 30 */
-/*!***************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-exportdefault.rawjs ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "export default ({ html, head, body, meta, title }) => html({\n    lang : 'en',\n    children : [\n        head([\n            /**\n             * https://html.spec.whatwg.org/#dom-meta-name\n             */\n            meta({\n                /**\n                 * charset attribute has no IDL reflection,\n                 * so use `attrset` to define it\n                 */\n                attrset : { charset : 'utf-8' }\n            }),\n            title('!!! boilerplate !!!')\n        ]),\n        body('Hello world!')\n    ]\n});\n"
-
-/***/ },
-/* 31 */
-/*!************************************************************!*\
-  !*** ./~/raw-loader!./docs/lib/test/test-importfrom.rawjs ***!
-  \************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "import { form, label, input, button, img, br } from 'htmlmodule';\n\nconst websearch = ({ target = '_blank', action, name }) =>\n    form({\n        action,\n        target,\n        children : [\n            label([\n                yandexlogo,\n                br(),\n                input({ type : 'search', name }),\n                ' '\n            ]),\n            button('Find')\n        ]\n    });\n\nconst yandexlogo = img({\n    src : '//yastatic.net/www/_/Q/r/sx-Y7-1azG3UMxG55avAdgwbM.svg',\n    alt : 'Yandex',\n    width : 50\n});\n\nconst yandex = websearch({\n    action : '//yandex.com/search',\n    name : 'text',\n});\n\nexport default yandex;\n"
-
-/***/ },
-/* 32 */
+/* 34 */
 /*!******************************!*\
   !*** ./docs/lib/testcase.js ***!
   \******************************/
@@ -4702,31 +4490,45 @@
 	});
 	exports.testcase = undefined;
 
-	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 33);
+	var _testTestcase = __webpack_require__(/*! raw!./test/test-testcase.rawjs */ 35);
 
 	var _testTestcase2 = _interopRequireDefault(_testTestcase);
 
+	var _replsite = __webpack_require__(/*! raw!./replsite.rawjs */ 36);
+
+	var _replsite2 = _interopRequireDefault(_replsite);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const srcChunks = _testTestcase2.default.split('\n\n');
+	const chunks = _testTestcase2.default.split('\n\n').map(src => src.replace(/^\s{4}/gm, '').replace(/,$/, '') + '');
 
-	srcChunks.shift();
-	srcChunks.pop();
+	chunks.shift();
+	chunks.pop();
 
-	const testcase = exports.testcase = srcChunks.map(src => {
-	    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
+	const replfn = new Function('return ' + _replsite2.default);
+
+	const testcase = exports.testcase = [{ src: _replsite2.default, fn: replfn }, ...chunks.map(src => {
 	    const fn = new Function('return ' + src);
 	    return { src, fn: fn() };
-	});
+	})];
 
 /***/ },
-/* 33 */
+/* 35 */
 /*!**********************************************************!*\
   !*** ./~/raw-loader!./docs/lib/test/test-testcase.rawjs ***!
   \**********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "/**\n * !!! this file requires the additional syntax restrictions !!!\n */\nexport default [\n\n    ({ fieldset, legend, input }) =>\n        fieldset([\n            legend('Authorization'),\n            input({\n                placeholder : 'login',\n                style : { marginRight : '5px' }\n            }),\n            input({\n                type : 'password',\n                placeholder : 'password'\n            })\n        ]),\n\n    ({ article, h4, img, audio, video }) =>\n        article({\n            title : 'Media',\n            children : [\n                h4('Image media'),\n                img({\n                    src : 'http://bit.ly/2e9kIdg',\n                    alt : 'Crazy PiPi!'\n                }),\n                h4('Audio media'),\n                audio({\n                    controls : true,\n                    src : 'http://bit.ly/2e2HCo5'\n                }),\n                h4('Video media'),\n                video({\n                    controls : true,\n                    width : '200',\n                    src : 'http://bit.ly/2ecsnvQ'\n                })\n            ]\n        }),\n\n    ({ div, ul, li, bdi, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div([\n            div([\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]),\n            ul([\n                li([\n                    'User ',\n                    bdi('jcranmer'),\n                    ': 12 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('hober'),\n                    ': 5 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('إيان'),\n                    ': 3 posts.'\n                ])\n            ])\n        ])\n    },\n\n    ({ form, h3, button, label, input, output, div }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height : '160px',\n                width : '300px'\n            },\n            children : [\n                h3('Event handlers'),\n                div([\n                    button({\n                        onclick : ({\n                            type,\n                            target : { tagName },\n                            constructor : { name }\n                        }) => alert([tagName, type, name, 'handler!'].join(' ')),\n                        textContent : 'Show me alert, please...'\n                    }),\n                    input({ type : 'checkbox', children : 'no alerts!' })\n                ]),\n                button({\n                    onfocus : ({ target }) => target.textContent = 'Focused!',\n                    onblur : ({ target }) => target.textContent = 'Focus wait...',\n                    textContent : 'Focus wait...'\n                }),\n                label([\n                    input({\n                        placeholder : 'text input char counter',\n                        oninput : ({ target }) => {\n                            target.nextElementSibling.value = target.value.length;\n                        }\n                    }),\n                    output({ title : 'entered char count', value : '0' })\n                ])\n            ]\n        }),\n\n    ({ footer, address, small }) =>\n        footer([\n            address('vv.aristov@gmail.com'),\n            small('@ All rights free')\n        ]),\n\n    ({ main, sup, sub, i, strong }) =>\n        main([\n            'Here comes ',\n            sup('supertext'),\n            ' and ',\n            sub('subtext'),\n            '. Later they are followed by ',\n            i('alternative voice'),\n            ' and ',\n            strong('important!')\n        ]),\n\n    ({ dl, dt, dd, abbr, ins, del, b, s, em }) =>\n        dl([\n            dt('Abbreviations'),\n            dd([\n                abbr({\n                    title : 'Extensible markup language',\n                    children : 'XML' }),\n                abbr({\n                    title : 'Scalable vector graphics',\n                    children : 'SVG' }),\n                abbr({\n                    title : 'Interface definition language',\n                    children : 'IDL' })\n            ]),\n            dt('Edits'),\n            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),\n            dt('Keywords'),\n            dd([b('var'), b('function'), b('export'), b('const')]),\n            dt('Other'),\n            dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n        ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address }) =>\n        article({\n            className : 'vcard',\n            children : [\n                h2({\n                    className : 'fn',\n                    children : 'Vyacheslav Aristov'\n                }),\n                address({\n                    className : 'email',\n                    children : 'vv.aristov@gmail.com'\n                })\n            ]\n        }),\n\n    ({ pre }) => pre(`\n_________________________________________________________\n____________/          _/                      _/________\n___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________\n__________/    _/    _/      _/    _/    _/  _/__________\n_________/    _/    _/      _/    _/    _/  _/___________\n________/    _/      _/_/  _/    _/    _/  _/____________\n_________________________________________________________\n`),\n\n    ({ pre, style, script }) => pre([\n        script(`\n            Object.assign(\n                document.currentScript.style, {\n                    display: 'block',\n                    margin: '20px',\n                    border: '1px solid #ccc',\n                    color: 'blue',\n                    font: 'bold 16px monospace'\n                })`),\n        style({\n            id : 'greenstyle',\n            children : `\n                #greenstyle {\n                    display: block;\n                    margin: 20px;\n                    color: green;\n                    border: 1px solid #ccc;\n                    font: bold 16px monospace;\n                }`\n        }),\n    ]),\n\n    ({ form, label, input, textarea, span }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height: '200px'\n            },\n            children : [\n                label([\n                    'Text input ',\n                    input({ placeholder : 'Fill me' })\n                ]),\n                label([\n                    input({ type : 'checkbox' }),\n                    ' Simple checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', checked : true }),\n                    ' Checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', attrset : { checked : '' } }),\n                    ' Initially checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', indeterminate : true }),\n                    ' Indeterminate checkbox'\n                ]),\n                span([\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'html'\n                        }),\n                        ' HTML '\n                    ]),\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'xml'\n                        }),\n                        ' XML'\n                    ])\n                ]),\n                input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n            ]\n        }),\n\n    ({ form, label, select, option, br }) =>\n        form([\n            label([\n                'Select technology ',\n                select([\n                    option('XML'),\n                    option('HTML'),\n                    option({ selected : true, textContent : 'WAI-ARIA' }),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ])\n            ]),\n            br(),\n            label([\n                'Select technology stack',\n                br(),\n                select({\n                    multiple : true,\n                    children : [\n                        option('XML'),\n                        option({\n                            attrset : { selected : '' },\n                            textContent : 'HTML'\n                        }),\n                        option('WAI-ARIA'),\n                        option('RDFS'),\n                        option('OWL'),\n                        option('SGML'),\n                        option('CSS')\n                    ]})\n            ]),\n        ]),\n\n    ({ form, input, button }) =>\n        form({\n            style : { whiteSpace : 'nowrap' },\n            children : [\n                input({\n                    name : 'query',\n                    placeholder : 'type your request',\n                    type : 'search',\n                    style : { marginRight : '5px' }\n                }),\n                button('search')\n            ]\n        }),\n\n    ({ iframe, dialog, p, button }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>\n        table([\n            caption('relative concept'),\n            thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n            tbody([\n                [code('HTMLElement'), code('roletype')],\n                [code('hidden'), code('aria-hidden')],\n                [code('title'), code('aria-label')],\n                [code('—'), code('aria-pressed')],\n                [code('checked'), code('aria-checked')],\n                [code('selected'), code('aria-selected')],\n                [code('disabled'), code('aria-disabled')],\n                [code('button'), code('button')],\n                [code('a, link, area'), code('link')],\n                [code('input'), code('textbox')],\n                [code('combobox'), code('select')],\n                [code('table'), code('table')]\n            ].map(([xml, html]) => tr([ td(xml), td(html) ])))\n        ]),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>\n        hgroup([\n            h1('First level heading'),\n            h2('Second level heading'),\n            h3('Third level heading'),\n            h4('Fourth level heding'),\n            h5('Fifth level heding'),\n            h6('Sixth level heding in group')\n        ]),\n\n    ({ blockquote }) =>\n        blockquote({\n            cite : 'https://html.spec.whatwg.org/' +\n                'multipage/semantics.html#the-blockquote-element',\n            children : 'The blockquote element represents ' +\n                'a section that is quoted from another source.'\n        }),\n\n    ({ article, section, ruby, rt, rp }) =>\n        article({\n            title : 'Ruby annotations',\n            children : [\n                section([\n                    ruby(['君', rt('くん')]),\n                    ruby(['子', rt('し')]),\n                    'は',\n                    ruby(['和', rt('わ')]),\n                    'して',\n                    ruby(['同', rt('どう')]),\n                    'ぜず。'\n                ]),\n                section(ruby([\n                    '漢',\n                    rp(' ('),\n                    rt('かん'),\n                    rp(')'),\n                    '字',\n                    rp(' ('),\n                    rt('じ'),\n                    rp(')')\n                ]))\n            ]\n        }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) =>\n        article({\n            title : 'Various lists',\n            children : [\n                ul([\n                    li('Node'),\n                    li('Text'),\n                    li('Element'),\n                    li('Comment')\n                ]),\n                ol([\n                    li('Amsterdam'),\n                    li('New York'),\n                    li('Moscow'),\n                    li('Moscow')\n                ]),\n                dl([\n                    dt('DOM'),\n                    dd('Document object model'),\n                    dt('XML'),\n                    dd('Extensible markup language'),\n                    dt('HTML'),\n                    dd('Hyper text markup language'),\n                    dt('ARIAML'),\n                    dd('Accessible rich internet applications markup language')\n                ])\n            ]\n        }),\n\n    ({ progress }) => progress({ max : '100', value : '70' })\n\n];\n"
+	module.exports = "/**\n * !!! THIS FILE REQUIRES THE ADDITIONAL SYNTAX RESTRICTIONS !!!\n */\nexport default [\n\n    ({ fieldset, legend, button, label, input, output, div }) => {\n        const alertbutton = button({\n            onclick : ({\n                type,\n                target : { tagName },\n                constructor : { name }\n            }) => alert([tagName, type, name, 'handler!'].join(' ')),\n            textContent : 'Show me alert, please...'\n        });\n        const noalertbox = label([\n            input({\n                type : 'checkbox',\n                onchange : ({ target }) => {\n                    alertbutton.disabled = target.checked;\n                },\n            }),\n            ' no alerts!'\n        ]);\n        return fieldset({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height : '260px',\n                width : '300px'\n            },\n            children : [\n                legend('Event handlers'),\n                div([alertbutton, noalertbox]),\n                button({\n                    onfocus : ({ target }) => target.textContent = 'Focused!',\n                    onblur : ({ target }) => target.textContent = 'Focus wait...',\n                    textContent : 'Focus wait...'\n                }),\n                label([\n                    input({\n                        placeholder : 'text input char counter',\n                        oninput : ({ target }) => {\n                            target.nextElementSibling.value = target.value.length;\n                        }\n                    }),\n                    output({ title : 'entered char count', value : '0' })\n                ])\n            ]\n        })\n    },\n\n    ({ style, dl, dt, dd, abbr, ins, del, b, s, em, code }) =>\n        dl([\n            style('* { font-size: 30px }'),\n            dt('Abbreviations'),\n            dd([\n                abbr({\n                    title : 'Extensible markup language',\n                    children : 'XML'\n                }),\n                ' ',\n                abbr({\n                    title : 'Scalable vector graphics',\n                    children : 'SVG'\n                }),\n                ' ',\n                abbr({\n                    title : 'Interface definition language',\n                    children : 'IDL'\n                })\n            ]),\n            dt('Edits'),\n            dd([ins('Inserted'), ' and ', del('deleted'), ' text']),\n            dt('Code keywords'),\n            dd(code([b('var'), ' ', b('function'), ' ', b('export'), ' ', b('const')])),\n            dt('Other'),\n            dd([s('don\\'t stroke me!'), ' + ', em('emphasize!')])\n        ]),\n\n    ({ form, label, img, br, input, button }) =>\n        form({\n            action : 'https://yandex.ru/search',\n            target : '_blank',\n            children : [\n                label([\n                    img({\n                        src : 'http://bit.ly/2dgU2dO',\n                        alt : 'Яндекс',\n                        width : 50\n                    }),\n                    br(),\n                    input({\n                        type : 'search',\n                        name : 'text'\n                    }),\n                    ' '\n                ]),\n                button('Найти')\n            ]\n        }),\n\n    ({ fieldset, legend, input }) =>\n        fieldset([\n            legend('Authorization'),\n            input({\n                placeholder : 'login',\n                style : { marginRight : '5px' }\n            }),\n            input({\n                type : 'password',\n                placeholder : 'password'\n            })\n        ]),\n\n    ({ article, h4, img, audio, video }) =>\n        article({\n            title : 'Media',\n            children : [\n                h4('Image media'),\n                img({\n                    src : 'http://bit.ly/2e9kIdg',\n                    alt : 'Crazy PiPi!',\n                    width: 100\n                }),\n                h4('Audio media'),\n                audio({\n                    controls : true,\n                    src : 'http://bit.ly/2e2HCo5'\n                }),\n                h4('Video media'),\n                video({\n                    controls : true,\n                    width : '200',\n                    src : 'http://bit.ly/2ecsnvQ'\n                })\n            ]\n        }),\n\n    ({ div, ul, li, bdi, bdo }) => {\n        const children = 'АРОЗАУПАЛА';\n        return div([\n            div([\n                children,\n                'Н',\n                bdo({ dir : 'rtl', children })\n            ]),\n            ul([\n                li([\n                    'User ',\n                    bdi('jcranmer'),\n                    ': 12 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('hober'),\n                    ': 5 posts.'\n                ]),\n                li([\n                    'User ',\n                    bdi('إيان'),\n                    ': 3 posts.'\n                ])\n            ])\n        ])\n    },\n\n    ({ footer, address, small }) =>\n        footer([\n            address('vv.aristov@gmail.com'),\n            small('@ All rights free')\n        ]),\n\n    ({ main, sup, sub, i, strong }) =>\n        main([\n            'Here comes ',\n            sup('supertext'),\n            ' and ',\n            sub('subtext'),\n            '. Later they are followed by ',\n            i('alternative voice'),\n            ' and ',\n            strong('important!')\n        ]),\n\n    ({ aside }) => aside('Your advert may be here!'),\n\n    ({ article, h2, address, a }) =>\n        article({\n            className : 'vcard',\n            children : [\n                h2({\n                    className : 'fn',\n                    children : 'Vyacheslav Aristov'\n                }),\n                address({\n                    className : 'email',\n                    children : a({\n                        href : 'mailto:vv.aristov@gmail.com',\n                        children : 'vv.aristov@gmail.com'\n                    })\n                })\n            ]\n        }),\n\n    ({ pre }) => pre(`\n_________________________________________________________\n____________/          _/                      _/________\n___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________\n__________/    _/    _/      _/    _/    _/  _/__________\n_________/    _/    _/      _/    _/    _/  _/___________\n________/    _/      _/_/  _/    _/    _/  _/____________\n_________________________________________________________\n`),\n\n    ({ pre, style, script }) => pre([\n        script(`\n            Object.assign(\n                document.currentScript.style, {\n                    display: 'block',\n                    margin: '20px',\n                    border: '1px solid #ccc',\n                    color: 'blue',\n                    font: 'bold 16px monospace'\n                })`),\n        style({\n            id : 'greenstyle',\n            children : `\n                #greenstyle {\n                    display: block;\n                    margin: 20px;\n                    color: green;\n                    border: 1px solid #ccc;\n                    font: bold 16px monospace;\n                }`\n        }),\n    ]),\n\n    ({ form, label, input, textarea, span }) =>\n        form({\n            style : {\n                display : 'flex',\n                flexDirection : 'column',\n                justifyContent : 'space-between',\n                height: '200px'\n            },\n            children : [\n                label([\n                    'Text input ',\n                    input({ placeholder : 'Fill me' })\n                ]),\n                label([\n                    input({ type : 'checkbox' }),\n                    ' Simple checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', checked : true }),\n                    ' Checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', attrset : { checked : '' } }),\n                    ' Initially checked checkbox'\n                ]),\n                label([\n                    input({ type : 'checkbox', indeterminate : true }),\n                    ' Indeterminate checkbox'\n                ]),\n                span([\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'html'\n                        }),\n                        ' HTML '\n                    ]),\n                    label([\n                        input({\n                            type : 'radio',\n                            name : 'chooseproglangradio',\n                            value : 'xml'\n                        }),\n                        ' XML'\n                    ])\n                ]),\n                input({ type : 'reset', style : { margin : '0 auto 0 0' } })\n            ]\n        }),\n\n    ({ form, label, select, option, br }) =>\n        form([\n            label([\n                'Select technology ',\n                select([\n                    option('XML'),\n                    option('HTML'),\n                    option({ selected : true, textContent : 'WAI-ARIA' }),\n                    option('RDFS'),\n                    option('OWL'),\n                    option('SGML'),\n                    option('CSS')\n                ])\n            ]),\n            br(),\n            label([\n                'Select technology stack',\n                br(),\n                select({\n                    multiple : true,\n                    children : [\n                        option('XML'),\n                        option({\n                            attrset : { selected : '' },\n                            textContent : 'HTML'\n                        }),\n                        option('WAI-ARIA'),\n                        option('RDFS'),\n                        option('OWL'),\n                        option('SGML'),\n                        option('CSS')\n                    ]})\n            ]),\n        ]),\n\n    ({ form, input, button }) =>\n        form({\n            style : { whiteSpace : 'nowrap' },\n            children : [\n                input({\n                    name : 'query',\n                    placeholder : 'type your request',\n                    type : 'search',\n                    style : { marginRight : '5px' }\n                }),\n                button('search')\n            ]\n        }),\n\n    ({ iframe, dialog, p, button }) => {\n        const onclick = 'event.target.parentElement.close()';\n        const srcdom = dialog([\n            p('Close dialog?'),\n            button({\n                attrset : { onclick },\n                children : 'Ok'\n            }),\n            ' ',\n            button('Cancel')\n        ]);\n        const context = iframe({\n            width: '100%',\n            height: '50%',\n            style : { boxSizing : 'border-box' },\n            onmouseover : () => {\n                context.contentDocument.querySelector('dialog').showModal()\n            },\n            srcdoc : srcdom.outerHTML\n        });\n        return context;\n    },\n\n    ({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>\n        table({\n            style : { width : '100%', textAlign : 'center' },\n            children : [\n                caption('Relative concept'),\n                thead(tr([ th(abbr('HTML')), th(abbr('ARIA')) ])),\n                tbody([\n                    ['HTMLElement', 'roletype'],\n                    ['hidden', 'aria-hidden'],\n                    ['title', 'aria-label'],\n                    ['—', 'aria-pressed'],\n                    ['checked', 'aria-checked'],\n                    ['selected', 'aria-selected'],\n                    ['disabled', 'aria-disabled'],\n                    ['button', 'button'],\n                    ['a, link, area', 'link'],\n                    ['input', 'textbox'],\n                    ['combobox', 'select'],\n                    ['table', 'table']\n                ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))\n            ]\n        }),\n\n    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>\n        hgroup([\n            h1('First level heading'),\n            h2('Second level heading'),\n            h3('Third level heading'),\n            h4('Fourth level heding'),\n            h5('Fifth level heding'),\n            h6('Sixth level heding in group')\n        ]),\n\n    ({ blockquote }) =>\n        blockquote({\n            cite : 'https://html.spec.whatwg.org/' +\n                'multipage/semantics.html#the-blockquote-element',\n            children : 'The blockquote element represents ' +\n                'a section that is quoted from another source.'\n        }),\n\n    ({ article, section, ruby, rt, rp }) =>\n        article({\n            title : 'Ruby annotations',\n            children : [\n                section([\n                    ruby(['君', rt('くん')]),\n                    ruby(['子', rt('し')]),\n                    'は',\n                    ruby(['和', rt('わ')]),\n                    'して',\n                    ruby(['同', rt('どう')]),\n                    'ぜず。'\n                ]),\n                section(ruby([\n                    '漢',\n                    rp(' ('),\n                    rt('かん'),\n                    rp(')'),\n                    '字',\n                    rp(' ('),\n                    rt('じ'),\n                    rp(')')\n                ]))\n            ]\n        }),\n\n    ({ article, ul, li, ol, dl, dt, dd }) =>\n        article({\n            title : 'Various lists',\n            children : [\n                ul([\n                    li('Node'),\n                    li('Text'),\n                    li('Element'),\n                    li('Comment')\n                ]),\n                ol([\n                    li('Amsterdam'),\n                    li('New York'),\n                    li('Moscow'),\n                    li('Moscow')\n                ]),\n                dl([\n                    dt('DOM'),\n                    dd('Document object model'),\n                    dt('XML'),\n                    dd('Extensible markup language'),\n                    dt('HTML'),\n                    dd('Hyper text markup language'),\n                    dt('ARIAML'),\n                    dd('Accessible rich internet applications markup language')\n                ])\n            ]\n        }),\n\n    ({ progress }) => progress({ max : '100', value : '70' }),\n\n    htmlmodule => {} // the empty snippet\n\n];\n"
+
+/***/ },
+/* 36 */
+/*!************************************************!*\
+  !*** ./~/raw-loader!./docs/lib/replsite.rawjs ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "htmlmodule => {\n    const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;\n\n    return section([\n        h1({\n            style : { fontFamily : '' },\n            children : 'Welcome!'\n        }),\n        p([\n            'You are inside the ',\n            abbr({\n                title : 'read-eval-print-loop',\n                children : 'REPL'\n            }),\n            '-machine. It was instantly assembled by the ',\n            a({\n                title : 'DOM assembler library',\n                href : 'https://npmjs.org/package/htmlmodule',\n                rel : 'external',\n                children : 'htmlmodule'\n            }),\n            ' on a page load.'\n        ]),\n        p([\n            'You may focus the left code editor and change ',\n            'the source code of the document that you are reading now.'\n        ]),\n        nav([\n            p([\n                'There are some usage code examples provided: ',\n                'try the ',\n                a({\n                    href : '#replbuttonprev',\n                    target : '_parent',\n                    rel : 'prev',\n                    children : 'prev'\n                }),\n                ' and the ',\n                a({\n                    href : '#replbuttonnext',\n                    target : '_parent',\n                    rel : 'next',\n                    children : 'next'\n                }),\n                ' buttons on the bottom of your screen.'\n            ]),\n            p([\n                'Use the ',\n                a({\n                    href : '#markuptoggle',\n                    target : '_parent',\n                    rel : 'alternate',\n                    children : 'markup'\n                }),\n                ' summary button to toggle ',\n                abbr({\n                    title : 'Hyper text markup language',\n                    children : 'HTML'\n                }),\n                '-markup details. It presents a stringified ',\n                abbr({\n                    title : 'Document object model',\n                    children : 'DOM'\n                }),\n                ' of the evaluation result.'\n            ])\n        ]),\n        p([\n            'If you wanna more details, take a look at the:'\n        ]),\n        nav(ul([\n            li(a({\n                href : 'spec.html',\n                target : '_blank',\n                children : 'Spec suite'\n            })),\n            li(a({\n                href : 'api/',\n                target : '_blank',\n                rel : 'help',\n                children : [abbr({\n                    title : 'Application programming interface',\n                    children : 'API'\n                }), ' documentation']\n            })),\n            li(a({\n                href : 'https://github.com/aristov/htmlmodule',\n                target : '_blank',\n                rel : 'external',\n                children : 'Github repo'\n            })),\n        ])),\n        p('Enjoy!'),\n        style([\n            'body { font: 17px sans-serif }',\n            'a[href][rel~=external]:not(:active) { color: #040 }',\n            'a[href][rel~=help]:not(:active) { cursor: help }'\n        ])\n    ]);\n}\n"
 
 /***/ }
 /******/ ]);

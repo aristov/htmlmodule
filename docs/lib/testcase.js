@@ -1,12 +1,18 @@
-import rawSrc from 'raw!./test/test-testcase.rawjs';
+import test from 'raw!./test/test-testcase.rawjs';
+import replsite from 'raw!./replsite.rawjs';
 
-const srcChunks = rawSrc.split('\n\n');
+const chunks = test.split('\n\n').map(src =>
+    src.replace(/^\s{4}/gm, '').replace(/,$/, '') + '');
 
-srcChunks.shift();
-srcChunks.pop();
+chunks.shift();
+chunks.pop();
 
-export const testcase = srcChunks.map(src => {
-    src = src.replace(/^\s{4}/gm, '').replace(/,$/, '');
-    const fn = new Function('return ' + src);
-    return { src, fn : fn() };
-});
+const replfn = new Function('return ' + replsite);
+
+export const testcase = [
+    { src : replsite, fn : replfn },
+    ...chunks.map(src => {
+        const fn = new Function('return ' + src);
+        return { src, fn : fn() };
+    })
+];

@@ -1,18 +1,5 @@
 @import url(common.css);
 
-body
-{
-    padding: 0 10px;
-}
-.replmachine
-{
-    display : flex;
-    justify-content : space-around;
-}
-.replmachine .panel
-{
-    width: 50%;
-}
 .replmachine .settings label
 {
     margin-right: 20px;

@@ -1,4 +1,4 @@
-import { h1, a } from '../../lib';
+import { h1, a } from './htmlmodule';
 import './siteheading.css';
 
 const MODULE_NAME = 'htmlmodule';

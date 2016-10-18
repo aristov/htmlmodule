@@ -1,4 +1,4 @@
-import { footer, nav, a, small } from '../../lib';
+import { footer, nav, a, small } from './htmlmodule';
 import './sitenav.css';
 
 const pathname = location.pathname;
