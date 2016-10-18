@@ -1,7 +1,4 @@
-import {
-    input as htmlinput,
-    output as htmloutput
-} from './htmlmodule';
+import { input as htmlinput, output as htmloutput } from './htmlmodule';
 
 const VAR_NAME_EXPORTS = 'exports';
 
@@ -50,9 +47,11 @@ export class REPLMachine {
     print(value) {
         try {
             this.output.value = value;
+            return true;
         }
         catch(error) {
-            this.output.value = error;
+            this.onerror(error);
+            return false;
         }
     }
     onerror(error) {

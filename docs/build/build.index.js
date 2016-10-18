@@ -950,8 +950,10 @@
 	    print(value) {
 	        try {
 	            this.output.value = value;
+	            return true;
 	        } catch (error) {
-	            this.output.value = error;
+	            this.onerror(error);
+	            return false;
 	        }
 	    }
 	    onerror(error) {
@@ -1147,7 +1149,8 @@
 	    createElement(tagName, init) {
 	        super.createElement(tagName);
 	        this.createMirror(init.options);
-	        this.init = init;
+	        delete init.options;
+	        this.init = init; // init element after
 	    }
 	    createMirror(options) {
 	        return this.mirror = new _codemirror2.default(this.element, options);
