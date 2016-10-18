@@ -4,7 +4,7 @@
 
 <em>work in progress</em>
 
-The htmlmodule provides web application semantics and functionality of native browser DOM API:
+The htmlmodule provides web application semantics and functionality of native browser DOM API.
 
 ```js
 const htmlspec = a({ 
@@ -107,8 +107,8 @@ There are some ways to do this.
 <!-- minified shim bundle -->
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.shim.min.js></script>
 
-<!-- project code with htmlmodule imports -->
-<script src=./project.build.js></script>
+<!-- project code including htmlmodule imports -->
+<script src=./build/build.project.js></script>
 ```
 
 #### Include the shim bundle to a project bundle
@@ -116,14 +116,18 @@ There are some ways to do this.
 ```js
 import 'htmlmodule/shim';
 
-// rest of your code including `htmlmodule` imports
+// rest of your code including htmlmodule imports
 ```
+
+— if you need to have a single bundle for all.
 
 #### Use a shim-charged distribution 
 
 [The "global script" distribution](#user-content-globalscript) includes the shim bundle out of the box.
 
-## [API documentation](//aristov.github.io/htmlmodule/api)
+## Documentation
+
+[JSDoc API](//aristov.github.io/htmlmodule/api)
 
 ## Development
 
@@ -162,7 +166,7 @@ Build minified distribution assets:
 MIN=true webpack
 ```
 
-Build docs, specs, tests and repl-machine:
+Build docs, specs and repl-machine:
 
 ```
 DOCS=true webpack
@@ -212,4 +216,6 @@ Run dev + static server and open [localhost:8080/docs/spec.html](http://localhos
 
 Check [spec suite](//aristov.github.io/htmlmodule/spec.html) in your browser.
 
-## [MIT license](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
+## License
+
+[The MIT License (MIT)](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
