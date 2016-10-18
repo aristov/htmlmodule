@@ -12,14 +12,14 @@ htmlmodule => {
                 title : 'read-eval-print-loop',
                 children : 'REPL'
             }),
-            '-machine. It was instantly assembled by ',
+            '-machine. It was instantly assembled by the ',
             a({
-                title : 'Hyper text application DOM assembler library',
+                title : 'DOM assembler library',
                 href : 'https://npmjs.org/package/htmlmodule',
                 rel : 'external',
                 children : 'htmlmodule'
             }),
-            ' on the page load.'
+            ' on a page load.'
         ]),
         p([
             'You may focus the left code editor and change ',
@@ -27,15 +27,15 @@ htmlmodule => {
         ]),
         nav([
             p([
-                'There are some usage examples provided: ',
-                'try ',
+                'There are some usage code examples provided: ',
+                'try the ',
                 a({
                     href : '#replbuttonprev',
                     target : '_parent',
                     rel : 'prev',
                     children : 'prev'
                 }),
-                ' and ',
+                ' and the ',
                 a({
                     href : '#replbuttonnext',
                     target : '_parent',
@@ -57,12 +57,12 @@ htmlmodule => {
                     title : 'Hyper text markup language',
                     children : 'HTML'
                 }),
-                '-markup details. It presents the stringified evaluation ',
+                '-markup details. It presents a stringified ',
                 abbr({
                     title : 'Document object model',
                     children : 'DOM'
                 }),
-                ' result.'
+                ' of the evaluation result.'
             ])
         ]),
         p([
