@@ -760,61 +760,15 @@
 
 	'use strict';
 
-	var _siteheading = __webpack_require__(/*! ./siteheading */ 8);
-
-	var _specwin = __webpack_require__(/*! ./specwin */ 14);
-
-	var _sourcedetails = __webpack_require__(/*! ./sourcedetails */ 15);
-
-	var _apinav = __webpack_require__(/*! ./apinav */ 18);
-
 	var _repl = __webpack_require__(/*! ./repl */ 21);
-
-	var _sitenav = __webpack_require__(/*! ./sitenav */ 37);
 
 	__webpack_require__(/*! ./index.css */ 40);
 
-	document.body.append(
-	// siteheading(),
-	// specwin(),
-	// apinav(),
-	// sourcefetch(sourcedetails()),
-	(0, _repl.repl)());
-
+	document.body.append((0, _repl.repl)());
 	(0, _repl.replstart)();
 
 /***/ },
-/* 8 */
-/*!*********************************!*\
-  !*** ./docs/lib/siteheading.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.siteheading = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	__webpack_require__(/*! ./siteheading.css */ 10);
-
-	const MODULE_NAME = 'htmlmodule';
-
-	const siteheading = exports.siteheading = children => {
-	    const isIndex = !/\.html$/.test(location.pathname);
-	    return (0, _htmlmodule.h1)({
-	        id: 'siteheading',
-	        children: [(0, _htmlmodule.a)({
-	            href: isIndex ? undefined : './',
-	            children: MODULE_NAME
-	        }), ' ', children]
-	    });
-	};
-
-/***/ },
+/* 8 */,
 /* 9 */
 /*!********************************!*\
   !*** ./docs/lib/htmlmodule.js ***!
@@ -840,52 +794,8 @@
 	});
 
 /***/ },
-/* 10 */
-/*!**********************************!*\
-  !*** ./docs/lib/siteheading.css ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./siteheading.css */ 11);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./siteheading.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 11 */
-/*!********************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/siteheading.css ***!
-  \********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#siteheading\n{\n    font-family: monospace;\n}\n\n#siteheading > a:not(:hover):not(:focus):not(:active)\n{\n    color: inherit;\n}", ""]);
-
-	// exports
-
-
-/***/ },
+/* 10 */,
+/* 11 */,
 /* 12 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
@@ -1199,199 +1109,13 @@
 
 
 /***/ },
-/* 14 */
-/*!*****************************!*\
-  !*** ./docs/lib/specwin.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.specwin = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	const specwin = exports.specwin = () => (0, _htmlmodule.details)({
-	    id: 'specwin',
-	    className: 'sitedetails',
-	    children: [(0, _htmlmodule.summary)('Spec suite'), (0, _htmlmodule.iframe)({
-	        src: 'spec.html',
-	        width: '100%',
-	        height: '600px'
-	    })]
-	});
-
-/***/ },
-/* 15 */
-/*!***********************************!*\
-  !*** ./docs/lib/sourcedetails.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sourcefetch = exports.sourcedetails = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	__webpack_require__(/*! ./sourcedetails.css */ 16);
-
-	const sourcedetails = exports.sourcedetails = () => (0, _htmlmodule.details)({
-	    id: 'sourcedetails',
-	    className: 'sitedetails',
-	    children: (0, _htmlmodule.summary)('Page source')
-	});
-
-	const fetch = window.fetch;
-	const sourcefetch = exports.sourcefetch = node => {
-	    Promise.all([fetch('index.html').then(response => response.text()), fetch('lib/index.js').then(response => response.text()), fetch('lib/index.css').then(response => response.text())]).then(function ([html, js, css]) {
-	        node.append((0, _htmlmodule.code)({
-	            className: 'sourcetitle',
-	            children: 'index.html'
-	        }), (0, _htmlmodule.pre)((0, _htmlmodule.code)(html)), (0, _htmlmodule.code)({
-	            className: 'sourcetitle',
-	            children: 'lib/index.js => build/build.js (babel transpiled)'
-	        }), (0, _htmlmodule.pre)((0, _htmlmodule.code)(js)), (0, _htmlmodule.code)({
-	            className: 'sourcetitle',
-	            children: 'lib/index.css'
-	        }), (0, _htmlmodule.pre)((0, _htmlmodule.code)(css)));
-	    });
-	    return node;
-	};
-
-/***/ },
-/* 16 */
-/*!************************************!*\
-  !*** ./docs/lib/sourcedetails.css ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sourcedetails.css */ 17);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sourcedetails.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sourcedetails.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 17 */
-/*!**********************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sourcedetails.css ***!
-  \**********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#sourcedetails pre\n{\n    margin-top: 1px;\n}\n#sourcedetails pre > code\n{\n    display: block;\n    background: #333;\n    color: white;\n    padding: 12px;\n    margin-bottom: 20px;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 18 */
-/*!****************************!*\
-  !*** ./docs/lib/apinav.js ***!
-  \****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.apinav = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	var htmlmodule = _interopRequireWildcard(_htmlmodule);
-
-	__webpack_require__(/*! ./apinav.css */ 19);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	const keys = Object.keys(htmlmodule);
-
-	const apinav = exports.apinav = () => (0, _htmlmodule.details)({
-	    id: 'apinav',
-	    className: 'sitedetails',
-	    children: [(0, _htmlmodule.summary)('API index'), (0, _htmlmodule.nav)((0, _htmlmodule.ul)(keys.map(key => (0, _htmlmodule.li)((0, _htmlmodule.a)({
-	        href: './api#' + key.toLowerCase(),
-	        target: '_blank',
-	        children: key
-	    })))))]
-	});
-
-/***/ },
-/* 19 */
-/*!*****************************!*\
-  !*** ./docs/lib/apinav.css ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./apinav.css */ 20);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./apinav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./apinav.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 20 */
-/*!***************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/apinav.css ***!
-  \***************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#apinav ul\n{\n    -webkit-column-count: 7;\n       -moz-column-count: 7;\n            column-count: 7;\n    list-style: none;\n}\n#apinav ul > li\n{\n    line-height: 25px;\n    font-weight: bold;\n    font-family: monospace;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
 /* 21 */
 /*!**************************!*\
   !*** ./docs/lib/repl.js ***!
@@ -4822,103 +4546,9 @@
 	module.exports = "htmlmodule => {\n    const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;\n\n    return section([\n        h1({\n            style : { fontFamily : '' },\n            children : 'Welcome!'\n        }),\n        p([\n            'You are inside the ',\n            abbr({\n                title : 'read-eval-print-loop',\n                children : 'REPL'\n            }),\n            '-machine. It was instantly assembled by the ',\n            a({\n                title : 'DOM assembler library',\n                href : 'https://npmjs.org/package/htmlmodule',\n                rel : 'external',\n                children : 'htmlmodule'\n            }),\n            ' on a page load.'\n        ]),\n        p([\n            'You may focus the left code editor and change ',\n            'the source code of the document that you are reading now.'\n        ]),\n        nav([\n            p([\n                'There are some usage code examples provided: ',\n                'try the ',\n                a({\n                    href : '#replbuttonprev',\n                    target : '_parent',\n                    rel : 'prev',\n                    children : 'prev'\n                }),\n                ' and the ',\n                a({\n                    href : '#replbuttonnext',\n                    target : '_parent',\n                    rel : 'next',\n                    children : 'next'\n                }),\n                ' buttons on the bottom of your screen.'\n            ]),\n            p([\n                'Use the ',\n                a({\n                    href : '#markuptoggle',\n                    target : '_parent',\n                    rel : 'alternate',\n                    children : 'markup'\n                }),\n                ' summary button to toggle ',\n                abbr({\n                    title : 'Hyper text markup language',\n                    children : 'HTML'\n                }),\n                '-markup details. It presents a stringified ',\n                abbr({\n                    title : 'Document object model',\n                    children : 'DOM'\n                }),\n                ' of the evaluation result.'\n            ])\n        ]),\n        p([\n            'If you wanna more details, take a look at the:'\n        ]),\n        nav(ul([\n            li(a({\n                href : 'spec.html',\n                target : '_blank',\n                children : 'Spec suite'\n            })),\n            li(a({\n                href : 'api/',\n                target : '_blank',\n                rel : 'help',\n                children : [abbr({\n                    title : 'Application programming interface',\n                    children : 'API'\n                }), ' documentation']\n            })),\n            li(a({\n                href : 'https://github.com/aristov/htmlmodule',\n                target : '_blank',\n                rel : 'external',\n                children : 'Github repo'\n            })),\n        ])),\n        p('Enjoy!'),\n        style([\n            'body { font: 17px sans-serif }',\n            'a[href][rel~=external]:not(:active) { color: #040 }',\n            'a[href][rel~=help]:not(:active) { cursor: help }'\n        ])\n    ]);\n}\n"
 
 /***/ },
-/* 37 */
-/*!*****************************!*\
-  !*** ./docs/lib/sitenav.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.sitenav = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 9);
-
-	__webpack_require__(/*! ./sitenav.css */ 38);
-
-	const pathname = location.pathname;
-
-	const navlist = [(0, _htmlmodule.a)({
-	    href: './api/',
-	    children: 'api doc'
-	}), (0, _htmlmodule.a)({
-	    href: './spec.html',
-	    children: 'spec suite'
-	}), (0, _htmlmodule.a)({
-	    href: './repl.html',
-	    children: 'repl machine'
-	}), (0, _htmlmodule.a)({
-	    href: './test.html',
-	    children: 'test case'
-	}), (0, _htmlmodule.a)({
-	    href: '//github.com/aristov/htmlmodule',
-	    children: 'git repo'
-	})];
-
-	navlist.forEach(link => {
-	    if (link.pathname === pathname) link.removeAttribute('href');
-	});
-
-	const modulemark = (0, _htmlmodule.small)(['assembled by ', (0, _htmlmodule.a)({
-	    href: 'http://npmjs.org/package/htmlmodule',
-	    children: 'htmlmodule'
-	})]);
-
-	const sitenav = exports.sitenav = () => (0, _htmlmodule.footer)({
-	    id: 'sitenav',
-	    children: [(0, _htmlmodule.nav)(navlist), modulemark]
-	});
-
-/***/ },
-/* 38 */
-/*!******************************!*\
-  !*** ./docs/lib/sitenav.css ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./sitenav.css */ 39);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 13)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./sitenav.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 39 */
-/*!****************************************************************!*\
-  !*** ./~/css-loader!./~/postcss-loader!./docs/lib/sitenav.css ***!
-  \****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 12)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#sitenav\n{\n    text-align: center;\n}\n#sitenav nav\n{\n    width: 750px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    margin: auto;\n}\n#sitenav nav a\n{\n    margin: 25px auto 25px;\n    font: bold 15px monospace;\n}\n#sitenav small\n{\n    position: fixed;\n    right: 15px;\n    bottom: 10px;\n}\n#sitenav small:not(:hover)\n{\n    opacity: 0.3;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 37 */,
+/* 38 */,
+/* 39 */,
 /* 40 */
 /*!****************************!*\
   !*** ./docs/lib/index.css ***!
