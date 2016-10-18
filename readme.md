@@ -24,7 +24,7 @@ The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` 
 
 ## Try now
 
- — <a href="//aristov.github.io/htmlmodule/repl.html" title="read-eval-print-loop">REPL machine!</a>
+ — <a href="//aristov.github.io/htmlmodule/" title="read-eval-print-loop">REPL machine!</a>
 
 ## Usage
 
@@ -210,6 +210,6 @@ Run dev + static server and open [localhost:8080/docs/spec.html](http://localhos
 
 #### Online tests
 
-Check [spec suite](//aristov.github.io/htmlmodule/spec.html) and [test case](//aristov.github.io/htmlmodule/test.html) in your browser.
+Check [spec suite](//aristov.github.io/htmlmodule/spec.html) in your browser.
 
 ## [MIT license](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
