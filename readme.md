@@ -78,13 +78,16 @@ Just created `websearch` variable is a DOM structure with the respective HTML ma
 
 <h2 id="globalscript">Global script distribution</h2>
 
-Get the module by appending the script source to page body:
+Get the module by appending the distribution script to a page body:
 
 ```html
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>
 <script>
-const { a, header, main, footer, input, button, img, video, canvas, data } = window.htmlmodule;
-// make magic...
+(({ header, main, footer, article, section, a, button, input, img, video, canvas, data, ... }) => {
+
+    // make magic...
+
+})(window.htmlmodule);
 </script> 
 ```
 

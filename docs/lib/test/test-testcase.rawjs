@@ -3,14 +3,15 @@
  */
 export default [
 
-    ({ fieldset, legend, button, label, input, output, div }) => {
+    ({ fieldset, legend, section, button, label, input, output, style }) => {
         const alertbutton = button({
             onclick : ({
                 type,
                 target : { tagName },
                 constructor : { name }
             }) => alert([tagName, type, name, 'handler!'].join(' ')),
-            textContent : 'Show me alert, please...'
+            children : 'Show me alert, please...',
+            style : { marginRight: '10px' }
         });
         const noalertbox = label([
             input({
@@ -21,33 +22,28 @@ export default [
             }),
             ' no alerts!'
         ]);
-        return fieldset({
-            style : {
-                display : 'flex',
-                flexDirection : 'column',
-                justifyContent : 'space-between',
-                height : '260px',
-                width : '300px'
-            },
-            children : [
-                legend('Event handlers'),
-                div([alertbutton, noalertbox]),
-                button({
-                    onfocus : ({ target }) => target.textContent = 'Focused!',
-                    onblur : ({ target }) => target.textContent = 'Focus wait...',
-                    textContent : 'Focus wait...'
-                }),
-                label([
-                    input({
-                        placeholder : 'text input char counter',
-                        oninput : ({ target }) => {
-                            target.nextElementSibling.value = target.value.length;
-                        }
-                    }),
-                    output({ title : 'entered char count', value : '0' })
-                ])
-            ]
-        })
+        const focusbutton = button({
+            onfocus : ({ target }) => target.textContent = 'Focused!',
+            onblur : ({ target }) => target.textContent = 'Focus wait...',
+            textContent : 'Focus wait...'
+        });
+        const charcountbox = label([
+            input({
+                placeholder : 'text input char counter',
+                oninput : ({ target }) => {
+                    charcountbox.lastChild.value = target.value.length;
+                },
+                style : { marginRight: '10px' }
+            }),
+            output({ title : 'entered char count', value : '0' })
+        ]);
+        return fieldset([
+            legend('Event handlers'),
+            section([alertbutton, noalertbox]),
+            section(focusbutton),
+            section(charcountbox),
+            style('section { margin: 20px 0 }')
+        ]);
     },
 
     ({ style, dl, dt, dd, abbr, ins, del, b, s, em, code }) =>
@@ -384,12 +380,17 @@ _________________________________________________________
 
     ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>
         hgroup([
-            h1('First level heading'),
-            h2('Second level heading'),
-            h3('Third level heading'),
-            h4('Fourth level heding'),
-            h5('Fifth level heding'),
-            h6('Sixth level heding in group')
+            h1('HTML is amazing!'),
+            h2('HTML is amazing!'),
+            h3('HTML is amazing!'),
+            h4('HTML is amazing!'),
+            h5('HTML is amazing!'),
+            h6('HTML is amazing!'),
+            h5('HTML is amazing!'),
+            h4('HTML is amazing!'),
+            h3('HTML is amazing!'),
+            h2('HTML is amazing!'),
+            h1('HTML is amazing!'),
         ]),
 
     ({ blockquote }) =>
@@ -401,6 +402,15 @@ _________________________________________________________
         }),
 
     ({ progress }) => progress({ max : '100', value : '70' }),
+
+    ({ meter }) => meter({
+        value : 4,
+        min : 0,
+        max : 10,
+        low : 3,
+        high : 7,
+        optimum : 5
+    }),
 
     ({ article, section, ruby, rt, rp }) =>
         article({
