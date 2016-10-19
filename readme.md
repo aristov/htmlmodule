@@ -28,7 +28,7 @@ The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` 
 
 ## Try now
 
- — <a href="//aristov.github.io/htmlmodule/" title="read-eval-print-loop">REPL machine!</a>
+— <a href="//aristov.github.io/htmlmodule/" title="read-eval-print-loop">REPL machine!</a>
 
 ## Usage
 
@@ -83,7 +83,7 @@ Get the module by appending the script source to page body:
 ```html
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>
 <script>
-const { a, span, div, article, input, fieldset } = window.htmlmodule;
+const { a, header, main, footer, input, button, img, video, canvas, data } = window.htmlmodule;
 // make magic...
 </script> 
 ```
@@ -92,11 +92,17 @@ The script exposes the `htmlmodule` global variable to the `window` object.
 
 ## Compatibility
 
-The built-in [shim bundle](/shim/index.js) fixes browser compatibility. It includes:
+The core htmlmodule components don't require anything except DOM.
+You can use the module in combination with any other framework or library.
+
+### Browser support
+
+Module works fine without any shims, but some new HTML5 elements and features are implemented in modern browsers only.
+The built-in [shim bundle](/shim/index.js) partially fixes browser compatibility. It includes:
 
 - [Babel polyfill](http://babeljs.io/docs/usage/polyfill/)
 - [dom4 polyfill](https://www.npmjs.com/package/dom4)
-- [some author DOM shims](/shim)
+- [author DOM shims](/shim)
 
 The shim bundle is used in the [unit-testing](#user-content-testing) environments.
 
@@ -105,7 +111,7 @@ The shim bundle is used in the [unit-testing](#user-content-testing) environment
 For a wide browser support you must import the shim bundle first.
 There are some ways to do this.
 
-#### Use the shim bundle distribution script
+#### Shim distribution script — recommended.
 
 ```html
 <!-- minified shim bundle -->
@@ -115,19 +121,31 @@ There are some ways to do this.
 <script src=./build/build.project.js></script>
 ```
 
-#### Include the shim bundle to a project bundle
+#### Shim-charged distribution 
+
+[The "global script" distribution](#user-content-globalscript) includes the shim bundle out of the box.
+
+#### Single bundle for all
+
+Install the third-party polyfill libraries first:
+
+```
+npm install babel-polyfill
+npm install dom4
+```
+
+Import the shim bundle into your project:
 
 ```js
 import 'htmlmodule/shim';
 
-// rest of your code including htmlmodule imports
+// the rest of your code including htmlmodule imports
 ```
 
-— if you need to have a single bundle for all.
+#### Custom way
 
-#### Use a shim-charged distribution 
-
-[The "global script" distribution](#user-content-globalscript) includes the shim bundle out of the box.
+- You may add your own and any other shims if needed.
+- You may decline to use the shim bundle at all, if there's no need to support an old browser versions.
 
 ## Documentation
 
