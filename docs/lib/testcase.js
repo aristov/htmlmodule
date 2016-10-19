@@ -1,5 +1,5 @@
-import test from 'raw!./test/test-testcase.rawjs';
 import replsite from 'raw!./replsite.rawjs';
+import test from 'raw!./testcase.rawjs';
 
 const chunks = test.split('\n\n').map(src =>
     src.replace(/^\s{4}/gm, '').replace(/,$/, '') + '');
