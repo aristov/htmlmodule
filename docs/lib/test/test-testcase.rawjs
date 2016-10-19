@@ -10,7 +10,7 @@ export default [
                 target : { tagName },
                 constructor : { name }
             }) => alert([tagName, type, name, 'handler!'].join(' ')),
-            children : 'Show me alert, please...',
+            children : 'Show me an alert, please...',
             style : { marginRight: '10px' }
         });
         const noalertbox = label([
@@ -22,20 +22,21 @@ export default [
             }),
             ' no alerts!'
         ]);
+        const textContent = 'Give me a focus, please...';
         const focusbutton = button({
             onfocus : ({ target }) => target.textContent = 'Focused!',
-            onblur : ({ target }) => target.textContent = 'Focus wait...',
-            textContent : 'Focus wait...'
+            onblur : ({ target }) => target.textContent = textContent,
+            textContent
         });
         const charcountbox = label([
             input({
-                placeholder : 'text input char counter',
+                placeholder : 'Count my chars, please...',
                 oninput : ({ target }) => {
                     charcountbox.lastChild.value = target.value.length;
                 },
                 style : { marginRight: '10px' }
             }),
-            output({ title : 'entered char count', value : '0' })
+            output({ title : 'Entered char count', value : '0' })
         ]);
         return fieldset([
             legend('Event handlers'),
@@ -378,20 +379,11 @@ _________________________________________________________
             ]
         }),
 
-    ({ hgroup, h1, h2, h3, h4, h5, h6 }) =>
-        hgroup([
-            h1('HTML is amazing!'),
-            h2('HTML is amazing!'),
-            h3('HTML is amazing!'),
-            h4('HTML is amazing!'),
-            h5('HTML is amazing!'),
-            h6('HTML is amazing!'),
-            h5('HTML is amazing!'),
-            h4('HTML is amazing!'),
-            h3('HTML is amazing!'),
-            h2('HTML is amazing!'),
-            h1('HTML is amazing!'),
-        ]),
+    ({ hgroup, h1, h2, h3, h4, h5, h6 }) => {
+        const a = [h6, h5, h4, h3, h2, h1];
+        const t = 'HTML is amazing';
+        return hgroup([...a, ...a.reverse().slice(1)].map(h => h(t)));
+    },
 
     ({ blockquote }) =>
         blockquote({
