@@ -4,6 +4,7 @@ import * as htmlmodule from './htmlmodule';
 import { main, section, iframe, button, details, summary } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
 import { testcase } from './testcase';
+import './repl.css';
 
 const serializer = new HTMLSerializer;
 
@@ -12,26 +13,25 @@ let testindex = 0;
 
 /*----------------------------------------------------------------*/
 
-const replinput = codebox({
-    className : 'replinput',
+const inputcode = codebox({
+    className : 'inputcode',
     value : testcase[testindex].src
 });
 
-const reploutputwin = iframe({ className : 'reploutputwin' });
+const outputwin = iframe({ className : 'outputwin' });
 
-const reploutputcode = markupbox({ className : 'reploutputcode' });
+const outputcode = markupbox({ className : 'outputcode' });
 
-const replmarkupview = details({
+const markupview = details({
     className : 'markupview',
     ontoggle : () => replrefresh(),
-    // open : true,
     children : [
         summary({
             id : 'markuptoggle',
             className : 'markuptoggle',
             children : 'markup'
         }),
-        reploutputcode.element
+        outputcode.element
     ]
 });
 
@@ -39,16 +39,16 @@ const replmarkupview = details({
 
 export const repl = () =>
     main({
-        className : 'replmachine',
+        className : 'repl',
         children : [
             section([
-                replinput.element,
+                inputcode.element,
                 button({
                     id : 'replbuttonprev',
                     className : 'prevbutton',
                     onclick : () => {
                         testindex = testindex === 0? lastindex : testindex - 1;
-                        replinput.value = testcase[testindex].src;
+                        inputcode.value = testcase[testindex].src;
                     },
                     children : 'prev'
                 }),
@@ -57,12 +57,12 @@ export const repl = () =>
                     className : 'nextbutton',
                     onclick : () => {
                         testindex = testindex === lastindex? 0 : testindex + 1;
-                        replinput.value = testcase[testindex].src;
+                        inputcode.value = testcase[testindex].src;
                     },
                     children : 'next'
                 }),
             ]),
-            section([reploutputwin, replmarkupview])
+            section([outputwin, markupview])
         ]
     });
 
@@ -70,9 +70,9 @@ export const repl = () =>
 
 const output = {
     set value(value) {
-        const body = reploutputwin.contentDocument.body;
+        const body = outputwin.contentDocument.body;
         body.innerHTML = '';
-        if(replmarkupview.open) reploutputcode.value = '';
+        if(markupview.open) outputcode.value = '';
         if(value instanceof Error) {
             body.textContent = value;
         } else {
@@ -80,8 +80,8 @@ const output = {
                 const node = typeof value === 'function'? value(htmlmodule) : value;
                 if(node) {
                     body.appendChild(node);
-                    if(replmarkupview.open) {
-                        reploutputcode.value = serializer.serializeToString(node);
+                    if(markupview.open) {
+                        outputcode.value = serializer.serializeToString(node);
                     }
                 }
             }
@@ -92,21 +92,21 @@ const output = {
     }
 }
 
-const replmachine = new REPLMachine({ input : replinput, output });
+const replmachine = new REPLMachine({ input : inputcode, output });
 
 export function replrefresh() {
     const innerHeight = window.innerHeight;
-    reploutputwin.height = replmarkupview.open?
-        (innerHeight - reploutputcode.element.clientHeight) + 'px' :
+    outputwin.height = markupview.open?
+        (innerHeight - outputcode.element.clientHeight) + 'px' :
         innerHeight + 'px';
-    replinput.mirror.refresh();
-    reploutputcode.mirror.refresh();
+    inputcode.mirror.refresh();
+    outputcode.mirror.refresh();
     replmachine.loop();
 }
 
 export function replstart() {
     replrefresh();
-    replinput.mirror.on('change', () => replmachine.loop());
+    inputcode.mirror.on('change', () => replmachine.loop());
 }
 
 window.onresize = () => replrefresh();

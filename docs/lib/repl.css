@@ -1,45 +1,70 @@
-@import url(common.css);
-
-.replmachine .settings label
+.repl,
+.repl .inputcode,
+.repl .inputcode .CodeMirror,
+.repl .outputcode .markupview,
+.repl .outputcode .CodeMirror
 {
-    margin-right: 20px;
-    user-select: none;
-
-    /* fixme autoprefixer */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    height: 100%;
 }
-.replmachine .CodeMirror
+.repl
 {
-    font-size: 14px;
+    display : flex;
 }
-.replmachine .jsinput .CodeMirror
-{
-    height: 600px;
-}
-.replmachine .domoutput
-{
-    height: 600px;
-    overflow: auto;
-    display: block;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
-    padding: 10px;
-    background: #fff;
-}
-.replmachine .htmloutput
+.repl section
 {
     position: relative;
-    display: none;
-    border-left: 1px solid #171717;
+    width: 50%;
+    box-sizing: border-box;
 }
-.replmachine.markupmode .domoutput,
-.replmachine .htmloutput .CodeMirror
+.repl .outputwin
 {
-    height: 300px;
+    width: 100%;
+    margin-bottom: -4px;
+    box-sizing: border-box;
 }
-.replmachine.markupmode .htmloutput
+.repl .outputcode
 {
-    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    border-left: 1px solid #444;
+    box-sizing: border-box;
+}
+
+/* buttons */
+
+.repl .prevbutton,
+.repl .nextbutton,
+.repl .markuptoggle
+{
+    font: 13px monospace;
+    position: absolute;
+    z-index: 10;
+}
+.repl .prevbutton
+{
+    bottom: 8px;
+    left: 8px;
+}
+.repl .nextbutton
+{
+    bottom: 8px;
+    right: 8px;
+}
+.repl .markuptoggle
+{
+    right: 9px;
+    bottom: 9px;
+    background: white;
+    cursor: default;
+    border-radius: 3px;
+    padding: 1px 6px;
+    user-select: none;
+}
+.repl .prevbutton:not(:hover):not(:focus),
+.repl .nextbutton:not(:hover):not(:focus),
+.repl .markuptoggle:not(:hover):not(:focus)
+{
+    opacity: 0.5;
 }

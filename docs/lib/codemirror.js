@@ -5,6 +5,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 
 import 'codemirror/lib/codemirror.css';
+import './codemirror.css';
 
 /**
  * good themes:

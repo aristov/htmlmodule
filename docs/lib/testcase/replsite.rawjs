@@ -25,8 +25,7 @@ htmlmodule => {
         ]),
         nav([
             p([
-                'There are some usage code examples provided: ',
-                'try the ',
+                'There are some usage code examples provided: try the ',
                 a({
                     href : '#replbuttonprev',
                     target : '_parent',

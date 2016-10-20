@@ -36,10 +36,8 @@ let output;
 
 if(env.DOCS) {
     Object.assign(entry, {
-        index : ['./docs/lib/index'],
-        test : ['./docs/lib/test'],
-        spec : ['./docs/lib/spec'],
-        repl : ['./docs/lib/repl']
+        index : ['./docs/index'],
+        spec : ['./docs/spec']
     });
     output = {
         path : __dirname + '/docs/build',

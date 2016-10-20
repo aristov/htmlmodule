@@ -8,7 +8,7 @@
 
 <em>work in progress</em>
 
-The htmlmodule provides web application semantics and functionality of native browser DOM API.
+The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
 
 ```js
 const htmlspec = a({ 
@@ -87,16 +87,16 @@ Get the module by appending the distribution script to a page body:
 
     // make magic...
 
-})(window.htmlmodule);
+})(window.htmlmodule); // the script exposes the `htmlmodule` global variable to the `window` object
 </script> 
 ```
 
-The script exposes the `htmlmodule` global variable to the `window` object.
+This is the simpiest way to start use the htmlmodule in your project.
 
 ## Compatibility
 
-The core htmlmodule components don't require anything except DOM.
-You can use the module in combination with any other framework or library.
+- The htmlmodule core doesn't require anything except DOM.
+- You can use the module in combination with any other framework, library and build system.
 
 ### Browser support
 
@@ -114,7 +114,7 @@ The shim bundle is used in the [unit-testing](#user-content-testing) environment
 For a wide browser support you must import the shim bundle first.
 There are some ways to do this.
 
-#### Shim distribution script — recommended.
+#### Shim distribution script (recommended)
 
 ```html
 <!-- minified shim bundle -->
