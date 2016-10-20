@@ -24,7 +24,7 @@ const reploutputcode = markupbox({ className : 'reploutputcode' });
 const replmarkupview = details({
     className : 'markupview',
     ontoggle : () => replrefresh(),
-    open : true,
+    // open : true,
     children : [
         summary({
             id : 'markuptoggle',

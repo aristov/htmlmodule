@@ -28,14 +28,12 @@ main,
 
 .replmachine .reploutputcode
 {
-    border-left: 1px solid #444;
     position: absolute;
     bottom: 0;
-}
-.replmachine .reploutputcode
-{
     width: 100%;
     height: 50%;
+    border-left: 1px solid #444;
+    box-sizing: border-box;
 }
 .replmachine .reploutputcode .markupview,
 .replmachine .reploutputcode .CodeMirror
@@ -45,9 +43,8 @@ main,
 .replmachine iframe.reploutputwin
 {
     width: 100%;
-    box-sizing: border-box;
     margin-bottom: -4px;
-    background-color: white;
+    box-sizing: border-box;
 }
 .replmachine .markuptoggle,
 .replmachine .prevbutton,

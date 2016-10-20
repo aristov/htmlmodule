@@ -89,7 +89,7 @@ htmlmodule => {
         p('Enjoy!'),
         style([
             'body { font: 17px sans-serif }',
-            'a[href][rel~=external]:not(:active) { color: #040 }',
+            'a[href][rel~=external]:not(:active) { color: #050 }',
             'a[href][rel~=help]:not(:active) { cursor: help }'
         ])
     ]);
