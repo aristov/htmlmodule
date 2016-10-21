@@ -1,5 +1,5 @@
-import site from 'raw!./testcase/replsite.rawjs';
-import list from 'raw!./testcase/testcase.rawjs';
+import site from 'raw!./sitedata/replsite.rawjs';
+import list from 'raw!./sitedata/testcase.rawjs';
 
 const SPLIT_STR = '\n\n';
 

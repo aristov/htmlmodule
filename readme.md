@@ -121,7 +121,7 @@ There are some ways to do this.
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.shim.min.js></script>
 
 <!-- project code including htmlmodule imports -->
-<script src=./build/build.project.js></script>
+<script src=build/build.project.js></script>
 ```
 
 #### Shim-charged distribution 
