@@ -91,7 +91,7 @@ Get the module by appending the distribution script to a page body:
 </script> 
 ```
 
-This is the simpiest way to start use the htmlmodule in your project.
+This is the simpliest way to start use the htmlmodule in your project.
 
 ## Compatibility
 
