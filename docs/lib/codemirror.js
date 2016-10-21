@@ -56,11 +56,20 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     get value() {
         return this.mirror.getValue();
     }
+    get height() {
+        return this.element.clientHeight;
+    }
     createElement(tagName, init) {
         super.createElement(tagName);
         this.createMirror(init.options);
         delete init.options;
-        this.init = init; // init element after
+        this.init = init;
+    }
+    refresh() {
+        this.mirror.refresh();
+    }
+    set onchange(onchange) {
+        this.mirror.on('change', onchange);
     }
     createMirror(options) {
         return this.mirror = new CodeMirror(this.element, options);

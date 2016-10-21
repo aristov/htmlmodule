@@ -231,13 +231,14 @@
 	    /**
 	     * Append children to the element
 	     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
-	     * @param {Node|String|Array} children child node or string or array of listed
+	     * @param {Node|String|DOMAssembler|Array} children child node or string or array of listed
 	     */
 	    set children(children) {
 	        if (isArray(children)) {
 	            children.forEach(child => this.children = child);
 	        } else if (children) {
-	            const child = typeof children === 'string' ? document.createTextNode(children) : children;
+	            const child = typeof children === 'string' ? document.createTextNode(children) : children instanceof DOMAssembler ? // todo add spec
+	            children.element : children;
 	            this.element.appendChild(child);
 	        }
 	    }
@@ -764,9 +765,11 @@
 
 	__webpack_require__(/*! ./index.css */ 31);
 
-	document.body.append((0, _repl.repl)());
+	const repl = new _repl.REPL();
 
-	(0, _repl.replstart)(); // fixme
+	document.body.append(repl.node);
+
+	repl.start();
 
 /***/ },
 /* 8 */
@@ -780,9 +783,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.repl = undefined;
-	exports.replrefresh = replrefresh;
-	exports.replstart = replstart;
+	exports.REPL = undefined;
 
 	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 9);
 
@@ -800,60 +801,26 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+	const START_INDEX = 0;
+	const LAST_INDEX = _testcase.testcase.length - 1;
+
 	const serializer = new _util.HTMLSerializer();
 
-	const lastindex = _testcase.testcase.length - 1;
-	let testindex = 0;
-
-	/*----------------------------------------------------------------*/
-
-	const inputcode = (0, _codemirror.codebox)({
-	    className: 'inputcode',
-	    value: _testcase.testcase[testindex].src
-	});
-
-	const outputwin = (0, _htmlmodule.iframe)({ className: 'outputwin' });
-
-	const outputcode = (0, _codemirror.markupbox)({ className: 'outputcode' });
-
-	const markupview = (0, _htmlmodule.details)({
-	    className: 'markupview',
-	    ontoggle: () => replrefresh(),
-	    children: [(0, _htmlmodule.summary)({
-	        id: 'markuptoggle',
-	        className: 'markuptoggle',
-	        children: 'markup'
-	    }), outputcode.element]
-	});
-
-	/*----------------------------------------------------------------*/
-
-	const repl = exports.repl = () => (0, _htmlmodule.main)({
-	    className: 'repl',
-	    children: [(0, _htmlmodule.section)([inputcode.element, (0, _htmlmodule.button)({
-	        id: 'replbuttonprev',
-	        className: 'prevbutton',
-	        onclick: () => {
-	            testindex = testindex === 0 ? lastindex : testindex - 1;
-	            inputcode.value = _testcase.testcase[testindex].src;
-	        },
-	        children: 'prev'
-	    }), (0, _htmlmodule.button)({
-	        id: 'replbuttonnext',
-	        className: 'nextbutton',
-	        onclick: () => {
-	            testindex = testindex === lastindex ? 0 : testindex + 1;
-	            inputcode.value = _testcase.testcase[testindex].src;
-	        },
-	        children: 'next'
-	    })]), (0, _htmlmodule.section)([outputwin, markupview])]
-	});
-
-	/*----------------------------------------------------------------*/
-
-	const output = {
+	class REPL {
+	    constructor() {
+	        this.replmachine = new _REPLMachine.REPLMachine({
+	            input: this,
+	            output: this
+	        });
+	        this.node = this.assemble();
+	        window.onresize = () => this.refresh();
+	    }
+	    get value() {
+	        return this.inputcode.value;
+	    }
 	    set value(value) {
-	        const body = outputwin.contentDocument.body;
+	        const { markupview, outputcode } = this;
+	        const { body } = this.outputwin.contentDocument;
 	        body.innerHTML = '';
 	        if (markupview.open) outputcode.value = '';
 	        if (value instanceof Error) {
@@ -872,24 +839,62 @@
 	            }
 	        }
 	    }
-	};
-
-	const replmachine = new _REPLMachine.REPLMachine({ input: inputcode, output });
-
-	function replrefresh() {
-	    const innerHeight = window.innerHeight;
-	    outputwin.height = markupview.open ? innerHeight - outputcode.element.clientHeight + 'px' : innerHeight + 'px';
-	    inputcode.mirror.refresh();
-	    outputcode.mirror.refresh();
-	    replmachine.loop();
+	    assemble() {
+	        return (0, _htmlmodule.main)({
+	            className: 'repl',
+	            children: [(0, _htmlmodule.section)([this.inputcode = (0, _codemirror.codebox)({
+	                className: 'inputcode',
+	                value: _testcase.testcase[this.index].src
+	            }), this.prevbutton = (0, _htmlmodule.button)({
+	                id: 'replbuttonprev',
+	                className: 'prevbutton',
+	                onclick: () => this.prev(),
+	                children: 'prev'
+	            }), this.nextbutton = (0, _htmlmodule.button)({
+	                id: 'replbuttonnext',
+	                className: 'nextbutton',
+	                onclick: () => this.next(),
+	                children: 'next'
+	            })]), (0, _htmlmodule.section)([this.outputwin = (0, _htmlmodule.iframe)({ className: 'outputwin' }), this.markupview = (0, _htmlmodule.details)({
+	                className: 'markupview',
+	                ontoggle: () => this.refresh(),
+	                children: [(0, _htmlmodule.summary)({
+	                    id: 'markuptoggle',
+	                    className: 'markuptoggle',
+	                    children: 'markup'
+	                }), this.outputcode = (0, _codemirror.markupbox)({
+	                    className: 'outputcode'
+	                })]
+	            })])]
+	        });
+	    }
+	    start() {
+	        this.refresh();
+	        this.inputcode.onchange = () => this.replmachine.loop();
+	    }
+	    refresh() {
+	        const outputcode = this.outputcode;
+	        const innerHeight = window.innerHeight;
+	        this.outputwin.height = this.markupview.open ? innerHeight - outputcode.height + 'px' : innerHeight + 'px';
+	        this.inputcode.refresh();
+	        outputcode.refresh();
+	        this.replmachine.loop();
+	    }
+	    prev() {
+	        this.index--;
+	        if (this.index < 0) this.index = LAST_INDEX;
+	        this.inputcode.value = _testcase.testcase[this.index].src;
+	    }
+	    next() {
+	        this.index++;
+	        if (this.index > LAST_INDEX) this.index = 0;
+	        this.inputcode.value = _testcase.testcase[this.index].src;
+	    }
 	}
 
-	function replstart() {
-	    replrefresh();
-	    inputcode.mirror.on('change', () => replmachine.loop());
-	}
-
-	window.onresize = () => replrefresh();
+	exports.REPL = REPL;
+	Object.defineProperty(REPL.prototype, 'index', { writable: true, value: START_INDEX });
+	Object.defineProperty(REPL.prototype, 'node', { writable: true, value: null });
 
 /***/ },
 /* 9 */
@@ -954,7 +959,7 @@
 	            this.output.value = value;
 	            return true;
 	        } catch (error) {
-	            this.onerror(error);
+	            this.output.value = error;
 	            return false;
 	        }
 	    }
@@ -1150,11 +1155,20 @@
 	    get value() {
 	        return this.mirror.getValue();
 	    }
+	    get height() {
+	        return this.element.clientHeight;
+	    }
 	    createElement(tagName, init) {
 	        super.createElement(tagName);
 	        this.createMirror(init.options);
 	        delete init.options;
-	        this.init = init; // init element after
+	        this.init = init;
+	    }
+	    refresh() {
+	        this.mirror.refresh();
+	    }
+	    set onchange(onchange) {
+	        this.mirror.on('change', onchange);
 	    }
 	    createMirror(options) {
 	        return this.mirror = new _codemirror2.default(this.element, options);

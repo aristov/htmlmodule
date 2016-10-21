@@ -50,7 +50,7 @@ export class REPLMachine {
             return true;
         }
         catch(error) {
-            this.onerror(error);
+            this.output.value = error;
             return false;
         }
     }

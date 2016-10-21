@@ -235,13 +235,14 @@
 	    /**
 	     * Append children to the element
 	     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
-	     * @param {Node|String|Array} children child node or string or array of listed
+	     * @param {Node|String|DOMAssembler|Array} children child node or string or array of listed
 	     */
 	    set children(children) {
 	        if (isArray(children)) {
 	            children.forEach(child => this.children = child);
 	        } else if (children) {
-	            const child = typeof children === 'string' ? document.createTextNode(children) : children;
+	            const child = typeof children === 'string' ? document.createTextNode(children) : children instanceof DOMAssembler ? // todo add spec
+	            children.element : children;
 	            this.element.appendChild(child);
 	        }
 	    }

@@ -1,6 +1,8 @@
-import { repl, replstart } from './lib/repl';
+import { REPL } from './lib/repl';
 import './index.css';
 
-document.body.append(repl());
+const repl = new REPL;
 
-replstart(); // fixme
+document.body.append(repl.node);
+
+repl.start();
