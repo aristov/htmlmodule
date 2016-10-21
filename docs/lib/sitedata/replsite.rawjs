@@ -10,7 +10,7 @@ htmlmodule => {
                 title : 'read-eval-print-loop',
                 children : 'REPL'
             }),
-            '-machine. It was instantly assembled by ',
+            '-machine. It was assembled instantly by ',
             a({
                 title : 'DOM assembler library',
                 href : 'https://npmjs.org/package/htmlmodule',
