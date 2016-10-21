@@ -1,6 +1,14 @@
 /**
  * !!! THIS FILE REQUIRES THE ADDITIONAL SYNTAX RESTRICTIONS !!!
- * split examples by \n\n (double line break)
+ *
+ * A processing script:
+ *  - imports file as a raw source
+ *  - splits file by '\n\n' (double line break)
+ *  - removes trailing comma from each chunk
+ *  - omits the first and the last chunks
+ *  - provides the rest as a sitedata sources
+ *
+ * This procedure is used to avoid mangling the initial codestyle by babel
  */
 [
 
@@ -68,31 +76,6 @@
         section(charcountbox),
         style('section { margin: 20px 0 }')
     ]);
-},
-
-({ article, code, pre, style }) => {
-    const fetch = window.fetch;
-    const files = ['index.html', 'index.js', 'index.css'];
-    Promise
-        .all(files.map(file => {
-            return fetch(file).then(res => res.text());
-        }))
-        .then(function(sources) {
-            sources.forEach((src, i) => {
-                node.append(code(files[i]), pre(code(src)));
-            });
-        });
-    const node = article(style(`
-        pre { margin-top: 1px }
-        pre > code {
-            display: block;
-            background: #333;
-            color: white;
-            padding: 12px;
-            margin-bottom: 20px;
-        }
-    `));
-    return node;
 },
 
 ({ form, fieldset, legend, input, button }) =>
@@ -345,6 +328,28 @@ _________________________________________________________
     return hgroup([...hh.slice(1).reverse(), ...hh].map(h => h(ht)));
 },
 
+({ div, ul, li, bdi, bdo }) => {
+    const children = 'АРОЗАУПАЛА';
+    return div([
+        div([
+            children,
+            'Н',
+            bdo({ dir : 'rtl', children })
+        ]),
+        ul([
+            li(['User ',
+                bdi('jcranmer'),
+                ': 12 posts.']),
+            li(['User ',
+                bdi('hober'),
+                ': 5 posts.']),
+            li(['User ',
+                bdi('إيان'),
+                ': 3 posts.'])
+        ])
+    ])
+},
+
 ({ div, footer, address, small, main, header,
     sup, sub, i, strong, blockquote, hr,
     aside, article, a, progress, meter }) => div([
@@ -379,28 +384,6 @@ _________________________________________________________
             small('@ All rights are free')
         ])
     ]),
-
-({ div, ul, li, bdi, bdo }) => {
-    const children = 'АРОЗАУПАЛА';
-    return div([
-        div([
-            children,
-            'Н',
-            bdo({ dir : 'rtl', children })
-        ]),
-        ul([
-            li(['User ',
-                bdi('jcranmer'),
-                ': 12 posts.']),
-            li(['User ',
-                bdi('hober'),
-                ': 5 posts.']),
-            li(['User ',
-                bdi('إيان'),
-                ': 3 posts.'])
-        ])
-    ])
-},
 
 ({ article, section, ruby, rt, rp }) =>
     article({
@@ -440,6 +423,31 @@ _________________________________________________________
             font: 13px monospace;
         }`)
 ]),
+
+({ article, code, pre, style }) => {
+    const fetch = window.fetch;
+    const files = ['index.html', 'index.js', 'index.css'];
+    Promise
+        .all(files.map(file => {
+            return fetch(file).then(res => res.text());
+        }))
+        .then(function(sources) {
+            sources.forEach((src, i) => {
+                node.append(code(files[i]), pre(code(src)));
+            });
+        });
+    const node = article(style(`
+    pre { margin-top: 1px }
+    pre > code {
+        display: block;
+        background: #333;
+        color: white;
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+`));
+    return node;
+},
 
 htmlmodule => {
     const { nav, h1, ul, li, a, style } = htmlmodule;

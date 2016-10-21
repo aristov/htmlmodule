@@ -13,21 +13,19 @@ const theme = 'rubyblue';
 const CODE_BOX_DEFAULTS = {
     mode : 'javascript',
     indentUnit : 4,
-    tabSize : 2,
+    tabSize : 4,
     indentWithTabs : true,
     electricChars : true,
     styleActiveLine : true,
     autoCloseBrackets : true,
     matchBrackets : true,
     smartIndent : true,
-    // lineNumbers : true,
     theme
 };
 
 const MARKUP_BOX_DEFAULTS = {
     mode : 'htmlmixed',
     readOnly : true,
-    // lineNumbers : true,
     theme
 };
 

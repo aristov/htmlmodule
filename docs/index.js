@@ -1,8 +1,8 @@
-import { REPL } from './lib/repl';
+import { REPLSite } from './lib/replsite';
 import './index.css';
 
-const repl = new REPL;
+const replsite = new REPLSite;
 
-document.body.append(repl.node);
+document.body.append(replsite.node);
 
-repl.start();
+replsite.start();

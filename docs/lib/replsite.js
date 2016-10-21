@@ -5,16 +5,16 @@ import * as htmlmodule from './htmlmodule';
 import { main, section, iframe, button, details, summary } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
 
-import { testcase } from './testcase';
+import './replsite.css';
 
-import './repl.css';
+import { data } from './sitedata';
 
 const START_INDEX = 0;
-const LAST_INDEX = testcase.length - 1;
+const LAST_INDEX = data.length - 1;
 
 const serializer = new HTMLSerializer;
 
-export class REPL {
+export class REPLSite {
     constructor() {
         this.replmachine = new REPLMachine({
             input : this,
@@ -52,12 +52,12 @@ export class REPL {
     }
     assemble() {
         return main({
-            className : 'repl',
+            className : 'replsite',
             children : [
                 section([
                     this.inputcode = codebox({
                         className : 'inputcode',
-                        value : testcase[this.index].src
+                        value : data[this.index].src
                     }),
                     this.prevbutton = button({
                         id : 'replbuttonprev',
@@ -109,14 +109,14 @@ export class REPL {
     prev() {
         this.index--;
         if(this.index < 0) this.index = LAST_INDEX;
-        this.inputcode.value = testcase[this.index].src;
+        this.inputcode.value = data[this.index].src;
     }
     next() {
         this.index++
         if(this.index > LAST_INDEX) this.index = 0;
-        this.inputcode.value = testcase[this.index].src;
+        this.inputcode.value = data[this.index].src;
     }
 }
 
-Object.defineProperty(REPL.prototype, 'index', { writable : true, value : START_INDEX });
-Object.defineProperty(REPL.prototype, 'node', { writable : true, value : null });
+Object.defineProperty(REPLSite.prototype, 'index', { writable : true, value : START_INDEX });
+Object.defineProperty(REPLSite.prototype, 'node', { writable : true, value : null });

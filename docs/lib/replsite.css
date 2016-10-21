@@ -1,28 +1,28 @@
-.repl,
-.repl .inputcode,
-.repl .inputcode .CodeMirror,
-.repl .outputcode .markupview,
-.repl .outputcode .CodeMirror
+.replsite,
+.replsite .inputcode,
+.replsite .inputcode .CodeMirror,
+.replsite .outputcode .markupview,
+.replsite .outputcode .CodeMirror
 {
     height: 100%;
 }
-.repl
+.replsite
 {
     display : flex;
 }
-.repl section
+.replsite section
 {
     position: relative;
     width: 50%;
     box-sizing: border-box;
 }
-.repl .outputwin
+.replsite .outputwin
 {
     width: 100%;
     margin-bottom: -4px;
     box-sizing: border-box;
 }
-.repl .outputcode
+.replsite .outputcode
 {
     position: absolute;
     bottom: 0;
@@ -34,25 +34,25 @@
 
 /* buttons */
 
-.repl .prevbutton,
-.repl .nextbutton,
-.repl .markuptoggle
+.replsite .prevbutton,
+.replsite .nextbutton,
+.replsite .markuptoggle
 {
     font: 13px monospace;
     position: absolute;
     z-index: 10;
 }
-.repl .prevbutton
+.replsite .prevbutton
 {
     bottom: 8px;
     left: 8px;
 }
-.repl .nextbutton
+.replsite .nextbutton
 {
     bottom: 8px;
     right: 8px;
 }
-.repl .markuptoggle
+.replsite .markuptoggle
 {
     right: 9px;
     bottom: 9px;
@@ -62,9 +62,9 @@
     padding: 1px 6px;
     user-select: none;
 }
-.repl .prevbutton:not(:hover):not(:focus),
-.repl .nextbutton:not(:hover):not(:focus),
-.repl .markuptoggle:not(:hover):not(:focus)
+.replsite .prevbutton:not(:hover):not(:focus),
+.replsite .nextbutton:not(:hover):not(:focus),
+.replsite .markuptoggle:not(:hover):not(:focus)
 {
     opacity: 0.5;
 }
