@@ -64,7 +64,7 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     }
 }
 
-CodeMirrorAssembler.prototype.mirror = null;
+Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable : true, value : null });
 
 const codemirror = (init = {}) => new CodeMirrorAssembler(init);
 

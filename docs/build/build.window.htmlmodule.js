@@ -265,7 +265,7 @@
 	}
 
 	exports.DOMAssembler = DOMAssembler;
-	DOMAssembler.prototype.node = null;
+	Object.defineProperty(DOMAssembler.prototype, 'node', { writable: true, value: null });
 
 /***/ },
 /* 4 */

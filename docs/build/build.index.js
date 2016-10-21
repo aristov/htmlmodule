@@ -269,7 +269,7 @@
 	}
 
 	exports.DOMAssembler = DOMAssembler;
-	DOMAssembler.prototype.node = null;
+	Object.defineProperty(DOMAssembler.prototype, 'node', { writable: true, value: null });
 
 /***/ },
 
@@ -898,9 +898,8 @@
 	}
 
 	exports.REPL = REPL;
-	const proto = REPL.prototype;
-	proto.index = START_INDEX;
-	proto.node = null;
+	Object.defineProperty(REPL.prototype, 'index', { writable: true, value: START_INDEX });
+	Object.defineProperty(REPL.prototype, 'node', { writable: true, value: null });
 
 /***/ },
 
@@ -976,9 +975,8 @@
 	}
 
 	exports.REPLMachine = REPLMachine;
-	const proto = REPLMachine.prototype;
-	proto.input = null;
-	proto.output = null;
+	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
+	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
 
 /***/ },
 
@@ -1175,7 +1173,7 @@
 	}
 
 	exports.CodeMirrorAssembler = CodeMirrorAssembler;
-	CodeMirrorAssembler.prototype.mirror = null;
+	Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable: true, value: null });
 
 	const codemirror = (init = {}) => new CodeMirrorAssembler(init);
 
@@ -4694,7 +4692,7 @@
 
 
 	// module
-	exports.push([module.id, "[hidden]\n{\n    display: none !important;\n}\n:link:not(:hover):not(:focus):not(:active)\n{\n    text-decoration: none;\n}\nhtml, body\n{\n    height: 100%;\n}\nbody\n{\n    margin: 0;\n}\n", ""]);
+	exports.push([module.id, "[hidden]\n{\n    display: none !important;\n}\nhtml, body\n{\n    height: 100%;\n}\nbody\n{\n    margin: 0;\n}\n", ""]);
 
 	// exports
 

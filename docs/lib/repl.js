@@ -118,6 +118,5 @@ export class REPL {
     }
 }
 
-const proto = REPL.prototype;
-proto.index = START_INDEX;
-proto.node = null;
+Object.defineProperty(REPL.prototype, 'index', { writable : true, value : START_INDEX });
+Object.defineProperty(REPL.prototype, 'node', { writable : true, value : null });
