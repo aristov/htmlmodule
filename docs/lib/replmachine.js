@@ -59,5 +59,6 @@ export class REPLMachine {
     }
 }
 
-Object.defineProperty(REPLMachine.prototype, 'input', { writable : true, value : null });
-Object.defineProperty(REPLMachine.prototype, 'output', { writable : true, value : null });
+const proto = REPLMachine.prototype;
+proto.input = null;
+proto.output = null;

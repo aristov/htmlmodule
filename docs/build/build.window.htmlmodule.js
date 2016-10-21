@@ -265,11 +265,7 @@
 	}
 
 	exports.DOMAssembler = DOMAssembler;
-	Object.defineProperty(DOMAssembler.prototype, 'node', {
-	    enumerable: true,
-	    writable: true,
-	    value: null
-	});
+	DOMAssembler.prototype.node = null;
 
 /***/ },
 /* 4 */

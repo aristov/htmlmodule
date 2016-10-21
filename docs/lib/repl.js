@@ -35,13 +35,13 @@ export class REPL {
             body.textContent = value;
         } else {
             try {
-                const node = typeof value === 'function'?
+                const resultnode = typeof value === 'function'?
                     value(htmlmodule) :
                     value;
-                if(node) {
-                    body.appendChild(node);
+                if(resultnode) {
+                    body.appendChild(resultnode);
                     if(markupview.open) {
-                        outputcode.value = serializer.serializeToString(node);
+                        outputcode.value = serializer.serializeToString(resultnode);
                     }
                 }
             }
@@ -118,5 +118,6 @@ export class REPL {
     }
 }
 
-Object.defineProperty(REPL.prototype, 'index', { writable  : true, value  : START_INDEX });
-Object.defineProperty(REPL.prototype, 'node', { writable  : true, value  : null });
+const proto = REPL.prototype;
+proto.index = START_INDEX;
+proto.node = null;

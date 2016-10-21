@@ -7,18 +7,6 @@ import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/lib/codemirror.css';
 import './codemirror.css';
 
-/**
- * good themes:
- *  - lesser-dark
- *  - material
- *  - erlang-dark
- *  - mbo
- *  - night
- *  - paraiso-dark
- *  - rubyblue
- *  - the-matrix
- */
-
 import 'codemirror/theme/rubyblue.css';
 const theme = 'rubyblue';
 
@@ -76,7 +64,7 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     }
 }
 
-Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable  : true, value  : null });
+CodeMirrorAssembler.prototype.mirror = null;
 
 const codemirror = (init = {}) => new CodeMirrorAssembler(init);
 

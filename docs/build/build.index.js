@@ -269,11 +269,7 @@
 	}
 
 	exports.DOMAssembler = DOMAssembler;
-	Object.defineProperty(DOMAssembler.prototype, 'node', {
-	    enumerable: true,
-	    writable: true,
-	    value: null
-	});
+	DOMAssembler.prototype.node = null;
 
 /***/ },
 
@@ -836,11 +832,11 @@
 	            body.textContent = value;
 	        } else {
 	            try {
-	                const node = typeof value === 'function' ? value(htmlmodule) : value;
-	                if (node) {
-	                    body.appendChild(node);
+	                const resultnode = typeof value === 'function' ? value(htmlmodule) : value;
+	                if (resultnode) {
+	                    body.appendChild(resultnode);
 	                    if (markupview.open) {
-	                        outputcode.value = serializer.serializeToString(node);
+	                        outputcode.value = serializer.serializeToString(resultnode);
 	                    }
 	                }
 	            } catch (error) {
@@ -902,8 +898,9 @@
 	}
 
 	exports.REPL = REPL;
-	Object.defineProperty(REPL.prototype, 'index', { writable: true, value: START_INDEX });
-	Object.defineProperty(REPL.prototype, 'node', { writable: true, value: null });
+	const proto = REPL.prototype;
+	proto.index = START_INDEX;
+	proto.node = null;
 
 /***/ },
 
@@ -979,8 +976,9 @@
 	}
 
 	exports.REPLMachine = REPLMachine;
-	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
-	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
+	const proto = REPLMachine.prototype;
+	proto.input = null;
+	proto.output = null;
 
 /***/ },
 
@@ -1122,18 +1120,6 @@
 
 	const theme = 'rubyblue';
 
-	/**
-	 * good themes:
-	 *  - lesser-dark
-	 *  - material
-	 *  - erlang-dark
-	 *  - mbo
-	 *  - night
-	 *  - paraiso-dark
-	 *  - rubyblue
-	 *  - the-matrix
-	 */
-
 	const CODE_BOX_DEFAULTS = {
 	    mode: 'javascript',
 	    indentUnit: 4,
@@ -1189,7 +1175,7 @@
 	}
 
 	exports.CodeMirrorAssembler = CodeMirrorAssembler;
-	Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable: true, value: null });
+	CodeMirrorAssembler.prototype.mirror = null;
 
 	const codemirror = (init = {}) => new CodeMirrorAssembler(init);
 
