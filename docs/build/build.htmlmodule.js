@@ -201,6 +201,7 @@
 	    }
 
 	    /**
+	     * todo thinkme: define as method? if(init) this.init(NodeInit(init), ...initlist);
 	     * Initialize the element with defined properties
 	     * @param {{}} init initializing dictionary object
 	     */
@@ -231,7 +232,7 @@
 	    /**
 	     * Append children to the element
 	     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
-	     * @param {Node|String|DOMAssembler|Array} children child node or string or array of listed
+	     * @param {Node|String|DOMAssembler|Array} children child node or string or assembler instance or array of listed
 	     */
 	    set children(children) {
 	        if (isArray(children)) {
@@ -244,7 +245,7 @@
 	    }
 
 	    /**
-	     * Create the specified element and initialize it by given property set
+	     * Create the specified element and initialize it by a given property set
 	     * @param {String} tagName
 	     * @param {{}} [init]
 	     * @returns {Element} created and initialized DOM `Element`
@@ -373,7 +374,8 @@
 	 * Creates and initializes the specified element
 	 *
 	 * @param {String} tagName element tag name
-	 * @param init.global{} — global `HTMLElement` attributes
+	 * 
+	 * @param init.global{} — global `HTMLElement` attributes // todo get from spec
 	 * @param {*} init object
 	 */
 	const htmldom = exports.htmldom = (tagName, init) => assembler.createElement(tagName, init);
@@ -464,7 +466,7 @@
 	 * and which could be considered separate from that content.
 	 * Such sections are often represented as sidebars in printed typography.
 	 *
-	 * Uses HTMLElement interface
+	 * Uses `HTMLElement` interface
 	 * @function aside
 	 * @param init.global{} — global `HTMLElement` attributes
 	 * @param {*} init object
@@ -479,7 +481,7 @@
 	 * it is intended for older Web browsers which do not support audio, so that legacy audio plugins can be tried,
 	 * or to show text to the users of these older browsers informing them of how to access the audio contents.
 	 *
-	 * Uses HTMLAudioElement interface
+	 * Implements `HTMLAudioElement` interface
 	 * @function audio
 	 * @param {String} init.src — Address of the resource
 	 * @param {String} init.crossorigin — How the element handles crossorigin requests
@@ -493,15 +495,38 @@
 	 */
 	const audio = exports.audio = init => htmldom('audio', init);
 
+	/**
+	 * [The `b` element](https://html.spec.whatwg.org/#the-b-element)
+	 * represents a span of text to which attention is being drawn
+	 * for utilitarian purposes without conveying any extra importance
+	 * and with no implication of an alternate voice or mood,
+	 * such as key words in a document abstract, product names in a review,
+	 * actionable words in interactive text-driven software, or an article lede.
+	 *
+	 * Uses `HTMLElement` interface
+	 * @function b
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const b = exports.b = init => htmldom('b', init);
 
+	/**
+	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
+	 * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
+	 *
+	 * Uses `HTMLElement` interface
+	 * @function bdi
+	 * @param {String} init.dir — special semantics
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const base = exports.base = init => htmldom('base', init);
 
 	/**
 	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
 	 * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
 	 *
-	 * Uses HTMLElement interface
+	 * Uses `HTMLElement` interface
 	 * @function bdi
 	 * @param {String} init.dir — special semantics
 	 * @param init.global{} — global `HTMLElement` attributes
@@ -514,7 +539,7 @@
 	 * represents explicit text directionality formatting control for its children.
 	 * It allows authors to override the Unicode bidirectional algorithm by explicitly specifying a direction override.
 	 *
-	 * Uses HTMLElement interface
+	 * Uses `HTMLElement` interface
 	 * @function bdo
 	 * @param {String} init.dir — special semantics: `rtl` or `ltr` values allowed only
 	 * @param init.global{} — global `HTMLElement` attributes
@@ -522,16 +547,108 @@
 	 */
 	const bdo = exports.bdo = init => htmldom('bdo', init);
 
+	/**
+	 * [The `blockquote` element](https://html.spec.whatwg.org/#the-blockquote-element)
+	 * represents a section that is quoted from another source.
+	 * Content inside a blockquote must be quoted from another source,
+	 * whose address, if it has one, may be cited in the cite attribute.
+	 *
+	 * Implements `HTMLQuoteElement` interface
+	 * @function blockquote
+	 * @param {String} init.cite — Link to the source of the quotation or more information about the edit
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const blockquote = exports.blockquote = init => htmldom('blockquote', init);
 
+	/**
+	 * [The `body` element](https://html.spec.whatwg.org/#the-body-element)
+	 * represents the main content of the document.
+	 *
+	 * Implements `HTMLBodyElement` interface
+	 * @function body
+	 * @param init.onafterprint
+	 * @param init.onbeforeprint
+	 * @param init.onbeforeunload
+	 * @param init.onhashchange
+	 * @param init.onlanguagechange
+	 * @param init.onmessage
+	 * @param init.onoffline
+	 * @param init.ononline
+	 * @param init.onpagehide
+	 * @param init.onpageshow
+	 * @param init.onpopstate
+	 * @param init.onrejectionhandled
+	 * @param init.onstorage
+	 * @param init.onunhandledrejection
+	 * @param init.onunload
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const body = exports.body = init => htmldom('body', init);
 
+	/**
+	 * [The `br` element](https://html.spec.whatwg.org/#the-br-element)
+	 * represents a line break.
+	 *
+	 * Implements `HTMLBRElement` interface
+	 * @function br
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const br = exports.br = init => htmldom('br', init);
 
+	/**
+	 * [The `button` element](https://html.spec.whatwg.org/#the-button-element)
+	 * represents a button labeled by its contents.
+	 *
+	 * - [w3 spec](https://www.w3.org/TR/html/sec-forms.html#the-button-element)
+	 * - [mdn](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement)
+	 * - [msdn](https://msdn.microsoft.com/en-us/library/ms535211(v=vs.85).aspx)
+	 *
+	 * Implements `HTMLButtonElement` interface
+	 * @function button
+	 * @param {boolean} init.autofocus — Automatically focus the form control when the page is loaded
+	 * @param {boolean} init.disabled — Whether the form control is disabled
+	 * @param {String} init.formAction — URL to use for form submission
+	 * @param {String} init.formEnctype — Form data set encoding type to use for form submission
+	 * @param {String} init.formMethod — HTTP method to use for form submission
+	 * @param {boolean} init.formNoValidate — Bypass form control validation for form submission
+	 * @param {String} init.formTarget — Browsing context for form submission
+	 * @param {String} init.name — Name of form control to use for form submission and in the form.elements API
+	 * @param {String} init.type — Type of button
+	 * @param {String} init.value — Value to be used for form submission
+	 * @param {HTMLMenuElement} init.menu — Specifies the element's designated pop-up menu
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const button = exports.button = init => htmldom('button', init);
 
+	/**
+	 * [The `canvas` element](https://html.spec.whatwg.org/#the-canvas-element)
+	 * provides scripts with a resolution-dependent bitmap canvas,
+	 * which can be used for rendering graphs, game graphics, art,
+	 * or other visual images on the fly.
+	 *
+	 * Implements `HTMLCanvasElement` interface
+	 * @function canvas
+	 * @param {Number} init.width — Horizontal dimension
+	 * @param {Number} init.height — Vertical dimension
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const canvas = exports.canvas = init => htmldom('canvas', init);
 
+	/**
+	 * [The `caption` element](https://html.spec.whatwg.org/#the-caption-element)
+	 * represents the title of the table that is its parent,
+	 * if it has a parent and that is a table element.
+	 *
+	 * Implements `HTMLTableCaptionElement` interface
+	 * @function caption
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 	const caption = exports.caption = init => htmldom('caption', init);
 
 	const cite = exports.cite = init => htmldom('cite', init);
@@ -747,6 +864,18 @@
 	const video = exports.video = init => htmldom('video', init);
 
 	const wbr = exports.wbr = init => htmldom('wbr', init);
+
+	/**
+	 * [The `` element](https://html.spec.whatwg.org/#the--element)
+	 * represents
+	 *
+	 * Uses HTMLElement interface
+	 * Implements * interface
+	 * @function *
+	 * @param {String} init.* — special semantics
+	 * @param init.global{} — global `HTMLElement` attributes
+	 * @param {*} init object
+	 */
 
 /***/ }
 /******/ ]);
