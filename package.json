@@ -33,8 +33,8 @@
   "scripts": {
     "test": "./node_modules/.bin/karma start",
     "start": "DOCS=true ES6=true WATCH=true ./node_modules/.bin/webpack",
-    "doc-build": "documentation build --output docs/api --format html --shallow",
-    "doc-serve": "documentation serve --format html --shallow -w"
+    "jsdoc-build": "documentation build --output docs/api --format html --shallow",
+    "jsdoc-serve": "documentation serve --format html --shallow -w"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
