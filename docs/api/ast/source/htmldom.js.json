@@ -29705,10 +29705,10 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable. **(`var` is reserved JS keyword so use `variable` instead)**\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
+            "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable.\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * **`var` is reserved JS keyword so use `variable` instead**\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
             "range": [
               98568,
-              99369
+              99373
             ],
             "loc": {
               "start": {
@@ -29716,7 +29716,7 @@
                 "column": 0
               },
               "end": {
-                "line": 2190,
+                "line": 2192,
                 "column": 3
               }
             }
@@ -29762,10 +29762,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable. **(`var` is reserved JS keyword so use `variable` instead)**\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
+          "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable.\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * **`var` is reserved JS keyword so use `variable` instead**\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
           "range": [
             98568,
-            99369
+            99373
           ],
           "loc": {
             "start": {
@@ -29773,7 +29773,7 @@
               "column": 0
             },
             "end": {
-              "line": 2190,
+              "line": 2192,
               "column": 3
             }
           }
@@ -29788,16 +29788,16 @@
           "type": "Identifier",
           "name": "variable",
           "range": [
-            99386,
-            99394
+            99390,
+            99398
           ],
           "loc": {
             "start": {
-              "line": 2191,
+              "line": 2193,
               "column": 16
             },
             "end": {
-              "line": 2191,
+              "line": 2193,
               "column": 24
             }
           }
@@ -29807,16 +29807,16 @@
             "type": "Identifier",
             "name": "init",
             "range": [
-              99395,
-              99399
+              99399,
+              99403
             ],
             "loc": {
               "start": {
-                "line": 2191,
+                "line": 2193,
                 "column": 25
               },
               "end": {
-                "line": 2191,
+                "line": 2193,
                 "column": 29
               }
             }
@@ -29833,16 +29833,16 @@
                   "type": "Identifier",
                   "name": "htmldom",
                   "range": [
-                    99410,
-                    99417
+                    99414,
+                    99421
                   ],
                   "loc": {
                     "start": {
-                      "line": 2191,
+                      "line": 2193,
                       "column": 40
                     },
                     "end": {
-                      "line": 2191,
+                      "line": 2193,
                       "column": 47
                     }
                   }
@@ -29853,16 +29853,16 @@
                     "value": "var",
                     "raw": "'var'",
                     "range": [
-                      99418,
-                      99423
+                      99422,
+                      99427
                     ],
                     "loc": {
                       "start": {
-                        "line": 2191,
+                        "line": 2193,
                         "column": 48
                       },
                       "end": {
-                        "line": 2191,
+                        "line": 2193,
                         "column": 53
                       }
                     }
@@ -29871,63 +29871,63 @@
                     "type": "Identifier",
                     "name": "init",
                     "range": [
-                      99425,
-                      99429
+                      99429,
+                      99433
                     ],
                     "loc": {
                       "start": {
-                        "line": 2191,
+                        "line": 2193,
                         "column": 55
                       },
                       "end": {
-                        "line": 2191,
+                        "line": 2193,
                         "column": 59
                       }
                     }
                   }
                 ],
                 "range": [
-                  99410,
-                  99430
+                  99414,
+                  99434
                 ],
                 "loc": {
                   "start": {
-                    "line": 2191,
+                    "line": 2193,
                     "column": 40
                   },
                   "end": {
-                    "line": 2191,
+                    "line": 2193,
                     "column": 60
                   }
                 }
               },
               "range": [
-                99403,
-                99431
+                99407,
+                99435
               ],
               "loc": {
                 "start": {
-                  "line": 2191,
+                  "line": 2193,
                   "column": 33
                 },
                 "end": {
-                  "line": 2191,
+                  "line": 2193,
                   "column": 61
                 }
               }
             }
           ],
           "range": [
-            99401,
-            99432
+            99405,
+            99436
           ],
           "loc": {
             "start": {
-              "line": 2191,
+              "line": 2193,
               "column": 31
             },
             "end": {
-              "line": 2191,
+              "line": 2193,
               "column": 62
             }
           }
@@ -29935,26 +29935,26 @@
         "generator": false,
         "expression": false,
         "range": [
-          99377,
-          99432
+          99381,
+          99436
         ],
         "loc": {
           "start": {
-            "line": 2191,
+            "line": 2193,
             "column": 7
           },
           "end": {
-            "line": 2191,
+            "line": 2193,
             "column": 62
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable. **(`var` is reserved JS keyword so use `variable` instead)**\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
+            "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable.\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * **`var` is reserved JS keyword so use `variable` instead**\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
             "range": [
               98568,
-              99369
+              99373
             ],
             "loc": {
               "start": {
@@ -29962,7 +29962,7 @@
                 "column": 0
               },
               "end": {
-                "line": 2190,
+                "line": 2192,
                 "column": 3
               }
             }
@@ -29973,16 +29973,16 @@
             "type": "Block",
             "value": "*\n * [The `video` element](https://html.spec.whatwg.org/#the-video-element)\n * is used for playing videos or movies, and audio files with captions.\n *\n * Implements `HTMLVideoElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-video-element)\n * - [MDN API reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/hh772959.aspx)\n *\n * @function video\n * @param {{}} [init] `NodeInit` dictionary\n * @param {String} [init.src] Address of the resource\n * @param {String} [init.crossOrigin] How the element handles crossorigin requests\n * @param {String} [init.poster] Poster frame to show prior to video playback\n * @param {String} [init.preload] Hints how much buffering the media resource will likely need\n * @param {Boolean} [init.autoplay] Hint that the media resource can be started automatically when the page is loaded\n * @param {Boolean} [init.playsInline] Encourage the user agent to display video content within the element's playback area\n * @param {Boolean} [init.loop] Whether to loop the media resource\n * @param {Number} [init.muted] Whether to mute the media resource by default\n * @param {Boolean} [init.controls] Show user agent controls\n * @param {Number} [init.width] Horizontal dimension\n * @param {Number} [init.height] Vertical dimension\n * @return {HTMLVideoElement}\n ",
             "range": [
-              99434,
-              100948
+              99438,
+              100952
             ],
             "loc": {
               "start": {
-                "line": 2193,
+                "line": 2195,
                 "column": 0
               },
               "end": {
-                "line": 2218,
+                "line": 2220,
                 "column": 3
               }
             }
@@ -29992,26 +29992,26 @@
       "specifiers": [],
       "source": null,
       "range": [
-        99370,
-        99432
+        99374,
+        99436
       ],
       "loc": {
         "start": {
-          "line": 2191,
+          "line": 2193,
           "column": 0
         },
         "end": {
-          "line": 2191,
+          "line": 2193,
           "column": 62
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable. **(`var` is reserved JS keyword so use `variable` instead)**\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
+          "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable.\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * **`var` is reserved JS keyword so use `variable` instead**\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
           "range": [
             98568,
-            99369
+            99373
           ],
           "loc": {
             "start": {
@@ -30019,7 +30019,7 @@
               "column": 0
             },
             "end": {
-              "line": 2190,
+              "line": 2192,
               "column": 3
             }
           }
@@ -30030,16 +30030,16 @@
           "type": "Block",
           "value": "*\n * [The `video` element](https://html.spec.whatwg.org/#the-video-element)\n * is used for playing videos or movies, and audio files with captions.\n *\n * Implements `HTMLVideoElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-video-element)\n * - [MDN API reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/hh772959.aspx)\n *\n * @function video\n * @param {{}} [init] `NodeInit` dictionary\n * @param {String} [init.src] Address of the resource\n * @param {String} [init.crossOrigin] How the element handles crossorigin requests\n * @param {String} [init.poster] Poster frame to show prior to video playback\n * @param {String} [init.preload] Hints how much buffering the media resource will likely need\n * @param {Boolean} [init.autoplay] Hint that the media resource can be started automatically when the page is loaded\n * @param {Boolean} [init.playsInline] Encourage the user agent to display video content within the element's playback area\n * @param {Boolean} [init.loop] Whether to loop the media resource\n * @param {Number} [init.muted] Whether to mute the media resource by default\n * @param {Boolean} [init.controls] Show user agent controls\n * @param {Number} [init.width] Horizontal dimension\n * @param {Number} [init.height] Vertical dimension\n * @return {HTMLVideoElement}\n ",
           "range": [
-            99434,
-            100948
+            99438,
+            100952
           ],
           "loc": {
             "start": {
-              "line": 2193,
+              "line": 2195,
               "column": 0
             },
             "end": {
-              "line": 2218,
+              "line": 2220,
               "column": 3
             }
           }
@@ -30054,16 +30054,16 @@
           "type": "Identifier",
           "name": "video",
           "range": [
-            100965,
-            100970
+            100969,
+            100974
           ],
           "loc": {
             "start": {
-              "line": 2219,
+              "line": 2221,
               "column": 16
             },
             "end": {
-              "line": 2219,
+              "line": 2221,
               "column": 21
             }
           }
@@ -30073,16 +30073,16 @@
             "type": "Identifier",
             "name": "init",
             "range": [
-              100971,
-              100975
+              100975,
+              100979
             ],
             "loc": {
               "start": {
-                "line": 2219,
+                "line": 2221,
                 "column": 22
               },
               "end": {
-                "line": 2219,
+                "line": 2221,
                 "column": 26
               }
             }
@@ -30099,16 +30099,16 @@
                   "type": "Identifier",
                   "name": "htmldom",
                   "range": [
-                    100986,
-                    100993
+                    100990,
+                    100997
                   ],
                   "loc": {
                     "start": {
-                      "line": 2219,
+                      "line": 2221,
                       "column": 37
                     },
                     "end": {
-                      "line": 2219,
+                      "line": 2221,
                       "column": 44
                     }
                   }
@@ -30119,16 +30119,16 @@
                     "value": "video",
                     "raw": "'video'",
                     "range": [
-                      100994,
-                      101001
+                      100998,
+                      101005
                     ],
                     "loc": {
                       "start": {
-                        "line": 2219,
+                        "line": 2221,
                         "column": 45
                       },
                       "end": {
-                        "line": 2219,
+                        "line": 2221,
                         "column": 52
                       }
                     }
@@ -30137,63 +30137,63 @@
                     "type": "Identifier",
                     "name": "init",
                     "range": [
-                      101003,
-                      101007
+                      101007,
+                      101011
                     ],
                     "loc": {
                       "start": {
-                        "line": 2219,
+                        "line": 2221,
                         "column": 54
                       },
                       "end": {
-                        "line": 2219,
+                        "line": 2221,
                         "column": 58
                       }
                     }
                   }
                 ],
                 "range": [
-                  100986,
-                  101008
+                  100990,
+                  101012
                 ],
                 "loc": {
                   "start": {
-                    "line": 2219,
+                    "line": 2221,
                     "column": 37
                   },
                   "end": {
-                    "line": 2219,
+                    "line": 2221,
                     "column": 59
                   }
                 }
               },
               "range": [
-                100979,
-                101009
+                100983,
+                101013
               ],
               "loc": {
                 "start": {
-                  "line": 2219,
+                  "line": 2221,
                   "column": 30
                 },
                 "end": {
-                  "line": 2219,
+                  "line": 2221,
                   "column": 60
                 }
               }
             }
           ],
           "range": [
-            100977,
-            101010
+            100981,
+            101014
           ],
           "loc": {
             "start": {
-              "line": 2219,
+              "line": 2221,
               "column": 28
             },
             "end": {
-              "line": 2219,
+              "line": 2221,
               "column": 61
             }
           }
@@ -30201,16 +30201,16 @@
         "generator": false,
         "expression": false,
         "range": [
-          100956,
-          101010
+          100960,
+          101014
         ],
         "loc": {
           "start": {
-            "line": 2219,
+            "line": 2221,
             "column": 7
           },
           "end": {
-            "line": 2219,
+            "line": 2221,
             "column": 61
           }
         },
@@ -30219,16 +30219,16 @@
             "type": "Block",
             "value": "*\n * [The `video` element](https://html.spec.whatwg.org/#the-video-element)\n * is used for playing videos or movies, and audio files with captions.\n *\n * Implements `HTMLVideoElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-video-element)\n * - [MDN API reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/hh772959.aspx)\n *\n * @function video\n * @param {{}} [init] `NodeInit` dictionary\n * @param {String} [init.src] Address of the resource\n * @param {String} [init.crossOrigin] How the element handles crossorigin requests\n * @param {String} [init.poster] Poster frame to show prior to video playback\n * @param {String} [init.preload] Hints how much buffering the media resource will likely need\n * @param {Boolean} [init.autoplay] Hint that the media resource can be started automatically when the page is loaded\n * @param {Boolean} [init.playsInline] Encourage the user agent to display video content within the element's playback area\n * @param {Boolean} [init.loop] Whether to loop the media resource\n * @param {Number} [init.muted] Whether to mute the media resource by default\n * @param {Boolean} [init.controls] Show user agent controls\n * @param {Number} [init.width] Horizontal dimension\n * @param {Number} [init.height] Vertical dimension\n * @return {HTMLVideoElement}\n ",
             "range": [
-              99434,
-              100948
+              99438,
+              100952
             ],
             "loc": {
               "start": {
-                "line": 2193,
+                "line": 2195,
                 "column": 0
               },
               "end": {
-                "line": 2218,
+                "line": 2220,
                 "column": 3
               }
             }
@@ -30239,16 +30239,16 @@
             "type": "Block",
             "value": "*\n * [The `wbr` element](https://html.spec.whatwg.org/#the-wbr-element)\n * represents a line break opportunity.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-wbr-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr)\n *\n * @function wbr\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
             "range": [
-              101012,
-              101430
+              101016,
+              101434
             ],
             "loc": {
               "start": {
-                "line": 2221,
+                "line": 2223,
                 "column": 0
               },
               "end": {
-                "line": 2233,
+                "line": 2235,
                 "column": 3
               }
             }
@@ -30258,16 +30258,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        100949,
-        101010
+        100953,
+        101014
       ],
       "loc": {
         "start": {
-          "line": 2219,
+          "line": 2221,
           "column": 0
         },
         "end": {
-          "line": 2219,
+          "line": 2221,
           "column": 61
         }
       },
@@ -30276,16 +30276,16 @@
           "type": "Block",
           "value": "*\n * [The `video` element](https://html.spec.whatwg.org/#the-video-element)\n * is used for playing videos or movies, and audio files with captions.\n *\n * Implements `HTMLVideoElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-video-element)\n * - [MDN API reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/hh772959.aspx)\n *\n * @function video\n * @param {{}} [init] `NodeInit` dictionary\n * @param {String} [init.src] Address of the resource\n * @param {String} [init.crossOrigin] How the element handles crossorigin requests\n * @param {String} [init.poster] Poster frame to show prior to video playback\n * @param {String} [init.preload] Hints how much buffering the media resource will likely need\n * @param {Boolean} [init.autoplay] Hint that the media resource can be started automatically when the page is loaded\n * @param {Boolean} [init.playsInline] Encourage the user agent to display video content within the element's playback area\n * @param {Boolean} [init.loop] Whether to loop the media resource\n * @param {Number} [init.muted] Whether to mute the media resource by default\n * @param {Boolean} [init.controls] Show user agent controls\n * @param {Number} [init.width] Horizontal dimension\n * @param {Number} [init.height] Vertical dimension\n * @return {HTMLVideoElement}\n ",
           "range": [
-            99434,
-            100948
+            99438,
+            100952
           ],
           "loc": {
             "start": {
-              "line": 2193,
+              "line": 2195,
               "column": 0
             },
             "end": {
-              "line": 2218,
+              "line": 2220,
               "column": 3
             }
           }
@@ -30296,16 +30296,16 @@
           "type": "Block",
           "value": "*\n * [The `wbr` element](https://html.spec.whatwg.org/#the-wbr-element)\n * represents a line break opportunity.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-wbr-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr)\n *\n * @function wbr\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
           "range": [
-            101012,
-            101430
+            101016,
+            101434
           ],
           "loc": {
             "start": {
-              "line": 2221,
+              "line": 2223,
               "column": 0
             },
             "end": {
-              "line": 2233,
+              "line": 2235,
               "column": 3
             }
           }
@@ -30320,16 +30320,16 @@
           "type": "Identifier",
           "name": "wbr",
           "range": [
-            101447,
-            101450
+            101451,
+            101454
           ],
           "loc": {
             "start": {
-              "line": 2234,
+              "line": 2236,
               "column": 16
             },
             "end": {
-              "line": 2234,
+              "line": 2236,
               "column": 19
             }
           }
@@ -30339,16 +30339,16 @@
             "type": "Identifier",
             "name": "init",
             "range": [
-              101451,
-              101455
+              101455,
+              101459
             ],
             "loc": {
               "start": {
-                "line": 2234,
+                "line": 2236,
                 "column": 20
               },
               "end": {
-                "line": 2234,
+                "line": 2236,
                 "column": 24
               }
             }
@@ -30365,16 +30365,16 @@
                   "type": "Identifier",
                   "name": "htmldom",
                   "range": [
-                    101466,
-                    101473
+                    101470,
+                    101477
                   ],
                   "loc": {
                     "start": {
-                      "line": 2234,
+                      "line": 2236,
                       "column": 35
                     },
                     "end": {
-                      "line": 2234,
+                      "line": 2236,
                       "column": 42
                     }
                   }
@@ -30385,16 +30385,16 @@
                     "value": "wbr",
                     "raw": "'wbr'",
                     "range": [
-                      101474,
-                      101479
+                      101478,
+                      101483
                     ],
                     "loc": {
                       "start": {
-                        "line": 2234,
+                        "line": 2236,
                         "column": 43
                       },
                       "end": {
-                        "line": 2234,
+                        "line": 2236,
                         "column": 48
                       }
                     }
@@ -30403,63 +30403,63 @@
                     "type": "Identifier",
                     "name": "init",
                     "range": [
-                      101481,
-                      101485
+                      101485,
+                      101489
                     ],
                     "loc": {
                       "start": {
-                        "line": 2234,
+                        "line": 2236,
                         "column": 50
                       },
                       "end": {
-                        "line": 2234,
+                        "line": 2236,
                         "column": 54
                       }
                     }
                   }
                 ],
                 "range": [
-                  101466,
-                  101486
+                  101470,
+                  101490
                 ],
                 "loc": {
                   "start": {
-                    "line": 2234,
+                    "line": 2236,
                     "column": 35
                   },
                   "end": {
-                    "line": 2234,
+                    "line": 2236,
                     "column": 55
                   }
                 }
               },
               "range": [
-                101459,
-                101487
+                101463,
+                101491
               ],
               "loc": {
                 "start": {
-                  "line": 2234,
+                  "line": 2236,
                   "column": 28
                 },
                 "end": {
-                  "line": 2234,
+                  "line": 2236,
                   "column": 56
                 }
               }
             }
           ],
           "range": [
-            101457,
-            101488
+            101461,
+            101492
           ],
           "loc": {
             "start": {
-              "line": 2234,
+              "line": 2236,
               "column": 26
             },
             "end": {
-              "line": 2234,
+              "line": 2236,
               "column": 57
             }
           }
@@ -30467,16 +30467,16 @@
         "generator": false,
         "expression": false,
         "range": [
-          101438,
-          101488
+          101442,
+          101492
         ],
         "loc": {
           "start": {
-            "line": 2234,
+            "line": 2236,
             "column": 7
           },
           "end": {
-            "line": 2234,
+            "line": 2236,
             "column": 57
           }
         },
@@ -30485,16 +30485,16 @@
             "type": "Block",
             "value": "*\n * [The `wbr` element](https://html.spec.whatwg.org/#the-wbr-element)\n * represents a line break opportunity.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-wbr-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr)\n *\n * @function wbr\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
             "range": [
-              101012,
-              101430
+              101016,
+              101434
             ],
             "loc": {
               "start": {
-                "line": 2221,
+                "line": 2223,
                 "column": 0
               },
               "end": {
-                "line": 2233,
+                "line": 2235,
                 "column": 3
               }
             }
@@ -30505,16 +30505,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        101431,
-        101488
+        101435,
+        101492
       ],
       "loc": {
         "start": {
-          "line": 2234,
+          "line": 2236,
           "column": 0
         },
         "end": {
-          "line": 2234,
+          "line": 2236,
           "column": 57
         }
       },
@@ -30523,16 +30523,16 @@
           "type": "Block",
           "value": "*\n * [The `wbr` element](https://html.spec.whatwg.org/#the-wbr-element)\n * represents a line break opportunity.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-wbr-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr)\n *\n * @function wbr\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
           "range": [
-            101012,
-            101430
+            101016,
+            101434
           ],
           "loc": {
             "start": {
-              "line": 2221,
+              "line": 2223,
               "column": 0
             },
             "end": {
-              "line": 2233,
+              "line": 2235,
               "column": 3
             }
           }
@@ -30543,7 +30543,7 @@
   "sourceType": "module",
   "range": [
     0,
-    101488
+    101492
   ],
   "loc": {
     "start": {
@@ -30551,7 +30551,7 @@
       "column": 0
     },
     "end": {
-      "line": 2234,
+      "line": 2236,
       "column": 57
     }
   },
@@ -32556,10 +32556,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable. **(`var` is reserved JS keyword so use `variable` instead)**\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
+      "value": "*\n * [the `var` element](https://html.spec.whatwg.org/#the-var-element)\n * represents a variable.\n * This could be an actual variable in a mathematical expression or programming context,\n * an identifier representing a constant, a symbol identifying a physical quantity,\n * a function parameter, or just be a term used as a placeholder in prose.\n *\n * Uses `HTMLElement` interface\n *\n * **`var` is reserved JS keyword so use `variable` instead**\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-var-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/ms535916.aspx)\n *\n * @function variable\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
       "range": [
         98568,
-        99369
+        99373
       ],
       "loc": {
         "start": {
@@ -32567,7 +32567,7 @@
           "column": 0
         },
         "end": {
-          "line": 2190,
+          "line": 2192,
           "column": 3
         }
       }
@@ -32576,16 +32576,16 @@
       "type": "Block",
       "value": "*\n * [The `video` element](https://html.spec.whatwg.org/#the-video-element)\n * is used for playing videos or movies, and audio files with captions.\n *\n * Implements `HTMLVideoElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-video-element)\n * - [MDN API reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)\n * - [MSDN HTML reference](https://msdn.microsoft.com/en-us/library/hh772959.aspx)\n *\n * @function video\n * @param {{}} [init] `NodeInit` dictionary\n * @param {String} [init.src] Address of the resource\n * @param {String} [init.crossOrigin] How the element handles crossorigin requests\n * @param {String} [init.poster] Poster frame to show prior to video playback\n * @param {String} [init.preload] Hints how much buffering the media resource will likely need\n * @param {Boolean} [init.autoplay] Hint that the media resource can be started automatically when the page is loaded\n * @param {Boolean} [init.playsInline] Encourage the user agent to display video content within the element's playback area\n * @param {Boolean} [init.loop] Whether to loop the media resource\n * @param {Number} [init.muted] Whether to mute the media resource by default\n * @param {Boolean} [init.controls] Show user agent controls\n * @param {Number} [init.width] Horizontal dimension\n * @param {Number} [init.height] Vertical dimension\n * @return {HTMLVideoElement}\n ",
       "range": [
-        99434,
-        100948
+        99438,
+        100952
       ],
       "loc": {
         "start": {
-          "line": 2193,
+          "line": 2195,
           "column": 0
         },
         "end": {
-          "line": 2218,
+          "line": 2220,
           "column": 3
         }
       }
@@ -32594,16 +32594,16 @@
       "type": "Block",
       "value": "*\n * [The `wbr` element](https://html.spec.whatwg.org/#the-wbr-element)\n * represents a line break opportunity.\n *\n * Uses `HTMLElement` interface\n *\n * - [W3 specification](https://www.w3.org/TR/html/single-page.html#the-wbr-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr)\n *\n * @function wbr\n * @param {{}} [init] `NodeInit` dictionary\n * @return {HTMLElement}\n ",
       "range": [
-        101012,
-        101430
+        101016,
+        101434
       ],
       "loc": {
         "start": {
-          "line": 2221,
+          "line": 2223,
           "column": 0
         },
         "end": {
-          "line": 2233,
+          "line": 2235,
           "column": 3
         }
       }
