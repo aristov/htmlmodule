@@ -5,7 +5,7 @@
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
-[![Document Coverage](https://aristov.github.io/htmlmodule/api/badge.svg)](/docs/api)
+[![Document Coverage](https://aristov.github.io/htmlmodule/api/badge.svg)](https://aristov.github.io/htmlmodule/api/)
 
 /work in progress/
 
