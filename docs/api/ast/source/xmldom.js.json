@@ -1,0 +1,1539 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "DOMAssembler",
+            "range": [
+              9,
+              21
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 21
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "DOMAssembler",
+            "range": [
+              9,
+              21
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 21
+              }
+            }
+          },
+          "range": [
+            9,
+            21
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 9
+            },
+            "end": {
+              "line": 1,
+              "column": 21
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./domassembler",
+        "raw": "'./domassembler'",
+        "range": [
+          29,
+          45
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 29
+          },
+          "end": {
+            "line": 1,
+            "column": 45
+          }
+        }
+      },
+      "range": [
+        0,
+        46
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 46
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "ObjectPattern",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "document",
+                  "range": [
+                    56,
+                    64
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 3,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 3,
+                      "column": 16
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "document",
+                  "range": [
+                    56,
+                    64
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 3,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 3,
+                      "column": 16
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "computed": false,
+                "range": [
+                  56,
+                  64
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 16
+                  }
+                }
+              }
+            ],
+            "range": [
+              54,
+              66
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 6
+              },
+              "end": {
+                "line": 3,
+                "column": 18
+              }
+            }
+          },
+          "init": {
+            "type": "Identifier",
+            "name": "window",
+            "range": [
+              69,
+              75
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 21
+              },
+              "end": {
+                "line": 3,
+                "column": 27
+              }
+            }
+          },
+          "range": [
+            54,
+            75
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 6
+            },
+            "end": {
+              "line": 3,
+              "column": 27
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        48,
+        76
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "assembler",
+            "range": [
+              84,
+              93
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 6
+              },
+              "end": {
+                "line": 5,
+                "column": 15
+              }
+            }
+          },
+          "init": {
+            "type": "NewExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "DOMAssembler",
+              "range": [
+                100,
+                112
+              ],
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 22
+                },
+                "end": {
+                  "line": 5,
+                  "column": 34
+                }
+              }
+            },
+            "arguments": [],
+            "range": [
+              96,
+              112
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 18
+              },
+              "end": {
+                "line": 5,
+                "column": 34
+              }
+            }
+          },
+          "range": [
+            84,
+            112
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 6
+            },
+            "end": {
+              "line": 5,
+              "column": 34
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        78,
+        113
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 35
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+          "range": [
+            115,
+            887
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 24,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "xmldom",
+          "range": [
+            904,
+            910
+          ],
+          "loc": {
+            "start": {
+              "line": 25,
+              "column": 16
+            },
+            "end": {
+              "line": 25,
+              "column": 22
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "tagName",
+            "range": [
+              911,
+              918
+            ],
+            "loc": {
+              "start": {
+                "line": 25,
+                "column": 23
+              },
+              "end": {
+                "line": 25,
+                "column": 30
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "init",
+            "range": [
+              920,
+              924
+            ],
+            "loc": {
+              "start": {
+                "line": 25,
+                "column": 32
+              },
+              "end": {
+                "line": 25,
+                "column": 36
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "Identifier",
+                    "name": "assembler",
+                    "range": [
+                      939,
+                      948
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 20
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "createElement",
+                    "range": [
+                      949,
+                      962
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 21
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 34
+                      }
+                    }
+                  },
+                  "range": [
+                    939,
+                    962
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 26,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 34
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "tagName",
+                    "range": [
+                      963,
+                      970
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 35
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "init",
+                    "range": [
+                      972,
+                      976
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 48
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  939,
+                  977
+                ],
+                "loc": {
+                  "start": {
+                    "line": 26,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 49
+                  }
+                }
+              },
+              "range": [
+                932,
+                978
+              ],
+              "loc": {
+                "start": {
+                  "line": 26,
+                  "column": 4
+                },
+                "end": {
+                  "line": 26,
+                  "column": 50
+                }
+              }
+            }
+          ],
+          "range": [
+            926,
+            980
+          ],
+          "loc": {
+            "start": {
+              "line": 25,
+              "column": 38
+            },
+            "end": {
+              "line": 27,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          895,
+          980
+        ],
+        "loc": {
+          "start": {
+            "line": 25,
+            "column": 7
+          },
+          "end": {
+            "line": 27,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+            "range": [
+              115,
+              887
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 24,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
+            "range": [
+              982,
+              1129
+            ],
+            "loc": {
+              "start": {
+                "line": 29,
+                "column": 0
+              },
+              "end": {
+                "line": 33,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        888,
+        980
+      ],
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 0
+        },
+        "end": {
+          "line": 27,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+          "range": [
+            115,
+            887
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 24,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
+          "range": [
+            982,
+            1129
+          ],
+          "loc": {
+            "start": {
+              "line": 29,
+              "column": 0
+            },
+            "end": {
+              "line": 33,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "element",
+          "range": [
+            1146,
+            1153
+          ],
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 16
+            },
+            "end": {
+              "line": 34,
+              "column": 23
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "init",
+            "range": [
+              1154,
+              1158
+            ],
+            "loc": {
+              "start": {
+                "line": 34,
+                "column": 24
+              },
+              "end": {
+                "line": 34,
+                "column": 28
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "xmldom",
+                  "range": [
+                    1169,
+                    1175
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 34,
+                      "column": 39
+                    },
+                    "end": {
+                      "line": 34,
+                      "column": 45
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "element",
+                    "raw": "'element'",
+                    "range": [
+                      1176,
+                      1185
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 34,
+                        "column": 46
+                      },
+                      "end": {
+                        "line": 34,
+                        "column": 55
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "init",
+                    "range": [
+                      1187,
+                      1191
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 34,
+                        "column": 57
+                      },
+                      "end": {
+                        "line": 34,
+                        "column": 61
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  1169,
+                  1192
+                ],
+                "loc": {
+                  "start": {
+                    "line": 34,
+                    "column": 39
+                  },
+                  "end": {
+                    "line": 34,
+                    "column": 62
+                  }
+                }
+              },
+              "range": [
+                1162,
+                1193
+              ],
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 32
+                },
+                "end": {
+                  "line": 34,
+                  "column": 63
+                }
+              }
+            }
+          ],
+          "range": [
+            1160,
+            1194
+          ],
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 30
+            },
+            "end": {
+              "line": 34,
+              "column": 64
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          1137,
+          1194
+        ],
+        "loc": {
+          "start": {
+            "line": 34,
+            "column": 7
+          },
+          "end": {
+            "line": 34,
+            "column": 64
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
+            "range": [
+              982,
+              1129
+            ],
+            "loc": {
+              "start": {
+                "line": 29,
+                "column": 0
+              },
+              "end": {
+                "line": 33,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+            "range": [
+              1196,
+              1286
+            ],
+            "loc": {
+              "start": {
+                "line": 36,
+                "column": 0
+              },
+              "end": {
+                "line": 40,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1130,
+        1194
+      ],
+      "loc": {
+        "start": {
+          "line": 34,
+          "column": 0
+        },
+        "end": {
+          "line": 34,
+          "column": 64
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
+          "range": [
+            982,
+            1129
+          ],
+          "loc": {
+            "start": {
+              "line": 29,
+              "column": 0
+            },
+            "end": {
+              "line": 33,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+          "range": [
+            1196,
+            1286
+          ],
+          "loc": {
+            "start": {
+              "line": 36,
+              "column": 0
+            },
+            "end": {
+              "line": 40,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "text",
+          "range": [
+            1303,
+            1307
+          ],
+          "loc": {
+            "start": {
+              "line": 41,
+              "column": 16
+            },
+            "end": {
+              "line": 41,
+              "column": 20
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "text",
+            "range": [
+              1308,
+              1312
+            ],
+            "loc": {
+              "start": {
+                "line": 41,
+                "column": 21
+              },
+              "end": {
+                "line": 41,
+                "column": 25
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "Identifier",
+                    "name": "document",
+                    "range": [
+                      1323,
+                      1331
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 36
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 44
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "createTextNode",
+                    "range": [
+                      1332,
+                      1346
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 45
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 59
+                      }
+                    }
+                  },
+                  "range": [
+                    1323,
+                    1346
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 41,
+                      "column": 36
+                    },
+                    "end": {
+                      "line": 41,
+                      "column": 59
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "text",
+                    "range": [
+                      1347,
+                      1351
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 60
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 64
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  1323,
+                  1352
+                ],
+                "loc": {
+                  "start": {
+                    "line": 41,
+                    "column": 36
+                  },
+                  "end": {
+                    "line": 41,
+                    "column": 65
+                  }
+                }
+              },
+              "range": [
+                1316,
+                1353
+              ],
+              "loc": {
+                "start": {
+                  "line": 41,
+                  "column": 29
+                },
+                "end": {
+                  "line": 41,
+                  "column": 66
+                }
+              }
+            }
+          ],
+          "range": [
+            1314,
+            1354
+          ],
+          "loc": {
+            "start": {
+              "line": 41,
+              "column": 27
+            },
+            "end": {
+              "line": 41,
+              "column": 67
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          1294,
+          1354
+        ],
+        "loc": {
+          "start": {
+            "line": 41,
+            "column": 7
+          },
+          "end": {
+            "line": 41,
+            "column": 67
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+            "range": [
+              1196,
+              1286
+            ],
+            "loc": {
+              "start": {
+                "line": 36,
+                "column": 0
+              },
+              "end": {
+                "line": 40,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+            "range": [
+              1356,
+              1455
+            ],
+            "loc": {
+              "start": {
+                "line": 43,
+                "column": 0
+              },
+              "end": {
+                "line": 47,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1287,
+        1354
+      ],
+      "loc": {
+        "start": {
+          "line": 41,
+          "column": 0
+        },
+        "end": {
+          "line": 41,
+          "column": 67
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+          "range": [
+            1196,
+            1286
+          ],
+          "loc": {
+            "start": {
+              "line": 36,
+              "column": 0
+            },
+            "end": {
+              "line": 40,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+          "range": [
+            1356,
+            1455
+          ],
+          "loc": {
+            "start": {
+              "line": 43,
+              "column": 0
+            },
+            "end": {
+              "line": 47,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "comment",
+          "range": [
+            1472,
+            1479
+          ],
+          "loc": {
+            "start": {
+              "line": 48,
+              "column": 16
+            },
+            "end": {
+              "line": 48,
+              "column": 23
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "comment",
+            "range": [
+              1480,
+              1487
+            ],
+            "loc": {
+              "start": {
+                "line": 48,
+                "column": 24
+              },
+              "end": {
+                "line": 48,
+                "column": 31
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "Identifier",
+                    "name": "document",
+                    "range": [
+                      1498,
+                      1506
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 48,
+                        "column": 42
+                      },
+                      "end": {
+                        "line": 48,
+                        "column": 50
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "createComment",
+                    "range": [
+                      1507,
+                      1520
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 48,
+                        "column": 51
+                      },
+                      "end": {
+                        "line": 48,
+                        "column": 64
+                      }
+                    }
+                  },
+                  "range": [
+                    1498,
+                    1520
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 48,
+                      "column": 42
+                    },
+                    "end": {
+                      "line": 48,
+                      "column": 64
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "comment",
+                    "range": [
+                      1521,
+                      1528
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 48,
+                        "column": 65
+                      },
+                      "end": {
+                        "line": 48,
+                        "column": 72
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  1498,
+                  1529
+                ],
+                "loc": {
+                  "start": {
+                    "line": 48,
+                    "column": 42
+                  },
+                  "end": {
+                    "line": 48,
+                    "column": 73
+                  }
+                }
+              },
+              "range": [
+                1491,
+                1530
+              ],
+              "loc": {
+                "start": {
+                  "line": 48,
+                  "column": 35
+                },
+                "end": {
+                  "line": 48,
+                  "column": 74
+                }
+              }
+            }
+          ],
+          "range": [
+            1489,
+            1531
+          ],
+          "loc": {
+            "start": {
+              "line": 48,
+              "column": 33
+            },
+            "end": {
+              "line": 48,
+              "column": 75
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          1463,
+          1531
+        ],
+        "loc": {
+          "start": {
+            "line": 48,
+            "column": 7
+          },
+          "end": {
+            "line": 48,
+            "column": 75
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+            "range": [
+              1356,
+              1455
+            ],
+            "loc": {
+              "start": {
+                "line": 43,
+                "column": 0
+              },
+              "end": {
+                "line": 47,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1456,
+        1531
+      ],
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 0
+        },
+        "end": {
+          "line": 48,
+          "column": 75
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+          "range": [
+            1356,
+            1455
+          ],
+          "loc": {
+            "start": {
+              "line": 43,
+              "column": 0
+            },
+            "end": {
+              "line": 47,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    1531
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 48,
+      "column": 75
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+      "range": [
+        115,
+        887
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 24,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
+      "range": [
+        982,
+        1129
+      ],
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 0
+        },
+        "end": {
+          "line": 33,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+      "range": [
+        1196,
+        1286
+      ],
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 0
+        },
+        "end": {
+          "line": 40,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+      "range": [
+        1356,
+        1455
+      ],
+      "loc": {
+        "start": {
+          "line": 43,
+          "column": 0
+        },
+        "end": {
+          "line": 47,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

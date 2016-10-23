@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/htmldom.spec.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/aristov/htmlmodule" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/domassembler.js~DOMAssembler.html">DOMAssembler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/htmlassembler.js~HTMLAssembler.html">HTMLAssembler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-a">a</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abbr">abbr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-address">address</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-area">area</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-article">article</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aside">aside</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-audio">audio</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-b">b</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-base">base</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bdi">bdi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bdo">bdo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-blockquote">blockquote</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-body">body</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-br">br</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-button">button</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-canvas">canvas</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-caption">caption</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cite">cite</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-code">code</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-col">col</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-colgroup">colgroup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-data">data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-datalist">datalist</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dd">dd</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-del">del</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-details">details</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dfn">dfn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dialog">dialog</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-div">div</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dl">dl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dt">dt</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-em">em</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-embed">embed</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fieldset">fieldset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-figcaption">figcaption</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-figure">figure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-footer">footer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-form">form</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h1">h1</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h2">h2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h3">h3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h4">h4</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h5">h5</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h6">h6</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-head">head</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-header">header</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hgroup">hgroup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hr">hr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-html">html</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-htmldom">htmldom</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-i">i</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iframe">iframe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-img">img</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-input">input</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ins">ins</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-kbd">kbd</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-label">label</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-legend">legend</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-li">li</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-link">link</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-main">main</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-map">map</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mark">mark</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-menu">menu</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-menuitem">menuitem</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-meta">meta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-meter">meter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nav">nav</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-noscript">noscript</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-object">object</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ol">ol</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-optgroup">optgroup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-option">option</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-output">output</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-p">p</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-param">param</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-picture">picture</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pre">pre</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-progress">progress</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-q">q</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rp">rp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rt">rt</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ruby">ruby</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-s">s</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-samp">samp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-script">script</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-section">section</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-select">select</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-slot">slot</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-small">small</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-source">source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-span">span</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-strong">strong</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sub">sub</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-summary">summary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sup">sup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-table">table</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tbody">tbody</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-td">td</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-template">template</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-textarea">textarea</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tfoot">tfoot</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-th">th</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-thead">thead</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-time">time</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-title">title</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tr">tr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-track">track</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-u">u</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ul">ul</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-variable">variable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-video">video</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wbr">wbr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-NodeInit">NodeInit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-comment">comment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-element">element</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-text">text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-xmldom">xmldom</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XML_NS_URI">XML_NS_URI</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XHTML_NS_URI">XHTML_NS_URI</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/htmldom.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {
+    fieldset, legend, input,
+    header, nav, a, form, button,
+    label, select, option,
+    div, ul, ol, li, dl, dd, dt,
+    main, section, details, summary,
+    dfn, sup, sub, i, strong, p, variable
+} from &apos;./htmldom&apos;;
+
+import chai from &apos;chai&apos;;
+
+const { assert } = chai;
+
+describe(&apos;HTMLDOM library&apos;, () =&gt; {
+    describe(&apos;Authorization fieldset&apos;, () =&gt; {
+        it(&apos;properly build form authorization fieldset&apos;, () =&gt; {
+            const element =
+                fieldset([
+                    legend(&apos;Authorization&apos;),
+                    input({ type : &apos;email&apos; }),
+                    input({ type : &apos;password&apos; })
+                ]);
+            assert.equal(element.outerHTML,
+                &apos;&lt;fieldset&gt;&apos; +
+                    &apos;&lt;legend&gt;Authorization&lt;/legend&gt;&apos; +
+                    &apos;&lt;input type=&quot;email&quot;&gt;&apos; +
+                    &apos;&lt;input type=&quot;password&quot;&gt;&apos; +
+                &apos;&lt;/fieldset&gt;&apos;);
+        });
+    });
+    describe(&apos;Header with navigation&apos;, () =&gt; {
+        it(&apos;properly build header with navigational links inside&apos;, () =&gt; {
+            const element =
+                header(nav([
+                    a({ href : &apos;/lib.html&apos;, textContent : &apos;Library&apos; }),
+                    a({ href : &apos;/spec.html&apos;, textContent : &apos;Specifications&apos; }),
+                    a({ href : &apos;/home.html&apos;, textContent : &apos;Go home&apos; })
+                ]));
+            assert.equal(element.outerHTML,
+                &apos;&lt;header&gt;&lt;nav&gt;&apos; +
+                    &apos;&lt;a href=&quot;/lib.html&quot;&gt;Library&lt;/a&gt;&apos; +
+                    &apos;&lt;a href=&quot;/spec.html&quot;&gt;Specifications&lt;/a&gt;&apos; +
+                    &apos;&lt;a href=&quot;/home.html&quot;&gt;Go home&lt;/a&gt;&apos; +
+                &apos;&lt;/nav&gt;&lt;/header&gt;&apos;);
+        })
+    });
+    describe(&apos;Select box widget&apos;, () =&gt; {
+        let widget, selected;
+        const element =
+            label([
+                &apos;Select technology &apos;,
+                widget = select([
+                    option(&apos;DOM&apos;),
+                    option(&apos;XML&apos;),
+                    selected = option({ selected : true, textContent : &apos;HTML&apos; }),
+                    option(&apos;SVG&apos;),
+                    option(&apos;MathML&apos;),
+                    option(&apos;WAI-ARIA&apos;)
+                ])
+            ]);
+        it(&apos;properly build label with select box option list inside&apos;, () =&gt; {
+            assert.equal(element.outerHTML,
+                &apos;&lt;label&gt;&apos; +
+                    &apos;Select technology &apos; +
+                    &apos;&lt;select&gt;&apos; +
+                        &apos;&lt;option&gt;DOM&lt;/option&gt;&apos; +
+                        &apos;&lt;option&gt;XML&lt;/option&gt;&apos; +
+                        &apos;&lt;option&gt;HTML&lt;/option&gt;&apos; +
+                        &apos;&lt;option&gt;SVG&lt;/option&gt;&apos; +
+                        &apos;&lt;option&gt;MathML&lt;/option&gt;&apos; +
+                        &apos;&lt;option&gt;WAI-ARIA&lt;/option&gt;&apos; +
+                    &apos;&lt;/select&gt;&apos; +
+                &apos;&lt;/label&gt;&apos;);
+        });
+        // victim of IE11 todo
+        it.skip(&apos;proper selected option reference&apos;, () =&gt; {
+            assert.equal(widget.selectedOptions.length, 1);
+            assert.equal(widget.selectedOptions[0], selected);
+        });
+    });
+    describe(&apos;Search form&apos;, () =&gt; {
+        it(&apos;properly build form with search input and submit button inside&apos;, () =&gt; {
+            const element =
+                form({
+                    attrset : { role : &apos;search&apos; },
+                    children : [
+                        input({ type : &apos;search&apos; }),
+                        button(&apos;Search&apos;)
+                    ]
+                });
+            assert.equal(element.outerHTML,
+                &apos;&lt;form role=&quot;search&quot;&gt;&apos; +
+                    &apos;&lt;input type=&quot;search&quot;&gt;&apos; +
+                    &apos;&lt;button&gt;Search&lt;/button&gt;&apos; +
+                &apos;&lt;/form&gt;&apos;);
+        });
+    });
+    describe(&apos;Checkboxes&apos;, () =&gt; {
+        let simple, checked, indeterminate;
+        const element =
+            div([
+                simple = input({ type : &apos;checkbox&apos; }),
+                checked = input({ type : &apos;checkbox&apos;, checked : true }),
+                indeterminate = input({ type : &apos;checkbox&apos;, indeterminate : true })
+            ]);
+        it(&apos;proper HTML rendered&apos;, () =&gt; {
+            assert.equal(element.outerHTML,
+                &apos;&lt;div&gt;&apos; +
+                    &apos;&lt;input type=&quot;checkbox&quot;&gt;&apos; +
+                    &apos;&lt;input type=&quot;checkbox&quot;&gt;&apos; +
+                    &apos;&lt;input type=&quot;checkbox&quot;&gt;&apos; +
+                &apos;&lt;/div&gt;&apos;);
+        });
+        it(&apos;check current state of widgets&apos;, () =&gt; {
+            assert(!simple.checked);
+            assert(checked.checked);
+            assert(indeterminate.indeterminate);
+        });
+        it(&apos;proper initial state assignment&apos;, () =&gt; {
+            const sample = input({ type : &apos;checkbox&apos;, attrset : { checked : &apos;&apos; } });
+            const container = div({ innerHTML : &apos;&lt;input type=checkbox checked&gt;&apos; });
+            assert(sample.isEqualNode(container.firstChild));
+        });
+    });
+    describe(&apos;Various list examples&apos;, () =&gt; {
+        it(&apos;properly build ul + li&apos;, () =&gt; {
+            assert.equal(
+                ul([
+                    li(&apos;Ampeg&apos;),
+                    li(&apos;Fender&apos;),
+                    li(&apos;Warwick&apos;)
+                ]).outerHTML,
+                &apos;&lt;ul&gt;&apos; +
+                    &apos;&lt;li&gt;Ampeg&lt;/li&gt;&apos; +
+                    &apos;&lt;li&gt;Fender&lt;/li&gt;&apos; +
+                    &apos;&lt;li&gt;Warwick&lt;/li&gt;&apos; +
+                &apos;&lt;/ul&gt;&apos;
+            );
+        });
+        it(&apos;properly build ol + li&apos;, () =&gt; {
+            assert.equal(
+                ol([
+                    li(&apos;Moscow&apos;),
+                    li(&apos;Amsterdam&apos;),
+                    li(&apos;New York&apos;)
+                ]).outerHTML,
+                &apos;&lt;ol&gt;&apos; +
+                    &apos;&lt;li&gt;Moscow&lt;/li&gt;&apos; +
+                    &apos;&lt;li&gt;Amsterdam&lt;/li&gt;&apos; +
+                    &apos;&lt;li&gt;New York&lt;/li&gt;&apos; +
+                &apos;&lt;/ol&gt;&apos;
+            );
+        });
+        it(&apos;properly build dl + dt + dd&apos;, () =&gt; {
+            assert.equal(
+                dl([
+                    dt(&apos;DOM&apos;),
+                    dd(&apos;Document object model&apos;),
+                    dt(&apos;XML&apos;),
+                    dd(&apos;Extensible markup language&apos;),
+                    dt(&apos;HTML&apos;),
+                    dd(&apos;Hyper text markup language&apos;)
+                ]).outerHTML,
+                &apos;&lt;dl&gt;&apos; +
+                    &apos;&lt;dt&gt;DOM&lt;/dt&gt;&apos; +
+                    &apos;&lt;dd&gt;Document object model&lt;/dd&gt;&apos; +
+                    &apos;&lt;dt&gt;XML&lt;/dt&gt;&apos; +
+                    &apos;&lt;dd&gt;Extensible markup language&lt;/dd&gt;&apos; +
+                    &apos;&lt;dt&gt;HTML&lt;/dt&gt;&apos; +
+                    &apos;&lt;dd&gt;Hyper text markup language&lt;/dd&gt;&apos; +
+                &apos;&lt;/dl&gt;&apos;
+            );
+        });
+    });
+    describe(&apos;Details with summary&apos;, () =&gt; {
+        it(&apos;properly build widget&apos;, () =&gt; {
+            const element =
+                details([
+                    summary(&apos;Show details&apos;),
+                    &apos;Lorem ipsum dolor sit amet, consectetur adipiscing elit, &apos;,
+                    &apos;sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&apos;
+                ]);
+            assert.equal(element.outerHTML,
+                &apos;&lt;details&gt;&apos; +
+                    &apos;&lt;summary&gt;Show details&lt;/summary&gt;&apos; +
+                    &apos;Lorem ipsum dolor sit amet, consectetur adipiscing elit, &apos; +
+                    &apos;sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&apos; +
+                &apos;&lt;/details&gt;&apos;);
+        });
+    });
+    describe(&apos;Other elements&apos;, () =&gt; {
+        it(&apos;property build DOM fragment&apos;, () =&gt; {
+            const element =
+                main([
+                    section(dfn(&apos;Instance.js &#x2014; simple and powerfull DOM Element interface&apos;)),
+                    section(p([
+                        variable(&apos;var&apos;),
+                        &apos; &#x2014; is reserved JavaScript keyword, &apos;,
+                        &apos;so we use `variable` function name instead.&apos;
+                    ])),
+                    section([
+                        sup(&apos;supertext&apos;),
+                        sub(&apos;subtext&apos;),
+                        i(&apos;alternative voice&apos;),
+                        strong(&apos;important!&apos;)
+                    ])
+                ]);
+            assert.equal(element.outerHTML,
+                &apos;&lt;main&gt;&apos; +
+                    &apos;&lt;section&gt;&lt;dfn&gt;&apos; +
+                        &apos;Instance.js &#x2014; simple and powerfull DOM Element interface&apos; +
+                    &apos;&lt;/dfn&gt;&lt;/section&gt;&apos; +
+                    &apos;&lt;section&gt;&lt;p&gt;&apos; +
+                        &apos;&lt;var&gt;var&lt;/var&gt;&apos; +
+                        &apos; &#x2014; is reserved JavaScript keyword, &apos; +
+                        &apos;so we use `variable` function name instead.&apos; +
+                    &apos;&lt;/p&gt;&lt;/section&gt;&apos; +
+                    &apos;&lt;section&gt;&apos; +
+                        &apos;&lt;sup&gt;supertext&lt;/sup&gt;&apos; +
+                        &apos;&lt;sub&gt;subtext&lt;/sub&gt;&apos; +
+                        &apos;&lt;i&gt;alternative voice&lt;/i&gt;&apos; +
+                        &apos;&lt;strong&gt;important!&lt;/strong&gt;&apos; +
+                    &apos;&lt;/section&gt;&apos; +
+                &apos;&lt;/main&gt;&apos;)
+        });
+    });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

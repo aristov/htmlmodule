@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/htmlassembler.spec.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/aristov/htmlmodule" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/domassembler.js~DOMAssembler.html">DOMAssembler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/htmlassembler.js~HTMLAssembler.html">HTMLAssembler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-a">a</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abbr">abbr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-address">address</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-area">area</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-article">article</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aside">aside</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-audio">audio</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-b">b</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-base">base</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bdi">bdi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bdo">bdo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-blockquote">blockquote</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-body">body</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-br">br</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-button">button</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-canvas">canvas</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-caption">caption</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cite">cite</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-code">code</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-col">col</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-colgroup">colgroup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-data">data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-datalist">datalist</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dd">dd</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-del">del</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-details">details</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dfn">dfn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dialog">dialog</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-div">div</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dl">dl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dt">dt</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-em">em</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-embed">embed</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fieldset">fieldset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-figcaption">figcaption</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-figure">figure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-footer">footer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-form">form</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h1">h1</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h2">h2</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h3">h3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h4">h4</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h5">h5</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-h6">h6</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-head">head</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-header">header</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hgroup">hgroup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hr">hr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-html">html</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-htmldom">htmldom</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-i">i</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iframe">iframe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-img">img</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-input">input</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ins">ins</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-kbd">kbd</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-label">label</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-legend">legend</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-li">li</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-link">link</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-main">main</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-map">map</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mark">mark</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-menu">menu</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-menuitem">menuitem</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-meta">meta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-meter">meter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nav">nav</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-noscript">noscript</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-object">object</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ol">ol</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-optgroup">optgroup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-option">option</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-output">output</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-p">p</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-param">param</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-picture">picture</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pre">pre</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-progress">progress</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-q">q</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rp">rp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rt">rt</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ruby">ruby</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-s">s</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-samp">samp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-script">script</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-section">section</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-select">select</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-slot">slot</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-small">small</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-source">source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-span">span</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-strong">strong</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sub">sub</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-summary">summary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sup">sup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-table">table</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tbody">tbody</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-td">td</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-template">template</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-textarea">textarea</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tfoot">tfoot</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-th">th</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-thead">thead</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-time">time</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-title">title</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tr">tr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-track">track</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-u">u</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ul">ul</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-variable">variable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-video">video</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wbr">wbr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-NodeInit">NodeInit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-comment">comment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-element">element</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-text">text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-xmldom">xmldom</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XML_NS_URI">XML_NS_URI</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XHTML_NS_URI">XHTML_NS_URI</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/htmlassembler.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { HTMLAssembler } from &apos;./htmlassembler.js&apos;;
+import chai from &apos;chai&apos;;
+
+// fixme
+import { htmlequal } from &apos;../util/util.domequalmarkup&apos;;
+
+const { assert } = chai;
+const {
+    HTMLElement,
+    HTMLUnknownElement,
+    HTMLInputElement,
+    HTMLHtmlElement,
+    HTMLFormElement,
+    HTMLSelectElement,
+    HTMLAnchorElement,
+    HTMLBodyElement,
+    HTMLButtonElement,
+    HTMLDivElement,
+    HTMLSpanElement
+} = window;
+
+const assembler = new HTMLAssembler;
+
+describe(&apos;HTML assembler&apos;, function() {
+
+    describe(&apos;createElement&apos;, function() {
+
+        describe(&apos;built-in global attributes&apos;, function() {
+
+            describe(&apos;accessKey&apos;, function() {
+                const element = assembler.createElement(&apos;a&apos;, { accessKey : &apos;A&apos; });
+
+                it(&apos;HTMLAnchorElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLAnchorElement);
+                    assert.equal(element.tagName, &apos;A&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `accessKey` attribute&apos;, function() {
+                    assert.equal(element.accessKey, &apos;A&apos;);
+                    assert.equal(element.getAttribute(&apos;accesskey&apos;), &apos;A&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML.toUpperCase(), &apos;&lt;A ACCESSKEY=&quot;A&quot;&gt;&lt;/A&gt;&apos;);
+                });
+                it(&apos;hdmldiff works properly&apos;, function() {
+                    assert.equal(htmlequal(element.outerHTML.toUpperCase(), &apos;&lt;a accesskey=&quot;A&quot;&gt;&lt;/a&gt;&apos;), true);
+                });
+            });
+
+            describe(&apos;className&apos;, function() {
+                const className = &apos;foo bar wiz&apos;;
+                const element = assembler.createElement(&apos;div&apos;, { className });
+
+                it(&apos;HTMLDivElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLDivElement);
+                    assert.equal(element.tagName, &apos;DIV&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `className` attribute&apos;, function() {
+                    assert.equal(element.className, className);
+                    assert.equal(element.getAttribute(&apos;class&apos;), className);
+                    assert(element.classList.contains(&apos;foo&apos;));
+                    assert(element.classList.contains(&apos;bar&apos;));
+                    assert(element.classList.contains(&apos;wiz&apos;));
+                });
+                it(&apos;document finds it&apos;, function() {
+                    document.body.appendChild(element);
+                    assert.equal(document.getElementsByClassName(&apos;foo&apos;)[0], element);
+                    assert.equal(document.getElementsByClassName(&apos;bar&apos;)[0], element);
+                    assert.equal(document.getElementsByClassName(&apos;wiz&apos;)[0], element);
+                    document.body.removeChild(element);
+                });
+                it(&apos;proper outerHTML property value&apos;, () =&gt; {
+                    assert.equal(element.outerHTML, &apos;&lt;div class=&quot;foo bar wiz&quot;&gt;&lt;/div&gt;&apos;);
+                });
+            });
+
+            describe(&apos;contentEditable&apos;, function() {
+                const element = assembler.createElement(&apos;unknown&apos;, { contentEditable : &apos;true&apos; });
+
+                it(&apos;HTMLUnknownElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLUnknownElement);
+                    assert.equal(element.tagName, &apos;UNKNOWN&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `contentEditable` attribute&apos;, function() {
+                    assert.equal(element.contentEditable, &apos;true&apos;);
+                    assert.equal(element.getAttribute(&apos;contenteditable&apos;), &apos;true&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML.toLowerCase(),
+                        &apos;&lt;unknown contenteditable=&quot;true&quot;&gt;&lt;/unknown&gt;&apos;);
+                });
+            });
+
+            describe(&apos;dir&apos;, function() {
+                const element = assembler.createElement(&apos;button&apos;, { dir : &apos;rtl&apos; });
+
+                it(&apos;HTMLButtonElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLButtonElement);
+                    assert.equal(element.tagName, &apos;BUTTON&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `dir` attribute&apos;, function() {
+                    assert.equal(element.dir, &apos;rtl&apos;);
+                    assert.equal(element.getAttribute(&apos;dir&apos;), &apos;rtl&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;button dir=&quot;rtl&quot;&gt;&lt;/button&gt;&apos;);
+                });
+            });
+
+            describe(&apos;draggable&apos;, function() {
+                const element = assembler.createElement(&apos;header&apos;, { draggable : true });
+
+                it.skip(&apos;HTMLElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLElement);
+                    assert.equal(element.tagName, &apos;HEADER&apos;);
+                });
+                it.skip(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it.skip(&apos;proper `draggable` attribute&apos;, function() {
+                    assert.equal(element.draggable, true);
+                    assert.equal(element.getAttribute(&apos;draggable&apos;), &apos;true&apos;);
+                });
+                it.skip(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;header draggable=&quot;true&quot;&gt;&lt;/header&gt;&apos;);
+                });
+            });
+
+            describe(&apos;hidden&apos;, function() {
+                const element = assembler.createElement(&apos;input&apos;, { hidden : true });
+
+                it(&apos;HTMLInputElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLInputElement);
+                    assert.equal(element.tagName, &apos;INPUT&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `hidden` attribute&apos;, function() {
+                    assert.equal(element.hidden, true);
+                    assert.equal(element.getAttribute(&apos;hidden&apos;), &apos;&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;input hidden=&quot;&quot;&gt;&apos;);
+                });
+            });
+
+            describe(&apos;id&apos;, function() {
+                const id = &apos;element_0&apos;;
+                const element = assembler.createElement(&apos;span&apos;, { id });
+
+                it(&apos;HTMLSpanElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLSpanElement);
+                    assert.equal(element.tagName, &apos;SPAN&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `id` attribute&apos;, function() {
+                    assert.equal(element.id, id);
+                });
+                it(&apos;document finds it&apos;, function() {
+                    document.body.appendChild(element);
+                    assert.equal(document.getElementById(id), element);
+                    document.body.removeChild(element);
+                });
+                it(&apos;proper outerHTML property value&apos;, () =&gt; {
+                    assert.equal(element.outerHTML, &apos;&lt;span id=&quot;element_0&quot;&gt;&lt;/span&gt;&apos;);
+                });
+            });
+
+            describe(&apos;innerHTML&apos;, function() {
+                const element = assembler.createElement(&apos;body&apos;, {
+                    innerHTML : &apos;&lt;span class=&quot;box&quot;&gt;&lt;/span&gt;&apos;
+                });
+                it(&apos;HTMLBodyElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLBodyElement);
+                    assert.equal(element.tagName, &apos;BODY&apos;);
+                });
+                it(&apos;proper number of child nodes&apos;, function() {
+                    assert(element.hasChildNodes());
+                    assert.equal(element.childNodes.length, 1);
+                });
+                it(&apos;proper child node&apos;, function() {
+                    const child = element.firstChild;
+                    assert.equal(child.constructor, HTMLSpanElement);
+                    assert.equal(child.outerHTML, &apos;&lt;span class=&quot;box&quot;&gt;&lt;/span&gt;&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;body&gt;&lt;span class=&quot;box&quot;&gt;&lt;/span&gt;&lt;/body&gt;&apos;);
+                });
+            });
+
+            describe(&apos;lang&apos;, function() {
+                const element = assembler.createElement(&apos;html&apos;, { lang : &apos;ru&apos; });
+
+                it(&apos;HTMLHtmlElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLHtmlElement);
+                    assert.equal(element.tagName, &apos;HTML&apos;);
+                });
+                it(&apos;proper number of attributes and child nodes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;has proper lang attribute set&apos;, function() {
+                    assert.equal(element.lang, &apos;ru&apos;);
+                    assert.equal(element.getAttribute(&apos;lang&apos;), &apos;ru&apos;);
+                });
+                it(&apos;proper outerHTML property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;html lang=&quot;ru&quot;&gt;&lt;/html&gt;&apos;);
+                });
+            });
+
+            describe(&apos;tabIndex&apos;, function() {
+                const element = assembler.createElement(&apos;form&apos;, { tabIndex : 0 });
+
+                it(&apos;HTMLFormElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLFormElement);
+                    assert.equal(element.tagName, &apos;FORM&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `tabIndex` attribute&apos;, function() {
+                    assert.equal(element.tabIndex, 0);
+                    assert.equal(element.getAttribute(&apos;tabindex&apos;), &apos;0&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML.toLowerCase(), &apos;&lt;form tabindex=&quot;0&quot;&gt;&lt;/form&gt;&apos;);
+                });
+            });
+
+            describe(&apos;title&apos;, function() {
+                const element = assembler.createElement(&apos;select&apos;, { title : &apos;Select without options&apos; });
+
+                it(&apos;HTMLSelectElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLSelectElement);
+                    assert.equal(element.tagName, &apos;SELECT&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper `title` attribute&apos;, function() {
+                    assert.equal(element.title, &apos;Select without options&apos;);
+                    assert.equal(element.getAttribute(&apos;title&apos;), &apos;Select without options&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;select title=&quot;Select without options&quot;&gt;&lt;/select&gt;&apos;);
+                });
+            });
+        });
+
+        describe(&apos;built-in global event handlers&apos;, function() {
+            it(&apos;onclick&apos;, () =&gt; {
+                const onclick = sinon.spy();
+                const element = assembler.createElement(&apos;button&apos;, { onclick });
+                assert(onclick.notCalled);
+                element.click();
+                assert(onclick.calledOnce);
+                element.click();
+                assert(onclick.calledTwice);
+            });
+            it(&apos;click listener&apos;, () =&gt; {
+                const listener = sinon.spy();
+                const element = assembler.createElement(&apos;button&apos;);
+                element.addEventListener(&apos;click&apos;, listener);
+                document.body.appendChild(element);
+                assert(listener.notCalled);
+                element.click();
+                assert(listener.calledOnce);
+                element.click();
+                assert(listener.calledTwice);
+                document.body.removeChild(element);
+            });
+        });
+
+        describe(&apos;adapted interface&apos;, function() {
+
+            describe(&apos;dataset&apos;, function() {
+                const element = assembler.createElement(&apos;div&apos;, {
+                    dataset : { camelCased : &apos;custom attribute&apos; }
+                });
+                it(&apos;HTMLDivElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLDivElement);
+                    assert.equal(element.tagName, &apos;DIV&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper custom `data-` attribute&apos;, function() {
+                    assert.equal(element.dataset.camelCased, &apos;custom attribute&apos;);
+                    assert.equal(element.getAttribute(&apos;data-camel-cased&apos;), &apos;custom attribute&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;div data-camel-cased=&quot;custom attribute&quot;&gt;&lt;/div&gt;&apos;);
+                });
+            });
+
+            describe(&apos;style&apos;, function() {
+                const element = assembler.createElement(&apos;span&apos;, {
+                    style : { backgroundColor : &apos;black&apos; }
+                });
+                it(&apos;HTMLSpanElement node created&apos;, function() {
+                    assert.equal(element.constructor, HTMLSpanElement);
+                    assert.equal(element.tagName, &apos;SPAN&apos;);
+                });
+                it(&apos;proper number of attributes&apos;, function() {
+                    assert(element.hasAttributes());
+                    assert.equal(element.attributes.length, 1);
+                });
+                it(&apos;proper style declaration assigned&apos;, function() {
+                    assert.equal(element.style.backgroundColor, &apos;black&apos;);
+                    assert.equal(element.getAttribute(&apos;style&apos;), &apos;background-color: black;&apos;);
+                });
+                it(&apos;proper `outerHTML` property value&apos;, function() {
+                    assert.equal(element.outerHTML, &apos;&lt;span style=&quot;background-color: black;&quot;&gt;&lt;/span&gt;&apos;);
+                });
+            });
+        });
+    });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
