@@ -1,4 +1,4 @@
-// if(!('selectedOptions' in HTMLSelectElement.prototype)) {
+if(!('selectedOptions' in HTMLSelectElement.prototype)) {
     const filter = Array.prototype.filter;
     const handler = option => option.selected;
     Object.defineProperty(HTMLSelectElement.prototype, 'selectedOptions', {
@@ -6,4 +6,4 @@
             return filter.call(this.options, handler);
         }
     });
-// }
+}

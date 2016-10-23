@@ -10829,17 +10829,19 @@
 
 	'use strict';
 
-	// if(!('selectedOptions' in HTMLSelectElement.prototype)) {
-	var filter = Array.prototype.filter;
-	var handler = function handler(option) {
-	    return option.selected;
-	};
-	Object.defineProperty(HTMLSelectElement.prototype, 'selectedOptions', {
-	    get: function get() {
-	        return filter.call(this.options, handler);
-	    }
-	});
-	// }
+	if (!('selectedOptions' in HTMLSelectElement.prototype)) {
+	    (function () {
+	        var filter = Array.prototype.filter;
+	        var handler = function handler(option) {
+	            return option.selected;
+	        };
+	        Object.defineProperty(HTMLSelectElement.prototype, 'selectedOptions', {
+	            get: function get() {
+	                return filter.call(this.options, handler);
+	            }
+	        });
+	    })();
+	}
 
 /***/ }
 /******/ ]);

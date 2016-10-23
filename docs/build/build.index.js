@@ -47,11 +47,256 @@
   \*******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./docs/index */7);
+	module.exports = __webpack_require__(/*! ./docs/index */1);
 
 
 /***/ },
 /* 1 */
+/*!***********************!*\
+  !*** ./docs/index.js ***!
+  \***********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _replsite = __webpack_require__(/*! ./lib/replsite */ 2);
+
+	__webpack_require__(/*! ./index.css */ 31);
+
+	const replsite = new _replsite.REPLSite();
+
+	document.body.append(replsite.node);
+
+	replsite.start();
+
+/***/ },
+/* 2 */
+/*!******************************!*\
+  !*** ./docs/lib/replsite.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.REPLSite = undefined;
+
+	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 3);
+
+	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 11);
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 4);
+
+	var htmlmodule = _interopRequireWildcard(_htmlmodule);
+
+	var _codemirror = __webpack_require__(/*! ./codemirror */ 12);
+
+	__webpack_require__(/*! ./replsite.css */ 26);
+
+	var _sitedata = __webpack_require__(/*! ./sitedata */ 28);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	const START_INDEX = 0;
+	const LAST_INDEX = _sitedata.data.length - 1;
+
+	const serializer = new _util.HTMLSerializer();
+
+	class REPLSite {
+	    constructor() {
+	        this.replmachine = new _REPLMachine.REPLMachine({
+	            input: this,
+	            output: this
+	        });
+	        this.node = this.assemble();
+	        window.onresize = () => this.refresh();
+	    }
+	    get value() {
+	        return this.inputcode.value;
+	    }
+	    set value(value) {
+	        const { markupview, outputcode } = this;
+	        const { body } = this.outputwin.contentDocument;
+	        body.innerHTML = '';
+	        if (markupview.open) outputcode.value = '';
+	        if (value instanceof Error) {
+	            body.textContent = value;
+	        } else {
+	            try {
+	                const resultnode = typeof value === 'function' ? value(htmlmodule) : value;
+	                if (resultnode) {
+	                    body.appendChild(resultnode);
+	                    if (markupview.open) {
+	                        outputcode.value = serializer.serializeToString(resultnode);
+	                    }
+	                }
+	            } catch (error) {
+	                body.textContent = error;
+	            }
+	        }
+	    }
+	    assemble() {
+	        return (0, _htmlmodule.main)({
+	            className: 'replsite',
+	            children: [(0, _htmlmodule.section)([this.inputcode = (0, _codemirror.codebox)({
+	                className: 'inputcode',
+	                value: _sitedata.data[this.index].src
+	            }), this.prevbutton = (0, _htmlmodule.button)({
+	                id: 'replbuttonprev',
+	                className: 'prevbutton',
+	                onclick: () => this.prev(),
+	                children: 'prev'
+	            }), this.nextbutton = (0, _htmlmodule.button)({
+	                id: 'replbuttonnext',
+	                className: 'nextbutton',
+	                onclick: () => this.next(),
+	                children: 'next'
+	            })]), (0, _htmlmodule.section)([this.outputwin = (0, _htmlmodule.iframe)({ className: 'outputwin' }), this.markupview = (0, _htmlmodule.details)({
+	                className: 'markupview',
+	                ontoggle: () => this.refresh(),
+	                children: [(0, _htmlmodule.summary)({
+	                    id: 'markuptoggle',
+	                    className: 'markuptoggle',
+	                    children: 'markup'
+	                }), this.outputcode = (0, _codemirror.markupbox)({
+	                    className: 'outputcode'
+	                })]
+	            })])]
+	        });
+	    }
+	    start() {
+	        this.refresh();
+	        this.inputcode.onchange = () => this.replmachine.loop();
+	    }
+	    refresh() {
+	        const outputcode = this.outputcode;
+	        const innerHeight = window.innerHeight;
+	        this.outputwin.height = this.markupview.open ? innerHeight - outputcode.height + 'px' : innerHeight + 'px';
+	        this.inputcode.refresh();
+	        outputcode.refresh();
+	        this.replmachine.loop();
+	    }
+	    prev() {
+	        this.index--;
+	        if (this.index < 0) this.index = LAST_INDEX;
+	        this.inputcode.value = _sitedata.data[this.index].src;
+	    }
+	    next() {
+	        this.index++;
+	        if (this.index > LAST_INDEX) this.index = 0;
+	        this.inputcode.value = _sitedata.data[this.index].src;
+	    }
+	}
+
+	exports.REPLSite = REPLSite;
+	Object.defineProperty(REPLSite.prototype, 'index', { writable: true, value: START_INDEX });
+	Object.defineProperty(REPLSite.prototype, 'node', { writable: true, value: null });
+
+/***/ },
+/* 3 */
+/*!*********************************!*\
+  !*** ./docs/lib/REPLMachine.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.REPLMachine = undefined;
+
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 4);
+
+	const VAR_NAME_EXPORTS = 'exports';
+
+	class REPLMachine {
+	    constructor({
+	        value = '',
+	        input = (0, _htmlmodule.input)({ value }),
+	        output = (0, _htmlmodule.output)()
+	    } = {}) {
+	        this.input = input;
+	        this.output = output;
+	    }
+	    get exports() {
+	        return {
+	            default: () => {
+	                throw Error('The default module is not exported');
+	            }
+	        };
+	    }
+	    loop() {
+	        this.read(this.input.value);
+	    }
+	    read(source) {
+	        try {
+	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
+	            this.eval(evaluable);
+	            return evaluable;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    eval(evaluable) {
+	        try {
+	            const exports = this.exports;
+	            const value = evaluable(exports);
+	            this.print(value);
+	            return value;
+	        } catch (error) {
+	            this.onerror(error);
+	            return error;
+	        }
+	    }
+	    print(value) {
+	        try {
+	            this.output.value = value;
+	            return true;
+	        } catch (error) {
+	            this.output.value = error;
+	            return false;
+	        }
+	    }
+	    onerror(error) {
+	        this.print(error);
+	    }
+	}
+
+	exports.REPLMachine = REPLMachine;
+	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
+	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
+
+/***/ },
+/* 4 */
+/*!********************************!*\
+  !*** ./docs/lib/htmlmodule.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _lib = __webpack_require__(/*! ../../lib */ 5);
+
+	Object.keys(_lib).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function () {
+	      return _lib[key];
+	    }
+	  });
+	});
+
+/***/ },
+/* 5 */
 /*!**********************!*\
   !*** ./lib/index.js ***!
   \**********************/
@@ -63,7 +308,7 @@
 	  value: true
 	});
 
-	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
+	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 6);
 
 	Object.keys(_nodeinit).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -75,7 +320,7 @@
 	  });
 	});
 
-	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
+	var _domassembler = __webpack_require__(/*! ./domassembler */ 7);
 
 	Object.keys(_domassembler).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -87,7 +332,7 @@
 	  });
 	});
 
-	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 4);
+	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 8);
 
 	Object.keys(_htmlassembler).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -99,7 +344,7 @@
 	  });
 	});
 
-	var _xmldom = __webpack_require__(/*! ./xmldom */ 5);
+	var _xmldom = __webpack_require__(/*! ./xmldom */ 9);
 
 	Object.keys(_xmldom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -111,7 +356,7 @@
 	  });
 	});
 
-	var _htmldom = __webpack_require__(/*! ./htmldom */ 6);
+	var _htmldom = __webpack_require__(/*! ./htmldom */ 10);
 
 	Object.keys(_htmldom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -124,7 +369,7 @@
 	});
 
 /***/ },
-/* 2 */
+/* 6 */
 /*!*************************!*\
   !*** ./lib/nodeinit.js ***!
   \*************************/
@@ -151,7 +396,7 @@
 	}
 
 /***/ },
-/* 3 */
+/* 7 */
 /*!*****************************!*\
   !*** ./lib/domassembler.js ***!
   \*****************************/
@@ -164,7 +409,7 @@
 	});
 	exports.DOMAssembler = exports.XML_NS_URI = undefined;
 
-	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 2);
+	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 6);
 
 	const { isArray } = Array;
 	const { document, Element } = window;
@@ -275,7 +520,7 @@
 	Object.defineProperty(DOMAssembler.prototype, 'node', { writable: true, value: null });
 
 /***/ },
-/* 4 */
+/* 8 */
 /*!******************************!*\
   !*** ./lib/htmlassembler.js ***!
   \******************************/
@@ -288,7 +533,7 @@
 	});
 	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
-	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
+	var _domassembler = __webpack_require__(/*! ./domassembler */ 7);
 
 	const { assign } = Object;
 
@@ -334,7 +579,7 @@
 	exports.HTMLAssembler = HTMLAssembler;
 
 /***/ },
-/* 5 */
+/* 9 */
 /*!***********************!*\
   !*** ./lib/xmldom.js ***!
   \***********************/
@@ -350,7 +595,7 @@
 	exports.text = text;
 	exports.comment = comment;
 
-	var _domassembler = __webpack_require__(/*! ./domassembler */ 3);
+	var _domassembler = __webpack_require__(/*! ./domassembler */ 7);
 
 	const { document } = window;
 
@@ -407,137 +652,13 @@
 	}
 
 /***/ },
-/* 6 */
+/* 10 */
 /*!************************!*\
   !*** ./lib/htmldom.js ***!
   \************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.htmldom = htmldom;
-	exports.a = a;
-	exports.abbr = abbr;
-	exports.address = address;
-	exports.area = area;
-	exports.article = article;
-	exports.aside = aside;
-	exports.audio = audio;
-	exports.b = b;
-	exports.base = base;
-	exports.bdi = bdi;
-	exports.bdo = bdo;
-	exports.blockquote = blockquote;
-	exports.body = body;
-	exports.br = br;
-	exports.button = button;
-	exports.canvas = canvas;
-	exports.caption = caption;
-	exports.cite = cite;
-	exports.code = code;
-	exports.col = col;
-	exports.colgroup = colgroup;
-	exports.data = data;
-	exports.datalist = datalist;
-	exports.dd = dd;
-	exports.del = del;
-	exports.details = details;
-	exports.dfn = dfn;
-	exports.dialog = dialog;
-	exports.div = div;
-	exports.dl = dl;
-	exports.dt = dt;
-	exports.em = em;
-	exports.embed = embed;
-	exports.fieldset = fieldset;
-	exports.figcaption = figcaption;
-	exports.figure = figure;
-	exports.footer = footer;
-	exports.form = form;
-	exports.h1 = h1;
-	exports.h2 = h2;
-	exports.h3 = h3;
-	exports.h4 = h4;
-	exports.h5 = h5;
-	exports.h6 = h6;
-	exports.head = head;
-	exports.header = header;
-	exports.hgroup = hgroup;
-	exports.hr = hr;
-	exports.html = html;
-	exports.i = i;
-	exports.iframe = iframe;
-	exports.img = img;
-	exports.input = input;
-	exports.ins = ins;
-	exports.kbd = kbd;
-	exports.label = label;
-	exports.legend = legend;
-	exports.li = li;
-	exports.link = link;
-	exports.main = main;
-	exports.map = map;
-	exports.mark = mark;
-	exports.menu = menu;
-	exports.menuitem = menuitem;
-	exports.meta = meta;
-	exports.meter = meter;
-	exports.nav = nav;
-	exports.noscript = noscript;
-	exports.object = object;
-	exports.ol = ol;
-	exports.optgroup = optgroup;
-	exports.option = option;
-	exports.output = output;
-	exports.p = p;
-	exports.param = param;
-	exports.picture = picture;
-	exports.pre = pre;
-	exports.progress = progress;
-	exports.q = q;
-	exports.rp = rp;
-	exports.rt = rt;
-	exports.ruby = ruby;
-	exports.s = s;
-	exports.samp = samp;
-	exports.script = script;
-	exports.section = section;
-	exports.select = select;
-	exports.slot = slot;
-	exports.small = small;
-	exports.source = source;
-	exports.span = span;
-	exports.strong = strong;
-	exports.style = style;
-	exports.sub = sub;
-	exports.summary = summary;
-	exports.sup = sup;
-	exports.table = table;
-	exports.tbody = tbody;
-	exports.td = td;
-	exports.template = template;
-	exports.textarea = textarea;
-	exports.tfoot = tfoot;
-	exports.th = th;
-	exports.thead = thead;
-	exports.time = time;
-	exports.title = title;
-	exports.tr = tr;
-	exports.track = track;
-	exports.u = u;
-	exports.ul = ul;
-	exports.variable = variable;
-	exports.video = video;
-	exports.wbr = wbr;
-
-	var _htmlassembler = __webpack_require__(/*! ./htmlassembler */ 4);
-
-	const assembler = new _htmlassembler.HTMLAssembler();
-
-	/**
+	'use strict';Object.defineProperty(exports,"__esModule",{value:true});exports.htmldom=htmldom;exports.a=a;exports.abbr=abbr;exports.address=address;exports.area=area;exports.article=article;exports.aside=aside;exports.audio=audio;exports.b=b;exports.base=base;exports.bdi=bdi;exports.bdo=bdo;exports.blockquote=blockquote;exports.body=body;exports.br=br;exports.button=button;exports.canvas=canvas;exports.caption=caption;exports.cite=cite;exports.code=code;exports.col=col;exports.colgroup=colgroup;exports.data=data;exports.datalist=datalist;exports.dd=dd;exports.del=del;exports.details=details;exports.dfn=dfn;exports.dialog=dialog;exports.div=div;exports.dl=dl;exports.dt=dt;exports.em=em;exports.embed=embed;exports.fieldset=fieldset;exports.figcaption=figcaption;exports.figure=figure;exports.footer=footer;exports.form=form;exports.h1=h1;exports.h2=h2;exports.h3=h3;exports.h4=h4;exports.h5=h5;exports.h6=h6;exports.head=head;exports.header=header;exports.hgroup=hgroup;exports.hr=hr;exports.html=html;exports.i=i;exports.iframe=iframe;exports.img=img;exports.input=input;exports.ins=ins;exports.kbd=kbd;exports.label=label;exports.legend=legend;exports.li=li;exports.link=link;exports.main=main;exports.map=map;exports.mark=mark;exports.menu=menu;exports.menuitem=menuitem;exports.meta=meta;exports.meter=meter;exports.nav=nav;exports.noscript=noscript;exports.object=object;exports.ol=ol;exports.optgroup=optgroup;exports.option=option;exports.output=output;exports.p=p;exports.param=param;exports.picture=picture;exports.pre=pre;exports.progress=progress;exports.q=q;exports.rp=rp;exports.rt=rt;exports.ruby=ruby;exports.s=s;exports.samp=samp;exports.script=script;exports.section=section;exports.select=select;exports.slot=slot;exports.small=small;exports.source=source;exports.span=span;exports.strong=strong;exports.style=style;exports.sub=sub;exports.summary=summary;exports.sup=sup;exports.table=table;exports.tbody=tbody;exports.td=td;exports.template=template;exports.textarea=textarea;exports.tfoot=tfoot;exports.th=th;exports.thead=thead;exports.time=time;exports.title=title;exports.tr=tr;exports.track=track;exports.u=u;exports.ul=ul;exports.variable=variable;exports.video=video;exports.wbr=wbr;var _htmlassembler=__webpack_require__(/*! ./htmlassembler */ 8);const assembler=new _htmlassembler.HTMLAssembler();/**
 	 * Assembles the specified `HTMLElement` node
 	 *
 	 * Provides `HTMLElement` interface and all HTML DOM interfaces which inherit from it
@@ -615,12 +736,7 @@
 	 * @param {Function} [init.ontoggle] Fired at details elements when they open or close
 	 * @param {Function} [init.onvolumechange] Either the volume attribute or the muted attribute has changed. Fired after the relevant attribute's setter has returned
 	 * @param {Function} [init.onwaiting] Playback has stopped because the next frame is not available, but the user agent expects that frame to become available in due course
-	 * @return {HTMLElement}
-	 */
-	function htmldom(tagName, init) {
-	  return assembler.createElement(tagName, init);
-	};
-
+	 */function htmldom(tagName,init){return assembler.createElement(tagName,init);};// * @return {HTMLElement} // fixme
 	/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
 	 *  - If the `a` element has an `href` attribute, then it represents a hyperlink (a hypertext anchor) labeled by its contents.
@@ -632,7 +748,7 @@
 	 * • [msdn api](https://msdn.microsoft.com/en-us/library/hh869682.aspx)
 	 *
 	 * @function a
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.href] Address of the hyperlink
 	 * @param {String} [init.target] Browsing context for hyperlink navigation
 	 * @param {String} [init.download] Whether to download the resource instead of navigating to it, and its file name if so
@@ -642,12 +758,7 @@
 	 * @param {String} [init.type] Hint for the type of the referenced resource
 	 * @param {String} [init.referrerPolicy] Determines the referrer policy for fetches initiated by the element
 	 * @return {HTMLAnchorElement}
-	 */
-	function a(init) {
-	  return htmldom('a', init);
-	}
-
-	/**
+	 */function a(init){return htmldom('a',init);}/**
 	 * [The `abbr` element](https://html.spec.whatwg.org/#the-abbr-element)
 	 * represents an abbreviation or acronym, optionally with its expansion.
 	 * The `title` attribute may be used to provide an expansion of the abbreviation.
@@ -657,15 +768,10 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr)
 	 *
 	 * @function abbr
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.title] Special semantics: full term or expansion of abbreviation
 	 * @return {HTMLElement}
-	 */
-	function abbr(init) {
-	  return htmldom('abbr', init);
-	}
-
-	/**
+	 */function abbr(init){return htmldom('abbr',init);}/**
 	 * [The `address` element](https://html.spec.whatwg.org/#the-address-element)
 	 * represents the contact information for its nearest `article` or `body` element ancestor.
 	 * If that is the `body` element, then the contact information applies to the document as a whole.
@@ -674,14 +780,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address)
 	 *
 	 * @function address
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function address(init) {
-	  return htmldom('address', init);
-	}
-
-	/**
+	 */function address(init){return htmldom('address',init);}/**
 	 * [The `area` element](https://html.spec.whatwg.org/#the-area-element)
 	 * represents either a hyperlink with some text and a corresponding area on an image map,
 	 * or a dead area on an image map.
@@ -691,7 +792,7 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area)
 	 *
 	 * @function area
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.alt] Replacement text for use when images are not available
 	 * @param {String} [init.coords] Coordinates for the shape to be created in an image map
 	 * @param {String} [init.shape] The kind of shape to be created in an image map
@@ -701,12 +802,7 @@
 	 * @param {String} [init.ping] URLs to ping
 	 * @param {String} [init.rel] Relationship between the location in the document containing the hyperlink and the destination resource
 	 * @return {HTMLAreaElement}
-	 */
-	function area(init) {
-	  return htmldom('area', init);
-	}
-
-	/**
+	 */function area(init){return htmldom('area',init);}/**
 	 * [The `article` element](https://html.spec.whatwg.org/#the-article-element)
 	 * represents a complete, or self-contained, composition in a document, page, application,
 	 * or site and that is, in principle, independently distributable or reusable, e.g. in syndication.
@@ -717,14 +813,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article)
 	 *
 	 * @function article
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function article(init) {
-	  return htmldom('article', init);
-	}
-
-	/**
+	 */function article(init){return htmldom('article',init);}/**
 	 * [The `aside` element](https://html.spec.whatwg.org/#the-aside-element)
 	 * represents a section of a page that consists of content that is tangentially related to the content around the aside element,
 	 * and which could be considered separate from that content.
@@ -734,14 +825,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 	 *
 	 * @function aside
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function aside(init) {
-	  return htmldom('aside', init);
-	}
-
-	/**
+	 */function aside(init){return htmldom('aside',init);}/**
 	 * [The `audio` element](https://html.spec.whatwg.org/#the-audio-element)
 	 * represents a sound or audio stream.
 	 * Content may be provided inside the `audio` element.
@@ -754,7 +840,7 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
 	 *
 	 * @function audio
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.crossorigin] How the element handles crossorigin requests
 	 * @param {String} [init.preload] Hints how much buffering the media resource will likely need
@@ -763,12 +849,7 @@
 	 * @param {Boolean} [init.muted] Whether to mute the media resource by default
 	 * @param {Boolean} [init.controls] Show user agent controls
 	 * @return {HTMLAudioElement}
-	 */
-	function audio(init) {
-	  return htmldom('audio', init);
-	}
-
-	/**
+	 */function audio(init){return htmldom('audio',init);}/**
 	 * [The `b` element](https://html.spec.whatwg.org/#the-b-element)
 	 * represents a span of text to which attention is being drawn
 	 * for utilitarian purposes without conveying any extra importance
@@ -780,14 +861,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b)
 	 *
 	 * @function b
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function b(init) {
-	  return htmldom('b', init);
-	}
-
-	/**
+	 */function b(init){return htmldom('b',init);}/**
 	 * [The `base` element](https://html.spec.whatwg.org/#the-base-element)
 	 * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
 	 *
@@ -795,15 +871,10 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 	 *
 	 * @function base
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.dir] special semantics
 	 * @return {HTMLElement}
-	 */
-	function base(init) {
-	  return htmldom('base', init);
-	}
-
-	/**
+	 */function base(init){return htmldom('base',init);}/**
 	 * [The `bdi` element](https://html.spec.whatwg.org/#the-bdi-element)
 	 * represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
 	 *
@@ -811,15 +882,10 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/bdi)
 	 *
 	 * @function bdi
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.dir] special semantics
 	 * @return {HTMLElement}
-	 */
-	function bdi(init) {
-	  return htmldom('bdi', init);
-	}
-
-	/**
+	 */function bdi(init){return htmldom('bdi',init);}/**
 	 * [The `bdo` element](https://html.spec.whatwg.org/#the-bdo-element)
 	 * represents explicit text directionality formatting control for its children.
 	 * It allows authors to override the Unicode bidirectional algorithm by explicitly specifying a direction override.
@@ -828,15 +894,10 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/bdo)
 	 *
 	 * @function bdo
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.dir] special semantics: `rtl` or `ltr` values allowed only
 	 * @return {HTMLElement}
-	 */
-	function bdo(init) {
-	  return htmldom('bdo', init);
-	}
-
-	/**
+	 */function bdo(init){return htmldom('bdo',init);}/**
 	 * [The `blockquote` element](https://html.spec.whatwg.org/#the-blockquote-element)
 	 * represents a section that is quoted from another source.
 	 * Content inside a blockquote must be quoted from another source,
@@ -847,15 +908,10 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote)
 	 *
 	 * @function blockquote
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.cite] Link to the source of the quotation or more information about the edit
 	 * @return {HTMLQuoteElement}
-	 */
-	function blockquote(init) {
-	  return htmldom('blockquote', init);
-	}
-
-	/**
+	 */function blockquote(init){return htmldom('blockquote',init);}/**
 	 * [The `body` element](https://html.spec.whatwg.org/#the-body-element)
 	 * represents the main content of the document.
 	 *
@@ -864,7 +920,7 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body)
 	 *
 	 * @function body
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Function} [init.onafterprint] Fired at the Window after printing
 	 * @param {Function} [init.onbeforeprint] Fired at the Window before printing
 	 * @param {Function} [init.onbeforeunload] Fired at the Window when the page is about to be unloaded, in case the page would like to show a warning prompt
@@ -881,12 +937,7 @@
 	 * @param {Function} [init.onunhandledrejection] Fired at global scope objects when a promise rejection goes unhandled
 	 * @param {Function} [init.onunload] Fired at the Window object when the page is going away
 	 * @return {HTMLBodyElement}
-	 */
-	function body(init) {
-	  return htmldom('body', init);
-	}
-
-	/**
+	 */function body(init){return htmldom('body',init);}/**
 	 * [The `br` element](https://html.spec.whatwg.org/#the-br-element)
 	 * represents a line break.
 	 *
@@ -895,14 +946,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br)
 	 *
 	 * @function br
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLBRElement}
-	 */
-	function br(init) {
-	  return htmldom('br', init);
-	}
-
-	/**
+	 */function br(init){return htmldom('br',init);}/**
 	 * [The `button` element](https://html.spec.whatwg.org/#the-button-element)
 	 * represents a button labeled by its contents.
 	 *
@@ -912,7 +958,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535211.aspx)
 	 *
 	 * @function button
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Boolean} [init.autofocus] Automatically focus the form control when the page is loaded
 	 * @param {Boolean} [init.disabled] Whether the form control is disabled
 	 * @param {String} [init.formAction] URL to use for form submission
@@ -925,12 +971,7 @@
 	 * @param {String} [init.value] Value to be used for form submission
 	 * @param {HTMLMenuElement} [init.menu] Specifies the element's designated pop-up menu
 	 * @return {HTMLButtonElement}
-	 */
-	function button(init) {
-	  return htmldom('button', init);
-	}
-
-	/**
+	 */function button(init){return htmldom('button',init);}/**
 	 * [The `canvas` element](https://html.spec.whatwg.org/#the-canvas-element)
 	 * provides scripts with a resolution-dependent bitmap canvas,
 	 * which can be used for rendering graphs, game graphics, art,
@@ -941,16 +982,11 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas)
 	 *
 	 * @function canvas
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Number} [init.width] Horizontal dimension
 	 * @param {Number} [init.height] Vertical dimension
 	 * @return {HTMLCanvasElement}
-	 */
-	function canvas(init) {
-	  return htmldom('canvas', init);
-	}
-
-	/**
+	 */function canvas(init){return htmldom('canvas',init);}/**
 	 * [The `caption` element](https://html.spec.whatwg.org/#the-caption-element)
 	 * represents the title of the table that is its parent,
 	 * if it has a parent and that is a table element.
@@ -960,14 +996,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption)
 	 *
 	 * @function caption
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTableCaptionElement}
-	 */
-	function caption(init) {
-	  return htmldom('caption', init);
-	}
-
-	/**
+	 */function caption(init){return htmldom('caption',init);}/**
 	 * [The `cite` element](https://html.spec.whatwg.org/#the-cite-element)
 	 * represents the title of a work (e.g. a book, a paper, an essay, a poem,
 	 * a score, a song, a script, a film, a TV show, a game, a sculpture, a painting,
@@ -979,14 +1010,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite)
 	 *
 	 * @function cite
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function cite(init) {
-	  return htmldom('cite', init);
-	}
-
-	/**
+	 */function cite(init){return htmldom('cite',init);}/**
 	 * [The `code` element](https://html.spec.whatwg.org/#the-code-element)
 	 * represents a fragment of computer code. This could be an XML element name,
 	 * a file name, a computer program, or any other string that a computer would recognize.
@@ -995,14 +1021,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code)
 	 *
 	 * @function code
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function code(init) {
-	  return htmldom('code', init);
-	}
-
-	/**
+	 */function code(init){return htmldom('code',init);}/**
 	 * [The `col` element](https://html.spec.whatwg.org/#the-col-element)
 	 * represents has a parent and that is a colgroup element that itself has a parent
 	 * that is a table element, then the col element represents one or more columns
@@ -1013,15 +1034,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535225.aspx)
 	 *
 	 * @function col
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Number} [init.span] Number of columns spanned by the element
 	 * @return {HTMLTableColElement}
-	 */
-	function col(init) {
-	  return htmldom('col', init);
-	}
-
-	/**
+	 */function col(init){return htmldom('col',init);}/**
 	 * [The `colgroup` element](https://html.spec.whatwg.org/#the-colgroup-element)
 	 * represents represents a group of one or more columns in the table that is its parent,
 	 * if it has a parent and that is a table element.
@@ -1031,15 +1047,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535225.aspx)
 	 *
 	 * @function colgroup
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Number} [init.span] Number of columns spanned by the element
 	 * @return {HTMLTableColElement}
-	 */
-	function colgroup(init) {
-	  return htmldom('colgroup', init);
-	}
-
-	/**
+	 */function colgroup(init){return htmldom('colgroup',init);}/**
 	 * [The `data` element](https://html.spec.whatwg.org/#the-data-element)
 	 * represents its contents, along with a machine-readable form
 	 * of those contents in the value attribute.
@@ -1049,15 +1060,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/mt706246.aspx)
 	 *
 	 * @function data
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.value] Machine-readable value
 	 * @return {HTMLDataElement}
-	 */
-	function data(init) {
-	  return htmldom('data', init);
-	}
-
-	/**
+	 */function data(init){return htmldom('data',init);}/**
 	 * [The `datalist` element](https://html.spec.whatwg.org/#the-datalist-element)
 	 * represents a set of option elements that represent predefined options for other controls.
 	 * In the rendering, the datalist element represents nothing and it, along with its children,
@@ -1068,14 +1074,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/hh772925.aspx)
 	 *
 	 * @function datalist
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLDataListElement}
-	 */
-	function datalist(init) {
-	  return htmldom('datalist', init);
-	}
-
-	/**
+	 */function datalist(init){return htmldom('datalist',init);}/**
 	 * [The `dd` element](https://html.spec.whatwg.org/#the-dd-element)
 	 * represents the description, definition, or value,
 	 * part of a term-description group in a description list (dl element).
@@ -1085,14 +1086,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535234.aspx)
 	 *
 	 * @function dd
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function dd(init) {
-	  return htmldom('dd', init);
-	}
-
-	/**
+	 */function dd(init){return htmldom('dd',init);}/**
 	 * [The `del` element](https://html.spec.whatwg.org/#the-del-element)
 	 * represents a removal from the document.
 	 *
@@ -1102,16 +1098,11 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535236.aspx)
 	 *
 	 * @function del
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.cite] Link to the source of the quotation or more information about the edit
 	 * @param {String} [init.dateTime] Date and (optionally) time of the change
 	 * @return {HTMLModElement}
-	 */
-	function del(init) {
-	  return htmldom('del', init);
-	}
-
-	/**
+	 */function del(init){return htmldom('del',init);}/**
 	 * [The `details` element](https://html.spec.whatwg.org/#the-details-element)
 	 * represents a disclosure widget from which the user can obtain additional information or controls.
 	 *
@@ -1119,15 +1110,10 @@
 	 * • [MDN elemeent reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
 	 *
 	 * @function details
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.open] Whether the details are visible
 	 * @return {HTMLDetailsElement}
-	 */
-	function details(init) {
-	  return htmldom('details', init);
-	}
-
-	/**
+	 */function details(init){return htmldom('details',init);}/**
 	 * [The `dfn` element](https://html.spec.whatwg.org/#the-dfn-element)
 	 * represents the defining instance of a term. The paragraph, description list group,
 	 * or section that is the nearest ancestor of the dfn element must also contain
@@ -1138,15 +1124,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535237.aspx)
 	 *
 	 * @function dfn
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.title] Special semantics: Full term or expansion of abbreviation
 	 * @return {HTMLElement}
-	 */
-	function dfn(init) {
-	  return htmldom('dfn', init);
-	}
-
-	/**
+	 */function dfn(init){return htmldom('dfn',init);}/**
 	 * [The `dialog` element](https://html.spec.whatwg.org/#the-dialog-element)
 	 * represents a part of an application that a user interacts with to perform a task,
 	 * for example a dialog box, inspector, or window.
@@ -1155,15 +1136,10 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)
 	 *
 	 * @function dialog
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.open] Whether the dialog box is showing
 	 * @return {HTMLDialogElement}
-	 */
-	function dialog(init) {
-	  return htmldom('dialog', init);
-	}
-
-	/**
+	 */function dialog(init){return htmldom('dialog',init);}/**
 	 * [The `div` element](https://html.spec.whatwg.org/#the-div-element)
 	 * has no special meaning at all. It represents its children.
 	 * It can be used with the class, lang, and title attributes to mark up semantics
@@ -1175,14 +1151,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535240.aspx)
 	 *
 	 * @function div
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLDivElement}
-	 */
-	function div(init) {
-	  return htmldom('div', init);
-	}
-
-	/**
+	 */function div(init){return htmldom('div',init);}/**
 	 * [The `dl` element](https://html.spec.whatwg.org/#the-dl-element)
 	 * represents an association list consisting of zero or more name-value groups (a description list).
 	 * A name-value group consists of one or more names (dt elements) followed by one or more values
@@ -1195,14 +1166,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535241.aspx)
 	 *
 	 * @function dl
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLDListElement}
-	 */
-	function dl(init) {
-	  return htmldom('dl', init);
-	}
-
-	/**
+	 */function dl(init){return htmldom('dl',init);}/**
 	 * [The `dt` element](https://html.spec.whatwg.org/#the-dt-element)
 	 * represents the term, or name, part of a term-description group in a description list (dl element).
 	 *
@@ -1211,14 +1177,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535243.aspx)
 	 *
 	 * @function dt
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function dt(init) {
-	  return htmldom('dt', init);
-	}
-
-	/**
+	 */function dt(init){return htmldom('dt',init);}/**
 	 * [The `em` element](https://html.spec.whatwg.org/#the-em-element)
 	 * represents stress emphasis of its contents.
 	 *
@@ -1227,14 +1188,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535244.aspx)
 	 *
 	 * @function em
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function em(init) {
-	  return htmldom('em', init);
-	}
-
-	/**
+	 */function em(init){return htmldom('em',init);}/**
 	 * [The `embed` element](https://html.spec.whatwg.org/#the-embed-element)
 	 * represents provides an integration point for an external (typically non-HTML)
 	 * application or interactive content.
@@ -1245,18 +1201,13 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535245.aspx)
 	 *
 	 * @function embed
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.type] Type of embedded resource
 	 * @param {String} [init.width] Horizontal dimension
 	 * @param {String} [init.height] Vertical dimension
 	 * @return {HTMLEmbedElement}
-	 */
-	function embed(init) {
-	  return htmldom('embed', init);
-	}
-
-	/**
+	 */function embed(init){return htmldom('embed',init);}/**
 	 * [The `fieldset` element](https://html.spec.whatwg.org/#the-fieldset-element)
 	 * represents
 	 *
@@ -1266,17 +1217,12 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535247.aspx)
 	 *
 	 * @function fieldset
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.disabled] Whether the form control is disabled
 	 * @param {String} [init.form] Associates the control with a form element
 	 * @param {String} [init.name] Name of form control to use in the form.elements API
 	 * @return {HTMLFieldSetElement}
-	 */
-	function fieldset(init) {
-	  return htmldom('fieldset', init);
-	}
-
-	/**
+	 */function fieldset(init){return htmldom('fieldset',init);}/**
 	 * [The `figcaption` element](https://html.spec.whatwg.org/#the-figcaption-element)
 	 * represents a caption or legend for the rest of the contents
 	 * of the figcaption element's parent figure element, if any.
@@ -1286,14 +1232,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/gg593037.aspx)
 	 *
 	 * @function figcaption
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function figcaption(init) {
-	  return htmldom('figcaption', init);
-	}
-
-	/**
+	 */function figcaption(init){return htmldom('figcaption',init);}/**
 	 * [The `figure` element](https://html.spec.whatwg.org/#the-figure-element)
 	 * represents some flow content, optionally with a caption,
 	 * that is self-contained (like a complete sentence) and is typically referenced
@@ -1303,14 +1244,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure)
 	 *
 	 * @function figure
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function figure(init) {
-	  return htmldom('figure', init);
-	}
-
-	/**
+	 */function figure(init){return htmldom('figure',init);}/**
 	 * [The `footer` element](https://html.spec.whatwg.org/#the-footer-element)
 	 * represents a footer for its nearest ancestor sectioning content or sectioning root element.
 	 * A footer typically contains information about its section such as who wrote it,
@@ -1321,14 +1257,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/gg593039.aspx)
 	 *
 	 * @function footer
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function footer(init) {
-	  return htmldom('footer', init);
-	}
-
-	/**
+	 */function footer(init){return htmldom('footer',init);}/**
 	 * [The `form` element](https://html.spec.whatwg.org/#the-form-element)
 	 * represents a collection of form-associated elements, some of which can represent editable values that can be submitted to a server for processing.
 	 *
@@ -1338,7 +1269,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535249.aspx)
 	 *
 	 * @function form
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.acceptCharset] Character encodings to use for form submission
 	 * @param {String} [init.action] URL to use for form submission
 	 * @param {String} [init.autocomplete] Default setting for autofill feature for controls in the form
@@ -1348,12 +1279,7 @@
 	 * @param {Boolean} [init.noValidate] Bypass form control validation for form submission
 	 * @param {String} [init.target] Browsing context for form submission
 	 * @return {HTMLFormElement}
-	 */
-	function form(init) {
-	  return htmldom('form', init);
-	}
-
-	/**
+	 */function form(init){return htmldom('form',init);}/**
 	 * [The `h1`, `h2`, `h3`, `h4`, `h5`, and `h6` elements](https://html.spec.whatwg.org/#the-h1-element)
 	 * represent headings for their sections.
 	 *
@@ -1363,59 +1289,34 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535253.aspx)
 	 *
 	 * @function h1
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
-	 */
-	function h1(init) {
-	  return htmldom('h1', init);
-	}
-	/**
+	 */function h1(init){return htmldom('h1',init);}/**
 	 * See [h1](#h1)
 	 * @function h2
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
-	 */
-	function h2(init) {
-	  return htmldom('h2', init);
-	}
-	/**
+	 */function h2(init){return htmldom('h2',init);}/**
 	 * See [h1](#h1)
 	 * @function h3
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
-	 */
-	function h3(init) {
-	  return htmldom('h3', init);
-	}
-	/**
+	 */function h3(init){return htmldom('h3',init);}/**
 	 * See [h1](#h1)
 	 * @function h4
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
-	 */
-	function h4(init) {
-	  return htmldom('h4', init);
-	}
-	/**
+	 */function h4(init){return htmldom('h4',init);}/**
 	 * See [h1](#h1)
 	 * @function h5
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
-	 */
-	function h5(init) {
-	  return htmldom('h5', init);
-	}
-	/**
+	 */function h5(init){return htmldom('h5',init);}/**
 	 * See [h1](#h1)
 	 * @function h6
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
-	 */
-	function h6(init) {
-	  return htmldom('h6', init);
-	}
-
-	/**
+	 */function h6(init){return htmldom('h6',init);}/**
 	 * [The `head` element](https://html.spec.whatwg.org/#the-head-element)
 	 * represents a collection of metadata for the Document.
 	 *
@@ -1425,14 +1326,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535252.aspx)
 	 *
 	 * @function head
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadElement}
-	 */
-	function head(init) {
-	  return htmldom('head', init);
-	}
-
-	/**
+	 */function head(init){return htmldom('head',init);}/**
 	 * [The `header` element](https://html.spec.whatwg.org/#the-header-element)
 	 * represents a group of introductory or navigational aids.
 	 *
@@ -1441,14 +1337,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/gg593044.aspx)
 	 *
 	 * @function header
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function header(init) {
-	  return htmldom('header', init);
-	}
-
-	/**
+	 */function header(init){return htmldom('header',init);}/**
 	 * [The `hgroup` element](https://html.spec.whatwg.org/#the-hgroup-element)
 	 * represents the heading of a section, which consists
 	 * of all the h1–h6 element children of the hgroup element.
@@ -1460,14 +1351,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/gg593045.aspx)
 	 *
 	 * @function hgroup
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function hgroup(init) {
-	  return htmldom('hgroup', init);
-	}
-
-	/**
+	 */function hgroup(init){return htmldom('hgroup',init);}/**
 	 * [The `hr` element](https://html.spec.whatwg.org/#the-hr-element)
 	 * represents a paragraph-level thematic break, e.g. a scene change in a story,
 	 * or a transition to another topic within a section of a reference book.
@@ -1478,14 +1364,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535254.aspx)
 	 *
 	 * @function hr
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHRElement}
-	 */
-	function hr(init) {
-	  return htmldom('hr', init);
-	}
-
-	/**
+	 */function hr(init){return htmldom('hr',init);}/**
 	 * [The `html` element](https://html.spec.whatwg.org/#the-html-element)
 	 * represents the root of an HTML document.
 	 *
@@ -1495,15 +1376,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535255.aspx)
 	 *
 	 * @function html
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.manifest] [Application cache manifest](https://html.spec.whatwg.org/#concept-appcache-manifest)
 	 * @return {HTMLHtmlElement}
-	 */
-	function html(init) {
-	  return htmldom('html', init);
-	}
-
-	/**
+	 */function html(init){return htmldom('html',init);}/**
 	 * [The `i` element](https://html.spec.whatwg.org/#the-i-element)
 	 * represents a span of text in an alternate voice or mood,
 	 * or otherwise offset from the normal prose in a manner indicating a different quality of text,
@@ -1515,14 +1391,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535257.aspx)
 	 *
 	 * @function i
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function i(init) {
-	  return htmldom('i', init);
-	}
-
-	/**
+	 */function i(init){return htmldom('i',init);}/**
 	 * [The `iframe` element](https://html.spec.whatwg.org/#the-iframe-element)
 	 * represents a [nested browsing context](https://html.spec.whatwg.org/#nested-browsing-context).
 	 *
@@ -1532,7 +1403,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535258.aspx)
 	 *
 	 * @function iframe
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.srcdoc] A document to render in the iframe
 	 * @param {String} [init.name] Name of nested browsing context
@@ -1543,12 +1414,7 @@
 	 * @param {String} [init.height] Vertical dimension
 	 * @param {String} [init.referrerPolicy] Determines the referrer policy for fetches initiated by the element
 	 * @return {HTMLIFrameElement}
-	 */
-	function iframe(init) {
-	  return htmldom('iframe', init);
-	}
-
-	/**
+	 */function iframe(init){return htmldom('iframe',init);}/**
 	 * [The `img` element](https://html.spec.whatwg.org/#the-img-element)
 	 * represents an image.
 	 *
@@ -1558,7 +1424,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535259.aspx)
 	 *
 	 * @function img
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.alt] Replacement text for use when images are not available
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.srcset] Images to use in different situations (e.g. high-resolution displays, small monitors, etc)
@@ -1570,12 +1436,7 @@
 	 * @param {Number} [init.height] Vertical dimension
 	 * @param {String} [init.referrerPolicy] Determines the referrer policy for fetches initiated by the element
 	 * @return {HTMLImageElement}
-	 */
-	function img(init) {
-	  return htmldom('img', init);
-	}
-
-	/**
+	 */function img(init){return htmldom('img',init);}/**
 	 * [The `input` element](https://html.spec.whatwg.org/#the-input-element)
 	 * represents a typed data field, usually with a form control to allow the user to edit the data.
 	 *
@@ -1585,7 +1446,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535260.aspx)
 	 *
 	 * @function input
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.alt] Replacement text for use when images are not available
 	 * @param {String} [init.accept] Hint for expected file type in file upload controls
 	 * @param {String} [init.autocomplete] Hint for form autofill feature
@@ -1623,12 +1484,7 @@
 	 * @param {String} [init.attrset.form] Associates the control with a form element (ID reference)
 	 * @param {String} [init.attrset.list] List of autocomplete options
 	 * @return {HTMLInputElement}
-	 */
-	function input(init) {
-	  return htmldom('input', init);
-	}
-
-	/**
+	 */function input(init){return htmldom('input',init);}/**
 	 * [The `ins` element](https://html.spec.whatwg.org/#the-ins-element)
 	 * represents an addition to the document.
 	 *
@@ -1638,16 +1494,11 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535842.aspx)
 	 *
 	 * @function ins
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.cite] Link to the source of the quotation or more information about the edit
 	 * @param {String} [init.dateTime] Date and (optionally) time of the change
 	 * @return {HTMLModElement}
-	 */
-	function ins(init) {
-	  return htmldom('ins', init);
-	}
-
-	/**
+	 */function ins(init){return htmldom('ins',init);}/**
 	 * [The `kbd` element](https://html.spec.whatwg.org/#the-kbd-element)
 	 * represents user input (typically keyboard input,
 	 * although it may also be used to represent other input, such as voice commands).
@@ -1656,14 +1507,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd)
 	 *
 	 * @function kbd
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function kbd(init) {
-	  return htmldom('kbd', init);
-	}
-
-	/**
+	 */function kbd(init){return htmldom('kbd',init);}/**
 	 * [The `label` element](https://html.spec.whatwg.org/#the-label-element)
 	 * represents a caption in a user interface.
 	 * The caption can be associated with a specific form control,
@@ -1676,15 +1522,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535845.aspx)
 	 *
 	 * @function label
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.for] Associate the label with form control
 	 * @return {HTMLLabelElement}
-	 */
-	function label(init) {
-	  return htmldom('label', init);
-	}
-
-	/**
+	 */function label(init){return htmldom('label',init);}/**
 	 * [The `legend` element](https://html.spec.whatwg.org/#the-legend-element)
 	 * represents a caption for the rest of the contents of the legend element's parent fieldset element, if any.
 	 *
@@ -1694,14 +1535,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535846.aspx)
 	 *
 	 * @function legend
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLLegendElement}
-	 */
-	function legend(init) {
-	  return htmldom('legend', init);
-	}
-
-	/**
+	 */function legend(init){return htmldom('legend',init);}/**
 	 * [The `li` element](https://html.spec.whatwg.org/#the-li-element)
 	 * represents a list item. If its parent element is an ol, ul, or menu element,
 	 * then the element is an item of the parent element's list, as defined for those elements.
@@ -1713,15 +1549,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535847.aspx)
 	 *
 	 * @function li
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Number} [init.value] Ordinal value of the list item (if the element is not a child of an ul or menu element)
 	 * @return {HTMLLIElement}
-	 */
-	function li(init) {
-	  return htmldom('li', init);
-	}
-
-	/**
+	 */function li(init){return htmldom('li',init);}/**
 	 * [The `link` element](https://html.spec.whatwg.org/#the-link-element)
 	 * allows authors to link their document to other resources.
 	 *
@@ -1731,7 +1562,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535848.aspx)
 	 *
 	 * @function link
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.href] Address of the hyperlink
 	 * @param {String} [init.crossOrigin] How the element handles crossorigin requests
 	 * @param {String} [init.rel] Relationship between the document containing the hyperlink and the destination resource
@@ -1744,12 +1575,7 @@
 	 * @param {String} [init.referrerPolicy] Determines the referrer policy for fetches initiated by the element
 	 * @param {String} [init.title] Special semantics: title of the link; [CSS style sheet set name](CSS style sheet set name).
 	 * @return {HTMLLinkElement}
-	 */
-	function link(init) {
-	  return htmldom('link', init);
-	}
-
-	/**
+	 */function link(init){return htmldom('link',init);}/**
 	 * [The `main` element](https://html.spec.whatwg.org/#the-main-element)
 	 * can be used as a container for the dominant contents of another element.
 	 * It represents its children.
@@ -1759,14 +1585,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/mt634542.aspx)
 	 *
 	 * @function main
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function main(init) {
-	  return htmldom('main', init);
-	}
-
-	/**
+	 */function main(init){return htmldom('main',init);}/**
 	 * [The `map` element](https://html.spec.whatwg.org/#the-map-element),
 	 * in conjunction with an img element and any area element descendants, defines an image map.
 	 * The element represents its children.
@@ -1777,15 +1598,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535850.aspx)
 	 *
 	 * @function map
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.name] Name of [image map](https://html.spec.whatwg.org/#image-map) to reference from the `usemap` attribute
 	 * @return {HTMLMapElement}
-	 */
-	function map(init) {
-	  return htmldom('map', init);
-	}
-
-	/**
+	 */function map(init){return htmldom('map',init);}/**
 	 * [The `mark` element](https://html.spec.whatwg.org/#the-mark-element)
 	 * represents a run of text in one document marked or highlighted for reference purposes,
 	 * due to its relevance in another context.
@@ -1803,14 +1619,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/gg593046.aspx)
 	 *
 	 * @function mark
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function mark(init) {
-	  return htmldom('mark', init);
-	}
-
-	/**
+	 */function mark(init){return htmldom('mark',init);}/**
 	 * [The `menu` element](https://html.spec.whatwg.org/#the-menu-element)
 	 * represents a list of commands.
 	 *
@@ -1820,16 +1631,11 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535852.aspx)
 	 *
 	 * @function menu
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.type] Type of menu
 	 * @param {String} [init.label] User-visible label
 	 * @return {HTMLMenuElement}
-	 */
-	function menu(init) {
-	  return htmldom('menu', init);
-	}
-
-	/**
+	 */function menu(init){return htmldom('menu',init);}/**
 	 * [The `menuitem` element](https://html.spec.whatwg.org/#the-menuitem-element)
 	 * represents a command that the user can invoke from a popup menu
 	 * (either a context menu or the menu of a menu button).
@@ -1839,7 +1645,7 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menuitem)
 	 *
 	 * @function menuitem
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.type] Type of command
 	 * @param {String} [init.label] User-visible label
 	 * @param {String} [init.icon] Icon for the command
@@ -1849,12 +1655,7 @@
 	 * @param {Boolean} [init.default] Mark the command as being a default command
 	 * @param {String} [init.title] Special semantics: hint describing the command
 	 * @return {HTMLMenuItemElement}
-	 */
-	function menuitem(init) {
-	  return htmldom('menuitem', init);
-	}
-
-	/**
+	 */function menuitem(init){return htmldom('menuitem',init);}/**
 	 * [The `meta` element](https://html.spec.whatwg.org/#the-meta-element)
 	 * represents various kinds of metadata that cannot be expressed using the title,
 	 * base, link, style, and script elements.
@@ -1865,18 +1666,13 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535853.aspx)
 	 *
 	 * @function meta
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.name] Metadata name
 	 * @param {String} [init.http-equiv] Pragma directive
 	 * @param {String} [init.content] Value of the element
 	 * @param {String} [init.attrset.charset] Character encoding declaration
 	 * @return {HTMLMetaElement}
-	 */
-	function meta(init) {
-	  return htmldom('meta', init);
-	}
-
-	/**
+	 */function meta(init){return htmldom('meta',init);}/**
 	 * [The `meter` element](https://html.spec.whatwg.org/#the-meter-element)
 	 * represents a scalar measurement within a known range, or a fractional value;
 	 * for example disk usage, the relevance of a query result,
@@ -1888,7 +1684,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/mt573149.aspx)
 	 *
 	 * @function meter
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Number} [init.value] Current value of the element
 	 * @param {Number} [init.min] Lower bound of range
 	 * @param {Number} [init.max] Upper bound of range
@@ -1896,12 +1692,7 @@
 	 * @param {Number} [init.high] Low limit of high range
 	 * @param {Number} [init.optimum] Optimum value in gauge
 	 * @return {HTMLMeterElement}
-	 */
-	function meter(init) {
-	  return htmldom('meter', init);
-	}
-
-	/**
+	 */function meter(init){return htmldom('meter',init);}/**
 	 * [The `nav` element](https://html.spec.whatwg.org/#the-nav-element)
 	 * represents a section of a page that links to other pages or to parts within the page:
 	 * a section with navigation links.
@@ -1911,14 +1702,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/gg593047.aspx)
 	 *
 	 * @function nav
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function nav(init) {
-	  return htmldom('nav', init);
-	}
-
-	/**
+	 */function nav(init){return htmldom('nav',init);}/**
 	 * [The `noscript` element](https://html.spec.whatwg.org/#the-noscript-element)
 	 * represents nothing if scripting is enabled,
 	 * and represents its children if scripting is disabled.
@@ -1930,14 +1716,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535858.aspx)
 	 *
 	 * @function noscript
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function noscript(init) {
-	  return htmldom('noscript', init);
-	}
-
-	/**
+	 */function noscript(init){return htmldom('noscript',init);}/**
 	 * [The `object` element](https://html.spec.whatwg.org/#the-object-element)
 	 * can represent an external resource, which, depending on the type of the resource,
 	 * will either be treated as an image, as a nested browsing context,
@@ -1949,7 +1730,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535859.aspx)
 	 *
 	 * @function object
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.data] Address of the resource
 	 * @param {String} [init.type] Type of embedded resource
 	 * @param {Boolean} [init.typeMustMatch] Whether the type attribute and the Content-Type value need to match for the resource to be used
@@ -1959,12 +1740,7 @@
 	 * @param {String} [init.width] Horizontal dimension
 	 * @param {String} [init.height] Vertical dimension
 	 * @return {HTMLObjectElement}
-	 */
-	function object(init) {
-	  return htmldom('object', init);
-	}
-
-	/**
+	 */function object(init){return htmldom('object',init);}/**
 	 * [The `ol` element](https://html.spec.whatwg.org/#the-ol-element)
 	 * represents a list of items, where the items have been intentionally ordered,
 	 * such that changing the order would change the meaning of the document.
@@ -1975,17 +1751,12 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535875.aspx)
 	 *
 	 * @function ol
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Boolean} [init.reversed] Number the list backwards
 	 * @param {Number} [init.start] Starting value of the list
 	 * @param {String} [init.type] Kind of list marker
 	 * @return {HTMLOListElement}
-	 */
-	function ol(init) {
-	  return htmldom('ol', init);
-	}
-
-	/**
+	 */function ol(init){return htmldom('ol',init);}/**
 	 * [The `optgroup` element](https://html.spec.whatwg.org/#the-optgroup-element)
 	 * represents a group of option elements with a common label.
 	 *
@@ -1995,16 +1766,11 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535876.aspx)
 	 *
 	 * @function optgroup
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Boolean} [init.disabled] Whether the form control is disabled
 	 * @param {String} [init.label] User-visible label
 	 * @return {HTMLOptGroupElement}
-	 */
-	function optgroup(init) {
-	  return htmldom('optgroup', init);
-	}
-
-	/**
+	 */function optgroup(init){return htmldom('optgroup',init);}/**
 	 * [The `option` element](https://html.spec.whatwg.org/#the-option-element)
 	 * represents an option in a select element or as part of a list of suggestions
 	 * in a datalist element.
@@ -2015,18 +1781,13 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535877.aspx)
 	 *
 	 * @function option
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Boolean} [init.disabled] Whether the form control is disabled
 	 * @param {String} [init.label] User-visible label
 	 * @param {Boolean} [init.selected] Whether the option is selected by default
 	 * @param {String} [init.value] Value to be used for form submission
 	 * @return {HTMLOptionElement}
-	 */
-	function option(init) {
-	  return htmldom('option', init);
-	}
-
-	/**
+	 */function option(init){return htmldom('option',init);}/**
 	 * [The `output` element](https://html.spec.whatwg.org/#the-output-element)
 	 * represents the result of a calculation performed by the application,
 	 * or the result of a user action.
@@ -2037,17 +1798,12 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/mt732268.aspx)
 	 *
 	 * @function output
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.for] Specifies controls from which the output was calculated
 	 * @param {String} [init.attrset.form] Associates the control with a form element (ID reference)
 	 * @param {String} [init.name] Name of form control to use in the [form.elements](https://html.spec.whatwg.org/#dom-form-elements) API
 	 * @return {HTMLOutputElement}
-	 */
-	function output(init) {
-	  return htmldom('output', init);
-	}
-
-	/**
+	 */function output(init){return htmldom('output',init);}/**
 	 * [The `p` element](https://html.spec.whatwg.org/#the-p-element)
 	 * represents a paragraph.
 	 *
@@ -2057,14 +1813,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535878.aspx)
 	 *
 	 * @function p
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLParagraphElement}
-	 */
-	function p(init) {
-	  return htmldom('p', init);
-	}
-
-	/**
+	 */function p(init){return htmldom('p',init);}/**
 	 * [The `param` element](https://html.spec.whatwg.org/#the-param-element)
 	 * defines parameters for plugins invoked by object elements.
 	 * It does not represent anything on its own.
@@ -2075,16 +1826,11 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535880.aspx)
 	 *
 	 * @function param
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.name] Name of parameter
 	 * @param {String} [init.value] Value of parameter
 	 * @return {HTMLParamElement}
-	 */
-	function param(init) {
-	  return htmldom('param', init);
-	}
-
-	/**
+	 */function param(init){return htmldom('param',init);}/**
 	 * [The `picture` element](https://html.spec.whatwg.org/#the-picture-element)
 	 * is a container which provides multiple sources to its contained img element to allow authors to declaratively control or give hints to the user agent about which image resource to use, based on the screen pixel density, viewport size, image format, and other factors. It represents its children.
 	 *
@@ -2094,14 +1840,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/mt574001.aspx)
 	 *
 	 * @function picture
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLPictureElement}
-	 */
-	function picture(init) {
-	  return htmldom('picture', init);
-	}
-
-	/**
+	 */function picture(init){return htmldom('picture',init);}/**
 	 * [The `pre` element](https://html.spec.whatwg.org/#the-pre-element)
 	 * represents a block of preformatted text, in which structure is represented
 	 * by typographic conventions rather than by elements.
@@ -2112,14 +1853,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535883.aspx)
 	 *
 	 * @function pre
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLPreElement}
-	 */
-	function pre(init) {
-	  return htmldom('pre', init);
-	}
-
-	/**
+	 */function pre(init){return htmldom('pre',init);}/**
 	 * [The `progress` element](https://html.spec.whatwg.org/#the-progress-element)
 	 * represents the completion progress of a task. The progress is either indeterminate,
 	 * indicating that progress is being made but that it is not clear
@@ -2134,16 +1870,11 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/hh772953.aspx)
 	 *
 	 * @function progress
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {Number} [init.value] Current value of the element
 	 * @param {Number} [init.max] Upper bound of range
 	 * @return {HTMLProgressElement}
-	 */
-	function progress(init) {
-	  return htmldom('progress', init);
-	}
-
-	/**
+	 */function progress(init){return htmldom('progress',init);}/**
 	 * [The `q` element](https://html.spec.whatwg.org/#the-q-element)
 	 * represents some phrasing content quoted from another source.
 	 *
@@ -2153,15 +1884,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535884.aspx)
 	 *
 	 * @function q
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.cite] Link to the source of the quotation or more information about the edit
 	 * @return {HTMLQuoteElement}
-	 */
-	function q(init) {
-	  return htmldom('q', init);
-	}
-
-	/**
+	 */function q(init){return htmldom('q',init);}/**
 	 * [The `rp` element](https://html.spec.whatwg.org/#the-rp-element)
 	 * can be used to provide parentheses or other content
 	 * around a ruby text component of a ruby annotation,
@@ -2171,14 +1897,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/rp)
 	 *
 	 * @function rp
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function rp(init) {
-	  return htmldom('rp', init);
-	}
-
-	/**
+	 */function rp(init){return htmldom('rp',init);}/**
 	 * [The `rt` element](https://html.spec.whatwg.org/#the-rt-element)
 	 * marks the ruby text component of a ruby annotation.
 	 * When it is the child of a ruby element, it doesn't represent anything itself,
@@ -2189,14 +1910,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535885.aspx)
 	 *
 	 * @function rt
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function rt(init) {
-	  return htmldom('rt', init);
-	}
-
-	/**
+	 */function rt(init){return htmldom('rt',init);}/**
 	 * [The `ruby` element](https://html.spec.whatwg.org/#the-ruby-element)
 	 * allows one or more spans of phrasing content to be marked with ruby annotations.
 	 * Ruby annotations are short runs of text presented alongside base text,
@@ -2209,14 +1925,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535886.aspx)
 	 *
 	 * @function ruby
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function ruby(init) {
-	  return htmldom('ruby', init);
-	}
-
-	/**
+	 */function ruby(init){return htmldom('ruby',init);}/**
 	 * [The `s` element](https://html.spec.whatwg.org/#the-s-element)
 	 * represents contents that are no longer accurate or no longer relevant.
 	 *
@@ -2225,14 +1936,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535890.aspx)
 	 *
 	 * @function s
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function s(init) {
-	  return htmldom('s', init);
-	}
-
-	/**
+	 */function s(init){return htmldom('s',init);}/**
 	 * [The `samp` element](https://html.spec.whatwg.org/#the-samp-element)
 	 * represents sample or quoted output from another program or computing system.
 	 *
@@ -2241,14 +1947,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535891.aspx)
 	 *
 	 * @function samp
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function samp(init) {
-	  return htmldom('samp', init);
-	}
-
-	/**
+	 */function samp(init){return htmldom('samp',init);}/**
 	 * [The `script` element](https://html.spec.whatwg.org/#the-script-element)
 	 * allows authors to include dynamic script and data blocks in their documents.
 	 * The element does not represent content for the user.
@@ -2259,7 +1960,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535892.aspx)
 	 *
 	 * @function script
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.type] Type of embedded resource
 	 * @param {String} [init.charset] Character encoding of the external script resource
@@ -2268,12 +1969,7 @@
 	 * @param {String} [init.crossOrigin] How the element handles crossorigin requests
 	 * @param {String} [init.nonce] Cryptographic nonce used in Content Security Policy checks [CSP]
 	 * @return {HTMLScriptElement}
-	 */
-	function script(init) {
-	  return htmldom('script', init);
-	}
-
-	/**
+	 */function script(init){return htmldom('script',init);}/**
 	 * [The `section` element](https://html.spec.whatwg.org/#the-section-element)
 	 * represents a generic section of a document or application.
 	 * A section, in this context, is a thematic grouping of content,
@@ -2284,14 +1980,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/gg593059.aspx)
 	 *
 	 * @function section
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function section(init) {
-	  return htmldom('section', init);
-	}
-
-	/**
+	 */function section(init){return htmldom('section',init);}/**
 	 * [The `select` element](https://html.spec.whatwg.org/#the-select-element)
 	 * represents a control for selecting amongst a set of options.
 	 *
@@ -2301,7 +1992,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535893.aspx)
 	 *
 	 * @function select
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.autocomplete] Hint for form autofill feature
 	 * @param {Boolean} [init.autofocus] Automatically focus the form control when the page is loaded
 	 * @param {Boolean} [init.disabled] Whether the form control is disabled
@@ -2311,12 +2002,7 @@
 	 * @param {Boolean} [init.required] Whether the control is required for form submission
 	 * @param {Number} [init.size] Size of the control
 	 * @return {HTMLSelectElement}
-	 */
-	function select(init) {
-	  return htmldom('select', init);
-	}
-
-	/**
+	 */function select(init){return htmldom('select',init);}/**
 	 * [The `slot` element](https://html.spec.whatwg.org/#the-slot-element)
 	 * defines a slot. It is typically used in a shadow tree.
 	 * A slot element represents its assigned nodes, if any, and its contents otherwise.
@@ -2326,15 +2012,10 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
 	 *
 	 * @function slot
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.name] Name of shadow tree slot
 	 * @return {HTMLSlotElement}
-	 */
-	function slot(init) {
-	  return htmldom('slot', init);
-	}
-
-	/**
+	 */function slot(init){return htmldom('slot',init);}/**
 	 * [The `small` element](https://html.spec.whatwg.org/#the-small-element)
 	 * represents side comments such as small print.
 	 *
@@ -2343,14 +2024,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535894.aspx)
 	 *
 	 * @function small
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function small(init) {
-	  return htmldom('small', init);
-	}
-
-	/**
+	 */function small(init){return htmldom('small',init);}/**
 	 * [The `source` element](https://html.spec.whatwg.org/#the-source-element)
 	 * allows authors to specify multiple alternative source sets for img elements
 	 * or multiple alternative media resources for media elements.
@@ -2362,19 +2038,14 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ff975070.aspx)
 	 *
 	 * @function source
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.type] Type of embedded resource
 	 * @param {String} [init.srcset] Images to use in different situations (e.g. high-resolution displays, small monitors, etc)
 	 * @param {String} [init.sizes] Image sizes for different page layouts
 	 * @param {String} [init.media] Applicable media
 	 * @return {HTMLSourceElement}
-	 */
-	function source(init) {
-	  return htmldom('source', init);
-	}
-
-	/**
+	 */function source(init){return htmldom('source',init);}/**
 	 * [The `span` element](https://html.spec.whatwg.org/#the-span-element)
 	 * doesn't mean anything on its own,
 	 * but can be useful when used together with the global attributes,
@@ -2386,14 +2057,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535895.aspx)
 	 *
 	 * @function span
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLSpanElement}
-	 */
-	function span(init) {
-	  return htmldom('span', init);
-	}
-
-	/**
+	 */function span(init){return htmldom('span',init);}/**
 	 * [The `strong` element](https://html.spec.whatwg.org/#the-strong-element)
 	 * represents strong importance, seriousness, or urgency for its contents.
 	 *
@@ -2403,14 +2069,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535897.aspx)
 	 *
 	 * @function strong
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function strong(init) {
-	  return htmldom('strong', init);
-	}
-
-	/**
+	 */function strong(init){return htmldom('strong',init);}/**
 	 * [The `style` element](https://html.spec.whatwg.org/#the-style-element)
 	 * allows authors to embed style information in their documents.
 	 * The style element is one of several inputs to the styling processing model.
@@ -2422,18 +2083,13 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535898.aspx)
 	 *
 	 * @function style
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.media] Applicable media
 	 * @param {String} [init.nonce] Cryptographic nonce used in [Content Security Policy](https://html.spec.whatwg.org/#refsCSP) checks
 	 * @param {String} [init.type] Type of embedded resource
 	 * @param {String} [init.title] Special semantics: CSS style sheet set name.
 	 * @return {HTMLStyleElement}
-	 */
-	function style(init) {
-	  return htmldom('style', init);
-	}
-
-	/**
+	 */function style(init){return htmldom('style',init);}/**
 	 * [The `sub` element](https://html.spec.whatwg.org/#the-sub-element)
 	 * represents a subscript.
 	 *
@@ -2442,14 +2098,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535899.aspx)
 	 *
 	 * @function sub
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function sub(init) {
-	  return htmldom('sub', init);
-	}
-
-	/**
+	 */function sub(init){return htmldom('sub',init);}/**
 	 * [The `summary` element](https://html.spec.whatwg.org/#the-summary-element)
 	 *  represents a summary, caption, or legend for the rest of the contents
 	 *  of the summary element's parent details element, if any.
@@ -2458,14 +2109,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary)
 	 *
 	 * @function summary
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function summary(init) {
-	  return htmldom('summary', init);
-	}
-
-	/**
+	 */function summary(init){return htmldom('summary',init);}/**
 	 * [The `sup` element](https://html.spec.whatwg.org/#the-sup-element)
 	 * represents a superscript
 	 *
@@ -2474,14 +2120,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535900.aspx)
 	 *
 	 * @function sup
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function sup(init) {
-	  return htmldom('sup', init);
-	}
-
-	/**
+	 */function sup(init){return htmldom('sup',init);}/**
 	 * [The `table` element](https://html.spec.whatwg.org/#the-table-element)
 	 * represents data with more than one dimension, in the form of a table.
 	 *
@@ -2491,14 +2132,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535901.aspx)
 	 *
 	 * @function table
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTableElement}
-	 */
-	function table(init) {
-	  return htmldom('table', init);
-	}
-
-	/**
+	 */function table(init){return htmldom('table',init);}/**
 	 * [The `tbody` element](https://html.spec.whatwg.org/#the-tbody-element)
 	 * represents a block of rows that consist of a body of data for the parent table element,
 	 * if the tbody element has a parent and it is a table.
@@ -2509,14 +2145,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535902.aspx)
 	 *
 	 * @function tbody
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTableSectionElement}
-	 */
-	function tbody(init) {
-	  return htmldom('tbody', init);
-	}
-
-	/**
+	 */function tbody(init){return htmldom('tbody',init);}/**
 	 * [The `td` element](https://html.spec.whatwg.org/#the-td-element)
 	 * represents a data cell in a table.
 	 *
@@ -2526,17 +2157,12 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535903.aspx)
 	 *
 	 * @function td
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.colSpan] Number of columns that the cell is to span
 	 * @param {String} [init.rowSpan] Number of rows that the cell is to span
 	 * @param {String} [init.headers] The header cells for this cell
 	 * @return {HTMLTableCellElement}
-	 */
-	function td(init) {
-	  return htmldom('td', init);
-	}
-
-	/**
+	 */function td(init){return htmldom('td',init);}/**
 	 * [The `template` element](https://html.spec.whatwg.org/#the-template-element)
 	 * is used to declare fragments of HTML that can be cloned and inserted in the document by script.
 	 *
@@ -2546,14 +2172,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/mt586693.aspx)
 	 *
 	 * @function template
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTemplateElement}
-	 */
-	function template(init) {
-	  return htmldom('template', init);
-	}
-
-	/**
+	 */function template(init){return htmldom('template',init);}/**
 	 * [The `textarea` element](https://html.spec.whatwg.org/#the-textarea-element)
 	 * represents a multiline plain text edit control for the element's raw value.
 	 * The contents of the control represent the control's default value.
@@ -2564,7 +2185,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535904.aspx)
 	 *
 	 * @function textarea
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.autocomplete] Hint for form autofill feature
 	 * @param {String} [init.autofocus] Automatically focus the form control when the page is loaded
 	 * @param {String} [init.cols] Maximum number of characters per line
@@ -2581,12 +2202,7 @@
 	 * @param {String} [init.rows] Number of lines to show
 	 * @param {String} [init.wrap] How the value of the form control is to be wrapped for form submission
 	 * @return {HTMLTextAreaElement}
-	 */
-	function textarea(init) {
-	  return htmldom('textarea', init);
-	}
-
-	/**
+	 */function textarea(init){return htmldom('textarea',init);}/**
 	 * [The `tfoot` element](https://html.spec.whatwg.org/#the-tfoot-element)
 	 *  represents the block of rows that consist of the column summaries (footers)
 	 *  for the parent table element, if the tfoot element has a parent and it is a table.
@@ -2597,14 +2213,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535907.aspx)
 	 *
 	 * @function tfoot
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTableSectionElement}
-	 */
-	function tfoot(init) {
-	  return htmldom('tfoot', init);
-	}
-
-	/**
+	 */function tfoot(init){return htmldom('tfoot',init);}/**
 	 * [The `th` element](https://html.spec.whatwg.org/#the-th-element)
 	 * represents a header cell in a table.
 	 *
@@ -2614,19 +2225,14 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535908.aspx)
 	 *
 	 * @function th
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.colSpan] Number of columns that the cell is to span
 	 * @param {String} [init.rowSpan] Number of rows that the cell is to span
 	 * @param {String} [init.headers] The header cells for this cell
 	 * @param {String} [init.scope] Specifies which cells the header cell applies to
 	 * @param {String} [init.abbr] Alternative label to use for the header cell when referencing the cell in other contexts
 	 * @return {HTMLTableCellElement}
-	 */
-	function th(init) {
-	  return htmldom('th', init);
-	}
-
-	/**
+	 */function th(init){return htmldom('th',init);}/**
 	 * [The `thead` element](https://html.spec.whatwg.org/#the-thead-element)
 	 * represents the block of rows that consist of the column labels (headers)
 	 * for the parent table element, if the thead element has a parent and it is a table.
@@ -2637,14 +2243,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535909.aspx)
 	 *
 	 * @function thead
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTableSectionElement}
-	 */
-	function thead(init) {
-	  return htmldom('thead', init);
-	}
-
-	/**
+	 */function thead(init){return htmldom('thead',init);}/**
 	 * [The `time` element](https://html.spec.whatwg.org/#the-time-element)
 	 * represents its contents,
 	 * along with a machine-readable form of those contents in the datetime attribute.
@@ -2657,15 +2258,10 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/mt706248.aspx)
 	 *
 	 * @function time
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.datetime] Machine-readable value
 	 * @return {HTMLTimeElement}
-	 */
-	function time(init) {
-	  return htmldom('time', init);
-	}
-
-	/**
+	 */function time(init){return htmldom('time',init);}/**
 	 * [The `title` element](https://html.spec.whatwg.org/#the-title-element)
 	 * represents the document's title or name.
 	 * Authors should use titles that identify their documents
@@ -2680,14 +2276,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535910.aspx)
 	 *
 	 * @function title
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTitleElement}
-	 */
-	function title(init) {
-	  return htmldom('title', init);
-	}
-
-	/**
+	 */function title(init){return htmldom('title',init);}/**
 	 * [The `tr` element](https://html.spec.whatwg.org/#the-tr-element)
 	 * represents a row of cells in a table.
 	 *
@@ -2697,14 +2288,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535911.aspx)
 	 *
 	 * @function tr
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLTableRowElement}
-	 */
-	function tr(init) {
-	  return htmldom('tr', init);
-	}
-
-	/**
+	 */function tr(init){return htmldom('tr',init);}/**
 	 * [The `track` element](https://html.spec.whatwg.org/#the-track-element)
 	 * allows authors to specify explicit external timed text tracks for media elements.
 	 * It does not represent anything on its own.
@@ -2715,19 +2301,14 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/hh772958.aspx)
 	 *
 	 * @function track
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.kind] The type of text track
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.srclang] Language of the text track
 	 * @param {String} [init.label] User-visible label
 	 * @param {Boolean} [init.default] Enable the track if no other text track is more suitable
 	 * @return {HTMLTrackElement}
-	 */
-	function track(init) {
-	  return htmldom('track', init);
-	}
-
-	/**
+	 */function track(init){return htmldom('track',init);}/**
 	 * [The `u` element](https://html.spec.whatwg.org/#the-u-element)
 	 * represents a span of text with an unarticulated,
 	 * though explicitly rendered, non-textual annotation,
@@ -2739,14 +2320,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535913.aspx)
 	 *
 	 * @function u
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function u(init) {
-	  return htmldom('u', init);
-	}
-
-	/**
+	 */function u(init){return htmldom('u',init);}/**
 	 * [The `ul` element](https://html.spec.whatwg.org/#the-ul-element)
 	 * represents a list of items, where the order of the items is not important — that is,
 	 * where changing the order would not materially change the meaning of the document.
@@ -2757,14 +2333,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535914.aspx)
 	 *
 	 * @function ul
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLUListElement}
-	 */
-	function ul(init) {
-	  return htmldom('ul', init);
-	}
-
-	/**
+	 */function ul(init){return htmldom('ul',init);}/**
 	 * [the `var` element](https://html.spec.whatwg.org/#the-var-element)
 	 * represents a variable.
 	 * This could be an actual variable in a mathematical expression or programming context,
@@ -2778,14 +2349,9 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/ms535916.aspx)
 	 *
 	 * @function variable
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function variable(init) {
-	  return htmldom('var', init);
-	}
-
-	/**
+	 */function variable(init){return htmldom('var',init);}/**
 	 * [The `video` element](https://html.spec.whatwg.org/#the-video-element)
 	 * is used for playing videos or movies, and audio files with captions.
 	 *
@@ -2795,7 +2361,7 @@
 	 * • [msdn ref](https://msdn.microsoft.com/en-us/library/hh772959.aspx)
 	 *
 	 * @function video
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @param {String} [init.src] Address of the resource
 	 * @param {String} [init.crossOrigin] How the element handles crossorigin requests
 	 * @param {String} [init.poster] Poster frame to show prior to video playback
@@ -2808,12 +2374,7 @@
 	 * @param {Number} [init.width] Horizontal dimension
 	 * @param {Number} [init.height] Vertical dimension
 	 * @return {HTMLVideoElement}
-	 */
-	function video(init) {
-	  return htmldom('video', init);
-	}
-
-	/**
+	 */function video(init){return htmldom('video',init);}/**
 	 * [The `wbr` element](https://html.spec.whatwg.org/#the-wbr-element)
 	 * represents a line break opportunity.
 	 *
@@ -2821,257 +2382,9 @@
 	 * • [mdn ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr)
 	 *
 	 * @function wbr
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLElement}
-	 */
-	function wbr(init) {
-	  return htmldom('wbr', init);
-	}
-
-/***/ },
-/* 7 */
-/*!***********************!*\
-  !*** ./docs/index.js ***!
-  \***********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _replsite = __webpack_require__(/*! ./lib/replsite */ 8);
-
-	__webpack_require__(/*! ./index.css */ 31);
-
-	const replsite = new _replsite.REPLSite();
-
-	document.body.append(replsite.node);
-
-	replsite.start();
-
-/***/ },
-/* 8 */
-/*!******************************!*\
-  !*** ./docs/lib/replsite.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.REPLSite = undefined;
-
-	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 9);
-
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 11);
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 10);
-
-	var htmlmodule = _interopRequireWildcard(_htmlmodule);
-
-	var _codemirror = __webpack_require__(/*! ./codemirror */ 12);
-
-	__webpack_require__(/*! ./replsite.css */ 26);
-
-	var _sitedata = __webpack_require__(/*! ./sitedata */ 28);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	const START_INDEX = 0;
-	const LAST_INDEX = _sitedata.data.length - 1;
-
-	const serializer = new _util.HTMLSerializer();
-
-	class REPLSite {
-	    constructor() {
-	        this.replmachine = new _REPLMachine.REPLMachine({
-	            input: this,
-	            output: this
-	        });
-	        this.node = this.assemble();
-	        window.onresize = () => this.refresh();
-	    }
-	    get value() {
-	        return this.inputcode.value;
-	    }
-	    set value(value) {
-	        const { markupview, outputcode } = this;
-	        const { body } = this.outputwin.contentDocument;
-	        body.innerHTML = '';
-	        if (markupview.open) outputcode.value = '';
-	        if (value instanceof Error) {
-	            body.textContent = value;
-	        } else {
-	            try {
-	                const resultnode = typeof value === 'function' ? value(htmlmodule) : value;
-	                if (resultnode) {
-	                    body.appendChild(resultnode);
-	                    if (markupview.open) {
-	                        outputcode.value = serializer.serializeToString(resultnode);
-	                    }
-	                }
-	            } catch (error) {
-	                body.textContent = error;
-	            }
-	        }
-	    }
-	    assemble() {
-	        return (0, _htmlmodule.main)({
-	            className: 'replsite',
-	            children: [(0, _htmlmodule.section)([this.inputcode = (0, _codemirror.codebox)({
-	                className: 'inputcode',
-	                value: _sitedata.data[this.index].src
-	            }), this.prevbutton = (0, _htmlmodule.button)({
-	                id: 'replbuttonprev',
-	                className: 'prevbutton',
-	                onclick: () => this.prev(),
-	                children: 'prev'
-	            }), this.nextbutton = (0, _htmlmodule.button)({
-	                id: 'replbuttonnext',
-	                className: 'nextbutton',
-	                onclick: () => this.next(),
-	                children: 'next'
-	            })]), (0, _htmlmodule.section)([this.outputwin = (0, _htmlmodule.iframe)({ className: 'outputwin' }), this.markupview = (0, _htmlmodule.details)({
-	                className: 'markupview',
-	                ontoggle: () => this.refresh(),
-	                children: [(0, _htmlmodule.summary)({
-	                    id: 'markuptoggle',
-	                    className: 'markuptoggle',
-	                    children: 'markup'
-	                }), this.outputcode = (0, _codemirror.markupbox)({
-	                    className: 'outputcode'
-	                })]
-	            })])]
-	        });
-	    }
-	    start() {
-	        this.refresh();
-	        this.inputcode.onchange = () => this.replmachine.loop();
-	    }
-	    refresh() {
-	        const outputcode = this.outputcode;
-	        const innerHeight = window.innerHeight;
-	        this.outputwin.height = this.markupview.open ? innerHeight - outputcode.height + 'px' : innerHeight + 'px';
-	        this.inputcode.refresh();
-	        outputcode.refresh();
-	        this.replmachine.loop();
-	    }
-	    prev() {
-	        this.index--;
-	        if (this.index < 0) this.index = LAST_INDEX;
-	        this.inputcode.value = _sitedata.data[this.index].src;
-	    }
-	    next() {
-	        this.index++;
-	        if (this.index > LAST_INDEX) this.index = 0;
-	        this.inputcode.value = _sitedata.data[this.index].src;
-	    }
-	}
-
-	exports.REPLSite = REPLSite;
-	Object.defineProperty(REPLSite.prototype, 'index', { writable: true, value: START_INDEX });
-	Object.defineProperty(REPLSite.prototype, 'node', { writable: true, value: null });
-
-/***/ },
-/* 9 */
-/*!*********************************!*\
-  !*** ./docs/lib/REPLMachine.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.REPLMachine = undefined;
-
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 10);
-
-	const VAR_NAME_EXPORTS = 'exports';
-
-	class REPLMachine {
-	    constructor({
-	        value = '',
-	        input = (0, _htmlmodule.input)({ value }),
-	        output = (0, _htmlmodule.output)()
-	    } = {}) {
-	        this.input = input;
-	        this.output = output;
-	    }
-	    get exports() {
-	        return {
-	            default: () => {
-	                throw Error('The default module is not exported');
-	            }
-	        };
-	    }
-	    loop() {
-	        this.read(this.input.value);
-	    }
-	    read(source) {
-	        try {
-	            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
-	            this.eval(evaluable);
-	            return evaluable;
-	        } catch (error) {
-	            this.onerror(error);
-	            return error;
-	        }
-	    }
-	    eval(evaluable) {
-	        try {
-	            const exports = this.exports;
-	            const value = evaluable(exports);
-	            this.print(value);
-	            return value;
-	        } catch (error) {
-	            this.onerror(error);
-	            return error;
-	        }
-	    }
-	    print(value) {
-	        try {
-	            this.output.value = value;
-	            return true;
-	        } catch (error) {
-	            this.output.value = error;
-	            return false;
-	        }
-	    }
-	    onerror(error) {
-	        this.print(error);
-	    }
-	}
-
-	exports.REPLMachine = REPLMachine;
-	Object.defineProperty(REPLMachine.prototype, 'input', { writable: true, value: null });
-	Object.defineProperty(REPLMachine.prototype, 'output', { writable: true, value: null });
-
-/***/ },
-/* 10 */
-/*!********************************!*\
-  !*** ./docs/lib/htmlmodule.js ***!
-  \********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _lib = __webpack_require__(/*! ../../lib */ 1);
-
-	Object.keys(_lib).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function () {
-	      return _lib[key];
-	    }
-	  });
-	});
+	 */function wbr(init){return htmldom('wbr',init);}
 
 /***/ },
 /* 11 */
@@ -3165,7 +2478,7 @@
 	});
 	exports.markupbox = exports.codebox = exports.CodeMirrorAssembler = undefined;
 
-	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 10);
+	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 4);
 
 	var _codemirror = __webpack_require__(/*! codemirror */ 13);
 

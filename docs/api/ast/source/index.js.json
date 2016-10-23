@@ -8,31 +8,31 @@
         "value": "./nodeinit",
         "raw": "'./nodeinit'",
         "range": [
-          152,
-          164
+          151,
+          163
         ],
         "loc": {
           "start": {
-            "line": 7,
+            "line": 6,
             "column": 14
           },
           "end": {
-            "line": 7,
+            "line": 6,
             "column": 26
           }
         }
       },
       "range": [
-        138,
-        165
+        137,
+        164
       ],
       "loc": {
         "start": {
-          "line": 7,
+          "line": 6,
           "column": 0
         },
         "end": {
-          "line": 7,
+          "line": 6,
           "column": 27
         }
       },
@@ -64,31 +64,31 @@
         "value": "./domassembler",
         "raw": "'./domassembler'",
         "range": [
-          180,
-          196
+          179,
+          195
         ],
         "loc": {
           "start": {
-            "line": 8,
+            "line": 7,
             "column": 14
           },
           "end": {
-            "line": 8,
+            "line": 7,
             "column": 30
           }
         }
       },
       "range": [
-        166,
-        197
+        165,
+        196
       ],
       "loc": {
         "start": {
-          "line": 8,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 8,
+          "line": 7,
           "column": 31
         }
       }
@@ -100,31 +100,31 @@
         "value": "./htmlassembler",
         "raw": "'./htmlassembler'",
         "range": [
-          212,
-          229
+          211,
+          228
         ],
         "loc": {
           "start": {
-            "line": 9,
+            "line": 8,
             "column": 14
           },
           "end": {
-            "line": 9,
+            "line": 8,
             "column": 31
           }
         }
       },
       "range": [
-        198,
-        230
+        197,
+        229
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 8,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 8,
           "column": 32
         }
       }
@@ -136,31 +136,31 @@
         "value": "./xmldom",
         "raw": "'./xmldom'",
         "range": [
-          245,
-          255
+          244,
+          254
         ],
         "loc": {
           "start": {
-            "line": 10,
+            "line": 9,
             "column": 14
           },
           "end": {
-            "line": 10,
+            "line": 9,
             "column": 24
           }
         }
       },
       "range": [
-        231,
-        256
+        230,
+        255
       ],
       "loc": {
         "start": {
-          "line": 10,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 10,
+          "line": 9,
           "column": 25
         }
       }
@@ -172,31 +172,31 @@
         "value": "./htmldom",
         "raw": "'./htmldom'",
         "range": [
-          271,
-          282
+          270,
+          281
         ],
         "loc": {
           "start": {
-            "line": 11,
+            "line": 10,
             "column": 14
           },
           "end": {
-            "line": 11,
+            "line": 10,
             "column": 25
           }
         }
       },
       "range": [
-        257,
-        283
+        256,
+        282
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 10,
           "column": 26
         }
       }
@@ -204,16 +204,16 @@
   ],
   "sourceType": "module",
   "range": [
-    138,
-    283
+    137,
+    282
   ],
   "loc": {
     "start": {
-      "line": 7,
+      "line": 6,
       "column": 0
     },
     "end": {
-      "line": 11,
+      "line": 10,
       "column": 26
     }
   },
