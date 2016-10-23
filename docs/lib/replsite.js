@@ -1,5 +1,5 @@
 import { REPLMachine } from './REPLMachine';
-import { HTMLSerializer } from '../../util/util.htmlserializer';
+import { DOMSerializer } from './domserializer';
 
 import * as htmlmodule from './htmlmodule';
 import { main, section, iframe, button, details, summary } from './htmlmodule';
@@ -9,7 +9,7 @@ import './replsite.css';
 
 const START_INDEX = 0;
 
-const serializer = new HTMLSerializer;
+const serializer = new DOMSerializer;
 
 export class REPLSite {
     constructor(data) {
