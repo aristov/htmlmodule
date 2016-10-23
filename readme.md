@@ -5,7 +5,7 @@
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
-[![Document Coverage](/esdoc/badge.svg)](/esdoc)
+[![Document Coverage](/docs/api/badge.svg)](/docs/api)
 
 /work in progress/
 
@@ -172,59 +172,39 @@ npm install
 
 ### Build
 
-To run commands locally, use `./node_modules/.bin/` in your `PATH`:
-
-```
-export PATH=./node_modules/.bin:$PATH
-```
-
 Build distribution assets:
 
 ```
-webpack
+npm run dist
 ```
 
-#### Options
-
-Build minified distribution assets:
+Build specs and REPL-machine:
 
 ```
-MIN=true webpack
+npm run docs
 ```
 
-Build docs, specs and repl-machine:
+Build API documentation:
 
 ```
-DOCS=true webpack
-```
-
-Disable babel transpiling:
-
-```
-ES6=true webpack
+npm run api
 ```
 
 ### Develop
 
-Use watch mode:
-
-```
-WATCH=true webpack
-```
-
-Run dev server (`DOCS + ES6 + WATCH`):
+Run dev server: 
 
 ```
 npm start
 ```
 
-Run static server:
+Development server does the following:
+ 
+- build docs part only (`DOCS=true webpack`)
+- disable babel transpiling (`ES6=true webpack`)
+- watch file changes (`WATCH=true webpack`)
 
-```
-static
-```
-
-Open in browser [localhost:8080/docs](http://localhost:8080/docs)
+Run any static server (`python -m SimpleHTTPServer 8007`) and point your browser to [localhost:8080/docs](http://localhost:8007/docs)
 
 ### Testing
 

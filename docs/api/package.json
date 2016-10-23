@@ -31,9 +31,11 @@
     "url": "git+https://github.com/aristov/htmlmodule.git"
   },
   "scripts": {
+    "dist": "./node_modules/.bin/webpack && MIN=true ./node_modules/.bin/webpack",
     "test": "./node_modules/.bin/karma start",
-    "start": "DOCS=true ES6=true WATCH=true ./node_modules/.bin/webpack",
-    "jsdoc": "esdoc -c esdoc.json"
+    "api": "./node_modules/.bin/esdoc -c esdoc.json",
+    "docs": "DOCS=true ES6=true ./node_modules/.bin/webpack",
+    "start": "DOCS=true ES6=true WATCH=true ./node_modules/.bin/webpack"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
@@ -47,9 +49,8 @@
     "chai": "^3.5.0",
     "codemirror": "^5.19.0",
     "css-loader": "^0.25.0",
-    "documentation": "^4.0.0-beta10",
-    "documentation-loader": "^0.1.1-beta",
     "dom4": "^1.8.3",
+    "esdoc": "^0.4.8",
     "karma": "^1.3.0",
     "karma-mocha": "^1.2.0",
     "karma-mocha-reporter": "^2.2.0",
