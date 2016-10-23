@@ -34,8 +34,8 @@
     "api": "esdoc -c esdoc.json",
     "pretest": "MIN=true webpack",
     "test": "karma start",
-    "start": "DOCS=true ES6=true WATCH=true webpack",
-    "build": "npm run dist && npm run docs && npm run api"
+    "start": "npm run dist && npm run docs && npm run api",
+    "serve": "DOCS=true ES6=true WATCH=true webpack"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
