@@ -181,18 +181,21 @@ npm install
 Build the whole project:
 
 ```
-npm run build
+npm start
 ```
 
 #### Partial builds
 
-Build distribution assets:
+Build a distribution assets:
 
 ```
 npm run dist
 ```
 
-Build specs and homepage:
+Build 
+[the homepage](https://aristov.github.io/htmlmodule):
+and 
+[the spec](https://aristov.github.io/htmlmodule/docs/spec.html) 
 
 ```
 npm run docs
@@ -209,7 +212,7 @@ npm run api
 Run dev server: 
 
 ```
-npm start
+npm run serve
 ```
 
 Run any static server, for instance:
