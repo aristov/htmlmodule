@@ -429,7 +429,7 @@
 	 *
 	 * @function htmldom
 	 * @param {String} tagName element tag name
-	 * @param {NodeInit} [init] `NodeInit` dictionary
+	 * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary
 	 * @param {{}} [init.attrset] `HTMLElement` attributes set as a dictionary object
 	 * @param {{}} [init.dataset] `HTMLElement` dataset as a dictionary object
 	 * @param {{}} [init.style] `HTMLElement` style as a dictionary object (CSSStyleDeclaration)
@@ -10932,48 +10932,40 @@
 	            assert.equal(serializer.serializeToString(node), '<!--tuty5-->');
 	        });
 	    });
-	    describe('html', () => {
-	        it('htmldom, span', () => {
-	            const node1 = (0, _index.htmldom)('span', {
+	    describe('try use html semantics', () => {
+	        it('xmldom span', () => {
+	            const node = (0, _index.xmldom)('span', {
 	                id: '00101',
 	                className: 'fa fi fu',
 	                tabIndex: 0,
 	                children: ['a', (0, _index.comment)('a b'), 'b']
 	            });
-	            const node2 = (0, _index.span)({
-	                id: '00101',
-	                className: 'fa fi fu',
-	                tabIndex: 0,
-	                children: ['a', (0, _index.comment)('a b'), 'b']
-	            });
-	            [node1, node2].forEach(node => {
-	                assert.equal(node.nodeType, ELEMENT_NODE);
-	                assert.equal(node.tagName, 'SPAN');
-	                assert.equal(node.constructor, HTMLSpanElement);
-	                assert.equal(node.attributes.length, 3);
-	                assert.equal(node.id, '00101');
-	                assert.equal(node.className, 'fa fi fu');
-	                assert.equal(node.tabIndex, 0);
-	                assert.equal(node.children.length, 0);
-	                assert.equal(node.childNodes.length, 3);
-	                assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
-	                assert.equal(node.childNodes[1].constructor, Comment);
-	                assert.equal(node.childNodes[2].textContent, 'b');
-	            });
-	            assert(node1.isEqualNode(node2), 'htmldom() and span() work differently');
+
+	            assert.equal(node.nodeType, ELEMENT_NODE);
+	            assert.equal(node.tagName, 'span');
+	            assert.equal(node.constructor, Element);
+	            assert.equal(node.attributes.length, 2);
+	            assert.equal(node.id, '00101');
+	            assert.equal(node.className, 'fa fi fu');
+	            assert.equal(node.tabIndex, undefined);
+	            assert.equal(node.children.length, 0);
+	            assert.equal(node.childNodes.length, 3);
+	            assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
+	            assert.equal(node.childNodes[1].constructor, Comment);
+	            assert.equal(node.childNodes[2].textContent, 'b');
 	        });
-	        it('a', () => {
-	            const node = (0, _index.a)({
+	        it('xmldom a', () => {
+	            const node = (0, _index.xmldom)('a', {
 	                href: 'html://www.aria.dom/math.svg',
 	                rel: 'next',
 	                title: 'om dom dom dom d',
 	                textContent: 'DOM module'
 	            });
-	            assert.equal(node.tagName, 'A');
-	            assert.equal(node.constructor, HTMLAnchorElement);
-	            assert.equal(node.href, 'html://www.aria.dom/math.svg');
-	            assert.equal(node.rel, 'next');
-	            assert.equal(node.title, 'om dom dom dom d');
+	            assert.equal(node.tagName, 'a');
+	            assert.equal(node.constructor, Element);
+	            assert.equal(node.href, undefined);
+	            assert.equal(node.rel, undefined);
+	            assert.equal(node.title, undefined);
 	            assert.equal(node.textContent, 'DOM module');
 	        });
 	    });
@@ -10996,6 +10988,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	const { Node, HTMLSpanElement, HTMLAnchorElement } = window;
+	const { TEXT_NODE, ELEMENT_NODE } = Node;
 	const { assert } = _chai2.default;
 
 	describe('HTMLDOM library', () => {
@@ -11066,10 +11060,53 @@
 	            assert.equal(element.outerHTML, '<details>' + '<summary>Show details</summary>' + 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' + 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' + '</details>');
 	        });
 	    });
-	    describe('Other elements', () => {
+	    describe('Other', () => {
 	        it('property build DOM fragment', () => {
 	            const element = (0, _htmldom.main)([(0, _htmldom.section)((0, _htmldom.dfn)('Instance.js — simple and powerfull DOM Element interface')), (0, _htmldom.section)((0, _htmldom.p)([(0, _htmldom.variable)('var'), ' — is reserved JavaScript keyword, ', 'so we use `variable` function name instead.'])), (0, _htmldom.section)([(0, _htmldom.sup)('supertext'), (0, _htmldom.sub)('subtext'), (0, _htmldom.i)('alternative voice'), (0, _htmldom.strong)('important!')])]);
 	            assert.equal(element.outerHTML, '<main>' + '<section><dfn>' + 'Instance.js — simple and powerfull DOM Element interface' + '</dfn></section>' + '<section><p>' + '<var>var</var>' + ' — is reserved JavaScript keyword, ' + 'so we use `variable` function name instead.' + '</p></section>' + '<section>' + '<sup>supertext</sup>' + '<sub>subtext</sub>' + '<i>alternative voice</i>' + '<strong>important!</strong>' + '</section>' + '</main>');
+	        });
+	        it('htmldom, span', () => {
+	            const node1 = (0, _htmldom.htmldom)('span', {
+	                id: '00101',
+	                className: 'fa fi fu',
+	                tabIndex: 0,
+	                children: ['a', (0, _htmldom.span)('a b'), 'b']
+	            });
+	            const node2 = (0, _htmldom.span)({
+	                id: '00101',
+	                className: 'fa fi fu',
+	                tabIndex: 0,
+	                children: ['a', (0, _htmldom.span)('a b'), 'b']
+	            });
+	            [node1, node2].forEach(node => {
+	                assert.equal(node.nodeType, ELEMENT_NODE);
+	                assert.equal(node.tagName, 'SPAN');
+	                assert.equal(node.constructor, HTMLSpanElement);
+	                assert.equal(node.attributes.length, 3);
+	                assert.equal(node.id, '00101');
+	                assert.equal(node.className, 'fa fi fu');
+	                assert.equal(node.tabIndex, 0);
+	                assert.equal(node.children.length, 1);
+	                assert.equal(node.childNodes.length, 3);
+	                assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
+	                assert.equal(node.childNodes[1].constructor, HTMLSpanElement);
+	                assert.equal(node.childNodes[2].textContent, 'b');
+	            });
+	            assert(node1.isEqualNode(node2), 'htmldom() and span() work differently');
+	        });
+	        it('a', () => {
+	            const node = (0, _htmldom.a)({
+	                href: 'html://www.aria.dom/math.svg',
+	                rel: 'next',
+	                title: 'om dom dom dom d',
+	                textContent: 'DOM module'
+	            });
+	            assert.equal(node.tagName, 'A');
+	            assert.equal(node.constructor, HTMLAnchorElement);
+	            assert.equal(node.href, 'html://www.aria.dom/math.svg');
+	            assert.equal(node.rel, 'next');
+	            assert.equal(node.title, 'om dom dom dom d');
+	            assert.equal(node.textContent, 'DOM module');
 	        });
 	    });
 	});
