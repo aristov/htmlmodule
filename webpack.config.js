@@ -26,34 +26,20 @@ if(env.MIN) {
     plugins.push(uglifyjsPlugin);
 }
 
-let entry, output;
-
-if(env.DOCS) {
-    entry = {
-        index : ['./docs/index'],
-        spec : ['./docs/spec']
-    }
-    output = {
-        path : __dirname + '/docs/build',
-        filename : env.MIN? 'build.[name].min.js' : 'build.[name].js',
-        pathinfo : !env.MIN
-    }
-} else {
-    entry = {
+module.exports = {
+    entry : env.DOCS? {
+        index : ['./docs'],
+        spec : ['./lib/index.spec']
+    } : {
         shim : ['./shim'],
         htmlmodule : ['./lib'],
         'window.htmlmodule' : ['./lib/window.htmlmodule']
-    }
-    output = {
+    },
+    output : {
         path : __dirname + '/dist',
         filename : env.MIN? 'dist.[name].min.js' : 'dist.[name].js',
         pathinfo : !env.MIN
-    }
-}
-
-module.exports = {
-    entry,
-    output,
+    },
     module : {
         loaders : [
             env.ES6?

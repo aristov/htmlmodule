@@ -1,5 +1,5 @@
-import replsite from 'raw!./sitedata/replsite.rawjs';
-import testcase from 'raw!./sitedata/testcase.rawjs';
+import replsite from 'raw!././replsite.rawjs';
+import testcase from 'raw!././testcase.rawjs';
 
 const SPLIT_STR = '\n\n';
 

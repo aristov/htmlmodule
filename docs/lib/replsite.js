@@ -7,15 +7,13 @@ import { codebox, markupbox } from './codemirror';
 
 import './replsite.css';
 
-import { data } from './sitedata';
-
 const START_INDEX = 0;
-const LAST_INDEX = data.length - 1;
 
 const serializer = new HTMLSerializer;
 
 export class REPLSite {
-    constructor() {
+    constructor(data) {
+        this.data = data;
         this.replmachine = new REPLMachine({
             input : this,
             output : this
@@ -57,7 +55,7 @@ export class REPLSite {
                 section([
                     this.inputcode = codebox({
                         className : 'inputcode',
-                        value : data[this.index].src
+                        value : this.data[this.index].src
                     }),
                     this.prevbutton = button({
                         id : 'replbuttonprev',
@@ -107,16 +105,19 @@ export class REPLSite {
         this.replmachine.loop();
     }
     prev() {
+        const data = this.data;
         this.index--;
-        if(this.index < 0) this.index = LAST_INDEX;
+        if(this.index < 0) this.index = data.length - 1;
         this.inputcode.value = data[this.index].src;
     }
     next() {
-        this.index++
-        if(this.index > LAST_INDEX) this.index = 0;
+        const data = this.data;
+        this.index++;
+        if(this.index === data.length) this.index = 0;
         this.inputcode.value = data[this.index].src;
     }
 }
 
 Object.defineProperty(REPLSite.prototype, 'index', { writable : true, value : START_INDEX });
 Object.defineProperty(REPLSite.prototype, 'node', { writable : true, value : null });
+Object.defineProperty(REPLSite.prototype, 'data', { writable : true, value : [] });

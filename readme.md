@@ -5,9 +5,9 @@
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
-[![Document Coverage](https://aristov.github.io/htmlmodule/api/badge.svg)](https://aristov.github.io/htmlmodule/api/)
+[![Document Coverage](https://aristov.github.io/htmlmodule/docs/api/badge.svg)](https://aristov.github.io/htmlmodule/docs/api/)
 
-/\work in progress\/
+_work in progress_
 
 The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
 
@@ -29,7 +29,7 @@ The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` 
 
 ## Try now
 
-— <a href="//aristov.github.io/htmlmodule/" title="read-eval-print-loop">REPL machine!</a>
+— <a href="https://aristov.github.io/htmlmodule" title="read-eval-print-loop">REPL machine!</a>
 
 ## Usage
 
@@ -159,7 +159,7 @@ import 'htmlmodule/shim';
 
 ## Documentation
 
-[API docs](//aristov.github.io/htmlmodule/api)
+[API docs](//aristov.github.io/htmlmodule/docs/api)
 
 ## Development
 
@@ -234,7 +234,7 @@ Run dev + static server and open [localhost:8080/docs/spec.html](http://localhos
 
 #### Online tests
 
-Check [spec suite](//aristov.github.io/htmlmodule/spec.html) in your browser.
+Check [spec suite](//aristov.github.io/htmlmodule/docs/spec.html) in your browser.
 
 ## License
 
