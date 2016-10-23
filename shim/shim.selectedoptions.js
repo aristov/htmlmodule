@@ -1,11 +1,9 @@
-if(!('selectedOptions' in HTMLSelectElement.prototype)) {
+// if(!('selectedOptions' in HTMLSelectElement.prototype)) {
     const filter = Array.prototype.filter;
-    const checkSelected = option => option.selected;
+    const handler = option => option.selected;
     Object.defineProperty(HTMLSelectElement.prototype, 'selectedOptions', {
         get() {
-            return filter.call(
-                this.querySelectorAll('option'),
-                checkSelected);
+            return filter.call(this.options, handler);
         }
     });
-}
+// }
