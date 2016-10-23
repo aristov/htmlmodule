@@ -18,12 +18,12 @@ module.exports = function(config) {
             browserName: 'safari',
             version: '9.0'
         },*/
-        /*SL_MSIE11: {
+        SL_MSIE11: {
             base: 'SauceLabs',
             platform: 'Windows 8.1',
             browserName: 'internet explorer',
             version: '11'
-        },*/
+        },
         /*SL_MSIE9: {
             base: 'SauceLabs',
             platform: 'Windows 7',

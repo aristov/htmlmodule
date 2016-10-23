@@ -154,7 +154,7 @@ import 'htmlmodule/shim';
 
 #### Custom way
 
-- You may add your own and any other shims if needed.
+- You may add your own and any other shims or build your custom bundle if needed.
 - You may decline to use the shim bundle at all, if there's no need to support an old browser versions.
 
 ## Documentation
