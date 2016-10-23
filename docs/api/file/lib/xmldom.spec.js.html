@@ -160,8 +160,7 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/xmldom.spec.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// fixme import from &apos;./xmldom&apos; and fix spec
-import { xmldom, htmldom, element, text, comment, span, a } from &apos;./index&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { xmldom, element, text, comment } from &apos;./index&apos;;
 
 import chai from &apos;chai&apos;;
 
@@ -171,8 +170,6 @@ const {
     Element,
     Text,
     Comment,
-    HTMLSpanElement,
-    HTMLAnchorElement,
     XMLSerializer
 } = window;
 const { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE } = Node;
@@ -211,48 +208,40 @@ describe(&apos;XMLDOM library&apos;, () =&gt; {
             assert.equal(serializer.serializeToString(node), &apos;&lt;!--tuty5--&gt;&apos;);
         });
     });
-    describe(&apos;html&apos;, () =&gt; {
-        it(&apos;htmldom, span&apos;, () =&gt; {
-            const node1 = htmldom(&apos;span&apos;, {
+    describe(&apos;try use html semantics&apos;, () =&gt; {
+        it(&apos;xmldom span&apos;, () =&gt; {
+            const node = xmldom(&apos;span&apos;, {
                 id : &apos;00101&apos;,
                 className :&apos;fa fi fu&apos;,
                 tabIndex : 0,
                 children : [&apos;a&apos;, comment(&apos;a b&apos;), &apos;b&apos;]
             });
-            const node2 = span({
-                id : &apos;00101&apos;,
-                className :&apos;fa fi fu&apos;,
-                tabIndex : 0,
-                children : [&apos;a&apos;, comment(&apos;a b&apos;), &apos;b&apos;]
-            });
-            [node1, node2].forEach(node =&gt; {
-                assert.equal(node.nodeType, ELEMENT_NODE);
-                assert.equal(node.tagName, &apos;SPAN&apos;);
-                assert.equal(node.constructor, HTMLSpanElement);
-                assert.equal(node.attributes.length, 3);
-                assert.equal(node.id, &apos;00101&apos;);
-                assert.equal(node.className, &apos;fa fi fu&apos;);
-                assert.equal(node.tabIndex, 0);
-                assert.equal(node.children.length, 0);
-                assert.equal(node.childNodes.length, 3);
-                assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
-                assert.equal(node.childNodes[1].constructor, Comment);
-                assert.equal(node.childNodes[2].textContent, &apos;b&apos;);
-            });
-            assert(node1.isEqualNode(node2), &apos;htmldom() and span() work differently&apos;);
+
+            assert.equal(node.nodeType, ELEMENT_NODE);
+            assert.equal(node.tagName, &apos;span&apos;);
+            assert.equal(node.constructor, Element);
+            assert.equal(node.attributes.length, 2);
+            assert.equal(node.id, &apos;00101&apos;);
+            assert.equal(node.className, &apos;fa fi fu&apos;);
+            assert.equal(node.tabIndex, undefined);
+            // assert.equal(node.children.length, 0);
+            assert.equal(node.childNodes.length, 3);
+            assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
+            assert.equal(node.childNodes[1].constructor, Comment);
+            assert.equal(node.childNodes[2].textContent, &apos;b&apos;);
         });
-        it(&apos;a&apos;, () =&gt; {
-            const node = a({
+        it(&apos;xmldom a&apos;, () =&gt; {
+            const node = xmldom(&apos;a&apos;, {
                 href : &apos;html://www.aria.dom/math.svg&apos;,
                 rel : &apos;next&apos;,
                 title : &apos;om dom dom dom d&apos;,
                 textContent : &apos;DOM module&apos;
             });
-            assert.equal(node.tagName, &apos;A&apos;);
-            assert.equal(node.constructor, HTMLAnchorElement);
-            assert.equal(node.href, &apos;html://www.aria.dom/math.svg&apos;);
-            assert.equal(node.rel, &apos;next&apos;);
-            assert.equal(node.title, &apos;om dom dom dom d&apos;);
+            assert.equal(node.tagName, &apos;a&apos;);
+            assert.equal(node.constructor, Element);
+            assert.equal(node.href, undefined);
+            assert.equal(node.rel, undefined);
+            assert.equal(node.title, undefined);
             assert.equal(node.textContent, &apos;DOM module&apos;);
         });
     });

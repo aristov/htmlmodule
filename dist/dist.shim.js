@@ -10829,6 +10829,11 @@
 
 	'use strict';
 
+	/**
+	 * HTMLSelectElement.prototype.selectedOptions implementation
+	 *
+	 * @polyfill
+	 */
 	if (!('selectedOptions' in HTMLSelectElement.prototype)) {
 	    (function () {
 	        var filter = Array.prototype.filter;

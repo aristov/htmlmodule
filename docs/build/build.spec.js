@@ -177,7 +177,7 @@
 	 * XML namespace
 	 * - provides `Element` DOM interface
 	 * - https://www.w3.org/1999/xml
-	 * @const
+	 * @namespace
 	 */
 	const XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
 
@@ -256,7 +256,7 @@
 	    /**
 	     * Create the specified element and initialize it by a given property set
 	     * @param {String} tagName
-	     * @param {{}} [init]
+	     * @param {{}|String|Node|DOMAssembler|Array} [init]
 	     * @returns {Element} created and initialized DOM `Element`
 	     */
 	    createElement(tagName, init) {
@@ -300,7 +300,7 @@
 	 * XHTML namespace
 	 * - provides all inherited from `HTMLElement` DOM interfaces
 	 * - https://www.w3.org/1999/xhtml
-	 * @const
+	 * @namespace
 	 */
 	const XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
@@ -10885,15 +10885,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// fixme import from './xmldom' and fix spec
 	const { assert } = _chai2.default;
 	const {
 	    Node,
 	    Element,
 	    Text,
 	    Comment,
-	    HTMLSpanElement,
-	    HTMLAnchorElement,
 	    XMLSerializer
 	} = window;
 	const { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE } = Node;

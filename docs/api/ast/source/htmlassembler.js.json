@@ -225,10 +225,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @const\n ",
+          "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @namespace\n ",
           "range": [
             76,
-            209
+            213
           ],
           "loc": {
             "start": {
@@ -254,8 +254,8 @@
               "type": "Identifier",
               "name": "XHTML_NS_URI",
               "range": [
-                223,
-                235
+                227,
+                239
               ],
               "loc": {
                 "start": {
@@ -273,8 +273,8 @@
               "value": "http://www.w3.org/1999/xhtml",
               "raw": "'http://www.w3.org/1999/xhtml'",
               "range": [
-                238,
-                268
+                242,
+                272
               ],
               "loc": {
                 "start": {
@@ -288,8 +288,8 @@
               }
             },
             "range": [
-              223,
-              268
+              227,
+              272
             ],
             "loc": {
               "start": {
@@ -305,8 +305,8 @@
         ],
         "kind": "const",
         "range": [
-          217,
-          269
+          221,
+          273
         ],
         "loc": {
           "start": {
@@ -321,10 +321,10 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @const\n ",
+            "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @namespace\n ",
             "range": [
               76,
-              209
+              213
             ],
             "loc": {
               "start": {
@@ -343,8 +343,8 @@
             "type": "Block",
             "value": "*\n * - Assembler for DOM `HTMLElement`\n * - `Document.createElement` functionality wrapper\n * - Provides built-in and adapted interfaces for `HTMLElement` initialization\n ",
             "range": [
-              271,
-              446
+              275,
+              450
             ],
             "loc": {
               "start": {
@@ -362,8 +362,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        210,
-        269
+        214,
+        273
       ],
       "loc": {
         "start": {
@@ -378,10 +378,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @const\n ",
+          "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @namespace\n ",
           "range": [
             76,
-            209
+            213
           ],
           "loc": {
             "start": {
@@ -400,8 +400,8 @@
           "type": "Block",
           "value": "*\n * - Assembler for DOM `HTMLElement`\n * - `Document.createElement` functionality wrapper\n * - Provides built-in and adapted interfaces for `HTMLElement` initialization\n ",
           "range": [
-            271,
-            446
+            275,
+            450
           ],
           "loc": {
             "start": {
@@ -424,8 +424,8 @@
           "type": "Identifier",
           "name": "HTMLAssembler",
           "range": [
-            460,
-            473
+            464,
+            477
           ],
           "loc": {
             "start": {
@@ -442,8 +442,8 @@
           "type": "Identifier",
           "name": "DOMAssembler",
           "range": [
-            482,
-            494
+            486,
+            498
           ],
           "loc": {
             "start": {
@@ -465,8 +465,8 @@
                 "type": "Identifier",
                 "name": "dataset",
                 "range": [
-                  633,
-                  640
+                  637,
+                  644
                 ],
                 "loc": {
                   "start": {
@@ -487,8 +487,8 @@
                     "type": "Identifier",
                     "name": "dataset",
                     "range": [
-                      641,
-                      648
+                      645,
+                      652
                     ],
                     "loc": {
                       "start": {
@@ -513,8 +513,8 @@
                           "type": "Identifier",
                           "name": "assign",
                           "range": [
-                            660,
-                            666
+                            664,
+                            670
                           ],
                           "loc": {
                             "start": {
@@ -537,8 +537,8 @@
                               "object": {
                                 "type": "ThisExpression",
                                 "range": [
-                                  667,
-                                  671
+                                  671,
+                                  675
                                 ],
                                 "loc": {
                                   "start": {
@@ -555,8 +555,8 @@
                                 "type": "Identifier",
                                 "name": "element",
                                 "range": [
-                                  672,
-                                  679
+                                  676,
+                                  683
                                 ],
                                 "loc": {
                                   "start": {
@@ -570,8 +570,8 @@
                                 }
                               },
                               "range": [
-                                667,
-                                679
+                                671,
+                                683
                               ],
                               "loc": {
                                 "start": {
@@ -588,8 +588,8 @@
                               "type": "Identifier",
                               "name": "dataset",
                               "range": [
-                                680,
-                                687
+                                684,
+                                691
                               ],
                               "loc": {
                                 "start": {
@@ -603,8 +603,8 @@
                               }
                             },
                             "range": [
-                              667,
-                              687
+                              671,
+                              691
                             ],
                             "loc": {
                               "start": {
@@ -621,8 +621,8 @@
                             "type": "Identifier",
                             "name": "dataset",
                             "range": [
-                              689,
-                              696
+                              693,
+                              700
                             ],
                             "loc": {
                               "start": {
@@ -637,8 +637,8 @@
                           }
                         ],
                         "range": [
-                          660,
-                          697
+                          664,
+                          701
                         ],
                         "loc": {
                           "start": {
@@ -652,8 +652,8 @@
                         }
                       },
                       "range": [
-                        660,
-                        698
+                        664,
+                        702
                       ],
                       "loc": {
                         "start": {
@@ -668,8 +668,8 @@
                     }
                   ],
                   "range": [
-                    650,
-                    704
+                    654,
+                    708
                   ],
                   "loc": {
                     "start": {
@@ -685,8 +685,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  640,
-                  704
+                  644,
+                  708
                 ],
                 "loc": {
                   "start": {
@@ -702,8 +702,8 @@
               "kind": "set",
               "computed": false,
               "range": [
-                629,
-                704
+                633,
+                708
               ],
               "loc": {
                 "start": {
@@ -720,8 +720,8 @@
                   "type": "Block",
                   "value": "*\n     * Assign custom `data-` attributes to the element\n     * @param {{}} dataset declaration dictionary object\n     ",
                   "range": [
-                    501,
-                    624
+                    505,
+                    628
                   ],
                   "loc": {
                     "start": {
@@ -740,8 +740,8 @@
                   "type": "Block",
                   "value": "*\n     * Assign CSS style declaration to the element\n     * @param {CSSStyleDeclaration} style declaration dictionary object\n     ",
                   "range": [
-                    710,
-                    844
+                    714,
+                    848
                   ],
                   "loc": {
                     "start": {
@@ -763,8 +763,8 @@
                 "type": "Identifier",
                 "name": "style",
                 "range": [
-                  853,
-                  858
+                  857,
+                  862
                 ],
                 "loc": {
                   "start": {
@@ -785,8 +785,8 @@
                     "type": "Identifier",
                     "name": "style",
                     "range": [
-                      859,
-                      864
+                      863,
+                      868
                     ],
                     "loc": {
                       "start": {
@@ -811,8 +811,8 @@
                           "type": "Identifier",
                           "name": "assign",
                           "range": [
-                            876,
-                            882
+                            880,
+                            886
                           ],
                           "loc": {
                             "start": {
@@ -835,8 +835,8 @@
                               "object": {
                                 "type": "ThisExpression",
                                 "range": [
-                                  883,
-                                  887
+                                  887,
+                                  891
                                 ],
                                 "loc": {
                                   "start": {
@@ -853,8 +853,8 @@
                                 "type": "Identifier",
                                 "name": "element",
                                 "range": [
-                                  888,
-                                  895
+                                  892,
+                                  899
                                 ],
                                 "loc": {
                                   "start": {
@@ -868,8 +868,8 @@
                                 }
                               },
                               "range": [
-                                883,
-                                895
+                                887,
+                                899
                               ],
                               "loc": {
                                 "start": {
@@ -886,8 +886,8 @@
                               "type": "Identifier",
                               "name": "style",
                               "range": [
-                                896,
-                                901
+                                900,
+                                905
                               ],
                               "loc": {
                                 "start": {
@@ -901,8 +901,8 @@
                               }
                             },
                             "range": [
-                              883,
-                              901
+                              887,
+                              905
                             ],
                             "loc": {
                               "start": {
@@ -919,8 +919,8 @@
                             "type": "Identifier",
                             "name": "style",
                             "range": [
-                              903,
-                              908
+                              907,
+                              912
                             ],
                             "loc": {
                               "start": {
@@ -935,8 +935,8 @@
                           }
                         ],
                         "range": [
-                          876,
-                          909
+                          880,
+                          913
                         ],
                         "loc": {
                           "start": {
@@ -950,8 +950,8 @@
                         }
                       },
                       "range": [
-                        876,
-                        910
+                        880,
+                        914
                       ],
                       "loc": {
                         "start": {
@@ -966,8 +966,8 @@
                     }
                   ],
                   "range": [
-                    866,
-                    916
+                    870,
+                    920
                   ],
                   "loc": {
                     "start": {
@@ -983,8 +983,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  858,
-                  916
+                  862,
+                  920
                 ],
                 "loc": {
                   "start": {
@@ -1000,8 +1000,8 @@
               "kind": "set",
               "computed": false,
               "range": [
-                849,
-                916
+                853,
+                920
               ],
               "loc": {
                 "start": {
@@ -1018,8 +1018,8 @@
                   "type": "Block",
                   "value": "*\n     * Assign CSS style declaration to the element\n     * @param {CSSStyleDeclaration} style declaration dictionary object\n     ",
                   "range": [
-                    710,
-                    844
+                    714,
+                    848
                   ],
                   "loc": {
                     "start": {
@@ -1038,8 +1038,8 @@
                   "type": "Block",
                   "value": "*\n     * Create elements in XHTML namespace\n     * @return {String}\n     * @override\n     ",
                   "range": [
-                    922,
-                    1016
+                    926,
+                    1020
                   ],
                   "loc": {
                     "start": {
@@ -1061,8 +1061,8 @@
                 "type": "Identifier",
                 "name": "namespaceURI",
                 "range": [
-                  1032,
-                  1044
+                  1036,
+                  1048
                 ],
                 "loc": {
                   "start": {
@@ -1088,8 +1088,8 @@
                         "type": "Identifier",
                         "name": "XHTML_NS_URI",
                         "range": [
-                          1064,
-                          1076
+                          1068,
+                          1080
                         ],
                         "loc": {
                           "start": {
@@ -1103,8 +1103,8 @@
                         }
                       },
                       "range": [
-                        1057,
-                        1077
+                        1061,
+                        1081
                       ],
                       "loc": {
                         "start": {
@@ -1119,8 +1119,8 @@
                     }
                   ],
                   "range": [
-                    1047,
-                    1083
+                    1051,
+                    1087
                   ],
                   "loc": {
                     "start": {
@@ -1136,8 +1136,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  1044,
-                  1083
+                  1048,
+                  1087
                 ],
                 "loc": {
                   "start": {
@@ -1153,8 +1153,8 @@
               "kind": "get",
               "computed": false,
               "range": [
-                1021,
-                1083
+                1025,
+                1087
               ],
               "loc": {
                 "start": {
@@ -1171,8 +1171,8 @@
                   "type": "Block",
                   "value": "*\n     * Create elements in XHTML namespace\n     * @return {String}\n     * @override\n     ",
                   "range": [
-                    922,
-                    1016
+                    926,
+                    1020
                   ],
                   "loc": {
                     "start": {
@@ -1190,8 +1190,8 @@
             }
           ],
           "range": [
-            495,
-            1085
+            499,
+            1089
           ],
           "loc": {
             "start": {
@@ -1205,8 +1205,8 @@
           }
         },
         "range": [
-          454,
-          1085
+          458,
+          1089
         ],
         "loc": {
           "start": {
@@ -1223,8 +1223,8 @@
             "type": "Block",
             "value": "*\n * - Assembler for DOM `HTMLElement`\n * - `Document.createElement` functionality wrapper\n * - Provides built-in and adapted interfaces for `HTMLElement` initialization\n ",
             "range": [
-              271,
-              446
+              275,
+              450
             ],
             "loc": {
               "start": {
@@ -1243,8 +1243,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        447,
-        1085
+        451,
+        1089
       ],
       "loc": {
         "start": {
@@ -1261,8 +1261,8 @@
           "type": "Block",
           "value": "*\n * - Assembler for DOM `HTMLElement`\n * - `Document.createElement` functionality wrapper\n * - Provides built-in and adapted interfaces for `HTMLElement` initialization\n ",
           "range": [
-            271,
-            446
+            275,
+            450
           ],
           "loc": {
             "start": {
@@ -1281,7 +1281,7 @@
   "sourceType": "module",
   "range": [
     0,
-    1085
+    1089
   ],
   "loc": {
     "start": {
@@ -1296,10 +1296,10 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @const\n ",
+      "value": "*\n * XHTML namespace\n * - provides all inherited from `HTMLElement` DOM interfaces\n * - https://www.w3.org/1999/xhtml\n * @namespace\n ",
       "range": [
         76,
-        209
+        213
       ],
       "loc": {
         "start": {
@@ -1316,8 +1316,8 @@
       "type": "Block",
       "value": "*\n * - Assembler for DOM `HTMLElement`\n * - `Document.createElement` functionality wrapper\n * - Provides built-in and adapted interfaces for `HTMLElement` initialization\n ",
       "range": [
-        271,
-        446
+        275,
+        450
       ],
       "loc": {
         "start": {
@@ -1334,8 +1334,8 @@
       "type": "Block",
       "value": "*\n     * Assign custom `data-` attributes to the element\n     * @param {{}} dataset declaration dictionary object\n     ",
       "range": [
-        501,
-        624
+        505,
+        628
       ],
       "loc": {
         "start": {
@@ -1352,8 +1352,8 @@
       "type": "Block",
       "value": "*\n     * Assign CSS style declaration to the element\n     * @param {CSSStyleDeclaration} style declaration dictionary object\n     ",
       "range": [
-        710,
-        844
+        714,
+        848
       ],
       "loc": {
         "start": {
@@ -1370,8 +1370,8 @@
       "type": "Block",
       "value": "*\n     * Create elements in XHTML namespace\n     * @return {String}\n     * @override\n     ",
       "range": [
-        922,
-        1016
+        926,
+        1020
       ],
       "loc": {
         "start": {

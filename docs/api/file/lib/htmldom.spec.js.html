@@ -166,11 +166,14 @@
     label, select, option,
     div, ul, ol, li, dl, dd, dt,
     main, section, details, summary,
-    dfn, sup, sub, i, strong, p, variable
+    dfn, sup, sub, i, strong, p, variable,
+    htmldom, span
 } from &apos;./htmldom&apos;;
 
 import chai from &apos;chai&apos;;
 
+const { Node, HTMLSpanElement, HTMLAnchorElement } = window;
+const { TEXT_NODE, ELEMENT_NODE } = Node;
 const { assert } = chai;
 
 describe(&apos;HTMLDOM library&apos;, () =&gt; {
@@ -350,7 +353,7 @@ describe(&apos;HTMLDOM library&apos;, () =&gt; {
                 &apos;&lt;/details&gt;&apos;);
         });
     });
-    describe(&apos;Other elements&apos;, () =&gt; {
+    describe(&apos;Other&apos;, () =&gt; {
         it(&apos;property build DOM fragment&apos;, () =&gt; {
             const element =
                 main([
@@ -384,6 +387,49 @@ describe(&apos;HTMLDOM library&apos;, () =&gt; {
                         &apos;&lt;strong&gt;important!&lt;/strong&gt;&apos; +
                     &apos;&lt;/section&gt;&apos; +
                 &apos;&lt;/main&gt;&apos;)
+        });
+        it(&apos;htmldom, span&apos;, () =&gt; {
+            const node1 = htmldom(&apos;span&apos;, {
+                id : &apos;00101&apos;,
+                className :&apos;fa fi fu&apos;,
+                tabIndex : 0,
+                children : [&apos;a&apos;, span(&apos;a b&apos;), &apos;b&apos;]
+            });
+            const node2 = span({
+                id : &apos;00101&apos;,
+                className :&apos;fa fi fu&apos;,
+                tabIndex : 0,
+                children : [&apos;a&apos;, span(&apos;a b&apos;), &apos;b&apos;]
+            });
+            [node1, node2].forEach(node =&gt; {
+                assert.equal(node.nodeType, ELEMENT_NODE);
+                assert.equal(node.tagName, &apos;SPAN&apos;);
+                assert.equal(node.constructor, HTMLSpanElement);
+                assert.equal(node.attributes.length, 3);
+                assert.equal(node.id, &apos;00101&apos;);
+                assert.equal(node.className, &apos;fa fi fu&apos;);
+                assert.equal(node.tabIndex, 0);
+                assert.equal(node.children.length, 1);
+                assert.equal(node.childNodes.length, 3);
+                assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
+                assert.equal(node.childNodes[1].constructor, HTMLSpanElement);
+                assert.equal(node.childNodes[2].textContent, &apos;b&apos;);
+            });
+            assert(node1.isEqualNode(node2), &apos;htmldom() and span() work differently&apos;);
+        });
+        it(&apos;a&apos;, () =&gt; {
+            const node = a({
+                href : &apos;html://www.aria.dom/math.svg&apos;,
+                rel : &apos;next&apos;,
+                title : &apos;om dom dom dom d&apos;,
+                textContent : &apos;DOM module&apos;
+            });
+            assert.equal(node.tagName, &apos;A&apos;);
+            assert.equal(node.constructor, HTMLAnchorElement);
+            assert.equal(node.href, &apos;html://www.aria.dom/math.svg&apos;);
+            assert.equal(node.rel, &apos;next&apos;);
+            assert.equal(node.title, &apos;om dom dom dom d&apos;);
+            assert.equal(node.textContent, &apos;DOM module&apos;);
         });
     });
 });

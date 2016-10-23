@@ -179,7 +179,7 @@
 	 * XML namespace
 	 * - provides `Element` DOM interface
 	 * - https://www.w3.org/1999/xml
-	 * @const
+	 * @namespace
 	 */
 
 	var XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
@@ -202,7 +202,7 @@
 	        /**
 	         * Create the specified element and initialize it by a given property set
 	         * @param {String} tagName
-	         * @param {{}} [init]
+	         * @param {{}|String|Node|DOMAssembler|Array} [init]
 	         * @returns {Element} created and initialized DOM `Element`
 	         */
 	        value: function createElement(tagName, init) {
@@ -342,7 +342,7 @@
 	 * XHTML namespace
 	 * - provides all inherited from `HTMLElement` DOM interfaces
 	 * - https://www.w3.org/1999/xhtml
-	 * @const
+	 * @namespace
 	 */
 
 	var XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
@@ -494,7 +494,7 @@
 	 *
 	 * @function htmldom
 	 * @param {String} tagName element tag name
-	 * @param {NodeInit} [init] `NodeInit` dictionary
+	 * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary
 	 * @param {{}} [init.attrset] `HTMLElement` attributes set as a dictionary object
 	 * @param {{}} [init.dataset] `HTMLElement` dataset as a dictionary object
 	 * @param {{}} [init.style] `HTMLElement` style as a dictionary object (CSSStyleDeclaration)
@@ -12983,6 +12983,11 @@
 
 	'use strict';
 
+	/**
+	 * HTMLSelectElement.prototype.selectedOptions implementation
+	 *
+	 * @polyfill
+	 */
 	if (!('selectedOptions' in HTMLSelectElement.prototype)) {
 	    (function () {
 	        var filter = Array.prototype.filter;
