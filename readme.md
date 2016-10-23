@@ -7,7 +7,7 @@
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
 [![Document Coverage](https://aristov.github.io/htmlmodule/api/badge.svg)](https://aristov.github.io/htmlmodule/api/)
 
-/work in progress/
+/\work in progress\/
 
 The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
 
@@ -178,13 +178,21 @@ npm install
 
 ### Build
 
+Build the whole project:
+
+```
+npm run build
+```
+
+#### Partial builds
+
 Build distribution assets:
 
 ```
 npm run dist
 ```
 
-Build specs and REPL-machine:
+Build specs and homepage:
 
 ```
 npm run docs
