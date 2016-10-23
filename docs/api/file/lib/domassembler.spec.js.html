@@ -203,7 +203,7 @@ describe(&apos;DOM assembler&apos;, function() {
                 const element = assembler.createElement(&apos;element&apos;, { id });
 
                 it(&apos;proper number of attributes&apos;, function() {
-                    assert(element.hasAttributes());
+                    assert(element.hasAttributes(), &apos;element has attributes&apos;);
                     assert.equal(element.attributes.length, 1);
                 });
                 it(&apos;proper `id` attribute&apos;, function() {
@@ -220,7 +220,7 @@ describe(&apos;DOM assembler&apos;, function() {
                 const className = &apos;foo bar wiz&apos;;
                 const element = assembler.createElement(&apos;element&apos;, { className });
                 it(&apos;proper number of attributes&apos;, function() {
-                    assert(element.hasAttributes());
+                    assert(element.hasAttributes(), &apos;element has attributes&apos;);
                     assert.equal(element.attributes.length, 1);
                 });
                 it(&apos;proper `className` attribute&apos;, function() {
@@ -228,9 +228,9 @@ describe(&apos;DOM assembler&apos;, function() {
                     assert.equal(element.getAttribute(&apos;class&apos;), className);
                 });
                 it(&apos;classList interface works properly&apos;, function() {
-                    assert(element.classList.contains(&apos;foo&apos;));
-                    assert(element.classList.contains(&apos;bar&apos;));
-                    assert(element.classList.contains(&apos;wiz&apos;));
+                    assert(element.classList.contains(&apos;foo&apos;), &apos;contains class `foo`&apos;);
+                    assert(element.classList.contains(&apos;bar&apos;), &apos;contains class `bar`&apos;);
+                    assert(element.classList.contains(&apos;wiz&apos;), &apos;contains class `wiz`&apos;);
                 });
                 it(&apos;document finds it&apos;, function() {
                     document.body.appendChild(element);
@@ -246,7 +246,7 @@ describe(&apos;DOM assembler&apos;, function() {
                     textContent : &apos;element textContent&apos;
                 });
                 it(&apos;proper number of child nodes&apos;, function() {
-                    assert(element.hasChildNodes());
+                    assert(element.hasChildNodes(), &apos;element has child nodes&apos;);
                     assert.equal(element.childNodes.length, 1);
                 });
                 it(&apos;proper children&apos;, function() {
@@ -264,7 +264,7 @@ describe(&apos;DOM assembler&apos;, function() {
                     attrset : { attrname : &apos;attribute value&apos; }
                 });
                 it(&apos;proper number of attributes&apos;, function() {
-                    assert(element.hasAttributes());
+                    assert(element.hasAttributes(), &apos;element has attributes&apos;);
                     assert.equal(element.attributes.length, 1);
                 });
                 it(&apos;proper attributes assigned&apos;, function() {
@@ -290,7 +290,7 @@ describe(&apos;DOM assembler&apos;, function() {
                 });
                 const childNodes = element.childNodes;
                 it(&apos;proper number of child nodes&apos;, function() {
-                    assert(element.hasChildNodes());
+                    assert(element.hasChildNodes(), &apos;element has child nodes&apos;);
                     assert.equal(childNodes.length, 5);
                 });
                 it(&apos;Proper child nodes&apos;, function() {

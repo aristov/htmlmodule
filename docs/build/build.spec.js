@@ -10470,7 +10470,7 @@
 	                var element = assembler.createElement('element', { id: id });
 
 	                it('proper number of attributes', function () {
-	                    assert(element.hasAttributes());
+	                    assert(element.hasAttributes(), 'element has attributes');
 	                    assert.equal(element.attributes.length, 1);
 	                });
 	                it('proper `id` attribute', function () {
@@ -10487,7 +10487,7 @@
 	                var className = 'foo bar wiz';
 	                var element = assembler.createElement('element', { className: className });
 	                it('proper number of attributes', function () {
-	                    assert(element.hasAttributes());
+	                    assert(element.hasAttributes(), 'element has attributes');
 	                    assert.equal(element.attributes.length, 1);
 	                });
 	                it('proper `className` attribute', function () {
@@ -10495,9 +10495,9 @@
 	                    assert.equal(element.getAttribute('class'), className);
 	                });
 	                it('classList interface works properly', function () {
-	                    assert(element.classList.contains('foo'));
-	                    assert(element.classList.contains('bar'));
-	                    assert(element.classList.contains('wiz'));
+	                    assert(element.classList.contains('foo'), 'contains class `foo`');
+	                    assert(element.classList.contains('bar'), 'contains class `bar`');
+	                    assert(element.classList.contains('wiz'), 'contains class `wiz`');
 	                });
 	                it('document finds it', function () {
 	                    document.body.appendChild(element);
@@ -10513,7 +10513,7 @@
 	                    textContent: 'element textContent'
 	                });
 	                it('proper number of child nodes', function () {
-	                    assert(element.hasChildNodes());
+	                    assert(element.hasChildNodes(), 'element has child nodes');
 	                    assert.equal(element.childNodes.length, 1);
 	                });
 	                it('proper children', function () {
@@ -10531,7 +10531,7 @@
 	                    attrset: { attrname: 'attribute value' }
 	                });
 	                it('proper number of attributes', function () {
-	                    assert(element.hasAttributes());
+	                    assert(element.hasAttributes(), 'element has attributes');
 	                    assert.equal(element.attributes.length, 1);
 	                });
 	                it('proper attributes assigned', function () {
@@ -10545,7 +10545,7 @@
 	                });
 	                var childNodes = element.childNodes;
 	                it('proper number of child nodes', function () {
-	                    assert(element.hasChildNodes());
+	                    assert(element.hasChildNodes(), 'element has child nodes');
 	                    assert.equal(childNodes.length, 5);
 	                });
 	                it('Proper child nodes', function () {
