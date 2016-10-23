@@ -12739,7 +12739,7 @@
 	var document = _window.document;
 
 
-	if (!Element.prototype.hasOwnProperty('id')) {
+	if (!('id' in Element.prototype)) {
 	    Object.defineProperty(Element.prototype, 'id', {
 	        set: function set(id) {
 	            this.setAttribute('id', id);
