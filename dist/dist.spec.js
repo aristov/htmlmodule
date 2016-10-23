@@ -10933,7 +10933,8 @@
 	var domEqualMarkup = exports.domEqualMarkup = function domEqualMarkup(dom, markup) {
 	  var mimetype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'application/xml';
 
-	  var node = parser.parseFromString(markup, mimetype);
+	  var doc = parser.parseFromString(markup, mimetype);
+	  var node = doc.documentElement;
 	  return dom.isEqualNode(node);
 	};
 
@@ -10944,7 +10945,9 @@
 	 * @returns {boolean}
 	 */
 	var htmlEqualMarkup = exports.htmlEqualMarkup = function htmlEqualMarkup(dom, markup) {
-	  return domEqualMarkup(dom, markup, 'application/xhtml');
+	  var doc = parser.parseFromString(markup, 'text/html');
+	  var node = doc.body.firstElementChild;
+	  return dom.isEqualNode(node);
 	};
 
 /***/ },
