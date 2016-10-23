@@ -6,7 +6,7 @@
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
 
-<em>work in progress</em>
+/work in progress/
 
 The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
 
@@ -76,7 +76,7 @@ Just created `websearch` variable is a DOM structure with the respective HTML ma
 </form>
 ```
 
-<h2 id="globalscript">Global script distribution</h2>
+## Global script distribution
 
 Get the module by appending the distribution script to a page body:
 
@@ -107,7 +107,7 @@ The built-in [shim bundle](/shim/index.js) partially fixes browser compatibility
 - [dom4 polyfill](https://www.npmjs.com/package/dom4)
 - [author DOM shims](/shim)
 
-The shim bundle is used in the [unit-testing](#user-content-testing) environments.
+The shim bundle is used in the [unit-testing environments](#testing).
 
 ### Shim bundle setup
 
@@ -126,7 +126,7 @@ There are some ways to do this.
 
 #### Shim-charged distribution 
 
-[The "global script" distribution](#user-content-globalscript) includes the shim bundle out of the box.
+[The "global script" distribution](#global-script-distribution) includes the shim bundle out of the box.
 
 #### Single bundle for all
 
@@ -225,7 +225,7 @@ static
 
 Open in browser [localhost:8080/docs](http://localhost:8080/docs)
 
-<h3 id="testing">Testing</h3>
+### Testing
 
 #### Test using node
 
