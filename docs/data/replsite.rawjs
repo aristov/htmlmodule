@@ -15,6 +15,7 @@ htmlmodule => {
                 title : 'DOM assembler library',
                 href : 'https://npmjs.org/package/htmlmodule',
                 rel : 'external',
+                target : '_blank',
                 children : 'htmlmodule'
             }),
             ' on the page load.'
