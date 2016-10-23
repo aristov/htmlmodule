@@ -1,7 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer'); // fixme
+const autoprefixer = require('autoprefixer');
 
 /**
  * process.env
@@ -62,22 +62,11 @@ module.exports = {
                 { test : /\.js$/, loader : 'babel?presets[]=es2015' },
             { test : /\.txt$/, loader : 'raw-loader' },
             { test : /\.css$/, loader : 'style-loader!css-loader!postcss-loader' },
-        ],
-        postLoaders : [{
-            test : [/\.js$/],
-            exclude : /(node_modules)/,
-            loader : 'documentation'
-        }]
+        ]
     },
     plugins,
     resolve : {
         modulesDirectories : ['node_modules']
-    },
-    documentation : {
-        entry : './lib/index.js',
-        output : './docs/api',
-        github : true,
-        format : 'html'
     },
     postcss : () => [autoprefixer],
     watch : Boolean(env.WATCH)
