@@ -1,3 +1,8 @@
+/**
+ * HTMLSelectElement.prototype.selectedOptions implementation
+ *
+ * @polyfill
+ */
 if(!('selectedOptions' in HTMLSelectElement.prototype)) {
     const filter = Array.prototype.filter;
     const handler = option => option.selected;

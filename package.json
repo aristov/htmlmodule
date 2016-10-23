@@ -34,7 +34,7 @@
     "dist": "./node_modules/.bin/webpack && MIN=true ./node_modules/.bin/webpack",
     "docs": "DOCS=true ES6=true ./node_modules/.bin/webpack",
     "api": "./node_modules/.bin/esdoc -c esdoc.json",
-    "test": "./node_modules/.bin/karma start",
+    "test": "MIN=true ./node_modules/.bin/webpack && ./node_modules/.bin/karma start",
     "start": "DOCS=true ES6=true WATCH=true ./node_modules/.bin/webpack",
     "build": "npm run dist && npm run docs && npm run api"
   },
