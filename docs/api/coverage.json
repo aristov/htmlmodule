@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 134,
-  "actualCount": 134,
+  "expectCount": 136,
+  "actualCount": 136,
   "files": {
     "lib/domassembler.js": {
       "expectCount": 10,
@@ -26,6 +26,11 @@
     "lib/xmldom.js": {
       "expectCount": 4,
       "actualCount": 4,
+      "undocumentLines": []
+    },
+    "lib/util/domequalmarkup.js": {
+      "expectCount": 2,
+      "actualCount": 2,
       "undocumentLines": []
     }
   }

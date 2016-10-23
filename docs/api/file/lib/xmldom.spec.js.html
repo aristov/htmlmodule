@@ -155,6 +155,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-xmldom">xmldom</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XML_NS_URI">XML_NS_URI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XHTML_NS_URI">XHTML_NS_URI</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-domEqualMarkup">domEqualMarkup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-htmlEqualMarkup">htmlEqualMarkup</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -224,7 +226,6 @@ describe(&apos;XMLDOM library&apos;, () =&gt; {
             assert.equal(node.id, &apos;00101&apos;);
             assert.equal(node.className, &apos;fa fi fu&apos;);
             assert.equal(node.tabIndex, undefined);
-            // assert.equal(node.children.length, 0);
             assert.equal(node.childNodes.length, 3);
             assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
             assert.equal(node.childNodes[1].constructor, Comment);

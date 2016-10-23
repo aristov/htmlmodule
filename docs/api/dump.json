@@ -629,7 +629,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { HTMLAssembler } from './htmlassembler.js';\nimport chai from 'chai';\n\n// fixme\nimport { htmlequal } from '../util/util.domequalmarkup';\n\nconst { assert } = chai;\nconst {\n    HTMLElement,\n    HTMLUnknownElement,\n    HTMLInputElement,\n    HTMLHtmlElement,\n    HTMLFormElement,\n    HTMLSelectElement,\n    HTMLAnchorElement,\n    HTMLBodyElement,\n    HTMLButtonElement,\n    HTMLDivElement,\n    HTMLSpanElement\n} = window;\n\nconst assembler = new HTMLAssembler;\n\ndescribe('HTML assembler', function() {\n\n    describe('createElement', function() {\n\n        describe('built-in global attributes', function() {\n\n            describe('accessKey', function() {\n                const element = assembler.createElement('a', { accessKey : 'A' });\n\n                it('HTMLAnchorElement node created', function() {\n                    assert.equal(element.constructor, HTMLAnchorElement);\n                    assert.equal(element.tagName, 'A');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `accessKey` attribute', function() {\n                    assert.equal(element.accessKey, 'A');\n                    assert.equal(element.getAttribute('accesskey'), 'A');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY=\"A\"></A>');\n                });\n                it('hdmldiff works properly', function() {\n                    assert.equal(htmlequal(element.outerHTML.toUpperCase(), '<a accesskey=\"A\"></a>'), true);\n                });\n            });\n\n            describe('className', function() {\n                const className = 'foo bar wiz';\n                const element = assembler.createElement('div', { className });\n\n                it('HTMLDivElement node created', function() {\n                    assert.equal(element.constructor, HTMLDivElement);\n                    assert.equal(element.tagName, 'DIV');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `className` attribute', function() {\n                    assert.equal(element.className, className);\n                    assert.equal(element.getAttribute('class'), className);\n                    assert(element.classList.contains('foo'));\n                    assert(element.classList.contains('bar'));\n                    assert(element.classList.contains('wiz'));\n                });\n                it('document finds it', function() {\n                    document.body.appendChild(element);\n                    assert.equal(document.getElementsByClassName('foo')[0], element);\n                    assert.equal(document.getElementsByClassName('bar')[0], element);\n                    assert.equal(document.getElementsByClassName('wiz')[0], element);\n                    document.body.removeChild(element);\n                });\n                it('proper outerHTML property value', () => {\n                    assert.equal(element.outerHTML, '<div class=\"foo bar wiz\"></div>');\n                });\n            });\n\n            describe('contentEditable', function() {\n                const element = assembler.createElement('unknown', { contentEditable : 'true' });\n\n                it('HTMLUnknownElement node created', function() {\n                    assert.equal(element.constructor, HTMLUnknownElement);\n                    assert.equal(element.tagName, 'UNKNOWN');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `contentEditable` attribute', function() {\n                    assert.equal(element.contentEditable, 'true');\n                    assert.equal(element.getAttribute('contenteditable'), 'true');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML.toLowerCase(),\n                        '<unknown contenteditable=\"true\"></unknown>');\n                });\n            });\n\n            describe('dir', function() {\n                const element = assembler.createElement('button', { dir : 'rtl' });\n\n                it('HTMLButtonElement node created', function() {\n                    assert.equal(element.constructor, HTMLButtonElement);\n                    assert.equal(element.tagName, 'BUTTON');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `dir` attribute', function() {\n                    assert.equal(element.dir, 'rtl');\n                    assert.equal(element.getAttribute('dir'), 'rtl');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<button dir=\"rtl\"></button>');\n                });\n            });\n\n            describe('draggable', function() {\n                const element = assembler.createElement('header', { draggable : true });\n\n                it('HTMLElement node created', function() {\n                    assert.equal(element.constructor, HTMLElement);\n                    assert.equal(element.tagName, 'HEADER');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `draggable` attribute', function() {\n                    assert.equal(element.draggable, true);\n                    assert.equal(element.getAttribute('draggable'), 'true');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<header draggable=\"true\"></header>');\n                });\n            });\n\n            describe('hidden', function() {\n                const element = assembler.createElement('input', { hidden : true });\n\n                it('HTMLInputElement node created', function() {\n                    assert.equal(element.constructor, HTMLInputElement);\n                    assert.equal(element.tagName, 'INPUT');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `hidden` attribute', function() {\n                    assert.equal(element.hidden, true);\n                    assert.equal(element.getAttribute('hidden'), '');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<input hidden=\"\">');\n                });\n            });\n\n            describe('id', function() {\n                const id = 'element_0';\n                const element = assembler.createElement('span', { id });\n\n                it('HTMLSpanElement node created', function() {\n                    assert.equal(element.constructor, HTMLSpanElement);\n                    assert.equal(element.tagName, 'SPAN');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `id` attribute', function() {\n                    assert.equal(element.id, id);\n                });\n                it('document finds it', function() {\n                    document.body.appendChild(element);\n                    assert.equal(document.getElementById(id), element);\n                    document.body.removeChild(element);\n                });\n                it('proper outerHTML property value', () => {\n                    assert.equal(element.outerHTML, '<span id=\"element_0\"></span>');\n                });\n            });\n\n            describe('innerHTML', function() {\n                const element = assembler.createElement('body', {\n                    innerHTML : '<span class=\"box\"></span>'\n                });\n                it('HTMLBodyElement node created', function() {\n                    assert.equal(element.constructor, HTMLBodyElement);\n                    assert.equal(element.tagName, 'BODY');\n                });\n                it('proper number of child nodes', function() {\n                    assert(element.hasChildNodes());\n                    assert.equal(element.childNodes.length, 1);\n                });\n                it('proper child node', function() {\n                    const child = element.firstChild;\n                    assert.equal(child.constructor, HTMLSpanElement);\n                    assert.equal(child.outerHTML, '<span class=\"box\"></span>');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<body><span class=\"box\"></span></body>');\n                });\n            });\n\n            describe('lang', function() {\n                const element = assembler.createElement('html', { lang : 'ru' });\n\n                it('HTMLHtmlElement node created', function() {\n                    assert.equal(element.constructor, HTMLHtmlElement);\n                    assert.equal(element.tagName, 'HTML');\n                });\n                it('proper number of attributes and child nodes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('has proper lang attribute set', function() {\n                    assert.equal(element.lang, 'ru');\n                    assert.equal(element.getAttribute('lang'), 'ru');\n                });\n                it('proper outerHTML property value', function() {\n                    assert.equal(element.outerHTML, '<html lang=\"ru\"></html>');\n                });\n            });\n\n            describe('tabIndex', function() {\n                const element = assembler.createElement('form', { tabIndex : 0 });\n\n                it('HTMLFormElement node created', function() {\n                    assert.equal(element.constructor, HTMLFormElement);\n                    assert.equal(element.tagName, 'FORM');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `tabIndex` attribute', function() {\n                    assert.equal(element.tabIndex, 0);\n                    assert.equal(element.getAttribute('tabindex'), '0');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML.toLowerCase(), '<form tabindex=\"0\"></form>');\n                });\n            });\n\n            describe('title', function() {\n                const element = assembler.createElement('select', { title : 'Select without options' });\n\n                it('HTMLSelectElement node created', function() {\n                    assert.equal(element.constructor, HTMLSelectElement);\n                    assert.equal(element.tagName, 'SELECT');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `title` attribute', function() {\n                    assert.equal(element.title, 'Select without options');\n                    assert.equal(element.getAttribute('title'), 'Select without options');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<select title=\"Select without options\"></select>');\n                });\n            });\n        });\n\n        describe('built-in global event handlers', function() {\n            it('onclick', () => {\n                const onclick = sinon.spy();\n                const element = assembler.createElement('button', { onclick });\n                assert(onclick.notCalled);\n                element.click();\n                assert(onclick.calledOnce);\n                element.click();\n                assert(onclick.calledTwice);\n            });\n            it('click listener', () => {\n                const listener = sinon.spy();\n                const element = assembler.createElement('button');\n                element.addEventListener('click', listener);\n                document.body.appendChild(element);\n                assert(listener.notCalled);\n                element.click();\n                assert(listener.calledOnce);\n                element.click();\n                assert(listener.calledTwice);\n                document.body.removeChild(element);\n            });\n        });\n\n        describe('adapted interface', function() {\n\n            describe('dataset', function() {\n                const element = assembler.createElement('div', {\n                    dataset : { camelCased : 'custom attribute' }\n                });\n                it('HTMLDivElement node created', function() {\n                    assert.equal(element.constructor, HTMLDivElement);\n                    assert.equal(element.tagName, 'DIV');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper custom `data-` attribute', function() {\n                    assert.equal(element.dataset.camelCased, 'custom attribute');\n                    assert.equal(element.getAttribute('data-camel-cased'), 'custom attribute');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<div data-camel-cased=\"custom attribute\"></div>');\n                });\n            });\n\n            describe('style', function() {\n                const element = assembler.createElement('span', {\n                    style : { backgroundColor : 'black' }\n                });\n                it('HTMLSpanElement node created', function() {\n                    assert.equal(element.constructor, HTMLSpanElement);\n                    assert.equal(element.tagName, 'SPAN');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper style declaration assigned', function() {\n                    assert.equal(element.style.backgroundColor, 'black');\n                    assert.equal(element.getAttribute('style'), 'background-color: black;');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<span style=\"background-color: black;\"></span>');\n                });\n            });\n        });\n    });\n});\n"
+    "content": "import { HTMLAssembler } from './htmlassembler.js';\nimport chai from 'chai';\n\nimport { htmlEqualMarkup } from './util/domequalmarkup.js';\n\nconst { assert } = chai;\nconst {\n    HTMLElement,\n    HTMLUnknownElement,\n    HTMLInputElement,\n    HTMLHtmlElement,\n    HTMLFormElement,\n    HTMLSelectElement,\n    HTMLAnchorElement,\n    HTMLBodyElement,\n    HTMLButtonElement,\n    HTMLDivElement,\n    HTMLSpanElement\n} = window;\n\nconst assembler = new HTMLAssembler;\n\ndescribe('HTML assembler', function() {\n\n    describe('createElement', function() {\n\n        describe('built-in global attributes', function() {\n\n            describe('accessKey', function() {\n                const element = assembler.createElement('a', { accessKey : 'A' });\n\n                it('HTMLAnchorElement node created', function() {\n                    assert.equal(element.constructor, HTMLAnchorElement);\n                    assert.equal(element.tagName, 'A');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `accessKey` attribute', function() {\n                    assert.equal(element.accessKey, 'A');\n                    assert.equal(element.getAttribute('accesskey'), 'A');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY=\"A\"></A>');\n                });\n                it('node equals to equivalent parsed markup', function() {\n                    assert(\n                        htmlEqualMarkup(element, '<a accesskey=\"A\"></a>'),\n                        'node conforms the markup');\n                });\n            });\n\n            describe('className', function() {\n                const className = 'foo bar wiz';\n                const element = assembler.createElement('div', { className });\n\n                it('HTMLDivElement node created', function() {\n                    assert.equal(element.constructor, HTMLDivElement);\n                    assert.equal(element.tagName, 'DIV');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `className` attribute', function() {\n                    assert.equal(element.className, className);\n                    assert.equal(element.getAttribute('class'), className);\n                    assert(element.classList.contains('foo'));\n                    assert(element.classList.contains('bar'));\n                    assert(element.classList.contains('wiz'));\n                });\n                it('document finds it', function() {\n                    document.body.appendChild(element);\n                    assert.equal(document.getElementsByClassName('foo')[0], element);\n                    assert.equal(document.getElementsByClassName('bar')[0], element);\n                    assert.equal(document.getElementsByClassName('wiz')[0], element);\n                    document.body.removeChild(element);\n                });\n                it('proper outerHTML property value', () => {\n                    assert.equal(element.outerHTML, '<div class=\"foo bar wiz\"></div>');\n                });\n            });\n\n            describe('contentEditable', function() {\n                const element = assembler.createElement('unknown', { contentEditable : 'true' });\n\n                it('HTMLUnknownElement node created', function() {\n                    assert.equal(element.constructor, HTMLUnknownElement);\n                    assert.equal(element.tagName, 'UNKNOWN');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `contentEditable` attribute', function() {\n                    assert.equal(element.contentEditable, 'true');\n                    assert.equal(element.getAttribute('contenteditable'), 'true');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML.toLowerCase(),\n                        '<unknown contenteditable=\"true\"></unknown>');\n                });\n            });\n\n            describe('dir', function() {\n                const element = assembler.createElement('button', { dir : 'rtl' });\n\n                it('HTMLButtonElement node created', function() {\n                    assert.equal(element.constructor, HTMLButtonElement);\n                    assert.equal(element.tagName, 'BUTTON');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `dir` attribute', function() {\n                    assert.equal(element.dir, 'rtl');\n                    assert.equal(element.getAttribute('dir'), 'rtl');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<button dir=\"rtl\"></button>');\n                });\n            });\n\n            describe('draggable', function() {\n                const element = assembler.createElement('header', { draggable : true });\n\n                it('HTMLElement node created', function() {\n                    assert.equal(element.constructor, HTMLElement);\n                    assert.equal(element.tagName, 'HEADER');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `draggable` attribute', function() {\n                    assert.equal(element.draggable, true);\n                    assert.equal(element.getAttribute('draggable'), 'true');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<header draggable=\"true\"></header>');\n                });\n            });\n\n            describe('hidden', function() {\n                const element = assembler.createElement('input', { hidden : true });\n\n                it('HTMLInputElement node created', function() {\n                    assert.equal(element.constructor, HTMLInputElement);\n                    assert.equal(element.tagName, 'INPUT');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `hidden` attribute', function() {\n                    assert.equal(element.hidden, true);\n                    assert.equal(element.getAttribute('hidden'), '');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<input hidden=\"\">');\n                });\n            });\n\n            describe('id', function() {\n                const id = 'element_0';\n                const element = assembler.createElement('span', { id });\n\n                it('HTMLSpanElement node created', function() {\n                    assert.equal(element.constructor, HTMLSpanElement);\n                    assert.equal(element.tagName, 'SPAN');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `id` attribute', function() {\n                    assert.equal(element.id, id);\n                });\n                it('document finds it', function() {\n                    document.body.appendChild(element);\n                    assert.equal(document.getElementById(id), element);\n                    document.body.removeChild(element);\n                });\n                it('proper outerHTML property value', () => {\n                    assert.equal(element.outerHTML, '<span id=\"element_0\"></span>');\n                });\n            });\n\n            describe('innerHTML', function() {\n                const element = assembler.createElement('body', {\n                    innerHTML : '<span class=\"box\"></span>'\n                });\n                it('HTMLBodyElement node created', function() {\n                    assert.equal(element.constructor, HTMLBodyElement);\n                    assert.equal(element.tagName, 'BODY');\n                });\n                it('proper number of child nodes', function() {\n                    assert(element.hasChildNodes());\n                    assert.equal(element.childNodes.length, 1);\n                });\n                it('proper child node', function() {\n                    const child = element.firstChild;\n                    assert.equal(child.constructor, HTMLSpanElement);\n                    assert.equal(child.outerHTML, '<span class=\"box\"></span>');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<body><span class=\"box\"></span></body>');\n                });\n            });\n\n            describe('lang', function() {\n                const element = assembler.createElement('html', { lang : 'ru' });\n\n                it('HTMLHtmlElement node created', function() {\n                    assert.equal(element.constructor, HTMLHtmlElement);\n                    assert.equal(element.tagName, 'HTML');\n                });\n                it('proper number of attributes and child nodes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('has proper lang attribute set', function() {\n                    assert.equal(element.lang, 'ru');\n                    assert.equal(element.getAttribute('lang'), 'ru');\n                });\n                it('proper outerHTML property value', function() {\n                    assert.equal(element.outerHTML, '<html lang=\"ru\"></html>');\n                });\n            });\n\n            describe('tabIndex', function() {\n                const element = assembler.createElement('form', { tabIndex : 0 });\n\n                it('HTMLFormElement node created', function() {\n                    assert.equal(element.constructor, HTMLFormElement);\n                    assert.equal(element.tagName, 'FORM');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `tabIndex` attribute', function() {\n                    assert.equal(element.tabIndex, 0);\n                    assert.equal(element.getAttribute('tabindex'), '0');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML.toLowerCase(), '<form tabindex=\"0\"></form>');\n                });\n            });\n\n            describe('title', function() {\n                const element = assembler.createElement('select', { title : 'Select without options' });\n\n                it('HTMLSelectElement node created', function() {\n                    assert.equal(element.constructor, HTMLSelectElement);\n                    assert.equal(element.tagName, 'SELECT');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper `title` attribute', function() {\n                    assert.equal(element.title, 'Select without options');\n                    assert.equal(element.getAttribute('title'), 'Select without options');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<select title=\"Select without options\"></select>');\n                });\n            });\n        });\n\n        describe('built-in global event handlers', function() {\n            it('onclick', () => {\n                const onclick = sinon.spy();\n                const element = assembler.createElement('button', { onclick });\n                assert(onclick.notCalled);\n                element.click();\n                assert(onclick.calledOnce);\n                element.click();\n                assert(onclick.calledTwice);\n            });\n            it('click listener', () => {\n                const listener = sinon.spy();\n                const element = assembler.createElement('button');\n                element.addEventListener('click', listener);\n                document.body.appendChild(element);\n                assert(listener.notCalled);\n                element.click();\n                assert(listener.calledOnce);\n                element.click();\n                assert(listener.calledTwice);\n                document.body.removeChild(element);\n            });\n        });\n\n        describe('adapted interface', function() {\n\n            describe('dataset', function() {\n                const element = assembler.createElement('div', {\n                    dataset : { camelCased : 'custom attribute' }\n                });\n                it('HTMLDivElement node created', function() {\n                    assert.equal(element.constructor, HTMLDivElement);\n                    assert.equal(element.tagName, 'DIV');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper custom `data-` attribute', function() {\n                    assert.equal(element.dataset.camelCased, 'custom attribute');\n                    assert.equal(element.getAttribute('data-camel-cased'), 'custom attribute');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<div data-camel-cased=\"custom attribute\"></div>');\n                });\n            });\n\n            describe('style', function() {\n                const element = assembler.createElement('span', {\n                    style : { backgroundColor : 'black' }\n                });\n                it('HTMLSpanElement node created', function() {\n                    assert.equal(element.constructor, HTMLSpanElement);\n                    assert.equal(element.tagName, 'SPAN');\n                });\n                it('proper number of attributes', function() {\n                    assert(element.hasAttributes());\n                    assert.equal(element.attributes.length, 1);\n                });\n                it('proper style declaration assigned', function() {\n                    assert.equal(element.style.backgroundColor, 'black');\n                    assert.equal(element.getAttribute('style'), 'background-color: black;');\n                });\n                it('proper `outerHTML` property value', function() {\n                    assert.equal(element.outerHTML, '<span style=\"background-color: black;\"></span>');\n                });\n            });\n        });\n    });\n});\n"
   },
   {
     "__docId__": 27,
@@ -644,7 +644,7 @@
     "importPath": "htmlmodule/lib/htmlassembler.spec.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 6,
     "undocument": true,
     "type": {
       "types": [
@@ -665,7 +665,7 @@
     "importPath": "htmlmodule/lib/htmlassembler.spec.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 7,
     "undocument": true,
     "type": {
       "types": [
@@ -686,7 +686,7 @@
     "importPath": "htmlmodule/lib/htmlassembler.spec.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 21,
     "undocument": true,
     "type": {
       "types": [
@@ -9007,42 +9007,95 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "lib/window.htmlmodule.js",
+    "name": "lib/util/domequalmarkup.js",
     "memberof": null,
-    "longname": "lib/window.htmlmodule.js",
+    "longname": "lib/util/domequalmarkup.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import '../shim';\nimport * as htmlmodule from './index';\n\nwindow.htmlmodule = htmlmodule;\n"
+    "content": "const parser = new DOMParser;\n\n/**\n * Check if a given DOM node is equivalent to a given XML-markup string\n * @param {Element} dom Node to compare\n * @param {String} markup String to compare\n * @param {String} mimetype MIME-type\n * @returns {boolean}\n */\nexport const domEqualMarkup = (dom, markup, mimetype = 'application/xml') => {\n    const node = parser.parseFromString(markup, mimetype);\n    return dom.isEqualNode(node);\n}\n\n/**\n * Check if a given DOM node is equivalent to a given HTML-markup string\n * @param {Element} dom Node to compare\n * @param {String} markup String to compare\n * @returns {boolean}\n */\nexport const htmlEqualMarkup = (dom, markup) => {\n    return domEqualMarkup(dom, markup, 'application/xhtml');\n}\n"
   },
   {
     "__docId__": 158,
-    "kind": "file",
+    "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "lib/window.htmlmodule.spec.js",
-    "memberof": null,
-    "longname": "lib/window.htmlmodule.spec.js",
+    "name": "parser",
+    "memberof": "lib/util/domequalmarkup.js",
+    "longname": "lib/util/domequalmarkup.js~parser",
     "access": null,
+    "export": false,
+    "importPath": "htmlmodule/lib/util/domequalmarkup.js",
+    "importStyle": null,
     "description": null,
-    "lineNumber": 3,
-    "content": "// todo\n\nimport './window.htmlmodule';\nimport chai from 'chai';\n\nconst { assert } = chai;\nconst {\n    htmlmodule : { a, span, div, article, input, fieldset },\n    HTMLAnchorElement,\n    HTMLSpanElement,\n    HTMLDivElement,\n    HTMLElement,\n    HTMLInputElement,\n    HTMLFieldSetElement\n} = window;\n\ndescribe('window.htmlmodule', function() {\n    it('module contains element assemblers', () => {\n        assert(a() instanceof HTMLAnchorElement, 'the a element works wrongly');\n        assert(span() instanceof HTMLSpanElement, 'the a element works wrongly');\n        assert(div() instanceof HTMLDivElement, 'the a element works wrongly');\n        assert(article() instanceof HTMLElement, 'the a element works wrongly');\n        assert(input() instanceof HTMLInputElement, 'the a element works wrongly');\n        assert(fieldset() instanceof HTMLFieldSetElement, 'the a element works wrongly');\n    });\n});\n"
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "DOMParser"
+      ]
+    }
   },
   {
     "__docId__": 159,
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "assert",
-    "memberof": "lib/window.htmlmodule.spec.js",
-    "longname": "lib/window.htmlmodule.spec.js~assert",
+    "name": "domEqualMarkup",
+    "memberof": "lib/util/domequalmarkup.js",
+    "longname": "lib/util/domequalmarkup.js~domEqualMarkup",
     "access": null,
-    "export": false,
-    "importPath": "htmlmodule/lib/window.htmlmodule.spec.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "export": true,
+    "importPath": "htmlmodule/lib/util/domequalmarkup.js",
+    "importStyle": "{domEqualMarkup}",
+    "description": "Check if a given DOM node is equivalent to a given XML-markup string",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "dom",
+        "description": "Node to compare"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "markup",
+        "description": "String to compare"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "mimetype",
+        "description": "MIME-type"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -9054,16 +9107,51 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "htmlmodule",
-    "memberof": "lib/window.htmlmodule.spec.js",
-    "longname": "lib/window.htmlmodule.spec.js~htmlmodule",
+    "name": "htmlEqualMarkup",
+    "memberof": "lib/util/domequalmarkup.js",
+    "longname": "lib/util/domequalmarkup.js~htmlEqualMarkup",
     "access": null,
-    "export": false,
-    "importPath": "htmlmodule/lib/window.htmlmodule.spec.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "export": true,
+    "importPath": "htmlmodule/lib/util/domequalmarkup.js",
+    "importStyle": "{htmlEqualMarkup}",
+    "description": "Check if a given DOM node is equivalent to a given HTML-markup string",
+    "lineNumber": 21,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "dom",
+        "description": "Node to compare"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "markup",
+        "description": "String to compare"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -9072,6 +9160,19 @@
   },
   {
     "__docId__": 161,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/window.htmlmodule.js",
+    "memberof": null,
+    "longname": "lib/window.htmlmodule.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import '../shim';\nimport * as htmlmodule from './index';\n\nwindow.htmlmodule = htmlmodule;\n"
+  },
+  {
+    "__docId__": 162,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -9084,7 +9185,7 @@
     "content": "import { DOMAssembler } from './domassembler';\n\nconst { document } = window;\n\nconst assembler = new DOMAssembler;\n\n/**\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n */\nexport function xmldom(tagName, init) {\n    return assembler.createElement(tagName, init);\n}\n\n/**\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n */\nexport function element(init) { return xmldom('element', init) }\n\n/**\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n */\nexport function text(data) { return document.createTextNode(data) }\n\n/**\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n */\nexport function comment(data) { return document.createComment(data) }\n"
   },
   {
-    "__docId__": 162,
+    "__docId__": 163,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -9105,7 +9206,7 @@
     }
   },
   {
-    "__docId__": 163,
+    "__docId__": 164,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -9126,7 +9227,7 @@
     }
   },
   {
-    "__docId__": 164,
+    "__docId__": 165,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -9231,7 +9332,7 @@
     "generator": false
   },
   {
-    "__docId__": 165,
+    "__docId__": 166,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -9273,7 +9374,7 @@
     "generator": false
   },
   {
-    "__docId__": 166,
+    "__docId__": 167,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -9315,7 +9416,7 @@
     "generator": false
   },
   {
-    "__docId__": 167,
+    "__docId__": 168,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -9357,7 +9458,7 @@
     "generator": false
   },
   {
-    "__docId__": 168,
+    "__docId__": 169,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -9367,10 +9468,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { xmldom, element, text, comment } from './index';\n\nimport chai from 'chai';\n\nconst { assert } = chai;\nconst {\n    Node,\n    Element,\n    Text,\n    Comment,\n    XMLSerializer\n} = window;\nconst { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE } = Node;\n\nconst serializer = new XMLSerializer;\n\ndescribe('XMLDOM library', () => {\n    describe('dom', () => {\n        it('xmldom', () => {\n            const node = xmldom('pipi7', {\n                attrset : { g : '+++', j : '---', w : '!!!' }\n            });\n            assert.equal(node.nodeType, ELEMENT_NODE);\n            assert.equal(node.tagName, 'pipi7');\n            assert.equal(node.constructor, Element);\n            assert.equal(node.getAttribute('g'), '+++');\n            assert.equal(node.getAttribute('j'), '---');\n            assert.equal(node.getAttribute('w'), '!!!');\n        });\n        it('element', () => {\n            const node = element('bafi4');\n            assert.equal(node.nodeType, ELEMENT_NODE);\n            assert.equal(node.tagName, 'element');\n            assert.equal(node.constructor, Element);\n        });\n        it('text', () => {\n            const node = text('cuce31');\n            assert.equal(node.nodeType, TEXT_NODE);\n            assert.equal(node.constructor, Text);\n            assert.equal(serializer.serializeToString(node), 'cuce31');\n        });\n        it('comment', () => {\n            const node = comment('tuty5');\n            assert.equal(node.nodeType, COMMENT_NODE);\n            assert.equal(node.constructor, Comment);\n            assert.equal(serializer.serializeToString(node), '<!--tuty5-->');\n        });\n    });\n    describe('try to use html semantics', () => {\n        it('xmldom span', () => {\n            const node = xmldom('span', {\n                id : '00101',\n                className :'fa fi fu',\n                tabIndex : 0,\n                children : ['a', comment('a b'), 'b']\n            });\n\n            assert.equal(node.nodeType, ELEMENT_NODE);\n            assert.equal(node.tagName, 'span');\n            assert.equal(node.constructor, Element);\n            assert.equal(node.attributes.length, 2);\n            assert.equal(node.id, '00101');\n            assert.equal(node.className, 'fa fi fu');\n            assert.equal(node.tabIndex, undefined);\n            // assert.equal(node.children.length, 0);\n            assert.equal(node.childNodes.length, 3);\n            assert.equal(node.childNodes[0].nodeType, TEXT_NODE);\n            assert.equal(node.childNodes[1].constructor, Comment);\n            assert.equal(node.childNodes[2].textContent, 'b');\n        });\n        it('xmldom a', () => {\n            const node = xmldom('a', {\n                href : 'html://www.aria.dom/math.svg',\n                rel : 'next',\n                title : 'om dom dom dom d',\n                textContent : 'DOM module'\n            });\n            assert.equal(node.tagName, 'a');\n            assert.equal(node.constructor, Element);\n            assert.equal(node.href, undefined);\n            assert.equal(node.rel, undefined);\n            assert.equal(node.title, undefined);\n            assert.equal(node.textContent, 'DOM module');\n        });\n    });\n});\n"
+    "content": "import { xmldom, element, text, comment } from './index';\n\nimport chai from 'chai';\n\nconst { assert } = chai;\nconst {\n    Node,\n    Element,\n    Text,\n    Comment,\n    XMLSerializer\n} = window;\nconst { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE } = Node;\n\nconst serializer = new XMLSerializer;\n\ndescribe('XMLDOM library', () => {\n    describe('dom', () => {\n        it('xmldom', () => {\n            const node = xmldom('pipi7', {\n                attrset : { g : '+++', j : '---', w : '!!!' }\n            });\n            assert.equal(node.nodeType, ELEMENT_NODE);\n            assert.equal(node.tagName, 'pipi7');\n            assert.equal(node.constructor, Element);\n            assert.equal(node.getAttribute('g'), '+++');\n            assert.equal(node.getAttribute('j'), '---');\n            assert.equal(node.getAttribute('w'), '!!!');\n        });\n        it('element', () => {\n            const node = element('bafi4');\n            assert.equal(node.nodeType, ELEMENT_NODE);\n            assert.equal(node.tagName, 'element');\n            assert.equal(node.constructor, Element);\n        });\n        it('text', () => {\n            const node = text('cuce31');\n            assert.equal(node.nodeType, TEXT_NODE);\n            assert.equal(node.constructor, Text);\n            assert.equal(serializer.serializeToString(node), 'cuce31');\n        });\n        it('comment', () => {\n            const node = comment('tuty5');\n            assert.equal(node.nodeType, COMMENT_NODE);\n            assert.equal(node.constructor, Comment);\n            assert.equal(serializer.serializeToString(node), '<!--tuty5-->');\n        });\n    });\n    describe('try to use html semantics', () => {\n        it('xmldom span', () => {\n            const node = xmldom('span', {\n                id : '00101',\n                className :'fa fi fu',\n                tabIndex : 0,\n                children : ['a', comment('a b'), 'b']\n            });\n\n            assert.equal(node.nodeType, ELEMENT_NODE);\n            assert.equal(node.tagName, 'span');\n            assert.equal(node.constructor, Element);\n            assert.equal(node.attributes.length, 2);\n            assert.equal(node.id, '00101');\n            assert.equal(node.className, 'fa fi fu');\n            assert.equal(node.tabIndex, undefined);\n            assert.equal(node.childNodes.length, 3);\n            assert.equal(node.childNodes[0].nodeType, TEXT_NODE);\n            assert.equal(node.childNodes[1].constructor, Comment);\n            assert.equal(node.childNodes[2].textContent, 'b');\n        });\n        it('xmldom a', () => {\n            const node = xmldom('a', {\n                href : 'html://www.aria.dom/math.svg',\n                rel : 'next',\n                title : 'om dom dom dom d',\n                textContent : 'DOM module'\n            });\n            assert.equal(node.tagName, 'a');\n            assert.equal(node.constructor, Element);\n            assert.equal(node.href, undefined);\n            assert.equal(node.rel, undefined);\n            assert.equal(node.title, undefined);\n            assert.equal(node.textContent, 'DOM module');\n        });\n    });\n});\n"
   },
   {
-    "__docId__": 169,
+    "__docId__": 170,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -9391,7 +9492,7 @@
     }
   },
   {
-    "__docId__": 170,
+    "__docId__": 171,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -9412,7 +9513,7 @@
     }
   },
   {
-    "__docId__": 171,
+    "__docId__": 172,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -9433,7 +9534,7 @@
     }
   },
   {
-    "__docId__": 172,
+    "__docId__": 173,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -9454,7 +9555,7 @@
     }
   },
   {
-    "__docId__": 174,
+    "__docId__": 175,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9467,7 +9568,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 175,
+    "__docId__": 176,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9480,7 +9581,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 176,
+    "__docId__": 177,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9493,7 +9594,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 177,
+    "__docId__": 178,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9506,7 +9607,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 178,
+    "__docId__": 179,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9519,7 +9620,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 179,
+    "__docId__": 180,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9532,7 +9633,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 180,
+    "__docId__": 181,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9545,7 +9646,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 181,
+    "__docId__": 182,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9558,7 +9659,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 182,
+    "__docId__": 183,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9571,7 +9672,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 183,
+    "__docId__": 184,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9584,7 +9685,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 184,
+    "__docId__": 185,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9597,7 +9698,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 185,
+    "__docId__": 186,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9610,7 +9711,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 186,
+    "__docId__": 187,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9623,7 +9724,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 187,
+    "__docId__": 188,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9636,7 +9737,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 188,
+    "__docId__": 189,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9649,7 +9750,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 189,
+    "__docId__": 190,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9662,7 +9763,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 190,
+    "__docId__": 191,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9675,7 +9776,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 191,
+    "__docId__": 192,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9688,7 +9789,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 192,
+    "__docId__": 193,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9701,7 +9802,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 193,
+    "__docId__": 194,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9714,7 +9815,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 194,
+    "__docId__": 195,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9727,7 +9828,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 195,
+    "__docId__": 196,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9740,7 +9841,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 196,
+    "__docId__": 197,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9753,7 +9854,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 197,
+    "__docId__": 198,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9766,7 +9867,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 198,
+    "__docId__": 199,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9779,7 +9880,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 199,
+    "__docId__": 200,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9792,7 +9893,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 200,
+    "__docId__": 201,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9805,7 +9906,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 201,
+    "__docId__": 202,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9818,7 +9919,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 202,
+    "__docId__": 203,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9831,7 +9932,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 203,
+    "__docId__": 204,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9844,7 +9945,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 204,
+    "__docId__": 205,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9857,7 +9958,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 205,
+    "__docId__": 206,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9870,7 +9971,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 206,
+    "__docId__": 207,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9883,7 +9984,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 207,
+    "__docId__": 208,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9896,7 +9997,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 208,
+    "__docId__": 209,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9909,7 +10010,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 209,
+    "__docId__": 210,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9922,7 +10023,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 210,
+    "__docId__": 211,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9935,7 +10036,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 211,
+    "__docId__": 212,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9948,7 +10049,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 212,
+    "__docId__": 213,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9961,7 +10062,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 213,
+    "__docId__": 214,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9974,7 +10075,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 214,
+    "__docId__": 215,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -9987,7 +10088,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 215,
+    "__docId__": 216,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10000,7 +10101,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 216,
+    "__docId__": 217,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10013,7 +10114,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 217,
+    "__docId__": 218,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10026,7 +10127,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 218,
+    "__docId__": 219,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10039,7 +10140,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 219,
+    "__docId__": 220,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10052,7 +10153,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 220,
+    "__docId__": 221,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10065,7 +10166,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 222,
+    "__docId__": 223,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10078,7 +10179,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 223,
+    "__docId__": 224,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10091,7 +10192,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 224,
+    "__docId__": 225,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10104,7 +10205,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 225,
+    "__docId__": 226,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10117,7 +10218,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 226,
+    "__docId__": 227,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10130,7 +10231,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 227,
+    "__docId__": 228,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10143,7 +10244,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 228,
+    "__docId__": 229,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -10156,7 +10257,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 229,
+    "__docId__": 230,
     "kind": "external",
     "static": true,
     "variation": null,

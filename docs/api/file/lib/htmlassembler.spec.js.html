@@ -155,6 +155,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-xmldom">xmldom</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XML_NS_URI">XML_NS_URI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-XHTML_NS_URI">XHTML_NS_URI</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-domEqualMarkup">domEqualMarkup</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-htmlEqualMarkup">htmlEqualMarkup</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -163,8 +165,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { HTMLAssembler } from &apos;./htmlassembler.js&apos;;
 import chai from &apos;chai&apos;;
 
-// fixme
-import { htmlequal } from &apos;../util/util.domequalmarkup&apos;;
+import { htmlEqualMarkup } from &apos;./util/domequalmarkup.js&apos;;
 
 const { assert } = chai;
 const {
@@ -207,8 +208,10 @@ describe(&apos;HTML assembler&apos;, function() {
                 it(&apos;proper `outerHTML` property value&apos;, function() {
                     assert.equal(element.outerHTML.toUpperCase(), &apos;&lt;A ACCESSKEY=&quot;A&quot;&gt;&lt;/A&gt;&apos;);
                 });
-                it(&apos;hdmldiff works properly&apos;, function() {
-                    assert.equal(htmlequal(element.outerHTML.toUpperCase(), &apos;&lt;a accesskey=&quot;A&quot;&gt;&lt;/a&gt;&apos;), true);
+                it(&apos;node equals to equivalent parsed markup&apos;, function() {
+                    assert(
+                        htmlEqualMarkup(element, &apos;&lt;a accesskey=&quot;A&quot;&gt;&lt;/a&gt;&apos;),
+                        &apos;node conforms the markup&apos;);
                 });
             });
 

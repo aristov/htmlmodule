@@ -13,10 +13,32 @@ const isEmptyTag = node => {
     return Boolean(EMPTY_TAG_SET[node.tagName]);
 }
 
+/**
+ * Simple DOM to markup serializing utility.
+ * Supports a lightweight configurable markup code auto-indentation.
+ */
 export class DOMSerializer {
-    constructor(options = {}) {
-        for(let opt in options) if(opt in this) this[opt] = options[opt];
+    /**
+     * Instantiate a DOM serializer with indentation options
+     * @param {String} indent String to use as a line start indentation
+     * @param {String} linebreak String to use as a line break;
+     * @param {Number} level Default indentation level
+     */
+    constructor({
+        indent = DEFAULT_INDENT,
+        linebreak = DEFAULT_LINE_BREAK,
+        level = DEFAULT_LEVEL
+    } = {}) {
+        this.indent = indent;
+        this.linebreak = linebreak;
+        this.level = level;
     }
+
+    /**
+     * Serializes a given DOM node to a HTML-markup string.
+     * @param {Node} node to serialize
+     * @returns {String}
+     */
     serializeToString(node) {
         let {
             nodeType,
@@ -35,12 +57,12 @@ export class DOMSerializer {
                 result += '<' + tagName;
                 const hasAttributes = node.hasAttributes();
                 if(hasAttributes) {
-                    const attrset = map.call(
+                    const attrchunks = map.call(
                         attributes,
                         ({ name, value }) => {
-                            return ` ${name}="${value.replace(/\"/g, '&quot;')}"`;
+                            return ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`;
                         })
-                    result += attrset.join('');
+                    result += attrchunks.join('');
                 }
                 const hasEndTag = !isEmptyTag(node);
                 const selfClose = node.constructor === Element? '/>' : '>';
@@ -53,12 +75,12 @@ export class DOMSerializer {
                         indent = '';
                     } else {
                         this.level++;
-                        const children = map.call(childNodes, this.serializeToString, this);
+                        const childchunks = map.call(childNodes, this.serializeToString, this);
                         this.level--;
-                        result += linebreak + children.join('');
+                        result += linebreak + childchunks.join('');
                     }
                 } else indent = '';
-                if(hasEndTag) result += indent + `</${tagName}>`;
+                if(hasEndTag) result += indent + `</${ tagName }>`;
                 break;
             case TEXT_NODE:
                 result += innerHTML || data;
@@ -71,9 +93,3 @@ export class DOMSerializer {
         return result;
     }
 }
-
-const define = Object.defineProperty;
-const proto = DOMSerializer.prototype;
-define(proto, 'indent', { writable : true, value : DEFAULT_INDENT });
-define(proto, 'linebreak', { writable : true, value : DEFAULT_LINE_BREAK });
-define(proto, 'level', { writable : true, value : DEFAULT_LEVEL });

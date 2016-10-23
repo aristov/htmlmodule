@@ -216,6 +216,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "htmlmodule/lib/util/domequalmarkup.js~domequalmarkup",
+    "variable/index.html#static-variable-domEqualMarkup",
+    "<span>domEqualMarkup</span> <span class=\"search-result-import-path\">htmlmodule/lib/util/domequalmarkup.js</span>",
+    "variable"
+  ],
+  [
     "htmlmodule/lib/htmldom.js~dt",
     "function/index.html#static-function-dt",
     "<span>dt</span> <span class=\"search-result-import-path\">htmlmodule/lib/htmldom.js</span>",
@@ -334,6 +340,12 @@ window.esdocSearchIndex = [
     "function/index.html#static-function-html",
     "<span>html</span> <span class=\"search-result-import-path\">htmlmodule/lib/htmldom.js</span>",
     "function"
+  ],
+  [
+    "htmlmodule/lib/util/domequalmarkup.js~htmlequalmarkup",
+    "variable/index.html#static-variable-htmlEqualMarkup",
+    "<span>htmlEqualMarkup</span> <span class=\"search-result-import-path\">htmlmodule/lib/util/domequalmarkup.js</span>",
+    "variable"
   ],
   [
     "htmlmodule/lib/htmldom.js~htmldom",
@@ -1093,13 +1105,13 @@ window.esdocSearchIndex = [
   ],
   [
     "lib/domassembler.js~domassembler#element",
-    "class/lib/domassembler.js~DOMAssembler.html#instance-get-element",
+    "class/lib/domassembler.js~DOMAssembler.html#instance-set-element",
     "lib/domassembler.js~DOMAssembler#element",
     "member"
   ],
   [
     "lib/domassembler.js~domassembler#element",
-    "class/lib/domassembler.js~DOMAssembler.html#instance-set-element",
+    "class/lib/domassembler.js~DOMAssembler.html#instance-get-element",
     "lib/domassembler.js~DOMAssembler#element",
     "member"
   ],
@@ -1194,15 +1206,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "lib/window.htmlmodule.js",
-    "file/lib/window.htmlmodule.js.html",
-    "lib/window.htmlmodule.js",
+    "lib/util/domequalmarkup.js",
+    "file/lib/util/domequalmarkup.js.html",
+    "lib/util/domequalmarkup.js",
     "file"
   ],
   [
-    "lib/window.htmlmodule.spec.js",
-    "file/lib/window.htmlmodule.spec.js.html",
-    "lib/window.htmlmodule.spec.js",
+    "lib/window.htmlmodule.js",
+    "file/lib/window.htmlmodule.js.html",
+    "lib/window.htmlmodule.js",
     "file"
   ],
   [

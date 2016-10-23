@@ -89,7 +89,7 @@
 
 	var _REPLMachine = __webpack_require__(/*! ./REPLMachine */ 3);
 
-	var _util = __webpack_require__(/*! ../../util/util.htmlserializer */ 11);
+	var _domserializer = __webpack_require__(/*! ./domserializer */ 11);
 
 	var _htmlmodule = __webpack_require__(/*! ./htmlmodule */ 4);
 
@@ -105,7 +105,7 @@
 
 	var START_INDEX = 0;
 
-	var serializer = new _util.HTMLSerializer();
+	var serializer = new _domserializer.DOMSerializer();
 
 	var REPLSite = exports.REPLSite = function () {
 	    function REPLSite(data) {
@@ -2525,9 +2525,9 @@
 
 /***/ },
 /* 11 */
-/*!*************************************!*\
-  !*** ./util/util.htmlserializer.js ***!
-  \*************************************/
+/*!***********************************!*\
+  !*** ./docs/lib/domserializer.js ***!
+  \***********************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2540,85 +2540,120 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	// todo refactoring => DOMSerializer
-
 	var map = Array.prototype.map;
-	var assign = Object.assign;
+	var _window$Node = window.Node;
+	var TEXT_NODE = _window$Node.TEXT_NODE;
+	var COMMENT_NODE = _window$Node.COMMENT_NODE;
+	var ELEMENT_NODE = _window$Node.ELEMENT_NODE;
 
-	var epmtyTagList = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
-	var emptyTagSet = epmtyTagList.split(' ').reduce(function (res, tag) {
+
+	var DEFAULT_INDENT = '    ';
+	var DEFAULT_LINE_BREAK = '\n';
+	var DEFAULT_LEVEL = 0;
+
+	var EMPTY_TAG_LIST = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
+	var EMPTY_TAG_SET = EMPTY_TAG_LIST.split(' ').reduce(function (res, tag) {
 	    return res[tag] = true, res;
 	}, {});
 
 	var isEmptyTag = function isEmptyTag(node) {
 	    if (node.constructor === Element && !node.hasChildNodes()) return true;
-	    return Boolean(emptyTagSet[node.tagName]);
+	    return Boolean(EMPTY_TAG_SET[node.tagName]);
 	};
 
-	// todo comment support
+	/**
+	 * Simple DOM to markup serializing utility.
+	 * Supports a lightweight configurable markup code auto-indentation.
+	 */
 
-	var HTMLSerializer = exports.HTMLSerializer = function () {
-	    function HTMLSerializer() {
-	        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-	            indent: '    ',
-	            lineBreak: '\n',
-	            level: 0
-	        };
+	var DOMSerializer = exports.DOMSerializer = function () {
+	    /**
+	     * Instantiate a DOM serializer with indentation options
+	     * @param {String} indent String to use as a line start indentation
+	     * @param {String} linebreak String to use as a line break;
+	     * @param {Number} level Default indentation level
+	     */
+	    function DOMSerializer() {
+	        var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-	        _classCallCheck(this, HTMLSerializer);
+	        var _ref$indent = _ref.indent;
+	        var indent = _ref$indent === undefined ? DEFAULT_INDENT : _ref$indent;
+	        var _ref$linebreak = _ref.linebreak;
+	        var linebreak = _ref$linebreak === undefined ? DEFAULT_LINE_BREAK : _ref$linebreak;
+	        var _ref$level = _ref.level;
+	        var level = _ref$level === undefined ? DEFAULT_LEVEL : _ref$level;
 
-	        assign(this, options);
+	        _classCallCheck(this, DOMSerializer);
+
+	        this.indent = indent;
+	        this.linebreak = linebreak;
+	        this.level = level;
 	    }
 
-	    _createClass(HTMLSerializer, [{
+	    /**
+	     * Serializes a given DOM node to a HTML-markup string.
+	     * @param {Node} node to serialize
+	     * @returns {String}
+	     */
+
+
+	    _createClass(DOMSerializer, [{
 	        key: 'serializeToString',
 	        value: function serializeToString(node) {
+	            var nodeType = node.nodeType;
 	            var tagName = node.tagName;
 	            var attributes = node.attributes;
 	            var childNodes = node.childNodes;
 	            var innerHTML = node.innerHTML;
-	            var textContent = node.textContent;
+	            var data = node.data;
 
-	            var lineBreak = this.lineBreak;
+	            var linebreak = this.linebreak;
 	            var indent = this.indent.repeat(this.level);
 	            var result = indent;
-	            if (tagName) {
-	                tagName = tagName.toLowerCase();
-	                result += '<' + tagName;
-	                var hasAttributes = node.hasAttributes();
-	                if (hasAttributes) {
-	                    var attrset = map.call(attributes, function (_ref) {
-	                        var name = _ref.name;
-	                        var value = _ref.value;
-	                        return ' ' + name + '="' + value.replace(/\"/g, '&quot;') + '"';
-	                    });
-	                    result += attrset.join('');
-	                }
-	                var hasEndTag = !isEmptyTag(node);
-	                var selfClose = node.constructor === Element ? '/>' : '>';
-	                result += hasEndTag ? '>' : selfClose;
-	                if (hasEndTag && node.hasChildNodes()) {
-	                    var isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
-	                    if (!hasAttributes && isSingleText) {
-	                        result += node.innerHTML;
-	                        indent = '';
-	                    } else {
-	                        this.level++;
-	                        var children = map.call(childNodes, this.serializeToString, this);
-	                        this.level--;
-	                        result += lineBreak + children.join('');
+	            switch (nodeType) {
+	                case ELEMENT_NODE:
+	                    tagName = tagName.toLowerCase();
+	                    result += '<' + tagName;
+	                    var hasAttributes = node.hasAttributes();
+	                    if (hasAttributes) {
+	                        var attrchunks = map.call(attributes, function (_ref2) {
+	                            var name = _ref2.name;
+	                            var value = _ref2.value;
+
+	                            return ' ' + name + '="' + value.replace(/\"/g, '&quot;') + '"';
+	                        });
+	                        result += attrchunks.join('');
 	                    }
-	                } else indent = '';
-	                if (hasEndTag) result += indent + ('</' + tagName + '>');
-	            } else {
-	                result += innerHTML || textContent;
+	                    var hasEndTag = !isEmptyTag(node);
+	                    var selfClose = node.constructor === Element ? '/>' : '>';
+	                    result += hasEndTag ? '>' : selfClose;
+	                    if (hasEndTag && node.hasChildNodes()) {
+	                        var isSingleText = childNodes.length === 1 && childNodes[0].nodeType === Node.TEXT_NODE;
+	                        if (!hasAttributes && isSingleText) {
+	                            result += node.innerHTML;
+	                            indent = '';
+	                        } else {
+	                            this.level++;
+	                            var childchunks = map.call(childNodes, this.serializeToString, this);
+	                            this.level--;
+	                            result += linebreak + childchunks.join('');
+	                        }
+	                    } else indent = '';
+	                    if (hasEndTag) result += indent + ('</' + tagName + '>');
+	                    break;
+	                case TEXT_NODE:
+	                    result += innerHTML || data;
+	                    break;
+	                case COMMENT_NODE:
+	                    result += '<!--' + data + '-->';
+	                    break;
 	            }
-	            result += lineBreak;
+	            result += linebreak;
 	            return result;
 	        }
 	    }]);
 
-	    return HTMLSerializer;
+	    return DOMSerializer;
 	}();
 
 /***/ },
@@ -6263,7 +6298,7 @@
   \*************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "htmlmodule => {\n\n    const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;\n\n    return section([\n        h1('Welcome!'),\n        p([\n            'You are inside the ',\n            abbr({\n                title : 'read-eval-print-loop',\n                children : 'REPL'\n            }),\n            '-machine. It was assembled instantly by ',\n            a({\n                title : 'DOM assembler library',\n                href : 'https://npmjs.org/package/htmlmodule',\n                rel : 'external',\n                children : 'htmlmodule'\n            }),\n            ' on the page load.'\n        ]),\n        p([\n            'You may focus the left code editor and change ',\n            'the source code of the document that you are reading now.'\n        ]),\n        nav([\n            p([\n                'There are some usage code examples provided: try the ',\n                a({\n                    href : '#replbuttonprev',\n                    target : '_parent',\n                    rel : 'prev',\n                    children : 'prev'\n                }),\n                ' and the ',\n                a({\n                    href : '#replbuttonnext',\n                    target : '_parent',\n                    rel : 'next',\n                    children : 'next'\n                }),\n                ' buttons on the bottom of your screen.'\n            ]),\n            p([\n                'Use the ',\n                a({\n                    href : '#markuptoggle',\n                    target : '_parent',\n                    rel : 'alternate',\n                    children : 'markup'\n                }),\n                ' summary button to toggle the ',\n                abbr({\n                    title : 'Hyper text markup language',\n                    children : 'HTML'\n                }),\n                '-markup details. It represents a stringified ',\n                abbr({\n                    title : 'Document object model',\n                    children : 'DOM'\n                }),\n                ' structure of the evaluation result.'\n            ])\n        ]),\n        p('If you wanna more details, take a look at the:'),\n        nav(ul([\n            li(a({\n                href : 'docs/spec.html',\n                target : '_blank',\n                children : 'Spec suite'\n            })),\n            li(a({\n                href : 'docs/api/',\n                target : '_blank',\n                rel : 'help',\n                children : [abbr({\n                    title : 'Application programming interface',\n                    children : 'API'\n                }), ' documentation']\n            })),\n            li(a({\n                href : 'https://github.com/aristov/htmlmodule',\n                target : '_blank',\n                rel : 'external',\n                children : 'Github repo'\n            })),\n        ])),\n        p('Enjoy!'),\n        style([\n            'body { font: 17px sans-serif }',\n            'a[href][rel~=external]:not(:active) { color: #050 }',\n            'a[href][rel~=help]:not(:active) { cursor: help }'\n        ])\n    ]);\n}\n"
+	module.exports = "htmlmodule => {\n\n    const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;\n\n    return section([\n        h1('Welcome!'),\n        p([\n            'You are inside the ',\n            abbr({\n                title : 'read-eval-print-loop',\n                children : 'REPL'\n            }),\n            '-machine. It was assembled instantly by ',\n            a({\n                title : 'DOM assembler library',\n                href : 'https://npmjs.org/package/htmlmodule',\n                rel : 'external',\n                target : '_blank',\n                children : 'htmlmodule'\n            }),\n            ' on the page load.'\n        ]),\n        p([\n            'You may focus the left code editor and change ',\n            'the source code of the document that you are reading now.'\n        ]),\n        nav([\n            p([\n                'There are some usage code examples provided: try the ',\n                a({\n                    href : '#replbuttonprev',\n                    target : '_parent',\n                    rel : 'prev',\n                    children : 'prev'\n                }),\n                ' and the ',\n                a({\n                    href : '#replbuttonnext',\n                    target : '_parent',\n                    rel : 'next',\n                    children : 'next'\n                }),\n                ' buttons on the bottom of your screen.'\n            ]),\n            p([\n                'Use the ',\n                a({\n                    href : '#markuptoggle',\n                    target : '_parent',\n                    rel : 'alternate',\n                    children : 'markup'\n                }),\n                ' summary button to toggle the ',\n                abbr({\n                    title : 'Hyper text markup language',\n                    children : 'HTML'\n                }),\n                '-markup details. It represents a stringified ',\n                abbr({\n                    title : 'Document object model',\n                    children : 'DOM'\n                }),\n                ' structure of the evaluation result.'\n            ])\n        ]),\n        p('If you wanna more details, take a look at the:'),\n        nav(ul([\n            li(a({\n                href : 'docs/spec.html',\n                target : '_blank',\n                children : 'Spec suite'\n            })),\n            li(a({\n                href : 'docs/api/',\n                target : '_blank',\n                rel : 'help',\n                children : [abbr({\n                    title : 'Application programming interface',\n                    children : 'API'\n                }), ' documentation']\n            })),\n            li(a({\n                href : 'https://github.com/aristov/htmlmodule',\n                target : '_blank',\n                rel : 'external',\n                children : 'Github repo'\n            })),\n        ])),\n        p('Enjoy!'),\n        style([\n            'body { font: 17px sans-serif }',\n            'a[href][rel~=external]:not(:active) { color: #050 }',\n            'a[href][rel~=help]:not(:active) { cursor: help }'\n        ])\n    ]);\n}\n"
 
 /***/ },
 /* 31 */

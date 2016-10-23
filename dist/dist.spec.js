@@ -10569,14 +10569,11 @@
 
 	var _chai2 = _interopRequireDefault(_chai);
 
-	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 78);
+	var _domequalmarkup = __webpack_require__(/*! ./util/domequalmarkup.js */ 78);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var assert = _chai2.default.assert;
-
-	// fixme
-
 	var _window = window;
 	var HTMLElement = _window.HTMLElement;
 	var HTMLUnknownElement = _window.HTMLUnknownElement;
@@ -10617,8 +10614,8 @@
 	                it('proper `outerHTML` property value', function () {
 	                    assert.equal(element.outerHTML.toUpperCase(), '<A ACCESSKEY="A"></A>');
 	                });
-	                it('hdmldiff works properly', function () {
-	                    assert.equal((0, _util.htmlequal)(element.outerHTML.toUpperCase(), '<a accesskey="A"></a>'), true);
+	                it('node equals to equivalent parsed markup', function () {
+	                    assert((0, _domequalmarkup.htmlEqualMarkup)(element, '<a accesskey="A"></a>'), 'node conforms the markup');
 	                });
 	            });
 
@@ -10914,43 +10911,40 @@
 
 /***/ },
 /* 78 */
-/*!*************************************!*\
-  !*** ./util/util.domequalmarkup.js ***!
-  \*************************************/
+/*!************************************!*\
+  !*** ./lib/util/domequalmarkup.js ***!
+  \************************************/
 /***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	var htmlbowl = function htmlbowl(innerHTML) {
-	    return Object.assign(document.createElement('div'), { innerHTML: innerHTML });
-	};
-
-	var htmlequal = exports.htmlequal = function htmlequal(html1, html2) {
-	    return htmlbowl(html1).isEqualNode(htmlbowl(html2));
-	};
-
 	var parser = new DOMParser();
-	var xmldoc = function xmldoc(xml) {
-	    return parser.parseFromString(xml, 'application/xml');
-	};
 
-	var xmlequal = exports.xmlequal = function xmlequal(xml1, xml2) {
-	    return xmldoc(xml1).isEqualNode(xmldoc(xml2));
-	};
-
+	/**
+	 * Check if a given DOM node is equivalent to a given XML-markup string
+	 * @param {Element} dom Node to compare
+	 * @param {String} markup String to compare
+	 * @param {String} mimetype MIME-type
+	 * @returns {boolean}
+	 */
 	var domEqualMarkup = exports.domEqualMarkup = function domEqualMarkup(dom, markup) {
-	    var mime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'application/xml';
+	  var mimetype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'application/xml';
 
-	    var parser = new DOMParser();
-	    var node = parser.parseFromString(markup, mime);
-	    return dom.isEqualNode(node);
+	  var node = parser.parseFromString(markup, mimetype);
+	  return dom.isEqualNode(node);
 	};
 
+	/**
+	 * Check if a given DOM node is equivalent to a given HTML-markup string
+	 * @param {Element} dom Node to compare
+	 * @param {String} markup String to compare
+	 * @returns {boolean}
+	 */
 	var htmlEqualMarkup = exports.htmlEqualMarkup = function htmlEqualMarkup(dom, markup) {
-	    return domEqualMarkup(dom, markup, 'application/xhtml');
+	  return domEqualMarkup(dom, markup, 'application/xhtml');
 	};
 
 /***/ },
@@ -11032,7 +11026,6 @@
 	            assert.equal(node.id, '00101');
 	            assert.equal(node.className, 'fa fi fu');
 	            assert.equal(node.tabIndex, undefined);
-	            // assert.equal(node.children.length, 0);
 	            assert.equal(node.childNodes.length, 3);
 	            assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
 	            assert.equal(node.childNodes[1].constructor, Comment);
