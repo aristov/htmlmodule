@@ -181,7 +181,8 @@ const assembler = new DOMAssembler;
  * @param {{}} [init.attrset] `Element` attributes set as dictionary object
  * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes
  * @param {String} [init.className] `Element` class name; reflects &quot;class&quot; attribute
- * @param {String} [init.id] `Element` id; reflects &quot;id&quot; attribute
+ * @param {String} [init.id] `Element` unique identifier; reflects &quot;id&quot; content attribute
+ * @param {String} [init.textContent] Paste string data as a single text node
  * @return {Element}
  */
 export function xmldom(tagName, init) {

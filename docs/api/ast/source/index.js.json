@@ -8,34 +8,54 @@
         "value": "./nodeinit",
         "raw": "'./nodeinit'",
         "range": [
-          14,
-          26
+          152,
+          164
         ],
         "loc": {
           "start": {
-            "line": 1,
+            "line": 7,
             "column": 14
           },
           "end": {
-            "line": 1,
+            "line": 7,
             "column": 26
           }
         }
       },
       "range": [
-        0,
-        27
+        138,
+        165
       ],
       "loc": {
         "start": {
-          "line": 1,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 1,
+          "line": 7,
           "column": 27
         }
-      }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @module htmlmodule\n *\n * Elements in the DOM represent things; that is, they have intrinsic meaning, also known as semantics.\n ",
+          "range": [
+            0,
+            136
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        }
+      ]
     },
     {
       "type": "ExportAllDeclaration",
@@ -44,31 +64,31 @@
         "value": "./domassembler",
         "raw": "'./domassembler'",
         "range": [
-          42,
-          58
+          180,
+          196
         ],
         "loc": {
           "start": {
-            "line": 2,
+            "line": 8,
             "column": 14
           },
           "end": {
-            "line": 2,
+            "line": 8,
             "column": 30
           }
         }
       },
       "range": [
-        28,
-        59
+        166,
+        197
       ],
       "loc": {
         "start": {
-          "line": 2,
+          "line": 8,
           "column": 0
         },
         "end": {
-          "line": 2,
+          "line": 8,
           "column": 31
         }
       }
@@ -80,31 +100,31 @@
         "value": "./htmlassembler",
         "raw": "'./htmlassembler'",
         "range": [
-          74,
-          91
+          212,
+          229
         ],
         "loc": {
           "start": {
-            "line": 3,
+            "line": 9,
             "column": 14
           },
           "end": {
-            "line": 3,
+            "line": 9,
             "column": 31
           }
         }
       },
       "range": [
-        60,
-        92
+        198,
+        230
       ],
       "loc": {
         "start": {
-          "line": 3,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 3,
+          "line": 9,
           "column": 32
         }
       }
@@ -116,31 +136,31 @@
         "value": "./xmldom",
         "raw": "'./xmldom'",
         "range": [
-          107,
-          117
+          245,
+          255
         ],
         "loc": {
           "start": {
-            "line": 4,
+            "line": 10,
             "column": 14
           },
           "end": {
-            "line": 4,
+            "line": 10,
             "column": 24
           }
         }
       },
       "range": [
-        93,
-        118
+        231,
+        256
       ],
       "loc": {
         "start": {
-          "line": 4,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 4,
+          "line": 10,
           "column": 25
         }
       }
@@ -152,31 +172,31 @@
         "value": "./htmldom",
         "raw": "'./htmldom'",
         "range": [
-          133,
-          144
+          271,
+          282
         ],
         "loc": {
           "start": {
-            "line": 5,
+            "line": 11,
             "column": 14
           },
           "end": {
-            "line": 5,
+            "line": 11,
             "column": 25
           }
         }
       },
       "range": [
-        119,
-        145
+        257,
+        283
       ],
       "loc": {
         "start": {
-          "line": 5,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 11,
           "column": 26
         }
       }
@@ -184,18 +204,37 @@
   ],
   "sourceType": "module",
   "range": [
-    0,
-    145
+    138,
+    283
   ],
   "loc": {
     "start": {
-      "line": 1,
+      "line": 7,
       "column": 0
     },
     "end": {
-      "line": 5,
+      "line": 11,
       "column": 26
     }
   },
-  "comments": []
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @module htmlmodule\n *\n * Elements in the DOM represent things; that is, they have intrinsic meaning, also known as semantics.\n ",
+      "range": [
+        0,
+        136
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    }
+  ]
 }

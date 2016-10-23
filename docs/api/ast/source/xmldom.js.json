@@ -316,10 +316,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
           "range": [
             115,
-            887
+            988
           ],
           "loc": {
             "start": {
@@ -327,7 +327,7 @@
               "column": 0
             },
             "end": {
-              "line": 24,
+              "line": 25,
               "column": 3
             }
           }
@@ -342,16 +342,16 @@
           "type": "Identifier",
           "name": "xmldom",
           "range": [
-            904,
-            910
+            1005,
+            1011
           ],
           "loc": {
             "start": {
-              "line": 25,
+              "line": 26,
               "column": 16
             },
             "end": {
-              "line": 25,
+              "line": 26,
               "column": 22
             }
           }
@@ -361,16 +361,16 @@
             "type": "Identifier",
             "name": "tagName",
             "range": [
-              911,
-              918
+              1012,
+              1019
             ],
             "loc": {
               "start": {
-                "line": 25,
+                "line": 26,
                 "column": 23
               },
               "end": {
-                "line": 25,
+                "line": 26,
                 "column": 30
               }
             }
@@ -379,16 +379,16 @@
             "type": "Identifier",
             "name": "init",
             "range": [
-              920,
-              924
+              1021,
+              1025
             ],
             "loc": {
               "start": {
-                "line": 25,
+                "line": 26,
                 "column": 32
               },
               "end": {
-                "line": 25,
+                "line": 26,
                 "column": 36
               }
             }
@@ -408,16 +408,16 @@
                     "type": "Identifier",
                     "name": "assembler",
                     "range": [
-                      939,
-                      948
+                      1040,
+                      1049
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 27,
                         "column": 11
                       },
                       "end": {
-                        "line": 26,
+                        "line": 27,
                         "column": 20
                       }
                     }
@@ -426,31 +426,31 @@
                     "type": "Identifier",
                     "name": "createElement",
                     "range": [
-                      949,
-                      962
+                      1050,
+                      1063
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 27,
                         "column": 21
                       },
                       "end": {
-                        "line": 26,
+                        "line": 27,
                         "column": 34
                       }
                     }
                   },
                   "range": [
-                    939,
-                    962
+                    1040,
+                    1063
                   ],
                   "loc": {
                     "start": {
-                      "line": 26,
+                      "line": 27,
                       "column": 11
                     },
                     "end": {
-                      "line": 26,
+                      "line": 27,
                       "column": 34
                     }
                   }
@@ -460,16 +460,16 @@
                     "type": "Identifier",
                     "name": "tagName",
                     "range": [
-                      963,
-                      970
+                      1064,
+                      1071
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 27,
                         "column": 35
                       },
                       "end": {
-                        "line": 26,
+                        "line": 27,
                         "column": 42
                       }
                     }
@@ -478,63 +478,63 @@
                     "type": "Identifier",
                     "name": "init",
                     "range": [
-                      972,
-                      976
+                      1073,
+                      1077
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 27,
                         "column": 44
                       },
                       "end": {
-                        "line": 26,
+                        "line": 27,
                         "column": 48
                       }
                     }
                   }
                 ],
                 "range": [
-                  939,
-                  977
+                  1040,
+                  1078
                 ],
                 "loc": {
                   "start": {
-                    "line": 26,
+                    "line": 27,
                     "column": 11
                   },
                   "end": {
-                    "line": 26,
+                    "line": 27,
                     "column": 49
                   }
                 }
               },
               "range": [
-                932,
-                978
+                1033,
+                1079
               ],
               "loc": {
                 "start": {
-                  "line": 26,
+                  "line": 27,
                   "column": 4
                 },
                 "end": {
-                  "line": 26,
+                  "line": 27,
                   "column": 50
                 }
               }
             }
           ],
           "range": [
-            926,
-            980
+            1027,
+            1081
           ],
           "loc": {
             "start": {
-              "line": 25,
+              "line": 26,
               "column": 38
             },
             "end": {
-              "line": 27,
+              "line": 28,
               "column": 1
             }
           }
@@ -542,26 +542,26 @@
         "generator": false,
         "expression": false,
         "range": [
-          895,
-          980
+          996,
+          1081
         ],
         "loc": {
           "start": {
-            "line": 25,
+            "line": 26,
             "column": 7
           },
           "end": {
-            "line": 27,
+            "line": 28,
             "column": 1
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+            "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
             "range": [
               115,
-              887
+              988
             ],
             "loc": {
               "start": {
@@ -569,7 +569,7 @@
                 "column": 0
               },
               "end": {
-                "line": 24,
+                "line": 25,
                 "column": 3
               }
             }
@@ -580,16 +580,16 @@
             "type": "Block",
             "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
             "range": [
-              982,
-              1129
+              1083,
+              1230
             ],
             "loc": {
               "start": {
-                "line": 29,
+                "line": 30,
                 "column": 0
               },
               "end": {
-                "line": 33,
+                "line": 34,
                 "column": 3
               }
             }
@@ -599,26 +599,26 @@
       "specifiers": [],
       "source": null,
       "range": [
-        888,
-        980
+        989,
+        1081
       ],
       "loc": {
         "start": {
-          "line": 25,
+          "line": 26,
           "column": 0
         },
         "end": {
-          "line": 27,
+          "line": 28,
           "column": 1
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
           "range": [
             115,
-            887
+            988
           ],
           "loc": {
             "start": {
@@ -626,7 +626,7 @@
               "column": 0
             },
             "end": {
-              "line": 24,
+              "line": 25,
               "column": 3
             }
           }
@@ -637,16 +637,16 @@
           "type": "Block",
           "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
           "range": [
-            982,
-            1129
+            1083,
+            1230
           ],
           "loc": {
             "start": {
-              "line": 29,
+              "line": 30,
               "column": 0
             },
             "end": {
-              "line": 33,
+              "line": 34,
               "column": 3
             }
           }
@@ -661,16 +661,16 @@
           "type": "Identifier",
           "name": "element",
           "range": [
-            1146,
-            1153
+            1247,
+            1254
           ],
           "loc": {
             "start": {
-              "line": 34,
+              "line": 35,
               "column": 16
             },
             "end": {
-              "line": 34,
+              "line": 35,
               "column": 23
             }
           }
@@ -680,16 +680,16 @@
             "type": "Identifier",
             "name": "init",
             "range": [
-              1154,
-              1158
+              1255,
+              1259
             ],
             "loc": {
               "start": {
-                "line": 34,
+                "line": 35,
                 "column": 24
               },
               "end": {
-                "line": 34,
+                "line": 35,
                 "column": 28
               }
             }
@@ -706,16 +706,16 @@
                   "type": "Identifier",
                   "name": "xmldom",
                   "range": [
-                    1169,
-                    1175
+                    1270,
+                    1276
                   ],
                   "loc": {
                     "start": {
-                      "line": 34,
+                      "line": 35,
                       "column": 39
                     },
                     "end": {
-                      "line": 34,
+                      "line": 35,
                       "column": 45
                     }
                   }
@@ -726,16 +726,16 @@
                     "value": "element",
                     "raw": "'element'",
                     "range": [
-                      1176,
-                      1185
+                      1277,
+                      1286
                     ],
                     "loc": {
                       "start": {
-                        "line": 34,
+                        "line": 35,
                         "column": 46
                       },
                       "end": {
-                        "line": 34,
+                        "line": 35,
                         "column": 55
                       }
                     }
@@ -744,63 +744,63 @@
                     "type": "Identifier",
                     "name": "init",
                     "range": [
-                      1187,
-                      1191
+                      1288,
+                      1292
                     ],
                     "loc": {
                       "start": {
-                        "line": 34,
+                        "line": 35,
                         "column": 57
                       },
                       "end": {
-                        "line": 34,
+                        "line": 35,
                         "column": 61
                       }
                     }
                   }
                 ],
                 "range": [
-                  1169,
-                  1192
+                  1270,
+                  1293
                 ],
                 "loc": {
                   "start": {
-                    "line": 34,
+                    "line": 35,
                     "column": 39
                   },
                   "end": {
-                    "line": 34,
+                    "line": 35,
                     "column": 62
                   }
                 }
               },
               "range": [
-                1162,
-                1193
+                1263,
+                1294
               ],
               "loc": {
                 "start": {
-                  "line": 34,
+                  "line": 35,
                   "column": 32
                 },
                 "end": {
-                  "line": 34,
+                  "line": 35,
                   "column": 63
                 }
               }
             }
           ],
           "range": [
-            1160,
-            1194
+            1261,
+            1295
           ],
           "loc": {
             "start": {
-              "line": 34,
+              "line": 35,
               "column": 30
             },
             "end": {
-              "line": 34,
+              "line": 35,
               "column": 64
             }
           }
@@ -808,16 +808,16 @@
         "generator": false,
         "expression": false,
         "range": [
-          1137,
-          1194
+          1238,
+          1295
         ],
         "loc": {
           "start": {
-            "line": 34,
+            "line": 35,
             "column": 7
           },
           "end": {
-            "line": 34,
+            "line": 35,
             "column": 64
           }
         },
@@ -826,16 +826,16 @@
             "type": "Block",
             "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
             "range": [
-              982,
-              1129
+              1083,
+              1230
             ],
             "loc": {
               "start": {
-                "line": 29,
+                "line": 30,
                 "column": 0
               },
               "end": {
-                "line": 33,
+                "line": 34,
                 "column": 3
               }
             }
@@ -846,16 +846,16 @@
             "type": "Block",
             "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
             "range": [
-              1196,
-              1286
+              1297,
+              1387
             ],
             "loc": {
               "start": {
-                "line": 36,
+                "line": 37,
                 "column": 0
               },
               "end": {
-                "line": 40,
+                "line": 41,
                 "column": 3
               }
             }
@@ -865,16 +865,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1130,
-        1194
+        1231,
+        1295
       ],
       "loc": {
         "start": {
-          "line": 34,
+          "line": 35,
           "column": 0
         },
         "end": {
-          "line": 34,
+          "line": 35,
           "column": 64
         }
       },
@@ -883,16 +883,16 @@
           "type": "Block",
           "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
           "range": [
-            982,
-            1129
+            1083,
+            1230
           ],
           "loc": {
             "start": {
-              "line": 29,
+              "line": 30,
               "column": 0
             },
             "end": {
-              "line": 33,
+              "line": 34,
               "column": 3
             }
           }
@@ -903,16 +903,16 @@
           "type": "Block",
           "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
           "range": [
-            1196,
-            1286
+            1297,
+            1387
           ],
           "loc": {
             "start": {
-              "line": 36,
+              "line": 37,
               "column": 0
             },
             "end": {
-              "line": 40,
+              "line": 41,
               "column": 3
             }
           }
@@ -927,16 +927,16 @@
           "type": "Identifier",
           "name": "text",
           "range": [
-            1303,
-            1307
+            1404,
+            1408
           ],
           "loc": {
             "start": {
-              "line": 41,
+              "line": 42,
               "column": 16
             },
             "end": {
-              "line": 41,
+              "line": 42,
               "column": 20
             }
           }
@@ -946,16 +946,16 @@
             "type": "Identifier",
             "name": "data",
             "range": [
-              1308,
-              1312
+              1409,
+              1413
             ],
             "loc": {
               "start": {
-                "line": 41,
+                "line": 42,
                 "column": 21
               },
               "end": {
-                "line": 41,
+                "line": 42,
                 "column": 25
               }
             }
@@ -975,16 +975,16 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      1323,
-                      1331
+                      1424,
+                      1432
                     ],
                     "loc": {
                       "start": {
-                        "line": 41,
+                        "line": 42,
                         "column": 36
                       },
                       "end": {
-                        "line": 41,
+                        "line": 42,
                         "column": 44
                       }
                     }
@@ -993,31 +993,31 @@
                     "type": "Identifier",
                     "name": "createTextNode",
                     "range": [
-                      1332,
-                      1346
+                      1433,
+                      1447
                     ],
                     "loc": {
                       "start": {
-                        "line": 41,
+                        "line": 42,
                         "column": 45
                       },
                       "end": {
-                        "line": 41,
+                        "line": 42,
                         "column": 59
                       }
                     }
                   },
                   "range": [
-                    1323,
-                    1346
+                    1424,
+                    1447
                   ],
                   "loc": {
                     "start": {
-                      "line": 41,
+                      "line": 42,
                       "column": 36
                     },
                     "end": {
-                      "line": 41,
+                      "line": 42,
                       "column": 59
                     }
                   }
@@ -1027,63 +1027,63 @@
                     "type": "Identifier",
                     "name": "data",
                     "range": [
-                      1347,
-                      1351
+                      1448,
+                      1452
                     ],
                     "loc": {
                       "start": {
-                        "line": 41,
+                        "line": 42,
                         "column": 60
                       },
                       "end": {
-                        "line": 41,
+                        "line": 42,
                         "column": 64
                       }
                     }
                   }
                 ],
                 "range": [
-                  1323,
-                  1352
+                  1424,
+                  1453
                 ],
                 "loc": {
                   "start": {
-                    "line": 41,
+                    "line": 42,
                     "column": 36
                   },
                   "end": {
-                    "line": 41,
+                    "line": 42,
                     "column": 65
                   }
                 }
               },
               "range": [
-                1316,
-                1353
+                1417,
+                1454
               ],
               "loc": {
                 "start": {
-                  "line": 41,
+                  "line": 42,
                   "column": 29
                 },
                 "end": {
-                  "line": 41,
+                  "line": 42,
                   "column": 66
                 }
               }
             }
           ],
           "range": [
-            1314,
-            1354
+            1415,
+            1455
           ],
           "loc": {
             "start": {
-              "line": 41,
+              "line": 42,
               "column": 27
             },
             "end": {
-              "line": 41,
+              "line": 42,
               "column": 67
             }
           }
@@ -1091,16 +1091,16 @@
         "generator": false,
         "expression": false,
         "range": [
-          1294,
-          1354
+          1395,
+          1455
         ],
         "loc": {
           "start": {
-            "line": 41,
+            "line": 42,
             "column": 7
           },
           "end": {
-            "line": 41,
+            "line": 42,
             "column": 67
           }
         },
@@ -1109,16 +1109,16 @@
             "type": "Block",
             "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
             "range": [
-              1196,
-              1286
+              1297,
+              1387
             ],
             "loc": {
               "start": {
-                "line": 36,
+                "line": 37,
                 "column": 0
               },
               "end": {
-                "line": 40,
+                "line": 41,
                 "column": 3
               }
             }
@@ -1129,16 +1129,16 @@
             "type": "Block",
             "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
             "range": [
-              1356,
-              1452
+              1457,
+              1553
             ],
             "loc": {
               "start": {
-                "line": 43,
+                "line": 44,
                 "column": 0
               },
               "end": {
-                "line": 47,
+                "line": 48,
                 "column": 3
               }
             }
@@ -1148,16 +1148,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1287,
-        1354
+        1388,
+        1455
       ],
       "loc": {
         "start": {
-          "line": 41,
+          "line": 42,
           "column": 0
         },
         "end": {
-          "line": 41,
+          "line": 42,
           "column": 67
         }
       },
@@ -1166,16 +1166,16 @@
           "type": "Block",
           "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
           "range": [
-            1196,
-            1286
+            1297,
+            1387
           ],
           "loc": {
             "start": {
-              "line": 36,
+              "line": 37,
               "column": 0
             },
             "end": {
-              "line": 40,
+              "line": 41,
               "column": 3
             }
           }
@@ -1186,16 +1186,16 @@
           "type": "Block",
           "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
           "range": [
-            1356,
-            1452
+            1457,
+            1553
           ],
           "loc": {
             "start": {
-              "line": 43,
+              "line": 44,
               "column": 0
             },
             "end": {
-              "line": 47,
+              "line": 48,
               "column": 3
             }
           }
@@ -1210,16 +1210,16 @@
           "type": "Identifier",
           "name": "comment",
           "range": [
-            1469,
-            1476
+            1570,
+            1577
           ],
           "loc": {
             "start": {
-              "line": 48,
+              "line": 49,
               "column": 16
             },
             "end": {
-              "line": 48,
+              "line": 49,
               "column": 23
             }
           }
@@ -1229,16 +1229,16 @@
             "type": "Identifier",
             "name": "data",
             "range": [
-              1477,
-              1481
+              1578,
+              1582
             ],
             "loc": {
               "start": {
-                "line": 48,
+                "line": 49,
                 "column": 24
               },
               "end": {
-                "line": 48,
+                "line": 49,
                 "column": 28
               }
             }
@@ -1258,16 +1258,16 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      1492,
-                      1500
+                      1593,
+                      1601
                     ],
                     "loc": {
                       "start": {
-                        "line": 48,
+                        "line": 49,
                         "column": 39
                       },
                       "end": {
-                        "line": 48,
+                        "line": 49,
                         "column": 47
                       }
                     }
@@ -1276,31 +1276,31 @@
                     "type": "Identifier",
                     "name": "createComment",
                     "range": [
-                      1501,
-                      1514
+                      1602,
+                      1615
                     ],
                     "loc": {
                       "start": {
-                        "line": 48,
+                        "line": 49,
                         "column": 48
                       },
                       "end": {
-                        "line": 48,
+                        "line": 49,
                         "column": 61
                       }
                     }
                   },
                   "range": [
-                    1492,
-                    1514
+                    1593,
+                    1615
                   ],
                   "loc": {
                     "start": {
-                      "line": 48,
+                      "line": 49,
                       "column": 39
                     },
                     "end": {
-                      "line": 48,
+                      "line": 49,
                       "column": 61
                     }
                   }
@@ -1310,63 +1310,63 @@
                     "type": "Identifier",
                     "name": "data",
                     "range": [
-                      1515,
-                      1519
+                      1616,
+                      1620
                     ],
                     "loc": {
                       "start": {
-                        "line": 48,
+                        "line": 49,
                         "column": 62
                       },
                       "end": {
-                        "line": 48,
+                        "line": 49,
                         "column": 66
                       }
                     }
                   }
                 ],
                 "range": [
-                  1492,
-                  1520
+                  1593,
+                  1621
                 ],
                 "loc": {
                   "start": {
-                    "line": 48,
+                    "line": 49,
                     "column": 39
                   },
                   "end": {
-                    "line": 48,
+                    "line": 49,
                     "column": 67
                   }
                 }
               },
               "range": [
-                1485,
-                1521
+                1586,
+                1622
               ],
               "loc": {
                 "start": {
-                  "line": 48,
+                  "line": 49,
                   "column": 32
                 },
                 "end": {
-                  "line": 48,
+                  "line": 49,
                   "column": 68
                 }
               }
             }
           ],
           "range": [
-            1483,
-            1522
+            1584,
+            1623
           ],
           "loc": {
             "start": {
-              "line": 48,
+              "line": 49,
               "column": 30
             },
             "end": {
-              "line": 48,
+              "line": 49,
               "column": 69
             }
           }
@@ -1374,16 +1374,16 @@
         "generator": false,
         "expression": false,
         "range": [
-          1460,
-          1522
+          1561,
+          1623
         ],
         "loc": {
           "start": {
-            "line": 48,
+            "line": 49,
             "column": 7
           },
           "end": {
-            "line": 48,
+            "line": 49,
             "column": 69
           }
         },
@@ -1392,16 +1392,16 @@
             "type": "Block",
             "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
             "range": [
-              1356,
-              1452
+              1457,
+              1553
             ],
             "loc": {
               "start": {
-                "line": 43,
+                "line": 44,
                 "column": 0
               },
               "end": {
-                "line": 47,
+                "line": 48,
                 "column": 3
               }
             }
@@ -1412,16 +1412,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1453,
-        1522
+        1554,
+        1623
       ],
       "loc": {
         "start": {
-          "line": 48,
+          "line": 49,
           "column": 0
         },
         "end": {
-          "line": 48,
+          "line": 49,
           "column": 69
         }
       },
@@ -1430,16 +1430,16 @@
           "type": "Block",
           "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
           "range": [
-            1356,
-            1452
+            1457,
+            1553
           ],
           "loc": {
             "start": {
-              "line": 43,
+              "line": 44,
               "column": 0
             },
             "end": {
-              "line": 47,
+              "line": 48,
               "column": 3
             }
           }
@@ -1450,7 +1450,7 @@
   "sourceType": "module",
   "range": [
     0,
-    1522
+    1623
   ],
   "loc": {
     "start": {
@@ -1458,17 +1458,17 @@
       "column": 0
     },
     "end": {
-      "line": 48,
+      "line": 49,
       "column": 69
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` id; reflects \"id\" attribute\n * @return {Element}\n ",
+      "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
       "range": [
         115,
-        887
+        988
       ],
       "loc": {
         "start": {
@@ -1476,7 +1476,7 @@
           "column": 0
         },
         "end": {
-          "line": 24,
+          "line": 25,
           "column": 3
         }
       }
@@ -1485,16 +1485,16 @@
       "type": "Block",
       "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
       "range": [
-        982,
-        1129
+        1083,
+        1230
       ],
       "loc": {
         "start": {
-          "line": 29,
+          "line": 30,
           "column": 0
         },
         "end": {
-          "line": 33,
+          "line": 34,
           "column": 3
         }
       }
@@ -1503,16 +1503,16 @@
       "type": "Block",
       "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
       "range": [
-        1196,
-        1286
+        1297,
+        1387
       ],
       "loc": {
         "start": {
-          "line": 36,
+          "line": 37,
           "column": 0
         },
         "end": {
-          "line": 40,
+          "line": 41,
           "column": 3
         }
       }
@@ -1521,16 +1521,16 @@
       "type": "Block",
       "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
       "range": [
-        1356,
-        1452
+        1457,
+        1553
       ],
       "loc": {
         "start": {
-          "line": 43,
+          "line": 44,
           "column": 0
         },
         "end": {
-          "line": 47,
+          "line": 48,
           "column": 3
         }
       }
