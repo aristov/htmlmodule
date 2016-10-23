@@ -47,7 +47,7 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./docs/spec */33);
+	module.exports = __webpack_require__(/*! ./docs/spec */34);
 
 
 /***/ },
@@ -73,7 +73,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _nodeinit[key];
 	    }
 	  });
@@ -85,7 +85,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _domassembler[key];
 	    }
 	  });
@@ -97,7 +97,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _htmlassembler[key];
 	    }
 	  });
@@ -109,7 +109,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _xmldom[key];
 	    }
 	  });
@@ -121,7 +121,7 @@
 	  if (key === "default" || key === "__esModule") return;
 	  Object.defineProperty(exports, key, {
 	    enumerable: true,
-	    get: function () {
+	    get: function get() {
 	      return _htmldom[key];
 	    }
 	  });
@@ -168,10 +168,16 @@
 	});
 	exports.DOMAssembler = exports.XML_NS_URI = undefined;
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 6);
 
-	const { isArray } = Array;
-	const { document, Element } = window;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var isArray = Array.isArray;
+	var _window = window;
+	var document = _window.document;
+	var Element = _window.Element;
 
 	/**
 	 * XML namespace
@@ -179,103 +185,135 @@
 	 * - https://www.w3.org/1999/xml
 	 * @namespace
 	 */
-	const XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
+
+	var XML_NS_URI = exports.XML_NS_URI = 'https://www.w3.org/1999/xml';
 
 	/**
 	 * - Assembler for DOM `Element`
 	 * - `Document.createElementNS` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `Element` initialization
 	 */
-	class DOMAssembler {
-	    /**
-	     * Assign given element to assembler instance
-	     * @param {Element} element node to assign
-	     */
-	    set element(element) {
-	        if (element instanceof Element) {
-	            /**
-	             * Node, currently assigned to the assembler instance
-	             * @type {Element}
-	             */
-	            this.node = element;
-	        } else throw Error('This is not Element');
+
+	var DOMAssembler = exports.DOMAssembler = function () {
+	    function DOMAssembler() {
+	        _classCallCheck(this, DOMAssembler);
 	    }
 
-	    /**
-	     * Get the assigned element
-	     * @return {Element} assigned node
-	     */
-	    get element() {
-	        if (this.node) return this.node;else throw Error('No element assigned');
-	    }
+	    _createClass(DOMAssembler, [{
+	        key: 'createElement',
 
-	    /**
-	     * todo thinkme: define as method? if(init) this.init(NodeInit(init), ...initlist);
-	     * Initialize the element with defined properties
-	     * @param {{}} init initializing dictionary object
-	     */
-	    set init(init) {
-	        const element = this.element;
-	        for (let prop in init) {
-	            const value = init[prop];
-	            if (value !== undefined) {
-	                if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
+
+	        /**
+	         * Create the specified element and initialize it by a given property set
+	         * @param {String} tagName
+	         * @param {{}|String|Node|DOMAssembler|Array} [init]
+	         * @returns {Element} created and initialized DOM `Element`
+	         */
+	        value: function createElement(tagName, init) {
+	            var namespaceURI = this.constructor.namespaceURI;
+
+	            this.element = document.createElementNS(namespaceURI, tagName);
+	            if (init) this.init = (0, _nodeinit.NodeInit)(init);
+	            return this.element;
+	        }
+
+	        /**
+	         * Create elements in XML namespace
+	         * @return {String}
+	         */
+
+	    }, {
+	        key: 'element',
+
+	        /**
+	         * Assign given element to assembler instance
+	         * @param {Element} element node to assign
+	         */
+	        set: function set(element) {
+	            if (element instanceof Element) {
+	                /**
+	                 * Node, currently assigned to the assembler instance
+	                 * @type {Element}
+	                 */
+	                this.node = element;
+	            } else throw Error('This is not Element');
+	        }
+
+	        /**
+	         * Get the assigned element
+	         * @return {Element} assigned node
+	         */
+	        ,
+	        get: function get() {
+	            if (this.node) return this.node;else throw Error('No element assigned');
+	        }
+
+	        /**
+	         * todo thinkme: define as method? if(init) this.init(NodeInit(init), ...initlist);
+	         * Initialize the element with defined properties
+	         * @param {{}} init initializing dictionary object
+	         */
+
+	    }, {
+	        key: 'init',
+	        set: function set(init) {
+	            var element = this.element;
+	            for (var prop in init) {
+	                var value = init[prop];
+	                if (value !== undefined) {
+	                    if (prop in this) this[prop] = value;else if (prop in element) element[prop] = value;
+	                }
 	            }
 	        }
-	    }
 
-	    /**
-	     * Set attributes on the element
-	     * @param {{}} attrset dictionary object
-	     */
-	    set attrset(attrset) {
-	        const element = this.element;
-	        for (let name in attrset) {
-	            const value = attrset[name];
-	            if (typeof value === 'string') {
-	                element.setAttribute(name, value);
+	        /**
+	         * Set attributes on the element
+	         * @param {{}} attrset dictionary object
+	         */
+
+	    }, {
+	        key: 'attrset',
+	        set: function set(attrset) {
+	            var element = this.element;
+	            for (var name in attrset) {
+	                var value = attrset[name];
+	                if (typeof value === 'string') {
+	                    element.setAttribute(name, value);
+	                }
 	            }
 	        }
-	    }
 
-	    /**
-	     * Append children to the element
-	     * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
-	     * @param {Node|String|DOMAssembler|Array} [children] child node or string or assembler instance or array of listed
-	     */
-	    set children(children) {
-	        if (isArray(children)) {
-	            children.forEach(child => this.children = child);
-	        } else if (children) {
-	            const child = typeof children === 'string' ? document.createTextNode(children) : children instanceof DOMAssembler ? // todo add spec
-	            children.element : children;
-	            this.element.appendChild(child);
+	        /**
+	         * Append children to the element
+	         * - Supports arrays and nested arrays, single DOM nodes and strings as `Text` nodes
+	         * @param {Node|String|DOMAssembler|Array} [children] child node or string or assembler instance or array of listed
+	         */
+
+	    }, {
+	        key: 'children',
+	        set: function set(children) {
+	            var _this = this;
+
+	            if (isArray(children)) {
+	                children.forEach(function (child) {
+	                    return _this.children = child;
+	                });
+	            } else if (children) {
+	                var child = typeof children === 'string' ? document.createTextNode(children) : children instanceof DOMAssembler ? // todo add spec
+	                children.element : children;
+	                this.element.appendChild(child);
+	            }
 	        }
-	    }
+	    }], [{
+	        key: 'namespaceURI',
+	        get: function get() {
+	            return XML_NS_URI;
+	        }
+	    }]);
 
-	    /**
-	     * Create the specified element and initialize it by a given property set
-	     * @param {String} tagName
-	     * @param {{}|String|Node|DOMAssembler|Array} [init]
-	     * @returns {Element} created and initialized DOM `Element`
-	     */
-	    createElement(tagName, init) {
-	        const { namespaceURI } = this.constructor;
-	        this.element = document.createElementNS(namespaceURI, tagName);
-	        if (init) this.init = (0, _nodeinit.NodeInit)(init);
-	        return this.element;
-	    }
+	    return DOMAssembler;
+	}();
 
-	    /**
-	     * Create elements in XML namespace
-	     * @return {String}
-	     */
-	    static get namespaceURI() {
-	        return XML_NS_URI;
-	    }
-	}
-
-	exports.DOMAssembler = DOMAssembler;
 	Object.defineProperty(DOMAssembler.prototype, 'node', { writable: true, value: null });
 
 /***/ },
@@ -292,9 +330,17 @@
 	});
 	exports.HTMLAssembler = exports.XHTML_NS_URI = undefined;
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 7);
 
-	const { assign } = Object;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var assign = Object.assign;
 
 	/**
 	 * XHTML namespace
@@ -302,40 +348,61 @@
 	 * - https://www.w3.org/1999/xhtml
 	 * @namespace
 	 */
-	const XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
+
+	var XHTML_NS_URI = exports.XHTML_NS_URI = 'http://www.w3.org/1999/xhtml';
 
 	/**
 	 * - Assembler for DOM `HTMLElement`
 	 * - `Document.createElement` functionality wrapper
 	 * - Provides built-in and adapted interfaces for `HTMLElement` initialization
 	 */
-	class HTMLAssembler extends _domassembler.DOMAssembler {
-	  /**
-	   * Assign custom `data-` attributes to the element
-	   * @param {{}} dataset declaration dictionary object
-	   */
-	  set dataset(dataset) {
-	    assign(this.element.dataset, dataset);
+
+	var HTMLAssembler = exports.HTMLAssembler = function (_DOMAssembler) {
+	  _inherits(HTMLAssembler, _DOMAssembler);
+
+	  function HTMLAssembler() {
+	    _classCallCheck(this, HTMLAssembler);
+
+	    return _possibleConstructorReturn(this, (HTMLAssembler.__proto__ || Object.getPrototypeOf(HTMLAssembler)).apply(this, arguments));
 	  }
 
-	  /**
-	   * Assign CSS style declaration to the element
-	   * @param {CSSStyleDeclaration} style declaration dictionary object
-	   */
-	  set style(style) {
-	    assign(this.element.style, style);
-	  }
+	  _createClass(HTMLAssembler, [{
+	    key: 'dataset',
 
-	  /**
-	   * Create elements in XHTML namespace
-	   * @return {String}
-	   * @override
-	   */
-	  static get namespaceURI() {
-	    return XHTML_NS_URI;
-	  }
-	}
-	exports.HTMLAssembler = HTMLAssembler;
+	    /**
+	     * Assign custom `data-` attributes to the element
+	     * @param {{}} dataset declaration dictionary object
+	     */
+	    set: function set(dataset) {
+	      assign(this.element.dataset, dataset);
+	    }
+
+	    /**
+	     * Assign CSS style declaration to the element
+	     * @param {CSSStyleDeclaration} style declaration dictionary object
+	     */
+
+	  }, {
+	    key: 'style',
+	    set: function set(style) {
+	      assign(this.element.style, style);
+	    }
+
+	    /**
+	     * Create elements in XHTML namespace
+	     * @return {String}
+	     * @override
+	     */
+
+	  }], [{
+	    key: 'namespaceURI',
+	    get: function get() {
+	      return XHTML_NS_URI;
+	    }
+	  }]);
+
+	  return HTMLAssembler;
+	}(_domassembler.DOMAssembler);
 
 /***/ },
 /* 9 */
@@ -356,9 +423,11 @@
 
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 7);
 
-	const { document } = window;
+	var _window = window;
+	var document = _window.document;
 
-	const assembler = new _domassembler.DOMAssembler();
+
+	var assembler = new _domassembler.DOMAssembler();
 
 	/**
 	 * Assembles the specified `Element` DOM node
@@ -417,7 +486,7 @@
   \************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports,"__esModule",{value:true});exports.htmldom=htmldom;exports.a=a;exports.abbr=abbr;exports.address=address;exports.area=area;exports.article=article;exports.aside=aside;exports.audio=audio;exports.b=b;exports.base=base;exports.bdi=bdi;exports.bdo=bdo;exports.blockquote=blockquote;exports.body=body;exports.br=br;exports.button=button;exports.canvas=canvas;exports.caption=caption;exports.cite=cite;exports.code=code;exports.col=col;exports.colgroup=colgroup;exports.data=data;exports.datalist=datalist;exports.dd=dd;exports.del=del;exports.details=details;exports.dfn=dfn;exports.dialog=dialog;exports.div=div;exports.dl=dl;exports.dt=dt;exports.em=em;exports.embed=embed;exports.fieldset=fieldset;exports.figcaption=figcaption;exports.figure=figure;exports.footer=footer;exports.form=form;exports.h1=h1;exports.h2=h2;exports.h3=h3;exports.h4=h4;exports.h5=h5;exports.h6=h6;exports.head=head;exports.header=header;exports.hgroup=hgroup;exports.hr=hr;exports.html=html;exports.i=i;exports.iframe=iframe;exports.img=img;exports.input=input;exports.ins=ins;exports.kbd=kbd;exports.label=label;exports.legend=legend;exports.li=li;exports.link=link;exports.main=main;exports.map=map;exports.mark=mark;exports.menu=menu;exports.menuitem=menuitem;exports.meta=meta;exports.meter=meter;exports.nav=nav;exports.noscript=noscript;exports.object=object;exports.ol=ol;exports.optgroup=optgroup;exports.option=option;exports.output=output;exports.p=p;exports.param=param;exports.picture=picture;exports.pre=pre;exports.progress=progress;exports.q=q;exports.rp=rp;exports.rt=rt;exports.ruby=ruby;exports.s=s;exports.samp=samp;exports.script=script;exports.section=section;exports.select=select;exports.slot=slot;exports.small=small;exports.source=source;exports.span=span;exports.strong=strong;exports.style=style;exports.sub=sub;exports.summary=summary;exports.sup=sup;exports.table=table;exports.tbody=tbody;exports.td=td;exports.template=template;exports.textarea=textarea;exports.tfoot=tfoot;exports.th=th;exports.thead=thead;exports.time=time;exports.title=title;exports.tr=tr;exports.track=track;exports.u=u;exports.ul=ul;exports.variable=variable;exports.video=video;exports.wbr=wbr;var _htmlassembler=__webpack_require__(/*! ./htmlassembler */ 8);const assembler=new _htmlassembler.HTMLAssembler();/**
+	'use strict';Object.defineProperty(exports,"__esModule",{value:true});exports.htmldom=htmldom;exports.a=a;exports.abbr=abbr;exports.address=address;exports.area=area;exports.article=article;exports.aside=aside;exports.audio=audio;exports.b=b;exports.base=base;exports.bdi=bdi;exports.bdo=bdo;exports.blockquote=blockquote;exports.body=body;exports.br=br;exports.button=button;exports.canvas=canvas;exports.caption=caption;exports.cite=cite;exports.code=code;exports.col=col;exports.colgroup=colgroup;exports.data=data;exports.datalist=datalist;exports.dd=dd;exports.del=del;exports.details=details;exports.dfn=dfn;exports.dialog=dialog;exports.div=div;exports.dl=dl;exports.dt=dt;exports.em=em;exports.embed=embed;exports.fieldset=fieldset;exports.figcaption=figcaption;exports.figure=figure;exports.footer=footer;exports.form=form;exports.h1=h1;exports.h2=h2;exports.h3=h3;exports.h4=h4;exports.h5=h5;exports.h6=h6;exports.head=head;exports.header=header;exports.hgroup=hgroup;exports.hr=hr;exports.html=html;exports.i=i;exports.iframe=iframe;exports.img=img;exports.input=input;exports.ins=ins;exports.kbd=kbd;exports.label=label;exports.legend=legend;exports.li=li;exports.link=link;exports.main=main;exports.map=map;exports.mark=mark;exports.menu=menu;exports.menuitem=menuitem;exports.meta=meta;exports.meter=meter;exports.nav=nav;exports.noscript=noscript;exports.object=object;exports.ol=ol;exports.optgroup=optgroup;exports.option=option;exports.output=output;exports.p=p;exports.param=param;exports.picture=picture;exports.pre=pre;exports.progress=progress;exports.q=q;exports.rp=rp;exports.rt=rt;exports.ruby=ruby;exports.s=s;exports.samp=samp;exports.script=script;exports.section=section;exports.select=select;exports.slot=slot;exports.small=small;exports.source=source;exports.span=span;exports.strong=strong;exports.style=style;exports.sub=sub;exports.summary=summary;exports.sup=sup;exports.table=table;exports.tbody=tbody;exports.td=td;exports.template=template;exports.textarea=textarea;exports.tfoot=tfoot;exports.th=th;exports.thead=thead;exports.time=time;exports.title=title;exports.tr=tr;exports.track=track;exports.u=u;exports.ul=ul;exports.variable=variable;exports.video=video;exports.wbr=wbr;var _htmlassembler=__webpack_require__(/*! ./htmlassembler */ 8);var assembler=new _htmlassembler.HTMLAssembler();/**
 	 * Assembles the specified `HTMLElement` node
 	 *
 	 * Provides `HTMLElement` interface and all HTML DOM interfaces which inherit from it
@@ -2168,7 +2237,8 @@
 /* 30 */,
 /* 31 */,
 /* 32 */,
-/* 33 */
+/* 33 */,
+/* 34 */
 /*!**********************!*\
   !*** ./docs/spec.js ***!
   \**********************/
@@ -2176,10 +2246,10 @@
 
 	'use strict';
 
-	__webpack_require__(/*! ../lib/index.spec.js */ 34);
+	__webpack_require__(/*! ../lib/index.spec.js */ 35);
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!***************************!*\
   !*** ./lib/index.spec.js ***!
   \***************************/
@@ -2187,18 +2257,18 @@
 
 	'use strict';
 
-	__webpack_require__(/*! ./nodeinit.spec */ 35);
+	__webpack_require__(/*! ./nodeinit.spec */ 36);
 
-	__webpack_require__(/*! ./domassembler.spec */ 76);
+	__webpack_require__(/*! ./domassembler.spec */ 77);
 
-	__webpack_require__(/*! ./htmlassembler.spec */ 77);
+	__webpack_require__(/*! ./htmlassembler.spec */ 78);
 
-	__webpack_require__(/*! ./xmldom.spec */ 79);
+	__webpack_require__(/*! ./xmldom.spec */ 80);
 
-	__webpack_require__(/*! ./htmldom.spec */ 80);
+	__webpack_require__(/*! ./htmldom.spec */ 81);
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!******************************!*\
   !*** ./lib/nodeinit.spec.js ***!
   \******************************/
@@ -2208,46 +2278,49 @@
 
 	var _nodeinit = __webpack_require__(/*! ./nodeinit */ 6);
 
-	var _chai = __webpack_require__(/*! chai */ 36);
+	var _chai = __webpack_require__(/*! chai */ 37);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const { assert } = _chai2.default;
-	const { document, JSON } = window;
+	var assert = _chai2.default.assert;
+	var _window = window;
+	var document = _window.document;
+	var JSON = _window.JSON;
+
 
 	describe('Node init', function () {
-	    const init = { id: 'random-id' };
-	    it('return the same object', () => {
+	    var init = { id: 'random-id' };
+	    it('return the same object', function () {
 	        assert.equal((0, _nodeinit.NodeInit)(init), init);
 	    });
-	    it('properly strigified to JSON', () => {
+	    it('properly strigified to JSON', function () {
 	        assert.equal(JSON.stringify((0, _nodeinit.NodeInit)(init)), '{"id":"random-id"}');
 	    });
-	    it('properly assign string as children', () => {
-	        const string = 'string as textContent';
-	        const init = (0, _nodeinit.NodeInit)(string);
+	    it('properly assign string as children', function () {
+	        var string = 'string as textContent';
+	        var init = (0, _nodeinit.NodeInit)(string);
 	        assert.equal(init.children, string);
 	    });
-	    it('properly assign array as children', () => {
-	        const children = ['a', 'b', 'c'];
-	        const init = (0, _nodeinit.NodeInit)(children);
+	    it('properly assign array as children', function () {
+	        var children = ['a', 'b', 'c'];
+	        var init = (0, _nodeinit.NodeInit)(children);
 	        assert.equal(init.children, children);
 	    });
-	    it('properly assign element as children', () => {
-	        const child = document.createElement('a');
-	        const init = (0, _nodeinit.NodeInit)(child);
+	    it('properly assign element as children', function () {
+	        var child = document.createElement('a');
+	        var init = (0, _nodeinit.NodeInit)(child);
 	        assert.equal(init.children, child);
 	    });
-	    it('passes through undefined', () => {
-	        const init = (0, _nodeinit.NodeInit)(undefined);
+	    it('passes through undefined', function () {
+	        var init = (0, _nodeinit.NodeInit)(undefined);
 	        assert.equal(init, undefined);
 	    });
 	});
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!*************************!*\
   !*** ./~/chai/index.js ***!
   \*************************/
@@ -2255,10 +2328,10 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/chai */ 37);
+	module.exports = __webpack_require__(/*! ./lib/chai */ 38);
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!****************************!*\
   !*** ./~/chai/lib/chai.js ***!
   \****************************/
@@ -2285,13 +2358,13 @@
 	 * Assertion Error
 	 */
 
-	_exports.AssertionError = __webpack_require__(/*! assertion-error */ 38);
+	_exports.AssertionError = __webpack_require__(/*! assertion-error */ 39);
 
 	/*!
 	 * Utils for plugins (not exported)
 	 */
 
-	var util = __webpack_require__(/*! ./chai/utils */ 39);
+	var util = __webpack_require__(/*! ./chai/utils */ 40);
 
 	/**
 	 * # .use(function)
@@ -2322,46 +2395,46 @@
 	 * Configuration
 	 */
 
-	var config = __webpack_require__(/*! ./chai/config */ 52);
+	var config = __webpack_require__(/*! ./chai/config */ 53);
 	_exports.config = config;
 
 	/*!
 	 * Primary `Assertion` prototype
 	 */
 
-	var assertion = __webpack_require__(/*! ./chai/assertion */ 71);
+	var assertion = __webpack_require__(/*! ./chai/assertion */ 72);
 	_exports.use(assertion);
 
 	/*!
 	 * Core Assertions
 	 */
 
-	var core = __webpack_require__(/*! ./chai/core/assertions */ 72);
+	var core = __webpack_require__(/*! ./chai/core/assertions */ 73);
 	_exports.use(core);
 
 	/*!
 	 * Expect interface
 	 */
 
-	var expect = __webpack_require__(/*! ./chai/interface/expect */ 73);
+	var expect = __webpack_require__(/*! ./chai/interface/expect */ 74);
 	_exports.use(expect);
 
 	/*!
 	 * Should interface
 	 */
 
-	var should = __webpack_require__(/*! ./chai/interface/should */ 74);
+	var should = __webpack_require__(/*! ./chai/interface/should */ 75);
 	_exports.use(should);
 
 	/*!
 	 * Assert interface
 	 */
 
-	var assert = __webpack_require__(/*! ./chai/interface/assert */ 75);
+	var assert = __webpack_require__(/*! ./chai/interface/assert */ 76);
 	_exports.use(assert);
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!*******************************************!*\
   !*** ./~/chai/~/assertion-error/index.js ***!
   \*******************************************/
@@ -2487,7 +2560,7 @@
 	};
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!****************************************!*\
   !*** ./~/chai/lib/chai/utils/index.js ***!
   \****************************************/
@@ -2511,123 +2584,123 @@
 	 * test utility
 	 */
 
-	_exports.test = __webpack_require__(/*! ./test */ 40);
+	_exports.test = __webpack_require__(/*! ./test */ 41);
 
 	/*!
 	 * type utility
 	 */
 
-	_exports.type = __webpack_require__(/*! type-detect */ 42);
+	_exports.type = __webpack_require__(/*! type-detect */ 43);
 
 	/*!
 	 * expectTypes utility
 	 */
-	_exports.expectTypes = __webpack_require__(/*! ./expectTypes */ 44);
+	_exports.expectTypes = __webpack_require__(/*! ./expectTypes */ 45);
 
 	/*!
 	 * message utility
 	 */
 
-	_exports.getMessage = __webpack_require__(/*! ./getMessage */ 45);
+	_exports.getMessage = __webpack_require__(/*! ./getMessage */ 46);
 
 	/*!
 	 * actual utility
 	 */
 
-	_exports.getActual = __webpack_require__(/*! ./getActual */ 46);
+	_exports.getActual = __webpack_require__(/*! ./getActual */ 47);
 
 	/*!
 	 * Inspect util
 	 */
 
-	_exports.inspect = __webpack_require__(/*! ./inspect */ 47);
+	_exports.inspect = __webpack_require__(/*! ./inspect */ 48);
 
 	/*!
 	 * Object Display util
 	 */
 
-	_exports.objDisplay = __webpack_require__(/*! ./objDisplay */ 51);
+	_exports.objDisplay = __webpack_require__(/*! ./objDisplay */ 52);
 
 	/*!
 	 * Flag utility
 	 */
 
-	_exports.flag = __webpack_require__(/*! ./flag */ 41);
+	_exports.flag = __webpack_require__(/*! ./flag */ 42);
 
 	/*!
 	 * Flag transferring utility
 	 */
 
-	_exports.transferFlags = __webpack_require__(/*! ./transferFlags */ 53);
+	_exports.transferFlags = __webpack_require__(/*! ./transferFlags */ 54);
 
 	/*!
 	 * Deep equal utility
 	 */
 
-	_exports.eql = __webpack_require__(/*! deep-eql */ 54);
+	_exports.eql = __webpack_require__(/*! deep-eql */ 55);
 
 	/*!
 	 * Deep path value
 	 */
 
-	_exports.getPathValue = __webpack_require__(/*! ./getPathValue */ 62);
+	_exports.getPathValue = __webpack_require__(/*! ./getPathValue */ 63);
 
 	/*!
 	 * Deep path info
 	 */
 
-	_exports.getPathInfo = __webpack_require__(/*! ./getPathInfo */ 63);
+	_exports.getPathInfo = __webpack_require__(/*! ./getPathInfo */ 64);
 
 	/*!
 	 * Check if a property exists
 	 */
 
-	_exports.hasProperty = __webpack_require__(/*! ./hasProperty */ 64);
+	_exports.hasProperty = __webpack_require__(/*! ./hasProperty */ 65);
 
 	/*!
 	 * Function name
 	 */
 
-	_exports.getName = __webpack_require__(/*! ./getName */ 48);
+	_exports.getName = __webpack_require__(/*! ./getName */ 49);
 
 	/*!
 	 * add Property
 	 */
 
-	_exports.addProperty = __webpack_require__(/*! ./addProperty */ 65);
+	_exports.addProperty = __webpack_require__(/*! ./addProperty */ 66);
 
 	/*!
 	 * add Method
 	 */
 
-	_exports.addMethod = __webpack_require__(/*! ./addMethod */ 66);
+	_exports.addMethod = __webpack_require__(/*! ./addMethod */ 67);
 
 	/*!
 	 * overwrite Property
 	 */
 
-	_exports.overwriteProperty = __webpack_require__(/*! ./overwriteProperty */ 67);
+	_exports.overwriteProperty = __webpack_require__(/*! ./overwriteProperty */ 68);
 
 	/*!
 	 * overwrite Method
 	 */
 
-	_exports.overwriteMethod = __webpack_require__(/*! ./overwriteMethod */ 68);
+	_exports.overwriteMethod = __webpack_require__(/*! ./overwriteMethod */ 69);
 
 	/*!
 	 * Add a chainable method
 	 */
 
-	_exports.addChainableMethod = __webpack_require__(/*! ./addChainableMethod */ 69);
+	_exports.addChainableMethod = __webpack_require__(/*! ./addChainableMethod */ 70);
 
 	/*!
 	 * Overwrite chainable method
 	 */
 
-	_exports.overwriteChainableMethod = __webpack_require__(/*! ./overwriteChainableMethod */ 70);
+	_exports.overwriteChainableMethod = __webpack_require__(/*! ./overwriteChainableMethod */ 71);
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!***************************************!*\
   !*** ./~/chai/lib/chai/utils/test.js ***!
   \***************************************/
@@ -2645,7 +2718,7 @@
 	 * Module dependancies
 	 */
 
-	var flag = __webpack_require__(/*! ./flag */ 41);
+	var flag = __webpack_require__(/*! ./flag */ 42);
 
 	/**
 	 * # test(object, expression)
@@ -2665,7 +2738,7 @@
 	};
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!***************************************!*\
   !*** ./~/chai/lib/chai/utils/flag.js ***!
   \***************************************/
@@ -2708,7 +2781,7 @@
 	};
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!***************************************!*\
   !*** ./~/chai/~/type-detect/index.js ***!
   \***************************************/
@@ -2716,10 +2789,10 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/type */ 43);
+	module.exports = __webpack_require__(/*! ./lib/type */ 44);
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!******************************************!*\
   !*** ./~/chai/~/type-detect/lib/type.js ***!
   \******************************************/
@@ -2863,7 +2936,7 @@
 	};
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/expectTypes.js ***!
   \**********************************************/
@@ -2891,9 +2964,9 @@
 	 * @api public
 	 */
 
-	var AssertionError = __webpack_require__(/*! assertion-error */ 38);
-	var flag = __webpack_require__(/*! ./flag */ 41);
-	var type = __webpack_require__(/*! type-detect */ 42);
+	var AssertionError = __webpack_require__(/*! assertion-error */ 39);
+	var flag = __webpack_require__(/*! ./flag */ 42);
+	var type = __webpack_require__(/*! type-detect */ 43);
 
 	module.exports = function (obj, types) {
 	  var obj = flag(obj, 'object');
@@ -2917,7 +2990,7 @@
 	};
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/utils/getMessage.js ***!
   \*********************************************/
@@ -2935,10 +3008,10 @@
 	 * Module dependancies
 	 */
 
-	var flag = __webpack_require__(/*! ./flag */ 41),
-	    getActual = __webpack_require__(/*! ./getActual */ 46),
-	    inspect = __webpack_require__(/*! ./inspect */ 47),
-	    objDisplay = __webpack_require__(/*! ./objDisplay */ 51);
+	var flag = __webpack_require__(/*! ./flag */ 42),
+	    getActual = __webpack_require__(/*! ./getActual */ 47),
+	    inspect = __webpack_require__(/*! ./inspect */ 48),
+	    objDisplay = __webpack_require__(/*! ./objDisplay */ 52);
 
 	/**
 	 * ### .getMessage(object, message, negateMessage)
@@ -2981,7 +3054,7 @@
 	};
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!********************************************!*\
   !*** ./~/chai/lib/chai/utils/getActual.js ***!
   \********************************************/
@@ -3011,7 +3084,7 @@
 	};
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!******************************************!*\
   !*** ./~/chai/lib/chai/utils/inspect.js ***!
   \******************************************/
@@ -3019,12 +3092,14 @@
 
 	'use strict';
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	// This is (almost) directly from Node.js utils
 	// https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js
 
-	var getName = __webpack_require__(/*! ./getName */ 48);
-	var getProperties = __webpack_require__(/*! ./getProperties */ 49);
-	var getEnumerableProperties = __webpack_require__(/*! ./getEnumerableProperties */ 50);
+	var getName = __webpack_require__(/*! ./getName */ 49);
+	var getProperties = __webpack_require__(/*! ./getProperties */ 50);
+	var getEnumerableProperties = __webpack_require__(/*! ./getEnumerableProperties */ 51);
 
 	module.exports = inspect;
 
@@ -3045,7 +3120,7 @@
 	  var ctx = {
 	    showHidden: showHidden,
 	    seen: [],
-	    stylize: function (str) {
+	    stylize: function stylize(str) {
 	      return str;
 	    }
 	  };
@@ -3053,11 +3128,11 @@
 	}
 
 	// Returns true if object is a DOM element.
-	var isDOMElement = function (object) {
-	  if (typeof HTMLElement === 'object') {
+	var isDOMElement = function isDOMElement(object) {
+	  if ((typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === 'object') {
 	    return object instanceof HTMLElement;
 	  } else {
-	    return object && typeof object === 'object' && object.nodeType === 1 && typeof object.nodeName === 'string';
+	    return object && (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object' && object.nodeType === 1 && typeof object.nodeName === 'string';
 	  }
 	};
 
@@ -3199,7 +3274,7 @@
 	}
 
 	function formatPrimitive(ctx, value) {
-	  switch (typeof value) {
+	  switch (typeof value === 'undefined' ? 'undefined' : _typeof(value)) {
 	    case 'undefined':
 	      return ctx.stylize('undefined', 'undefined');
 
@@ -3316,19 +3391,19 @@
 	}
 
 	function isArray(ar) {
-	  return Array.isArray(ar) || typeof ar === 'object' && objectToString(ar) === '[object Array]';
+	  return Array.isArray(ar) || (typeof ar === 'undefined' ? 'undefined' : _typeof(ar)) === 'object' && objectToString(ar) === '[object Array]';
 	}
 
 	function isRegExp(re) {
-	  return typeof re === 'object' && objectToString(re) === '[object RegExp]';
+	  return (typeof re === 'undefined' ? 'undefined' : _typeof(re)) === 'object' && objectToString(re) === '[object RegExp]';
 	}
 
 	function isDate(d) {
-	  return typeof d === 'object' && objectToString(d) === '[object Date]';
+	  return (typeof d === 'undefined' ? 'undefined' : _typeof(d)) === 'object' && objectToString(d) === '[object Date]';
 	}
 
 	function isError(e) {
-	  return typeof e === 'object' && objectToString(e) === '[object Error]';
+	  return (typeof e === 'undefined' ? 'undefined' : _typeof(e)) === 'object' && objectToString(e) === '[object Error]';
 	}
 
 	function objectToString(o) {
@@ -3336,7 +3411,7 @@
 	}
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!******************************************!*\
   !*** ./~/chai/lib/chai/utils/getName.js ***!
   \******************************************/
@@ -3368,7 +3443,7 @@
 	};
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!************************************************!*\
   !*** ./~/chai/lib/chai/utils/getProperties.js ***!
   \************************************************/
@@ -3414,7 +3489,7 @@
 	};
 
 /***/ },
-/* 50 */
+/* 51 */
 /*!**********************************************************!*\
   !*** ./~/chai/lib/chai/utils/getEnumerableProperties.js ***!
   \**********************************************************/
@@ -3450,7 +3525,7 @@
 	};
 
 /***/ },
-/* 51 */
+/* 52 */
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/utils/objDisplay.js ***!
   \*********************************************/
@@ -3468,8 +3543,8 @@
 	 * Module dependancies
 	 */
 
-	var inspect = __webpack_require__(/*! ./inspect */ 47);
-	var config = __webpack_require__(/*! ../config */ 52);
+	var inspect = __webpack_require__(/*! ./inspect */ 48);
+	var config = __webpack_require__(/*! ../config */ 53);
 
 	/**
 	 * ### .objDisplay (object)
@@ -3506,7 +3581,7 @@
 	};
 
 /***/ },
-/* 52 */
+/* 53 */
 /*!***********************************!*\
   !*** ./~/chai/lib/chai/config.js ***!
   \***********************************/
@@ -3571,7 +3646,7 @@
 	};
 
 /***/ },
-/* 53 */
+/* 54 */
 /*!************************************************!*\
   !*** ./~/chai/lib/chai/utils/transferFlags.js ***!
   \************************************************/
@@ -3625,7 +3700,7 @@
 	};
 
 /***/ },
-/* 54 */
+/* 55 */
 /*!************************************!*\
   !*** ./~/chai/~/deep-eql/index.js ***!
   \************************************/
@@ -3633,10 +3708,10 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/eql */ 55);
+	module.exports = __webpack_require__(/*! ./lib/eql */ 56);
 
 /***/ },
-/* 55 */
+/* 56 */
 /*!**************************************!*\
   !*** ./~/chai/~/deep-eql/lib/eql.js ***!
   \**************************************/
@@ -3654,7 +3729,7 @@
 	 * Module dependencies
 	 */
 
-	var type = __webpack_require__(/*! type-detect */ 56);
+	var type = __webpack_require__(/*! type-detect */ 57);
 
 	/*!
 	 * Buffer.isBuffer browser shim
@@ -3662,7 +3737,7 @@
 
 	var Buffer;
 	try {
-	  Buffer = __webpack_require__(/*! buffer */ 58).Buffer;
+	  Buffer = __webpack_require__(/*! buffer */ 59).Buffer;
 	} catch (ex) {
 	  Buffer = {};
 	  Buffer.isBuffer = function () {
@@ -3790,8 +3865,9 @@
 
 	function enumerable(a) {
 	  var res = [];
-	  for (var key in a) res.push(key);
-	  return res;
+	  for (var key in a) {
+	    res.push(key);
+	  }return res;
 	}
 
 	/*!
@@ -3904,7 +3980,7 @@
 	}
 
 /***/ },
-/* 56 */
+/* 57 */
 /*!**************************************************!*\
   !*** ./~/chai/~/deep-eql/~/type-detect/index.js ***!
   \**************************************************/
@@ -3912,16 +3988,18 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/type */ 57);
+	module.exports = __webpack_require__(/*! ./lib/type */ 58);
 
 /***/ },
-/* 57 */
+/* 58 */
 /*!*****************************************************!*\
   !*** ./~/chai/~/deep-eql/~/type-detect/lib/type.js ***!
   \*****************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	/*!
 	 * type-detect
@@ -3965,7 +4043,7 @@
 	  if (obj === null) return 'null';
 	  if (obj === undefined) return 'undefined';
 	  if (obj === Object(obj)) return 'object';
-	  return typeof obj;
+	  return typeof obj === 'undefined' ? 'undefined' : _typeof(obj);
 	}
 
 	_exports.Library = Library;
@@ -4067,7 +4145,7 @@
 	};
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!*******************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/index.js ***!
   \*******************************************************/
@@ -4083,9 +4161,9 @@
 
 	'use strict';
 
-	var base64 = __webpack_require__(/*! base64-js */ 59);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 60);
-	var isArray = __webpack_require__(/*! isarray */ 61);
+	var base64 = __webpack_require__(/*! base64-js */ 60);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 61);
+	var isArray = __webpack_require__(/*! isarray */ 62);
 
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -4125,7 +4203,7 @@
 	function typedArraySupport() {
 	  try {
 	    var arr = new Uint8Array(1);
-	    arr.__proto__ = { __proto__: Uint8Array.prototype, foo: function () {
+	    arr.__proto__ = { __proto__: Uint8Array.prototype, foo: function foo() {
 	        return 42;
 	      } };
 	    return arr.foo() === 42 && // typed array instances can be augmented
@@ -5810,10 +5888,10 @@
 	function isnan(val) {
 	  return val !== val; // eslint-disable-line no-self-compare
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/buffer/index.js */ 58).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/buffer/index.js */ 59).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 59 */
+/* 60 */
 /*!*******************************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/~/base64-js/index.js ***!
   \*******************************************************************/
@@ -5935,7 +6013,7 @@
 	}
 
 /***/ },
-/* 60 */
+/* 61 */
 /*!*****************************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/~/ieee754/index.js ***!
   \*****************************************************************/
@@ -6029,7 +6107,7 @@
 	};
 
 /***/ },
-/* 61 */
+/* 62 */
 /*!*****************************************************************!*\
   !*** (webpack)/~/node-libs-browser/~/buffer/~/isarray/index.js ***!
   \*****************************************************************/
@@ -6044,7 +6122,7 @@
 	};
 
 /***/ },
-/* 62 */
+/* 63 */
 /*!***********************************************!*\
   !*** ./~/chai/lib/chai/utils/getPathValue.js ***!
   \***********************************************/
@@ -6059,7 +6137,7 @@
 	 * MIT Licensed
 	 */
 
-	var getPathInfo = __webpack_require__(/*! ./getPathInfo */ 63);
+	var getPathInfo = __webpack_require__(/*! ./getPathInfo */ 64);
 
 	/**
 	 * ### .getPathValue(path, object)
@@ -6097,7 +6175,7 @@
 	};
 
 /***/ },
-/* 63 */
+/* 64 */
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/getPathInfo.js ***!
   \**********************************************/
@@ -6111,7 +6189,7 @@
 	 * MIT Licensed
 	 */
 
-	var hasProperty = __webpack_require__(/*! ./hasProperty */ 64);
+	var hasProperty = __webpack_require__(/*! ./hasProperty */ 65);
 
 	/**
 	 * ### .getPathInfo(path, object)
@@ -6212,7 +6290,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 65 */
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/hasProperty.js ***!
   \**********************************************/
@@ -6220,13 +6298,15 @@
 
 	'use strict';
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	/*!
 	 * Chai - hasProperty utility
 	 * Copyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>
 	 * MIT Licensed
 	 */
 
-	var type = __webpack_require__(/*! type-detect */ 42);
+	var type = __webpack_require__(/*! type-detect */ 43);
 
 	/**
 	 * ### .hasProperty(object, name)
@@ -6278,13 +6358,13 @@
 
 	  // The `in` operator does not work with certain literals
 	  // box these before the check
-	  if (literals[ot] && typeof obj !== 'object') obj = new literals[ot](obj);
+	  if (literals[ot] && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object') obj = new literals[ot](obj);
 
 	  return name in obj;
 	};
 
 /***/ },
-/* 65 */
+/* 66 */
 /*!**********************************************!*\
   !*** ./~/chai/lib/chai/utils/addProperty.js ***!
   \**********************************************/
@@ -6298,8 +6378,8 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(/*! ../config */ 52);
-	var flag = __webpack_require__(/*! ./flag */ 41);
+	var config = __webpack_require__(/*! ../config */ 53);
+	var flag = __webpack_require__(/*! ./flag */ 42);
 
 	/**
 	 * ### addProperty (ctx, name, getter)
@@ -6340,7 +6420,7 @@
 	};
 
 /***/ },
-/* 66 */
+/* 67 */
 /*!********************************************!*\
   !*** ./~/chai/lib/chai/utils/addMethod.js ***!
   \********************************************/
@@ -6354,7 +6434,7 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(/*! ../config */ 52);
+	var config = __webpack_require__(/*! ../config */ 53);
 
 	/**
 	 * ### .addMethod (ctx, name, method)
@@ -6381,7 +6461,7 @@
 	 * @name addMethod
 	 * @api public
 	 */
-	var flag = __webpack_require__(/*! ./flag */ 41);
+	var flag = __webpack_require__(/*! ./flag */ 42);
 
 	module.exports = function (ctx, name, method) {
 	  ctx[name] = function () {
@@ -6393,7 +6473,7 @@
 	};
 
 /***/ },
-/* 67 */
+/* 68 */
 /*!****************************************************!*\
   !*** ./~/chai/lib/chai/utils/overwriteProperty.js ***!
   \****************************************************/
@@ -6443,11 +6523,11 @@
 
 	module.exports = function (ctx, name, getter) {
 	  var _get = Object.getOwnPropertyDescriptor(ctx, name),
-	      _super = function () {};
+	      _super = function _super() {};
 
 	  if (_get && 'function' === typeof _get.get) _super = _get.get;
 
-	  Object.defineProperty(ctx, name, { get: function () {
+	  Object.defineProperty(ctx, name, { get: function get() {
 	      var result = getter(_super).call(this);
 	      return result === undefined ? this : result;
 	    },
@@ -6456,7 +6536,7 @@
 	};
 
 /***/ },
-/* 68 */
+/* 69 */
 /*!**************************************************!*\
   !*** ./~/chai/lib/chai/utils/overwriteMethod.js ***!
   \**************************************************/
@@ -6506,7 +6586,7 @@
 
 	module.exports = function (ctx, name, method) {
 	  var _method = ctx[name],
-	      _super = function () {
+	      _super = function _super() {
 	    return this;
 	  };
 
@@ -6519,7 +6599,7 @@
 	};
 
 /***/ },
-/* 69 */
+/* 70 */
 /*!*****************************************************!*\
   !*** ./~/chai/lib/chai/utils/addChainableMethod.js ***!
   \*****************************************************/
@@ -6537,9 +6617,9 @@
 	 * Module dependencies
 	 */
 
-	var transferFlags = __webpack_require__(/*! ./transferFlags */ 53);
-	var flag = __webpack_require__(/*! ./flag */ 41);
-	var config = __webpack_require__(/*! ../config */ 52);
+	var transferFlags = __webpack_require__(/*! ./transferFlags */ 54);
+	var flag = __webpack_require__(/*! ./flag */ 42);
+	var config = __webpack_require__(/*! ../config */ 53);
 
 	/*!
 	 * Module variables
@@ -6588,7 +6668,7 @@
 
 	module.exports = function (ctx, name, method, chainingBehavior) {
 	  if (typeof chainingBehavior !== 'function') {
-	    chainingBehavior = function () {};
+	    chainingBehavior = function chainingBehavior() {};
 	  }
 
 	  var chainableBehavior = {
@@ -6602,7 +6682,7 @@
 	  }
 	  ctx.__methods[name] = chainableBehavior;
 
-	  Object.defineProperty(ctx, name, { get: function () {
+	  Object.defineProperty(ctx, name, { get: function get() {
 	      chainableBehavior.chainingBehavior.call(this);
 
 	      var assert = function assert() {
@@ -6639,7 +6719,7 @@
 	};
 
 /***/ },
-/* 70 */
+/* 71 */
 /*!***********************************************************!*\
   !*** ./~/chai/lib/chai/utils/overwriteChainableMethod.js ***!
   \***********************************************************/
@@ -6703,7 +6783,7 @@
 	};
 
 /***/ },
-/* 71 */
+/* 72 */
 /*!**************************************!*\
   !*** ./~/chai/lib/chai/assertion.js ***!
   \**************************************/
@@ -6718,7 +6798,7 @@
 	 * MIT Licensed
 	 */
 
-	var config = __webpack_require__(/*! ./config */ 52);
+	var config = __webpack_require__(/*! ./config */ 53);
 
 	module.exports = function (_chai, util) {
 	  /*!
@@ -6749,22 +6829,22 @@
 	  }
 
 	  Object.defineProperty(Assertion, 'includeStack', {
-	    get: function () {
+	    get: function get() {
 	      console.warn('Assertion.includeStack is deprecated, use chai.config.includeStack instead.');
 	      return config.includeStack;
 	    },
-	    set: function (value) {
+	    set: function set(value) {
 	      console.warn('Assertion.includeStack is deprecated, use chai.config.includeStack instead.');
 	      config.includeStack = value;
 	    }
 	  });
 
 	  Object.defineProperty(Assertion, 'showDiff', {
-	    get: function () {
+	    get: function get() {
 	      console.warn('Assertion.showDiff is deprecated, use chai.config.showDiff instead.');
 	      return config.showDiff;
 	    },
-	    set: function (value) {
+	    set: function set(value) {
 	      console.warn('Assertion.showDiff is deprecated, use chai.config.showDiff instead.');
 	      config.showDiff = value;
 	    }
@@ -6833,23 +6913,25 @@
 	   * @api private
 	   */
 
-	  Object.defineProperty(Assertion.prototype, '_obj', { get: function () {
+	  Object.defineProperty(Assertion.prototype, '_obj', { get: function get() {
 	      return flag(this, 'object');
 	    },
-	    set: function (val) {
+	    set: function set(val) {
 	      flag(this, 'object', val);
 	    }
 	  });
 	};
 
 /***/ },
-/* 72 */
+/* 73 */
 /*!********************************************!*\
   !*** ./~/chai/lib/chai/core/assertions.js ***!
   \********************************************/
 /***/ function(module, exports) {
 
 	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	/*!
 	 * chai
@@ -7063,12 +7145,14 @@
 	      }
 	    } else if (_.type(val) === 'object') {
 	      if (!flag(this, 'negate')) {
-	        for (var k in val) new Assertion(obj).property(k, val[k]);
-	        return;
+	        for (var k in val) {
+	          new Assertion(obj).property(k, val[k]);
+	        }return;
 	      }
 	      var subset = {};
-	      for (var k in val) subset[k] = obj[k];
-	      expected = _.eql(subset, val);
+	      for (var k in val) {
+	        subset[k] = obj[k];
+	      }expected = _.eql(subset, val);
 	    } else {
 	      expected = obj != undefined && ~obj.indexOf(val);
 	    }
@@ -7228,7 +7312,7 @@
 
 	    if (Array.isArray(obj) || 'string' === typeof object) {
 	      expected = obj.length;
-	    } else if (typeof obj === 'object') {
+	    } else if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
 	      expected = Object.keys(obj).length;
 	    }
 
@@ -8450,7 +8534,7 @@
 	};
 
 /***/ },
-/* 73 */
+/* 74 */
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/interface/expect.js ***!
   \*********************************************/
@@ -8494,7 +8578,7 @@
 	};
 
 /***/ },
-/* 74 */
+/* 75 */
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/interface/should.js ***!
   \*********************************************/
@@ -8705,7 +8789,7 @@
 	};
 
 /***/ },
-/* 75 */
+/* 76 */
 /*!*********************************************!*\
   !*** ./~/chai/lib/chai/interface/assert.js ***!
   \*********************************************/
@@ -10330,7 +10414,7 @@
 	};
 
 /***/ },
-/* 76 */
+/* 77 */
 /*!**********************************!*\
   !*** ./lib/domassembler.spec.js ***!
   \**********************************/
@@ -10340,40 +10424,40 @@
 
 	var _domassembler = __webpack_require__(/*! ./domassembler */ 7);
 
-	var _chai = __webpack_require__(/*! chai */ 36);
+	var _chai = __webpack_require__(/*! chai */ 37);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const { assert } = _chai2.default;
-	const {
-	    document,
-	    Text,
-	    Comment,
-	    Element,
-	    HTMLHRElement
-	} = window;
+	var assert = _chai2.default.assert;
+	var _window = window;
+	var document = _window.document;
+	var Text = _window.Text;
+	var Comment = _window.Comment;
+	var Element = _window.Element;
+	var HTMLHRElement = _window.HTMLHRElement;
 
-	const assembler = new _domassembler.DOMAssembler();
+
+	var assembler = new _domassembler.DOMAssembler();
 
 	describe('DOM assembler', function () {
 
 	    describe('createElement', function () {
 
 	        describe('general', function () {
-	            const element = assembler.createElement('element');
+	            var element = assembler.createElement('element');
 
-	            it('Element created', () => {
+	            it('Element created', function () {
 	                assert.equal(element.constructor, Element);
 	            });
-	            it('proper tagName', () => {
+	            it('proper tagName', function () {
 	                assert.equal(element.tagName, 'element');
 	            });
-	            it('proper namespace URI', () => {
+	            it('proper namespace URI', function () {
 	                assert.equal(element.namespaceURI, _domassembler.XML_NS_URI);
 	            });
-	            it('has no attributes and no child nodes', () => {
+	            it('has no attributes and no child nodes', function () {
 	                assert(!element.hasAttributes());
 	                assert(!element.hasChildNodes());
 	            });
@@ -10382,8 +10466,8 @@
 	        describe('build-in attributes', function () {
 
 	            describe('id', function () {
-	                const id = 'element_0';
-	                const element = assembler.createElement('element', { id });
+	                var id = 'element_0';
+	                var element = assembler.createElement('element', { id: id });
 
 	                it('proper number of attributes', function () {
 	                    assert(element.hasAttributes());
@@ -10400,8 +10484,8 @@
 	            });
 
 	            describe('className', function () {
-	                const className = 'foo bar wiz';
-	                const element = assembler.createElement('element', { className });
+	                var className = 'foo bar wiz';
+	                var element = assembler.createElement('element', { className: className });
 	                it('proper number of attributes', function () {
 	                    assert(element.hasAttributes());
 	                    assert.equal(element.attributes.length, 1);
@@ -10425,7 +10509,7 @@
 	            });
 
 	            describe('textContent', function () {
-	                const element = assembler.createElement('element', {
+	                var element = assembler.createElement('element', {
 	                    textContent: 'element textContent'
 	                });
 	                it('proper number of child nodes', function () {
@@ -10443,7 +10527,7 @@
 	        describe('adapted interface', function () {
 
 	            describe('attrset', function () {
-	                const element = assembler.createElement('element', {
+	                var element = assembler.createElement('element', {
 	                    attrset: { attrname: 'attribute value' }
 	                });
 	                it('proper number of attributes', function () {
@@ -10456,10 +10540,10 @@
 	            });
 
 	            describe('children', function () {
-	                const element = assembler.createElement('element', {
+	                var element = assembler.createElement('element', {
 	                    children: [0, assembler.createElement('child'), '', 'text node as string', NaN, document.createTextNode('created text node'), null, document.createElement('hr'), false, document.createComment('Simple DOM Comment node'), undefined]
 	                });
-	                const childNodes = element.childNodes;
+	                var childNodes = element.childNodes;
 	                it('proper number of child nodes', function () {
 	                    assert(element.hasChildNodes());
 	                    assert.equal(childNodes.length, 5);
@@ -10482,7 +10566,7 @@
 	});
 
 /***/ },
-/* 77 */
+/* 78 */
 /*!***********************************!*\
   !*** ./lib/htmlassembler.spec.js ***!
   \***********************************/
@@ -10492,33 +10576,33 @@
 
 	var _htmlassembler = __webpack_require__(/*! ./htmlassembler.js */ 8);
 
-	var _chai = __webpack_require__(/*! chai */ 36);
+	var _chai = __webpack_require__(/*! chai */ 37);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
-	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 78);
+	var _util = __webpack_require__(/*! ../util/util.domequalmarkup */ 79);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const { assert } = _chai2.default;
+	var assert = _chai2.default.assert;
 
 	// fixme
 
-	const {
-	    HTMLElement,
-	    HTMLUnknownElement,
-	    HTMLInputElement,
-	    HTMLHtmlElement,
-	    HTMLFormElement,
-	    HTMLSelectElement,
-	    HTMLAnchorElement,
-	    HTMLBodyElement,
-	    HTMLButtonElement,
-	    HTMLDivElement,
-	    HTMLSpanElement
-	} = window;
+	var _window = window;
+	var HTMLElement = _window.HTMLElement;
+	var HTMLUnknownElement = _window.HTMLUnknownElement;
+	var HTMLInputElement = _window.HTMLInputElement;
+	var HTMLHtmlElement = _window.HTMLHtmlElement;
+	var HTMLFormElement = _window.HTMLFormElement;
+	var HTMLSelectElement = _window.HTMLSelectElement;
+	var HTMLAnchorElement = _window.HTMLAnchorElement;
+	var HTMLBodyElement = _window.HTMLBodyElement;
+	var HTMLButtonElement = _window.HTMLButtonElement;
+	var HTMLDivElement = _window.HTMLDivElement;
+	var HTMLSpanElement = _window.HTMLSpanElement;
 
-	const assembler = new _htmlassembler.HTMLAssembler();
+
+	var assembler = new _htmlassembler.HTMLAssembler();
 
 	describe('HTML assembler', function () {
 
@@ -10527,7 +10611,7 @@
 	        describe('built-in global attributes', function () {
 
 	            describe('accessKey', function () {
-	                const element = assembler.createElement('a', { accessKey: 'A' });
+	                var element = assembler.createElement('a', { accessKey: 'A' });
 
 	                it('HTMLAnchorElement node created', function () {
 	                    assert.equal(element.constructor, HTMLAnchorElement);
@@ -10550,8 +10634,8 @@
 	            });
 
 	            describe('className', function () {
-	                const className = 'foo bar wiz';
-	                const element = assembler.createElement('div', { className });
+	                var className = 'foo bar wiz';
+	                var element = assembler.createElement('div', { className: className });
 
 	                it('HTMLDivElement node created', function () {
 	                    assert.equal(element.constructor, HTMLDivElement);
@@ -10575,13 +10659,13 @@
 	                    assert.equal(document.getElementsByClassName('wiz')[0], element);
 	                    document.body.removeChild(element);
 	                });
-	                it('proper outerHTML property value', () => {
+	                it('proper outerHTML property value', function () {
 	                    assert.equal(element.outerHTML, '<div class="foo bar wiz"></div>');
 	                });
 	            });
 
 	            describe('contentEditable', function () {
-	                const element = assembler.createElement('unknown', { contentEditable: 'true' });
+	                var element = assembler.createElement('unknown', { contentEditable: 'true' });
 
 	                it('HTMLUnknownElement node created', function () {
 	                    assert.equal(element.constructor, HTMLUnknownElement);
@@ -10601,7 +10685,7 @@
 	            });
 
 	            describe('dir', function () {
-	                const element = assembler.createElement('button', { dir: 'rtl' });
+	                var element = assembler.createElement('button', { dir: 'rtl' });
 
 	                it('HTMLButtonElement node created', function () {
 	                    assert.equal(element.constructor, HTMLButtonElement);
@@ -10621,7 +10705,7 @@
 	            });
 
 	            describe('draggable', function () {
-	                const element = assembler.createElement('header', { draggable: true });
+	                var element = assembler.createElement('header', { draggable: true });
 
 	                it('HTMLElement node created', function () {
 	                    assert.equal(element.constructor, HTMLElement);
@@ -10641,7 +10725,7 @@
 	            });
 
 	            describe('hidden', function () {
-	                const element = assembler.createElement('input', { hidden: true });
+	                var element = assembler.createElement('input', { hidden: true });
 
 	                it('HTMLInputElement node created', function () {
 	                    assert.equal(element.constructor, HTMLInputElement);
@@ -10661,8 +10745,8 @@
 	            });
 
 	            describe('id', function () {
-	                const id = 'element_0';
-	                const element = assembler.createElement('span', { id });
+	                var id = 'element_0';
+	                var element = assembler.createElement('span', { id: id });
 
 	                it('HTMLSpanElement node created', function () {
 	                    assert.equal(element.constructor, HTMLSpanElement);
@@ -10680,13 +10764,13 @@
 	                    assert.equal(document.getElementById(id), element);
 	                    document.body.removeChild(element);
 	                });
-	                it('proper outerHTML property value', () => {
+	                it('proper outerHTML property value', function () {
 	                    assert.equal(element.outerHTML, '<span id="element_0"></span>');
 	                });
 	            });
 
 	            describe('innerHTML', function () {
-	                const element = assembler.createElement('body', {
+	                var element = assembler.createElement('body', {
 	                    innerHTML: '<span class="box"></span>'
 	                });
 	                it('HTMLBodyElement node created', function () {
@@ -10698,7 +10782,7 @@
 	                    assert.equal(element.childNodes.length, 1);
 	                });
 	                it('proper child node', function () {
-	                    const child = element.firstChild;
+	                    var child = element.firstChild;
 	                    assert.equal(child.constructor, HTMLSpanElement);
 	                    assert.equal(child.outerHTML, '<span class="box"></span>');
 	                });
@@ -10708,7 +10792,7 @@
 	            });
 
 	            describe('lang', function () {
-	                const element = assembler.createElement('html', { lang: 'ru' });
+	                var element = assembler.createElement('html', { lang: 'ru' });
 
 	                it('HTMLHtmlElement node created', function () {
 	                    assert.equal(element.constructor, HTMLHtmlElement);
@@ -10728,7 +10812,7 @@
 	            });
 
 	            describe('tabIndex', function () {
-	                const element = assembler.createElement('form', { tabIndex: 0 });
+	                var element = assembler.createElement('form', { tabIndex: 0 });
 
 	                it('HTMLFormElement node created', function () {
 	                    assert.equal(element.constructor, HTMLFormElement);
@@ -10748,7 +10832,7 @@
 	            });
 
 	            describe('title', function () {
-	                const element = assembler.createElement('select', { title: 'Select without options' });
+	                var element = assembler.createElement('select', { title: 'Select without options' });
 
 	                it('HTMLSelectElement node created', function () {
 	                    assert.equal(element.constructor, HTMLSelectElement);
@@ -10769,18 +10853,18 @@
 	        });
 
 	        describe('built-in global event handlers', function () {
-	            it('onclick', () => {
-	                const onclick = sinon.spy();
-	                const element = assembler.createElement('button', { onclick });
+	            it('onclick', function () {
+	                var onclick = sinon.spy();
+	                var element = assembler.createElement('button', { onclick: onclick });
 	                assert(onclick.notCalled);
 	                element.click();
 	                assert(onclick.calledOnce);
 	                element.click();
 	                assert(onclick.calledTwice);
 	            });
-	            it('click listener', () => {
-	                const listener = sinon.spy();
-	                const element = assembler.createElement('button');
+	            it('click listener', function () {
+	                var listener = sinon.spy();
+	                var element = assembler.createElement('button');
 	                element.addEventListener('click', listener);
 	                document.body.appendChild(element);
 	                assert(listener.notCalled);
@@ -10795,7 +10879,7 @@
 	        describe('adapted interface', function () {
 
 	            describe('dataset', function () {
-	                const element = assembler.createElement('div', {
+	                var element = assembler.createElement('div', {
 	                    dataset: { camelCased: 'custom attribute' }
 	                });
 	                it('HTMLDivElement node created', function () {
@@ -10816,7 +10900,7 @@
 	            });
 
 	            describe('style', function () {
-	                const element = assembler.createElement('span', {
+	                var element = assembler.createElement('span', {
 	                    style: { backgroundColor: 'black' }
 	                });
 	                it('HTMLSpanElement node created', function () {
@@ -10840,7 +10924,7 @@
 	});
 
 /***/ },
-/* 78 */
+/* 79 */
 /*!*************************************!*\
   !*** ./util/util.domequalmarkup.js ***!
   \*************************************/
@@ -10851,25 +10935,37 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	const htmlbowl = innerHTML => Object.assign(document.createElement('div'), { innerHTML });
+	var htmlbowl = function htmlbowl(innerHTML) {
+	    return Object.assign(document.createElement('div'), { innerHTML: innerHTML });
+	};
 
-	const htmlequal = exports.htmlequal = (html1, html2) => htmlbowl(html1).isEqualNode(htmlbowl(html2));
+	var htmlequal = exports.htmlequal = function htmlequal(html1, html2) {
+	    return htmlbowl(html1).isEqualNode(htmlbowl(html2));
+	};
 
-	const parser = new DOMParser();
-	const xmldoc = xml => parser.parseFromString(xml, 'application/xml');
+	var parser = new DOMParser();
+	var xmldoc = function xmldoc(xml) {
+	    return parser.parseFromString(xml, 'application/xml');
+	};
 
-	const xmlequal = exports.xmlequal = (xml1, xml2) => xmldoc(xml1).isEqualNode(xmldoc(xml2));
+	var xmlequal = exports.xmlequal = function xmlequal(xml1, xml2) {
+	    return xmldoc(xml1).isEqualNode(xmldoc(xml2));
+	};
 
-	const domEqualMarkup = exports.domEqualMarkup = (dom, markup, mime = 'application/xml') => {
-	    const parser = new DOMParser();
-	    const node = parser.parseFromString(markup, mime);
+	var domEqualMarkup = exports.domEqualMarkup = function domEqualMarkup(dom, markup) {
+	    var mime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'application/xml';
+
+	    var parser = new DOMParser();
+	    var node = parser.parseFromString(markup, mime);
 	    return dom.isEqualNode(node);
 	};
 
-	const htmlEqualMarkup = exports.htmlEqualMarkup = (dom, markup) => domEqualMarkup(dom, markup, 'application/xhtml');
+	var htmlEqualMarkup = exports.htmlEqualMarkup = function htmlEqualMarkup(dom, markup) {
+	    return domEqualMarkup(dom, markup, 'application/xhtml');
+	};
 
 /***/ },
-/* 79 */
+/* 80 */
 /*!****************************!*\
   !*** ./lib/xmldom.spec.js ***!
   \****************************/
@@ -10879,28 +10975,30 @@
 
 	var _index = __webpack_require__(/*! ./index */ 5);
 
-	var _chai = __webpack_require__(/*! chai */ 36);
+	var _chai = __webpack_require__(/*! chai */ 37);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const { assert } = _chai2.default;
-	const {
-	    Node,
-	    Element,
-	    Text,
-	    Comment,
-	    XMLSerializer
-	} = window;
-	const { ELEMENT_NODE, TEXT_NODE, COMMENT_NODE } = Node;
+	var assert = _chai2.default.assert;
+	var _window = window;
+	var Node = _window.Node;
+	var Element = _window.Element;
+	var Text = _window.Text;
+	var Comment = _window.Comment;
+	var XMLSerializer = _window.XMLSerializer;
+	var ELEMENT_NODE = Node.ELEMENT_NODE;
+	var TEXT_NODE = Node.TEXT_NODE;
+	var COMMENT_NODE = Node.COMMENT_NODE;
 
-	const serializer = new XMLSerializer();
 
-	describe('XMLDOM library', () => {
-	    describe('dom', () => {
-	        it('xmldom', () => {
-	            const node = (0, _index.xmldom)('pipi7', {
+	var serializer = new XMLSerializer();
+
+	describe('XMLDOM library', function () {
+	    describe('dom', function () {
+	        it('xmldom', function () {
+	            var node = (0, _index.xmldom)('pipi7', {
 	                attrset: { g: '+++', j: '---', w: '!!!' }
 	            });
 	            assert.equal(node.nodeType, ELEMENT_NODE);
@@ -10910,28 +11008,28 @@
 	            assert.equal(node.getAttribute('j'), '---');
 	            assert.equal(node.getAttribute('w'), '!!!');
 	        });
-	        it('element', () => {
-	            const node = (0, _index.element)('bafi4');
+	        it('element', function () {
+	            var node = (0, _index.element)('bafi4');
 	            assert.equal(node.nodeType, ELEMENT_NODE);
 	            assert.equal(node.tagName, 'element');
 	            assert.equal(node.constructor, Element);
 	        });
-	        it('text', () => {
-	            const node = (0, _index.text)('cuce31');
+	        it('text', function () {
+	            var node = (0, _index.text)('cuce31');
 	            assert.equal(node.nodeType, TEXT_NODE);
 	            assert.equal(node.constructor, Text);
 	            assert.equal(serializer.serializeToString(node), 'cuce31');
 	        });
-	        it('comment', () => {
-	            const node = (0, _index.comment)('tuty5');
+	        it('comment', function () {
+	            var node = (0, _index.comment)('tuty5');
 	            assert.equal(node.nodeType, COMMENT_NODE);
 	            assert.equal(node.constructor, Comment);
 	            assert.equal(serializer.serializeToString(node), '<!--tuty5-->');
 	        });
 	    });
-	    describe('try use html semantics', () => {
-	        it('xmldom span', () => {
-	            const node = (0, _index.xmldom)('span', {
+	    describe('try use html semantics', function () {
+	        it('xmldom span', function () {
+	            var node = (0, _index.xmldom)('span', {
 	                id: '00101',
 	                className: 'fa fi fu',
 	                tabIndex: 0,
@@ -10951,8 +11049,8 @@
 	            assert.equal(node.childNodes[1].constructor, Comment);
 	            assert.equal(node.childNodes[2].textContent, 'b');
 	        });
-	        it('xmldom a', () => {
-	            const node = (0, _index.xmldom)('a', {
+	        it('xmldom a', function () {
+	            var node = (0, _index.xmldom)('a', {
 	                href: 'html://www.aria.dom/math.svg',
 	                rel: 'next',
 	                title: 'om dom dom dom d',
@@ -10969,7 +11067,7 @@
 	});
 
 /***/ },
-/* 80 */
+/* 81 */
 /*!*****************************!*\
   !*** ./lib/htmldom.spec.js ***!
   \*****************************/
@@ -10979,103 +11077,111 @@
 
 	var _htmldom = __webpack_require__(/*! ./htmldom */ 10);
 
-	var _chai = __webpack_require__(/*! chai */ 36);
+	var _chai = __webpack_require__(/*! chai */ 37);
 
 	var _chai2 = _interopRequireDefault(_chai);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const { Node, HTMLSpanElement, HTMLAnchorElement } = window;
-	const { TEXT_NODE, ELEMENT_NODE } = Node;
-	const { assert } = _chai2.default;
+	var _window = window;
+	var Node = _window.Node;
+	var HTMLSpanElement = _window.HTMLSpanElement;
+	var HTMLAnchorElement = _window.HTMLAnchorElement;
+	var TEXT_NODE = Node.TEXT_NODE;
+	var ELEMENT_NODE = Node.ELEMENT_NODE;
+	var assert = _chai2.default.assert;
 
-	describe('HTMLDOM library', () => {
-	    describe('Authorization fieldset', () => {
-	        it('properly build form authorization fieldset', () => {
-	            const element = (0, _htmldom.fieldset)([(0, _htmldom.legend)('Authorization'), (0, _htmldom.input)({ type: 'email' }), (0, _htmldom.input)({ type: 'password' })]);
+
+	describe('HTMLDOM library', function () {
+	    describe('Authorization fieldset', function () {
+	        it('properly build form authorization fieldset', function () {
+	            var element = (0, _htmldom.fieldset)([(0, _htmldom.legend)('Authorization'), (0, _htmldom.input)({ type: 'email' }), (0, _htmldom.input)({ type: 'password' })]);
 	            assert.equal(element.outerHTML, '<fieldset>' + '<legend>Authorization</legend>' + '<input type="email">' + '<input type="password">' + '</fieldset>');
 	        });
 	    });
-	    describe('Header with navigation', () => {
-	        it('properly build header with navigational links inside', () => {
-	            const element = (0, _htmldom.header)((0, _htmldom.nav)([(0, _htmldom.a)({ href: '/lib.html', textContent: 'Library' }), (0, _htmldom.a)({ href: '/spec.html', textContent: 'Specifications' }), (0, _htmldom.a)({ href: '/home.html', textContent: 'Go home' })]));
+	    describe('Header with navigation', function () {
+	        it('properly build header with navigational links inside', function () {
+	            var element = (0, _htmldom.header)((0, _htmldom.nav)([(0, _htmldom.a)({ href: '/lib.html', textContent: 'Library' }), (0, _htmldom.a)({ href: '/spec.html', textContent: 'Specifications' }), (0, _htmldom.a)({ href: '/home.html', textContent: 'Go home' })]));
 	            assert.equal(element.outerHTML, '<header><nav>' + '<a href="/lib.html">Library</a>' + '<a href="/spec.html">Specifications</a>' + '<a href="/home.html">Go home</a>' + '</nav></header>');
 	        });
 	    });
-	    describe('Select box widget', () => {
-	        let widget, selected;
-	        const element = (0, _htmldom.label)(['Select technology ', widget = (0, _htmldom.select)([(0, _htmldom.option)('DOM'), (0, _htmldom.option)('XML'), selected = (0, _htmldom.option)({ selected: true, textContent: 'HTML' }), (0, _htmldom.option)('SVG'), (0, _htmldom.option)('MathML'), (0, _htmldom.option)('WAI-ARIA')])]);
-	        it('properly build label with select box option list inside', () => {
+	    describe('Select box widget', function () {
+	        var widget = void 0,
+	            selected = void 0;
+	        var element = (0, _htmldom.label)(['Select technology ', widget = (0, _htmldom.select)([(0, _htmldom.option)('DOM'), (0, _htmldom.option)('XML'), selected = (0, _htmldom.option)({ selected: true, textContent: 'HTML' }), (0, _htmldom.option)('SVG'), (0, _htmldom.option)('MathML'), (0, _htmldom.option)('WAI-ARIA')])]);
+	        it('properly build label with select box option list inside', function () {
 	            assert.equal(element.outerHTML, '<label>' + 'Select technology ' + '<select>' + '<option>DOM</option>' + '<option>XML</option>' + '<option>HTML</option>' + '<option>SVG</option>' + '<option>MathML</option>' + '<option>WAI-ARIA</option>' + '</select>' + '</label>');
 	        });
 	        // victim of IE11 todo
-	        it('proper selected option reference', () => {
+	        it('proper selected option reference', function () {
 	            assert.equal(widget.selectedOptions.length, 1);
 	            assert.equal(widget.selectedOptions[0], selected);
 	        });
 	    });
-	    describe('Search form', () => {
-	        it('properly build form with search input and submit button inside', () => {
-	            const element = (0, _htmldom.form)({
+	    describe('Search form', function () {
+	        it('properly build form with search input and submit button inside', function () {
+	            var element = (0, _htmldom.form)({
 	                attrset: { role: 'search' },
 	                children: [(0, _htmldom.input)({ type: 'search' }), (0, _htmldom.button)('Search')]
 	            });
 	            assert.equal(element.outerHTML, '<form role="search">' + '<input type="search">' + '<button>Search</button>' + '</form>');
 	        });
 	    });
-	    describe('Checkboxes', () => {
-	        let simple, checked, indeterminate;
-	        const element = (0, _htmldom.div)([simple = (0, _htmldom.input)({ type: 'checkbox' }), checked = (0, _htmldom.input)({ type: 'checkbox', checked: true }), indeterminate = (0, _htmldom.input)({ type: 'checkbox', indeterminate: true })]);
-	        it('proper HTML rendered', () => {
+	    describe('Checkboxes', function () {
+	        var simple = void 0,
+	            checked = void 0,
+	            indeterminate = void 0;
+	        var element = (0, _htmldom.div)([simple = (0, _htmldom.input)({ type: 'checkbox' }), checked = (0, _htmldom.input)({ type: 'checkbox', checked: true }), indeterminate = (0, _htmldom.input)({ type: 'checkbox', indeterminate: true })]);
+	        it('proper HTML rendered', function () {
 	            assert.equal(element.outerHTML, '<div>' + '<input type="checkbox">' + '<input type="checkbox">' + '<input type="checkbox">' + '</div>');
 	        });
-	        it('check current state of widgets', () => {
+	        it('check current state of widgets', function () {
 	            assert(!simple.checked);
 	            assert(checked.checked);
 	            assert(indeterminate.indeterminate);
 	        });
-	        it('proper initial state assignment', () => {
-	            const sample = (0, _htmldom.input)({ type: 'checkbox', attrset: { checked: '' } });
-	            const container = (0, _htmldom.div)({ innerHTML: '<input type=checkbox checked>' });
+	        it('proper initial state assignment', function () {
+	            var sample = (0, _htmldom.input)({ type: 'checkbox', attrset: { checked: '' } });
+	            var container = (0, _htmldom.div)({ innerHTML: '<input type=checkbox checked>' });
 	            assert(sample.isEqualNode(container.firstChild));
 	        });
 	    });
-	    describe('Various list examples', () => {
-	        it('properly build ul + li', () => {
+	    describe('Various list examples', function () {
+	        it('properly build ul + li', function () {
 	            assert.equal((0, _htmldom.ul)([(0, _htmldom.li)('Ampeg'), (0, _htmldom.li)('Fender'), (0, _htmldom.li)('Warwick')]).outerHTML, '<ul>' + '<li>Ampeg</li>' + '<li>Fender</li>' + '<li>Warwick</li>' + '</ul>');
 	        });
-	        it('properly build ol + li', () => {
+	        it('properly build ol + li', function () {
 	            assert.equal((0, _htmldom.ol)([(0, _htmldom.li)('Moscow'), (0, _htmldom.li)('Amsterdam'), (0, _htmldom.li)('New York')]).outerHTML, '<ol>' + '<li>Moscow</li>' + '<li>Amsterdam</li>' + '<li>New York</li>' + '</ol>');
 	        });
-	        it('properly build dl + dt + dd', () => {
+	        it('properly build dl + dt + dd', function () {
 	            assert.equal((0, _htmldom.dl)([(0, _htmldom.dt)('DOM'), (0, _htmldom.dd)('Document object model'), (0, _htmldom.dt)('XML'), (0, _htmldom.dd)('Extensible markup language'), (0, _htmldom.dt)('HTML'), (0, _htmldom.dd)('Hyper text markup language')]).outerHTML, '<dl>' + '<dt>DOM</dt>' + '<dd>Document object model</dd>' + '<dt>XML</dt>' + '<dd>Extensible markup language</dd>' + '<dt>HTML</dt>' + '<dd>Hyper text markup language</dd>' + '</dl>');
 	        });
 	    });
-	    describe('Details with summary', () => {
-	        it('properly build widget', () => {
-	            const element = (0, _htmldom.details)([(0, _htmldom.summary)('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']);
+	    describe('Details with summary', function () {
+	        it('properly build widget', function () {
+	            var element = (0, _htmldom.details)([(0, _htmldom.summary)('Show details'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ', 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.']);
 	            assert.equal(element.outerHTML, '<details>' + '<summary>Show details</summary>' + 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' + 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' + '</details>');
 	        });
 	    });
-	    describe('Other', () => {
-	        it('property build DOM fragment', () => {
-	            const element = (0, _htmldom.main)([(0, _htmldom.section)((0, _htmldom.dfn)('Instance.js — simple and powerfull DOM Element interface')), (0, _htmldom.section)((0, _htmldom.p)([(0, _htmldom.variable)('var'), ' — is reserved JavaScript keyword, ', 'so we use `variable` function name instead.'])), (0, _htmldom.section)([(0, _htmldom.sup)('supertext'), (0, _htmldom.sub)('subtext'), (0, _htmldom.i)('alternative voice'), (0, _htmldom.strong)('important!')])]);
+	    describe('Other', function () {
+	        it('property build DOM fragment', function () {
+	            var element = (0, _htmldom.main)([(0, _htmldom.section)((0, _htmldom.dfn)('Instance.js — simple and powerfull DOM Element interface')), (0, _htmldom.section)((0, _htmldom.p)([(0, _htmldom.variable)('var'), ' — is reserved JavaScript keyword, ', 'so we use `variable` function name instead.'])), (0, _htmldom.section)([(0, _htmldom.sup)('supertext'), (0, _htmldom.sub)('subtext'), (0, _htmldom.i)('alternative voice'), (0, _htmldom.strong)('important!')])]);
 	            assert.equal(element.outerHTML, '<main>' + '<section><dfn>' + 'Instance.js — simple and powerfull DOM Element interface' + '</dfn></section>' + '<section><p>' + '<var>var</var>' + ' — is reserved JavaScript keyword, ' + 'so we use `variable` function name instead.' + '</p></section>' + '<section>' + '<sup>supertext</sup>' + '<sub>subtext</sub>' + '<i>alternative voice</i>' + '<strong>important!</strong>' + '</section>' + '</main>');
 	        });
-	        it('htmldom, span', () => {
-	            const node1 = (0, _htmldom.htmldom)('span', {
+	        it('htmldom, span', function () {
+	            var node1 = (0, _htmldom.htmldom)('span', {
 	                id: '00101',
 	                className: 'fa fi fu',
 	                tabIndex: 0,
 	                children: ['a', (0, _htmldom.span)('a b'), 'b']
 	            });
-	            const node2 = (0, _htmldom.span)({
+	            var node2 = (0, _htmldom.span)({
 	                id: '00101',
 	                className: 'fa fi fu',
 	                tabIndex: 0,
 	                children: ['a', (0, _htmldom.span)('a b'), 'b']
 	            });
-	            [node1, node2].forEach(node => {
+	            [node1, node2].forEach(function (node) {
 	                assert.equal(node.nodeType, ELEMENT_NODE);
 	                assert.equal(node.tagName, 'SPAN');
 	                assert.equal(node.constructor, HTMLSpanElement);
@@ -11091,8 +11197,8 @@
 	            });
 	            assert(node1.isEqualNode(node2), 'htmldom() and span() work differently');
 	        });
-	        it('a', () => {
-	            const node = (0, _htmldom.a)({
+	        it('a', function () {
+	            var node = (0, _htmldom.a)({
 	                href: 'html://www.aria.dom/math.svg',
 	                rel: 'next',
 	                title: 'om dom dom dom d',
