@@ -6,3 +6,4 @@ import './shim.classlist';
 import './shim.hidden';
 import './shim.click';
 import './shim.head';
+import './shim.selectedoptions';

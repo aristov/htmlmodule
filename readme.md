@@ -96,8 +96,8 @@ This is the simpliest way to start use the htmlmodule in your project.
 
 ## Accessibility
 
-Applications, assembled by htmlmodule accessible by design.
-This depends merely on proper and accurate usage of the markup language semantics.
+Applications, assembled by htmlmodule are accessible by design.
+This depends especially on a proper and accurate usage of the markup language semantics.
 Look the examples, provided on [the module homepage](https://aristov.github.io/htmlmodule).
 
 ## Compatibility

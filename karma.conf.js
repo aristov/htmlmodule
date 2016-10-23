@@ -1,6 +1,6 @@
 module.exports = function(config) {
     const customLaunchers = {
-        SL_Chrome: {
+        /*SL_Chrome: {
             base: 'SauceLabs',
             platform: 'OS X 10.11',
             browserName: 'chrome',
@@ -11,7 +11,7 @@ module.exports = function(config) {
             platform: 'Linux',
             browserName: 'firefox',
             version: '45.0'
-        },
+        },*/
         /*SL_Safari: {
             base: 'SauceLabs',
             platform: 'OS X 10.11',
@@ -34,7 +34,7 @@ module.exports = function(config) {
     config.set({
         basePath: '',
         frameworks: ['mocha', 'sinon'],
-        files: ['lib/index.spec.js'],
+        files: ['dist/dist.shim.min.js', 'lib/index.spec.js'],
         exclude: [],
         preprocessors: { 'lib/index.spec.js': ['webpack'] },
         webpack: {

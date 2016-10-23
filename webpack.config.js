@@ -26,25 +26,24 @@ if(env.MIN) {
     plugins.push(uglifyjsPlugin);
 }
 
-const entry = {
-    shim : ['./shim'],
-    htmlmodule : ['./lib'],
-    'window.htmlmodule' : ['./lib/window.htmlmodule']
-}
-
-let output;
+let entry, output;
 
 if(env.DOCS) {
-    Object.assign(entry, {
+    entry = {
         index : ['./docs/index'],
         spec : ['./docs/spec']
-    });
+    }
     output = {
         path : __dirname + '/docs/build',
         filename : env.MIN? 'build.[name].min.js' : 'build.[name].js',
         pathinfo : !env.MIN
     }
 } else {
+    entry = {
+        shim : ['./shim'],
+        htmlmodule : ['./lib'],
+        'window.htmlmodule' : ['./lib/window.htmlmodule']
+    }
     output = {
         path : __dirname + '/dist',
         filename : env.MIN? 'dist.[name].min.js' : 'dist.[name].js',
