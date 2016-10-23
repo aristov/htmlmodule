@@ -193,9 +193,9 @@ npm run dist
 ```
 
 Build 
-[the homepage](https://aristov.github.io/htmlmodule):
+[the home page](https://aristov.github.io/htmlmodule)
 and 
-[the spec](https://aristov.github.io/htmlmodule/docs/spec.html) 
+[the spec suite](https://aristov.github.io/htmlmodule/docs/spec.html): 
 
 ```
 npm run docs
@@ -234,10 +234,6 @@ npm test
 #### Test in browser
 
 Run dev + static server and open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser.
-
-#### Online tests
-
-Check [spec suite](//aristov.github.io/htmlmodule/docs/spec.html) in your browser.
 
 ## License
 
