@@ -15,10 +15,8 @@
   "license": "MIT",
   "author": "Vyacheslav Aristov <vv.aristov@gmail.ru> (http://twitter.com/aristov7)",
   "files": [
-    "dist/",
     "lib/",
-    "shim/",
-    "util/"
+    "shim/"
   ],
   "main": "./lib",
   "directories": {
@@ -34,7 +32,8 @@
     "dist": "webpack && MIN=true webpack",
     "docs": "DOCS=true webpack",
     "api": "esdoc -c esdoc.json",
-    "test": "MIN=true webpack && karma start",
+    "pretest": "MIN=true webpack",
+    "test": "karma start",
     "start": "DOCS=true ES6=true WATCH=true webpack",
     "build": "npm run dist && npm run docs && npm run api"
   },
