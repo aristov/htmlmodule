@@ -844,7 +844,7 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+            "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
             "range": [
               1196,
               1286
@@ -901,7 +901,7 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+          "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
           "range": [
             1196,
             1286
@@ -944,7 +944,7 @@
         "params": [
           {
             "type": "Identifier",
-            "name": "text",
+            "name": "data",
             "range": [
               1308,
               1312
@@ -1025,7 +1025,7 @@
                 "arguments": [
                   {
                     "type": "Identifier",
-                    "name": "text",
+                    "name": "data",
                     "range": [
                       1347,
                       1351
@@ -1107,7 +1107,7 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+            "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
             "range": [
               1196,
               1286
@@ -1127,10 +1127,10 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+            "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
             "range": [
               1356,
-              1455
+              1452
             ],
             "loc": {
               "start": {
@@ -1164,7 +1164,7 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+          "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
           "range": [
             1196,
             1286
@@ -1184,10 +1184,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+          "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
           "range": [
             1356,
-            1455
+            1452
           ],
           "loc": {
             "start": {
@@ -1210,8 +1210,8 @@
           "type": "Identifier",
           "name": "comment",
           "range": [
-            1472,
-            1479
+            1469,
+            1476
           ],
           "loc": {
             "start": {
@@ -1227,10 +1227,10 @@
         "params": [
           {
             "type": "Identifier",
-            "name": "comment",
+            "name": "data",
             "range": [
-              1480,
-              1487
+              1477,
+              1481
             ],
             "loc": {
               "start": {
@@ -1239,7 +1239,7 @@
               },
               "end": {
                 "line": 48,
-                "column": 31
+                "column": 28
               }
             }
           }
@@ -1258,17 +1258,17 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      1498,
-                      1506
+                      1492,
+                      1500
                     ],
                     "loc": {
                       "start": {
                         "line": 48,
-                        "column": 42
+                        "column": 39
                       },
                       "end": {
                         "line": 48,
-                        "column": 50
+                        "column": 47
                       }
                     }
                   },
@@ -1276,106 +1276,106 @@
                     "type": "Identifier",
                     "name": "createComment",
                     "range": [
-                      1507,
-                      1520
+                      1501,
+                      1514
                     ],
                     "loc": {
                       "start": {
                         "line": 48,
-                        "column": 51
+                        "column": 48
                       },
                       "end": {
                         "line": 48,
-                        "column": 64
+                        "column": 61
                       }
                     }
                   },
                   "range": [
-                    1498,
-                    1520
+                    1492,
+                    1514
                   ],
                   "loc": {
                     "start": {
                       "line": 48,
-                      "column": 42
+                      "column": 39
                     },
                     "end": {
                       "line": 48,
-                      "column": 64
+                      "column": 61
                     }
                   }
                 },
                 "arguments": [
                   {
                     "type": "Identifier",
-                    "name": "comment",
+                    "name": "data",
                     "range": [
-                      1521,
-                      1528
+                      1515,
+                      1519
                     ],
                     "loc": {
                       "start": {
                         "line": 48,
-                        "column": 65
+                        "column": 62
                       },
                       "end": {
                         "line": 48,
-                        "column": 72
+                        "column": 66
                       }
                     }
                   }
                 ],
                 "range": [
-                  1498,
-                  1529
+                  1492,
+                  1520
                 ],
                 "loc": {
                   "start": {
                     "line": 48,
-                    "column": 42
+                    "column": 39
                   },
                   "end": {
                     "line": 48,
-                    "column": 73
+                    "column": 67
                   }
                 }
               },
               "range": [
-                1491,
-                1530
+                1485,
+                1521
               ],
               "loc": {
                 "start": {
                   "line": 48,
-                  "column": 35
+                  "column": 32
                 },
                 "end": {
                   "line": 48,
-                  "column": 74
+                  "column": 68
                 }
               }
             }
           ],
           "range": [
-            1489,
-            1531
+            1483,
+            1522
           ],
           "loc": {
             "start": {
               "line": 48,
-              "column": 33
+              "column": 30
             },
             "end": {
               "line": 48,
-              "column": 75
+              "column": 69
             }
           }
         },
         "generator": false,
         "expression": false,
         "range": [
-          1463,
-          1531
+          1460,
+          1522
         ],
         "loc": {
           "start": {
@@ -1384,16 +1384,16 @@
           },
           "end": {
             "line": 48,
-            "column": 75
+            "column": 69
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+            "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
             "range": [
               1356,
-              1455
+              1452
             ],
             "loc": {
               "start": {
@@ -1412,8 +1412,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1456,
-        1531
+        1453,
+        1522
       ],
       "loc": {
         "start": {
@@ -1422,16 +1422,16 @@
         },
         "end": {
           "line": 48,
-          "column": 75
+          "column": 69
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+          "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
           "range": [
             1356,
-            1455
+            1452
           ],
           "loc": {
             "start": {
@@ -1450,7 +1450,7 @@
   "sourceType": "module",
   "range": [
     0,
-    1531
+    1522
   ],
   "loc": {
     "start": {
@@ -1459,7 +1459,7 @@
     },
     "end": {
       "line": 48,
-      "column": 75
+      "column": 69
     }
   },
   "comments": [
@@ -1501,7 +1501,7 @@
     },
     {
       "type": "Block",
-      "value": "*\n * Creates a `Text` DOM node.\n * @param {String} text Node data\n * @returns {Text}\n ",
+      "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
       "range": [
         1196,
         1286
@@ -1519,10 +1519,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} comment Node data\n * @returns {Comment}\n ",
+      "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
       "range": [
         1356,
-        1455
+        1452
       ],
       "loc": {
         "start": {
