@@ -226,6 +226,10 @@ document.body.append(websearch);</code>
 &lt;/script&gt;</code>
 </code></pre>
 <p>This is the simpliest way to start use the htmlmodule in your project.</p>
+<h2 id="accessibility">Accessibility</h2>
+<p>Applications, assembled by htmlmodule accessible by design.
+This depends merely on proper and accurate usage of markup language semantics.
+Look examples, provided on <a href="https://aristov.github.io/htmlmodule">the module homepage</a>.</p>
 <h2 id="compatibility">Compatibility</h2>
 <ul>
 <li>The htmlmodule core doesn&apos;t require anything except DOM.</li>
@@ -239,7 +243,7 @@ The built-in <a href="/shim/index.js">shim bundle</a> partially fixes browser co
 <li><a href="https://www.npmjs.com/package/dom4">dom4 polyfill</a></li>
 <li><a href="/shim">author DOM shims</a></li>
 </ul>
-<p>The shim bundle is used in the <a href="#testing">unit-testing environments</a>.</p>
+<p>The shim bundle is used in <a href="#testing">the unit-testing environments</a>.</p>
 <h3 id="shim-bundle-setup">Shim bundle setup</h3>
 <p>For a wide browser support you must import the shim bundle first.
 There are some ways to do this.</p>
@@ -267,14 +271,14 @@ npm install dom4</code>
 <li>You may decline to use the shim bundle at all, if there&apos;s no need to support an old browser versions.</li>
 </ul>
 <h2 id="documentation">Documentation</h2>
-<p><a href="//aristov.github.io/htmlmodule/api">JSDoc API</a></p>
+<p><a href="//aristov.github.io/htmlmodule/api">API docs</a></p>
 <h2 id="development">Development</h2>
 <h3 id="environment">Environment</h3>
 <ul>
 <li>browser</li>
 <li>node + webpack</li>
 </ul>
-<h3 id="install">Install</h3>
+<h3 id="installation">Installation</h3>
 <pre><code><code class="source-code prettyprint">git clone git@github.com:aristov/htmlmodule.git
 cd htmlmodule
 npm install</code>
@@ -285,16 +289,12 @@ npm install</code>
 <pre><code><code class="source-code prettyprint">npm run docs</code>
 </code></pre><p>Build API documentation:</p>
 <pre><code><code class="source-code prettyprint">npm run api</code>
-</code></pre><h3 id="develop">Develop</h3>
+</code></pre><h3 id="development">Development</h3>
 <p>Run dev server: </p>
 <pre><code><code class="source-code prettyprint">npm start</code>
-</code></pre><p>Development server does the following:</p>
-<ul>
-<li>build docs part only (<code>DOCS=true webpack</code>)</li>
-<li>disable babel transpiling (<code>ES6=true webpack</code>)</li>
-<li>watch file changes (<code>WATCH=true webpack</code>)</li>
-</ul>
-<p>Run any static server (<code>python -m SimpleHTTPServer 8007</code>) and point your browser to <a href="http://localhost:8007/docs">localhost:8080/docs</a></p>
+</code></pre><p>Run any static server, for instance:</p>
+<pre><code><code class="source-code prettyprint">python -m SimpleHTTPServer 8080</code>
+</code></pre><p>Point your browser to <a href="http://localhost:8080/docs">localhost:8080/docs</a></p>
 <h3 id="testing">Testing</h3>
 <h4 id="test-using-node">Test using node</h4>
 <pre><code><code class="source-code prettyprint">npm test</code>

@@ -94,6 +94,12 @@ Get the module by appending the distribution script to a page body:
 
 This is the simpliest way to start use the htmlmodule in your project.
 
+## Accessibility
+
+Applications, assembled by htmlmodule accessible by design.
+This depends merely on proper and accurate usage of markup language semantics.
+Look examples, provided on [the module homepage](https://aristov.github.io/htmlmodule).
+
 ## Compatibility
 
 - The htmlmodule core doesn't require anything except DOM.
@@ -108,7 +114,7 @@ The built-in [shim bundle](/shim/index.js) partially fixes browser compatibility
 - [dom4 polyfill](https://www.npmjs.com/package/dom4)
 - [author DOM shims](/shim)
 
-The shim bundle is used in the [unit-testing environments](#testing).
+The shim bundle is used in [the unit-testing environments](#testing).
 
 ### Shim bundle setup
 
@@ -153,7 +159,7 @@ import 'htmlmodule/shim';
 
 ## Documentation
 
-[JSDoc API](//aristov.github.io/htmlmodule/api)
+[API docs](//aristov.github.io/htmlmodule/api)
 
 ## Development
 
@@ -162,7 +168,7 @@ import 'htmlmodule/shim';
 - browser
 - node + webpack
 
-### Install
+### Installation
 
 ```
 git clone git@github.com:aristov/htmlmodule.git
@@ -190,7 +196,7 @@ Build API documentation:
 npm run api
 ```
 
-### Develop
+### Development
 
 Run dev server: 
 
@@ -198,13 +204,13 @@ Run dev server:
 npm start
 ```
 
-Development server does the following:
+Run any static server, for instance:
  
-- build docs part only (`DOCS=true webpack`)
-- disable babel transpiling (`ES6=true webpack`)
-- watch file changes (`WATCH=true webpack`)
+```
+python -m SimpleHTTPServer 8080
+```
 
-Run any static server (`python -m SimpleHTTPServer 8007`) and point your browser to [localhost:8080/docs](http://localhost:8007/docs)
+Point your browser to [localhost:8080/docs](http://localhost:8080/docs)
 
 ### Testing
 
