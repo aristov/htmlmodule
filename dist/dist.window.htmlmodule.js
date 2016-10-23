@@ -436,7 +436,7 @@
 	 *
 	 * @function xmldom
 	 * @param {String} tagName `Element` tag name
-	 * @param {{}} [init] `NodeInit` dictionary
+	 * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary
 	 * @param {{}} [init.attrset] `Element` attributes set as dictionary object
 	 * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes
 	 * @param {String} [init.className] `Element` class name; reflects "class" attribute
@@ -560,8 +560,8 @@
 	 * @param {Function} [init.ontoggle] Fired at details elements when they open or close
 	 * @param {Function} [init.onvolumechange] Either the volume attribute or the muted attribute has changed. Fired after the relevant attribute's setter has returned
 	 * @param {Function} [init.onwaiting] Playback has stopped because the next frame is not available, but the user agent expects that frame to become available in due course
-	 */function htmldom(tagName,init){return assembler.createElement(tagName,init);};// * @return {HTMLElement} // fixme
-	/**
+	 * @return {HTMLElement}
+	 */function htmldom(tagName,init){return assembler.createElement(tagName,init);};/**
 	 * [The `a` element](https://html.spec.whatwg.org/#the-a-element)
 	 *  - If the `a` element has an `href` attribute, then it represents a hyperlink (a hypertext anchor) labeled by its contents.
 	 *  - If the `a` element has no `href` attribute, then the element represents a placeholder for where a link might otherwise have been placed, if it had been relevant, consisting of just the element's contents.
@@ -1116,27 +1116,27 @@
 	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
 	 */function h1(init){return htmldom('h1',init);}/**
-	 * See [h1](#h1)
+	 * [The `h1`, `h2`, `h3`, `h4`, `h5`, and `h6` elements](https://html.spec.whatwg.org/#the-h1-element)
 	 * @function h2
 	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
 	 */function h2(init){return htmldom('h2',init);}/**
-	 * See [h1](#h1)
+	 * [The `h1`, `h2`, `h3`, `h4`, `h5`, and `h6` elements](https://html.spec.whatwg.org/#the-h1-element)
 	 * @function h3
 	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
 	 */function h3(init){return htmldom('h3',init);}/**
-	 * See [h1](#h1)
+	 * [The `h1`, `h2`, `h3`, `h4`, `h5`, and `h6` elements](https://html.spec.whatwg.org/#the-h1-element)
 	 * @function h4
 	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
 	 */function h4(init){return htmldom('h4',init);}/**
-	 * See [h1](#h1)
+	 * [The `h1`, `h2`, `h3`, `h4`, `h5`, and `h6` elements](https://html.spec.whatwg.org/#the-h1-element)
 	 * @function h5
 	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}
 	 */function h5(init){return htmldom('h5',init);}/**
-	 * See [h1](#h1)
+	 * [The `h1`, `h2`, `h3`, `h4`, `h5`, and `h6` elements](https://html.spec.whatwg.org/#the-h1-element)
 	 * @function h6
 	 * @param {{}|String|Array|Node|DOMAssembler} [init] `NodeInit` dictionary
 	 * @return {HTMLHeadingElement}

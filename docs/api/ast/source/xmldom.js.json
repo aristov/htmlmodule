@@ -316,10 +316,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
+          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
           "range": [
             115,
-            988
+            1019
           ],
           "loc": {
             "start": {
@@ -342,8 +342,8 @@
           "type": "Identifier",
           "name": "xmldom",
           "range": [
-            1005,
-            1011
+            1036,
+            1042
           ],
           "loc": {
             "start": {
@@ -361,8 +361,8 @@
             "type": "Identifier",
             "name": "tagName",
             "range": [
-              1012,
-              1019
+              1043,
+              1050
             ],
             "loc": {
               "start": {
@@ -379,8 +379,8 @@
             "type": "Identifier",
             "name": "init",
             "range": [
-              1021,
-              1025
+              1052,
+              1056
             ],
             "loc": {
               "start": {
@@ -408,8 +408,8 @@
                     "type": "Identifier",
                     "name": "assembler",
                     "range": [
-                      1040,
-                      1049
+                      1071,
+                      1080
                     ],
                     "loc": {
                       "start": {
@@ -426,8 +426,8 @@
                     "type": "Identifier",
                     "name": "createElement",
                     "range": [
-                      1050,
-                      1063
+                      1081,
+                      1094
                     ],
                     "loc": {
                       "start": {
@@ -441,8 +441,8 @@
                     }
                   },
                   "range": [
-                    1040,
-                    1063
+                    1071,
+                    1094
                   ],
                   "loc": {
                     "start": {
@@ -460,8 +460,8 @@
                     "type": "Identifier",
                     "name": "tagName",
                     "range": [
-                      1064,
-                      1071
+                      1095,
+                      1102
                     ],
                     "loc": {
                       "start": {
@@ -478,8 +478,8 @@
                     "type": "Identifier",
                     "name": "init",
                     "range": [
-                      1073,
-                      1077
+                      1104,
+                      1108
                     ],
                     "loc": {
                       "start": {
@@ -494,8 +494,8 @@
                   }
                 ],
                 "range": [
-                  1040,
-                  1078
+                  1071,
+                  1109
                 ],
                 "loc": {
                   "start": {
@@ -509,8 +509,8 @@
                 }
               },
               "range": [
-                1033,
-                1079
+                1064,
+                1110
               ],
               "loc": {
                 "start": {
@@ -525,8 +525,8 @@
             }
           ],
           "range": [
-            1027,
-            1081
+            1058,
+            1112
           ],
           "loc": {
             "start": {
@@ -542,8 +542,8 @@
         "generator": false,
         "expression": false,
         "range": [
-          996,
-          1081
+          1027,
+          1112
         ],
         "loc": {
           "start": {
@@ -558,10 +558,10 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
+            "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
             "range": [
               115,
-              988
+              1019
             ],
             "loc": {
               "start": {
@@ -580,8 +580,8 @@
             "type": "Block",
             "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
             "range": [
-              1083,
-              1230
+              1114,
+              1261
             ],
             "loc": {
               "start": {
@@ -599,8 +599,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        989,
-        1081
+        1020,
+        1112
       ],
       "loc": {
         "start": {
@@ -615,10 +615,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
+          "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
           "range": [
             115,
-            988
+            1019
           ],
           "loc": {
             "start": {
@@ -637,8 +637,8 @@
           "type": "Block",
           "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
           "range": [
-            1083,
-            1230
+            1114,
+            1261
           ],
           "loc": {
             "start": {
@@ -661,8 +661,8 @@
           "type": "Identifier",
           "name": "element",
           "range": [
-            1247,
-            1254
+            1278,
+            1285
           ],
           "loc": {
             "start": {
@@ -680,8 +680,8 @@
             "type": "Identifier",
             "name": "init",
             "range": [
-              1255,
-              1259
+              1286,
+              1290
             ],
             "loc": {
               "start": {
@@ -706,8 +706,8 @@
                   "type": "Identifier",
                   "name": "xmldom",
                   "range": [
-                    1270,
-                    1276
+                    1301,
+                    1307
                   ],
                   "loc": {
                     "start": {
@@ -726,8 +726,8 @@
                     "value": "element",
                     "raw": "'element'",
                     "range": [
-                      1277,
-                      1286
+                      1308,
+                      1317
                     ],
                     "loc": {
                       "start": {
@@ -744,8 +744,8 @@
                     "type": "Identifier",
                     "name": "init",
                     "range": [
-                      1288,
-                      1292
+                      1319,
+                      1323
                     ],
                     "loc": {
                       "start": {
@@ -760,8 +760,8 @@
                   }
                 ],
                 "range": [
-                  1270,
-                  1293
+                  1301,
+                  1324
                 ],
                 "loc": {
                   "start": {
@@ -775,8 +775,8 @@
                 }
               },
               "range": [
-                1263,
-                1294
+                1294,
+                1325
               ],
               "loc": {
                 "start": {
@@ -791,8 +791,8 @@
             }
           ],
           "range": [
-            1261,
-            1295
+            1292,
+            1326
           ],
           "loc": {
             "start": {
@@ -808,8 +808,8 @@
         "generator": false,
         "expression": false,
         "range": [
-          1238,
-          1295
+          1269,
+          1326
         ],
         "loc": {
           "start": {
@@ -826,8 +826,8 @@
             "type": "Block",
             "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
             "range": [
-              1083,
-              1230
+              1114,
+              1261
             ],
             "loc": {
               "start": {
@@ -846,8 +846,8 @@
             "type": "Block",
             "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
             "range": [
-              1297,
-              1387
+              1328,
+              1418
             ],
             "loc": {
               "start": {
@@ -865,8 +865,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1231,
-        1295
+        1262,
+        1326
       ],
       "loc": {
         "start": {
@@ -883,8 +883,8 @@
           "type": "Block",
           "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
           "range": [
-            1083,
-            1230
+            1114,
+            1261
           ],
           "loc": {
             "start": {
@@ -903,8 +903,8 @@
           "type": "Block",
           "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
           "range": [
-            1297,
-            1387
+            1328,
+            1418
           ],
           "loc": {
             "start": {
@@ -927,8 +927,8 @@
           "type": "Identifier",
           "name": "text",
           "range": [
-            1404,
-            1408
+            1435,
+            1439
           ],
           "loc": {
             "start": {
@@ -946,8 +946,8 @@
             "type": "Identifier",
             "name": "data",
             "range": [
-              1409,
-              1413
+              1440,
+              1444
             ],
             "loc": {
               "start": {
@@ -975,8 +975,8 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      1424,
-                      1432
+                      1455,
+                      1463
                     ],
                     "loc": {
                       "start": {
@@ -993,8 +993,8 @@
                     "type": "Identifier",
                     "name": "createTextNode",
                     "range": [
-                      1433,
-                      1447
+                      1464,
+                      1478
                     ],
                     "loc": {
                       "start": {
@@ -1008,8 +1008,8 @@
                     }
                   },
                   "range": [
-                    1424,
-                    1447
+                    1455,
+                    1478
                   ],
                   "loc": {
                     "start": {
@@ -1027,8 +1027,8 @@
                     "type": "Identifier",
                     "name": "data",
                     "range": [
-                      1448,
-                      1452
+                      1479,
+                      1483
                     ],
                     "loc": {
                       "start": {
@@ -1043,8 +1043,8 @@
                   }
                 ],
                 "range": [
-                  1424,
-                  1453
+                  1455,
+                  1484
                 ],
                 "loc": {
                   "start": {
@@ -1058,8 +1058,8 @@
                 }
               },
               "range": [
-                1417,
-                1454
+                1448,
+                1485
               ],
               "loc": {
                 "start": {
@@ -1074,8 +1074,8 @@
             }
           ],
           "range": [
-            1415,
-            1455
+            1446,
+            1486
           ],
           "loc": {
             "start": {
@@ -1091,8 +1091,8 @@
         "generator": false,
         "expression": false,
         "range": [
-          1395,
-          1455
+          1426,
+          1486
         ],
         "loc": {
           "start": {
@@ -1109,8 +1109,8 @@
             "type": "Block",
             "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
             "range": [
-              1297,
-              1387
+              1328,
+              1418
             ],
             "loc": {
               "start": {
@@ -1129,8 +1129,8 @@
             "type": "Block",
             "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
             "range": [
-              1457,
-              1553
+              1488,
+              1584
             ],
             "loc": {
               "start": {
@@ -1148,8 +1148,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1388,
-        1455
+        1419,
+        1486
       ],
       "loc": {
         "start": {
@@ -1166,8 +1166,8 @@
           "type": "Block",
           "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
           "range": [
-            1297,
-            1387
+            1328,
+            1418
           ],
           "loc": {
             "start": {
@@ -1186,8 +1186,8 @@
           "type": "Block",
           "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
           "range": [
-            1457,
-            1553
+            1488,
+            1584
           ],
           "loc": {
             "start": {
@@ -1210,8 +1210,8 @@
           "type": "Identifier",
           "name": "comment",
           "range": [
-            1570,
-            1577
+            1601,
+            1608
           ],
           "loc": {
             "start": {
@@ -1229,8 +1229,8 @@
             "type": "Identifier",
             "name": "data",
             "range": [
-              1578,
-              1582
+              1609,
+              1613
             ],
             "loc": {
               "start": {
@@ -1258,8 +1258,8 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      1593,
-                      1601
+                      1624,
+                      1632
                     ],
                     "loc": {
                       "start": {
@@ -1276,8 +1276,8 @@
                     "type": "Identifier",
                     "name": "createComment",
                     "range": [
-                      1602,
-                      1615
+                      1633,
+                      1646
                     ],
                     "loc": {
                       "start": {
@@ -1291,8 +1291,8 @@
                     }
                   },
                   "range": [
-                    1593,
-                    1615
+                    1624,
+                    1646
                   ],
                   "loc": {
                     "start": {
@@ -1310,8 +1310,8 @@
                     "type": "Identifier",
                     "name": "data",
                     "range": [
-                      1616,
-                      1620
+                      1647,
+                      1651
                     ],
                     "loc": {
                       "start": {
@@ -1326,8 +1326,8 @@
                   }
                 ],
                 "range": [
-                  1593,
-                  1621
+                  1624,
+                  1652
                 ],
                 "loc": {
                   "start": {
@@ -1341,8 +1341,8 @@
                 }
               },
               "range": [
-                1586,
-                1622
+                1617,
+                1653
               ],
               "loc": {
                 "start": {
@@ -1357,8 +1357,8 @@
             }
           ],
           "range": [
-            1584,
-            1623
+            1615,
+            1654
           ],
           "loc": {
             "start": {
@@ -1374,8 +1374,8 @@
         "generator": false,
         "expression": false,
         "range": [
-          1561,
-          1623
+          1592,
+          1654
         ],
         "loc": {
           "start": {
@@ -1392,8 +1392,8 @@
             "type": "Block",
             "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
             "range": [
-              1457,
-              1553
+              1488,
+              1584
             ],
             "loc": {
               "start": {
@@ -1412,8 +1412,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1554,
-        1623
+        1585,
+        1654
       ],
       "loc": {
         "start": {
@@ -1430,8 +1430,8 @@
           "type": "Block",
           "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
           "range": [
-            1457,
-            1553
+            1488,
+            1584
           ],
           "loc": {
             "start": {
@@ -1450,7 +1450,7 @@
   "sourceType": "module",
   "range": [
     0,
-    1623
+    1654
   ],
   "loc": {
     "start": {
@@ -1465,10 +1465,10 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
+      "value": "*\n * Assembles the specified `Element` DOM node\n *\n * Provides the `Element` interface\n *\n * - [W3 specification](https://www.w3.org/TR/xml/#element-element)\n * - [MDN HTML reference](https://developer.mozilla.org/en-US/docs/Web/XML/Element)\n * - [MSDN API reference](https://msdn.microsoft.com/en-us/library/hh869681.aspx)\n *\n * @function xmldom\n * @param {String} tagName `Element` tag name\n * @param {{}|String|Node|DOMAssembler|Array} [init] `NodeInit` dictionary\n * @param {{}} [init.attrset] `Element` attributes set as dictionary object\n * @param {String|Node|DOMAssembler|Array} [init.children] `Element` child nodes\n * @param {String} [init.className] `Element` class name; reflects \"class\" attribute\n * @param {String} [init.id] `Element` unique identifier; reflects \"id\" content attribute\n * @param {String} [init.textContent] Paste string data as a single text node\n * @return {Element}\n ",
       "range": [
         115,
-        988
+        1019
       ],
       "loc": {
         "start": {
@@ -1485,8 +1485,8 @@
       "type": "Block",
       "value": "*\n * Assembles a generic \"element\" instance of the `Element` DOM interface.\n * @param {{}} [init] `NodeInit` dictionary\n * @returns {Element}\n ",
       "range": [
-        1083,
-        1230
+        1114,
+        1261
       ],
       "loc": {
         "start": {
@@ -1503,8 +1503,8 @@
       "type": "Block",
       "value": "*\n * Creates a `Text` DOM node.\n * @param {String} data Node data\n * @returns {Text}\n ",
       "range": [
-        1297,
-        1387
+        1328,
+        1418
       ],
       "loc": {
         "start": {
@@ -1521,8 +1521,8 @@
       "type": "Block",
       "value": "*\n * Creates a `Comment` DOM node.\n * @param {String} data Node data\n * @returns {Comment}\n ",
       "range": [
-        1457,
-        1553
+        1488,
+        1584
       ],
       "loc": {
         "start": {
