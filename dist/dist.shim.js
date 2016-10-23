@@ -81,6 +81,8 @@
 
 	__webpack_require__(/*! ./shim.head */ 312);
 
+	__webpack_require__(/*! ./shim.selectedoptions */ 313);
+
 /***/ },
 /* 8 */
 /*!***************************************!*\
@@ -10817,6 +10819,27 @@
 	        }
 	    });
 	}
+
+/***/ },
+/* 313 */
+/*!**************************************!*\
+  !*** ./shim/shim.selectedoptions.js ***!
+  \**************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+
+	// if(!('selectedOptions' in HTMLSelectElement.prototype)) {
+	var filter = Array.prototype.filter;
+	var handler = function handler(option) {
+	    return option.selected;
+	};
+	Object.defineProperty(HTMLSelectElement.prototype, 'selectedOptions', {
+	    get: function get() {
+	        return filter.call(this.options, handler);
+	    }
+	});
+	// }
 
 /***/ }
 /******/ ]);
