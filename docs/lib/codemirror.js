@@ -29,8 +29,6 @@ const MARKUP_BOX_DEFAULTS = {
     theme
 };
 
-/*================================================================*/
-
 export class CodeMirrorAssembler extends HTMLAssembler {
     constructor(init) {
         super(init);
@@ -65,8 +63,6 @@ export class CodeMirrorAssembler extends HTMLAssembler {
 Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable : true, value : null });
 
 const codemirror = (init = {}) => new CodeMirrorAssembler(init);
-
-/*================================================================*/
 
 export const codebox = (init = {}) => {
     if(!init.options) init.options = CODE_BOX_DEFAULTS;

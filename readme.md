@@ -98,7 +98,10 @@ This is the simpliest way to start use the htmlmodule in your project.
 
 Applications, assembled by htmlmodule are accessible by design.
 This depends primarily on a proper and accurate usage of the markup language semantics.
-Look the examples, provided on [the module homepage](https://aristov.github.io/htmlmodule).
+Read [the spec](https://html.spec.whatwg.org),
+[the API reference](https://aristov.github.io/htmlmodule/docs/api/identifiers.html)
+and look the examples, provided on
+[the module homepage](https://aristov.github.io/htmlmodule).
 
 ## Compatibility
 
@@ -159,7 +162,13 @@ import 'htmlmodule/shim';
 
 ## Documentation
 
-[API docs](//aristov.github.io/htmlmodule/docs/api)
+[The API reference](https://aristov.github.io/htmlmodule/docs/api/identifiers.html) 
+contains short extractions and relevant quotations from the following resources:
+
+- [HTML](https://html.spec.whatwg.org) and [DOM](https://dom.spec.whatwg.org) living standards
+- W3C [HTML](https://www.w3.org/TR/html) and [DOM](https://www.w3.org/TR/dom) specifications
+- MDN [API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model#HTML_element_interfaces) and [element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) references
+- MSDN [API](https://msdn.microsoft.com/en-us/library/hh869680.aspx) and [element](https://msdn.microsoft.com/en-us/library/hh772721.aspx) references
 
 ## Development
 
@@ -201,7 +210,7 @@ and
 npm run docs
 ```
 
-Build API documentation:
+Build [API documentation](https://aristov.github.io/htmlmodule/docs/api):
 
 ```
 npm run api

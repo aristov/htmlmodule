@@ -402,31 +402,35 @@ _________________________________________________________
         ]
     }),
 
-({ pre, script, style }) => pre([
-    script(`
-        Object.assign(
-            document.currentScript.style, {
-                display: 'block',
-                margin: '20px',
-                paddingBottom: '20px',
-                boxShadow: '0 0 5px 5px #ccc',
-                color: 'blue',
-                font: '13px monospace'
-            })`),
-    style(`
-        style {
+({ pre, script, style }) => {
+    const tab = ' '.repeat(4);
+    const src = () => Object.assign(
+        document.currentScript.style,
+        {
+            display : 'block',
+            margin : '20px',
+            padding : '20px',
+            boxShadow : '0 0 5px 5px #ccc',
+            color : 'blue',
+            font : '13px monospace'
+        });
+    return pre([
+        script(tab + `(${ src.toString() })()`),
+        style(tab.repeat(2) + `style 
+        {
             display: block;
             margin: 20px;
-            padding-bottom: 20px;
+            padding: 20px;
             color: green;
             box-shadow: 0 0 5px 5px #ccc;
             font: 13px monospace;
         }`)
-]),
+    ])
+},
 
 ({ article, code, pre, style }) => {
     const fetch = window.fetch;
-    const files = ['index.html', 'index.js', 'index.css'];
+    const files = ['index.html', 'docs/index.js', 'docs/index.css'];
     Promise
         .all(files.map(file => {
             return fetch(file).then(res => res.text());
@@ -451,11 +455,12 @@ _________________________________________________________
 
 htmlmodule => {
     const { nav, h1, ul, li, a, style } = htmlmodule;
-    const keys = Object.keys(htmlmodule);
+    const keys = Object.keys(htmlmodule).filter(key => !/^[A-Z]/.test(key));
+    const path = './docs/api/function/index.html#static-function-';
     return nav([
         h1('API index'),
         ul(keys.map(key => li(a({
-            href : './api#' + key.toLowerCase(),
+            href : path + key,
             target : '_blank',
             children : key
         })))),
@@ -471,15 +476,25 @@ htmlmodule => {
     ]);
 },
 
-({ iframe }) => iframe({
-    src : 'api',
-    width : '100%',
-    height : '100%',
-    style : { border : 'none' }
-}),
+({ iframe }) => {
+    const apiwin = iframe({
+        src : 'docs/api',
+        width : '100%',
+        height : '100%',
+        onload : () => {
+            const doc = apiwin.contentDocument;
+            const nav = doc.querySelector('nav.navigation');
+            const content = doc.querySelector('div.content');
+            nav.remove();
+            content.style.margin = '50px 0';
+        },
+        style : { border : 'none' }
+    });
+    return apiwin;
+},
 
 ({ iframe }) => iframe({
-    src : 'spec.html',
+    src : 'docs/spec.html',
     width : '100%',
     height : '100%',
     style : { border : 'none' }

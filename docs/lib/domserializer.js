@@ -1,7 +1,7 @@
 const map = Array.prototype.map;
 const { TEXT_NODE, COMMENT_NODE, ELEMENT_NODE } = window.Node;
 
-const DEFAULT_INDENT = '    ';
+const DEFAULT_INDENT = ' '.repeat(4);
 const DEFAULT_LINE_BREAK = '\n';
 const DEFAULT_LEVEL = 0;
 
@@ -22,7 +22,7 @@ export class DOMSerializer {
      * Instantiate a DOM serializer with indentation options
      * @param {String} indent String to use as a line start indentation
      * @param {String} linebreak String to use as a line break;
-     * @param {Number} level Default indentation level
+     * @param {Number} level Initial indentation level
      */
     constructor({
         indent = DEFAULT_INDENT,
