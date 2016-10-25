@@ -1,14 +1,14 @@
 /**
  * !!! THIS FILE REQUIRES THE ADDITIONAL SYNTAX RESTRICTIONS !!!
  *
- * A processing script:
- *  - imports file as a raw source
- *  - splits file by '\n\n' (double line break)
+ * The processing script (./index.js):
+ *  - imports this file as a raw source
+ *  - splits the file by '\n\n' (double line break)
  *  - removes trailing comma from each chunk
- *  - omits the first and the last chunks
- *  - provides the rest as a sitedata sources
+ *  - omits the first (this message) and the last (trailing square bracket) chunks
+ *  - provides the rest as a sitedata sources array
  *
- * This procedure is used to avoid mangling the initial codestyle by babel
+ * This procedure is used to avoid mangling the initial codestyle by Babel.
  */
 [
 
@@ -500,4 +500,4 @@ htmlmodule => {
     style : { border : 'none' }
 }),
 
-];
+]
