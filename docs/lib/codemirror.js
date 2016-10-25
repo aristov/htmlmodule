@@ -47,7 +47,7 @@ export class CodeMirrorAssembler extends HTMLAssembler {
         super.createElement(tagName);
         this.createMirror(init.options);
         delete init.options;
-        this.init = init;
+        this.init(init);
     }
     refresh() {
         this.mirror.refresh();
