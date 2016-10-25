@@ -234,8 +234,6 @@ Point your browser to [localhost:8080/docs](http://localhost:8080/docs)
 
 ### Testing
 
-#### Test using node
-
 ```
 npm test
 ```
