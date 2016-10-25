@@ -1,7 +1,6 @@
 # htmlmodule
 
 [![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
-[![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
@@ -170,12 +169,16 @@ contains short extractions and relevant quotations from the following resources:
 - MDN [API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model#HTML_element_interfaces) and [element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) references
 - MSDN [API](https://msdn.microsoft.com/en-us/library/hh869680.aspx) and [element](https://msdn.microsoft.com/en-us/library/hh772721.aspx) references
 
+The module API includes almost all actual elements from the HTML living standard.
+Be watchful when use a modern HTML5 features, due to it's partial browser support.
+For convenience, these features are marked as `@version HTML5` in JSDoc.
+
 ## Development
 
 ### Environment
 
-- browser
-- node + webpack
+- Browser
+- Node.js + Webpack
 
 ### Installation
 
@@ -237,6 +240,8 @@ Point your browser to [localhost:8080/docs](http://localhost:8080/docs)
 ```
 npm test
 ```
+
+[![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
 
 #### Test in browser
 
