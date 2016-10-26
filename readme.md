@@ -114,6 +114,7 @@ The built-in [shim bundle](/shim/index.js) partially fixes browser compatibility
 
 - [Babel polyfill](http://babeljs.io/docs/usage/polyfill/)
 - [dom4 polyfill](https://www.npmjs.com/package/dom4)
+- [whatwg-fetch polyfill](https://www.npmjs.com/package/whatwg-fetch)
 - [author DOM shims](/shim)
 
 The shim bundle is used in [the unit-testing environments](#testing).

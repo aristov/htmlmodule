@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import 'dom4';
+import 'whatwg-fetch';
 import './shim.id';
 import './shim.classname';
 import './shim.classlist';
