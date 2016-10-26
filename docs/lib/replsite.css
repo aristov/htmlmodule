@@ -16,6 +16,14 @@
     width: 50%;
     box-sizing: border-box;
 }
+.replsite .inputcode /* Safari fix */
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
 .replsite .outputwin
 {
     width: 100%;
