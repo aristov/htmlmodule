@@ -1,10 +1,6 @@
 const map = Array.prototype.map;
 const { TEXT_NODE, COMMENT_NODE, ELEMENT_NODE } = window.Node;
 
-const DEFAULT_INDENT = '    ';
-const DEFAULT_LINE_BREAK = '\n';
-const DEFAULT_LEVEL = 0;
-
 const EMPTY_TAG_LIST = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
 const EMPTY_TAG_SET = EMPTY_TAG_LIST.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
 
@@ -13,6 +9,12 @@ const isEmptyTag = node => {
     return Boolean(EMPTY_TAG_SET[node.tagName]);
 }
 
+const DEFAULT_OPTIONS = {
+    indent : ' '.repeat(4),
+    linebreak : '\n',
+    level : 0
+};
+
 /**
  * Simple DOM to markup serializing utility.
  * Supports a lightweight configurable markup code auto-indentation.
@@ -20,23 +22,12 @@ const isEmptyTag = node => {
 export class DOMSerializer {
     /**
      * Instantiate a DOM serializer with indentation options
-     * @param {String} indent String to use as a line start indentation
-     * @param {String} linebreak String to use as a line break;
-     * @param {Number} level Initial indentation level
+     * @param {{}} options
      */
-    constructor({
-        /* fixme FF not defined error
-        indent = DEFAULT_INDENT,
-        linebreak = DEFAULT_LINE_BREAK,
-        level = DEFAULT_LEVEL,
-        */
-        indent = '    ',
-        linebreak = '\n',
-        level = 0
-    } = {}) {
-        this.indent = indent;
-        this.linebreak = linebreak;
-        this.level = level;
+    constructor(options = DEFAULT_OPTIONS) {
+        this.indent = options.indent;
+        this.linebreak = options.linebreak;
+        this.level = options.level;
     }
 
     /**

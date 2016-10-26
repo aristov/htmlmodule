@@ -111,7 +111,6 @@ export class REPLSite {
             (innerHeight - outputcode.height) + 'px' :
             innerHeight + 'px';
         this.inputcode.refresh();
-        outputcode.refresh();
         this.replmachine.loop();
     }
     prev() {

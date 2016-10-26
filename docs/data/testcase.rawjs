@@ -35,6 +35,12 @@
     }),
 
 ({ fieldset, legend, section, button, label, input, output, style }) => {
+    const textContent = 'Give me a focus, please...';
+    const focusbutton = button({
+        onfocus : ({ target }) => target.textContent = 'Focused!',
+        onblur : ({ target }) => target.textContent = textContent,
+        textContent
+    });
     const alertbutton = button({
         onclick : ({
             type,
@@ -63,12 +69,6 @@
         }),
         output({ title : 'Entered char count', value : '0' })
     ]);
-    const textContent = 'Give me a focus, please...';
-    const focusbutton = button({
-        onfocus : ({ target }) => target.textContent = 'Focused!',
-        onblur : ({ target }) => target.textContent = textContent,
-        textContent
-    });
     return fieldset([
         legend('Event handlers'),
         section(focusbutton),
