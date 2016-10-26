@@ -143,8 +143,9 @@ There are some ways to do this.
 Install the third-party polyfill libraries first:
 
 ```
-npm install babel-polyfill
-npm install dom4
+npm install babel-polyfill --save
+npm install dom4 --save
+npm install whatwg-fetch --save
 ```
 
 Import the shim bundle into your project:

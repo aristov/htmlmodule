@@ -200,7 +200,7 @@
                         })
                     ]})
             ]),
-            input({ type : 'reset', style : { margin : '0 auto 0 0' } }),
+            input({ type : 'reset', style : { width : '100px' } }),
         ]
     }),
 

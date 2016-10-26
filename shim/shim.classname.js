@@ -25,13 +25,14 @@
  * @polyfill
  */
 {
-    const test = document.createElementNS('https://www.w3.org/1999/xml', 'test');
-
-    test.className = 'test';
-
-    if(!document.getElementsByClassName.length) {
-        document.getElementsByClassName = className => {
+    const NAME = 'test' + Math.floor(Math.random() * Date.now());
+    const test = document.createElementNS('https://www.w3.org/1999/xml', NAME);
+    test.className = NAME;
+    document.body.appendChild(test);
+    if(!document.getElementsByClassName(NAME).length) {
+        document.getElementsByClassName = function(className) {
             return document.querySelectorAll(`[class~=${ className }]`);
         }
     }
+    document.body.removeChild(test);
 }
