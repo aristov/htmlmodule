@@ -5,7 +5,7 @@
  */
 const { HTMLElement, document } = window;
 
-if(!HTMLElement.prototype.hasOwnProperty('hidden')) {
+if(!('hidden' in HTMLElement.prototype)) {
     Object.defineProperty(HTMLElement.prototype, 'hidden', {
         set(hidden) {
             hidden?
