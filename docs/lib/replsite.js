@@ -99,6 +99,8 @@ export class REPLSite {
             if(target.tagName !== 'TEXTAREA') {
                 if(keyCode === 37) this.prev();
                 if(keyCode === 39) this.next();
+                if(keyCode === 38) this.markupview.open = true;
+                if(keyCode === 40) this.markupview.open = false;
             }
         }
     }
