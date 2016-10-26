@@ -7,6 +7,16 @@ import { codebox, markupbox } from './codemirror';
 
 import './replsite.css';
 
+// fixme: move to shim
+const { HTMLDetailsElement : { prototype } } = window;
+if(!('ontoggle' in prototype)) {
+    Object.defineProperty(prototype, 'ontoggle', {
+        set(ontoggle) {
+            this.addEventListener('toggle', ontoggle.bind(this));
+        }
+    });
+}
+
 const START_INDEX = 0;
 
 const serializer = new DOMSerializer;
@@ -71,7 +81,10 @@ export class REPLSite {
                     })
                 ]),
                 section([
-                    this.outputwin = iframe({ className : 'outputwin' }),
+                    this.outputwin = iframe({
+                        className : 'outputwin',
+                        onload : () => this.refresh()
+                    }),
                     this.markupview = details({
                         className : 'markupview',
                         ontoggle : () => this.refresh(),
@@ -91,8 +104,13 @@ export class REPLSite {
         });
     }
     start() {
-        this.refresh();
         this.inputcode.onchange = () => this.replmachine.loop();
+        window.onkeydown = ({ target, keyCode }) => {
+            if(target.tagName !== 'TEXTAREA') {
+                if(keyCode === 37) this.prev();
+                if(keyCode === 39) this.next();
+            }
+        }
     }
     refresh() {
         const outputcode = this.outputcode;

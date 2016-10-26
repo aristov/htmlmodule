@@ -8,3 +8,4 @@ import './shim.hidden';
 import './shim.click';
 import './shim.head';
 import './shim.selectedoptions';
+import './shim.details';
