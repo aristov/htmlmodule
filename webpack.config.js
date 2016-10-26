@@ -28,6 +28,7 @@ if(env.MIN) {
 
 module.exports = {
     entry : env.DOCS? {
+        shim : ['./shim'],
         index : ['./docs'],
         spec : ['./lib/index.spec']
     } : {
