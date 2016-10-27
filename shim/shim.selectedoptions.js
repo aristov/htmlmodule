@@ -5,7 +5,7 @@
  */
 if(!('selectedOptions' in HTMLSelectElement.prototype)) {
     const filter = Array.prototype.filter;
-    const handler = option => option.selected;
+    const handler = ({ selected }) => selected;
     Object.defineProperty(HTMLSelectElement.prototype, 'selectedOptions', {
         get() {
             return filter.call(this.options, handler);

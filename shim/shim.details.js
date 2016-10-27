@@ -8,22 +8,33 @@
 /*----------------------------------------------------------------*/
 
 /**
- * HTMLDetailsElement.ontoggle Polyfill
+ * HTMLElement.ontoggle Polyfill
  * @copyright © 2016 Vyacheslav Aristov
  */
 {
-    const { HTMLDetailsElement : { prototype } } = window;
+    const { HTMLElement : { prototype } } = window;
     if(!('ontoggle' in prototype)) {
-        Object.defineProperty(prototype, 'ontoggle', {
-            writable : true,
-            enumerable : true,
-            value : null
+        Object.defineProperties(prototype, {
+            ontoggle : {
+                configurable : true,
+                enumerable : true,
+                set(handler) {
+                    this.__handler_ontoggle__ = typeof handler === 'function'?
+                        handler.bind(this) :
+                        null;
+                },
+                get() {
+                    return this.__handler_ontoggle__;
+                }
+            },
+            __handler_ontoggle__ : {
+                writable : true,
+                value : null
+            }
         });
         document.addEventListener('toggle', event => {
             const target = event.target;
-            if(typeof target.ontoggle === 'function') {
-                target.ontoggle(event);
-            }
+            if(typeof target.ontoggle) target.ontoggle(event);
         }, true);
     }
 }
