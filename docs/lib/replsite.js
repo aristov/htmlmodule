@@ -11,10 +11,13 @@ const START_INDEX = 0;
 
 const serializer = new DOMSerializer;
 
-let es2016support = false;
+let es2016support;
 try {
     new Function('({test}) => test');
     es2016support = true;
+}
+catch(error) {
+    es2016support = false;
 }
 const BABEL_STANDALONE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
 
