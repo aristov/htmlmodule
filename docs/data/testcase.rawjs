@@ -215,13 +215,14 @@ _________________________________________________________
 
 ({ hgroup, h1, h2, h3, h4, h5, h6 }) => {
     const hh = [h1, h2, h3, h4, h5, h6];
-    const ht = 'HTML is amazing';
-    return hgroup([...hh.slice(1).reverse(), ...hh].map(h => h(ht)));
+    const text = 'HTML is amazing';
+    const group = [...hh.slice(1).reverse(), ...hh];
+    return hgroup(group.map(hx => hx(text)));
 },
 
 ({
     a, i, strong, sup, sub, abbr, ins, del, b, code,
-    div, h1, hr, address, small, ul, ol, li, blockquote,
+    div, h1, address, small, ul, ol, li, blockquote,
     article, header, main, footer, section, aside,
     ruby, rt, rp, bdi, bdo,
     progress, meter

@@ -2,7 +2,7 @@ import { REPLMachine } from './REPLMachine';
 import { DOMSerializer } from './domserializer';
 
 import * as htmlmodule from './htmlmodule';
-import { main, section, iframe, button, details, summary } from './htmlmodule';
+import { main, section, iframe, button, details, summary, script } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
 
 import './replsite.css';
@@ -10,6 +10,21 @@ import './replsite.css';
 const START_INDEX = 0;
 
 const serializer = new DOMSerializer;
+
+let es2016support = false;
+try {
+    new Function('({test}) => test');
+    es2016support = true;
+}
+const BABEL_STANDALONE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+
+window.Babel = { transform : code => ({ code }) };
+
+const babel = (input) => {
+    const Babel = window.Babel;
+    const res = Babel.transform(input, { presets: ['es2015'] });
+    return res.code.replace(/^'use\sstrict';\n\n/, '');
+}
 
 export class REPLSite {
     constructor(data) {
@@ -22,7 +37,7 @@ export class REPLSite {
         window.onresize = () => this.refresh();
     }
     get value() {
-        return this.inputcode.value;
+        return babel(this.inputcode.value);
     }
     set value(value) {
         const { markupview, outputcode } = this;
@@ -38,9 +53,7 @@ export class REPLSite {
                     value;
                 if(resultnode) {
                     body.appendChild(resultnode);
-                    // if(markupview.open) {
-                        outputcode.value = serializer.serializeToString(resultnode);
-                    // }
+                    outputcode.value = serializer.serializeToString(resultnode);
                 }
             }
             catch(error) {
@@ -73,9 +86,7 @@ export class REPLSite {
                 section([
                     this.outputwin = iframe({
                         className : 'outputwin',
-                        onload : () => {
-                            if(this.onready) this.onready();
-                        }
+                        onload : () => this.onready()
                     }),
                     this.markupview = details({
                         className : 'markupview',
@@ -94,6 +105,15 @@ export class REPLSite {
                 ])
             ]
         });
+    }
+    onready() {
+        if(es2016support) this.start();
+        else {
+            document.body.append(script({
+                onload : () => this.start(),
+                src : BABEL_STANDALONE_URL
+            }));
+        }
     }
     start() {
         this.inputcode.onchange = () => this.replmachine.loop();
@@ -134,5 +154,4 @@ Object.defineProperties(REPLSite.prototype, {
     data : { writable : true, value : [] },
     node : { writable : true, value : null },
     index :  { writable : true, value : START_INDEX },
-    onready : { writable : true, value : null }
 });
