@@ -9,6 +9,8 @@ import './replsite.css';
 
 const START_INDEX = 0;
 
+const Babel = window.Babel;
+
 const serializer = new DOMSerializer;
 
 export class REPLSite {
@@ -22,7 +24,9 @@ export class REPLSite {
         window.onresize = () => this.refresh();
     }
     get value() {
-        return this.inputcode.value;
+        const value = this.inputcode.value;
+        const transform = Babel.transform(value, { presets: ['es2015'] });
+        return transform.code.replace(/^'use\sstrict';\n\n/, '');
     }
     set value(value) {
         const { markupview, outputcode } = this;
