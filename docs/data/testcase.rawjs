@@ -19,7 +19,7 @@
         children : [
             label([
                 img({
-                    src : 'http://bit.ly/2dgU2dO',
+                    src : 'https://bit.ly/2dgU2dO',
                     alt : 'Яндекс',
                     width : 50
                 }),
@@ -220,59 +220,28 @@ _________________________________________________________
 },
 
 ({
-    a, i, strong, sup, sub, abbr, ins, del, b, s, em, code,
+    a, i, strong, sup, sub, abbr, ins, del, b, code,
     div, h1, hr, address, small, ul, ol, li, blockquote,
     article, header, main, footer, section, aside,
     ruby, rt, rp, bdi, bdo,
-    progress, meter,
+    progress, meter
 }) => {
     const children = 'АРОЗАУПАЛА';
     return div([
-        header([
-            'Here comes ',
-            sup('supertext'),
-            ' and ',
-            sub('subtext'),
-            '. Later they are followed by ',
-            i('alternative voice'),
-            ' and ',
-            strong('important!'),
-            hr(),
-            blockquote({
-                cite : 'https://html.spec.whatwg.org/' +
-                    'multipage/semantics.html#the-blockquote-element',
-                children : 'The blockquote element represents ' +
-                    'a section that is quoted from another source.'
-            }),
-            hr(),
-            aside('Your advert may be here!'),
-        ]),
-        hr(),
-        main([
-            article({
-                title : 'Various lists',
-                children : [
-                    ul([
-                        li('Node'),
-                        li('Text'),
-                        li('Element'),
-                        li('Comment'),
-                        li('Document'),
-                        li('CharacterData'),
-                    ]),
-                    ol([
-                        li('null'),
-                        li('Object'),
-                        li('EventTarget'),
-                        li('Node'),
-                        li('Element'),
-                        li('HTMLElement'),
-                        li('HTMLLIElement'),
-                    ]),
-                ]
-            }),
-            hr(),
-            article([
+        header({
+            title : 'the header element',
+            children : article([
+                h1('Text-level semantics'),
+                section([
+                    'Here comes ',
+                    sup('supertext'),
+                    ' and ',
+                    sub('subtext'),
+                    '. Later they are followed by ',
+                    i('alternative voice'),
+                    ' and ',
+                    strong('important!'),
+                ]),
                 section([
                     h1('Abbreviations'),
                     abbr({
@@ -296,7 +265,7 @@ _________________________________________________________
                     ' text',
                 ]),
                 section([
-                    h1('Code keywords'),
+                    h1('Keywords'),
                     code([
                         b('var'), ' ',
                         b('function'), ' ',
@@ -305,14 +274,32 @@ _________________________________________________________
                     ]),
                 ]),
             ]),
-            hr(),
-            meter({
-                value : 4, min : 0, max : 10,
-                low : 3, high : 7, optimum : 5 }),
-            hr(),
-            article({
-                title : 'Ruby annotations',
-                children : [
+        }),
+        main({
+            title : 'the main element',
+            children : [
+                article([
+                    h1('Various lists'),
+                    ul([
+                        li('Node'),
+                        li('Text'),
+                        li('Element'),
+                        li('Comment'),
+                        li('Document'),
+                        li('CharacterData'),
+                    ]),
+                    ol([
+                        li('null'),
+                        li('Object'),
+                        li('EventTarget'),
+                        li('Node'),
+                        li('Element'),
+                        li('HTMLElement'),
+                        li('HTMLLIElement'),
+                    ]),
+                ]),
+                article([
+                    h1('Ruby annotations'),
                     section([
                         ruby(['君', rt('くん')]),
                         ruby(['子', rt('し')]), 'は',
@@ -323,36 +310,63 @@ _________________________________________________________
                         '漢', rp(' ('), rt('かん'), rp(')'),
                         '字', rp(' ('), rt('じ'), rp(')')
                     ]))
-                ]
-            }),
-        ]),
-        hr(),
-        footer([
-            progress({ max : '100', value : '70' }),
-            hr(),
-            address('vv.aristov@gmail.com'),
-            hr(),
-            div([
-                div([
-                    children,
-                    'Н',
-                    bdo({ dir : 'rtl', children })
                 ]),
-                ul([
-                    li(['User ',
-                        bdi('jcranmer'),
-                        ': 12 posts.']),
-                    li(['User ',
-                        bdi('hober'),
-                        ': 5 posts.']),
-                    li(['User ',
-                        bdi('إيان'),
-                        ': 3 posts.'])
-                ])
+                article([
+                    h1('Bidirectional'),
+                    section([
+                        children,
+                        'Н',
+                        bdo({ dir : 'rtl', children })
+                    ]),
+                    ul([
+                        li(['User ',
+                            bdi('jcranmer'),
+                            ': 12 posts.']),
+                        li(['User ',
+                            bdi('hober'),
+                            ': 5 posts.']),
+                        li(['User ',
+                            bdi('إيان'),
+                            ': 3 posts.'])
+                    ])
+                ]),
+            ]
+        }),
+        footer({
+            title : 'the footer element',
+            children : article([
+                h1('And other'),
+                aside([
+                    h1('aside'),
+                    'Your advert may be here!'
+                ]),
+                section([
+                    h1('progress'),
+                    progress({ max : '100', value : '70' }),
+                ]),
+                section([
+                    h1('meter'),
+                    meter({ value : 4, min : 0, max : 10, low : 3, high : 7, optimum : 5 }),
+                ]),
+                section([
+                    h1('blockquote'),
+                    blockquote({
+                        cite : 'https://html.spec.whatwg.org/' +
+                            'multipage/semantics.html#the-blockquote-element',
+                        children : 'The blockquote element represents ' +
+                            'a section that is quoted from another source.'
+                    }),
+                ]),
+                section([
+                    h1('address'),
+                    address('vv.aristov@gmail.com'),
+                ]),
+                section([
+                    h1('small'),
+                    small('@ All rights are free')
+                ]),
             ]),
-            hr(),
-            small('@ All rights are free')
-        ])
+        })
     ]);
 },
 

@@ -36,8 +36,9 @@
     "test": "karma start",
     "start": "npm run dist && npm run docs && npm run api",
     "serve": "webpack && DOCS=true ES6=true WATCH=true webpack",
-    "gh-pages": "git checkout gh-pages && git rebase origin/master && npm start && git commit -am 'rebuild' && git push -f && git checkout master && npm start",
-    "push-dist": "git add dist -f && git ci --amend -m 'build' && git push -f && git st"
+    "gh-pages": "git checkout gh-pages && git rebase origin/master && npm start && git commit -am 'rebuild' && git push -f && git checkout master && npm start && git status",
+    "push-dist": "git checkout gh-pages && git add dist -f && git commit --amend -m 'build' && git push -f && git status",
+    "static": "python -m SimpleHTTPServer 8080"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
