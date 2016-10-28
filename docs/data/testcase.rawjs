@@ -190,8 +190,8 @@ ________/    _/      _/_/  _/    _/    _/  _/____________
 _________________________________________________________
 `),
 
-({ table, caption, thead, tr, th, abbr, tbody, code, td }) =>
-    table({
+({ table, caption, thead, tr, th, abbr, tbody, code, td }) => {
+    return table({
         style : { width : '100%', textAlign : 'center' },
         children : [
             caption('Equivalent semantics'),
@@ -211,7 +211,8 @@ _________________________________________________________
                 ['indeterminate', 'mixed'],
             ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))
         ]
-    }),
+    })
+},
 
 ({ hgroup, h1, h2, h3, h4, h5, h6 }) => {
     const hh = [h1, h2, h3, h4, h5, h6];
