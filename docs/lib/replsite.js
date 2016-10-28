@@ -38,9 +38,9 @@ export class REPLSite {
                     value;
                 if(resultnode) {
                     body.appendChild(resultnode);
-                    if(markupview.open) {
+                    // if(markupview.open) {
                         outputcode.value = serializer.serializeToString(resultnode);
-                    }
+                    // }
                 }
             }
             catch(error) {

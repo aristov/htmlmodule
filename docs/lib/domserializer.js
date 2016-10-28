@@ -65,7 +65,7 @@ export class DOMSerializer {
                 result += hasEndTag? '>' : selfClose;
                 if(hasEndTag && node.hasChildNodes()) {
                     const isSingleText = childNodes.length === 1
-                        && childNodes[0].nodeType === Node.TEXT_NODE;
+                        && childNodes[0].nodeType === TEXT_NODE;
                     if(!hasAttributes && isSingleText) {
                         result += node.innerHTML;
                         indent = '';
