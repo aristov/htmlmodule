@@ -395,15 +395,15 @@ _________________________________________________________
             });
         });
     const node = article(style(`
-    pre { margin-top: 1px }
-    pre > code {
-        display: block;
-        background: #313;
-        color: white;
-        padding: 12px;
-        margin-bottom: 20px;
-    }
-`));
+        pre { margin-top: 1px }
+        pre > code {
+            display: block;
+            background: #313;
+            color: white;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+    `));
     return node;
 },
 

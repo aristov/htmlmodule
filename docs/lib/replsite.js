@@ -9,8 +9,6 @@ import './replsite.css';
 
 const START_INDEX = 0;
 
-const Babel = window.Babel;
-
 const serializer = new DOMSerializer;
 
 export class REPLSite {
@@ -24,9 +22,7 @@ export class REPLSite {
         window.onresize = () => this.refresh();
     }
     get value() {
-        const value = this.inputcode.value;
-        const transform = Babel.transform(value, { presets: ['es2015'] });
-        return transform.code.replace(/^'use\sstrict';\n\n/, '');
+        return this.inputcode.value;
     }
     set value(value) {
         const { markupview, outputcode } = this;
@@ -59,7 +55,7 @@ export class REPLSite {
                 section([
                     this.inputcode = codebox({
                         className : 'inputcode',
-                        value : this.data[this.index].src
+                        value : this.data[this.index]
                     }),
                     this.prevbutton = button({
                         id : 'replbuttonprev',
@@ -77,7 +73,9 @@ export class REPLSite {
                 section([
                     this.outputwin = iframe({
                         className : 'outputwin',
-                        onload : () => this.refresh()
+                        onload : () => {
+                            if(this.onready) this.onready();
+                        }
                     }),
                     this.markupview = details({
                         className : 'markupview',
@@ -107,6 +105,7 @@ export class REPLSite {
                 if(keyCode === 40) this.markupview.open = false;
             }
         }
+        this.refresh();
     }
     refresh() {
         const outputcode = this.outputcode;
@@ -121,16 +120,19 @@ export class REPLSite {
         const data = this.data;
         this.index--;
         if(this.index < 0) this.index = data.length - 1;
-        this.inputcode.value = data[this.index].src;
+        this.inputcode.value = data[this.index];
     }
     next() {
         const data = this.data;
         this.index++;
         if(this.index === data.length) this.index = 0;
-        this.inputcode.value = data[this.index].src;
+        this.inputcode.value = data[this.index];
     }
 }
 
-Object.defineProperty(REPLSite.prototype, 'index', { writable : true, value : START_INDEX });
-Object.defineProperty(REPLSite.prototype, 'node', { writable : true, value : null });
-Object.defineProperty(REPLSite.prototype, 'data', { writable : true, value : [] });
+Object.defineProperties(REPLSite.prototype, {
+    data : { writable : true, value : [] },
+    node : { writable : true, value : null },
+    index :  { writable : true, value : START_INDEX },
+    onready : { writable : true, value : null }
+});
