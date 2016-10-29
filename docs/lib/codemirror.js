@@ -43,20 +43,23 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     get height() {
         return this.element.clientHeight;
     }
+    set onchange(onchange) {
+        this.mirror.on('change', onchange);
+    }
+    set id(id) {
+        this.element.querySelector('textarea').id = id;
+    }
     createElement(tagName, init) {
         super.createElement(tagName);
         this.createMirror(init.options);
         delete init.options;
         this.init(init);
     }
-    refresh() {
-        this.mirror.refresh();
-    }
-    set onchange(onchange) {
-        this.mirror.on('change', onchange);
-    }
     createMirror(options) {
         return this.mirror = new CodeMirror(this.element, options);
+    }
+    refresh() {
+        this.mirror.refresh();
     }
 }
 

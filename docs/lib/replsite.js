@@ -23,7 +23,7 @@ const BABEL_STANDALONE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-stand
 
 window.Babel = { transform : code => ({ code }) };
 
-const babel = (input) => {
+const babel = input => {
     const Babel = window.Babel;
     const res = Babel.transform(input, { presets: ['es2015'] });
     return res.code.replace(/^'use\sstrict';\n\n/, '');
@@ -69,17 +69,21 @@ export class REPLSite {
             className : 'replsite',
             children : [
                 section([
-                    this.inputcode = codebox({
+                    this.inputcode =
+                    codebox({
+                        id : 'replinputcode',
                         className : 'inputcode',
                         value : this.data[this.index]
                     }),
-                    this.prevbutton = button({
+                    this.prevbutton =
+                    button({
                         id : 'replbuttonprev',
                         className : 'prevbutton',
                         onclick : () => this.prev(),
                         children : 'prev'
                     }),
-                    this.nextbutton = button({
+                    this.nextbutton =
+                    button({
                         id : 'replbuttonnext',
                         className : 'nextbutton',
                         onclick : () => this.next(),
@@ -87,11 +91,13 @@ export class REPLSite {
                     })
                 ]),
                 section([
-                    this.outputwin = iframe({
+                    this.outputwin =
+                    iframe({
                         className : 'outputwin',
                         onload : () => this.onready()
                     }),
-                    this.markupview = details({
+                    this.markupview =
+                    details({
                         className : 'markupview',
                         ontoggle : () => this.refresh(),
                         children : [
@@ -100,9 +106,8 @@ export class REPLSite {
                                 className : 'markuptoggle',
                                 children : 'markup'
                             }),
-                            this.outputcode = markupbox({
-                                className : 'outputcode'
-                            })
+                            this.outputcode =
+                            markupbox({ className : 'outputcode' })
                         ]
                     })
                 ])
@@ -113,8 +118,8 @@ export class REPLSite {
         if(es2016support) this.start();
         else {
             document.body.append(script({
-                onload : () => this.start(),
-                src : BABEL_STANDALONE_URL
+                src : BABEL_STANDALONE_URL,
+                onload : () => this.start()
             }));
         }
     }
@@ -133,9 +138,10 @@ export class REPLSite {
     refresh() {
         const outputcode = this.outputcode;
         const innerHeight = window.innerHeight;
-        this.outputwin.height = this.markupview.open?
-            (innerHeight - outputcode.height) + 'px' :
-            innerHeight + 'px';
+        this.outputwin.height =
+            (this.markupview.open?
+                (innerHeight - outputcode.height) :
+                innerHeight) + 'px';
         this.inputcode.refresh();
         this.replmachine.loop();
     }
@@ -154,7 +160,7 @@ export class REPLSite {
 }
 
 Object.defineProperties(REPLSite.prototype, {
-    data : { writable : true, value : [] },
+    data : { writable : true, value : [''] },
     node : { writable : true, value : null },
     index :  { writable : true, value : START_INDEX },
 });

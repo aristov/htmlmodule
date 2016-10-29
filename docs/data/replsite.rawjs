@@ -12,16 +12,23 @@ htmlmodule => {
             }),
             '-machine. It was assembled instantly by ',
             a({
-                title : 'DOM assembler library',
                 href : 'https://npmjs.org/package/htmlmodule',
                 rel : 'external',
                 target : '_blank',
+                title : 'DOM assembler library',
                 children : 'htmlmodule'
             }),
             ' on the page load.'
         ]),
         p([
-            'You may focus the left code editor and change ',
+            'You may focus the left ',
+            a({
+                href: '#replinputcode',
+                target : '_parent',
+                title : 'Keyboard: use ALT+TAB for tabbing from the code editor',
+                children : 'code editor'
+            }),
+            ' and change ',
             'the source code of the document that you are reading now.'
         ]),
         nav([
@@ -31,6 +38,7 @@ htmlmodule => {
                     href : '#replbuttonprev',
                     target : '_parent',
                     rel : 'prev',
+                    title : 'Keyboard: use LEFT arrow key',
                     children : 'prev'
                 }),
                 ' and the ',
@@ -38,6 +46,7 @@ htmlmodule => {
                     href : '#replbuttonnext',
                     target : '_parent',
                     rel : 'next',
+                    title : 'Keyboard: use RIGHT arrow key',
                     children : 'next'
                 }),
                 ' buttons on the bottom of your screen.'
@@ -48,6 +57,7 @@ htmlmodule => {
                     href : '#markuptoggle',
                     target : '_parent',
                     rel : 'alternate',
+                    title : 'Keyboard: use UP and DOWN arrow keys',
                     children : 'markup'
                 }),
                 ' summary button to toggle the ',
