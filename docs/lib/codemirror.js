@@ -65,15 +65,30 @@ export class CodeMirrorAssembler extends HTMLAssembler {
 
 Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable : true, value : null });
 
+/**
+ * Create generic codemirror widget
+ * @param init
+ * @returns {CodeMirrorAssembler}
+ */
 export function codemirror(init = {}) {
-    return new CodeMirrorAssembler(init)
+    return new CodeMirrorAssembler(init);
 }
 
+/**
+ * Create codebox widget
+ * @param init
+ * @returns {CodeMirrorAssembler}
+ */
 export function codebox(init = {}) {
     if(!init.options) init.options = CODE_BOX_DEFAULTS;
     return codemirror(init);
 }
 
+/**
+ * Create markupbox widget
+ * @param init
+ * @returns {CodeMirrorAssembler}
+ */
 export function markupbox(init = {}) {
     if(!init.options) init.options = MARKUP_BOX_DEFAULTS;
     return codemirror(init);

@@ -4,7 +4,12 @@ const { TEXT_NODE, COMMENT_NODE, ELEMENT_NODE } = window.Node;
 const EMPTY_TAG_LIST = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
 const EMPTY_TAG_SET = EMPTY_TAG_LIST.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
 
-const isEmptyTag = node => {
+/**
+ * Check if the specified element has no end tag
+ * @param node
+ * @returns {boolean}
+ */
+function isEmptyTag(node) {
     if(node.constructor === Element && !node.hasChildNodes()) return true;
     return Boolean(EMPTY_TAG_SET[node.tagName]);
 }
@@ -48,42 +53,45 @@ export class DOMSerializer {
         let indent = this.indent.repeat(this.level);
         let result = indent;
         switch(nodeType) {
-            case ELEMENT_NODE:
+            case ELEMENT_NODE: {
                 tagName = tagName.toLowerCase();
                 result += '<' + tagName;
                 const hasAttributes = node.hasAttributes();
                 if(hasAttributes) {
                     const attrchunks = map.call(
                         attributes,
-                        ({ name, value }) => {
-                            return ` ${ name }="${ value.replace(/\"/g, '&quot;') }"`;
-                        })
+                        ({ name, value }) => ` ${ name }="${ value.replace(/"/g, '&quot;') }"`);
                     result += attrchunks.join('');
                 }
                 const hasEndTag = !isEmptyTag(node);
                 const selfClose = node.constructor === Element? '/>' : '>';
                 result += hasEndTag? '>' : selfClose;
                 if(hasEndTag && node.hasChildNodes()) {
-                    const isSingleText = childNodes.length === 1
-                        && childNodes[0].nodeType === TEXT_NODE;
+                    const isSingleText = childNodes.length === 1 &&
+                        childNodes[0].nodeType === TEXT_NODE;
                     if(!hasAttributes && isSingleText) {
                         result += node.innerHTML;
                         indent = '';
-                    } else {
+                    }
+                    else {
                         this.level++;
                         const childchunks = map.call(childNodes, this.serializeToString, this);
                         this.level--;
                         result += linebreak + childchunks.join('');
                     }
-                } else indent = '';
+                }
+                else indent = '';
                 if(hasEndTag) result += indent + `</${ tagName }>`;
                 break;
-            case TEXT_NODE:
+            }
+            case TEXT_NODE: {
                 result += innerHTML || data;
                 break;
-            case COMMENT_NODE:
+            }
+            case COMMENT_NODE: {
                 result += `<!--${ data }-->`;
                 break;
+            }
         }
         result += linebreak;
         return result;

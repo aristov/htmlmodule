@@ -49,7 +49,8 @@ export class REPLApp {
         if(markupview.open) outputcode.value = '';
         if(value instanceof Error) {
             body.textContent = value;
-        } else {
+        }
+        else {
             try {
                 const resultnode = typeof value === 'function'?
                     value(htmlmodule) :
@@ -142,7 +143,7 @@ export class REPLApp {
                 if(keyCode === 38) this.markupview.open = true;
                 if(keyCode === 40) this.markupview.open = false;
             }
-        }
+        };
         this.refresh();
     }
 
@@ -154,7 +155,7 @@ export class REPLApp {
         const innerHeight = window.innerHeight;
         this.outputwin.height =
             (this.markupview.open?
-                (innerHeight - outputcode.height) :
+                innerHeight - outputcode.height :
                 innerHeight) + 'px';
         this.inputcode.refresh();
         this.replmachine.loop();

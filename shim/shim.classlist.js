@@ -14,9 +14,8 @@
     function defineElementGetter(obj, prop, getter) {
         if(Object.defineProperty) {
             Object.defineProperty(obj, prop, { get : getter });
-        } else {
-            obj.__defineGetter__(prop, getter);
         }
+        else obj.__defineGetter__(prop, getter);
     }
 
     if('classList' in Element.prototype) {
@@ -62,9 +61,8 @@
             toggle(token) {
                 if(this.contains(token)) {
                     this.remove(token);
-                } else {
-                    this.add(token);
                 }
+                else this.add(token);
                 return this.contains(token);
             }
         }

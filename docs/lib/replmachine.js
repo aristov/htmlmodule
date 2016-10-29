@@ -19,18 +19,6 @@ export class REPLMachine {
     }
 
     /**
-     * Get the `exports` object passed to an evaluable function
-     * @returns {{default: (function())}}
-     */
-    get exports() {
-        return {
-            default : () => {
-                throw Error('The default module is not exported');
-            }
-        };
-    }
-
-    /**
      * Start a single REPL-loop
      * Passes input value to the `read` step
      */
@@ -64,7 +52,7 @@ export class REPLMachine {
      */
     eval(evaluable) {
         try {
-            const exports = this.exports;
+            const exports = this.constructor.exports;
             const value = evaluable(exports);
             this.print(value);
             return value;
@@ -97,6 +85,18 @@ export class REPLMachine {
      */
     onerror(error) {
         this.print(error);
+    }
+
+    /**
+     * Get the `exports` object passed to an evaluable function
+     * @returns {{default: (function())}}
+     */
+    static get exports() {
+        return {
+            default : () => {
+                throw Error('The default module is not exported');
+            }
+        };
     }
 }
 

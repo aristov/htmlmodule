@@ -9,9 +9,9 @@ const BABEL_CONFIG = { presets: ['es2015'] };
  * @param src
  * @returns {boolean}
  */
-export const es2015support = (src = TEST_SRC) => {
+export function es2015support(src = TEST_SRC) {
     try {
-        new Function(src);
+        Function(src);
         return true;
     }
     catch(error) {
@@ -26,15 +26,16 @@ export const es2015support = (src = TEST_SRC) => {
  * @async
  * @exposes window.Babel
  */
-export const standalone = (src = BABEL_URL) => (
-    new Promise((resolve, reject) => {
+export function standalone(src = BABEL_URL) {
+    return Promise((resolve, reject) => {
         const babelscript = script({
             src,
             onload : resolve,
             onerror : reject
         });
         document.body.append(babelscript);
-    }));
+    });
+}
 
 /**
  * Babel.transform project wrapper
@@ -42,7 +43,7 @@ export const standalone = (src = BABEL_URL) => (
  * @param input
  * @returns {String}
  */
-export const babel = input => {
+export function babel(input) {
     const res = window.Babel.transform(input, BABEL_CONFIG);
     return res.code.replace(/^'use\sstrict';\n\n/, '');
 }
