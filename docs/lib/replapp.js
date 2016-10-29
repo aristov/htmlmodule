@@ -10,7 +10,7 @@ import './replapp.css';
 
 const START_INDEX = 0;
 
-const useBabel = es2015support();
+const useBabel = !es2015support();
 
 const serializer = new DOMSerializer;
 
