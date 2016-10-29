@@ -2,32 +2,15 @@ import { REPLMachine } from './REPLMachine';
 import { DOMSerializer } from './domserializer';
 
 import * as htmlmodule from './htmlmodule';
-import { main, section, iframe, button, details, summary, script } from './htmlmodule';
+import { main, section, iframe, button, details, summary } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
+import { babel, standalone } from './babel';
 
 import './replsite.css';
 
 const START_INDEX = 0;
 
 const serializer = new DOMSerializer;
-
-let es2016support;
-try {
-    new Function('({test}) => test');
-    es2016support = true;
-}
-catch(error) {
-    es2016support = false;
-}
-const BABEL_STANDALONE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
-
-window.Babel = { transform : code => ({ code }) };
-
-const babel = input => {
-    const Babel = window.Babel;
-    const res = Babel.transform(input, { presets: ['es2015'] });
-    return res.code.replace(/^'use\sstrict';\n\n/, '');
-}
 
 export class REPLSite {
     constructor(data) {
@@ -115,13 +98,7 @@ export class REPLSite {
         });
     }
     onready() {
-        if(es2016support) this.start();
-        else {
-            document.body.append(script({
-                src : BABEL_STANDALONE_URL,
-                onload : () => this.start()
-            }));
-        }
+        standalone.then(() => this.start());
     }
     start() {
         this.inputcode.onchange = () => this.replmachine.loop();
