@@ -10,15 +10,15 @@ if('click' in span && 'onclick' in span) {
     span.onclick = event => called = event;
     span.click();
     if(!called) {
-        const proto = HTMLElement.prototype
-        const _click = proto.click;
+        const proto = HTMLElement.prototype;
+        const method = proto.click;
         proto.click = function() {
-            _click.call(this);
+            method.call(this);
             if('onclick' in this && typeof this.onclick === 'function') {
                 const event = document.createEvent('Event');
                 event.initEvent('click', true, true);
                 this.onclick(event);
             }
-        }
+        };
     }
 }
