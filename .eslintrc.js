@@ -66,7 +66,7 @@ module.exports = {
         "id-length": "off",
         "id-match": "error",
         "indent": "error",
-        "init-declarations": "error",
+        "init-declarations": "off",
         "jsx-quotes": "error",
         "key-spacing": "off",
         "keyword-spacing": "off",
@@ -82,7 +82,7 @@ module.exports = {
         "max-lines": "off",
         "max-nested-callbacks": "error",
         "max-params": "error",
-        "max-statements": "error",
+        "max-statements": "off",
         "max-statements-per-line": "error",
         "multiline-ternary": [
             "error",
@@ -121,7 +121,7 @@ module.exports = {
         "no-lone-blocks": "error",
         "no-lonely-if": "error",
         "no-loop-func": "error",
-        "no-magic-numbers": "error",
+        "no-magic-numbers": "off",
         "no-mixed-operators": "error",
         "no-mixed-requires": "error",
         "no-multi-spaces": "error",
@@ -218,12 +218,9 @@ module.exports = {
         "rest-spread-spacing": "error",
         "semi": "error",
         "semi-spacing": "error",
-        "sort-imports": "error",
-        "sort-keys": [
-            "error",
-            "desc"
-        ],
-        "sort-vars": "error",
+        "sort-imports": "off",
+        "sort-keys": "off",
+        "sort-vars": "off",
         "space-before-blocks": "error",
         "space-before-function-paren": "off",
         "space-in-parens": [
