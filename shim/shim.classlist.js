@@ -6,7 +6,7 @@
     const Element = window.Element;
 
     /**
-     * Define element Getter
+     * Define element getter
      * @param obj
      * @param prop
      * @param getter
@@ -18,7 +18,7 @@
         else obj.__defineGetter__(prop, getter);
     }
 
-    if('classList' in Element.prototype) {
+    if(!('classList' in Element.prototype)) {
         const { push, splice, join } = Array.prototype;
 
         class DOMTokenList {
@@ -70,7 +70,8 @@
         window.DOMTokenList = DOMTokenList;
 
         defineElementGetter(Element.prototype, 'classList', function() {
-            return new DOMTokenList(this);
+            return this.__classList__ ||
+                (this.__classList__ = new DOMTokenList(this));
         });
     }
 }

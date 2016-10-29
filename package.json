@@ -39,7 +39,7 @@
     "gh-pages": "git checkout gh-pages && git rebase origin/master && npm start && git commit -am 'rebuild' && git push -f && git checkout master",
     "push-dist": "git checkout gh-pages && git add dist -f && git commit --amend -m 'build' && git push -f && git status",
     "static": "python -m SimpleHTTPServer 8080",
-    "lint": "eslint lib --ignore-pattern *.spec.js --quiet && eslint lib/*.spec.js --env browser,mocha && eslint shim docs && eslint webpack.config.js --env node"
+    "lint": "eslint lib --ignore-pattern *.spec.js --quiet && eslint lib/*.spec.js --env browser,mocha && eslint shim && eslint docs --ignore-pattern docs/api && eslint webpack.config.js --env node"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
