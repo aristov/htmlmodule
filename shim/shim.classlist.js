@@ -71,7 +71,7 @@
 
         defineElementGetter(Element.prototype, 'classList', function() {
             return this.__classList__ ||
-                (this.__classList__ = new DOMTokenList(this));
+                  (this.__classList__ = new DOMTokenList(this));
         });
     }
 }
