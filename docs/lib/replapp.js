@@ -4,15 +4,21 @@ import { DOMSerializer } from './domserializer';
 import * as htmlmodule from './htmlmodule';
 import { main, section, iframe, button, details, summary } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
-import { babel, standalone } from './babel';
+import { es2015support, babel, standalone } from './babel';
 
-import './replsite.css';
+import './replapp.css';
 
 const START_INDEX = 0;
 
+const useBabel = es2015support();
+
 const serializer = new DOMSerializer;
 
-export class REPLSite {
+export class REPLApp {
+    /**
+     * Build the REPL application
+     * @param {Array[]} data Array of sources for the site test case
+     */
     constructor(data) {
         this.data = data;
         this.replmachine = new REPLMachine({
@@ -22,9 +28,20 @@ export class REPLSite {
         this.node = this.assemble();
         window.onresize = () => this.refresh();
     }
+
+    /**
+     * Get a value from the source code text editor
+     * @returns {*} source code
+     */
     get value() {
-        return babel(this.inputcode.value);
+        const value = this.inputcode.value;
+        return useBabel? babel(value) : value;
     }
+
+    /**
+     * Set a result value, produced by the REPL-machine
+     * @param {String|Function|Node|Error} value
+     */
     set value(value) {
         const { markupview, outputcode } = this;
         const { body } = this.outputwin.contentDocument;
@@ -47,9 +64,14 @@ export class REPLSite {
             }
         }
     }
+
+    /**
+     * Assemble the DOM structure of the REPL application
+     * @returns {HTMLElement} root application
+     */
     assemble() {
         return main({
-            className : 'replsite',
+            className : 'replapp',
             children : [
                 section([
                     this.inputcode =
@@ -78,6 +100,7 @@ export class REPLSite {
                     iframe({
                         className : 'outputwin',
                         onload : () => this.onready()
+                        // iframe creates an inner document asynchronously
                     }),
                     this.markupview =
                     details({
@@ -97,9 +120,19 @@ export class REPLSite {
             ]
         });
     }
+
+    /**
+     * Start the application when it's DOM structure is ready
+     * If a browser doesn't support ES2015 syntax, then load babel-standalone first
+     */
     onready() {
-        standalone.then(() => this.start());
+        if(useBabel) standalone().then(() => this.start());
+        else this.start();
     }
+
+    /**
+     * Add event listeners and refresh the application
+     */
     start() {
         this.inputcode.onchange = () => this.replmachine.loop();
         window.onkeydown = ({ target, keyCode }) => {
@@ -112,6 +145,10 @@ export class REPLSite {
         }
         this.refresh();
     }
+
+    /**
+     * Refresh the application
+     */
     refresh() {
         const outputcode = this.outputcode;
         const innerHeight = window.innerHeight;
@@ -122,12 +159,20 @@ export class REPLSite {
         this.inputcode.refresh();
         this.replmachine.loop();
     }
+
+    /**
+     * Switch to the previous test
+     */
     prev() {
         const data = this.data;
         this.index--;
         if(this.index < 0) this.index = data.length - 1;
         this.inputcode.value = data[this.index];
     }
+
+    /**
+     * Switch to the next test
+     */
     next() {
         const data = this.data;
         this.index++;
@@ -136,7 +181,7 @@ export class REPLSite {
     }
 }
 
-Object.defineProperties(REPLSite.prototype, {
+Object.defineProperties(REPLApp.prototype, {
     data : { writable : true, value : [''] },
     node : { writable : true, value : null },
     index :  { writable : true, value : START_INDEX },

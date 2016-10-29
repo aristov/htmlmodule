@@ -1,22 +1,22 @@
-.replsite,
-.replsite .inputcode,
-.replsite .inputcode .CodeMirror,
-.replsite .outputcode .markupview,
-.replsite .outputcode .CodeMirror
+.replapp,
+.replapp .inputcode,
+.replapp .inputcode .CodeMirror,
+.replapp .outputcode .markupview,
+.replapp .outputcode .CodeMirror
 {
     height: 100%;
 }
-.replsite
+.replapp
 {
     display : flex;
 }
-.replsite section
+.replapp section
 {
     position: relative;
     width: 50%;
     box-sizing: border-box;
 }
-.replsite .inputcode /* Safari fix */
+.replapp .inputcode /* Safari fix */
 {
     position: absolute;
     top: 0;
@@ -24,13 +24,13 @@
     right: 0;
     left: 0;
 }
-.replsite .outputwin
+.replapp .outputwin
 {
     width: 100%;
     margin-bottom: -4px;
     box-sizing: border-box;
 }
-.replsite .outputcode
+.replapp .outputcode
 {
     position: absolute;
     bottom: 0;
@@ -42,25 +42,25 @@
 
 /* buttons */
 
-.replsite .prevbutton,
-.replsite .nextbutton,
-.replsite .markuptoggle
+.replapp .prevbutton,
+.replapp .nextbutton,
+.replapp .markuptoggle
 {
     font: 13px monospace;
     position: absolute;
     z-index: 10;
 }
-.replsite .prevbutton
+.replapp .prevbutton
 {
     bottom: 8px;
     left: 8px;
 }
-.replsite .nextbutton
+.replapp .nextbutton
 {
     bottom: 8px;
     right: 8px;
 }
-.replsite .markuptoggle
+.replapp .markuptoggle
 {
     right: 9px;
     bottom: 9px;
@@ -70,9 +70,9 @@
     padding: 1px 6px;
     user-select: none;
 }
-.replsite .prevbutton:not(:hover):not(:focus),
-.replsite .nextbutton:not(:hover):not(:focus),
-.replsite .markuptoggle:not(:hover):not(:focus)
+.replapp .prevbutton:not(:hover):not(:focus),
+.replapp .nextbutton:not(:hover):not(:focus),
+.replapp .markuptoggle:not(:hover):not(:focus)
 {
     opacity: 0.5;
 }

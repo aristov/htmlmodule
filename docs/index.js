@@ -1,7 +1,7 @@
-import { REPLSite } from './lib/replsite';
+import { REPLApp } from './lib/replapp';
 import { data } from './data';
 import './index.css';
 
-const replsite = new REPLSite(data);
+const replapp = new REPLApp(data);
 
-document.body.append(replsite.node);
+document.body.append(replapp.node);

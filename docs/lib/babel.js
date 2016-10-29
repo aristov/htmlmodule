@@ -1,11 +1,15 @@
 import { script } from './htmlmodule';
 
 const TEST_SRC = '()=>{}';
+const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
+const BABEL_CONFIG = { presets: ['es2015'] };
 
 /**
- * @return {boolean}
+ * Check if a browser supports ES2015 synthax
+ * @param src
+ * @returns {boolean}
  */
-export const ES2016support = (src = TEST_SRC) => {
+export const es2015support = (src = TEST_SRC) => {
     try {
         new Function(src);
         return true;
@@ -15,28 +19,30 @@ export const ES2016support = (src = TEST_SRC) => {
     }
 }
 
-window.Babel = { transform : code => ({ code }) };
-
-export const babel = input => {
-    const Babel = window.Babel;
-    const res = Babel.transform(input, { presets: ['es2015'] });
-    return res.code.replace(/^'use\sstrict';\n\n/, '');
-}
-
-export const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
-
 /**
- * Async module
- * @type {Promise}
+ * Load babel-standalone asynchronously
+ * @function standalone
+ * @param {String} src
+ * @async
+ * @exposes window.Babel
  */
-export const standalone = new Promise((resolve, reject) => {
-    if(ES2016support()) resolve();
-    else {
+export const standalone = (src = BABEL_URL) => (
+    new Promise((resolve, reject) => {
         const babelscript = script({
-            src : BABEL_URL,
+            src,
             onload : resolve,
             onerror : reject
         });
         document.body.append(babelscript);
-    }
-});
+    }));
+
+/**
+ * Babel.transform project wrapper
+ * removes 'use strict' from result
+ * @param input
+ * @returns {String}
+ */
+export const babel = input => {
+    const res = window.Babel.transform(input, BABEL_CONFIG);
+    return res.code.replace(/^'use\sstrict';\n\n/, '');
+}
