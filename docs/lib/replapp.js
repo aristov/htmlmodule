@@ -14,7 +14,7 @@ const useBabel = !es2015support();
 
 const serializer = new DOMSerializer;
 
-export class REPLApp {
+export const REPLApp = class C {
     /**
      * Build the REPL application
      * @param {Array[]} data Array of sources for the site test case
@@ -166,8 +166,7 @@ export class REPLApp {
      */
     prev() {
         const data = this.data;
-        this.index--;
-        if(this.index < 0) this.index = data.length - 1;
+        if(--this.index < 0) this.index = data.length - 1;
         this.inputcode.value = data[this.index];
     }
 
@@ -176,14 +175,14 @@ export class REPLApp {
      */
     next() {
         const data = this.data;
-        this.index++;
-        if(this.index === data.length) this.index = 0;
+        if(++this.index === data.length) this.index = 0;
         this.inputcode.value = data[this.index];
     }
 }
 
-Object.defineProperties(REPLApp.prototype, {
-    data : { writable : true, value : [''] },
-    node : { writable : true, value : null },
-    index :  { writable : true, value : START_INDEX },
+Object.assign(REPLApp.prototype, {
+    replmachine : null,
+    node : null,
+    data : [''],
+    index :  START_INDEX,
 });

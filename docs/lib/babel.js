@@ -26,7 +26,7 @@ export function es2015support(src = TEST_SRC) {
  * @async
  * @exposes window.Babel
  */
-export function standalone(src = BABEL_URL) {
+export const standalone = function A(src = BABEL_URL) {
     return Promise((resolve, reject) => {
         const babelscript = script({
             src,
@@ -43,7 +43,7 @@ export function standalone(src = BABEL_URL) {
  * @param input
  * @returns {String}
  */
-export function babel(input) {
+export const babel = function B(input) {
     const res = window.Babel.transform(input, BABEL_CONFIG);
     return res.code.replace(/^'use\sstrict';\n\n/, '');
 }
