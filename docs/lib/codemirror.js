@@ -63,7 +63,12 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     }
 }
 
-Object.defineProperty(CodeMirrorAssembler.prototype, 'mirror', { writable : true, value : null });
+/**
+ * CodeMirror instance
+ * @property mirror
+ * @type {CodeMirror|null}
+ */
+CodeMirrorAssembler.prototype.mirror = null;
 
 /**
  * Create generic codemirror widget
