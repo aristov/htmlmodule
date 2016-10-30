@@ -192,9 +192,12 @@ _________________________________________________________
 
 ({ table, caption, thead, tr, th, abbr, tbody, code, td }) => {
     return table({
-        style : { width : '100%', textAlign : 'center' },
+        style : { width : '100%', textAlign : 'left' },
         children : [
-            caption('Equivalent semantics'),
+            caption({
+                style : { textAlign : 'left', marginBottom : '20px' },
+                children : 'Related semantics'
+            }),
             thead(tr([ th(abbr('HTML')), th(abbr('WAI-ARIA')) ])),
             tbody([
                 ['button', 'button'],
