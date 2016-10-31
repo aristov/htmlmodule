@@ -102,6 +102,7 @@ export const REPLApp = class C {
                         className : 'outputwin',
                         onload : () => this.onready()
                         // iframe creates an inner document asynchronously
+                        // so we need to listen onload to access it's body
                     }),
                   this.markupview =
                     details({
@@ -132,6 +133,7 @@ export const REPLApp = class C {
     }
 
     /**
+     * Start the application
      * Add event listeners and refresh the application
      */
     start() {

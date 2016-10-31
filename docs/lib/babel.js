@@ -6,7 +6,7 @@ const BABEL_CONFIG = { presets: ['es2015'] };
 
 /**
  * Check if a browser supports ES2015 synthax
- * @param src
+ * @param [src]
  * @returns {boolean}
  */
 export function es2015support(src = TEST_SRC) {
@@ -22,7 +22,7 @@ export function es2015support(src = TEST_SRC) {
 /**
  * Load babel-standalone asynchronously
  * @function standalone
- * @param {String} src
+ * @param {String} [src]
  * @async
  * @exposes window.Babel
  */
@@ -41,9 +41,10 @@ export const standalone = function A(src = BABEL_URL) {
  * Babel.transform project wrapper
  * removes 'use strict' from result
  * @param input
+ * @param [config]
  * @returns {String}
  */
-export const babel = function B(input) {
-    const res = window.Babel.transform(input, BABEL_CONFIG);
+export const babel = function B(input, config = BABEL_CONFIG) {
+    const res = window.Babel.transform(input, config);
     return res.code.replace(/^'use\sstrict';\n\n/, '');
 }
