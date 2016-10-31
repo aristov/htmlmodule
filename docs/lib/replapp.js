@@ -75,20 +75,20 @@ export const REPLApp = class C {
             className : 'replapp',
             children : [
                 section([
-                    this.inputcode =
+                  this.inputcode =
                     codebox({
                         id : 'replinputcode',
                         className : 'inputcode',
                         value : this.data[this.index]
                     }),
-                    this.prevbutton =
+                  this.prevbutton =
                     button({
                         id : 'replbuttonprev',
                         className : 'prevbutton',
                         onclick : () => this.prev(),
                         children : 'prev'
                     }),
-                    this.nextbutton =
+                  this.nextbutton =
                     button({
                         id : 'replbuttonnext',
                         className : 'nextbutton',
@@ -97,13 +97,13 @@ export const REPLApp = class C {
                     })
                 ]),
                 section([
-                    this.outputwin =
+                  this.outputwin =
                     iframe({
                         className : 'outputwin',
                         onload : () => this.onready()
                         // iframe creates an inner document asynchronously
                     }),
-                    this.markupview =
+                  this.markupview =
                     details({
                         className : 'markupview',
                         ontoggle : () => this.refresh(),
@@ -113,7 +113,7 @@ export const REPLApp = class C {
                                 className : 'markuptoggle',
                                 children : 'markup'
                             }),
-                            this.outputcode =
+                          this.outputcode =
                             markupbox({ className : 'outputcode' })
                         ]
                     })
