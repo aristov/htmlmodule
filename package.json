@@ -44,7 +44,7 @@
     "api": "esdoc -c esdoc.json",
     "pretest": "webpack && ENTRY=spec COV=true webpack",
     "test": "karma start",
-    "posttest": "ls -la docs/coverage/",
+    "posttest": "cat ./docs/coverage/Chrome\\ 54.0.2840\\ \\(Mac\\ OS\\ X\\ 10.11.6\\)/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "start": "npm run dist && npm run docs && npm run api",
     "serve": "webpack && ENTRY=index ES6=true WATCH=true webpack",
     "gh-pages": "git checkout gh-pages && git rebase origin/master && npm start && git commit -am 'rebuild' && git push -f && git checkout master",
