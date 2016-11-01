@@ -38,37 +38,9 @@ module.exports = function(config) {
         frameworks : ['mocha', 'sinon'],
         files : [
             'dist/dist.shim.js',
-            // 'lib/index.spec.js',
             'dist/dist.spec.js',
         ],
         exclude : [],
-        /*preprocessors : {
-            'lib/index.spec.js' : [
-                'webpack',
-                // 'coverage'
-            ],
-        },*/
-        /*webpack : {
-            module : {
-                preLoaders : [{
-                    test : /[^(\.spec)]\.js$/,
-                    loader : 'babel-istanbul!babel?presets[]=es2015',
-                    exclude : [
-                        path.resolve('node_modules/')
-                    ]
-                }],
-                loaders : [
-                    {
-                        test : /\.spec\.js$/,
-                        loader : 'babel?presets[]=es2015'
-                    }
-                ]
-            },
-        },*/
-        /*webpackMiddleware : {
-            noInfo : true,
-            stats : { chunks : false }
-        },*/
         reporters : ['mocha', 'coverage'],
         port : 9876,
         colors : true,
