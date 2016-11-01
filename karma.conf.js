@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 
 let customLaunchers;
@@ -73,5 +75,5 @@ module.exports = function(config) {
         browsers,
         singleRun : true,
         concurrency : Infinity
-    })
-}
+    });
+};
