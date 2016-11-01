@@ -44,12 +44,13 @@
     "api": "esdoc -c esdoc.json",
     "pretest": "webpack && ENTRY=spec COV=true webpack",
     "test": "karma start",
+    "posttest": "ls -la docs/coverage/",
     "start": "npm run dist && npm run docs && npm run api",
     "serve": "webpack && DOCS=true ES6=true WATCH=true webpack",
     "gh-pages": "git checkout gh-pages && git rebase origin/master && npm start && git commit -am 'rebuild' && git push -f && git checkout master",
     "push-dist": "git checkout gh-pages && git add dist -f && git commit --amend -m 'build' && git push -f && git status",
     "static": "python -m SimpleHTTPServer 8080",
-    "lint": "eslint lib --ignore-pattern *.spec.js --quiet && eslint lib/*.spec.js --env browser,mocha && eslint shim && eslint docs --ignore-pattern docs/api"
+    "lint": "eslint lib --ignore-pattern *.spec.js --quiet && eslint lib/*.spec.js --env browser,mocha && eslint shim && eslint docs --ignore-pattern docs/*/"
   },
   "precommit": [
     "lint"
@@ -66,11 +67,13 @@
     "babel-register": "^6.16.3",
     "chai": "^3.5.0",
     "codemirror": "^5.19.0",
+    "coveralls": "^2.11.14",
     "css-loader": "^0.25.0",
     "dom4": "^1.8.3",
     "esdoc": "^0.4.8",
     "eslint": "^3.9.0",
     "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.2.0",
     "karma-mocha-reporter": "^2.2.0",

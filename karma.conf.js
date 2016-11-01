@@ -1,7 +1,10 @@
 const path = require('path');
 
-module.exports = function(config) {
-    const customLaunchers = {
+let customLaunchers;
+let browsers = ['Chrome'];
+
+if(!process.env.LOCAL) {
+    customLaunchers = {
         SL_Chrome : {
             base : 'SauceLabs',
             platform : 'OS X 10.11',
@@ -33,6 +36,10 @@ module.exports = function(config) {
             version : '9'
         }*/
     }
+    browsers = [Object.keys(customLaunchers)];
+}
+
+module.exports = function(config) {
     config.set({
         basePath : '',
         frameworks : ['mocha', 'sinon'],
@@ -42,6 +49,10 @@ module.exports = function(config) {
         ],
         exclude : [],
         reporters : ['mocha', 'coverage'],
+        coverageReporter : {
+            type : 'lcov',
+            dir : 'docs/coverage/'
+        },
         port : 9876,
         colors : true,
         logLevel : config.LOG_INFO,
@@ -59,7 +70,7 @@ module.exports = function(config) {
         },
         captureTimeout : 120000,
         customLaunchers,
-        browsers : Object.keys(customLaunchers),
+        browsers,
         singleRun : true,
         concurrency : Infinity
     })
