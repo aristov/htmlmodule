@@ -40,8 +40,9 @@
   "scripts": {
     "dist": "webpack && MIN=true webpack",
     "docs": "DOCS=true webpack",
+    "spec": "ENTRY=spec webpack",
     "api": "esdoc -c esdoc.json",
-    "pretest": "webpack",
+    "pretest": "webpack && ENTRY=spec webpack",
     "test": "karma start",
     "start": "npm run dist && npm run docs && npm run api",
     "serve": "webpack && DOCS=true ES6=true WATCH=true webpack",
