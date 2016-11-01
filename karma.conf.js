@@ -6,24 +6,24 @@ module.exports = function(config) {
             browserName: 'chrome',
             version: '53.0'
         },
-        SL_Firefox: {
+        /*SL_Firefox: {
             base: 'SauceLabs',
             platform: 'Linux',
             browserName: 'firefox',
             version: '45.0'
-        },
+        },*/
         /*SL_Safari: {
             base: 'SauceLabs',
             platform: 'OS X 10.11',
             browserName: 'safari',
             version: '9.0'
         },*/
-        SL_MSIE11: {
+        /*SL_MSIE11: {
             base: 'SauceLabs',
             platform: 'Windows 8.1',
             browserName: 'internet explorer',
             version: '11'
-        },
+        },*/
         /*SL_MSIE9: {
             base: 'SauceLabs',
             platform: 'Windows 7',
@@ -36,7 +36,10 @@ module.exports = function(config) {
         frameworks: ['mocha', 'sinon'],
         files: ['dist/dist.shim.min.js', 'lib/index.spec.js'],
         exclude: [],
-        preprocessors: { 'lib/index.spec.js': ['webpack'] },
+        preprocessors: {
+            'lib/index.spec.js': ['webpack'],
+            'lib/htmlassembler.js': ['coverage'],
+        },
         webpack: {
             module: {
                 loaders: [
@@ -48,7 +51,7 @@ module.exports = function(config) {
             noInfo: true,
             stats: { chunks: false }
         },
-        reporters: ['mocha'],
+        reporters: ['mocha', 'coverage'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
