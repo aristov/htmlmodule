@@ -14,7 +14,7 @@ const useBabel = !es2015support();
 
 const serializer = new DOMSerializer;
 
-export const REPLApp = class C {
+export class REPLApp {
     /**
      * Build the REPL application
      * @param {Array[]} data Array of sources for the site test case
@@ -34,7 +34,7 @@ export const REPLApp = class C {
      * @returns {*} source code
      */
     get value() {
-        const value = this.inputcode.value;
+        const value = 'exports.default=' + this.inputcode.value;
         return useBabel? babel(value) : value;
     }
 

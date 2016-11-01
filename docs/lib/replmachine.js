@@ -34,7 +34,7 @@ export class REPLMachine {
      */
     read(source) {
         try {
-            const evaluable = new Function(VAR_NAME_EXPORTS, 'return ' + source);
+            const evaluable = new Function(VAR_NAME_EXPORTS, source);
             this.eval(evaluable);
             return evaluable;
         }
@@ -53,7 +53,7 @@ export class REPLMachine {
     eval(evaluable) {
         try {
             const exports = this.constructor.exports;
-            const value = evaluable(exports);
+            const value = evaluable(exports) || exports.default;
             this.print(value);
             return value;
         }
