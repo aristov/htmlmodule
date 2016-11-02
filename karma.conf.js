@@ -2,44 +2,47 @@
 
 const path = require('path');
 
-let customLaunchers;
-let browsers = ['Chrome'];
-
-if(!process.env.LOCAL) {
-    customLaunchers = {
-        SL_Chrome : {
-            base : 'SauceLabs',
-            platform : 'OS X 10.11',
-            browserName : 'chrome',
-            version : '53.0'
-        },
-        /*SL_Firefox : {
-            base : 'SauceLabs',
-            platform : 'Linux',
-            browserName : 'firefox',
-            version : '45.0'
-        },*/
-        /*SL_Safari : {
-            base : 'SauceLabs',
-            platform : 'OS X 10.11',
-            browserName : 'safari',
-            version : '9.0'
-        },*/
-        /*SL_MSIE11 : {
-            base : 'SauceLabs',
-            platform : 'Windows 8.1',
-            browserName : 'internet explorer',
-            version : '11'
-        },*/
-        /*SL_MSIE9 : {
-            base : 'SauceLabs',
-            platform : 'Windows 7',
-            browserName : 'internet explorer',
-            version : '9'
-        }*/
+const customLaunchers = process.env.LOCAL? {
+    chrome : {
+        base : 'Chrome',
+        browserName : 'chrome',
+        displayName : 'chrome'
     }
-    browsers = [Object.keys(customLaunchers)];
-}
+} : {
+    SL_Chrome : {
+        base : 'SauceLabs',
+        platform : 'OS X 10.11',
+        browserName : 'chrome',
+        version : '53.0',
+        displayName : 'chrome'
+    },
+    /*SL_Firefox : {
+        base : 'SauceLabs',
+        platform : 'Linux',
+        browserName : 'firefox',
+        version : '45.0'
+    },*/
+    /*SL_Safari : {
+        base : 'SauceLabs',
+        platform : 'OS X 10.11',
+        browserName : 'safari',
+        version : '9.0'
+    },*/
+    /*SL_MSIE11 : {
+        base : 'SauceLabs',
+        platform : 'Windows 8.1',
+        browserName : 'internet explorer',
+        version : '11'
+    },*/
+    /*SL_MSIE9 : {
+        base : 'SauceLabs',
+        platform : 'Windows 7',
+        browserName : 'internet explorer',
+        version : '9'
+    }*/
+};
+
+const browsers = [Object.keys(customLaunchers)];
 
 module.exports = function(config) {
     config.set({
