@@ -38,7 +38,7 @@ if(env.MIN) {
 if(env.COV) {
     preLoaders.push({
         test : /[^(\.spec)]\.js$/,
-        loader : 'babel-istanbul!babel?presets[]=es2015',
+        loader : 'babel!babel?presets[]=es2015&plugins[]=istanbul',
         exclude: [
             path.resolve('node_modules/')
         ],
