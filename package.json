@@ -27,7 +27,7 @@
     "lib/",
     "shim/"
   ],
-  "main": "./lib",
+  "main": "./dist/dist.htmlmodule.js",
   "directories": {
     "dist": "./dist",
     "lib": "./lib",
