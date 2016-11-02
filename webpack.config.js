@@ -100,7 +100,6 @@ switch(env.ENTRY) {
                 pathinfo : !env.MIN
             },
             module : {
-                preLoaders,
                 loaders : [babelLoader],
             }
         });

@@ -1,7 +1,7 @@
 node_modules
 dist
 docs/api
-coverage
+docs/coverage
 tmp
 sauce_connect.log
 npm-debug.log

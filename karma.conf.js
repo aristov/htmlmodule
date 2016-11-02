@@ -20,25 +20,29 @@ const customLaunchers = process.env.LOCAL? {
         base : 'SauceLabs',
         platform : 'Linux',
         browserName : 'firefox',
-        version : '45.0'
+        version : '45.0',
+        displayName : 'firefox'
     },*/
     /*SL_Safari : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
         browserName : 'safari',
-        version : '9.0'
+        version : '9.0',
+        displayName : 'safari'
     },*/
     /*SL_MSIE11 : {
         base : 'SauceLabs',
         platform : 'Windows 8.1',
         browserName : 'internet explorer',
-        version : '11'
+        version : '11',
+        displayName : 'msie11'
     },*/
     /*SL_MSIE9 : {
         base : 'SauceLabs',
         platform : 'Windows 7',
         browserName : 'internet explorer',
-        version : '9'
+        version : '9',
+        displayName : 'msie9'
     }*/
 };
 
