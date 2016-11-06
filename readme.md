@@ -1,11 +1,11 @@
 
 # htmlmodule
 
-[![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
+[![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
-[![Document Coverage](https://aristov.github.io/htmlmodule/docs/api/badge.svg)](https://aristov.github.io/htmlmodule/docs/api/)
+[![Document Coverage](https://aristov.github.io/htmlmodule/dist/docs/api/badge.svg)](https://aristov.github.io/htmlmodule/docs/api/)
 
 _work in progress_
 
@@ -193,10 +193,10 @@ npm install
 
 ### Build
 
-Build the whole project:
+Lint, test and build the whole project:
 
 ```
-npm start
+npm test
 ```
 
 #### Partial builds
@@ -216,7 +216,7 @@ and
 npm run docs
 ```
 
-Build [API documentation](https://aristov.github.io/htmlmodule/docs/api):
+Build [API documentation](https://aristov.github.io/htmlmodule/dist/docs/api):
 
 ```
 npm run api
@@ -227,16 +227,16 @@ npm run api
 Run dev server: 
 
 ```
-npm run serve
+npm start
 ```
 
-Run any static server, for instance:
- 
+Run static server:
+
 ```
-python -m SimpleHTTPServer 8080
+npm run static
 ```
 
-Point your browser to [localhost:8080/docs](http://localhost:8080/docs)
+Point your browser to [localhost:8080](http://localhost:8080)
 
 ### Testing
 

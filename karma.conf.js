@@ -54,7 +54,7 @@ module.exports = function(config) {
         frameworks : ['mocha', 'sinon'],
         files : [
             'dist/dist.shim.js',
-            'dist/dist.spec.js',
+            'dist/docs/build.spec.js',
         ],
         exclude : [],
         reporters : ['mocha', 'coverage'],
