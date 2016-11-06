@@ -60,7 +60,7 @@ module.exports = function(config) {
         reporters : ['mocha', 'coverage'],
         coverageReporter : {
             type : 'lcov',
-            dir : 'docs/coverage/'
+            dir : 'dist/coverage/'
         },
         port : 9876,
         colors : true,

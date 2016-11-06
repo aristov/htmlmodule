@@ -30,28 +30,27 @@
   "main": "./lib",
   "directories": {
     "dist": "./dist",
-    "lib": "./lib",
-    "example": "./docs/lib/test"
+    "lib": "./lib"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aristov/htmlmodule.git"
   },
   "scripts": {
+    "lint": "eslint lib --ignore-pattern *.spec.js --quiet && eslint lib/*.spec.js --env browser,mocha && eslint shim docs",
     "dist": "webpack && MIN=true webpack",
     "spec": "ENTRY=spec webpack",
+    "cov": "COV=true ENTRY=spec webpack",
     "index": "ENTRY=index webpack",
     "api": "esdoc -c esdoc.json",
-    "pretest": "webpack && ENTRY=spec COV=true webpack",
+    "pretest": "npm run lint && npm run dist && npm run cov && npm run index && npm run api",
     "test": "karma start",
-    "posttest": "cat ./docs/coverage/chrome/lcov.info | coveralls",
-    "test-local": "LOCAL=true karma start",
-    "start": "npm run dist && npm run spec && npm run index && npm run api",
-    "serve": "webpack && ENTRY=index ES6=true WATCH=true webpack",
-    "gh-pages": "git checkout gh-pages && git rebase origin/master && npm start && git commit -am 'rebuild' && git push -f && git checkout master",
-    "push-dist": "git checkout gh-pages && git add dist -f && git commit --amend -m 'build' && git push -f && git status",
+    "posttest": "cat ./dist/coverage/chrome/lcov.info | coveralls",
+    "test-local": "npm run pretest && LOCAL=true karma start",
+    "start": "webpack && ENTRY=index ES6=true WATCH=true webpack",
     "static": "python -m SimpleHTTPServer 8080",
-    "lint": "eslint lib --ignore-pattern *.spec.js --quiet && eslint lib/*.spec.js --env browser,mocha && eslint shim && eslint docs/lib"
+    "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm test && git add dist && git commit -am 'add dist' && git push -f && git checkout master && git status",
+    "push-dist": "git checkout gh-pages && git add dist -f && git commit --amend -m 'build' && git push -f && git status"
   },
   "precommit": [
     "lint"
