@@ -1,7 +1,8 @@
-node_modules
-dist
-docs/api
-docs/coverage
-tmp
+.idea/
+node_modules/
+dist/
+docs/api/
+docs/coverage/
+tmp/
 sauce_connect.log
 npm-debug.log
