@@ -60,8 +60,8 @@ switch(env.ENTRY) {
                 spec : ['./lib/index.spec']
             },
             output : {
-                path : path.join(__dirname, '/dist'),
-                filename : 'dist.[name]' + suffix,
+                path : path.join(__dirname, '/dist/docs'),
+                filename : 'build.[name]' + suffix,
                 pathinfo : !env.MIN
             },
             module : {
@@ -76,8 +76,8 @@ switch(env.ENTRY) {
                 index : ['./docs'],
             },
             output : {
-                path : path.join(__dirname, '/dist'),
-                filename : 'dist.[name]' + suffix,
+                path : path.join(__dirname, '/dist/docs'),
+                filename : 'build.[name]' + suffix,
                 pathinfo : !env.MIN
             },
             module : {
