@@ -49,7 +49,7 @@
     "test-local": "npm run pretest && LOCAL=true karma start",
     "start": "webpack && ENTRY=index ES6=true WATCH=true webpack",
     "static": "python -m SimpleHTTPServer 8080",
-    "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm test && git add dist -f && git commit -am 'add dist' && git push -f && git checkout master && git status",
+    "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm test-local && git add dist -f && git commit -am 'add dist' && git push -f && git checkout master && git status",
     "push-dist": "git checkout gh-pages && git add dist -f && git commit --amend -m 'build' && git push -f && git status"
   },
   "precommit": [
