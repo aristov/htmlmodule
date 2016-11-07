@@ -6,7 +6,7 @@ const path = require('path');
  * Local browser set
  */
 const localBrowserSet = {
-    Chrome : {
+    chrome : {
         base : 'Chrome',
         browserName : 'chrome',
         displayName : 'chrome'
