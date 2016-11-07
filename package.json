@@ -1,23 +1,18 @@
 {
   "name": "htmlmodule",
   "version": "0.1.5",
-  "description": "DOM assembler",
+  "description": "HTML DOM assembler",
   "keywords": [
+    "html",
+    "html5",
     "javascript",
     "module",
     "library",
     "dom",
-    "xml",
-    "html",
-    "html5",
     "node",
-    "nodeinit",
-    "domassembler",
+    "htmlelement",
     "htmlassembler",
-    "xmldom",
-    "element",
-    "htmldom",
-    "htmlelement"
+    "htmldom"
   ],
   "homepage": "https://aristov.github.io/htmlmodule",
   "bugs": "https://github.com/aristov/htmlmodule/issues",
