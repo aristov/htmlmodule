@@ -1,4 +1,4 @@
-import { HTMLAssembler, NodeInit } from './htmlmodule';
+import { HTMLDOMAssembler, NodeInit } from './htmlmodule';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
@@ -29,10 +29,10 @@ const MARKUP_BOX_DEFAULTS = {
     theme
 };
 
-export class CodeMirrorAssembler extends HTMLAssembler {
+export class CodeMirrorAssembler extends HTMLDOMAssembler {
     constructor(init) {
         super(init);
-        this.createElement('div', NodeInit(init));
+        this.assemble('div', NodeInit(init));
     }
     set value(value) {
         this.mirror.setValue(value && value.toString());
@@ -49,8 +49,8 @@ export class CodeMirrorAssembler extends HTMLAssembler {
     set id(id) {
         this.element.querySelector('textarea').id = id;
     }
-    createElement(tagName, init) {
-        super.createElement(tagName);
+    assemble(tagName, init) {
+        super.assemble(tagName);
         this.createMirror(init.options);
         delete init.options;
         this.init(init);
