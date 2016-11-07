@@ -33,7 +33,7 @@ The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` 
 
 ## Usage
 
-Use a [module bundler](http://webpack.github.io/) and a [transpiler](http://babeljs.io) to transform and pack modules for in-browser usage.
+Use [a module bundler](http://webpack.github.io/) and [a transpiler](http://babeljs.io) to transform and pack modules for in-browser usage.
 
 ### Installation
 
@@ -164,7 +164,7 @@ import 'htmlmodule/shim';
 
 ## Documentation
 
-The project documentation includes:
+The project documentation contains:
 
 - [Home page](https://aristov.github.io/htmlmodule)
 - [API documentation](https://aristov.github.io/htmlmodule/dist/api)
@@ -182,14 +182,12 @@ The module API includes almost all actual elements from the HTML living standard
 Be watchful when use a modern HTML5 features, due to it's partial browser support.
 For convenience, these features are marked as `@version HTML5` in JSDoc.
 
-The module documentation includes
-
 ## Development
 
 ### Environment
 
 - Browser
-- Node.js + Webpack
+- [Node.js](https://nodejs.org)
 
 ### Installation
 
