@@ -1,5 +1,5 @@
 /**
- * Element.prototype.onclick invoke on Element.prototype.click call
+ * HTMLElement.prototype.onclick invoke on HTMLElement.prototype.click call
  * Event system normalization for MSIE 11
  *
  * @polyfill
