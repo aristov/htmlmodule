@@ -49,7 +49,7 @@
     "test-local": "npm run pretest && LOCAL=true karma start",
     "start": "webpack && ENTRY=index ES6=true WATCH=true webpack",
     "static": "python -m SimpleHTTPServer 8080",
-    "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run test-local && git add dist -f && git commit -am 'add dist' && git push --set-upstream origin gh-pages -f && git checkout master && git status"
+    "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run test-local && git add index.html dist -f && git commit -am 'add dist' && git push --set-upstream origin gh-pages -f && git checkout master && git status"
   },
   "precommit": [
     "lint"
@@ -66,6 +66,7 @@
     "babel-register": "^6.16.3",
     "chai": "^3.5.0",
     "codemirror": "^5.19.0",
+    "copy-webpack-plugin": "^4.0.0",
     "coveralls": "^2.11.14",
     "css-loader": "^0.25.0",
     "dom4": "^1.8.3",

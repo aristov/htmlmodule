@@ -1,4 +1,4 @@
-import { REPLMachine } from './REPLMachine';
+import { REPLMachine } from './replmachine';
 import { DOMSerializer } from './domserializer';
 
 import * as htmlmodule from './htmlmodule';

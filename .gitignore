@@ -1,6 +1,7 @@
-.idea/
-node_modules/
-dist/
-tmp/
-sauce_connect.log
-npm-debug.log
+/.idea/
+/node_modules/
+/dist/
+/tmp/
+/index.html
+/sauce_connect.log
+/npm-debug.log

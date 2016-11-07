@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const env = process.env;
 const preLoaders = [];
@@ -69,6 +70,7 @@ switch(env.ENTRY) {
                 loaders : [babelLoader],
             }
         });
+        plugins.push(new CopyWebpackPlugin([{ from : './docs/spec.html' }]));
         break;
     case 'index':
         assign(module.exports, {
@@ -85,6 +87,10 @@ switch(env.ENTRY) {
             },
             postcss : () => [autoprefixer],
         });
+        plugins.push(new CopyWebpackPlugin([{
+            from : './docs/index.html',
+            to : '../../index.html'
+        }]));
         break;
     case 'dist':
     default:

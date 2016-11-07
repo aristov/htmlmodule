@@ -8,7 +8,7 @@
     <div id=mocha></div>
 
     <!--import shim bundle first-->
-    <script src=../dist/dist.shim.js></script>
+    <script src=../dist.shim.js></script>
 
     <!--get frameworks-->
     <script src=https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.min.js></script>
@@ -18,7 +18,7 @@
     <script>window.mocha.setup('bdd');</script>
 
     <!--import module spec-->
-    <script src=../dist/docs/build.spec.js></script>
+    <script src=./build.spec.js></script>
 
     <!--run mocha-->
     <script>window.mocha.run();</script>

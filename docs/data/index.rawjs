@@ -76,12 +76,12 @@ htmlmodule => {
         p('If you wanna more details, take a look at the:'),
         nav(ul([
             li(a({
-                href : 'docs/spec.html',
+                href : 'dist/docs/spec.html',
                 target : '_blank',
                 children : 'Spec suite'
             })),
             li(a({
-                href : 'docs/api/',
+                href : 'dist/api/',
                 target : '_blank',
                 rel : 'help',
                 children : [abbr({

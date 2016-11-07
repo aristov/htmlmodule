@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
-[![Document Coverage](https://aristov.github.io/htmlmodule/dist/docs/api/badge.svg)](https://aristov.github.io/htmlmodule/docs/api/)
+[![Document Coverage](https://aristov.github.io/htmlmodule/dist/api/badge.svg)](https://aristov.github.io/htmlmodule/dist/api/)
 
 _work in progress_
 
@@ -164,8 +164,14 @@ import 'htmlmodule/shim';
 
 ## Documentation
 
-[The API reference](https://aristov.github.io/htmlmodule/docs/api/identifiers.html) 
-contains short extractions and relevant quotations from the following resources:
+The project documentation includes:
+
+- [Home page](https://aristov.github.io/htmlmodule)
+- [API documentation](https://aristov.github.io/htmlmodule/dist/api)
+- [Spec suite](https://aristov.github.io/htmlmodule/dist/docs/spec.html)
+- [Coverage report](https://aristov.github.io/htmlmodule/dist/coverage)
+
+[The API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html) contains short extractions and relevant quotations from the following resources:
 
 - [HTML](https://html.spec.whatwg.org) and [DOM](https://dom.spec.whatwg.org) living standards
 - W3C [HTML](https://www.w3.org/TR/html) and [DOM](https://www.w3.org/TR/dom) specifications
@@ -175,6 +181,8 @@ contains short extractions and relevant quotations from the following resources:
 The module API includes almost all actual elements from the HTML living standard.
 Be watchful when use a modern HTML5 features, due to it's partial browser support.
 For convenience, these features are marked as `@version HTML5` in JSDoc.
+
+The module documentation includes
 
 ## Development
 
@@ -193,62 +201,39 @@ npm install
 
 ### Build
 
-Lint, test and build the whole project:
+Lint, build and test the whole project:
 
 ```
 npm test
 ```
 
-#### Partial builds
+This command runs project tests on [Sauce Labs](https://saucelabs.com/).
 
-Build a distribution assets:
-
-```
-npm run dist
-```
-
-Build 
-[the home page](https://aristov.github.io/htmlmodule)
-and 
-[the spec suite](https://aristov.github.io/htmlmodule/docs/spec.html): 
+#### Local testing
 
 ```
-npm run docs
+npm run test-local
 ```
 
-Build [API documentation](https://aristov.github.io/htmlmodule/dist/docs/api):
+Local testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L5) to be installed on your system
 
-```
-npm run api
-```
+[![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
 
-### Development
+### Dev tools
 
-Run dev server: 
+Run dev-server: 
 
 ```
 npm start
 ```
 
-Run static server:
+Run static HTTP-server:
 
 ```
 npm run static
 ```
 
-Point your browser to [localhost:8080](http://localhost:8080)
-
-### Testing
-
-```
-npm test
-```
-
-[![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
-
-#### Test in browser
-
-Run dev + static server and open [localhost:8080/docs/spec.html](http://localhost:8080/docs/spec.html) in browser.
+Point your browser to [localhost:8080](http://localhost:8080).
 
 ## License
 

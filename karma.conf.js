@@ -2,13 +2,18 @@
 
 const path = require('path');
 
-const customLaunchers = process.env.LOCAL? {
-    chrome : {
+/**
+ * Local browser set
+ */
+const localBrowserSet = {
+    Chrome : {
         base : 'Chrome',
         browserName : 'chrome',
         displayName : 'chrome'
     }
-} : {
+};
+
+const sauceBrowserSet = {
     SL_Chrome : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
@@ -46,6 +51,7 @@ const customLaunchers = process.env.LOCAL? {
     }*/
 };
 
+const customLaunchers = process.env.LOCAL? localBrowserSet : sauceBrowserSet;
 const browsers = [Object.keys(customLaunchers)];
 
 module.exports = function(config) {
