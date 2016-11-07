@@ -169,7 +169,7 @@ The project documentation contains:
 - [Home page](https://aristov.github.io/htmlmodule)
 - [API documentation](https://aristov.github.io/htmlmodule/dist/api)
 - [Spec suite](https://aristov.github.io/htmlmodule/dist/docs/spec.html)
-- [Coverage report](https://aristov.github.io/htmlmodule/dist/coverage)
+- [Coverage report](https://aristov.github.io/htmlmodule/dist/coverage/chrome/lcov-report/)
 
 [The API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html) contains short extractions and relevant quotations from the following resources:
 
