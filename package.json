@@ -1,7 +1,7 @@
 {
   "name": "htmlmodule",
   "version": "0.1.5",
-  "description": "HTML DOM assembler",
+  "description": "DOM assembler",
   "keywords": [
     "html",
     "html5",
