@@ -10,7 +10,22 @@ const localBrowserSet = {
         base : 'Chrome',
         browserName : 'chrome',
         displayName : 'chrome'
-    }
+    },
+    /*firefox : {
+        base : 'Firefox',
+        browserName : 'firefox',
+        displayName : 'firefox'
+    },*/
+    /*safari : {
+        base : 'Safari',
+        browserName : 'safari',
+        displayName : 'safari'
+    },*/
+    /*opera : {
+        base : 'Opera',
+        browserName : 'opera',
+        displayName : 'opera'
+    },*/
 };
 
 const sauceBrowserSet = {
@@ -52,7 +67,7 @@ const sauceBrowserSet = {
 };
 
 const customLaunchers = process.env.LOCAL? localBrowserSet : sauceBrowserSet;
-const browsers = [Object.keys(customLaunchers)];
+const browsers = Object.keys(customLaunchers);
 
 module.exports = function(config) {
     config.set({
