@@ -1,4 +1,3 @@
-
 # htmlmodule
 
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
@@ -207,15 +206,15 @@ npm test
 
 This command runs project tests on [Sauce Labs](https://saucelabs.com/).
 
+[![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
+
 #### Local testing
 
 ```
 npm run test-local
 ```
 
-Local testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L5) to be installed on your system
-
-[![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
+Local testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L8) to be installed on your system
 
 ### Dev tools
 
