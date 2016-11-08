@@ -39,6 +39,8 @@
     "index": "ENTRY=index webpack",
     "api": "esdoc -c esdoc.json",
     "pretest": "npm run lint && npm run dist && npm run cov && npm run index && npm run api",
+    "karma": "karma start",
+    "karma-local": "LOCAL=true karma start",
     "test": "karma start",
     "posttest": "cat ./dist/coverage/chrome/lcov.info | coveralls",
     "test-local": "npm run pretest && LOCAL=true karma start",
