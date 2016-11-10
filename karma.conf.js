@@ -11,11 +11,11 @@ const localBrowserSet = {
         browserName : 'chrome',
         displayName : 'chrome'
     },
-    /*firefox : {
+    firefox : {
         base : 'Firefox',
         browserName : 'firefox',
         displayName : 'firefox'
-    },*/
+    },
     safari : {
         base : 'Safari',
         browserName : 'safari',
