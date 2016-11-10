@@ -50,13 +50,13 @@ const sauceBrowserSet = {
         version : '9.0',
         displayName : 'safari'
     },*/
-    /*SL_MSIE11 : {
+    SL_MSIE11 : {
         base : 'SauceLabs',
         platform : 'Windows 8.1',
         browserName : 'internet explorer',
         version : '11',
         displayName : 'msie11'
-    },*/
+    },
     /*SL_MSIE9 : {
         base : 'SauceLabs',
         platform : 'Windows 7',
