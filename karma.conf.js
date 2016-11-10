@@ -15,17 +15,17 @@ const localBrowserSet = {
         base : 'Firefox',
         browserName : 'firefox',
         displayName : 'firefox'
-    },*/
-    /*safari : {
+    },
+    safari : {
         base : 'Safari',
         browserName : 'safari',
         displayName : 'safari'
     },*/
-    /*opera : {
+    opera : {
         base : 'Opera',
         browserName : 'opera',
         displayName : 'opera'
-    },*/
+    },
 };
 
 const sauceBrowserSet = {
