@@ -50,13 +50,6 @@ const sauceBrowserSet = {
         version : '9.0',
         displayName : 'safari'
     },
-    sl_safari10 : {
-        base : 'SauceLabs',
-        platform : 'OS X 10.11',
-        browserName : 'safari',
-        version : '10.0',
-        displayName : 'safari'
-    },
     /*SL_MSIE11 : {
         base : 'SauceLabs',
         platform : 'Windows 8.1',
