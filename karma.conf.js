@@ -36,7 +36,7 @@ const sauceBrowserSet = {
         version : '53.0',
         displayName : 'chrome'
     },
-    SL_Firefox : {
+    /*SL_Firefox : {
         base : 'SauceLabs',
         platform : 'Linux',
         browserName : 'firefox',
@@ -49,7 +49,7 @@ const sauceBrowserSet = {
         browserName : 'safari',
         version : '9.0',
         displayName : 'safari'
-    },
+    },*/
     /*SL_MSIE11 : {
         base : 'SauceLabs',
         platform : 'Windows 8.1',
