@@ -229,7 +229,7 @@
     ],
     "space-infix-ops": "off",
     "space-unary-ops": "error",
-    "spaced-comment": "error",
+    "spaced-comment": "off",
     "strict": "error",
     "symbol-description": "error",
     "template-curly-spacing": "off",
