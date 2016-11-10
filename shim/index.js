@@ -1,3 +1,4 @@
+// import 'function.name-polyfill';
 import 'babel-polyfill';
 import 'dom4';
 import 'whatwg-fetch';
