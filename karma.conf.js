@@ -29,21 +29,21 @@ const localBrowserSet = {
 };
 
 const sauceBrowserSet = {
-    sl_chrome : {
+    SL_Chrome : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
         browserName : 'chrome',
         version : '53.0',
         displayName : 'chrome'
     },
-    sl_firefox : {
+    SL_Firefox : {
         base : 'SauceLabs',
         platform : 'Linux',
         browserName : 'firefox',
         version : '45.0',
         displayName : 'firefox'
     },
-    sl_safari : {
+    SL_Safari : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
         browserName : 'safari',
