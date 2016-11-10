@@ -70,7 +70,7 @@
     "jsx-quotes": "error",
     "key-spacing": "off",
     "keyword-spacing": "off",
-    "line-comment-position": "error",
+    "line-comment-position": "off",
     "linebreak-style": [
       "error",
       "unix"
@@ -102,7 +102,7 @@
     "no-div-regex": "error",
     "no-duplicate-imports": "off",
     "no-else-return": "off",
-    "no-empty-function": "error",
+    "no-empty-function": "off",
     "no-eq-null": "error",
     "no-eval": "error",
     "no-extend-native": "error",
@@ -113,7 +113,7 @@
     "no-implicit-coercion": "error",
     "no-implicit-globals": "error",
     "no-implied-eval": "error",
-    "no-inline-comments": "error",
+    "no-inline-comments": "off",
     "no-invalid-this": "off",
     "no-iterator": "error",
     "no-label-var": "error",
