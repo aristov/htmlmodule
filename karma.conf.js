@@ -52,7 +52,7 @@ const sauceBrowserSet = {
     },
     sl_safari10 : {
         base : 'SauceLabs',
-        platform : 'OS X El Capitan',
+        platform : 'OS X 10.11',
         browserName : 'safari',
         version : '10.0',
         displayName : 'safari'
