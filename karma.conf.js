@@ -43,7 +43,7 @@ const sauceBrowserSet = {
         version : '45.0',
         displayName : 'firefox'
     },
-    sl_safari9 : {
+    sl_safari : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
         browserName : 'safari',
