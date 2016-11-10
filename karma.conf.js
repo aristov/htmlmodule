@@ -29,27 +29,34 @@ const localBrowserSet = {
 };
 
 const sauceBrowserSet = {
-    SL_Chrome : {
+    sl_chrome : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
         browserName : 'chrome',
         version : '53.0',
         displayName : 'chrome'
     },
-    /*SL_Firefox : {
+    sl_firefox : {
         base : 'SauceLabs',
         platform : 'Linux',
         browserName : 'firefox',
         version : '45.0',
         displayName : 'firefox'
-    },*/
-    /*SL_Safari : {
+    },
+    sl_safari : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
         browserName : 'safari',
         version : '9.0',
         displayName : 'safari'
-    },*/
+    },
+    sl_opera : {
+        base : 'SauceLabs',
+        platform : 'Windows 8.1',
+        browserName : 'opera',
+        version : '41',
+        displayName : 'opera'
+    },
     /*SL_MSIE11 : {
         base : 'SauceLabs',
         platform : 'Windows 8.1',
