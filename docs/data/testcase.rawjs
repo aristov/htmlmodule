@@ -23,10 +23,10 @@
             h1('progress'),
             progress({ value : 0.7, max : 1.2 })
         ]),
-        section([
+        /*section([
             h1('meter'),
             meter({ min : 2, max : 8, value : 5, optimum : 4 })
-        ]),
+        ]),*/
         section([
             h1('audio'),
             audio({ src : '/sample.wav', controls : true })
@@ -40,7 +40,7 @@
                 height : 240
             })
         ]),
-        section([
+        /*section([
             h1('data'),
             data({
                 value : '7',
@@ -53,11 +53,11 @@
                 dateTime : ['2016-11-11'],
                 children : 'November 11'
             })
-        ]),
+        ]),*/
         section([
             h1('output'),
             output({
-                name : 'output-example',
+                name : 'answer',
                 value : '42',
             })
         ]),
@@ -92,7 +92,7 @@
         ]
     }),
 
-({ fieldset, legend, section, button, label, input, output, style }) => {
+({ fieldset, legend, section, button, label, input, style }) => {
     const textContent = 'Give me a focus, please...';
     const focusbutton = button({
         onfocus : ({ target }) => target.textContent = 'Focused!',
@@ -123,9 +123,14 @@
             oninput : ({ target }) => {
                 charcountbox.lastChild.value = target.value.length;
             },
-            style : { marginRight: '10px' }
+            style : { width : '200px', marginRight: '10px' }
         }),
-        output({ title : 'Entered char count', value : '0' })
+        input({
+            readOnly : true,
+            title : 'Entered char count',
+            value : '0',
+            style : { width : '20px', textAlign : 'center' }
+        })
     ]);
     return fieldset([
         legend('Event handlers'),
