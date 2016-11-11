@@ -205,7 +205,7 @@ Lint, build and test the whole project:
 npm test
 ```
 
-This command runs project tests on [Sauce Labs](https://saucelabs.com/).
+This command runs project tests on the [Sauce Labs](https://saucelabs.com/).
 
 [![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
 
@@ -215,7 +215,7 @@ This command runs project tests on [Sauce Labs](https://saucelabs.com/).
 npm run test-local
 ```
 
-Local testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L8) to be installed on your system
+Local testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L8) to be installed on your system.
 
 ### Dev tools
 
