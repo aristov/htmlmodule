@@ -2,6 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
 [![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
+[![Coverage Status](https://coveralls.io/repos/github/aristov/htmlmodule/badge.svg?branch=master)](https://coveralls.io/github/aristov/htmlmodule?branch=master)
 [![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
 [![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
 [![Document Coverage](https://aristov.github.io/htmlmodule/dist/api/badge.svg)](https://aristov.github.io/htmlmodule/dist/api/)
