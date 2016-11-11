@@ -15,7 +15,7 @@
 ({
     article, h1, section,
     progress, meter, audio, video,
-    data, time, output, details, summary
+    data, time, details, summary
 }) =>
     article([
         h1('HTML5 interfaces set'),
@@ -54,13 +54,13 @@
                 children : 'November 11'
             })
         ]),*/
-        section([
+        /*section([
             h1('output'),
             output({
                 name : 'answer',
                 value : '42',
             })
-        ]),
+        ]),*/
         section([
             h1('details'),
             details([
