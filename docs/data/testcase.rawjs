@@ -12,6 +12,64 @@
  */
 [
 
+({
+    article, h1, section,
+    progress, meter, audio, video,
+    data, time, output, details, summary
+}) =>
+    article([
+        h1('HTML5 interfaces set'),
+        section([
+            h1('progress'),
+            progress({ value : 0.7, max : 1.2 })
+        ]),
+        section([
+            h1('meter'),
+            meter({ min : 2, max : 8, value : 5, optimum : 4 })
+        ]),
+        section([
+            h1('audio'),
+            audio({ src : '/sample.wav', controls : true })
+        ]),
+        section([
+            h1('video'),
+            video({
+                src : '/sample7.mov',
+                controls : true,
+                width : 320,
+                height : 240
+            })
+        ]),
+        section([
+            h1('data'),
+            data({
+                value : '7',
+                children : 'Seven'
+            })
+        ]),
+        section([
+            h1('time'),
+            time({
+                dateTime : ['2016-11-11'],
+                children : 'November 11'
+            })
+        ]),
+        section([
+            h1('output'),
+            output({
+                name : 'output-example',
+                value : '42',
+            })
+        ]),
+        section([
+            h1('details'),
+            details([
+                summary('Expand'),
+                'Nothing to watch.'
+            ])
+        ])
+    ]),
+
 ({ form, label, img, br, input, button }) =>
     form({
         action : 'https://yandex.ru/search',
