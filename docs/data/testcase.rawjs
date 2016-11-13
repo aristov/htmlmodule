@@ -150,7 +150,7 @@
         children : [
             label([
                 img({
-                    src : 'https://bit.ly/2dgU2dO',
+                    src : 'http://yastatic.net/web4/_/BPMHTAIlmc5kh6Tymb1I2mmfSAc.svg',
                     alt : 'Яндекс',
                     width : 50
                 }),
@@ -165,10 +165,7 @@
         ]
     }),
 
-({
-    article, h1, section, progress, meter, audio,
-    video, data, time, details, summary
-}) =>
+({ article, h1, section, progress, audio, video, details, summary }) =>
     article([
         h1('HTML5 interfaces set'),
         section([
@@ -396,8 +393,7 @@ _________________________________________________________
     a, i, strong, sup, sub, abbr, ins, del, b, code,
     div, h1, address, small, ul, ol, li, blockquote,
     article, header, main, footer, section, aside,
-    ruby, rt, rp, bdi, bdo,
-    progress
+    ruby, rt, rp, bdi, bdo, progress
 }) => {
     const children = 'АРОЗАУПАЛА';
     return div([
