@@ -12,63 +12,136 @@
  */
 [
 
-({
-    article, h1, section,
-    progress, meter, audio, video,
-    data, time, details, summary
-}) =>
-    article([
-        h1('HTML5 interfaces set'),
+({ article, h1, abbr, section, ul, li, style }) => {
+    return article([
+        h1(['The API of htmlmodule']),
         section([
-            h1('progress'),
-            progress({ value : 0.7, max : 1.2 })
-        ]),
-        /*section([
-            h1('meter'),
-            meter({ min : 2, max : 8, value : 5, optimum : 4 })
-        ]),*/
-        section([
-            h1('audio'),
-            audio({ src : '/sample.wav', controls : true })
+            h1('The document element'),
+            list([
+                'html'
+            ]),
         ]),
         section([
-            h1('video'),
-            video({
-                src : '/sample7.mov',
-                controls : true,
-                width : 320,
-                height : 240
-            })
-        ]),
-        /*section([
-            h1('data'),
-            data({
-                value : '7',
-                children : 'Seven'
-            })
+            h1('Document metadata'),
+            list([
+                'head',
+                'title',
+                'base',
+                'link',
+                'meta',
+                'style',
+            ]),
         ]),
         section([
-            h1('time'),
-            time({
-                dateTime : ['2016-11-11'],
-                children : 'November 11'
-            })
-        ]),*/
-        /*section([
-            h1('output'),
-            output({
-                name : 'answer',
-                value : '42',
-            })
-        ]),*/
+            h1('Sections'),
+            list([
+                'body',
+                'article',
+                'section',
+                'nav',
+                'aside',
+                'h1, h2, h3, h4, h5, h6',
+                'hgroup + [h1] + [h2] + [h3] + [h4] + [h5] + [h6]',
+                'header',
+                'footer',
+                'address',
+            ]),
+        ]),
         section([
-            h1('details'),
-            details([
-                summary('Expand'),
-                'Nothing to watch.'
-            ])
+            h1('Grouping content'),
+            list([
+                'p',
+                'hr',
+                'pre',
+                'blockquote',
+                'ol + li',
+                'ul + li',
+                'dl + dt + dd',
+                'figure + [figcaption]',
+                'main',
+                'div',
+            ]),
+        ]),
+        section([
+            h1('Text-level semantics'),
+            list([
+                'a, em, strong, small, s, cite, q, dfn, abbr',
+                'ruby + rt + [rp]',
+                'code, variable, samp, kbd',
+                'sub, sup',
+                'i, b, u, mark',
+                'bdi, bdo',
+                'span',
+                'br, wbr',
+            ]),
+        ]),
+        section([
+            h1('Edits'),
+            list([
+                'ins, del'
+            ]),
+        ]),
+        section([
+            h1('Embedded content'),
+            list([
+                'img',
+                'picture + [source] + img',
+                'iframe',
+                'embed',
+                'object + [param]',
+                'video + [source] + [track]',
+                'audio + [source] + [track]',
+                'map + area',
+            ]),
+        ]),
+        section([
+            h1('Tabular data'),
+            list([
+                'table + [caption] + [colgroup] + [col] + ' +
+                '[tbody] + [thead] + [tfoot] + tr + td + [th]'
+            ]),
+        ]),
+        section([
+            h1('Forms'),
+            list([
+                'form',
+                'label',
+                'input',
+                'button',
+                'select + [optgroup] + option',
+                'datalist + option',
+                'textarea',
+                'progress',
+                'fieldset + [legend]',
+            ]),
+        ]),
+        section([
+            h1('Interactive elements'),
+            list([
+                'details + [summary]'
+            ]),
+        ]),
+        section([
+            h1('Scripting'),
+            list([
+                'script',
+                'noscript',
+                'canvas',
+            ]),
+        ]),
+        style([
+            'body { font: 15px sans-serif }',
+            'ul { list-style: non }',
+            ':link:not(:hover):not(:focus) { text-decoration: none }'
         ])
-    ]),
+    ]);
+    function list(items) {
+        return ul(items.map(item => li({
+            innerHTML : item.replace(/(\w+)/g,
+                '<a href="dist/api/function/index.html#static-function-$1">$1</a>')
+        })));
+    }
+},
 
 ({ form, label, img, br, input, button }) =>
     form({
@@ -91,6 +164,38 @@
             button('Найти')
         ]
     }),
+
+({
+    article, h1, section, progress, meter, audio,
+    video, data, time, details, summary
+}) =>
+    article([
+        h1('HTML5 interfaces set'),
+        section([
+            h1('progress'),
+            progress({ value : 0.7, max : 1.2 })
+        ]),
+        section([
+            h1('audio'),
+            audio({ src : '/sample.wav', controls : true })
+        ]),
+        section([
+            h1('video'),
+            video({
+                src : '/sample7.mov',
+                controls : true,
+                width : 320,
+                height : 240
+            })
+        ]),
+        section([
+            h1('details'),
+            details([
+                summary('Expand'),
+                'Nothing to watch.'
+            ])
+        ])
+    ]),
 
 ({ fieldset, legend, section, button, label, input, style }) => {
     const textContent = 'Give me a focus, please...';
@@ -292,7 +397,7 @@ _________________________________________________________
     div, h1, address, small, ul, ol, li, blockquote,
     article, header, main, footer, section, aside,
     ruby, rt, rp, bdi, bdo,
-    progress, meter
+    progress
 }) => {
     const children = 'АРОЗАУПАЛА';
     return div([
@@ -413,10 +518,6 @@ _________________________________________________________
                     progress({ max : '100', value : '70' }),
                 ]),
                 section([
-                    h1('meter'),
-                    meter({ value : 4, min : 0, max : 10, low : 3, high : 7, optimum : 5 }),
-                ]),
-                section([
                     h1('blockquote'),
                     blockquote({
                         cite : 'https://html.spec.whatwg.org/' +
@@ -487,29 +588,6 @@ _________________________________________________________
         }
     `));
     return node;
-},
-
-htmlmodule => {
-    const { nav, h1, ul, li, a, style } = htmlmodule;
-    const keys = Object.keys(htmlmodule).filter(key => !/^[A-Z]/.test(key));
-    const path = './dist/api/function/index.html#static-function-';
-    return nav([
-        h1('API index'),
-        ul(keys.map(key => li(a({
-            href : path + key,
-            target : '_blank',
-            children : key
-        })))),
-        style(`
-            ul { column-count: 3; list-style: none }
-            ul > li {
-                line-height: 25px;
-                font-family: monospace;
-            }
-            a[href]:not(:hover):not(:focus):not(:active) {
-                text-decoration: none;
-            }`)
-    ]);
 },
 
 ({ iframe }) => iframe({
