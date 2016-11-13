@@ -7,7 +7,9 @@ body .CodeMirror .CodeMirror-scroll
     padding-right: 8px;
     box-sizing: border-box;
 }
-body .cm-s-rubyblue span.cm-bracket
+body .cm-s-rubyblue span.cm-bracket,
+body .cm-s-rubyblue span.cm-def,
+body .cm-s-rubyblue span.cm-variable
 {
     color: #7BD827;
 }

@@ -12,7 +12,16 @@
  */
 [
 
-({ article, h1, abbr, section, ul, li, style }) => {
+({ a, article, h1, abbr, section, ul, li, style }) => {
+    const link = a({
+        href : 'dist/api/function/#static-function-$1',
+        children : '$1'
+    });
+    function list(items) {
+        return ul(items.map(item => li({
+            innerHTML : item.replace(/(\w+)/g, link.outerHTML)
+        })));
+    }
     return article([
         h1(['The API of htmlmodule']),
         section([
@@ -135,12 +144,6 @@
             ':link:not(:hover):not(:focus) { text-decoration: none }'
         ])
     ]);
-    function list(items) {
-        return ul(items.map(item => li({
-            innerHTML : item.replace(/(\w+)/g,
-                '<a href="dist/api/function/index.html#static-function-$1">$1</a>')
-        })));
-    }
 },
 
 ({ form, label, img, br, input, button }) =>
@@ -164,35 +167,6 @@
             button('Найти')
         ]
     }),
-
-({ article, h1, section, progress, audio, video, details, summary }) =>
-    article([
-        h1('HTML5 interfaces set'),
-        section([
-            h1('progress'),
-            progress({ value : 0.7, max : 1.2 })
-        ]),
-        section([
-            h1('audio'),
-            audio({ src : '/sample.wav', controls : true })
-        ]),
-        section([
-            h1('video'),
-            video({
-                src : '/sample7.mov',
-                controls : true,
-                width : 320,
-                height : 240
-            })
-        ]),
-        section([
-            h1('details'),
-            details([
-                summary('Expand'),
-                'Nothing to watch.'
-            ])
-        ])
-    ]),
 
 ({ fieldset, legend, section, button, label, input, style }) => {
     const textContent = 'Give me a focus, please...';
@@ -355,7 +329,7 @@ ________/    _/      _/_/  _/    _/    _/  _/____________
 _________________________________________________________
 `),
 
-({ table, caption, thead, tr, th, abbr, tbody, code, td }) => {
+({ table, caption, thead, tr, th, abbr, tbody, td }) => {
     return table({
         style : { width : '100%', textAlign : 'left' },
         children : [
@@ -371,13 +345,15 @@ _________________________________________________________
                 ['select', 'combobox'],
                 ['table', 'table, grid'],
                 ['ul, ol', 'list'],
-                ['hidden', 'aria-hidden'],
-                ['title', 'aria-label'],
-                ['checked', 'aria-checked'],
-                ['selected', 'aria-selected'],
-                ['disabled', 'aria-disabled'],
-                ['indeterminate', 'mixed'],
-            ].map(([xml, html]) => tr([ td(code(xml)), td(code(html)) ])))
+                ['[hidden]', '[aria-hidden]'],
+                ['label, [title]', '[aria-label]'],
+                ['[checked]', '[aria-checked]'],
+                ['[selected]', '[aria-selected]'],
+                ['[disabled]', '[aria-disabled]'],
+                ['[indeterminate]', '"mixed"'],
+            ].map(([htmlterm, ariaterm]) => {
+                return tr([ td(htmlterm), td(ariaterm) ]);
+            }))
         ]
     })
 },
