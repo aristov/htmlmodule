@@ -1,6 +1,7 @@
 /**
  * HTMLElement.prototype.onclick invoke on HTMLElement.prototype.click call
  * Event system normalization for MSIE 11
+ * todo check needless
  *
  * @polyfill
  */
