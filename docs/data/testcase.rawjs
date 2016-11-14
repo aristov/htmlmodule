@@ -15,6 +15,7 @@
 ({ a, article, h1, abbr, section, ul, li, style }) => {
     const link = a({
         href : 'dist/api/function/#static-function-$1',
+        target : '_blank',
         children : '$1'
     });
     function list(items) {
@@ -24,6 +25,12 @@
     }
     return article([
         h1(['The API of htmlmodule']),
+        section([
+            h1('Core'),
+            list([
+                'htmldom'
+            ]),
+        ]),
         section([
             h1('The document element'),
             list([
