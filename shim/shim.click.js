@@ -25,32 +25,3 @@
         }
     }
 }
-
-/*if(false) {
-    const span = document.createElement('span');
-    if('focus' in span && 'onfocus' in span) {
-        let called = null;
-        span.onfocus = event => called = event;
-        span.focus();
-        if(!called) {
-            const proto = HTMLElement.prototype;
-            const method = proto.focus;
-            proto.focus = function() {
-                const active = document.activeElement;
-                method.call(this);
-                if(active) {
-                    active.dispatchEvent(new FocusEvent('blur', {
-                        bubbles : false,
-                        cancelable : false
-                    }));
-                }
-                if('onfocus' in this && typeof this.onfocus === 'function') {
-                    this.onfocus(new FocusEvent('focus', {
-                        bubbles : false,
-                        cancelable : false
-                    }));
-                }
-            };
-        }
-    }
-}*/
