@@ -46,3 +46,24 @@
         }
     }
 }
+
+{
+    const span = document.createElement('span');
+    if('blur' in span && 'onblur' in span) {
+        let called = null;
+        span.onblur = event => called = event;
+        span.blur();
+        if(!called) {
+            const proto = HTMLElement.prototype;
+            const method = proto.blur;
+            proto.blur = function() {
+                method.call(this);
+                if('onblur' in this && typeof this.onblur === 'function') {
+                    const event = document.createEvent('Event');
+                    event.initEvent('blur', true, true);
+                    this.onblur(event);
+                }
+            };
+        }
+    }
+}
