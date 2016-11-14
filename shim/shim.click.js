@@ -1,7 +1,6 @@
 /**
  * HTMLElement.prototype.onclick invoke on HTMLElement.prototype.click call
  * Event system normalization for MSIE 11
- * todo check needless
  *
  * @polyfill
  */
@@ -17,16 +16,17 @@
             proto.click = function() {
                 method.call(this);
                 if('onclick' in this && typeof this.onclick === 'function') {
-                    const event = document.createEvent('Event');
-                    event.initEvent('click', true, true);
-                    this.onclick(event);
+                    this.onclick(new MouseEvent('click', {
+                        bubbles : true,
+                        cancelable : true
+                    }));
                 }
             };
         }
     }
 }
 
-{
+/*if(false) {
     const span = document.createElement('span');
     if('focus' in span && 'onfocus' in span) {
         let called = null;
@@ -36,34 +36,21 @@
             const proto = HTMLElement.prototype;
             const method = proto.focus;
             proto.focus = function() {
+                const active = document.activeElement;
                 method.call(this);
+                if(active) {
+                    active.dispatchEvent(new FocusEvent('blur', {
+                        bubbles : false,
+                        cancelable : false
+                    }));
+                }
                 if('onfocus' in this && typeof this.onfocus === 'function') {
-                    const event = document.createEvent('Event');
-                    event.initEvent('focus', true, true);
-                    this.onfocus(event);
+                    this.onfocus(new FocusEvent('focus', {
+                        bubbles : false,
+                        cancelable : false
+                    }));
                 }
             };
         }
     }
-}
-
-{
-    const span = document.createElement('span');
-    if('blur' in span && 'onblur' in span) {
-        let called = null;
-        span.onblur = event => called = event;
-        span.blur();
-        if(!called) {
-            const proto = HTMLElement.prototype;
-            const method = proto.blur;
-            proto.blur = function() {
-                method.call(this);
-                if('onblur' in this && typeof this.onblur === 'function') {
-                    const event = document.createEvent('Event');
-                    event.initEvent('blur', true, true);
-                    this.onblur(event);
-                }
-            };
-        }
-    }
-}
+}*/
