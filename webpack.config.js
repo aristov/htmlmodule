@@ -15,7 +15,7 @@ const babelLoader = env.ES6? {
     loader : 'babel?plugins[]=transform-es2015-modules-commonjs'
 } : {
     test : /\.js$/,
-    loader : 'babel?presets[]=es2015'
+    loader : 'babel?presets[]=latest'
 };
 
 const rawLoader = { test : /\.txt$/, loader : 'raw-loader' };
@@ -39,7 +39,7 @@ if(env.MIN) {
 if(env.COV) {
     preLoaders.push({
         test : /[^(\.spec)]\.js$/,
-        loader : 'babel!babel?presets[]=es2015&plugins[]=istanbul',
+        loader : 'babel!babel?presets[]=latest&plugins[]=istanbul',
         exclude: [
             path.resolve('node_modules/')
         ],
