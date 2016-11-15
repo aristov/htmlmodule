@@ -1,4 +1,17 @@
 {
-  "source": "./lib",
-  "destination": "./dist/api"
+  "source": "./lib/",
+  "destination": "./dist/api",
+  "plugins": [
+    {
+      "name": "esdoc-importpath-plugin",
+      "option": {
+        "replaces": [
+          {
+            "from": ".*",
+            "to": "./lib"
+          }
+        ]
+      }
+    }
+  ]
 }
