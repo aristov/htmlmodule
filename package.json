@@ -10,9 +10,10 @@
     "library",
     "dom",
     "node",
+    "element",
     "htmlelement",
-    "htmlassembler",
-    "htmldom"
+    "htmldom",
+    "htmldomassembler"
   ],
   "homepage": "https://aristov.github.io/htmlmodule",
   "bugs": "https://github.com/aristov/htmlmodule/issues",
