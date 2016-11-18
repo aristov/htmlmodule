@@ -10,6 +10,8 @@ import './replapp.css';
 
 const START_INDEX = 0;
 
+const { documentElement } = window.document;
+
 const useBabel = !es2015support();
 
 const serializer = new DOMSerializer;
@@ -34,7 +36,8 @@ export class REPLApp {
      * @returns {*} source code
      */
     get value() {
-        const value = 'exports.default=' + this.inputcode.value;
+        const source = this.inputcode.value.trim();
+        const value = 'exports.default=' + (source || '()=>{}');
         return useBabel? babel(value) : value;
     }
 
@@ -55,7 +58,7 @@ export class REPLApp {
                 const resultnode = typeof value === 'function'?
                     value(htmlmodule) :
                     value;
-                if(resultnode) {
+                if(resultnode && !documentElement.contains(resultnode)) {
                     body.appendChild(resultnode);
                     outputcode.value = serializer.serializeToString(resultnode);
                 }
