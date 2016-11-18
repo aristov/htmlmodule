@@ -1,0 +1,13 @@
+({ form, fieldset, legend, input, button }) =>
+    form(fieldset([
+        legend('Authorization'),
+        input({
+            placeholder : 'Login',
+        }),
+        input({
+            type : 'Password',
+            placeholder : 'password',
+            style : { margin : '0 5px' }
+        }),
+        button('Enter')
+    ]))

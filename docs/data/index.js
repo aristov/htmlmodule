@@ -1,11 +1,29 @@
-import index from 'raw!./index.rawjs';
+import authfieldset from 'raw!./authfieldset.rawjs';
+import eventhandlers from 'raw!./eventhandlers.rawjs';
+import fetchsource from 'raw!./fetchsource.rawjs';
+import headgroup from 'raw!./headgroup.rawjs';
+import intro from 'raw!./intro.rawjs';
+import apigroups from 'raw!./apigroups.rawjs';
+import preformatted from 'raw!./preformatted.rawjs';
+import richform from 'raw!./richform.rawjs';
+import specwin from 'raw!./specwin.rawjs';
+import scriptstyle from 'raw!./scriptstyle.rawjs';
+import tabulardata from 'raw!./tabulardata.rawjs';
 import testcase from 'raw!././testcase.rawjs';
+import websearch from 'raw!./websearch.rawjs';
 
-const SPLIT_STR = '\n\n';
-
-const chunks = testcase.split(SPLIT_STR).map(src => src.replace(/,$/, ''));
-
-chunks.shift();
-chunks.pop();
-
-export const data = [index, ...chunks];
+export const data = [
+    intro,
+    apigroups,
+    websearch,
+    eventhandlers,
+    headgroup,
+    richform,
+    testcase,
+    authfieldset,
+    tabulardata,
+    preformatted,
+    scriptstyle,
+    fetchsource,
+    specwin,
+];

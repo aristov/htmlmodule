@@ -1,0 +1,140 @@
+({ a, article, h1, abbr, section, ul, li, style }) => {
+    const apilink = a({
+        href : 'dist/api/function/#static-function-$1',
+        target : '_blank',
+        children : '$1'
+    });
+    function apilist(items) {
+        return ul(items.map(item => li({
+            innerHTML : item.replace(/(\w+)/g, apilink.outerHTML)
+        })));
+    }
+    return article([
+        h1(['The API of htmlmodule']),
+        section([
+            h1('Core'),
+            apilist([
+                'htmldom'
+            ]),
+        ]),
+        section([
+            h1('The document element'),
+            apilist([
+                'html'
+            ]),
+        ]),
+        section([
+            h1('Document metadata'),
+            apilist([
+                'head',
+                'title',
+                'base',
+                'link',
+                'meta',
+                'style',
+            ]),
+        ]),
+        section([
+            h1('Sections'),
+            apilist([
+                'body',
+                'article',
+                'section',
+                'nav',
+                'aside',
+                'h1, h2, h3, h4, h5, h6',
+                'hgroup + [h1] + [h2] + [h3] + [h4] + [h5] + [h6]',
+                'header',
+                'footer',
+                'address',
+            ]),
+        ]),
+        section([
+            h1('Grouping content'),
+            apilist([
+                'p',
+                'hr',
+                'pre',
+                'blockquote',
+                'ol + li',
+                'ul + li',
+                'dl + dt + dd',
+                'figure + [figcaption]',
+                'main',
+                'div',
+            ]),
+        ]),
+        section([
+            h1('Text-level semantics'),
+            apilist([
+                'a, em, strong, small, s, cite, q, dfn, abbr',
+                'ruby + rt + [rp]',
+                'code, variable, samp, kbd',
+                'sub, sup',
+                'i, b, u, mark',
+                'bdi, bdo',
+                'span',
+                'br, wbr',
+            ]),
+        ]),
+        section([
+            h1('Edits'),
+            apilist([
+                'ins, del'
+            ]),
+        ]),
+        section([
+            h1('Embedded content'),
+            apilist([
+                'img',
+                'picture + [source] + img',
+                'iframe',
+                'embed',
+                'object + [param]',
+                'video + [source] + [track]',
+                'audio + [source] + [track]',
+                'map + area',
+            ]),
+        ]),
+        section([
+            h1('Tabular data'),
+            apilist([
+                'table + [caption] + [colgroup] + [col] + ' +
+                '[tbody] + [thead] + [tfoot] + tr + td + [th]'
+            ]),
+        ]),
+        section([
+            h1('Forms'),
+            apilist([
+                'form',
+                'label',
+                'input',
+                'button',
+                'select + [optgroup] + option',
+                'datalist + option',
+                'textarea',
+                'progress',
+                'fieldset + [legend]',
+            ]),
+        ]),
+        section([
+            h1('Interactive elements'),
+            apilist([
+                'details + [summary]'
+            ]),
+        ]),
+        section([
+            h1('Scripting'),
+            apilist([
+                'script',
+                'noscript',
+                'canvas',
+            ]),
+        ]),
+        style([
+            'body { font: 15px sans-serif }',
+            'ul { list-style: non }',
+            ':link:not(:hover):not(:focus) { text-decoration: none }'
+        ])
+    ]);
+}

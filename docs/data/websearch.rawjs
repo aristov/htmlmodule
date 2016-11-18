@@ -1,0 +1,21 @@
+({ form, label, img, br, input, button }) =>
+    form({
+        action : 'https://yandex.ru/search',
+        target : '_blank',
+        children : [
+            label([
+                img({
+                    src : 'http://yastatic.net/web4/_/BPMHTAIlmc5kh6Tymb1I2mmfSAc.svg',
+                    alt : 'Яндекс',
+                    width : 50
+                }),
+                br(),
+                input({
+                    type : 'search',
+                    name : 'text'
+                }),
+                ' '
+            ]),
+            button('Найти')
+        ]
+    })
