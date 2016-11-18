@@ -1,4 +1,4 @@
-import { input as htmlinput, output as htmloutput } from './htmlmodule';
+import { htmldom } from './htmlmodule';
 
 const VAR_NAME_EXPORTS = 'exports';
 
@@ -11,8 +11,8 @@ export class REPLMachine {
      */
     constructor({
         value = '',
-        input = htmlinput({ value }),
-        output = htmloutput(),
+        input = htmldom('input', { value }),
+        output = htmldom('output'),
     } = {}) {
         this.input = input;
         this.output = output;
