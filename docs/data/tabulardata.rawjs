@@ -62,7 +62,7 @@
             tbody(rowgroup(roles, 'Roles')),
             tbody(rowgroup(attributes, 'Attributes')),
             tfoot(tr([
-                th('Total:'),
+                th('Total'),
                 th(String(htmlcount)),
                 th(String(ariacount))
             ]))
