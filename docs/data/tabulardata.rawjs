@@ -3,7 +3,10 @@
         style : { width : '100%', textAlign : 'left' },
         children : [
             caption({
-                style : { textAlign : 'left', marginBottom : '20px' },
+                style : {
+                    textAlign : 'left',
+                    marginBottom : '20px'
+                },
                 children : 'Related semantics'
             }),
             thead(tr([ th(abbr('HTML')), th(abbr('WAI-ARIA')) ])),

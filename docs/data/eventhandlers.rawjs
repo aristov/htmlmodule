@@ -1,29 +1,29 @@
-({ article, section, h1, button, label, input, style }) => {
+({ article, section, h1, button, label, input, p, variable }) => {
 
     // this text is used as initial button text
     const textContent = 'Give me a focus, please...';
 
-    // create, set text content and event handlers:
-    // onfocus - to change text inside the button
-    // onblur - to set inital text back
+    // create focusbutton, set it's text content and event handlers:
+    // onfocus - to change the text inside the button
+    // onblur - to set the inital text back
     const focusbutton = button({
         onfocus : ({ target }) => target.textContent = 'Focused!',
         onblur : ({ target }) => target.textContent = textContent,
         textContent
     });
 
-    // this button shows a system alert
-    // onclick hanlder shows an alert with message
+    // this button shows a system alert window
+    // onclick hanlder shows an alert with a message
     // that contains certain event info
     const alertbutton = button({
         onclick : ({
-            type,
+            type, // es2015 is crazy!
             target : { tagName },
             constructor : { name }
         }) => {
             alert([tagName, type, name, 'handler!'].join(' '))
         },
-        // set button's style and text
+        // set button's style and text label
         style : { marginRight: '10px' },
         children : 'Show me an alert, please...'
     });
@@ -58,26 +58,52 @@
             readOnly : true,
             title : 'Entered char count',
             value : '0',
+            tabIndex : -1,
             style : { width : '20px', textAlign : 'center' }
         })
     ]);
 
-    // create a fieldset to display all the examples together
+    // build the article DOM structure
     return article([
-        h1('Event handlers'),
+        h1('The event handlers'),
+        p(['The htmlmodule provides a simple way to attach native ' +
+            'event handlers directly on element assembly process.']),
         section([
-            h1('Focus'),
+            h1('The focus event'),
+            p([
+                'The button below has the ',
+                variable('onfocus'),
+                ' event handler, that replaces the text content',
+                ' of the button and reverts it on button blur.'
+            ]),
             focusbutton
         ]),
         section([
-            h1('Click and change'),
+            h1('The click and the change events'),
+            p([
+                'This button handles the ',
+                variable('click'),
+                ' event to show a system alert.',
+                ' The following check box disables it when ',
+                variable('change'),
+                ' event occurs and the control is checked.'
+            ]),
             alertbutton,
             noalertbox
         ]),
         section([
-            h1('input'),
+            h1('The input event'),
+            p([
+                'Here are two text boxes,' +
+                ' one of which is read-only,',
+                ' and it displays the char count,',
+                ' entered into another one.',
+                ' This achieved by handle the ',
+                variable('input'),
+                ' event by the last text input element.'
+
+            ]),
             charcountbox
-        ]),
-        style('section { margin: 20px 0 }')
+        ])
     ]);
 }
