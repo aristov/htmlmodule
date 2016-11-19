@@ -18,19 +18,12 @@
             ]),
         ]),
         section([
-            h1('The document element'),
+            h1('Document root and metadata'),
             apilist([
-                'html'
-            ]),
-        ]),
-        section([
-            h1('Document metadata'),
-            apilist([
-                'head',
-                'title',
-                'base',
+                'html + head + body',
+                'head + title + [base] + [link] + [meta] + ' +
+                    '[style] + [script] + [noscript]',
                 'link',
-                'meta',
                 'style',
             ]),
         ]),
@@ -40,7 +33,7 @@
                 'body',
                 'article',
                 'section',
-                'nav',
+                'nav + [a] + [area]',
                 'aside',
                 'h1, h2, h3, h4, h5, h6',
                 'hgroup + [h1] + [h2] + [h3] + [h4] + [h5] + [h6]',
@@ -106,15 +99,17 @@
         section([
             h1('Forms'),
             apilist([
-                'form',
-                'label',
+                'form + [fieldset] + [input] + ' +
+                    '[select] + [textarea] + [button]',
+                'label + [input] + [select] + [textarea]',
                 'input',
                 'button',
                 'select + [optgroup] + option',
                 'datalist + option',
                 'textarea',
                 'progress',
-                'fieldset + [legend]',
+                'fieldset + [legend] + [input] + ' +
+                    '[select] + [textarea] + [button]',
             ]),
         ]),
         section([

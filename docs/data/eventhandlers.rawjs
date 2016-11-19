@@ -1,67 +1,70 @@
 ({ fieldset, legend, section, button, label, input, style }) => {
+
+    /* button, that changes it's text content on focus */
+
     // this text is used as initial button text
     const textContent = 'Give me a focus, please...';
-    // create button, that changes it's text content on focus
+
+    // create, set text content and event handlers:
+    // onfocus - to change text inside the button
+    // onblur - to set inital text back
     const focusbutton = button({
-        // add onfocus event handler to change text inside the button
         onfocus : ({ target }) => target.textContent = 'Focused!',
-        // add onblur event handler to set inital text back
         onblur : ({ target }) => target.textContent = textContent,
-        // set the initial text content of the button
         textContent
     });
+
     // this button shows a system alert
+    // onclick hanlder shows an alert with message
+    // that contains certain event info
     const alertbutton = button({
-        // onclick hanlder
         onclick : ({
             type,
             target : { tagName },
             constructor : { name }
-        }) => // show alert with message that contains certain event info
-            alert([tagName, type, name, 'handler!'].join(' ')),
-        // set text content as children
-        children : 'Show me an alert, please...',
-        // set element's style
-        style : { marginRight: '10px' }
+        }) => {
+            alert([tagName, type, name, 'handler!'].join(' '))
+        },
+        // set button's style and text
+        style : { marginRight: '10px' },
+        children : 'Show me an alert, please...'
     });
+
     // use this checkbox if you don't like alerts =)
+    // it sets the onchange event handler to disable the alertbutton
     const noalertbox = label([
-        // create the input element
         input({
-            // set input type to checkbox
             type : 'checkbox',
-            // event handler to disable the alertbutton
             onchange : ({ target }) => {
-                // disable button if checkbox is checked
                 alertbutton.disabled = target.checked;
             },
         }),
-        // text label for input
-        ' no alerts!'
+        ' no alerts!' // text label for input
     ]);
+
     // this textbox shows char count in secondary readonly box
+    // it has a placeholder, inline style and oninput event handler
+    // to count chars, entered to the input
     const charcountbox = label([
-        // create node
-        input({
-            // set the textinput placeholder
+        input({ // create node
             placeholder : 'Count my chars, please...',
-            // set oninput hanlder to count chars, entered to the input
             oninput : ({ target }) => {
                 // simply calculate the input value length
                 charcountbox.lastChild.value = target.value.length;
             },
-            // set input style for a beauty
             style : { width : '200px', marginRight: '10px' }
         }),
-        // create secondary input to show char count and set it's initial properties
-        input({ // todo use output
+        // secondary readonly input to show char count
+        // set it's style initial and properties
+        input({ // create node
             readOnly : true,
             title : 'Entered char count',
             value : '0',
             style : { width : '20px', textAlign : 'center' }
         })
     ]);
-    // create a fieldset to display all examples together
+
+    // create a fieldset to display all the examples together
     return fieldset([
         legend('Event handlers'),
         section(focusbutton),

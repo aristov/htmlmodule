@@ -1,5 +1,4 @@
 ({ article, code, pre, style }) => {
-    const fetch = window.fetch;
     const files = ['index.html', 'docs/index.js', 'docs/index.css'];
     Promise
         .all(files.map(file => {
