@@ -5,7 +5,7 @@
     const apilink = a({
         href : 'dist/api/function/#static-function-$1',
         target : '_blank',
-        children : '$1'
+        children : '$1' // simple and well-known regexp magic
     });
 
     // Gefine a template function that builds a list

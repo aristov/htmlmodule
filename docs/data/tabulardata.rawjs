@@ -1,5 +1,5 @@
 ({
-    article, h1, abbr, code, style, aside, p, button, a,
+    article, h1, abbr, code, style, label, input, p, a, br,
     table, caption, thead, tbody, tfoot, tr, th, td, col, colgroup
 }) => {
     const roles = [
@@ -34,6 +34,14 @@
             ]);
         })
     }
+    const stylesheet = style([
+        'table { width: 100%; border-collapse: collapse }',
+        'caption { padding: 15px }',
+        'thead, tfoot { background: #eee }',
+        'th, td { padding: 4px }',
+        'tr:last-child td, tr th ' +
+        '{ border-bottom: 4px solid #eee }'
+    ]);
     return article([
         h1('Tabular data'),
         p([
@@ -67,26 +75,32 @@
                 th(String(ariacount))
             ]))
         ]),
-        aside([
-            button({
-                title : 'Use this style button, if you find ' +
+        p({
+            style : {
+                fontSize : 'small',
+                position : 'absolute',
+                top : '0',
+                right: '16px',
+                textAlign : 'right',
+            },
+            children : label([
+                input({
+                    id : 'stylebox',
+                    type : 'checkbox',
+                    title : 'Use this style box, if you find ' +
                     'that the default browser view of ' +
                     'the table looks slightly weird',
-                onclick : ({
-                    target : { parentElement }
-                }) => {
-                    parentElement.replaceWith(style([
-                        'table { width: 100%; border-collapse: collapse }',
-                        'caption { padding: 15px }',
-                        'thead, tfoot { background: #eee }',
-                        'th, td { padding: 4px }',
-                        'tr:last-child td, tr th ' +
-                            '{ border-bottom: 4px solid #eee }'
-                    ]))
-                },
-                style : { marginTop : '20px' },
-                children : 'Beautify the table'
-            })
-        ]),
+                    checked : true,
+                    onchange : ({ target }) => {
+                        const { body } = target.ownerDocument;
+                        target.checked?
+                            body.appendChild(stylesheet) :
+                            stylesheet.remove();
+                    },
+                }),
+                ' apply stylesheet'
+            ]),
+        }),
+        stylesheet
     ])
 }
