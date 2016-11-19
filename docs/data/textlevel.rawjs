@@ -1,0 +1,108 @@
+({
+    article, h1, h2, section, p, ul, li,
+    // Emphasis
+    strong, b, i, em,
+    // Subscript and superscript
+    sub, sup,
+    // Mark
+    a, q, cite, abbr, small, dfn, s, u, mark, span,
+    // Computer term
+    variable, code, samp, kbd,
+    // Bidirectional algorithm
+    bdi, bdo,
+    // Ruby annotations
+    ruby, rt, rp,
+    // Line break
+    br, wbr,
+    // Edits
+    ins, del,
+
+}) => {
+    const children = 'АРОЗАУПАЛА';
+    return article([
+        h1('Text-level semantics'),
+        p('HTML is for hypertext, so it\'s primary ' +
+            'purpose is text, enhanced by hyperlinks. ' +
+            'The language has rich abilities to markup text.'),
+        p('From the other side, the htmlmodule may be used as ' +
+            'a simple template engine, as well as a full-feature ' +
+            'library for design and build web applications ' +
+            'or as a part of a such library.'),
+        p('Do not use htmlmodule for marking up a static content. ' +
+            'This approach is not recommended as long as ' +
+            'the module is not used for markup generation',
+            'HTML should be used instead.'),
+        section([
+            h1('Text emphasis'),
+            h2('Importance'),
+
+        ]),
+        section([
+            h1('Abbreviations'),
+            abbr({
+                title : 'Extensible markup language',
+                children : 'XML'
+            }), ' ',
+            abbr({
+                title : 'Scalable vector graphics',
+                children : 'SVG'
+            }), ' ',
+            abbr({
+                title : 'Interface definition language',
+                children : 'IDL'
+            })
+        ]),
+        section([
+            h1('Edits'),
+            ins('Inserted'),
+            ' and ',
+            del('deleted'),
+            ' text',
+        ]),
+        section([
+            h1('Keywords'),
+            code([
+                b('var'), ' ',
+                b('function'), ' ',
+                b('export'), ' ',
+                b('const')
+            ]),
+        ]),
+        section([
+            h1('Bidirectional'),
+            section([
+                children,
+                'Н',
+                bdo({ dir : 'rtl', children })
+            ]),
+            ul([
+                li(['User ',
+                    bdi('jcranmer'),
+                    ': 12 posts.']),
+                li(['User ',
+                    bdi('hober'),
+                    ': 5 posts.']),
+                li(['User ',
+                    bdi('إيان'),
+                    ': 3 posts.'])
+            ])
+        ]),
+        section([
+            h1('Ruby annotations'),
+            section([
+                ruby(['君', rt('くん')]),
+                ruby(['子', rt('し')]), 'は',
+                ruby(['和', rt('わ')]), 'して',
+                ruby(['同', rt('どう')]), 'ぜず。'
+            ]),
+            section(ruby([
+                '漢', rp(' ('), rt('かん'), rp(')'),
+                '字', rp(' ('), rt('じ'), rp(')')
+            ]))
+        ]),
+        section([
+            h1('small'),
+            small('@ All rights are free')
+        ]),
+    ]);
+}

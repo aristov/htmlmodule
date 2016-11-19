@@ -97,7 +97,7 @@ This is the simpliest way to start use the htmlmodule in your project.
 ## Accessibility
 
 Applications, assembled by htmlmodule are accessible by design.
-This depends primarily on a proper and accurate usage of the markup language semantics.
+This depends generally on a proper and accurate usage of the markup language semantics.
 Read [the spec](https://html.spec.whatwg.org),
 [the API reference](https://aristov.github.io/htmlmodule/docs/api/identifiers.html)
 and look the examples, provided on

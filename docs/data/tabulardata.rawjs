@@ -85,7 +85,7 @@
                     ]))
                 },
                 style : { marginTop : '20px' },
-                children : 'Beautify the table!'
+                children : 'Beautify the table'
             })
         ]),
     ])

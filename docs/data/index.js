@@ -9,6 +9,7 @@ import richform from 'raw!./richform.rawjs';
 import specwin from 'raw!./specwin.rawjs';
 import tabulardata from 'raw!./tabulardata.rawjs';
 import testcase from 'raw!././testcase.rawjs';
+// import textlevel from 'raw!././textlevel.rawjs';
 import websearch from 'raw!./websearch.rawjs';
 
 export const data = [
