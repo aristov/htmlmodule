@@ -2,7 +2,7 @@ import { REPLMachine } from './replmachine';
 import { DOMSerializer } from './domserializer';
 
 import * as htmlmodule from './htmlmodule';
-import { main, section, iframe, button, details, summary } from './htmlmodule';
+import { main, section, iframe, button, details, summary, style } from './htmlmodule';
 import { codebox, markupbox } from './codemirror';
 import { es2015support, babel, standalone } from './babel';
 
@@ -131,6 +131,7 @@ export class REPLApp {
      * If a browser doesn't support ES2015 syntax, then load babel-standalone first
      */
     onready() {
+        // this.outputwin.contentDocument.head.append(style('body{font-size:18px}'));
         if(useBabel) standalone().then(() => this.start());
         else this.start();
     }
@@ -140,16 +141,31 @@ export class REPLApp {
      * Add event listeners and refresh the application
      */
     start() {
-        this.inputcode.onchange = () => this.replmachine.loop();
-        window.onkeydown = ({ target, keyCode }) => {
-            if(target.tagName !== 'TEXTAREA') {
-                if(keyCode === 37) this.prev();
-                if(keyCode === 39) this.next();
-                if(keyCode === 38) this.markupview.open = true;
-                if(keyCode === 40) this.markupview.open = false;
-            }
-        };
+        this.inputcode.onchange = this.onchange.bind(this);
+        window.onkeydown = this.onkeydown.bind(this);
         this.refresh();
+    }
+
+    /**
+     * Event handler for input source changes
+     * @param event
+     */
+    onchange(event) {
+        this.replmachine.loop();
+    }
+
+    /**
+     * Event handler provides the keyboard navigational aims
+     * @param target
+     * @param keyCode
+     */
+    onkeydown({ target, keyCode }) {
+        if(target.tagName !== 'TEXTAREA') {
+            if(keyCode === 37) this.prev();
+            if(keyCode === 39) this.next();
+            if(keyCode === 38) this.markupview.open = true;
+            if(keyCode === 40) this.markupview.open = false;
+        }
     }
 
     /**

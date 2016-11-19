@@ -1,8 +1,5 @@
-htmlmodule => {
-
-    const { a, abbr, section, h1, p, nav, ul, li, style } = htmlmodule;
-
-    return section([
+({ a, abbr, section, h1, p, nav, ul, li, style }) =>
+    section([
         h1('Welcome!'),
         p([
             'You are inside the ',
@@ -25,15 +22,18 @@ htmlmodule => {
             a({
                 href: '#replinputcode',
                 target : '_parent',
-                title : 'Keyboard: use ALT+TAB for tabbing from the code editor',
+                title : 'Keyboard: use ALT+TAB ' +
+                    'for tabbing from the code editor',
                 children : 'code editor'
             }),
             ' and change ',
-            'the source code of the document that you are reading now.'
+            'the source code of the document ' +
+                'that you are reading now.'
         ]),
         nav([
             p([
-                'There are some usage code examples provided: try the ',
+                'There are some usage ' +
+                    'code examples provided: try the ',
                 a({
                     href : '#replbuttonprev',
                     target : '_parent',
@@ -98,9 +98,10 @@ htmlmodule => {
         ])),
         p('Enjoy!'),
         style([
-            'body { font: 17px sans-serif }',
+            // 'body { font: 17px sans-serif }',
+            'body { font-size: 18px }',
             'a[href][rel~=external]:not(:active) { color: #050 }',
+            ':link:not(:hover):not(:focus) { text-decoration: none }',
             'abbr { cursor: help }',
         ])
     ]);
-}

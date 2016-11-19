@@ -20,8 +20,8 @@
                 ' Checked checkbox'
             ]),
             label([
-                input({ type : 'checkbox', attrset : { checked : '' } }),
-                ' Initially checked checkbox'
+                input({ type : 'checkbox', defaultChecked : true }),
+                ' Default checked checkbox'
             ]),
             label([
                 input({ type : 'checkbox', indeterminate : true }),

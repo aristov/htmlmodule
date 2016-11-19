@@ -1,6 +1,4 @@
-({ fieldset, legend, section, button, label, input, style }) => {
-
-    /* button, that changes it's text content on focus */
+({ article, section, h1, button, label, input, style }) => {
 
     // this text is used as initial button text
     const textContent = 'Give me a focus, please...';
@@ -65,11 +63,21 @@
     ]);
 
     // create a fieldset to display all the examples together
-    return fieldset([
-        legend('Event handlers'),
-        section(focusbutton),
-        section([alertbutton, noalertbox]),
-        section(charcountbox),
+    return article([
+        h1('Event handlers'),
+        section([
+            h1('Focus'),
+            focusbutton
+        ]),
+        section([
+            h1('Click and change'),
+            alertbutton,
+            noalertbox
+        ]),
+        section([
+            h1('input'),
+            charcountbox
+        ]),
         style('section { margin: 20px 0 }')
     ]);
 }

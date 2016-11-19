@@ -1,16 +1,28 @@
-({ a, article, h1, abbr, section, ul, li, style }) => {
+({ a, ul, li, nav, h1, abbr, section, style }) => {
+
+    // Generate a simple hyperlink to use it,
+    // as a pattern for a regular expression replacement
     const apilink = a({
         href : 'dist/api/function/#static-function-$1',
         target : '_blank',
         children : '$1'
     });
+
+    // Gefine a template function that builds a list
+    // of links from the given list of short descriptions
     function apilist(items) {
         return ul(items.map(item => li({
+            // use innerHTML to generate nested links
             innerHTML : item.replace(/(\w+)/g, apilink.outerHTML)
         })));
     }
-    return article([
-        h1(['The API of htmlmodule']),
+
+    // Assemble the API reference, using just defined function
+    return nav([
+        h1(['The ', abbr({
+            title : 'Application programming interface',
+            children : 'API'
+        }), ' of htmlmodule']),
         section([
             h1('Core'),
             apilist([
@@ -127,8 +139,6 @@
             ]),
         ]),
         style([
-            'body { font: 15px sans-serif }',
-            'ul { list-style: non }',
             ':link:not(:hover):not(:focus) { text-decoration: none }'
         ])
     ]);

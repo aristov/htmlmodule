@@ -1,4 +1,4 @@
-({ pre, script, style }) => {
+({ div, pre, script, style, p }) => {
     const tab = ' '.repeat(4);
     const src = () => Object.assign(
         document.currentScript.style,
@@ -10,9 +10,12 @@
             color : 'blue',
             font : '13px monospace'
         });
-    return pre([
-        script(tab + `(${ src.toString() })()`),
-        style(tab.repeat(2) + `style 
+    return div([
+        p('This script is crazy and is not the case ' +
+            'for any sane usage. It\'s just a funny example!'),
+        pre(script(tab + `(${ src.toString() })()`)),
+        p('The same relates to the following stupid stylesheet:'),
+        pre(style(tab.repeat(2) + `style 
         {
             display: block;
             margin: 20px;
@@ -20,6 +23,6 @@
             color: green;
             box-shadow: 0 0 5px 5px #ccc;
             font: 13px monospace;
-        }`)
+        }`))
     ])
 }

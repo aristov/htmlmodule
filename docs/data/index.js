@@ -3,7 +3,7 @@ import eventhandlers from 'raw!./eventhandlers.rawjs';
 import fetchsource from 'raw!./fetchsource.rawjs';
 import headgroup from 'raw!./headgroup.rawjs';
 import intro from 'raw!./intro.rawjs';
-import apigroups from 'raw!./apigroups.rawjs';
+import apinav from 'raw!./apinav.rawjs';
 import preformatted from 'raw!./preformatted.rawjs';
 import richform from 'raw!./richform.rawjs';
 import specwin from 'raw!./specwin.rawjs';
@@ -14,7 +14,7 @@ import websearch from 'raw!./websearch.rawjs';
 
 export const data = [
     intro,
-    apigroups,
+    apinav,
     websearch,
     eventhandlers,
     headgroup,
@@ -23,7 +23,7 @@ export const data = [
     authfieldset,
     tabulardata,
     preformatted,
-    scriptstyle,
+    // scriptstyle,
     fetchsource,
     specwin,
 ];
