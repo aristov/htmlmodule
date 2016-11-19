@@ -60,7 +60,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
 
     /**
      * Set the onchange event handler
-     * @param onchange
+     * @param {Function} onchange
      */
     set onchange(onchange) {
         this.mirror.on('change', onchange);
@@ -68,7 +68,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
 
     /**
      * Set a unique id on the editor's textarea element
-     * @param id
+     * @param {String} id
      */
     set id(id) {
         this.element.querySelector('textarea').id = id;
@@ -76,8 +76,8 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
 
     /**
      * Assemble widget DOM structure
-     * @param tagName
-     * @param init
+     * @param {String} tagName
+     * @param {*} init
      */
     assemble(tagName, init) {
         super.assemble(tagName);
@@ -88,8 +88,8 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
 
     /**
      * Create the CodeMirror instance
-     * @param options
-     * @returns {*}
+     * @param {Object} options
+     * @returns {CodeMirror}
      */
     createMirror(options) {
         return this.mirror = new CodeMirror(this.element, options);
