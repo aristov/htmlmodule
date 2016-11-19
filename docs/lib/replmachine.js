@@ -1,6 +1,6 @@
 import { htmldom } from './htmlmodule';
 
-const VAR_NAME_EXPORTS = 'exports';
+const VARS = ['exports', 'window', 'document', 'location'];
 
 export class REPLMachine {
     /**
@@ -8,14 +8,17 @@ export class REPLMachine {
      * @param {String} value Initial input value
      * @param {HTMLInputElement|{value}} input may be any object with the `value` property
      * @param {HTMLOutputElement|{value}} output may be any object with the `value` property
+     * @param {Array} vars
      */
     constructor({
         value = '',
         input = htmldom('input', { value }),
         output = htmldom('output'),
+        vars = VARS
     } = {}) {
         this.input = input;
         this.output = output;
+        this.vars = vars;
     }
 
     /**
@@ -34,7 +37,7 @@ export class REPLMachine {
      */
     read(source) {
         try {
-            const evaluable = new Function(VAR_NAME_EXPORTS, source);
+            const evaluable = new Function(...this.vars, source);
             this.eval(evaluable);
             return evaluable;
         }
