@@ -8,11 +8,11 @@
         ['input', 'textbox'],
         ['select', 'combobox'],
         ['table', 'table, grid'],
-        ['ul, ol', 'list'],
+        ['ul, ol, dl', 'list'],
     ];
     const attributes = [
         ['hidden', 'aria-hidden'],
-        ['label, title', 'aria-label'],
+        ['title', 'aria-label, aria-labelledby'],
         ['checked', 'aria-checked'],
         ['selected', 'aria-selected'],
         ['disabled', 'aria-disabled'],
