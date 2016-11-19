@@ -1,18 +1,79 @@
-/* CodeMirror "rubyblue" theme customization */
-
-body .CodeMirror .CodeMirror-scroll
+.CodeMirror
+{
+    /*background: #112435;*/
+    background: #2b2b2b;
+    color: #c9d7e6;
+    font-size: 15px;
+    line-height: 18px;
+}
+.CodeMirror .CodeMirror-scroll
 {
     padding-top: 8px;
     padding-left: 8px;
     padding-right: 8px;
     box-sizing: border-box;
 }
-body .cm-s-rubyblue span.cm-bracket,
-body .cm-s-rubyblue span.cm-def,
-body .cm-s-rubyblue span.cm-variable
+.CodeMirror div.CodeMirror-selected
 {
-    color: #7BD827;
+    background: #214283;
 }
-body .CodeMirror span.cm-property {
-    color: #82C6E0;
+.CodeMirror .CodeMirror-cursor
+{
+    border-left: 1px solid white;
+}
+.CodeMirror span.cm-comment
+{
+    color: #808080;
+    font-style: italic;
+    line-height: 1em;
+}
+/*.CodeMirror span.cm-atom
+{
+    color: #F4C20B;
+}*/
+.CodeMirror span.cm-number
+{
+    color: #6897bb;
+}
+.CodeMirror span.cm-meta
+{
+    color: #a9b7c6;
+}
+.CodeMirror span.cm-attribute,
+.CodeMirror span.cm-property,
+.CodeMirror span.CodeMirror-matchingbracket
+{
+    /*color: #82C6E0;*/
+    /*color: #F0F;*/
+    color: #b896ca;
+}
+.CodeMirror span.cm-atom,
+.CodeMirror span.cm-keyword,
+.CodeMirror span.cm-builtin,
+.CodeMirror span.cm-special,
+.CodeMirror span.cm-link
+{
+    /*color: #F0F;*/
+    color: #FF9D00;
+}
+.CodeMirror span.cm-string,
+.CodeMirror span.cm-string-2
+{
+    /*color: #F08047;*/
+    color: #9ab789;
+}
+.CodeMirror span.cm-variable,
+.CodeMirror span.cm-variable-2,
+.CodeMirror span.cm-variable-3,
+.CodeMirror span.cm-tag,
+.CodeMirror span.cm-def,
+.CodeMirror span.cm-bracket
+{
+    /*color: #7BD827;*/
+    /*color: white;*/
+    color: #ffc66d;
+}
+.CodeMirror span.cm-error
+{
+    color: #f00;
 }
