@@ -2,7 +2,7 @@ const { map } = Array.prototype;
 const { Node, Element } = window;
 const { TEXT_NODE, COMMENT_NODE, ELEMENT_NODE } = Node;
 
-const EMPTY_TAG_LIST = 'AREA BASE BR EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
+const EMPTY_TAG_LIST = 'AREA BASE BR COL EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR';
 const EMPTY_TAG_SET = EMPTY_TAG_LIST.split(' ').reduce((res, tag) => (res[tag] = true, res), {});
 
 /**

@@ -1,31 +1,92 @@
-({ table, caption, thead, tr, th, abbr, tbody, td }) => {
-    return table({
-        style : { width : '100%', textAlign : 'left' },
-        children : [
-            caption({
-                style : {
-                    textAlign : 'left',
-                    marginBottom : '20px'
-                },
-                children : 'Related semantics'
+({
+    article, h1, abbr, code, style, aside, p, button, a,
+    table, caption, thead, tbody, tfoot, tr, th, td, col, colgroup
+}) => {
+    const roles = [
+        ['button', 'button'],
+        ['a, link, area', 'link'],
+        ['input', 'textbox'],
+        ['select', 'combobox'],
+        ['table', 'table, grid'],
+        ['ul, ol', 'list'],
+    ];
+    const attributes = [
+        ['hidden', 'aria-hidden'],
+        ['label, title', 'aria-label'],
+        ['checked', 'aria-checked'],
+        ['selected', 'aria-selected'],
+        ['disabled', 'aria-disabled'],
+        ['indeterminate', 'mixed'],
+    ];
+    let htmlcount = 0;
+    let ariacount = 0;
+    function rowgroup(items, name) {
+        return items.map(([htmlterm, ariaterm], i) => {
+            htmlcount += htmlterm.split(', ').length;
+            ariacount += ariaterm.split(', ').length;
+            return tr([
+                !i && th({
+                    rowSpan : items.length,
+                    children : name,
+                }),
+                td(code(htmlterm)),
+                td(code(ariaterm))
+            ]);
+        })
+    }
+    return article([
+        h1('Tabular data'),
+        p([
+            a({
+                href : 'https://html.spec.whatwg.org/#table-model',
+                children : 'The HTML table model'
             }),
-            thead(tr([ th(abbr('HTML')), th(abbr('WAI-ARIA')) ])),
-            tbody([
-                ['button', 'button'],
-                ['a, link, area', 'link'],
-                ['input', 'textbox'],
-                ['select', 'combobox'],
-                ['table', 'table, grid'],
-                ['ul, ol', 'list'],
-                ['[hidden]', '[aria-hidden]'],
-                ['label, [title]', '[aria-label]'],
-                ['[checked]', '[aria-checked]'],
-                ['[selected]', '[aria-selected]'],
-                ['[disabled]', '[aria-disabled]'],
-                ['[indeterminate]', '"mixed"'],
-            ].map(([htmlterm, ariaterm]) => {
-                return tr([ td(htmlterm), td(ariaterm) ]);
-            }))
-        ]
-    })
+            ' semantics is very richful.' +
+            ' Authors may compose simple or complex' +
+            ' and even nested tables easy.',
+        ]),
+        p([
+            'In this example we use tabular elements to compare' +
+            ' some similar semantics of two web standards' +
+            ' and show the considered items number.'
+        ]),
+        table([
+            caption('Related web technology semantics'),
+            colgroup(col()),
+            colgroup([col(), col()]),
+            thead(tr([
+                th('Standard'),
+                th(abbr('HTML')),
+                th(abbr('WAI-ARIA'))
+            ])),
+            tbody(rowgroup(roles, 'Roles')),
+            tbody(rowgroup(attributes, 'Attributes')),
+            tfoot(tr([
+                th('Total:'),
+                th(String(htmlcount)),
+                th(String(ariacount))
+            ]))
+        ]),
+        aside([
+            button({
+                title : 'Use this style button, if you find ' +
+                    'that the default browser view of ' +
+                    'the table looks slightly weird',
+                onclick : ({
+                    target : { parentElement }
+                }) => {
+                    parentElement.replaceWith(style([
+                        'table { width: 100%; border-collapse: collapse }',
+                        'caption { padding: 15px }',
+                        'thead, tfoot { background: #eee }',
+                        'th, td { padding: 4px }',
+                        'tr:last-child td, tr th ' +
+                            '{ border-bottom: 4px solid #eee }'
+                    ]))
+                },
+                style : { marginTop : '20px' },
+                children : 'Beautify the table!'
+            })
+        ]),
+    ])
 }
