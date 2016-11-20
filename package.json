@@ -47,7 +47,7 @@
     "posttest": "cat ./dist/coverage/chrome/lcov.info | coveralls",
     "test-local": "npm run pretest && npm run karma-local",
     "start": "webpack && ENTRY=index ES6=true WATCH=true webpack",
-    "static": "http-server",
+    "static": "http-server -c-1",
     "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run test-local && git add index.html dist -f && git commit -am 'add dist' && git push --set-upstream origin gh-pages -f && git checkout master && git status"
   },
   "precommit": [
