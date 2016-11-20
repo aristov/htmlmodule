@@ -9,13 +9,16 @@ const env = process.env;
 const preLoaders = [];
 const plugins = [];
 const suffix = env.MIN? '.min.js' : '.js';
+const nodepath = path.resolve('node_modules/');
 
 const babelLoader = env.ES6? {
     test : /\.js$/,
-    loader : 'babel?plugins[]=transform-es2015-modules-commonjs'
+    loader : 'babel?plugins[]=transform-es2015-modules-commonjs&compact=false',
+    exclude: [nodepath]
 } : {
     test : /\.js$/,
-    loader : 'babel?presets[]=latest'
+    loader : 'babel?presets[]=latest&compact=false',
+    exclude: [nodepath]
 };
 
 const rawLoader = { test : /\.txt$/, loader : 'raw-loader' };
@@ -40,9 +43,7 @@ if(env.COV) {
     preLoaders.push({
         test : /[^(\.spec)]\.js$/,
         loader : 'babel!babel?presets[]=latest&plugins[]=istanbul',
-        exclude: [
-            path.resolve('node_modules/')
-        ],
+        exclude: [nodepath],
     });
 }
 
