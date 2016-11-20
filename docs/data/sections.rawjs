@@ -1,0 +1,22 @@
+({
+    a, h1, address, article, section, aside
+}) => {
+    return article([
+        h1('Sections'),
+        aside([
+            h1('Aside'),
+            'Your advert may be here!'
+        ]),
+        section([
+            h1('Address'),
+            address([
+                'Contact the author: ',
+                a({
+                    href : 'mailto:vv.aristov@gmail.com',
+                    rel : 'author',
+                    children : 'vv.aristov@gmail.com'
+                })
+            ]),
+        ]),
+    ]);
+}

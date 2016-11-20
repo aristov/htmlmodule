@@ -1,0 +1,47 @@
+({ h1, ul, ol, li, pre, blockquote, article, section }) =>
+    article([
+        h1('Grouping content'),
+        section([
+            h1('Blockquote'),
+            blockquote({
+                cite : 'https://html.spec.whatwg.org/' +
+                'multipage/semantics.html#the-blockquote-element',
+                children : 'The blockquote element represents ' +
+                'a section that is quoted from another source.'
+            }),
+        ]),
+        section([
+            h1('Unordered list'),
+            ul([
+                li('Node'),
+                li('Text'),
+                li('Element'),
+                li('Comment'),
+                li('Document'),
+                li('CharacterData'),
+            ])
+        ]),
+        section([
+            h1('Ordered list'),
+            ol([
+                li('null'),
+                li('Object'),
+                li('EventTarget'),
+                li('Node'),
+                li('Element'),
+                li('HTMLElement'),
+                li('HTMLLIElement'),
+            ]),
+        ]),
+        section([
+            h1('Preformatted text'),
+            pre(
+`_________________________________________________________
+____________/          _/                      _/________
+___________/_/_/    _/_/_/_/  _/_/_/  _/_/    _/_________
+__________/    _/    _/      _/    _/    _/  _/__________
+_________/    _/    _/      _/    _/    _/  _/___________
+________/    _/      _/_/  _/    _/    _/  _/____________
+_________________________________________________________`)
+        ])
+    ])

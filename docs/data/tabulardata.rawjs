@@ -75,15 +75,14 @@
                 th(String(ariacount))
             ]))
         ]),
-        p({
+        label({
             style : {
                 fontSize : 'small',
                 position : 'absolute',
-                top : '0',
+                top : '8px',
                 right: '16px',
-                textAlign : 'right',
             },
-            children : label([
+            children : [
                 input({
                     id : 'stylebox',
                     type : 'checkbox',
@@ -99,7 +98,7 @@
                     },
                 }),
                 ' apply stylesheet'
-            ]),
+            ],
         }),
         stylesheet
     ])

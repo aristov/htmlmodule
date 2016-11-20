@@ -65,7 +65,7 @@
 
     // build the article DOM structure
     return article([
-        h1('The event handlers'),
+        h1('Event handlers'),
         p(['The htmlmodule provides a simple way to attach native ' +
             'event handlers directly on element assembly process.']),
         section([
