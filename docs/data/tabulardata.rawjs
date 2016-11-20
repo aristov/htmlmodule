@@ -1,5 +1,5 @@
 ({
-    article, h1, abbr, code, style, label, input, p, a, br,
+    a, abbr, article, code, h1, input, label, p, style,
     table, caption, thead, tbody, tfoot, tr, th, td, col, colgroup
 }) => {
     const roles = [
@@ -82,13 +82,11 @@
                 top : '8px',
                 right: '16px',
             },
+            title : 'Use this style box to switch table styling on/off',
             children : [
                 input({
                     id : 'stylebox',
                     type : 'checkbox',
-                    title : 'Use this style box, if you find ' +
-                    'that the default browser view of ' +
-                    'the table looks slightly weird',
                     checked : true,
                     onchange : ({ target }) => {
                         const { body } = target.ownerDocument;

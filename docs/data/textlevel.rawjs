@@ -70,7 +70,7 @@
         ]),
         section([
             h1('Bidirectional'),
-            section([
+            p([
                 children,
                 'Н',
                 bdo({ dir : 'rtl', children })
