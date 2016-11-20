@@ -50,12 +50,12 @@ import { form, label, input, button } from 'htmlmodule';
 // create application
 const websearch = 
     form({
-        action : '//yandex.com/search',
+        action : '//www.google.ru/search',
         target : '_blank',
         children : [
             label([
                 'Search ',
-                input({ type : 'search', name : 'text' })
+                input({ type : 'search', name : 'q' })
             ]),
             button('Find')
         ]
@@ -68,10 +68,10 @@ document.body.append(websearch);
 Just created `websearch` variable is a DOM structure with the respective HTML markup:
 
 ```html
-<form action=//yandex.com/search target=_blank>
+<form action=//www.google.ru/search target=_blank>
     <label>
         Search 
-        <input type=search name=text>
+        <input type=search name=q>
     </label>
     <button>Find</button>
 </form>
