@@ -1,5 +1,5 @@
 ({
-    article, h1, h2, section, p, ul, li,
+    article, h1, section, p, ul, li,
     // Emphasis
     strong, b, i, em,
     // Subscript and superscript
@@ -21,24 +21,8 @@
     const children = 'АРОЗАУПАЛА';
     return article([
         h1('Text-level semantics'),
-        p('HTML is for hypertext, so it\'s primary ' +
-            'purpose is text, enhanced by hyperlinks. ' +
-            'The language has rich abilities to markup text.'),
-        p('From the other side, the htmlmodule may be used as ' +
-            'a simple template engine, as well as a full-feature ' +
-            'library for design and build web applications ' +
-            'or as a part of a such library.'),
-        p('Do not use htmlmodule for marking up a static content. ' +
-            'This approach is not recommended as long as ' +
-            'the module is not used for markup generation',
-            'HTML should be used instead.'),
         section([
-            h1('Text emphasis'),
-            h2('Importance'),
-
-        ]),
-        section([
-            h1('Abbreviations'),
+            h1('Abbreviation'),
             abbr({
                 title : 'Extensible markup language',
                 children : 'XML'
@@ -53,23 +37,11 @@
             })
         ]),
         section([
-            h1('Edits'),
-            ins('Inserted'),
-            ' and ',
-            del('deleted'),
-            ' text',
-        ]),
-        section([
-            h1('Keywords'),
-            code([
-                b('var'), ' ',
-                b('function'), ' ',
-                b('export'), ' ',
-                b('const')
-            ]),
-        ]),
-        section([
-            h1('Bidirectional'),
+            h1({
+                title : 'Text directionality ' +
+                    'isolation and formatting',
+                children : 'Bidirectional'
+            }),
             p([
                 children,
                 'Н',
@@ -101,8 +73,8 @@
             ]))
         ]),
         section([
-            h1('small'),
-            small('@ All rights are free')
+            h1('Side comment'),
+            small({ innerHTML : '&copy; All rights are free' })
         ]),
     ]);
 }

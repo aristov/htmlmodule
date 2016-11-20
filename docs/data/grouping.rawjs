@@ -1,6 +1,11 @@
-({ h1, ul, ol, li, pre, blockquote, article, section }) =>
+({ h1, ul, ol, li, pre, blockquote, p, article, section }) =>
     article([
         h1('Grouping content'),
+        section([
+            h1('Paragraph'),
+            p('The p element should not be used when a more ' +
+                'specific element is more appropriate.'),
+        ]),
         section([
             h1('Blockquote'),
             blockquote({

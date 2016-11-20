@@ -1,24 +1,85 @@
-({ a, h1, header, address, article, section, aside, form, input, nav }) => {
+({
+    a, h1, header, address, article, section, aside, nav,
+    form, img, input, button,
+}) => {
     return article([
         h1('Sections'),
-        header([
-            h1('Header'),
-            form({
-                action : 'search.xml',
-                children : input({
-                    name : 'text',
-                    type : 'search'
-                })
+        /* section([ // todo
+            h1('Article'),
+            article('[Self-contained ' +
+                'syndicatable or reusable composition]')
+        ]),
+        section([ // todo
+            h1('Section'),
+            section('[Generic document or application section]')
+        ]),
+        section([ // todo
+            h1('Navigation'),
+            nav('[Section with navigational links]')
+        ]),
+        section([ // todo
+            h1('Aside'),
+            aside('[Sidebar for tangentially related content]')
+        ]),*/
+        section([
+            h1({
+                title : 'Introductory or navigational ' +
+                    'aids for a page or section',
+                children : 'Header'
+            }),
+            header({
+                style : {
+                    display : 'flex',
+                    justifyContent : 'space-between'
+                },
+                children : [
+                    nav([
+                        a({
+                            href : '.',
+                            children : 'Home'
+                        }), ' • ',
+                        a({
+                            href : 'dist/api',
+                            children : 'API documentation'
+                        }), ' • ',
+                        a({
+                            href : 'dist/docs/spec.html',
+                            children : 'Spec suite'
+                        }), ' • ',
+                        a({
+                            href : 'dist/coverage',
+                            children : 'Coverage report'
+                        }),
+                    ]),
+                    form({
+                        action : 'https://www.google.ru/search',
+                        target : '_blank',
+                        children : [
+                            input({
+                                type : 'search',
+                                placeholder : 'Search on web',
+                                name : 'q'
+                            }),
+                            button('Go!')
+                        ]
+                    })
+                ]
             })
         ]),
-        aside([
-            h1('Aside'),
-            'Your advert may be here!'
+        section([
+            h1({
+                title : 'Footer for a page or section',
+                children : 'Footer'
+            }),
+            header('Last modified: 2016-11-20')
         ]),
         section([
-            h1('Address'),
+            h1({
+                title : 'Contact information for a page or article element',
+                children : 'Address'
+            }),
             address([
-                'Contact the author: ',
+                'Author: ',
                 a({
                     href : 'mailto:vv.aristov@gmail.com',
                     rel : 'author',
