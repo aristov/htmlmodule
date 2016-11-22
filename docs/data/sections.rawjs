@@ -10,33 +10,54 @@ htmlmodule => {
         a, hr, p
     } = htmlmodule;
 
+    function onclick(event) {
+        event.preventDefault();
+        const target = event.target;
+        if(target.hash) {
+            const name = target.hash.slice(1);
+            const document = target.ownerDocument;
+            const node = document.querySelector(name);
+            if(node) {
+                node.tabIndex = -1;
+                node.focus();
+                if(!node.onblur) node.onblur = () => {
+                    node.removeAttribute('tabindex');
+                }
+            }
+        }
+    }
+
+    const text = ['This [article] element contains',
+        'the [header], [section], [aside] and [footer] elements.',
+        'The [header] element contains the main heading',
+        'and [nav] with this introductional hypertext paragraph.',
+        'The [section] element contains just a self explanation.',
+        'The [aside] element contains [hgroup] with some headings.',
+        'The [footer] element contains [address]',
+        'and the modification date.'].join(' ');
+
     const anchor = a({ href : '#$1', children : '$1' });
 
-    const text = ['This `article` element contains',
-        'the `header`, `section`, `aside` and `footer` elements.',
-        'The `header` element contains the main heading',
-        'and `nav` with this introductional text.',
-        'The `section` element contains `hgroup` with some headings.',
-        'The `aside` element contains the related project announce.',
-        'The `footer` element contains `address`.'].join(' ');
-    const children = p({
-        innerHTML : text.replace(/`(\w+)`/g, anchor.outerHTML)
-    });
     return article([
         header([
             h1('Sections'),
-            nav({ onclick, children })
+            nav({
+                onclick,
+                children : p({
+                    innerHTML : text.replace(/\[(\w+)\]/g, anchor.outerHTML)
+                })
+            })
         ]),
-        hr(),
-        aside(((text, ...hh) => {
-            const group = [...hh.slice(1).reverse(), ...hh];
-            return hgroup(group.map(hx => hx(text)));
-        })('HTML is amazing', h2, h3, h4, h5, h6)),
         hr(),
         section([
             h1('Section'),
             p('Generic document or application section.')
         ]),
+        hr(),
+        aside(((...hh) => {
+            const group = [...hh.slice(1).reverse(), ...hh];
+            return hgroup(group.map(hx => hx('HTML is amazing')));
+        })(h2, h3, h4, h5, h6)),
         hr(),
         footer([
             p('Last modified: ' + new Date),
@@ -50,20 +71,4 @@ htmlmodule => {
             ])
         ]),
     ]);
-    function onclick(event) {
-        event.preventDefault();
-        const target = event.target;
-        if(target.hash) {
-            const name = target.hash.slice(1);
-            const document = target.ownerDocument;
-            const node = document.getElementsByTagName(name)[0];
-            if(node) {
-                node.tabIndex = -1;
-                node.focus();
-                if(!node.onblur) node.onblur = () => {
-                    node.removeAttribute('tabindex');
-                }
-            }
-        }
-    }
 }
