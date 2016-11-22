@@ -1,34 +1,64 @@
 htmlmodule => {
     const {
-        ul, ol, li, pre, blockquote, p,
-        hr, dl, dt, dd, figure, figcaption, main, div,
-        h1, article, section
+        // Semantic groups
+        blockquote, main, p,
+        // Figure
+        figure, figcaption,
+        // Lists
+        ul, ol, li, dl, dt, dd,
+        // Preformatted text
+        pre,
+        // Dividers
+        hr, div,
     } = htmlmodule;
+
+    const { article, b,  h1, section } = htmlmodule;
+
     return article([
         h1('Grouping content'),
+        section([
+            h1('Blockquote'),
+            blockquote({
+                cite : 'https://html.spec.whatwg.org/' +
+                    'multipage/semantics.html#the-blockquote-element',
+                children : 'The blockquote element represents ' +
+                    'a section that is quoted from another source.'
+            }),
+        ]),
+        section([
+            h1('Main content'),
+            p('Container for the dominant contents of another element.'),
+        ]),
+        section([
+            h1('Figure'),
+            figure([
+                figcaption('Image 1. Black square'),
+                div({
+                    style : {
+                        width : '200px',
+                        height : '200px',
+                        background : 'black'
+                    }
+                })
+            ]),
+        ]),
         section([
             h1('Paragraph'),
             p('The p element should not be used when a more ' +
                 'specific element is more appropriate.'),
         ]),
         section([
-            h1('Blockquote'),
-            blockquote({
-                cite : 'https://html.spec.whatwg.org/' +
-                'multipage/semantics.html#the-blockquote-element',
-                children : 'The blockquote element represents ' +
-                'a section that is quoted from another source.'
-            }),
-        ]),
-        section([
             h1('Unordered list'),
             ul([
                 li('Node'),
-                li('Text'),
-                li('Element'),
-                li('Comment'),
                 li('Document'),
+                li('DocumentFragment'),
+                li('DocumentType'),
                 li('CharacterData'),
+                li('Text'),
+                li('Comment'),
+                li('CDATASection'),
+                li('Element'),
             ])
         ]),
         section([
@@ -44,6 +74,18 @@ htmlmodule => {
             ]),
         ]),
         section([
+            h1('Description list'),
+            dl([
+                dt(['The ', b('dl'), ' element']),
+                dd('Association list consisting ' +
+                    'of zero or more name-value groups'),
+                dt(['The ', b('dt'), ' element']),
+                dd(['Legend for corresponding ', b('dd'), ' element(s)']),
+                dt(['The ', b('dd'), ' element']),
+                dd(['Content for corresponding ', b('dt'), ' element(s)']),
+            ]),
+        ]),
+        section([
             h1('Preformatted text'),
             pre(
 `_________________________________________________________
@@ -53,6 +95,22 @@ __________/    _/    _/      _/    _/    _/  _/__________
 _________/    _/    _/      _/    _/    _/  _/___________
 ________/    _/      _/_/  _/    _/    _/  _/____________
 _________________________________________________________`)
+        ]),
+        section([
+            h1('Separator'),
+            p('Paragraph before the separator.'),
+            hr(),
+            p('Paragraph after the separator.')
+        ]),
+        section([
+            h1('Dividing group'),
+            div('Has no special meaning at all'),
+            div('Represents its children'),
+            div('Can be used to mark up semantics common to a group of consecutive elements'),
+            div('Can also be used in a dl element, ' +
+                'wrapping groups of dt and dd element'),
+            div('An element of last resort, ' +
+                'for when no other element is suitable'),
         ])
     ]);
 }

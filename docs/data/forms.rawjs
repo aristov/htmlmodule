@@ -20,6 +20,10 @@ htmlmodule => {
             target : '_blank',
             children : [
                 section([
+                    h1('Button'),
+                    button('Button')
+                ]),
+                section([
                     h1('Input'),
                     p(label([
                         'Text input ',
@@ -151,10 +155,6 @@ htmlmodule => {
                     h1('Progress bar'),
                     progress({ max : '100', value : '70' }),
                 ]),
-                section([
-                    h1('Button'),
-                    button('Button')
-                ])
             ]
         }),
         style('section {' +
