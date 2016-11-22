@@ -1,7 +1,11 @@
-({
-    a, abbr, article, code, h1, input, label, p, style,
-    table, caption, thead, tbody, tfoot, tr, th, td, col, colgroup
-}) => {
+htmlmodule => {
+    const {
+        table, caption, thead, tbody,
+        tfoot, tr, th, td, col, colgroup,
+        a, abbr, article, code, h1, input,
+        p, style, label
+    } = htmlmodule;
+
     const roles = [
         ['button', 'button'],
         ['a, link, area', 'link'],
@@ -20,6 +24,7 @@
     ];
     let htmlcount = 0;
     let ariacount = 0;
+
     function rowgroup(items, name) {
         return items.map(([htmlterm, ariaterm], i) => {
             htmlcount += htmlterm.split(', ').length;

@@ -1,9 +1,20 @@
-({
-    form, label, input, textarea, select, option, button,
-    fieldset, legend, article, section, progress,
-    h1, p, hr, br, span
-}) =>
-    article([
+htmlmodule => {
+    const {
+        // Containers
+        form, fieldset,
+        // Labels
+        label, legend,
+        // Inputs
+        input, textarea,
+        // Select box
+        select, option,
+        // Related
+        button, progress,
+        // Other
+        article, section, h1, p, br, style
+    } = htmlmodule;
+
+    return article([
         h1('Forms'),
         form({
             target : '_blank',
@@ -82,7 +93,7 @@
                 section([
                     h1('Select box'),
                     p(label([
-                        'Select the technology ',
+                        'Simple ',
                         select([
                             option('XML'),
                             option('HTML'),
@@ -97,11 +108,10 @@
                         ])
                     ])),
                     p(label([
-                        'Select the technology stack',
+                        'Multiple',
                         br(),
                         select({
                             multiple : true,
-                            style : { width : '180px' },
                             children : [
                                 option('XML'),
                                 option({
@@ -147,4 +157,10 @@
                 ])
             ]
         }),
-    ])
+        style('section {' +
+            'display: inline-block;' +
+            'margin-right: 50px;' +
+            'margin-bottom: 30px;' +
+            'vertical-align: top; }')
+    ]);
+}

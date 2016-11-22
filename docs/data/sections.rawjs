@@ -1,83 +1,45 @@
-({
-    a, h1, header, address, article, section, aside, nav,
-    form, img, input, button,
-}) => {
+htmlmodule => {
+    const {
+        // Generic
+        article, section, header, footer,
+        // Specialized
+        address, aside, nav,
+        // Headings
+        h1, h2, h3, h4, h5, h6, hgroup,
+        // Other
+        a, hr, p
+    } = htmlmodule;
+
+    const anchor = a({ href : '#$1', children : '$1' });
+
+    const text = ['This `article` element contains',
+        'the `header`, `section`, `aside` and `footer` elements.',
+        'The `header` element contains the main heading',
+        'and `nav` with this introductional text.',
+        'The `section` element contains `hgroup` with some headings.',
+        'The `aside` element contains the related project announce.',
+        'The `footer` element contains `address`.'].join(' ');
+    const children = p({
+        innerHTML : text.replace(/`(\w+)`/g, anchor.outerHTML)
+    });
     return article([
-        h1('Sections'),
-        /* section([ // todo
-            h1('Article'),
-            article('[Self-contained ' +
-                'syndicatable or reusable composition]')
+        header([
+            h1('Sections'),
+            nav({ onclick, children })
         ]),
-        section([ // todo
+        hr(),
+        aside(((text, ...hh) => {
+            const group = [...hh.slice(1).reverse(), ...hh];
+            return hgroup(group.map(hx => hx(text)));
+        })('HTML is amazing', h2, h3, h4, h5, h6)),
+        hr(),
+        section([
             h1('Section'),
-            section('[Generic document or application section]')
+            p('Generic document or application section.')
         ]),
-        section([ // todo
-            h1('Navigation'),
-            nav('[Section with navigational links]')
-        ]),
-        section([ // todo
-            h1('Aside'),
-            aside('[Sidebar for tangentially related content]')
-        ]),*/
-        section([
-            h1({
-                title : 'Introductory or navigational ' +
-                    'aids for a page or section',
-                children : 'Header'
-            }),
-            header({
-                style : {
-                    display : 'flex',
-                    justifyContent : 'space-between'
-                },
-                children : [
-                    nav([
-                        a({
-                            href : '.',
-                            children : 'Home'
-                        }), ' • ',
-                        a({
-                            href : 'dist/api',
-                            children : 'API documentation'
-                        }), ' • ',
-                        a({
-                            href : 'dist/docs/spec.html',
-                            children : 'Spec suite'
-                        }), ' • ',
-                        a({
-                            href : 'dist/coverage',
-                            children : 'Coverage report'
-                        }),
-                    ]),
-                    form({
-                        action : 'https://www.google.ru/search',
-                        target : '_blank',
-                        children : [
-                            input({
-                                type : 'search',
-                                placeholder : 'Search on web',
-                                name : 'q'
-                            }),
-                            button('Go!')
-                        ]
-                    })
-                ]
-            })
-        ]),
-        section([
-            h1({
-                title : 'Footer for a page or section',
-                children : 'Footer'
-            }),
-            header('Last modified: 2016-11-20')
-        ]),
-        section([
-            h1({
-                title : 'Contact information for a page or article element',
-                children : 'Address'
-            }),
+        hr(),
+        footer([
+            p('Last modified: ' + new Date),
             address([
                 'Author: ',
                 a({
@@ -86,6 +48,22 @@
                     children : 'vv.aristov@gmail.com'
                 })
             ])
-        ])
+        ]),
     ]);
+    function onclick(event) {
+        event.preventDefault();
+        const target = event.target;
+        if(target.hash) {
+            const name = target.hash.slice(1);
+            const document = target.ownerDocument;
+            const node = document.getElementsByTagName(name)[0];
+            if(node) {
+                node.tabIndex = -1;
+                node.focus();
+                if(!node.onblur) node.onblur = () => {
+                    node.removeAttribute('tabindex');
+                }
+            }
+        }
+    }
 }

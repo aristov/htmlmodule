@@ -1,4 +1,4 @@
-({ article, section, h1, button, label, input, p, variable }) => {
+({ article, section, h1, button, label, input, p, variable, code }) => {
 
     // this text is used as initial button text
     const textContent = 'Give me a focus, please...';
@@ -69,39 +69,43 @@
         p(['The htmlmodule provides a simple way to attach native ' +
             'event handlers directly on element assembly process.']),
         section([
-            h1('The focus event'),
+            h1(['The ', variable('focus'), ' event']),
             p([
                 'The button below has the ',
-                variable('onfocus'),
+                code('onfocus'),
                 ' event handler, that replaces the text content',
                 ' of the button and reverts it on button blur.'
             ]),
             focusbutton
         ]),
         section([
-            h1('The click and the change events'),
-            p([
-                'This button handles the ',
+            h1([
+                'The ',
                 variable('click'),
-                ' event to show a system alert.',
-                ' The following check box disables it when ',
+                ' and the ',
                 variable('change'),
+                ' events'
+            ]),
+            p([
+                'This button has the ',
+                code('onclick'),
+                ' event to show an alert window.',
+                ' The following check box disables it when ',
+                code('onchange'),
                 ' event occurs and the control is checked.'
             ]),
             alertbutton,
             noalertbox
         ]),
         section([
-            h1('The input event'),
+            h1(['The ', variable('input'), ' event']),
             p([
                 'Here are two text boxes,' +
-                ' one of which is read-only,',
-                ' and it displays the char count,',
-                ' entered into another one.',
-                ' This achieved by handle the ',
-                variable('input'),
-                ' event by the last text input element.'
-
+                ' one of which is has the ',
+                code('oninput'),
+                ' event handler, which uses the another' +
+                ' readonly box to display char count,' +
+                ' entered to the first one.'
             ]),
             charcountbox
         ])

@@ -16,8 +16,8 @@ export const data = [
     grouping,
     textlevel,
     forms,
-    eventhandlers,
     tabulardata,
+    eventhandlers,
     specwin,
     websearch,
 ];

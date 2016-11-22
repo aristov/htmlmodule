@@ -1,24 +1,29 @@
-({
-    article, h1, section, p, ul, li,
-    // Emphasis
-    strong, b, i, em,
-    // Subscript and superscript
-    sub, sup,
-    // Mark
-    a, q, cite, abbr, small, dfn, s, u, mark, span,
-    // Computer term
-    variable, code, samp, kbd,
-    // Bidirectional algorithm
-    bdi, bdo,
-    // Ruby annotations
-    ruby, rt, rp,
-    // Line break
-    br, wbr,
-    // Edits
-    ins, del,
+htmlmodule => {
+    const {
+        // Emphasis
+        strong, b, i, em,
+        // Subscript and superscript
+        sub, sup,
+        // Special meaning
+        a, abbr, q, cite, small, dfn, s, u, mark,
+        // Computers
+        variable, code, samp, kbd,
+        // Bidirectional
+        bdi, bdo,
+        // Ruby annotations
+        ruby, rt, rp,
+        // Inline group
+        span,
+        // Line break
+        br, wbr,
+        // Edits
+        ins, del,
+        // Other
+        article, h1, section, p, ul, li,
+    } = htmlmodule;
 
-}) => {
     const children = 'АРОЗАУПАЛА';
+
     return article([
         h1('Text-level semantics'),
         section([
@@ -39,7 +44,7 @@
         section([
             h1({
                 title : 'Text directionality ' +
-                    'isolation and formatting',
+                'isolation and formatting',
                 children : 'Bidirectional'
             }),
             p([
@@ -74,7 +79,7 @@
         ]),
         section([
             h1('Side comment'),
-            small({ innerHTML : '&copy; All rights are free' })
+            small('© All rights are free')
         ]),
     ]);
 }

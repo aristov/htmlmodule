@@ -1,5 +1,10 @@
-({ h1, ul, ol, li, pre, blockquote, p, article, section }) =>
-    article([
+htmlmodule => {
+    const {
+        ul, ol, li, pre, blockquote, p,
+        hr, dl, dt, dd, figure, figcaption, main, div,
+        h1, article, section
+    } = htmlmodule;
+    return article([
         h1('Grouping content'),
         section([
             h1('Paragraph'),
@@ -49,4 +54,5 @@ _________/    _/    _/      _/    _/    _/  _/___________
 ________/    _/      _/_/  _/    _/    _/  _/____________
 _________________________________________________________`)
         ])
-    ])
+    ]);
+}
