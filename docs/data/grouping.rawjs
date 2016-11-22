@@ -27,7 +27,7 @@ htmlmodule => {
         ]),
         section([
             h1('Main content'),
-            p('Container for the dominant contents of another element.'),
+            main('Container for the dominant contents of another element.'),
         ]),
         section([
             h1('Figure'),
