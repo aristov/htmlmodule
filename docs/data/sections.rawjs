@@ -29,7 +29,7 @@ htmlmodule => {
 
     const text = ['This [article] element contains',
         'the [header], [section], [aside] and [footer] elements.',
-        'The [header] element contains the main heading',
+        'The [header] element contains the main [h1] heading',
         'and [nav] with this introductional hypertext paragraph.',
         'The [section] element contains just a self explanation.',
         'The [aside] element contains [hgroup] with some headings.',

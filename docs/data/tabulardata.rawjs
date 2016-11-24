@@ -44,25 +44,10 @@ htmlmodule => {
         'caption { padding: 15px }',
         'thead, tfoot { background: #eee }',
         'th, td { padding: 4px }',
-        'tr:last-child td, tr th ' +
-        '{ border-bottom: 4px solid #eee }'
+        'tr:last-child td, tr th  { border-bottom: 4px solid #eee }'
     ]);
     return article([
         h1('Tabular data'),
-        /*p([
-            a({
-                href : 'https://html.spec.whatwg.org/#table-model',
-                children : 'The HTML table model'
-            }),
-            ' semantics is very richful.' +
-            ' Authors may compose simple or complex' +
-            ' and even nested tables easy.',
-        ]),
-        p([
-            'In this example we use tabular elements to compare' +
-            ' some similar semantics of two web standards' +
-            ' and show the considered items number.'
-        ]),*/
         table([
             caption('Related web technology semantics'),
             colgroup(col()),
@@ -100,7 +85,7 @@ htmlmodule => {
                             stylesheet.remove();
                     },
                 }),
-                ' apply stylesheet'
+                ' apply styling'
             ],
         }),
         stylesheet

@@ -1,18 +1,14 @@
 htmlmodule => {
     const {
-        // Containers
-        form, fieldset,
-        // Labels
-        label, legend,
+        // Containers and labels
+        form, fieldset, label, legend,
         // Inputs
-        input, textarea,
-        // Select box
-        select, option,
+        input, textarea, select, option,
         // Related
-        button, progress,
-        // Other
-        article, section, h1, p, br, style
+        button, progress
     } = htmlmodule;
+
+    const { article, br, h1, p, section, style } = htmlmodule;
 
     return article([
         h1('Forms'),

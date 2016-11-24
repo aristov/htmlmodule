@@ -20,7 +20,7 @@ htmlmodule => {
         ins, del,
     } = htmlmodule;
 
-    const { article, h1, li, section, p, style, ul } = htmlmodule;
+    const { article, h1, li, p, section, style, ul } = htmlmodule;
 
     const children = 'АРОЗАУПАЛА';
 
@@ -131,7 +131,7 @@ htmlmodule => {
             ]),
         ]),
         section([
-            h1('Computers and math'),
+            h1('Math and computers'),
             section([
                 h1('Variables, subscript and superscript'),
                 p([variable('E'), ' = ', variable('m'), variable('c'), sup('2')]),
@@ -226,7 +226,7 @@ htmlmodule => {
             ]),
             p([
                 'Normal text ', span({
-                    style : { color : 'green', fontFamily : 'sans-serif' },
+                    style : { color : 'cyan', fontFamily : 'sans-serif' },
                     children : 'styled text'
                 }),
                 ' normal text',

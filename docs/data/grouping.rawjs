@@ -103,7 +103,7 @@ _________________________________________________________`)
             p('Paragraph after the separator.')
         ]),
         section([
-            h1('Dividing group'),
+            h1('Generic flow container'),
             div('Has no special meaning at all'),
             div('Represents its children'),
             div('Can be used to mark up semantics ' +
