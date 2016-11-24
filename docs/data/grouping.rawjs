@@ -105,11 +105,29 @@ _________________________________________________________`)
         section([
             h1('Generic flow container'),
             div('Has no special meaning at all'),
-            div('Represents its children'),
+            div({
+                style : {
+                    display : 'flex',
+                    justifyContent : 'space-around',
+                    margin : '10px',
+                    padding : '5px',
+                    boxShadow : '0 0 1px 1px #bababa',
+                },
+                children : [
+                    div('Represents'),
+                    div('its'),
+                    div('children')
+                ]
+            }),
             div('Can be used to mark up semantics ' +
                 'common to a group of consecutive elements'),
-            div('Can also be used in a dl element, ' +
-                'wrapping groups of dt and dd element'),
+            dl([
+                div([
+                    dt('div + dl'),
+                    dd('Can also be used in a dl element, ' +
+                        'wrapping groups of dt and dd element')
+                ])
+            ]),
             div('An element of last resort, ' +
                 'for when no other element is suitable'),
         ])

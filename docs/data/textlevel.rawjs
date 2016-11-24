@@ -228,15 +228,13 @@ htmlmodule => {
                 'Normal text ', span({
                     style : { color : 'cyan', fontFamily : 'sans-serif' },
                     children : 'styled text'
-                }),
-                ' normal text',
+                }), ' normal text',
             ]),
             p([
                 'Normal text ', span({
                     tabIndex : 0,
                     children : 'focusable text'
-                }),
-                ' normal text'
+                }), ' normal text'
             ])
         ]),
         section([

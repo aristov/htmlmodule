@@ -67,45 +67,33 @@
     return article([
         h1('Event handlers'),
         p(['The htmlmodule provides a simple way to attach native ' +
-            'event handlers directly on element assembly process.']),
+            'event handlers directly during the assembly ' +
+            'process of an element.']),
         section([
             h1(['The ', variable('focus'), ' event']),
-            p([
-                'The button below has the ',
-                code('onfocus'),
-                ' event handler, that replaces the text content',
-                ' of the button and reverts it on button blur.'
-            ]),
+            p(['The button below has the ', code('onfocus'),
+                ' event handler, that replaces the text content' +
+                ' of the button and reverts it on button blur.']),
             focusbutton
         ]),
         section([
-            h1([
-                'The ',
-                variable('click'),
-                ' and the ',
-                variable('change'),
-                ' events'
-            ]),
-            p([
-                'This button has the ',
-                code('onclick'),
-                ' event to show an alert window.',
-                ' The following check box disables it when ',
+            h1(['The ', variable('click'),
+                ' and the ', variable('change'), ' events']),
+            p(['This button has the ', code('onclick'),
+                ' event to show an alert window. ',
+                'The following check box disables it when ',
                 code('onchange'),
-                ' event occurs and the control is checked.'
-            ]),
+                ' event occurs and the control is checked.']),
             alertbutton,
             noalertbox
         ]),
         section([
             h1(['The ', variable('input'), ' event']),
-            p([
-                'Here are two text boxes,' +
-                ' one of which is has the ',
-                code('oninput'),
-                ' event handler, which uses the another' +
-                ' readonly box to display char count,' +
-                ' entered to the first one.'
+            p(['Here are two text boxes, one of which has the ',
+                code('oninput'), ' event handler, ' +
+                'which uses the another ' +
+                'readonly box to display char count, ' +
+                'entered to the first one.'
             ]),
             charcountbox
         ])
