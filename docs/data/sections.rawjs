@@ -6,9 +6,9 @@ htmlmodule => {
         address, aside, nav,
         // Headings
         h1, h2, h3, h4, h5, h6, hgroup,
-        // Other
-        a, hr, p
     } = htmlmodule;
+
+    const { a, hr, p } = htmlmodule;
 
     function onclick(event) {
         event.preventDefault();

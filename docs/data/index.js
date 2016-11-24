@@ -6,8 +6,8 @@ import textlevel from 'raw!././textlevel.rawjs';
 import forms from 'raw!./forms.rawjs';
 import eventhandlers from 'raw!./eventhandlers.rawjs';
 import tabulardata from 'raw!./tabulardata.rawjs';
-import specwin from 'raw!./specwin.rawjs';
-import websearch from 'raw!./websearch.rawjs';
+// import specwin from 'raw!./specwin.rawjs';
+// import websearch from 'raw!./websearch.rawjs';
 
 export const data = [
     intro,
@@ -18,6 +18,6 @@ export const data = [
     forms,
     tabulardata,
     eventhandlers,
-    specwin,
-    websearch,
+    // specwin,
+    // websearch,
 ];

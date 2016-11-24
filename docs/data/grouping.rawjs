@@ -106,7 +106,8 @@ _________________________________________________________`)
             h1('Dividing group'),
             div('Has no special meaning at all'),
             div('Represents its children'),
-            div('Can be used to mark up semantics common to a group of consecutive elements'),
+            div('Can be used to mark up semantics ' +
+                'common to a group of consecutive elements'),
             div('Can also be used in a dl element, ' +
                 'wrapping groups of dt and dd element'),
             div('An element of last resort, ' +
