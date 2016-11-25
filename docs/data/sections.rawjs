@@ -27,15 +27,23 @@ htmlmodule => {
         }
     }
 
-    const text = ['This [article] element contains',
-        'the [header], [section], [aside] and [footer] elements.',
-        'The [header] element contains the main [h1] heading',
-        'and [nav] with this introductional hypertext paragraph.',
-        'The [section] element contains just a self explanation.',
-        'The [aside] element contains [hgroup] with some headings.',
-        'The [footer] element contains [address]',
-        'and the modification date.'].join(' ');
+    const text = [
+        'This [article] element contains ' +
+            'the [header], [section], [aside] and [footer] elements.',
 
+        'The [header] element contains the main [h1] heading ' +
+            'and the [nav] with this introductional hypertext paragraph.',
+
+        'The [section] element contains just a self explanation ' +
+            'with a heading.',
+
+        'The [aside] element contains the [hgroup] with various headings.',
+
+        'The [footer] element contains the [address] ' +
+            'and a modification date of the page.'
+    ].join(' ');
+
+    const ELEMENT_RE = /\[(\w+)\]/g;
     const anchor = a({ href : '#$1', children : '$1' });
 
     return article([
@@ -44,7 +52,7 @@ htmlmodule => {
             nav({
                 onclick,
                 children : p({
-                    innerHTML : text.replace(/\[(\w+)\]/g, anchor.outerHTML)
+                    innerHTML : text.replace(ELEMENT_RE, anchor.outerHTML)
                 })
             })
         ]),

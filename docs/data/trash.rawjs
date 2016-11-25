@@ -44,22 +44,4 @@
             ]
         })
     ]),
-    nav([
-        a({
-            href : '.',
-            children : 'Home'
-        }), ' • ',
-        a({
-            href : 'dist/api',
-            children : 'API documentation'
-        }), ' • ',
-        a({
-            href : 'dist/docs/spec.html',
-            children : 'Spec suite'
-        }), ' • ',
-        a({
-            href : 'dist/coverage',
-            children : 'Coverage report'
-        }),
-    ]),
 ]

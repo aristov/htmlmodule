@@ -21,8 +21,8 @@ htmlmodule => {
             blockquote({
                 cite : 'https://html.spec.whatwg.org/' +
                     'multipage/semantics.html#the-blockquote-element',
-                children : 'The blockquote element represents ' +
-                    'a section that is quoted from another source.'
+                children : ['The ', b('blockquote'), ' element represents ' +
+                    'a section that is quoted from another source.']
             }),
         ]),
         section([
@@ -44,8 +44,8 @@ htmlmodule => {
         ]),
         section([
             h1('Paragraph'),
-            p('The p element should not be used when a more ' +
-                'specific element is more appropriate.'),
+            p(['The ', b('p'), ' element should not be used when a more ' +
+                'specific element is more appropriate.']),
         ]),
         section([
             h1('Unordered list'),
@@ -123,13 +123,17 @@ _________________________________________________________`)
                 'common to a group of consecutive elements'),
             dl([
                 div([
-                    dt('div + dl'),
-                    dd('Can also be used in a dl element, ' +
-                        'wrapping groups of dt and dd element')
+                    dt([b('div'), ' + ', b('dl')]),
+                    dd(['Can also be used in a ', b('dl'), ' element, ' +
+                        'wrapping groups of ', b('dt'), ' and ', b('dd'),
+                        ' element'])
                 ])
             ]),
-            div('An element of last resort, ' +
-                'for when no other element is suitable'),
+            div({
+                style : { marginBottom : '20px' },
+                children : 'An element of last resort, ' +
+                    'for when no other element is suitable'
+            })
         ])
     ]);
 }

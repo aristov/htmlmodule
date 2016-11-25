@@ -1,7 +1,7 @@
 htmlmodule => {
     const {
-        area, audio, embed, iframe, img, map,
-        object, param, picture, source, video
+        img, audio, video, embed, iframe,
+        map, area, object, param, picture, source, track,
     } = htmlmodule;
 
     const { article, h1, section, style } = htmlmodule;
@@ -31,19 +31,21 @@ htmlmodule => {
             })
         ]),
         section([
-            h1('Nested browsing context'),
-            iframe({
-                src : 'dist/docs/spec.html?grep=' +
-                    'HTMLDOM%20library%20Single%20elements%20iframe'
-            })
-        ]),
-        section([
             h1('Plugin'),
             embed({
                 src : '//aristov.github.io/media-samples/sample.swf',
             })
         ]),
-        style('section {' +
+        section([
+            h1('Nested browsing context'),
+            iframe({
+                src : 'dist/docs/spec.html?grep=' +
+                    'HTMLDOM%20library%20Single%20elements%20iframe',
+                width : '80%',
+                height : 400
+            })
+        ]),
+        style('section:not(:last-of-type) {' +
             'display: inline-block;' +
             'margin-right: 50px;' +
             'margin-bottom: 30px;' +

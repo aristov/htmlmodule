@@ -1,10 +1,13 @@
 htmlmodule => {
+
     const {
-        table, caption, thead, tbody,
-        tfoot, tr, th, td, col, colgroup,
-        a, abbr, article, h1, input,
-        p, style, label
+        // root and meta
+        table, caption, col, colgroup,
+        // sections and structure
+        thead, tbody, tfoot, tr, th, td
     } = htmlmodule;
+
+    const { a, abbr, article, h1, input, label, style } = htmlmodule;
 
     const roles = [
         ['button', 'button'],

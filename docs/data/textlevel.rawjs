@@ -69,11 +69,11 @@ htmlmodule => {
                     'The ', cite('HTML Standard'), ' says: ',
                     q({
                         cite : 'https://html.spec.whatwg.org/#the-q-element',
-                        children : 'the use of q elements to mark up ' +
-                            'quotations is entirely optional'
+                        children : ['the use of ', b('q'), ' elements to mark up ' +
+                            'quotations is entirely optional']
                     }),
                     ' therefore "using explicit quotation punctuation ' +
-                        'without q elements is just as correct".'
+                        'without ', b('q'), ' elements is just as correct".'
                 ])
             ]),
             section([
@@ -160,11 +160,7 @@ htmlmodule => {
             ])
         ]),
         section([
-            h1({
-                title : 'Text directionality ' +
-                    'isolation and formatting',
-                children : 'Bidirectional'
-            }),
+            h1('Bidirectional'),
             section([
                 h1('Isolation'),
                 ul([
@@ -218,24 +214,18 @@ htmlmodule => {
         ]),
         section([
             h1('Generic phrasing container'),
-            p([
-                'Normal text ', span({
-                    lang : 'ru',
-                    children : 'текст на русском языке'
-                }), ' normal text',
-            ]),
-            p([
-                'Normal text ', span({
-                    style : { color : 'cyan', fontFamily : 'sans-serif' },
-                    children : 'styled text'
-                }), ' normal text',
-            ]),
-            p([
-                'Normal text ', span({
-                    tabIndex : 0,
-                    children : 'focusable text'
-                }), ' normal text'
-            ])
+            p(['Normal text ', span({
+                style : { color : 'cyan', fontFamily : 'sans-serif' },
+                children : 'styled text'
+            }), ' normal text']),
+            p(['Normal text ', span({
+                lang : 'ru',
+                children : 'текст на русском языке'
+            }), ' normal text']),
+            p(['Normal text ', span({
+                tabIndex : 0,
+                children : 'focusable text'
+            }), ' normal text'])
         ]),
         section([
             h1('Line break'),

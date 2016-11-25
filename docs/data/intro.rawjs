@@ -98,9 +98,8 @@
         ])),
         p('Enjoy!'),
         style([
-            'body { font-size: 18px }',
+            // 'body { font-size: 18px }',
             'a[href][rel~=external]:not(:active) { color: #050 }',
-            ':link:not(:hover):not(:focus) { text-decoration: none }',
             'abbr { cursor: help }',
         ])
     ]);
