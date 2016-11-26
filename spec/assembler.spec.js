@@ -1,4 +1,4 @@
-import { HTMLDOMAssembler } from './assembler.js';
+import { HTMLDOMAssembler } from '../lib/assembler.js';
 import chai from 'chai';
 
 const { assert } = chai;

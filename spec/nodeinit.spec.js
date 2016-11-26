@@ -1,4 +1,4 @@
-import { NodeInit } from './nodeinit';
+import { NodeInit } from '../lib/nodeinit';
 import chai from 'chai';
 
 const { assert } = chai;

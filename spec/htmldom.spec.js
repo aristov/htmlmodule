@@ -21,7 +21,7 @@ import {
     u, ul,
     variable, video,
     wbr
-} from './htmldom';
+} from '../lib/htmldom';
 
 import chai from 'chai';
 

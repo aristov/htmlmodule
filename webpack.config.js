@@ -59,7 +59,7 @@ switch(env.ENTRY) {
     case 'spec':
         assign(module.exports, {
             entry : {
-                spec : ['./lib/index.spec']
+                spec : ['./spec/index.spec']
             },
             output : {
                 path : path.join(__dirname, '/dist/docs'),
