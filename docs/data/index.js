@@ -7,7 +7,7 @@ import embedded from 'raw!./embedded.rawjs'
 import tabulardata from 'raw!./tabulardata.rawjs'
 import forms from 'raw!./forms.rawjs'
 import eventhandlers from 'raw!./eventhandlers.rawjs'
-// import websearch from 'raw!./websearch.rawjs'
+import websearch from 'raw!./websearch.rawjs'
 
 export const data = [
     intro,
@@ -19,5 +19,5 @@ export const data = [
     embedded,
     tabulardata,
     eventhandlers,
-    // websearch,
+    websearch,
 ]

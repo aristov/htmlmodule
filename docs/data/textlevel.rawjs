@@ -232,7 +232,7 @@ htmlmodule => {
             p(['b', br(), 'r']),
             section([
                 h1('Line breaking opportunity'),
-                p(Array.from(new Array(15)).map(() => [
+                p(Array.from(Array(15)).map(() => [
                     'Line', wbr(),
                     'Breaking', wbr(),
                     'Opportunity', wbr()
@@ -241,8 +241,11 @@ htmlmodule => {
         ]),
         section([
             h1('Edits'),
-            p(ins('An addition to the document')),
-            p(del('A removal from the document')),
+            p([
+                del('DOM is slow and complicated.'),
+                ' ',
+                ins('DOM is instant and clear.'),
+            ]),
         ]),
         style('article > section { border-top : 1px solid #ccc }')
     ])

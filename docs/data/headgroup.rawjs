@@ -1,6 +1,0 @@
-({ hgroup, h1, h2, h3, h4, h5, h6 }) => {
-    const hh = [h1, h2, h3, h4, h5, h6]
-    const text = 'HTML is amazing'
-    const group = [...hh.slice(1).reverse(), ...hh]
-    return hgroup(group.map(hx => hx(text)))
-}
