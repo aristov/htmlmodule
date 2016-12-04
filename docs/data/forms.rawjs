@@ -141,7 +141,7 @@ htmlmodule => {
                         }),
                         input({
                             type : 'Password',
-                            placeholder : 'password',
+                            placeholder : 'Password',
                             style : { margin : '0 5px' }
                         }),
                         button('Enter')
@@ -154,9 +154,7 @@ htmlmodule => {
             ]
         }),
         style('section {' +
-            'display: inline-block;' +
-            'margin-right: 50px;' +
-            'margin-bottom: 10px;' +
-            'vertical-align: top; }')
+            'display: inline-block; margin-right: 50px;' +
+            'margin-bottom: 10px; vertical-align: top; }')
     ])
 }
