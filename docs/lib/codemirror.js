@@ -1,11 +1,11 @@
-import { HTMLDOMAssembler, NodeInit } from './htmlmodule';
+import { HTMLDOMAssembler, NodeInit } from './htmlmodule'
 
-import CodeMirror from 'codemirror';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/htmlmixed/htmlmixed';
+import CodeMirror from 'codemirror'
+import 'codemirror/mode/javascript/javascript'
+import 'codemirror/mode/htmlmixed/htmlmixed'
 
-import 'codemirror/lib/codemirror.css';
-import './codemirror.css';
+import 'codemirror/lib/codemirror.css'
+import './codemirror.css'
 
 const CODE_BOX_DEFAULTS = {
     mode : 'javascript',
@@ -17,12 +17,12 @@ const CODE_BOX_DEFAULTS = {
     autoCloseBrackets : true,
     matchBrackets : true,
     smartIndent : true,
-};
+}
 
 const MARKUP_BOX_DEFAULTS = {
     mode : 'htmlmixed',
     readOnly : true,
-};
+}
 
 export class CodeMirrorAssembler extends HTMLDOMAssembler {
     /**
@@ -30,8 +30,8 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @param {Object} init
      */
     constructor(init) {
-        super(init);
-        this.assemble('div', NodeInit(init));
+        super(init)
+        this.assemble('div', NodeInit(init))
     }
 
     /**
@@ -39,7 +39,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @param {String} value
      */
     set value(value) {
-        this.mirror.setValue(value && value.toString());
+        this.mirror.setValue(value && value.toString())
     }
 
     /**
@@ -47,7 +47,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @returns {String}
      */
     get value() {
-        return this.mirror.getValue();
+        return this.mirror.getValue()
     }
 
     /**
@@ -55,7 +55,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @returns {Number}
      */
     get height() {
-        return this.element.clientHeight;
+        return this.element.clientHeight
     }
 
     /**
@@ -63,7 +63,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @param {Function} onchange
      */
     set onchange(onchange) {
-        this.mirror.on('change', onchange);
+        this.mirror.on('change', onchange)
     }
 
     /**
@@ -71,7 +71,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @param {String} id
      */
     set id(id) {
-        this.element.querySelector('textarea').id = id;
+        this.element.querySelector('textarea').id = id
     }
 
     /**
@@ -80,10 +80,10 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @param {*} init
      */
     assemble(tagName, init) {
-        super.assemble(tagName);
-        this.createMirror(init.options);
-        delete init.options;
-        this.init(init);
+        super.assemble(tagName)
+        this.createMirror(init.options)
+        delete init.options
+        this.init(init)
     }
 
     /**
@@ -92,14 +92,14 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @returns {CodeMirror}
      */
     createMirror(options) {
-        return this.mirror = new CodeMirror(this.element, options);
+        return this.mirror = new CodeMirror(this.element, options)
     }
 
     /**
      * Refresh the CodeMirror instance
      */
     refresh() {
-        this.mirror.refresh();
+        this.mirror.refresh()
     }
 }
 
@@ -108,7 +108,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
  * @property mirror
  * @type {CodeMirror|null}
  */
-CodeMirrorAssembler.prototype.mirror = null;
+CodeMirrorAssembler.prototype.mirror = null
 
 /**
  * Create generic codemirror widget
@@ -116,7 +116,7 @@ CodeMirrorAssembler.prototype.mirror = null;
  * @returns {CodeMirrorAssembler}
  */
 export function codemirror(init = {}) {
-    return new CodeMirrorAssembler(init);
+    return new CodeMirrorAssembler(init)
 }
 
 /**
@@ -125,8 +125,8 @@ export function codemirror(init = {}) {
  * @returns {CodeMirrorAssembler}
  */
 export function codebox(init = {}) {
-    if(!init.options) init.options = CODE_BOX_DEFAULTS;
-    return codemirror(init);
+    if(!init.options) init.options = CODE_BOX_DEFAULTS
+    return codemirror(init)
 }
 
 /**
@@ -135,6 +135,6 @@ export function codebox(init = {}) {
  * @returns {CodeMirrorAssembler}
  */
 export function markupbox(init = {}) {
-    if(!init.options) init.options = MARKUP_BOX_DEFAULTS;
-    return codemirror(init);
+    if(!init.options) init.options = MARKUP_BOX_DEFAULTS
+    return codemirror(init)
 }

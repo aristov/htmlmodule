@@ -5,9 +5,9 @@ htmlmodule => {
         table, caption, col, colgroup,
         // sections and structure
         thead, tbody, tfoot, tr, th, td
-    } = htmlmodule;
+    } = htmlmodule
 
-    const { a, abbr, article, h1, input, label, style } = htmlmodule;
+    const { a, abbr, article, h1, input, label, style } = htmlmodule
 
     const roles = [
         ['button', 'button'],
@@ -16,7 +16,7 @@ htmlmodule => {
         ['select', 'combobox'],
         ['table', 'table, grid'],
         ['ul, ol, dl', 'list'],
-    ];
+    ]
     const attributes = [
         ['hidden', 'aria-hidden'],
         ['title', 'aria-label, aria-labelledby'],
@@ -24,14 +24,14 @@ htmlmodule => {
         ['selected', 'aria-selected'],
         ['disabled', 'aria-disabled'],
         ['indeterminate', 'mixed'],
-    ];
-    let htmlcount = 0;
-    let ariacount = 0;
+    ]
+    let htmlcount = 0
+    let ariacount = 0
 
     function rowgroup(items, name) {
         return items.map(([htmlterm, ariaterm], i) => {
-            htmlcount += htmlterm.split(', ').length;
-            ariacount += ariaterm.split(', ').length;
+            htmlcount += htmlterm.split(', ').length
+            ariacount += ariaterm.split(', ').length
             return tr([
                 !i && th({
                     rowSpan : items.length,
@@ -39,7 +39,7 @@ htmlmodule => {
                 }),
                 td(htmlterm),
                 td(ariaterm)
-            ]);
+            ])
         })
     }
     const stylesheet = style([
@@ -48,7 +48,7 @@ htmlmodule => {
         'thead, tfoot { background: #eee }',
         'th, td { padding: 4px }',
         'tr:last-child td, tr th  { border-bottom: 4px solid #eee }'
-    ]);
+    ])
     return article([
         h1('Tabular data'),
         table([
@@ -82,10 +82,10 @@ htmlmodule => {
                     type : 'checkbox',
                     checked : true,
                     onchange : ({ target }) => {
-                        const { body } = target.ownerDocument;
+                        const { body } = target.ownerDocument
                         target.checked?
                             body.appendChild(stylesheet) :
-                            stylesheet.remove();
+                            stylesheet.remove()
                     },
                 }),
                 ' apply styling'

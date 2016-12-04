@@ -21,9 +21,9 @@ import {
     u, ul,
     variable, video,
     wbr
-} from '../lib/htmldom';
+} from '../lib/htmldom'
 
-import chai from 'chai';
+import chai from 'chai'
 
 const {
     sinon,
@@ -81,114 +81,114 @@ const {
     HTMLQuoteElement,
     HTMLVideoElement,
     HTMLUnknownElement,
-} = window;
+} = window
 
-const { TEXT_NODE, ELEMENT_NODE } = Node;
-const { assert } = chai;
+const { TEXT_NODE, ELEMENT_NODE } = Node
+const { assert } = chai
 
 describe('HTMLDOM library', () => {
 
     describe('General', () => {
         describe('Simple empty span', () => {
-            const node = htmldom('span');
+            const node = htmldom('span')
             it('tagName', () => {
-                assert.equal(node.tagName, 'SPAN');
-            });
+                assert.equal(node.tagName, 'SPAN')
+            })
             it('proper inheritance', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('Unknown element', () => {
             it('unknown', () => {
-                const node = htmldom('unknown');
-                assert.equal(node.tagName, 'UNKNOWN');
+                const node = htmldom('unknown')
+                assert.equal(node.tagName, 'UNKNOWN')
                 assert(
                     node instanceof HTMLUnknownElement,
-                    node + ' instance of ' + HTMLUnknownElement);
-            });
+                    node + ' instance of ' + HTMLUnknownElement)
+            })
             it('foobar', () => {
-                const node = htmldom('foobar');
-                assert.equal(node.tagName, 'FOOBAR');
+                const node = htmldom('foobar')
+                assert.equal(node.tagName, 'FOOBAR')
                 assert(
                     node instanceof HTMLUnknownElement,
-                    node + ' instance of ' + HTMLUnknownElement);
-            });
+                    node + ' instance of ' + HTMLUnknownElement)
+            })
             it('ari', () => {
-                const node = htmldom('ari');
-                assert.equal(node.tagName, 'ARI');
+                const node = htmldom('ari')
+                assert.equal(node.tagName, 'ARI')
                 assert(
                     node instanceof HTMLUnknownElement,
-                    node + ' instance of ' + HTMLUnknownElement);
-            });
-        });
-    });
+                    node + ' instance of ' + HTMLUnknownElement)
+            })
+        })
+    })
 
     describe('Global attributes', () => {
 
         describe('id', () => {
-            const id = 'element_0';
-            const node = htmldom('div', { id });
+            const id = 'element_0'
+            const node = htmldom('div', { id })
 
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('id', () => {
-                assert.equal(node.id, id);
-            });
+                assert.equal(node.id, id)
+            })
             it('id attribute', () => {
-                assert.equal(node.getAttribute('id'), id);
-            });
+                assert.equal(node.getAttribute('id'), id)
+            })
             it('document finds it', () => {
-                document.body.appendChild(node);
-                assert.equal(document.getElementById(id), node);
-                document.body.removeChild(node);
-            });
+                document.body.appendChild(node)
+                assert.equal(document.getElementById(id), node)
+                document.body.removeChild(node)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<div id="element_0"></div>');
-            });
-        });
+                assert.equal(node.outerHTML, '<div id="element_0"></div>')
+            })
+        })
 
         describe('className', () => {
-            const className = 'foo bar wiz';
-            const node = htmldom('span', { className });
+            const className = 'foo bar wiz'
+            const node = htmldom('span', { className })
 
             it('className', () => {
-                assert.equal(node.className, className);
-            });
+                assert.equal(node.className, className)
+            })
             it('class attribute', () => {
-                assert.equal(node.getAttribute('class'), className);
-            });
+                assert.equal(node.getAttribute('class'), className)
+            })
             describe('classList', () => {
                 it('contains "foo"', () => {
-                    assert(node.classList.contains('foo'), 'contains class `foo`');
-                });
+                    assert(node.classList.contains('foo'), 'contains class `foo`')
+                })
                 it('contains "bar"', () => {
-                    assert(node.classList.contains('bar'), 'contains class `bar`');
-                });
+                    assert(node.classList.contains('bar'), 'contains class `bar`')
+                })
                 it('contains "wiz"', () => {
-                    assert(node.classList.contains('wiz'), 'contains class `wiz`');
-                });
-            });
+                    assert(node.classList.contains('wiz'), 'contains class `wiz`')
+                })
+            })
             it('document finds it', () => {
-                document.body.appendChild(node);
-                assert.equal(document.getElementsByClassName('foo')[0], node);
-                assert.equal(document.getElementsByClassName('bar')[0], node);
-                assert.equal(document.getElementsByClassName('wiz')[0], node);
-                document.body.removeChild(node);
-            });
+                document.body.appendChild(node)
+                assert.equal(document.getElementsByClassName('foo')[0], node)
+                assert.equal(document.getElementsByClassName('bar')[0], node)
+                assert.equal(document.getElementsByClassName('wiz')[0], node)
+                document.body.removeChild(node)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<span class="foo bar wiz"></span>');
-            });
-        });
+                assert.equal(node.outerHTML, '<span class="foo bar wiz"></span>')
+            })
+        })
 
         describe('HTMLElement attributes', () => {
             const node = htmldom('div', {
@@ -200,222 +200,222 @@ describe('HTMLDOM library', () => {
                 lang : 'ru',
                 tabIndex : 0,
                 title : 'HTMLElement title',
-            });
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes());
-            });
+                assert(node.hasAttributes())
+            })
             it('attributes length', () => {
-                assert.equal(node.attributes.length, 8);
-            });
+                assert.equal(node.attributes.length, 8)
+            })
             it('accessKey', () => {
-                assert.equal(node.accessKey, 'A');
-            });
+                assert.equal(node.accessKey, 'A')
+            })
             it('accesskey attribute', () => {
-                assert.equal(node.getAttribute('accesskey'), 'A');
-            });
+                assert.equal(node.getAttribute('accesskey'), 'A')
+            })
             it('contentEditable', () => {
-                assert.equal(node.contentEditable, 'true');
-            });
+                assert.equal(node.contentEditable, 'true')
+            })
             it('contenteditable attribute', () => {
-                assert.equal(node.getAttribute('contenteditable'), 'true');
-            });
+                assert.equal(node.getAttribute('contenteditable'), 'true')
+            })
             it('dir', () => {
-                assert.equal(node.dir, 'rtl');
-            });
+                assert.equal(node.dir, 'rtl')
+            })
             it('dir attribute', () => {
-                assert.equal(node.getAttribute('dir'), 'rtl');
-            });
+                assert.equal(node.getAttribute('dir'), 'rtl')
+            })
             it('draggable', () => {
-                assert.equal(node.draggable, true);
-            });
+                assert.equal(node.draggable, true)
+            })
             it('draggable attribute', () => {
-                assert.equal(node.getAttribute('draggable'), 'true');
-            });
+                assert.equal(node.getAttribute('draggable'), 'true')
+            })
             it('hidden', () => {
-                assert.equal(node.hidden, true);
-            });
+                assert.equal(node.hidden, true)
+            })
             it('hidden attribute', () => {
-                assert.equal(node.getAttribute('hidden'), '');
-            });
+                assert.equal(node.getAttribute('hidden'), '')
+            })
             it('lang', () => {
-                assert.equal(node.lang, 'ru');
-            });
+                assert.equal(node.lang, 'ru')
+            })
             it('lang attribute', () => {
-                assert.equal(node.getAttribute('lang'), 'ru');
-            });
+                assert.equal(node.getAttribute('lang'), 'ru')
+            })
             it('tabIndex', () => {
-                assert.equal(node.tabIndex, 0);
-            });
+                assert.equal(node.tabIndex, 0)
+            })
             it('tabindex attribute', () => {
-                assert.equal(node.getAttribute('tabindex'), '0');
-            });
+                assert.equal(node.getAttribute('tabindex'), '0')
+            })
             it('title', () => {
-                assert.equal(node.title, 'HTMLElement title');
-            });
+                assert.equal(node.title, 'HTMLElement title')
+            })
             it('title attribute', () => {
-                assert.equal(node.getAttribute('title'), 'HTMLElement title');
-            });
-        });
+                assert.equal(node.getAttribute('title'), 'HTMLElement title')
+            })
+        })
 
         describe('textContent', () => {
-            const node = htmldom('span', { textContent : 'Arbitrary >< plain >< text' });
+            const node = htmldom('span', { textContent : 'Arbitrary >< plain >< text' })
 
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Arbitrary >< plain >< text');
-            });
+                assert.equal(node.textContent, 'Arbitrary >< plain >< text')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<span>Arbitrary &gt;&lt; plain &gt;&lt; text</span>');
-            });
-        });
+                assert.equal(node.outerHTML, '<span>Arbitrary &gt;&lt; plain &gt;&lt; text</span>')
+            })
+        })
 
         describe('innerHTML', () => {
-            const node = htmldom('div', { innerHTML : '<span>1</span>2<span>3</span>' });
+            const node = htmldom('div', { innerHTML : '<span>1</span>2<span>3</span>' })
 
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, '123');
-            });
+                assert.equal(node.textContent, '123')
+            })
             it('innerHTML', () => {
-                assert.equal(node.innerHTML, '<span>1</span>2<span>3</span>');
-            });
+                assert.equal(node.innerHTML, '<span>1</span>2<span>3</span>')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<div><span>1</span>2<span>3</span></div>');
-            });
-        });
-    });
+                assert.equal(node.outerHTML, '<div><span>1</span>2<span>3</span></div>')
+            })
+        })
+    })
 
     describe('Event handlers', () => {
         it('onblur', () => {
-            const onblur = sinon.spy();
-            const node = htmldom('button', { onblur });
+            const onblur = sinon.spy()
+            const node = htmldom('button', { onblur })
 
-            node.focus();
-            assert(onblur.notCalled, 'not called before blur');
-            node.dispatchEvent(new CustomEvent('blur'));
-            assert(onblur.calledOnce, 'called once on blur');
-        });
+            node.focus()
+            assert(onblur.notCalled, 'not called before blur')
+            node.dispatchEvent(new CustomEvent('blur'))
+            assert(onblur.calledOnce, 'called once on blur')
+        })
         it('onchange', () => {
-            const onchange = sinon.spy();
-            const node = htmldom('input', { type : 'checkbox', onchange });
+            const onchange = sinon.spy()
+            const node = htmldom('input', { type : 'checkbox', onchange })
 
-            document.body.appendChild(node);
-            assert(onchange.notCalled, 'not called before click');
-            assert(!node.checked, 'not checked before click');
-            node.click();
-            assert(onchange.calledOnce, 'called once on click');
-            assert(node.checked, 'checked on click');
-            node.click();
-            assert(onchange.calledTwice, 'called twice on the second click');
-            assert(!node.checked, 'not checked on the second click');
-            document.body.removeChild(node);
-        });
+            document.body.appendChild(node)
+            assert(onchange.notCalled, 'not called before click')
+            assert(!node.checked, 'not checked before click')
+            node.click()
+            assert(onchange.calledOnce, 'called once on click')
+            assert(node.checked, 'checked on click')
+            node.click()
+            assert(onchange.calledTwice, 'called twice on the second click')
+            assert(!node.checked, 'not checked on the second click')
+            document.body.removeChild(node)
+        })
         it('onclick', () => {
-            const onclick = sinon.spy();
-            const node = htmldom('button', { onclick });
+            const onclick = sinon.spy()
+            const node = htmldom('button', { onclick })
 
-            assert(onclick.notCalled, 'not called before click');
-            node.click();
-            assert(onclick.calledOnce, 'called once on click');
-            node.click();
-            assert(onclick.calledTwice, 'called twice on the second click');
-        });
+            assert(onclick.notCalled, 'not called before click')
+            node.click()
+            assert(onclick.calledOnce, 'called once on click')
+            node.click()
+            assert(onclick.calledTwice, 'called twice on the second click')
+        })
         it('ondblclick', () => {
-            const ondblclick = sinon.spy();
-            const node = htmldom('button', { ondblclick });
+            const ondblclick = sinon.spy()
+            const node = htmldom('button', { ondblclick })
 
-            assert(ondblclick.notCalled, 'not called before double click');
+            assert(ondblclick.notCalled, 'not called before double click')
             // fixme MouseEvent
             node.dispatchEvent(new CustomEvent('dblclick', {
                 bubbles : true,
                 cancelable : true
-            }));
-            assert(ondblclick.calledOnce, 'called once on double click');
+            }))
+            assert(ondblclick.calledOnce, 'called once on double click')
             // fixme MouseEvent
             node.dispatchEvent(new CustomEvent('dblclick', {
                 bubbles : true,
                 calcelable : true
-            }));
-            assert(ondblclick.calledTwice, 'called twice on the second double click');
-        });
+            }))
+            assert(ondblclick.calledTwice, 'called twice on the second double click')
+        })
         it('onfocus', () => {
-            const onfocus = sinon.spy();
-            const node = htmldom('button', { onfocus });
+            const onfocus = sinon.spy()
+            const node = htmldom('button', { onfocus })
 
-            assert(onfocus.notCalled, 'not called before focus');
-            node.dispatchEvent(new CustomEvent('focus'));
-            assert(onfocus.calledOnce, 'called once on focus');
-        });
+            assert(onfocus.notCalled, 'not called before focus')
+            node.dispatchEvent(new CustomEvent('focus'))
+            assert(onfocus.calledOnce, 'called once on focus')
+        })
         it.skip('oninvalid', () => { // todo msie11
-            const oninvalid = sinon.spy();
+            const oninvalid = sinon.spy()
             const node = htmldom('input', {
                 required : true,
                 oninvalid
-            });
-            assert(oninvalid.notCalled, 'not called before validation');
-            node.checkValidity();
-            assert(oninvalid.calledOnce, 'called once on validation');
-        });
+            })
+            assert(oninvalid.notCalled, 'not called before validation')
+            node.checkValidity()
+            assert(oninvalid.calledOnce, 'called once on validation')
+        })
         it('onreset', () => {
-            const onreset = sinon.spy();
+            const onreset = sinon.spy()
             const children = htmldom('input', {
                 type : 'checkbox',
                 checked : true
-            });
-            const node = htmldom('form', { onreset, children });
+            })
+            const node = htmldom('form', { onreset, children })
 
-            assert(onreset.notCalled, 'not called before form reset');
-            assert(children.checked, 'checked before form reset');
-            node.reset();
-            assert(onreset.calledOnce, 'called once on form reset');
-            assert(!children.checked, 'not checked on form reset');
-        });
+            assert(onreset.notCalled, 'not called before form reset')
+            assert(children.checked, 'checked before form reset')
+            node.reset()
+            assert(onreset.calledOnce, 'called once on form reset')
+            assert(!children.checked, 'not checked on form reset')
+        })
         it('onsubmit', () => {
-            const spy = sinon.spy();
+            const spy = sinon.spy()
             const onsubmit = event => {
-                spy(event);
-                event.preventDefault();
-            };
-            const children = htmldom('button');
-            const node = htmldom('form', { onsubmit, children });
+                spy(event)
+                event.preventDefault()
+            }
+            const children = htmldom('button')
+            const node = htmldom('form', { onsubmit, children })
 
-            document.body.appendChild(node);
-            assert(spy.notCalled, 'not called before the submit click');
-            children.click();
-            assert(spy.calledOnce, 'called once on the submit click');
-            document.body.removeChild(node);
-        });
+            document.body.appendChild(node)
+            assert(spy.notCalled, 'not called before the submit click')
+            children.click()
+            assert(spy.calledOnce, 'called once on the submit click')
+            document.body.removeChild(node)
+        })
         it('ontoggle', () => {
-            const ontoggle = sinon.spy();
-            const children = htmldom('summary');
-            const node = htmldom('details', { ontoggle, children });
+            const ontoggle = sinon.spy()
+            const children = htmldom('summary')
+            const node = htmldom('details', { ontoggle, children })
 
-            document.body.appendChild(node);
-            assert(ontoggle.notCalled, 'not called before toggle');
+            document.body.appendChild(node)
+            assert(ontoggle.notCalled, 'not called before toggle')
             node.dispatchEvent(new CustomEvent('toggle', {
                 bubbles : true,
                 cancelable : true
             })); // fixme UIEvent
-            assert(ontoggle.calledOnce, 'called once on toggle');
-            document.body.removeChild(node);
-        });
-    });
+            assert(ontoggle.calledOnce, 'called once on toggle')
+            document.body.removeChild(node)
+        })
+    })
 
     describe('Single elements', () => {
         describe('a', () => {
@@ -429,104 +429,104 @@ describe('HTMLDOM library', () => {
                 type : 'text/html',
                 // referrerPolicy : 'no-referrer', // todo safari
                 children : 'HTML5 specification'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'A');
-            });
+                assert.equal(node.tagName, 'A')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLAnchorElement, node + ' instance of ' + HTMLAnchorElement);
-            });
+                assert(node instanceof HTMLAnchorElement, node + ' instance of ' + HTMLAnchorElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 5);
-            });
+                assert.equal(node.attributes.length, 5)
+            })
             it('href', () => {
-                assert.equal(node.href, 'https://www.w3.org/TR/html');
-            });
+                assert.equal(node.href, 'https://www.w3.org/TR/html')
+            })
             it('target', () => {
-                assert.equal(node.target, '_parent');
-            });
+                assert.equal(node.target, '_parent')
+            })
             it.skip('ping', () => {
-                assert(node.ping.startsWith('https://www.w3.org'));
-            });
+                assert(node.ping.startsWith('https://www.w3.org'))
+            })
             it('rel', () => {
-                assert.equal(node.rel, 'external help');
-            });
+                assert.equal(node.rel, 'external help')
+            })
             it('hreflang', () => {
-                assert.equal(node.hreflang, 'en');
-            });
+                assert.equal(node.hreflang, 'en')
+            })
             it('type', () => {
-                assert.equal(node.type, 'text/html');
-            });
+                assert.equal(node.type, 'text/html')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'HTML5 specification');
-            });
-        });
+                assert.equal(node.textContent, 'HTML5 specification')
+            })
+        })
         describe('abbr', () => {
             const node = abbr({
                 title : 'Hyper text markup language',
                 children : 'HTML'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'ABBR');
-            });
+                assert.equal(node.tagName, 'ABBR')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('title', () => {
-                assert.equal(node.title, 'Hyper text markup language');
-            });
+                assert.equal(node.title, 'Hyper text markup language')
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'HTML');
-            });
+                assert.equal(node.textContent, 'HTML')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<abbr title="Hyper text markup language">HTML</abbr>');
-            });
-        });
+                assert.equal(node.outerHTML, '<abbr title="Hyper text markup language">HTML</abbr>')
+            })
+        })
         describe('address', () => {
-            const node = address('test@example.com');
+            const node = address('test@example.com')
             it('tagName', () => {
-                assert.equal(node.tagName, 'ADDRESS');
-            });
+                assert.equal(node.tagName, 'ADDRESS')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'test@example.com');
-            });
+                assert.equal(node.textContent, 'test@example.com')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<address>test@example.com</address>');
-            });
-        });
+                assert.equal(node.outerHTML, '<address>test@example.com</address>')
+            })
+        })
         describe('area', () => {
             const node = area({
                 alt : 'Alternative text',
@@ -537,86 +537,86 @@ describe('HTMLDOM library', () => {
                 // download : 'spec.txt', // todo
                 // ping : 'https://www.w3.org', // todo
                 // rel : 'external help', // todo
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'AREA');
-            });
+                assert.equal(node.tagName, 'AREA')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLAreaElement, node + ' instance of ' + HTMLAreaElement);
-            });
+                assert(node instanceof HTMLAreaElement, node + ' instance of ' + HTMLAreaElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 5);
-            });
+                assert.equal(node.attributes.length, 5)
+            })
             it('alt', () => {
-                assert.equal(node.alt, 'Alternative text');
-            });
+                assert.equal(node.alt, 'Alternative text')
+            })
             it('coords', () => {
-                assert.equal(node.coords, '50,50,100,100');
-            });
+                assert.equal(node.coords, '50,50,100,100')
+            })
             it('shape', () => {
-                assert.equal(node.shape, 'rect');
-            });
+                assert.equal(node.shape, 'rect')
+            })
             it('href', () => {
-                assert.equal(node.href, 'https://www.w3.org/TR/html');
-            });
+                assert.equal(node.href, 'https://www.w3.org/TR/html')
+            })
             it('target', () => {
-                assert.equal(node.target, '_parent');
-            });
+                assert.equal(node.target, '_parent')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('article', () => {
-            const node = article('Hello world!');
+            const node = article('Hello world!')
             it('tagName', () => {
-                assert.equal(node.tagName, 'ARTICLE');
-            });
+                assert.equal(node.tagName, 'ARTICLE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Hello world!');
-            });
+                assert.equal(node.textContent, 'Hello world!')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<article>Hello world!</article>');
-            });
-        });
+                assert.equal(node.outerHTML, '<article>Hello world!</article>')
+            })
+        })
         describe('aside', () => {
-            const node = aside('Your advert may be here!');
+            const node = aside('Your advert may be here!')
             it('tagName', () => {
-                assert.equal(node.tagName, 'ASIDE');
-            });
+                assert.equal(node.tagName, 'ASIDE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Your advert may be here!');
-            });
+                assert.equal(node.textContent, 'Your advert may be here!')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<aside>Your advert may be here!</aside>');
-            });
-        });
+                assert.equal(node.outerHTML, '<aside>Your advert may be here!</aside>')
+            })
+        })
         describe('audio', () => {
             const node = audio({
                 src : 'https://aristov.github.io/media-samples/sample.wav',
@@ -627,178 +627,178 @@ describe('HTMLDOM library', () => {
                 muted : true,
                 controls : true,
                 innerHTML : '<track><track><track>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'AUDIO');
-            });
+                assert.equal(node.tagName, 'AUDIO')
+            })
             it('proper constructor', () => {
                 assert(node instanceof HTMLAudioElement,
-                    node + ' instance of ' + HTMLAudioElement);
-            });
+                    node + ' instance of ' + HTMLAudioElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('src', () => {
-                assert.equal(node.src, 'https://aristov.github.io/media-samples/sample.wav');
-            });
+                assert.equal(node.src, 'https://aristov.github.io/media-samples/sample.wav')
+            })
             it.skip('crossOrigin', () => {
-                assert.equal(node.crossOrigin, 'use-credentials');
-            });
+                assert.equal(node.crossOrigin, 'use-credentials')
+            })
             it('preload', () => {
-                assert.equal(node.preload, 'metadata');
-            });
+                assert.equal(node.preload, 'metadata')
+            })
             it('autoplay', () => {
-                assert.equal(node.autoplay, true);
-            });
+                assert.equal(node.autoplay, true)
+            })
             it('loop', () => {
-                assert.equal(node.loop, true);
-            });
+                assert.equal(node.loop, true)
+            })
             it('muted', () => {
-                assert.equal(node.muted, true);
-            });
+                assert.equal(node.muted, true)
+            })
             it('controls', () => {
-                assert.equal(node.controls, true);
-            });
+                assert.equal(node.controls, true)
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('innerHTML', () => {
-                assert(node.innerHTML, '<track><track><track>');
-            });
-        });
+                assert(node.innerHTML, '<track><track><track>')
+            })
+        })
         describe('b', () => {
-            const node = b('warning');
+            const node = b('warning')
             it('tagName', () => {
-                assert.equal(node.tagName, 'B');
-            });
+                assert.equal(node.tagName, 'B')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'warning');
-            });
+                assert.equal(node.textContent, 'warning')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<b>warning</b>');
-            });
-        });
+                assert.equal(node.outerHTML, '<b>warning</b>')
+            })
+        })
         describe('base', () => {
-            const node = base({ href : 'https://w3.org', target : '_top' });
+            const node = base({ href : 'https://w3.org', target : '_top' })
             it('tagName', () => {
-                assert.equal(node.tagName, 'BASE');
-            });
+                assert.equal(node.tagName, 'BASE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLBaseElement, node + ' instance of ' + HTMLBaseElement);
-            });
+                assert(node instanceof HTMLBaseElement, node + ' instance of ' + HTMLBaseElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2);
-            });
+                assert.equal(node.attributes.length, 2)
+            })
             it('href', () => {
-                assert(node.href.startsWith('https://w3.org'), 'proper href');
-            });
+                assert(node.href.startsWith('https://w3.org'), 'proper href')
+            })
             it('target', () => {
-                assert.equal(node.target, '_top');
-            });
+                assert.equal(node.target, '_top')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('blockquote', () => {
             const node = blockquote({
                 cite : 'https://html.spec.whatwg.org/#the-blockquote-element',
                 children : 'The blockquote element represents a section that is quoted from another source.'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'BLOCKQUOTE');
-            });
+                assert.equal(node.tagName, 'BLOCKQUOTE')
+            })
             it('proper constructor', () => {
                 assert( // msie11
                     node instanceof HTMLQuoteElement || node instanceof HTMLBlockElement,
-                    node + ' instance of ' + HTMLQuoteElement);
-            });
+                    node + ' instance of ' + HTMLQuoteElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('cite', () => {
-                assert.equal(node.cite, 'https://html.spec.whatwg.org/#the-blockquote-element');
-            });
+                assert.equal(node.cite, 'https://html.spec.whatwg.org/#the-blockquote-element')
+            })
             it('textContent', () => {
                 assert.equal(node.textContent,
-                    'The blockquote element represents a section that is quoted from another source.');
-            });
+                    'The blockquote element represents a section that is quoted from another source.')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
                     '<blockquote ' +
                     'cite="https://html.spec.whatwg.org/#the-blockquote-element">' +
                     'The blockquote element represents a section that is quoted from another source.' +
-                    '</blockquote>');
-            });
-        });
+                    '</blockquote>')
+            })
+        })
         describe('body', () => {
-            const node = body('Test');
+            const node = body('Test')
             it('tagName', () => {
-                assert.equal(node.tagName, 'BODY');
-            });
+                assert.equal(node.tagName, 'BODY')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLBodyElement, node + ' instance of ' + HTMLBodyElement);
-            });
+                assert(node instanceof HTMLBodyElement, node + ' instance of ' + HTMLBodyElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Test');
-            });
+                assert.equal(node.textContent, 'Test')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<body>Test</body>');
-            });
-        });
+                assert.equal(node.outerHTML, '<body>Test</body>')
+            })
+        })
         describe('br', () => {
-            const node = br();
+            const node = br()
             it('tagName', () => {
-                assert.equal(node.tagName, 'BR');
-            });
+                assert.equal(node.tagName, 'BR')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLBRElement, node + ' instance of ' + HTMLBRElement);
-            });
+                assert(node instanceof HTMLBRElement, node + ' instance of ' + HTMLBRElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
             it('outerHTML', () => {
-                assert(/^<br\/?>$/.test(node.outerHTML), 'proper outerHTML');
-            });
-        });
+                assert(/^<br\/?>$/.test(node.outerHTML), 'proper outerHTML')
+            })
+        })
         describe('button', () => {
             const node = button({
                 autofocus : true,
@@ -813,530 +813,530 @@ describe('HTMLDOM library', () => {
                 value : 'OK',
                 // menu : '???', // todo
                 children : 'Save'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'BUTTON');
-            });
+                assert.equal(node.tagName, 'BUTTON')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLButtonElement, node + ' instance of ' + HTMLButtonElement);
-            });
+                assert(node instanceof HTMLButtonElement, node + ' instance of ' + HTMLButtonElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 10);
-            });
+                assert.equal(node.attributes.length, 10)
+            })
             it('autofocus', () => {
-                assert.equal(node.autofocus, true);
-            });
+                assert.equal(node.autofocus, true)
+            })
             it('disabled', () => {
-                assert.equal(node.disabled, true);
-            });
+                assert.equal(node.disabled, true)
+            })
             it('formAction', () => {
-                assert(node.formAction.endsWith('/api/save'), 'proper formAction');
-            });
+                assert(node.formAction.endsWith('/api/save'), 'proper formAction')
+            })
             it('formEnctype', () => {
-                assert.equal(node.formEnctype, 'multipart/form-data');
-            });
+                assert.equal(node.formEnctype, 'multipart/form-data')
+            })
             it('formMethod', () => {
-                assert.equal(node.formMethod, 'post');
-            });
+                assert.equal(node.formMethod, 'post')
+            })
             it('formNoValidate', () => {
-                assert.equal(node.formNoValidate, true);
-            });
+                assert.equal(node.formNoValidate, true)
+            })
             it('formTarget', () => {
-                assert.equal(node.formTarget, '_top');
-            });
+                assert.equal(node.formTarget, '_top')
+            })
             it('name', () => {
-                assert.equal(node.name, 'savebutton');
-            });
+                assert.equal(node.name, 'savebutton')
+            })
             it('type', () => {
-                assert.equal(node.type, 'button');
-            });
+                assert.equal(node.type, 'button')
+            })
             it('value', () => {
-                assert.equal(node.value, 'OK');
-            });
+                assert.equal(node.value, 'OK')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Save');
-            });
-        });
+                assert.equal(node.textContent, 'Save')
+            })
+        })
         describe('canvas', () => {
-            const node = canvas({ width : 100, height : 50 });
+            const node = canvas({ width : 100, height : 50 })
             it('tagName', () => {
-                assert.equal(node.tagName, 'CANVAS');
-            });
+                assert.equal(node.tagName, 'CANVAS')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLCanvasElement, node + ' instance of ' + HTMLCanvasElement);
-            });
+                assert(node instanceof HTMLCanvasElement, node + ' instance of ' + HTMLCanvasElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2);
-            });
+                assert.equal(node.attributes.length, 2)
+            })
             it('width', () => {
-                assert.equal(node.width, 100);
-            });
+                assert.equal(node.width, 100)
+            })
             it('height', () => {
-                assert.equal(node.height, 50);
-            });
+                assert.equal(node.height, 50)
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('caption', () => {
-            const node = caption('Table 1. Total score obtained from rolling two six-sided dice.');
+            const node = caption('Table 1. Total score obtained from rolling two six-sided dice.')
             it('tagName', () => {
-                assert.equal(node.tagName, 'CAPTION');
-            });
+                assert.equal(node.tagName, 'CAPTION')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableCaptionElement, node + ' instance of ' + HTMLTableCaptionElement);
-            });
+                assert(node instanceof HTMLTableCaptionElement, node + ' instance of ' + HTMLTableCaptionElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Table 1. Total score obtained from rolling two six-sided dice.');
-            });
+                assert.equal(node.textContent, 'Table 1. Total score obtained from rolling two six-sided dice.')
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
-                    '<caption>Table 1. Total score obtained from rolling two six-sided dice.</caption>');
-            });
-        });
+                    '<caption>Table 1. Total score obtained from rolling two six-sided dice.</caption>')
+            })
+        })
         describe('cite', () => {
-            const node = cite('Fight club');
+            const node = cite('Fight club')
             it('tagName', () => {
-                assert.equal(node.tagName, 'CITE');
-            });
+                assert.equal(node.tagName, 'CITE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Fight club');
-            });
+                assert.equal(node.textContent, 'Fight club')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<cite>Fight club</cite>');
-            });
-        });
+                assert.equal(node.outerHTML, '<cite>Fight club</cite>')
+            })
+        })
         describe('code', () => {
             const node = code('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.' +
-                '+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.');
+                '+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.')
             it('tagName', () => {
-                assert.equal(node.tagName, 'CODE');
-            });
+                assert.equal(node.tagName, 'CODE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
                 assert.equal(node.textContent,
                     '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.' +
-                    '+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.');
-            });
+                    '+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.')
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
                     '<code>++++++++++[&gt;+++++++&gt;++++++++++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;++.&gt;+.' +
-                    '+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;.</code>');
-            });
-        });
+                    '+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;.</code>')
+            })
+        })
         describe('col', () => {
-            const node = col({ span : 3 });
+            const node = col({ span : 3 })
             it('tagName', () => {
-                assert.equal(node.tagName, 'COL');
-            });
+                assert.equal(node.tagName, 'COL')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableColElement, node + ' instance of ' + HTMLTableColElement);
-            });
+                assert(node instanceof HTMLTableColElement, node + ' instance of ' + HTMLTableColElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('span', () => {
-                assert.equal(node.span, 3);
-            });
+                assert.equal(node.span, 3)
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<col span="3">');
-            });
-        });
+                assert.equal(node.outerHTML, '<col span="3">')
+            })
+        })
         describe('colgroup', () => {
-            const node = colgroup({ span : 5 });
+            const node = colgroup({ span : 5 })
             it('tagName', () => {
-                assert.equal(node.tagName, 'COLGROUP');
-            });
+                assert.equal(node.tagName, 'COLGROUP')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableColElement, node + ' instance of ' + HTMLTableColElement);
-            });
+                assert(node instanceof HTMLTableColElement, node + ' instance of ' + HTMLTableColElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('span', () => {
-                assert.equal(node.span, 5);
-            });
+                assert.equal(node.span, 5)
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<colgroup span="5"></colgroup>');
-            });
-        });
+                assert.equal(node.outerHTML, '<colgroup span="5"></colgroup>')
+            })
+        })
         describe('datalist', () => {
             const node = datalist({
                 innerHTML :
                     '<option value="Female"></option>' +
                     '<option value="Male"></option>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'DATALIST');
-            });
+                assert.equal(node.tagName, 'DATALIST')
+            })
             it.skip('proper constructor', () => { // todo safari
-                assert(node instanceof HTMLDataListElement, node + ' instance of ' + HTMLDataListElement);
-            });
+                assert(node instanceof HTMLDataListElement, node + ' instance of ' + HTMLDataListElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 2);
-            });
+                assert.equal(node.childNodes.length, 2)
+            })
             it('textContent', () => {
                 assert.equal(node.outerHTML,
                     '<datalist>' +
                         '<option value="Female"></option>' +
                         '<option value="Male"></option>' +
-                    '</datalist>');
-            });
-        });
+                    '</datalist>')
+            })
+        })
         describe('dd', () => {
-            const node = dd('part of a term-description group in a description list');
+            const node = dd('part of a term-description group in a description list')
             it('tagName', () => {
-                assert.equal(node.tagName, 'DD');
-            });
+                assert.equal(node.tagName, 'DD')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'part of a term-description group in a description list');
-            });
+                assert.equal(node.textContent, 'part of a term-description group in a description list')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<dd>part of a term-description group in a description list</dd>');
-            });
-        });
+                assert.equal(node.outerHTML, '<dd>part of a term-description group in a description list</dd>')
+            })
+        })
         describe('del', () => {
             const node = del({
                 cite : '/edits/r192',
                 dateTime : '2011-05-02 14:23Z',
                 children : '10/10'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'DEL');
-            });
+                assert.equal(node.tagName, 'DEL')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLModElement, node + ' instance of ' + HTMLModElement);
-            });
+                assert(node instanceof HTMLModElement, node + ' instance of ' + HTMLModElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2);
-            });
+                assert.equal(node.attributes.length, 2)
+            })
             it('cite', () => {
-                assert(node.cite.endsWith('/edits/r192'), 'proper cite');
-            });
+                assert(node.cite.endsWith('/edits/r192'), 'proper cite')
+            })
             it('dateTime', () => {
-                assert.equal(node.dateTime, '2011-05-02 14:23Z');
-            });
+                assert.equal(node.dateTime, '2011-05-02 14:23Z')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, '10/10');
-            });
-        });
+                assert.equal(node.textContent, '10/10')
+            })
+        })
         describe('div', () => {
-            const node = div('Abstract grouping block-level container');
+            const node = div('Abstract grouping block-level container')
             it('tagName', () => {
-                assert.equal(node.tagName, 'DIV');
-            });
+                assert.equal(node.tagName, 'DIV')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLDivElement, node + ' instance of ' + HTMLDivElement);
-            });
+                assert(node instanceof HTMLDivElement, node + ' instance of ' + HTMLDivElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Abstract grouping block-level container');
-            });
+                assert.equal(node.textContent, 'Abstract grouping block-level container')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<div>Abstract grouping block-level container</div>');
-            });
-        });
+                assert.equal(node.outerHTML, '<div>Abstract grouping block-level container</div>')
+            })
+        })
         describe('dl', () => {
             const node = dl({
                 innerHTML : '<dt>dt</dt><dd>Description title</dd>' +
                             '<dt>dd</dt><dd>Description description</dd>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'DL');
-            });
+                assert.equal(node.tagName, 'DL')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLDListElement, node + ' instance of ' + HTMLDListElement);
-            });
+                assert(node instanceof HTMLDListElement, node + ' instance of ' + HTMLDListElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has no child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('has child nodes', () => {
-                assert.equal(node.childNodes.length, 4);
-            });
+                assert.equal(node.childNodes.length, 4)
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
                     '<dl>' +
                         '<dt>dt</dt><dd>Description title</dd>' +
                         '<dt>dd</dt><dd>Description description</dd>' +
-                    '</dl>');
-            });
-        });
+                    '</dl>')
+            })
+        })
         describe('dt', () => {
-            const node = dt('Description title');
+            const node = dt('Description title')
             it('tagName', () => {
-                assert.equal(node.tagName, 'DT');
-            });
+                assert.equal(node.tagName, 'DT')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Description title');
-            });
+                assert.equal(node.textContent, 'Description title')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<dt>Description title</dt>');
-            });
-        });
+                assert.equal(node.outerHTML, '<dt>Description title</dt>')
+            })
+        })
         describe('em', () => {
-            const node = em('Amazing!');
+            const node = em('Amazing!')
             it('tagName', () => {
-                assert.equal(node.tagName, 'EM');
-            });
+                assert.equal(node.tagName, 'EM')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Amazing!');
-            });
+                assert.equal(node.textContent, 'Amazing!')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<em>Amazing!</em>');
-            });
-        });
+                assert.equal(node.outerHTML, '<em>Amazing!</em>')
+            })
+        })
         describe('embed', () => {
             const node = embed({
                 src : 'https://aristov.github.io/media-samples/sample.swf',
                 // type : 'application/x-shockwave-flash', // todo ie11
                 width : '100%',
                 height : '50%'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'EMBED');
-            });
+                assert.equal(node.tagName, 'EMBED')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLEmbedElement, node + ' instance of ' + HTMLEmbedElement);
-            });
+                assert(node instanceof HTMLEmbedElement, node + ' instance of ' + HTMLEmbedElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('src', () => {
-                assert.equal(node.src, 'https://aristov.github.io/media-samples/sample.swf');
-            });
+                assert.equal(node.src, 'https://aristov.github.io/media-samples/sample.swf')
+            })
             it.skip('type', () => {
-                assert.equal(node.type, 'application/x-shockwave-flash');
-            });
+                assert.equal(node.type, 'application/x-shockwave-flash')
+            })
             it('width', () => {
-                assert.equal(node.width, '100%');
-            });
+                assert.equal(node.width, '100%')
+            })
             it('height', () => {
-                assert.equal(node.height, '50%');
-            });
+                assert.equal(node.height, '50%')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('fieldset', () => {
             const node = fieldset({
                 disabled : true,
                 // form : '???', // todo
                 // name : 'geolocation', // todo ie11
                 innerHTML : '<input><input type="submit">'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'FIELDSET');
-            });
+                assert.equal(node.tagName, 'FIELDSET')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLFieldSetElement, node + ' instance of ' + HTMLFieldSetElement);
-            });
+                assert(node instanceof HTMLFieldSetElement, node + ' instance of ' + HTMLFieldSetElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('disabled', () => {
-                assert.equal(node.disabled, true);
-            });
+                assert.equal(node.disabled, true)
+            })
             it.skip('name', () => {
-                assert.equal(node.name, 'geolocation');
-            });
+                assert.equal(node.name, 'geolocation')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 2);
-            });
-        });
+                assert.equal(node.childNodes.length, 2)
+            })
+        })
         describe('figcaption', () => {
-            const node = figcaption('Image 1.1');
+            const node = figcaption('Image 1.1')
             it('tagName', () => {
-                assert.equal(node.tagName, 'FIGCAPTION');
-            });
+                assert.equal(node.tagName, 'FIGCAPTION')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Image 1.1');
-            });
+                assert.equal(node.textContent, 'Image 1.1')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<figcaption>Image 1.1</figcaption>');
-            });
-        });
+                assert.equal(node.outerHTML, '<figcaption>Image 1.1</figcaption>')
+            })
+        })
         describe('figure', () => {
-            const node = figure({ innerHTML : '<img><figcaption>Figure #1.</figcaption>' });
+            const node = figure({ innerHTML : '<img><figcaption>Figure #1.</figcaption>' })
             it('tagName', () => {
-                assert.equal(node.tagName, 'FIGURE');
-            });
+                assert.equal(node.tagName, 'FIGURE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 2);
-            });
+                assert.equal(node.childNodes.length, 2)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<figure><img><figcaption>Figure #1.</figcaption></figure>');
-            });
-        });
+                assert.equal(node.outerHTML, '<figure><img><figcaption>Figure #1.</figcaption></figure>')
+            })
+        })
         describe('footer', () => {
-            const node = footer('Navigation menu, small text, copyright and contact information');
+            const node = footer('Navigation menu, small text, copyright and contact information')
             it('tagName', () => {
-                assert.equal(node.tagName, 'FOOTER');
-            });
+                assert.equal(node.tagName, 'FOOTER')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Navigation menu, small text, copyright and contact information');
-            });
+                assert.equal(node.textContent, 'Navigation menu, small text, copyright and contact information')
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
-                    '<footer>Navigation menu, small text, copyright and contact information</footer>');
-            });
-        });
+                    '<footer>Navigation menu, small text, copyright and contact information</footer>')
+            })
+        })
         describe('form', () => {
             const node = form({
                 acceptCharset : 'utf-8',
@@ -1354,49 +1354,49 @@ describe('HTMLDOM library', () => {
                         '<option></option>' +
                         '<option></option>' +
                     '</select></label>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'FORM');
-            });
+                assert.equal(node.tagName, 'FORM')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLFormElement, node + ' instance of ' + HTMLFormElement);
-            });
+                assert(node instanceof HTMLFormElement, node + ' instance of ' + HTMLFormElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 8);
-            });
+                assert.equal(node.attributes.length, 8)
+            })
             it('acceptCharset', () => {
-                assert.equal(node.acceptCharset, 'utf-8');
-            });
+                assert.equal(node.acceptCharset, 'utf-8')
+            })
             it('action', () => {
-                assert(node.action.endsWith('/app/save'), 'proper action');
-            });
+                assert(node.action.endsWith('/app/save'), 'proper action')
+            })
             it('autocomplete', () => {
-                assert.equal(node.autocomplete, 'off');
-            });
+                assert.equal(node.autocomplete, 'off')
+            })
             it('enctype', () => {
-                assert.equal(node.enctype, 'text/plain');
-            });
+                assert.equal(node.enctype, 'text/plain')
+            })
             it('method', () => {
-                assert.equal(node.method, 'post');
-            });
+                assert.equal(node.method, 'post')
+            })
             it('name', () => {
-                assert.equal(node.name, 'saveform');
-            });
+                assert.equal(node.name, 'saveform')
+            })
             it('noValidate', () => {
-                assert.equal(node.noValidate, true);
-            });
+                assert.equal(node.noValidate, true)
+            })
             it('target', () => {
-                assert.equal(node.target, '_top');
-            });
+                assert.equal(node.target, '_top')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('innerHTML', () => {
                 assert.equal(node.innerHTML,
                     '<label><input></label>' +
@@ -1404,243 +1404,243 @@ describe('HTMLDOM library', () => {
                     '<label><select>' +
                         '<option></option>' +
                         '<option></option>' +
-                    '</select></label>');
-            });
-        });
+                    '</select></label>')
+            })
+        })
         describe('h1', () => {
-            const node = h1('HTML Standard');
+            const node = h1('HTML Standard')
             it('tagName', () => {
-                assert.equal(node.tagName, 'H1');
-            });
+                assert.equal(node.tagName, 'H1')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement);
-            });
+                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'HTML Standard');
-            });
+                assert.equal(node.textContent, 'HTML Standard')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<h1>HTML Standard</h1>');
-            });
-        });
+                assert.equal(node.outerHTML, '<h1>HTML Standard</h1>')
+            })
+        })
         describe('h2', () => {
-            const node = h2('Full table of contents');
+            const node = h2('Full table of contents')
             it('tagName', () => {
-                assert.equal(node.tagName, 'H2');
-            });
+                assert.equal(node.tagName, 'H2')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement);
-            });
+                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Full table of contents');
-            });
+                assert.equal(node.textContent, 'Full table of contents')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<h2>Full table of contents</h2>');
-            });
-        });
+                assert.equal(node.outerHTML, '<h2>Full table of contents</h2>')
+            })
+        })
         describe('h3', () => {
-            const node = h3('Introduction');
+            const node = h3('Introduction')
             it('tagName', () => {
-                assert.equal(node.tagName, 'H3');
-            });
+                assert.equal(node.tagName, 'H3')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement);
-            });
+                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Introduction');
-            });
+                assert.equal(node.textContent, 'Introduction')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<h3>Introduction</h3>');
-            });
-        });
+                assert.equal(node.outerHTML, '<h3>Introduction</h3>')
+            })
+        })
         describe('h4', () => {
-            const node = h4('2.4 Common microsyntaxes');
+            const node = h4('2.4 Common microsyntaxes')
             it('tagName', () => {
-                assert.equal(node.tagName, 'H4');
-            });
+                assert.equal(node.tagName, 'H4')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement);
-            });
+                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, '2.4 Common microsyntaxes');
-            });
+                assert.equal(node.textContent, '2.4 Common microsyntaxes')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<h4>2.4 Common microsyntaxes</h4>');
-            });
-        });
+                assert.equal(node.outerHTML, '<h4>2.4 Common microsyntaxes</h4>')
+            })
+        })
         describe('h5', () => {
-            const node = h5('2.4.4 Numbers');
+            const node = h5('2.4.4 Numbers')
             it('tagName', () => {
-                assert.equal(node.tagName, 'H5');
-            });
+                assert.equal(node.tagName, 'H5')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement);
-            });
+                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, '2.4.4 Numbers');
-            });
+                assert.equal(node.textContent, '2.4.4 Numbers')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<h5>2.4.4 Numbers</h5>');
-            });
-        });
+                assert.equal(node.outerHTML, '<h5>2.4.4 Numbers</h5>')
+            })
+        })
         describe('h6', () => {
-            const node = h6('2.4.4.4 Percentages and lengths');
+            const node = h6('2.4.4.4 Percentages and lengths')
             it('tagName', () => {
-                assert.equal(node.tagName, 'H6');
-            });
+                assert.equal(node.tagName, 'H6')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement);
-            });
+                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, '2.4.4.4 Percentages and lengths');
-            });
+                assert.equal(node.textContent, '2.4.4.4 Percentages and lengths')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<h6>2.4.4.4 Percentages and lengths</h6>');
-            });
-        });
+                assert.equal(node.outerHTML, '<h6>2.4.4.4 Percentages and lengths</h6>')
+            })
+        })
         describe('head', () => {
             const node = head({
                 innerHTML : '<title></title><meta charset=utf-8><link rel=stylesheet>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'HEAD');
-            });
+                assert.equal(node.tagName, 'HEAD')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadElement, node + ' instance of ' + HTMLHeadElement);
-            });
+                assert(node instanceof HTMLHeadElement, node + ' instance of ' + HTMLHeadElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('has child nodes', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
-                    '<head><title></title><meta charset="utf-8"><link rel="stylesheet"></head>');
-            });
-        });
+                    '<head><title></title><meta charset="utf-8"><link rel="stylesheet"></head>')
+            })
+        })
         describe('header', () => {
-            const node = header('The main heading, site navigation and search');
+            const node = header('The main heading, site navigation and search')
             it('tagName', () => {
-                assert.equal(node.tagName, 'HEADER');
-            });
+                assert.equal(node.tagName, 'HEADER')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'The main heading, site navigation and search');
-            });
+                assert.equal(node.textContent, 'The main heading, site navigation and search')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<header>The main heading, site navigation and search</header>');
-            });
-        });
+                assert.equal(node.outerHTML, '<header>The main heading, site navigation and search</header>')
+            })
+        })
         describe('hgroup', () => {
             const node = hgroup({
                 innerHTML : '<h4>2.4 Common microsyntaxes</h4><h5>2.4.4 Numbers</h5>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'HGROUP');
-            });
+                assert.equal(node.tagName, 'HGROUP')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has no child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('has no child nodes', () => {
-                assert.equal(node.childNodes.length, 2);
-            });
+                assert.equal(node.childNodes.length, 2)
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
-                    '<hgroup><h4>2.4 Common microsyntaxes</h4><h5>2.4.4 Numbers</h5></hgroup>');
-            });
-        });
+                    '<hgroup><h4>2.4 Common microsyntaxes</h4><h5>2.4.4 Numbers</h5></hgroup>')
+            })
+        })
         describe('hr', () => {
-            const node = hr();
+            const node = hr()
             it('tagName', () => {
-                assert.equal(node.tagName, 'HR');
-            });
+                assert.equal(node.tagName, 'HR')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHRElement, node + ' instance of ' + HTMLHRElement);
-            });
+                assert(node instanceof HTMLHRElement, node + ' instance of ' + HTMLHRElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<hr>');
-            });
-        });
+                assert.equal(node.outerHTML, '<hr>')
+            })
+        })
         describe('html', () => {
             const node = html({
                 attrset : { manifest : 'https://example.com/manifest' },
@@ -1650,28 +1650,28 @@ describe('HTMLDOM library', () => {
                         '<title>Example document title</title>' +
                     '</head>' +
                     '<body>Example document body</body>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'HTML');
-            });
+                assert.equal(node.tagName, 'HTML')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHtmlElement, node + ' instance of ' + HTMLHtmlElement);
-            });
+                assert(node instanceof HTMLHtmlElement, node + ' instance of ' + HTMLHtmlElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('manifest', () => {
-                assert.equal(node.getAttribute('manifest'), 'https://example.com/manifest');
-            });
+                assert.equal(node.getAttribute('manifest'), 'https://example.com/manifest')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('has child nodes', () => {
-                assert.equal(node.childNodes.length, 2);
-            });
+                assert.equal(node.childNodes.length, 2)
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
                     '<html manifest="https://example.com/manifest">' +
@@ -1680,33 +1680,33 @@ describe('HTMLDOM library', () => {
                             '<title>Example document title</title>' +
                         '</head>' +
                         '<body>Example document body</body>' +
-                    '</html>');
-            });
-        });
+                    '</html>')
+            })
+        })
         describe('i', () => {
-            const node = i('Alternative voice');
+            const node = i('Alternative voice')
             it('tagName', () => {
-                assert.equal(node.tagName, 'I');
-            });
+                assert.equal(node.tagName, 'I')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Alternative voice');
-            });
+                assert.equal(node.textContent, 'Alternative voice')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<i>Alternative voice</i>');
-            });
-        });
+                assert.equal(node.outerHTML, '<i>Alternative voice</i>')
+            })
+        })
         describe('iframe', () => {
             const node = iframe({
                 // allowFullscreen : true, // todo safari
@@ -1718,41 +1718,41 @@ describe('HTMLDOM library', () => {
                 // srcdoc : '<html><head><title>Nested document</title></head><body></body></html>', // todo ie11
                 width : '200px',
                 attrset : { sandbox : 'allow-forms' }
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'IFRAME');
-            });
+                assert.equal(node.tagName, 'IFRAME')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLIFrameElement, node + ' instance of ' + HTMLIFrameElement);
-            });
+                assert(node instanceof HTMLIFrameElement, node + ' instance of ' + HTMLIFrameElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 5);
-            });
+                assert.equal(node.attributes.length, 5)
+            })
             it('height', () => {
-                assert.equal(node.height, '70%');
-            });
+                assert.equal(node.height, '70%')
+            })
             it('name', () => {
-                assert.equal(node.name, 'nested-window');
-            });
+                assert.equal(node.name, 'nested-window')
+            })
             it('src', () => {
-                assert(node.src.endsWith('/nested.html'), 'proper src');
-            });
+                assert(node.src.endsWith('/nested.html'), 'proper src')
+            })
             it.skip('srcdoc', () => {
-                assert.equal(node.srcdoc, '<html><head><title>Nested document</title></head><body></body></html>');
-            });
+                assert.equal(node.srcdoc, '<html><head><title>Nested document</title></head><body></body></html>')
+            })
             it('width', () => {
-                assert(/200(?:px)?/.test(node.width));
-            });
+                assert(/200(?:px)?/.test(node.width))
+            })
             it('sandbox', () => {
-                assert.equal(node.sandbox, 'allow-forms');
-            });
+                assert.equal(node.sandbox, 'allow-forms')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('img', () => {
             const src = 'data:image/gif;base64,R0lGODdhMAAwAPAAAAAAAP///ywAAAAAMAAw' +
                 'AAAC8IyPqcvt3wCcDkiLc7C0qwyGHhSWpjQu5yqmCYsapyuvUUlvONmOZtfzgFz' +
@@ -1760,7 +1760,7 @@ describe('HTMLDOM library', () => {
                 'a/TPg7JpJHxyendzWTBfX0cxOnKPjgBzi4diinWGdkF8kjdfnycQZXZeYGejmJl' +
                 'ZeGl9i2icVqaNVailT6F5iJ90m6mvuTS4OK05M0vDk0Q4XUtwvKOzrcd3iq9uis' +
                 'F81M1OIcR7lEewwcLp7tuNNkM3uNna3F2JQFo97Vriy/Xl4/f1cf5VWzXyym7PH' +
-                'hhx4dbgYKAAA7';
+                'hhx4dbgYKAAA7'
             const node = img({
                 alt : 'HTML logo',
                 src,
@@ -1773,50 +1773,50 @@ describe('HTMLDOM library', () => {
                 width : '150',
                 height : '150',
                 // referrerPolicy : 'no-referrer-when-downgrade', // todo safari
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'IMG');
-            });
+                assert.equal(node.tagName, 'IMG')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLImageElement, node + ' instance of ' + HTMLImageElement);
-            });
+                assert(node instanceof HTMLImageElement, node + ' instance of ' + HTMLImageElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 7);
-            });
+                assert.equal(node.attributes.length, 7)
+            })
             it('alt', () => {
-                assert.equal(node.alt, 'HTML logo');
-            });
+                assert.equal(node.alt, 'HTML logo')
+            })
             it('src', () => {
-                assert.equal(node.src, src);
-            });
+                assert.equal(node.src, src)
+            })
             it.skip('srcset', () => {
-                assert.equal(node.srcset, '/data/150-logo.png 1.5x, /data/200-logo.png 2x');
-            });
+                assert.equal(node.srcset, '/data/150-logo.png 1.5x, /data/200-logo.png 2x')
+            })
             it.skip('sizes', () => {
-                assert.equal(node.sizes, '1.5x, 2x');
-            });
+                assert.equal(node.sizes, '1.5x, 2x')
+            })
             it('crossOrigin', () => {
-                assert.equal(node.crossOrigin, 'use-credentials');
-            });
+                assert.equal(node.crossOrigin, 'use-credentials')
+            })
             it('useMap', () => {
-                assert.equal(node.useMap, 'logomap');
-            });
+                assert.equal(node.useMap, 'logomap')
+            })
             it('isMap', () => {
-                assert.equal(node.isMap, true);
-            });
+                assert.equal(node.isMap, true)
+            })
             it('width', () => {
-                assert.equal(node.width, '150');
-            });
+                assert.equal(node.width, '150')
+            })
             it('height', () => {
-                assert.equal(node.height, '150');
-            });
+                assert.equal(node.height, '150')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('input', () => {
             const node = input({
                 alt : 'alternative input text',
@@ -1855,264 +1855,264 @@ describe('HTMLDOM library', () => {
                     form : 'saveform',
                     list : 'suggestlist'
                 }
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'INPUT');
-            });
+                assert.equal(node.tagName, 'INPUT')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLInputElement, node + ' instance of ' + HTMLInputElement);
-            });
+                assert(node instanceof HTMLInputElement, node + ' instance of ' + HTMLInputElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 28);
-            });
+                assert.equal(node.attributes.length, 28)
+            })
             it('alt', () => {
-                assert.equal(node.alt, 'alternative input text');
-            });
+                assert.equal(node.alt, 'alternative input text')
+            })
             it('accept', () => {
-                assert.equal(node.accept, 'SVG, PNG, PDF');
-            });
+                assert.equal(node.accept, 'SVG, PNG, PDF')
+            })
             it('autocomplete', () => {
-                assert.equal(node.autocomplete, 'off');
-            });
+                assert.equal(node.autocomplete, 'off')
+            })
             it('autofocus', () => {
-                assert.equal(node.autofocus, true);
-            });
+                assert.equal(node.autofocus, true)
+            })
             it('checked', () => {
-                assert.equal(node.checked, true);
-            });
+                assert.equal(node.checked, true)
+            })
             it('defaultChecked', () => {
-                assert.equal(node.defaultChecked, true);
-            });
+                assert.equal(node.defaultChecked, true)
+            })
             it('disabled', () => {
-                assert.equal(node.disabled, true);
-            });
+                assert.equal(node.disabled, true)
+            })
             it('formAction', () => {
-                assert(node.formAction.endsWith('/app/save'), 'proper action');
-            });
+                assert(node.formAction.endsWith('/app/save'), 'proper action')
+            })
             it('formEnctype', () => {
-                assert.equal(node.formEnctype, 'multipart/form-data');
-            });
+                assert.equal(node.formEnctype, 'multipart/form-data')
+            })
             it('formMethod', () => {
-                assert.equal(node.formMethod, 'post');
-            });
+                assert.equal(node.formMethod, 'post')
+            })
             it('formNoValidate', () => {
-                assert.equal(node.formNoValidate, true);
-            });
+                assert.equal(node.formNoValidate, true)
+            })
             it('formTarget', () => {
-                assert.equal(node.formTarget, '_top');
-            });
+                assert.equal(node.formTarget, '_top')
+            })
             it('indeterminate', () => {
-                assert.equal(node.indeterminate, true);
-            });
+                assert.equal(node.indeterminate, true)
+            })
             it('max', () => {
-                assert.equal(node.max, '100');
-            });
+                assert.equal(node.max, '100')
+            })
             it('maxLength', () => {
-                assert.equal(node.maxLength, 99);
-            });
+                assert.equal(node.maxLength, 99)
+            })
             it('min', () => {
-                assert.equal(node.min, '0');
-            });
+                assert.equal(node.min, '0')
+            })
             it('multiple', () => {
-                assert.equal(node.multiple, true);
-            });
+                assert.equal(node.multiple, true)
+            })
             it('name', () => {
-                assert.equal(node.name, 'input_name');
-            });
+                assert.equal(node.name, 'input_name')
+            })
             it('pattern', () => {
-                assert.equal(node.pattern, '[0-9][A-Z]{3}');
-            });
+                assert.equal(node.pattern, '[0-9][A-Z]{3}')
+            })
             it('placeholder', () => {
-                assert.equal(node.placeholder, 'Paste');
-            });
+                assert.equal(node.placeholder, 'Paste')
+            })
             it('readOnly', () => {
-                assert.equal(node.readOnly, true);
-            });
+                assert.equal(node.readOnly, true)
+            })
             it('required', () => {
-                assert.equal(node.required, true);
-            });
+                assert.equal(node.required, true)
+            })
             it('size', () => {
-                assert.equal(node.size, 5);
-            });
+                assert.equal(node.size, 5)
+            })
             it('src', () => {
-                assert(node.src.endsWith('/data/input.js'), 'proper src');
-            });
+                assert(node.src.endsWith('/data/input.js'), 'proper src')
+            })
             it('step', () => {
-                assert.equal(node.step, '2');
-            });
+                assert.equal(node.step, '2')
+            })
             it('type', () => {
-                assert.equal(node.type, 'text');
-            });
+                assert.equal(node.type, 'text')
+            })
             it('value', () => {
-                assert.equal(node.value, 'User input value');
-            });
+                assert.equal(node.value, 'User input value')
+            })
             it('defaultValue', () => {
-                assert.equal(node.defaultValue, 'Default value');
-            });
+                assert.equal(node.defaultValue, 'Default value')
+            })
             it('title', () => {
-                assert.equal(node.title, 'A part number is a digit followed by three uppercase letters.');
-            });
+                assert.equal(node.title, 'A part number is a digit followed by three uppercase letters.')
+            })
             it('form attribute', () => {
-                assert.equal(node.getAttribute('form'), 'saveform');
-            });
+                assert.equal(node.getAttribute('form'), 'saveform')
+            })
             it('list attribute', () => {
-                assert.equal(node.getAttribute('list'), 'suggestlist');
-            });
+                assert.equal(node.getAttribute('list'), 'suggestlist')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('ins', () => {
             const node = ins({
                 cite : '/edits/r193',
                 dateTime : '2011-05-02 14:32Z',
                 children : '11/10'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'INS');
-            });
+                assert.equal(node.tagName, 'INS')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLModElement, node + ' instance of ' + HTMLModElement);
-            });
+                assert(node instanceof HTMLModElement, node + ' instance of ' + HTMLModElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2);
-            });
+                assert.equal(node.attributes.length, 2)
+            })
             it('cite', () => {
-                assert(node.cite.endsWith('/edits/r193'), 'proper cite');
-            });
+                assert(node.cite.endsWith('/edits/r193'), 'proper cite')
+            })
             it('dateTime', () => {
-                assert.equal(node.dateTime, '2011-05-02 14:32Z');
-            });
+                assert.equal(node.dateTime, '2011-05-02 14:32Z')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, '11/10');
-            });
-        });
+                assert.equal(node.textContent, '11/10')
+            })
+        })
         describe('kbd', () => {
-            const node = kbd('Ctrl + Z');
+            const node = kbd('Ctrl + Z')
             it('tagName', () => {
-                assert.equal(node.tagName, 'KBD');
-            });
+                assert.equal(node.tagName, 'KBD')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Ctrl + Z');
-            });
+                assert.equal(node.textContent, 'Ctrl + Z')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<kbd>Ctrl + Z</kbd>');
-            });
-        });
+                assert.equal(node.outerHTML, '<kbd>Ctrl + Z</kbd>')
+            })
+        })
         describe('label', () => {
             const node = label({
                 htmlFor : 'userinput',
                 children : 'Input label'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'LABEL');
-            });
+                assert.equal(node.tagName, 'LABEL')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLabelElement, node + ' instance of ' + HTMLLabelElement);
-            });
+                assert(node instanceof HTMLLabelElement, node + ' instance of ' + HTMLLabelElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('htmlFor', () => {
-                assert.equal(node.htmlFor, 'userinput');
-            });
+                assert.equal(node.htmlFor, 'userinput')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Input label');
-            });
+                assert.equal(node.textContent, 'Input label')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<label for="userinput">Input label</label>');
-            });
-        });
+                assert.equal(node.outerHTML, '<label for="userinput">Input label</label>')
+            })
+        })
         describe('legend', () => {
-            const node = legend('Authorization');
+            const node = legend('Authorization')
             it('tagName', () => {
-                assert.equal(node.tagName, 'LEGEND');
-            });
+                assert.equal(node.tagName, 'LEGEND')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLegendElement, node + ' instance of ' + HTMLLegendElement);
-            });
+                assert(node instanceof HTMLLegendElement, node + ' instance of ' + HTMLLegendElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Authorization');
-            });
+                assert.equal(node.textContent, 'Authorization')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<legend>Authorization</legend>');
-            });
-        });
+                assert.equal(node.outerHTML, '<legend>Authorization</legend>')
+            })
+        })
         describe('li', () => {
             const node = li({
                 value : 4,
                 children : '4-th list item'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'LI');
-            });
+                assert.equal(node.tagName, 'LI')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLIElement, node + ' instance of ' + HTMLLIElement);
-            });
+                assert(node instanceof HTMLLIElement, node + ' instance of ' + HTMLLIElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('value', () => {
-                assert.equal(node.value, 4);
-            });
+                assert.equal(node.value, 4)
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, '4-th list item');
-            });
+                assert.equal(node.textContent, '4-th list item')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<li value="4">4-th list item</li>');
-            });
-        });
+                assert.equal(node.outerHTML, '<li value="4">4-th list item</li>')
+            })
+        })
         describe('link', () => {
             const node = link({
                 href : '/icon.svg',
@@ -2126,208 +2126,208 @@ describe('HTMLDOM library', () => {
                 title : 'Application icon',
                 // referrerPolicy : 'no-referrer', // todo
                 // nonce : 'abc', // todo
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'LINK');
-            });
+                assert.equal(node.tagName, 'LINK')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLinkElement, node + ' instance of ' + HTMLLinkElement);
-            });
+                assert(node instanceof HTMLLinkElement, node + ' instance of ' + HTMLLinkElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 6);
-            });
+                assert.equal(node.attributes.length, 6)
+            })
             it('href', () => {
-                assert(node.href.endsWith('/icon.svg'), 'proper href');
-            });
+                assert(node.href.endsWith('/icon.svg'), 'proper href')
+            })
             it('rel', () => {
-                assert.equal(node.rel, 'preload icon');
-            });
+                assert.equal(node.rel, 'preload icon')
+            })
             it.skip('crossOrigin', () => {
-                assert.equal(node.crossOrigin, 'use-credentials');
-            });
+                assert.equal(node.crossOrigin, 'use-credentials')
+            })
             it('media', () => {
-                assert.equal(node.media, 'screen');
-            });
+                assert.equal(node.media, 'screen')
+            })
             it('hreflang', () => {
-                assert.equal(node.hreflang, 'fr');
-            });
+                assert.equal(node.hreflang, 'fr')
+            })
             it('type', () => {
-                assert.equal(node.type, 'application/svg');
-            });
+                assert.equal(node.type, 'application/svg')
+            })
             it.skip('sizes', () => {
-                assert.equal(node.sizes, '32x32 48x48');
-            });
+                assert.equal(node.sizes, '32x32 48x48')
+            })
             it('title', () => {
-                assert.equal(node.title, 'Application icon');
-            });
+                assert.equal(node.title, 'Application icon')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('main', () => {
-            const node = main('The main application content');
+            const node = main('The main application content')
             it('tagName', () => {
-                assert.equal(node.tagName, 'MAIN');
-            });
+                assert.equal(node.tagName, 'MAIN')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'The main application content');
-            });
+                assert.equal(node.textContent, 'The main application content')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<main>The main application content</main>');
-            });
-        });
+                assert.equal(node.outerHTML, '<main>The main application content</main>')
+            })
+        })
         describe('map', () => {
             const node = map({
                 name : 'app-image-map',
                 innerHTML : '<area><area><area>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'MAP');
-            });
+                assert.equal(node.tagName, 'MAP')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLMapElement, node + ' instance of ' + HTMLMapElement);
-            });
+                assert(node instanceof HTMLMapElement, node + ' instance of ' + HTMLMapElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('name', () => {
-                assert.equal(node.name, 'app-image-map');
-            });
+                assert.equal(node.name, 'app-image-map')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<map name="app-image-map"><area><area><area></map>');
-            });
-        });
+                assert.equal(node.outerHTML, '<map name="app-image-map"><area><area><area></map>')
+            })
+        })
         describe('mark', () => {
-            const node = mark('Highlighted');
+            const node = mark('Highlighted')
             it('tagName', () => {
-                assert.equal(node.tagName, 'MARK');
-            });
+                assert.equal(node.tagName, 'MARK')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Highlighted');
-            });
+                assert.equal(node.textContent, 'Highlighted')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<mark>Highlighted</mark>');
-            });
-        });
+                assert.equal(node.outerHTML, '<mark>Highlighted</mark>')
+            })
+        })
         describe('meta', () => {
             const node = meta({
                 name : 'keywords',
                 content : 'specification,html,dom,web,application,standard,api',
                 httpEquiv : 'x-ua-compatible',
                 attrset : { charset : 'utf-8' },
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'META');
-            });
+                assert.equal(node.tagName, 'META')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLMetaElement, node + ' instance of ' + HTMLMetaElement);
-            });
+                assert(node instanceof HTMLMetaElement, node + ' instance of ' + HTMLMetaElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 4);
-            });
+                assert.equal(node.attributes.length, 4)
+            })
             it('name', () => {
-                assert.equal(node.name, 'keywords');
-            });
+                assert.equal(node.name, 'keywords')
+            })
             it('content', () => {
-                assert.equal(node.content, 'specification,html,dom,web,application,standard,api');
-            });
+                assert.equal(node.content, 'specification,html,dom,web,application,standard,api')
+            })
             it('httpEquiv', () => {
-                assert.equal(node.httpEquiv, 'x-ua-compatible');
-            });
+                assert.equal(node.httpEquiv, 'x-ua-compatible')
+            })
             it('charset attribute', () => {
-                assert.equal(node.getAttribute('charset'), 'utf-8');
-            });
+                assert.equal(node.getAttribute('charset'), 'utf-8')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('nav', () => {
-            const node = nav('Navigation area');
+            const node = nav('Navigation area')
             it('tagName', () => {
-                assert.equal(node.tagName, 'NAV');
-            });
+                assert.equal(node.tagName, 'NAV')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Navigation area');
-            });
+                assert.equal(node.textContent, 'Navigation area')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<nav>Navigation area</nav>');
-            });
-        });
+                assert.equal(node.outerHTML, '<nav>Navigation area</nav>')
+            })
+        })
         describe('noscript', () => {
-            const node = noscript('Alternative content');
+            const node = noscript('Alternative content')
             it('tagName', () => {
-                assert.equal(node.tagName, 'NOSCRIPT');
-            });
+                assert.equal(node.tagName, 'NOSCRIPT')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Alternative content');
-            });
+                assert.equal(node.textContent, 'Alternative content')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<noscript>Alternative content</noscript>');
-            });
-        });
+                assert.equal(node.outerHTML, '<noscript>Alternative content</noscript>')
+            })
+        })
         describe('object', () => {
             const node = object({
                 data : 'https://aristov.github.io/media-samples/sample.swf',
@@ -2339,122 +2339,122 @@ describe('HTMLDOM library', () => {
                 height : '321',
                 attrset : { form : 'saveform' },
                 innerHTML : '<param><param><param>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'OBJECT');
-            });
+                assert.equal(node.tagName, 'OBJECT')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLObjectElement, node + ' instance of ' + HTMLObjectElement);
-            });
+                assert(node instanceof HTMLObjectElement, node + ' instance of ' + HTMLObjectElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 7);
-            });
+                assert.equal(node.attributes.length, 7)
+            })
             it('data', () => {
-                assert.equal(node.data, 'https://aristov.github.io/media-samples/sample.swf');
-            });
+                assert.equal(node.data, 'https://aristov.github.io/media-samples/sample.swf')
+            })
             it('type', () => {
-                assert.equal(node.type, 'application/x-shockwave-flash');
-            });
+                assert.equal(node.type, 'application/x-shockwave-flash')
+            })
             it('name', () => {
-                assert.equal(node.name, 'app-swf-object');
-            });
+                assert.equal(node.name, 'app-swf-object')
+            })
             it('useMap', () => {
-                assert.equal(node.useMap, 'app-map');
-            });
+                assert.equal(node.useMap, 'app-map')
+            })
             it('width', () => {
-                assert.equal(node.width, '123');
-            });
+                assert.equal(node.width, '123')
+            })
             it('height', () => {
-                assert.equal(node.height, '321');
-            });
+                assert.equal(node.height, '321')
+            })
             it('form attribute', () => {
-                assert.equal(node.getAttribute('form'), 'saveform');
-            });
+                assert.equal(node.getAttribute('form'), 'saveform')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('innerHTML', () => {
-                assert.equal(node.innerHTML, '<param><param><param>');
-            });
-        });
+                assert.equal(node.innerHTML, '<param><param><param>')
+            })
+        })
         describe('ol', () => {
             const node = ol({
                 // reversed : true, // todo msie11
                 // start : 1, // todo msie11
                 type : 'A',
                 innerHTML : '<li>1</li><li>2</li><li>3</li>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'OL');
-            });
+                assert.equal(node.tagName, 'OL')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLOListElement, node + ' instance of ' + HTMLOListElement);
-            });
+                assert(node instanceof HTMLOListElement, node + ' instance of ' + HTMLOListElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it.skip('reversed', () => {
-                assert.equal(node.reversed, true);
-            });
+                assert.equal(node.reversed, true)
+            })
             it.skip('start', () => {
-                assert.equal(node.start, 1);
-            });
+                assert.equal(node.start, 1)
+            })
             it('type', () => {
-                assert.equal(node.type, 'A');
-            });
+                assert.equal(node.type, 'A')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('innerHTML', () => {
-                assert.equal(node.innerHTML, '<li>1</li><li>2</li><li>3</li>');
-            });
-        });
+                assert.equal(node.innerHTML, '<li>1</li><li>2</li><li>3</li>')
+            })
+        })
         describe('optgroup', () => {
             const node = optgroup({
                 disabled : true,
                 label : 'Select option group',
                 innerHTML : '<option>1</option><option>2</option><option>3</option>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'OPTGROUP');
-            });
+                assert.equal(node.tagName, 'OPTGROUP')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLOptGroupElement, node + ' instance of ' + HTMLOptGroupElement);
-            });
+                assert(node instanceof HTMLOptGroupElement, node + ' instance of ' + HTMLOptGroupElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2);
-            });
+                assert.equal(node.attributes.length, 2)
+            })
             it('disabled', () => {
-                assert.equal(node.disabled, true);
-            });
+                assert.equal(node.disabled, true)
+            })
             it('label', () => {
-                assert.equal(node.label, 'Select option group');
-            });
+                assert.equal(node.label, 'Select option group')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('innerHTML', () => {
-                assert.equal(node.innerHTML, '<option>1</option><option>2</option><option>3</option>');
-            });
-        });
+                assert.equal(node.innerHTML, '<option>1</option><option>2</option><option>3</option>')
+            })
+        })
         describe('option', () => {
             const node = option({
                 disabled : true,
@@ -2462,282 +2462,282 @@ describe('HTMLDOM library', () => {
                 selected : true,
                 value : 'option-1',
                 innerHTML : 'Select option text'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'OPTION');
-            });
+                assert.equal(node.tagName, 'OPTION')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLOptionElement, node + ' instance of ' + HTMLOptionElement);
-            });
+                assert(node instanceof HTMLOptionElement, node + ' instance of ' + HTMLOptionElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 3);
-            });
+                assert.equal(node.attributes.length, 3)
+            })
             it('disabled', () => {
-                assert.equal(node.disabled, true);
-            });
+                assert.equal(node.disabled, true)
+            })
             it('label', () => {
-                assert.equal(node.label, 'Select option label');
-            });
+                assert.equal(node.label, 'Select option label')
+            })
             it('selected', () => {
-                assert.equal(node.selected, true);
-            });
+                assert.equal(node.selected, true)
+            })
             it('value', () => {
-                assert.equal(node.value, 'option-1');
-            });
+                assert.equal(node.value, 'option-1')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Select option text');
-            });
-        });
+                assert.equal(node.textContent, 'Select option text')
+            })
+        })
         /*describe('output', () => { // todo msie11
             const node = output({
                 htmlFor : 'user-input',
                 name : 'program-output',
-                attrset : { form : 'saveform' },
+                attributes : { form : 'saveform' },
                 children : 'Output widget'
-            });
+            })
             it.skip('tagName', () => {
-                assert.equal(node.tagName, 'OUTPUT');
-            });
+                assert.equal(node.tagName, 'OUTPUT')
+            })
             it.skip('proper constructor', () => {
-                assert(node instanceof HTMLOutputElement, node + ' instance of ' + HTMLOutputElement);
-            });
+                assert(node instanceof HTMLOutputElement, node + ' instance of ' + HTMLOutputElement)
+            })
             it.skip('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it.skip('proper attributes length', () => {
-                assert.equal(node.attributes.length, 3);
-            });
+                assert.equal(node.attributes.length, 3)
+            })
             it.skip('htmlFor', () => {
-                assert.equal(node.htmlFor, 'user-input');
-            });
+                assert.equal(node.htmlFor, 'user-input')
+            })
             it.skip('name', () => {
-                assert.equal(node.name, 'program-output');
-            });
+                assert.equal(node.name, 'program-output')
+            })
             it.skip('form attribute', () => {
-                assert.equal(node.getAttribute('form'), 'saveform');
-            });
+                assert.equal(node.getAttribute('form'), 'saveform')
+            })
             it.skip('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it.skip('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it.skip('textContent', () => {
-                assert.equal(node.textContent, 'Output widget');
-            });
+                assert.equal(node.textContent, 'Output widget')
+            })
         });*/
         describe('p', () => {
-            const node = p('Paragraph');
+            const node = p('Paragraph')
             it('tagName', () => {
-                assert.equal(node.tagName, 'P');
-            });
+                assert.equal(node.tagName, 'P')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLParagraphElement, node + ' instance of ' + HTMLParagraphElement);
-            });
+                assert(node instanceof HTMLParagraphElement, node + ' instance of ' + HTMLParagraphElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Paragraph');
-            });
+                assert.equal(node.textContent, 'Paragraph')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<p>Paragraph</p>');
-            });
-        });
+                assert.equal(node.outerHTML, '<p>Paragraph</p>')
+            })
+        })
         describe('param', () => {
-            const node = param({ name : 'ratio', value : '3' });
+            const node = param({ name : 'ratio', value : '3' })
             it('tagName', () => {
-                assert.equal(node.tagName, 'PARAM');
-            });
+                assert.equal(node.tagName, 'PARAM')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLParamElement, node + ' instance of ' + HTMLParamElement);
-            });
+                assert(node instanceof HTMLParamElement, node + ' instance of ' + HTMLParamElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2);
-            });
+                assert.equal(node.attributes.length, 2)
+            })
             it('name', () => {
-                assert.equal(node.name, 'ratio');
-            });
+                assert.equal(node.name, 'ratio')
+            })
             it('value', () => {
-                assert.equal(node.value, '3');
-            });
+                assert.equal(node.value, '3')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('picture', () => {
-            const node = picture({ innerHTML : '<source><img>' });
+            const node = picture({ innerHTML : '<source><img>' })
             it('tagName', () => {
-                assert.equal(node.tagName, 'PICTURE');
-            });
+                assert.equal(node.tagName, 'PICTURE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it.skip('proper constructor', () => { // fixme msie11
-                assert(node instanceof HTMLPictureElement, node + ' instance of ' + HTMLPictureElement);
-            });
+                assert(node instanceof HTMLPictureElement, node + ' instance of ' + HTMLPictureElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 2);
-            });
+                assert.equal(node.childNodes.length, 2)
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<picture><source><img></picture>');
-            });
-        });
+                assert.equal(node.outerHTML, '<picture><source><img></picture>')
+            })
+        })
         describe('pre', () => {
-            const node = pre('Pre >< formatted >< text');
+            const node = pre('Pre >< formatted >< text')
             it('tagName', () => {
-                assert.equal(node.tagName, 'PRE');
-            });
+                assert.equal(node.tagName, 'PRE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLPreElement, node + ' instance of ' + HTMLPreElement);
-            });
+                assert(node instanceof HTMLPreElement, node + ' instance of ' + HTMLPreElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Pre >< formatted >< text');
-            });
+                assert.equal(node.textContent, 'Pre >< formatted >< text')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<pre>Pre &gt;&lt; formatted &gt;&lt; text</pre>');
-            });
-        });
+                assert.equal(node.outerHTML, '<pre>Pre &gt;&lt; formatted &gt;&lt; text</pre>')
+            })
+        })
         describe('progress', () => {
-            const node = progress({ value : 0.6, max : 2 });
+            const node = progress({ value : 0.6, max : 2 })
             it('tagName', () => {
-                assert.equal(node.tagName, 'PROGRESS');
-            });
+                assert.equal(node.tagName, 'PROGRESS')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLProgressElement, node + ' instance of ' + HTMLProgressElement);
-            });
+                assert(node instanceof HTMLProgressElement, node + ' instance of ' + HTMLProgressElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2);
-            });
+                assert.equal(node.attributes.length, 2)
+            })
             it('value', () => {
-                assert.equal(Math.floor(node.value * 10) / 10, 0.6);
-            });
+                assert.equal(Math.floor(node.value * 10) / 10, 0.6)
+            })
             it('name', () => {
-                assert.equal(node.max, 2);
-            });
+                assert.equal(node.max, 2)
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('q', () => {
             const node = q({
                 cite : 'https://html.spec.whatwg.org/#the-q-element',
                 children : 'The q element represents some phrasing content quoted from another source'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'Q');
-            });
+                assert.equal(node.tagName, 'Q')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLQuoteElement, node + ' instance of ' + HTMLQuoteElement);
-            });
+                assert(node instanceof HTMLQuoteElement, node + ' instance of ' + HTMLQuoteElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('cite', () => {
-                assert.equal(node.cite, 'https://html.spec.whatwg.org/#the-q-element');
-            });
+                assert.equal(node.cite, 'https://html.spec.whatwg.org/#the-q-element')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
                 assert.equal(node.textContent,
-                    'The q element represents some phrasing content quoted from another source');
-            });
+                    'The q element represents some phrasing content quoted from another source')
+            })
 
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
                     '<q cite="https://html.spec.whatwg.org/#the-q-element">' +
                     'The q element represents some phrasing content quoted from another source' +
-                    '</q>');
-            });
-        });
+                    '</q>')
+            })
+        })
         describe('s', () => {
-            const node = s('Not relevant');
+            const node = s('Not relevant')
             it('tagName', () => {
-                assert.equal(node.tagName, 'S');
-            });
+                assert.equal(node.tagName, 'S')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Not relevant');
-            });
+                assert.equal(node.textContent, 'Not relevant')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<s>Not relevant</s>');
-            });
-        });
+                assert.equal(node.outerHTML, '<s>Not relevant</s>')
+            })
+        })
         describe('samp', () => {
-            const node = samp('example');
+            const node = samp('example')
             it('tagName', () => {
-                assert.equal(node.tagName, 'SAMP');
-            });
+                assert.equal(node.tagName, 'SAMP')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'example');
-            });
+                assert.equal(node.textContent, 'example')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<samp>example</samp>');
-            });
-        });
+                assert.equal(node.outerHTML, '<samp>example</samp>')
+            })
+        })
         describe('script', () => {
             const node = script({
                 src : 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',
@@ -2748,71 +2748,71 @@ describe('HTMLDOM library', () => {
                 // crossOrigin : 'use-credentials', // todo msie11
                 // nonce : 'abc', // todo
                 children : script.toString(),
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'SCRIPT');
-            });
+                assert.equal(node.tagName, 'SCRIPT')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLScriptElement, node + ' instance of ' + HTMLScriptElement);
-            });
+                assert(node instanceof HTMLScriptElement, node + ' instance of ' + HTMLScriptElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 5);
-            });
+                assert.equal(node.attributes.length, 5)
+            })
             it('src', () => {
-                assert.equal(node.src, 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');
-            });
+                assert.equal(node.src, 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+            })
             it('type', () => {
-                assert.equal(node.type, 'javascript');
-            });
+                assert.equal(node.type, 'javascript')
+            })
             it('charset', () => {
-                assert.equal(node.charset, 'utf-8');
-            });
+                assert.equal(node.charset, 'utf-8')
+            })
             it('async', () => {
-                assert.equal(node.async, true);
-            });
+                assert.equal(node.async, true)
+            })
             it('defer', () => {
-                assert.equal(node.defer, true);
-            });
+                assert.equal(node.defer, true)
+            })
             it.skip('crossOrigin', () => {
-                assert.equal(node.crossOrigin, 'use-credentials');
-            });
+                assert.equal(node.crossOrigin, 'use-credentials')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, script.toString());
-            });
-        });
+                assert.equal(node.textContent, script.toString())
+            })
+        })
         describe('section', () => {
-            const node = section('Application section');
+            const node = section('Application section')
             it('tagName', () => {
-                assert.equal(node.tagName, 'SECTION');
-            });
+                assert.equal(node.tagName, 'SECTION')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Application section');
-            });
+                assert.equal(node.textContent, 'Application section')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<section>Application section</section>');
-            });
-        });
+                assert.equal(node.outerHTML, '<section>Application section</section>')
+            })
+        })
         describe('select', () => {
             const node = select({
                 // autocomplete : 'off', // todo
@@ -2826,105 +2826,105 @@ describe('HTMLDOM library', () => {
                     '<option>opt1</option>' +
                     '<optgroup><option>opt2</option></optgroup>' +
                     '<option>opt3</option>',
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'SELECT');
-            });
+                assert.equal(node.tagName, 'SELECT')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLSelectElement, node + ' instance of ' + HTMLSelectElement);
-            });
+                assert(node instanceof HTMLSelectElement, node + ' instance of ' + HTMLSelectElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 6);
-            });
+                assert.equal(node.attributes.length, 6)
+            })
             it('autofocus', () => {
-                assert.equal(node.autofocus, true);
-            });
+                assert.equal(node.autofocus, true)
+            })
             it('disabled', () => {
-                assert.equal(node.disabled, true);
-            });
+                assert.equal(node.disabled, true)
+            })
             it('name', () => {
-                assert.equal(node.name, 'select-9');
-            });
+                assert.equal(node.name, 'select-9')
+            })
             it('required', () => {
-                assert.equal(node.required, true);
-            });
+                assert.equal(node.required, true)
+            })
             it('size', () => {
-                assert.equal(node.size, 10);
-            });
+                assert.equal(node.size, 10)
+            })
             it('form attribute', () => {
-                assert.equal(node.getAttribute('form'), 'saveform');
-            });
+                assert.equal(node.getAttribute('form'), 'saveform')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it('innerHTML', () => {
                 assert.equal(node.innerHTML,
                     '<option>opt1</option>' +
                     '<optgroup><option>opt2</option></optgroup>' +
-                    '<option>opt3</option>');
-            });
-        });
+                    '<option>opt3</option>')
+            })
+        })
         describe('small', () => {
-            const node = small('Copyright © Vyacheslav Aritov');
+            const node = small('Copyright © Vyacheslav Aritov')
             it('tagName', () => {
-                assert.equal(node.tagName, 'SMALL');
-            });
+                assert.equal(node.tagName, 'SMALL')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Copyright © Vyacheslav Aritov');
-            });
+                assert.equal(node.textContent, 'Copyright © Vyacheslav Aritov')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<small>Copyright © Vyacheslav Aritov</small>');
-            });
-        });
+                assert.equal(node.outerHTML, '<small>Copyright © Vyacheslav Aritov</small>')
+            })
+        })
         describe('source', () => {
             const node = source({
                 src : '/audio-01.mp3',
                 type : 'audio/*',
                 media : 'screen',
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'SOURCE');
-            });
+                assert.equal(node.tagName, 'SOURCE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLSourceElement, node + ' instance of ' + HTMLSourceElement);
-            });
+                assert(node instanceof HTMLSourceElement, node + ' instance of ' + HTMLSourceElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 3);
-            });
+                assert.equal(node.attributes.length, 3)
+            })
             it('src', () => {
-                assert(node.src.endsWith('/audio-01.mp3'), 'proper src');
-            });
+                assert(node.src.endsWith('/audio-01.mp3'), 'proper src')
+            })
             it('type', () => {
-                assert.equal(node.type, 'audio/*');
-            });
+                assert.equal(node.type, 'audio/*')
+            })
             it('media', () => {
-                assert.equal(node.media, 'screen');
-            });
+                assert.equal(node.media, 'screen')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('style', () => {
             const node = style({
                 media : 'screen',
@@ -2933,62 +2933,62 @@ describe('HTMLDOM library', () => {
                 title : 'Application style sheet',
                 // nonce : 'abc', // todo
                 children : 'style { display: block }',
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'STYLE');
-            });
+                assert.equal(node.tagName, 'STYLE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLStyleElement, node + ' instance of ' + HTMLStyleElement);
-            });
+                assert(node instanceof HTMLStyleElement, node + ' instance of ' + HTMLStyleElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 3);
-            });
+                assert.equal(node.attributes.length, 3)
+            })
             it('media', () => {
-                assert.equal(node.media, 'screen');
-            });
+                assert.equal(node.media, 'screen')
+            })
             it('type', () => {
-                assert.equal(node.type, 'text/css');
-            });
+                assert.equal(node.type, 'text/css')
+            })
             it('title', () => {
-                assert.equal(node.title, 'Application style sheet');
-            });
+                assert.equal(node.title, 'Application style sheet')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'style { display: block }');
-            });
-        });
+                assert.equal(node.textContent, 'style { display: block }')
+            })
+        })
         describe('table', () => {
             const node = table({
                 innerHTML :
                     '<tr><td>A1</td><td>A2</td><td>A3</td></tr>' +
                     '<tr><td>B1</td><td>B2</td><td>B3</td></tr>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'TABLE');
-            });
+                assert.equal(node.tagName, 'TABLE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableElement, node + ' instance of ' + HTMLTableElement);
-            });
+                assert(node instanceof HTMLTableElement, node + ' instance of ' + HTMLTableElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('firstChild.tagName', () => {
-                assert.equal(node.firstChild.tagName, 'TBODY');
-            });
+                assert.equal(node.firstChild.tagName, 'TBODY')
+            })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML,
                     '<table>' +
@@ -2996,9 +2996,9 @@ describe('HTMLDOM library', () => {
                             '<tr><td>A1</td><td>A2</td><td>A3</td></tr>' +
                             '<tr><td>B1</td><td>B2</td><td>B3</td></tr>' +
                         '</tbody>' +
-                    '</table>');
-            });
-        });
+                    '</table>')
+            })
+        })
         describe('textarea', () => {
             const node = textarea({
                 // autocomplete : 'off', // todo
@@ -3018,122 +3018,122 @@ describe('HTMLDOM library', () => {
                 value : 'User multiline input value',
                 defaultValue : 'Default multiline value',
                 attrset : { form : 'saveform' }
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'TEXTAREA');
-            });
+                assert.equal(node.tagName, 'TEXTAREA')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTextAreaElement, node + ' instance of ' + HTMLTextAreaElement);
-            });
+                assert(node instanceof HTMLTextAreaElement, node + ' instance of ' + HTMLTextAreaElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 11);
-            });
+                assert.equal(node.attributes.length, 11)
+            })
             it('autofocus', () => {
-                assert.equal(node.autofocus, true);
-            });
+                assert.equal(node.autofocus, true)
+            })
             it('cols', () => {
-                assert.equal(node.cols, 15);
-            });
+                assert.equal(node.cols, 15)
+            })
             it('disabled', () => {
-                assert.equal(node.disabled, true);
-            });
+                assert.equal(node.disabled, true)
+            })
             it('name', () => {
-                assert.equal(node.name, 'input_name');
-            });
+                assert.equal(node.name, 'input_name')
+            })
             it('placeholder', () => {
-                assert.equal(node.placeholder, 'Paste');
-            });
+                assert.equal(node.placeholder, 'Paste')
+            })
             it('readOnly', () => {
-                assert.equal(node.readOnly, true);
-            });
+                assert.equal(node.readOnly, true)
+            })
             it('required', () => {
-                assert.equal(node.required, true);
-            });
+                assert.equal(node.required, true)
+            })
             it('rows', () => {
-                assert.equal(node.rows, 20);
-            });
+                assert.equal(node.rows, 20)
+            })
             it('wrap', () => {
-                assert.equal(node.wrap, 'hard');
-            });
+                assert.equal(node.wrap, 'hard')
+            })
             it('value', () => {
-                assert.equal(node.value, 'User multiline input value');
-            });
+                assert.equal(node.value, 'User multiline input value')
+            })
             it('defaultValue', () => {
-                assert.equal(node.defaultValue, 'Default multiline value');
-            });
+                assert.equal(node.defaultValue, 'Default multiline value')
+            })
             it('form attribute', () => {
-                assert.equal(node.getAttribute('form'), 'saveform');
-            });
+                assert.equal(node.getAttribute('form'), 'saveform')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert(node.textContent, 'Multiline user input');
-            });
-        });
+                assert(node.textContent, 'Multiline user input')
+            })
+        })
         /*describe('time', () => {
             const node = time({
                 dateTime : '2016-11-11',
                 children : 'November 11'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'TIME');
-            });
+                assert.equal(node.tagName, 'TIME')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTimeElement, node + ' instance of ' + HTMLTimeElement);
-            });
+                assert(node instanceof HTMLTimeElement, node + ' instance of ' + HTMLTimeElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1);
-            });
+                assert.equal(node.attributes.length, 1)
+            })
             it('dateTime', () => {
-                assert.equal(node.dateTime, '2016-11-11');
-            });
+                assert.equal(node.dateTime, '2016-11-11')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'November 11');
-            });
+                assert.equal(node.textContent, 'November 11')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<time datetime="2016-11-11">November 11</time>');
-            });
+                assert.equal(node.outerHTML, '<time datetime="2016-11-11">November 11</time>')
+            })
         });*/
         describe('title', () => {
-            const node = title('Application title');
+            const node = title('Application title')
             it('tagName', () => {
-                assert.equal(node.tagName, 'TITLE');
-            });
+                assert.equal(node.tagName, 'TITLE')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTitleElement, node + ' instance of ' + HTMLTitleElement);
-            });
+                assert(node instanceof HTMLTitleElement, node + ' instance of ' + HTMLTitleElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Application title');
-            });
+                assert.equal(node.textContent, 'Application title')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<title>Application title</title>');
-            });
-        });
+                assert.equal(node.outerHTML, '<title>Application title</title>')
+            })
+        })
         describe('track', () => {
             const node = track({
                 kind : 'captions',
@@ -3141,62 +3141,62 @@ describe('HTMLDOM library', () => {
                 srclang : 'uk',
                 label : 'First audio track',
                 default : true,
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'TRACK');
-            });
+                assert.equal(node.tagName, 'TRACK')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTrackElement, node + ' instance of ' + HTMLTrackElement);
-            });
+                assert(node instanceof HTMLTrackElement, node + ' instance of ' + HTMLTrackElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 5);
-            });
+                assert.equal(node.attributes.length, 5)
+            })
             it('kind', () => {
-                assert.equal(node.kind, 'captions');
-            });
+                assert.equal(node.kind, 'captions')
+            })
             it('src', () => {
-                assert(node.src.endsWith('/track-1.mp3'), 'proper src');
-            });
+                assert(node.src.endsWith('/track-1.mp3'), 'proper src')
+            })
             it('srclang', () => {
-                assert.equal(node.srclang, 'uk');
-            });
+                assert.equal(node.srclang, 'uk')
+            })
             it('label', () => {
-                assert.equal(node.label, 'First audio track');
-            });
+                assert.equal(node.label, 'First audio track')
+            })
             it('default', () => {
-                assert.equal(node.default, true);
-            });
+                assert.equal(node.default, true)
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
-        });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
+        })
         describe('u', () => {
-            const node = u('Misspelt text');
+            const node = u('Misspelt text')
             it('tagName', () => {
-                assert.equal(node.tagName, 'U');
-            });
+                assert.equal(node.tagName, 'U')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1);
-            });
+                assert.equal(node.childNodes.length, 1)
+            })
             it('textContent', () => {
-                assert.equal(node.textContent, 'Misspelt text');
-            });
+                assert.equal(node.textContent, 'Misspelt text')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<u>Misspelt text</u>');
-            });
-        });
+                assert.equal(node.outerHTML, '<u>Misspelt text</u>')
+            })
+        })
         describe('video', () => {
             const poster = 'data:image/gif;base64,R0lGODdhMAAwAPAAAAAAAP///ywAAAAAMAAw' +
                 'AAAC8IyPqcvt3wCcDkiLc7C0qwyGHhSWpjQu5yqmCYsapyuvUUlvONmOZtfzgFz' +
@@ -3204,7 +3204,7 @@ describe('HTMLDOM library', () => {
                 'a/TPg7JpJHxyendzWTBfX0cxOnKPjgBzi4diinWGdkF8kjdfnycQZXZeYGejmJl' +
                 'ZeGl9i2icVqaNVailT6F5iJ90m6mvuTS4OK05M0vDk0Q4XUtwvKOzrcd3iq9uis' +
                 'F81M1OIcR7lEewwcLp7tuNNkM3uNna3F2JQFo97Vriy/Xl4/f1cf5VWzXyym7PH' +
-                'hhx4dbgYKAAA7';
+                'hhx4dbgYKAAA7'
             const node = video({
                 src : 'https://aristov.github.io/media-samples/sample.mov',
                 // crossOrigin : 'use-credentials', // fixme msie11
@@ -3218,79 +3218,79 @@ describe('HTMLDOM library', () => {
                 width : 100,
                 height : 75,
                 innerHTML : '<track><track><track>'
-            });
+            })
             it('tagName', () => {
-                assert.equal(node.tagName, 'VIDEO');
-            });
+                assert.equal(node.tagName, 'VIDEO')
+            })
             it('proper constructor', () => {
                 assert(node instanceof HTMLVideoElement,
-                    node + ' instance of ' + HTMLVideoElement);
-            });
+                    node + ' instance of ' + HTMLVideoElement)
+            })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes');
-            });
+                assert(node.hasAttributes(), 'has attributes')
+            })
             it('src', () => {
-                assert.equal(node.src, 'https://aristov.github.io/media-samples/sample.mov');
-            });
+                assert.equal(node.src, 'https://aristov.github.io/media-samples/sample.mov')
+            })
             it.skip('crossOrigin', () => { // todo
-                assert.equal(node.crossOrigin, 'use-credentials');
-            });
+                assert.equal(node.crossOrigin, 'use-credentials')
+            })
             it('poster', () => {
-                assert.equal(node.poster, poster);
-            });
+                assert.equal(node.poster, poster)
+            })
             it('preload', () => {
-                assert.equal(node.preload, 'metadata');
-            });
+                assert.equal(node.preload, 'metadata')
+            })
             it('autoplay', () => {
-                assert.equal(node.autoplay, true);
-            });
+                assert.equal(node.autoplay, true)
+            })
             it.skip('playsInline', () => {
-                assert.equal(node.playsInline, true);
-            });
+                assert.equal(node.playsInline, true)
+            })
             it('loop', () => {
-                assert.equal(node.loop, true);
-            });
+                assert.equal(node.loop, true)
+            })
             it('muted', () => {
-                assert.equal(node.muted, true);
-            });
+                assert.equal(node.muted, true)
+            })
             it('controls', () => {
-                assert.equal(node.controls, true);
-            });
+                assert.equal(node.controls, true)
+            })
             it('width', () => {
-                assert.equal(node.width, 100);
-            });
+                assert.equal(node.width, 100)
+            })
             it('height', () => {
-                assert.equal(node.height, 75);
-            });
+                assert.equal(node.height, 75)
+            })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes');
-            });
+                assert(node.hasChildNodes(), 'has child nodes')
+            })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3);
-            });
+                assert.equal(node.childNodes.length, 3)
+            })
             it.skip('innerHTML', () => { // todo safari
-                assert.equal(node.innerHTML, '<track><track><track>');
-            });
-        });
+                assert.equal(node.innerHTML, '<track><track><track>')
+            })
+        })
         describe('wbr', () => {
-            const node = wbr();
+            const node = wbr()
             it('tagName', () => {
-                assert.equal(node.tagName, 'WBR');
-            });
+                assert.equal(node.tagName, 'WBR')
+            })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement);
-            });
+                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+            })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes');
-            });
+                assert(!node.hasAttributes(), 'has no attributes')
+            })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes');
-            });
+                assert(!node.hasChildNodes(), 'has no child nodes')
+            })
             it('outerHTML', () => {
-                assert.equal(node.outerHTML, '<wbr>');
-            });
-        });
-    });
+                assert.equal(node.outerHTML, '<wbr>')
+            })
+        })
+    })
 
     describe('Various structures', () => {
         describe('Authorization fieldset', () => {
@@ -3300,15 +3300,15 @@ describe('HTMLDOM library', () => {
                         legend('Authorization'),
                         input({ type : 'email' }),
                         input({ type : 'password' })
-                    ]);
+                    ])
                 assert.equal(node.outerHTML,
                     '<fieldset>' +
                         '<legend>Authorization</legend>' +
                         '<input type="email">' +
                         '<input type="password">' +
-                    '</fieldset>');
-            });
-        });
+                    '</fieldset>')
+            })
+        })
         describe('Header with navigation', () => {
             it('properly build header with navigational links inside', () => {
                 const node =
@@ -3316,17 +3316,17 @@ describe('HTMLDOM library', () => {
                         a({ href : '/lib.html', textContent : 'Library' }),
                         a({ href : '/spec.html', textContent : 'Specifications' }),
                         a({ href : '/home.html', textContent : 'Go home' })
-                    ]));
+                    ]))
                 assert.equal(node.outerHTML,
                     '<header><nav>' +
                         '<a href="/lib.html">Library</a>' +
                         '<a href="/spec.html">Specifications</a>' +
                         '<a href="/home.html">Go home</a>' +
-                    '</nav></header>');
-            });
-        });
+                    '</nav></header>')
+            })
+        })
         describe('Select box widget', () => {
-            let widget, selected;
+            let widget, selected
             const node =
                 label([
                     'Select technology ',
@@ -3338,7 +3338,7 @@ describe('HTMLDOM library', () => {
                         option('MathML'),
                         option('WAI-ARIA')
                     ])
-                ]);
+                ])
             it('properly build label with select box option list inside', () => {
                 assert.equal(node.outerHTML,
                     '<label>' +
@@ -3351,13 +3351,13 @@ describe('HTMLDOM library', () => {
                             '<option>MathML</option>' +
                             '<option>WAI-ARIA</option>' +
                         '</select>' +
-                    '</label>');
-            });
+                    '</label>')
+            })
             it('proper selected option reference', () => {
-                assert.equal(widget.selectedOptions.length, 1);
-                assert.equal(widget.selectedOptions[0], selected);
-            });
-        });
+                assert.equal(widget.selectedOptions.length, 1)
+                assert.equal(widget.selectedOptions[0], selected)
+            })
+        })
         describe('Search form', () => {
             it('properly build form with search input and submit button inside', () => {
                 const node =
@@ -3367,41 +3367,41 @@ describe('HTMLDOM library', () => {
                             input({ type : 'search' }),
                             button('Search')
                         ]
-                    });
+                    })
                 assert.equal(node.outerHTML,
                     '<form role="search">' +
                         '<input type="search">' +
                         '<button>Search</button>' +
-                    '</form>');
-            });
-        });
+                    '</form>')
+            })
+        })
         describe('Checkboxes', () => {
-            let simple, checked, indeterminate;
+            let simple, checked, indeterminate
             const node =
                 div([
                     simple = input({ type : 'checkbox' }),
                     checked = input({ type : 'checkbox', checked : true }),
                     indeterminate = input({ type : 'checkbox', indeterminate : true })
-                ]);
+                ])
             it('proper HTML rendered', () => {
                 assert.equal(node.outerHTML,
                     '<div>' +
                         '<input type="checkbox">' +
                         '<input type="checkbox">' +
                         '<input type="checkbox">' +
-                    '</div>');
-            });
+                    '</div>')
+            })
             it('check current state of widgets', () => {
-                assert(!simple.checked);
-                assert(checked.checked);
-                assert(indeterminate.indeterminate);
-            });
+                assert(!simple.checked)
+                assert(checked.checked)
+                assert(indeterminate.indeterminate)
+            })
             it('proper initial state assignment', () => {
-                const sample = input({ type : 'checkbox', attrset : { checked : '' } });
-                const container = div({ innerHTML : '<input type=checkbox checked>' });
-                assert(sample.isEqualNode(container.firstChild));
-            });
-        });
+                const sample = input({ type : 'checkbox', attrset : { checked : '' } })
+                const container = div({ innerHTML : '<input type=checkbox checked>' })
+                assert(sample.isEqualNode(container.firstChild))
+            })
+        })
         describe('Various list examples', () => {
             it('properly build ul + li', () => {
                 assert.equal(
@@ -3415,8 +3415,8 @@ describe('HTMLDOM library', () => {
                         '<li>Fender</li>' +
                         '<li>Warwick</li>' +
                     '</ul>'
-                );
-            });
+                )
+            })
             it('properly build ol + li', () => {
                 assert.equal(
                     ol([
@@ -3428,8 +3428,8 @@ describe('HTMLDOM library', () => {
                         '<li>Moscow</li>' +
                         '<li>Amsterdam</li>' +
                         '<li>New York</li>' +
-                    '</ol>');
-            });
+                    '</ol>')
+            })
             it('properly build dl + dt + dd', () => {
                 assert.equal(
                     dl([
@@ -3447,9 +3447,9 @@ describe('HTMLDOM library', () => {
                         '<dd>Extensible markup language</dd>' +
                         '<dt>HTML</dt>' +
                         '<dd>Hyper text markup language</dd>' +
-                    '</dl>');
-            });
-        });
+                    '</dl>')
+            })
+        })
         describe('Details with summary', () => {
             it('properly build widget', () => {
                 const node =
@@ -3457,15 +3457,15 @@ describe('HTMLDOM library', () => {
                         summary('Show details'),
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ',
                         'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                    ]);
+                    ])
                 assert.equal(node.outerHTML,
                     '<details>' +
                         '<summary>Show details</summary>' +
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' +
                         'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-                    '</details>');
-            });
-        });
+                    '</details>')
+            })
+        })
         describe('Table', () => {
             it('properly build widget', () => {
                 const node =
@@ -3482,7 +3482,7 @@ describe('HTMLDOM library', () => {
                         ].map(([xmlterm, htmlterm]) =>
                             tr([td(code(xmlterm)), td(code(htmlterm))]))),
                         tfoot([tr([th('9'), th('7')])])
-                    ]);
+                    ])
                 assert.equal(node.outerHTML,
                     '<table>' +
                         '<caption>Related semantics</caption>' +
@@ -3498,9 +3498,9 @@ describe('HTMLDOM library', () => {
                             '<tr><td><code>ul, ol</code></td><td><code>list</code></td></tr>' +
                         '</tbody>' +
                         '<tfoot><tr><th>9</th><th>7</th></tr></tfoot>' +
-                    '</table>');
-            });
-        });
+                    '</table>')
+            })
+        })
         describe('Ruby annotations', () => {
             it('properly build DOM structure', () => {
                 const node =
@@ -3516,7 +3516,7 @@ describe('HTMLDOM library', () => {
                             '漢', rp(' ('), rt('かん'), rp(')'),
                             '字', rp(' ('), rt('じ'), rp(')')
                         ]))
-                    ]);
+                    ])
                 assert.equal(node.outerHTML,
                     '<article>' +
                         '<h1>Ruby annotations</h1>' +
@@ -3530,12 +3530,12 @@ describe('HTMLDOM library', () => {
                                 '字<rp> (</rp><rt>じ</rt><rp>)</rp>' +
                             '</ruby>' +
                         '</section>' +
-                    '</article>');
-            });
-        });
+                    '</article>')
+            })
+        })
         describe('Bidirectional', () => {
             it('properly build DOM structure', () => {
-                const children = 'АРОЗАУПАЛА';
+                const children = 'АРОЗАУПАЛА'
                 const node =
                     article([
                         h1('Bidirectional'),
@@ -3555,7 +3555,7 @@ describe('HTMLDOM library', () => {
                                 bdi('إيان'),
                                 ': 3 posts.'])
                         ])
-                    ]);
+                    ])
                 assert.equal(node.outerHTML,
                     '<article>' +
                         '<h1>Bidirectional</h1>' +
@@ -3565,9 +3565,9 @@ describe('HTMLDOM library', () => {
                             '<li>User <bdi>hober</bdi>: 5 posts.</li>' +
                             '<li>User <bdi>إيان</bdi>: 3 posts.</li>' +
                         '</ul>' +
-                    '</article>');
-            });
-        });
+                    '</article>')
+            })
+        })
         describe('Other', () => {
             it('property build DOM fragment', () => {
                 const node =
@@ -3584,7 +3584,7 @@ describe('HTMLDOM library', () => {
                             i('alternative voice'),
                             strong('important!')
                         ])
-                    ]);
+                    ])
                 assert.equal(node.outerHTML,
                     '<main>' +
                         '<section><dfn>' +
@@ -3601,38 +3601,38 @@ describe('HTMLDOM library', () => {
                             '<i>alternative voice</i>' +
                             '<strong>important!</strong>' +
                         '</section>' +
-                    '</main>');
-            });
+                    '</main>')
+            })
             it('htmldom, span', () => {
                 const node1 = htmldom('span', {
                     id : '00101',
                     className :'fa fi fu',
                     tabIndex : 0,
                     children : ['a', span('a b'), 'b']
-                });
+                })
                 const node2 = span({
                     id : '00101',
                     className :'fa fi fu',
                     tabIndex : 0,
                     children : ['a', span('a b'), 'b']
-                });
-                [node1, node2].forEach(node => {
-                    assert.equal(node.nodeType, ELEMENT_NODE);
-                    assert.equal(node.tagName, 'SPAN');
-                    assert(node instanceof HTMLSpanElement, node + ' instance of ' + HTMLSpanElement);
-                    assert.equal(node.attributes.length, 3);
-                    assert.equal(node.id, '00101');
-                    assert.equal(node.className, 'fa fi fu');
-                    assert.equal(node.tabIndex, 0);
-                    assert.equal(node.children.length, 1);
-                    assert.equal(node.childNodes.length, 3);
-                    assert.equal(node.childNodes[0].nodeType, TEXT_NODE);
-                    assert.equal(node.childNodes[1].constructor, HTMLSpanElement);
-                    assert.equal(node.childNodes[2].textContent, 'b');
-                });
-                assert(node1.isEqualNode(node2), 'htmldom() and span() work differently');
-            });
-        });
-    });
+                })
+                ;[node1, node2].forEach(node => {
+                    assert.equal(node.nodeType, ELEMENT_NODE)
+                    assert.equal(node.tagName, 'SPAN')
+                    assert(node instanceof HTMLSpanElement, node + ' instance of ' + HTMLSpanElement)
+                    assert.equal(node.attributes.length, 3)
+                    assert.equal(node.id, '00101')
+                    assert.equal(node.className, 'fa fi fu')
+                    assert.equal(node.tabIndex, 0)
+                    assert.equal(node.children.length, 1)
+                    assert.equal(node.childNodes.length, 3)
+                    assert.equal(node.childNodes[0].nodeType, TEXT_NODE)
+                    assert.equal(node.childNodes[1].constructor, HTMLSpanElement)
+                    assert.equal(node.childNodes[2].textContent, 'b')
+                })
+                assert(node1.isEqualNode(node2), 'htmldom() and span() work differently')
+            })
+        })
+    })
 
-});
+})

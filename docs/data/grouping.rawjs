@@ -10,9 +10,9 @@ htmlmodule => {
         pre,
         // Dividers
         hr, div,
-    } = htmlmodule;
+    } = htmlmodule
 
-    const { article, b,  h1, section } = htmlmodule;
+    const { article, b,  h1, section } = htmlmodule
 
     return article([
         h1('Grouping content'),
@@ -135,5 +135,5 @@ _________________________________________________________`)
                     'for when no other element is suitable'
             })
         ])
-    ]);
+    ])
 }

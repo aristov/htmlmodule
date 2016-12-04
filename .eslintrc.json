@@ -216,7 +216,7 @@
     "radix": "error",
     "require-jsdoc": "error",
     "rest-spread-spacing": "error",
-    "semi": "error",
+    "semi": "off",
     "semi-spacing": "error",
     "sort-imports": "off",
     "sort-keys": "off",

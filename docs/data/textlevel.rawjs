@@ -18,11 +18,11 @@ htmlmodule => {
         br, wbr,
         // Edits
         ins, del,
-    } = htmlmodule;
+    } = htmlmodule
 
-    const { article, h1, li, p, section, style, ul } = htmlmodule;
+    const { article, h1, li, p, section, style, ul } = htmlmodule
 
-    const children = 'АРОЗАУПАЛА';
+    const children = 'АРОЗАУПАЛА'
 
     const abbrlist = {
         DOM : 'Document object model',
@@ -33,7 +33,7 @@ htmlmodule => {
         'WAI-ARIA' : 'Web accessibility initiative — ' +
             'Accessible rich internet applications',
         HTTP : 'Hyper text trasform protocol',
-    };
+    }
 
     return article([
         h1('Text-level semantics'),
@@ -144,7 +144,7 @@ htmlmodule => {
             section([
                 h1('Variables and computer code'),
                 p(code([
-                    'import { ', variable('code'), ' } from \'htmlmodule\';'
+                    'import { ', variable('code'), ' } from \'htmlmodule\''
                 ]))
             ]),
             section([
@@ -245,5 +245,5 @@ htmlmodule => {
             p(del('A removal from the document')),
         ]),
         style('article > section { border-top : 1px solid #ccc }')
-    ]);
+    ])
 }

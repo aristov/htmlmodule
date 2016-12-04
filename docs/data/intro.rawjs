@@ -102,4 +102,4 @@
             'a[href][rel~=external]:not(:active) { color: #050 }',
             'abbr { cursor: help }',
         ])
-    ]);
+    ])

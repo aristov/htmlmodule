@@ -6,22 +6,22 @@ htmlmodule => {
         address, aside, nav,
         // Headings
         h1, h2, h3, h4, h5, h6, hgroup,
-    } = htmlmodule;
+    } = htmlmodule
 
-    const { a, hr, p } = htmlmodule;
+    const { a, hr, p } = htmlmodule
 
     function onclick(event) {
-        event.preventDefault();
-        const target = event.target;
+        event.preventDefault()
+        const target = event.target
         if(target.hash) {
-            const name = target.hash.slice(1);
-            const document = target.ownerDocument;
-            const node = document.querySelector(name);
+            const name = target.hash.slice(1)
+            const document = target.ownerDocument
+            const node = document.querySelector(name)
             if(node) {
-                node.tabIndex = -1;
-                node.focus();
+                node.tabIndex = -1
+                node.focus()
                 if(!node.onblur) node.onblur = () => {
-                    node.removeAttribute('tabindex');
+                    node.removeAttribute('tabindex')
                 }
             }
         }
@@ -41,10 +41,10 @@ htmlmodule => {
 
         'The [footer] element contains the [address] ' +
             'and a modification date of the page.'
-    ].join(' ');
+    ].join(' ')
 
-    const ELEMENT_RE = /\[(\w+)\]/g;
-    const anchor = a({ href : '#$1', children : '$1' });
+    const ELEMENT_RE = /\[(\w+)\]/g
+    const anchor = a({ href : '#$1', children : '$1' })
 
     return article([
         header([
@@ -63,8 +63,8 @@ htmlmodule => {
         ]),
         hr(),
         aside(((...hh) => {
-            const group = [...hh.slice(1).reverse(), ...hh];
-            return hgroup(group.map(hx => hx('HTML is amazing')));
+            const group = [...hh.slice(1).reverse(), ...hh]
+            return hgroup(group.map(hx => hx('HTML is amazing')))
         })(h2, h3, h4, h5, h6)),
         hr(),
         footer([
@@ -78,5 +78,5 @@ htmlmodule => {
                 })
             ])
         ]),
-    ]);
+    ])
 }

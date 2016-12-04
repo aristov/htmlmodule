@@ -2,13 +2,13 @@
     const files = ['index.html', 'docs/index.js', 'docs/index.css'];
     Promise
         .all(files.map(file => {
-            return fetch(file).then(res => res.text());
+            return fetch(file).then(res => res.text())
         }))
         .then(function(sources) {
             sources.forEach((src, i) => {
-                node.append(code(files[i]), pre(code(src)));
-            });
-        });
+                node.append(code(files[i]), pre(code(src)))
+            })
+        })
     const node = article(style(`
         pre { margin-top: 1px }
         pre > code {
@@ -18,6 +18,6 @@
             padding: 12px;
             margin-bottom: 20px;
         }
-    `));
-    return node;
+    `))
+    return node
 }
