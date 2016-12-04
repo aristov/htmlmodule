@@ -2,66 +2,52 @@
     section([
         h1('Welcome!'),
         p([
-            'You are inside the ',
-            abbr({
+            'You are inside the ', abbr({
                 title : 'read-eval-print-loop',
                 children : 'REPL'
-            }),
-            '-machine. It was assembled instantly by ',
-            a({
+            }), '-machine. It was assembled instantly by ', a({
                 href : 'https://npmjs.org/package/htmlmodule',
                 rel : 'external',
                 target : '_blank',
                 title : 'DOM assembler library',
                 children : 'htmlmodule'
-            }),
-            ' on the page load.'
+            }), ' on the page load.'
         ]),
         p([
-            'You may focus the left ',
-            a({
+            'You may focus the left ', a({
                 href: '#replinputcode',
                 target : '_parent',
                 title : 'Keyboard: use ALT+TAB ' +
                     'for tabbing from the code editor',
                 children : 'code editor'
-            }),
-            ' and change ',
-            'the source code of the document ' +
+            }), ' and change the source code of the document ' +
                 'that you are reading now.'
         ]),
         nav([
             p([
-                'There are some usage ' +
-                    'code examples provided: try the ',
-                a({
-                    href : '#replbuttonprev',
-                    target : '_parent',
-                    rel : 'prev',
-                    title : 'Keyboard: use LEFT arrow key',
-                    children : 'prev'
-                }),
-                ' and the ',
-                a({
-                    href : '#replbuttonnext',
-                    target : '_parent',
-                    rel : 'next',
-                    title : 'Keyboard: use RIGHT arrow key',
-                    children : 'next'
-                }),
-                ' buttons on the bottom of your screen.'
+                'There are some usage code examples provided: ' +
+                    'try the ', a({
+                        href : '#replbuttonprev',
+                        target : '_parent',
+                        rel : 'prev',
+                        title : 'Keyboard: use LEFT arrow key',
+                        children : 'prev'
+                    }), ' and the ', a({
+                        href : '#replbuttonnext',
+                        target : '_parent',
+                        rel : 'next',
+                        title : 'Keyboard: use RIGHT arrow key',
+                        children : 'next'
+                    }), ' buttons on the bottom of your screen.'
             ]),
             p([
-                'Use the ',
-                a({
+                'Use the ', a({
                     href : '#markuptoggle',
                     target : '_parent',
                     rel : 'alternate',
                     title : 'Keyboard: use UP and DOWN arrow keys',
                     children : 'markup'
-                }),
-                ' summary button to toggle the ',
-                abbr({
+                }), ' summary button to toggle the ', abbr({
                     title : 'Hyper text markup language',
                     children : 'HTML'
                 }),
@@ -69,8 +55,7 @@
                 abbr({
                     title : 'Document object model',
                     children : 'DOM'
-                }),
-                ' structure of the evaluation result.'
+                }), ' structure of the evaluation result.'
             ])
         ]),
         p('If you wanna more details, take a look at the:'),
