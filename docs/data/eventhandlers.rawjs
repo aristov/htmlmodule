@@ -1,7 +1,7 @@
 ({ article, section, h1, button, label, input, p, variable, code }) => {
 
     // this text is used as initial button text
-    const textContent = 'Give me a focus, please...';
+    const textContent = 'Give me a focus, please...'
 
     // create focusbutton, set it's text content and event handlers:
     // onfocus - to change the text inside the button
@@ -10,7 +10,7 @@
         onfocus : ({ target }) => target.textContent = 'Focused!',
         onblur : ({ target }) => target.textContent = textContent,
         textContent
-    });
+    })
 
     // this button shows a system alert window
     // onclick hanlder shows an alert with a message
@@ -26,7 +26,7 @@
         // set button's style and text label
         style : { marginRight: '10px' },
         children : 'Show me an alert, please...'
-    });
+    })
 
     // use this checkbox if you don't like alerts =)
     // it sets the onchange event handler to disable the alertbutton
@@ -34,11 +34,11 @@
         input({
             type : 'checkbox',
             onchange : ({ target }) => {
-                alertbutton.disabled = target.checked;
+                alertbutton.disabled = target.checked
             },
         }),
         ' no alerts!' // text label for input
-    ]);
+    ])
 
     // this textbox shows char count in secondary readonly box
     // it has a placeholder, inline style and oninput event handler
@@ -48,7 +48,7 @@
             placeholder : 'Count my chars, please...',
             oninput : ({ target }) => {
                 // simply calculate the input value length
-                charcountbox.lastChild.value = target.value.length;
+                charcountbox.lastChild.value = target.value.length
             },
             style : { width : '200px', marginRight: '10px' }
         }),
@@ -61,7 +61,7 @@
             tabIndex : -1,
             style : { width : '20px', textAlign : 'center' }
         })
-    ]);
+    ])
 
     // build the article DOM structure
     return article([
@@ -97,5 +97,5 @@
             ]),
             charcountbox
         ])
-    ]);
+    ])
 }

@@ -1,8 +1,8 @@
-import { script } from './htmlmodule';
+import { script } from './htmlmodule'
 
-const TEST_SRC = '()=>{}';
-const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js';
-const BABEL_CONFIG = { presets: ['es2015'] };
+const TEST_SRC = '()=>{}'
+const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js'
+const BABEL_CONFIG = { presets: ['es2015'] }
 
 /**
  * Check if a browser supports ES2015 synthax
@@ -11,11 +11,11 @@ const BABEL_CONFIG = { presets: ['es2015'] };
  */
 export function es2015support(src = TEST_SRC) {
     try {
-        Function(src);
-        return true;
+        Function(src)
+        return true
     }
     catch(error) {
-        return false;
+        return false
     }
 }
 
@@ -32,9 +32,9 @@ export function standalone(src = BABEL_URL) {
             src,
             onload : resolve,
             onerror : reject
-        });
-        document.body.append(babelscript);
-    });
+        })
+        document.body.append(babelscript)
+    })
 }
 
 /**
@@ -45,6 +45,6 @@ export function standalone(src = BABEL_URL) {
  * @returns {String}
  */
 export function babel(input, config = BABEL_CONFIG) {
-    const res = window.Babel.transform(input, config);
-    return res.code.replace(/^['"]use\sstrict['"];\n\n/, '');
+    const res = window.Babel.transform(input, config)
+    return res.code.replace(/^['"]use\sstrict['"];\n\n/, '')
 }

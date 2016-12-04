@@ -1,7 +1,7 @@
-import { REPLApp } from './lib/replapp';
-import { data } from './data';
-import './index.css';
+import { REPLApp } from './lib/replapp'
+import { data } from './data'
+import './index.css'
 
-const replapp = new REPLApp(data);
+const replapp = new REPLApp(data)
 
-document.body.append(replapp.node);
+document.body.append(replapp.node)

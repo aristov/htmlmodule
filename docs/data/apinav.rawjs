@@ -6,7 +6,7 @@
         href : 'dist/api/function/#static-function-$1',
         target : '_blank',
         children : '$1' // simple and well-known regexp magic
-    });
+    })
 
     // Gefine a template function that builds a list
     // of links from the given list of short descriptions
@@ -14,7 +14,7 @@
         return ul(items.map(item => li({
             // use innerHTML to generate nested links
             innerHTML : item.replace(/(\w+)/g, apilink.outerHTML)
-        })));
+        })))
     }
 
     // Assemble the API reference, using just defined function
@@ -141,5 +141,5 @@
         style([
             ':link:not(:hover):not(:focus) { text-decoration: none }'
         ])
-    ]);
+    ])
 }

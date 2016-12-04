@@ -1,3 +1,3 @@
-import './nodeinit.spec';
-import './assembler.spec';
-import './htmldom.spec';
+import './nodeinit.spec'
+import './assembler.spec'
+import './htmldom.spec'

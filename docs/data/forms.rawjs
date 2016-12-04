@@ -6,9 +6,9 @@ htmlmodule => {
         input, textarea, select, option,
         // Related
         button, progress
-    } = htmlmodule;
+    } = htmlmodule
 
-    const { article, br, h1, p, section, style } = htmlmodule;
+    const { article, br, h1, p, section, style } = htmlmodule
 
     return article([
         h1('Forms'),
@@ -158,5 +158,5 @@ htmlmodule => {
             'margin-right: 50px;' +
             'margin-bottom: 10px;' +
             'vertical-align: top; }')
-    ]);
+    ])
 }

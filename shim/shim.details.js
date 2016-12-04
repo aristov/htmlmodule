@@ -12,7 +12,7 @@
  * @copyright © 2016 Vyacheslav Aristov
  */
 {
-    const { HTMLElement : { prototype } } = window;
+    const { HTMLElement : { prototype } } = window
     if(!('ontoggle' in prototype)) {
         Object.defineProperties(prototype, {
             ontoggle : {
@@ -21,19 +21,19 @@
                 set(handler) {
                     this.__handler_ontoggle__ = typeof handler === 'function'?
                         handler.bind(this) :
-                        null;
+                        null
                 },
                 get() {
-                    return this.__handler_ontoggle__;
+                    return this.__handler_ontoggle__
                 }
             },
             __handler_ontoggle__ : { writable : true, value : null }
-        });
+        })
         document.addEventListener('toggle', event => {
-            const target = event.target;
+            const target = event.target
             if(typeof target.ontoggle === 'function') {
-                target.ontoggle(event);
+                target.ontoggle(event)
             }
-        }, true);
+        }, true)
     }
 }

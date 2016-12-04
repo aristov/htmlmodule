@@ -2,9 +2,9 @@ htmlmodule => {
     const {
         img, audio, video, embed, iframe,
         map, area, object, param, picture, source, track,
-    } = htmlmodule;
+    } = htmlmodule
 
-    const { article, h1, section, style } = htmlmodule;
+    const { article, h1, section, style } = htmlmodule
 
     return article([
         h1('Embedded content'),
@@ -50,5 +50,5 @@ htmlmodule => {
             'margin-right: 50px;' +
             'margin-bottom: 10px;' +
             'vertical-align: top; }')
-    ]);
+    ])
 }

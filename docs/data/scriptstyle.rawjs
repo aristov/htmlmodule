@@ -1,5 +1,5 @@
 ({ div, pre, script, style, p }) => {
-    const tab = ' '.repeat(4);
+    const tab = ' '.repeat(4)
     const src = () => Object.assign(
         document.currentScript.style,
         {
@@ -9,7 +9,7 @@
             boxShadow : '0 0 5px 5px #ccc',
             color : 'blue',
             font : '13px monospace'
-        });
+        })
     return div([
         p('This script is crazy and is not the case ' +
             'for any sane usage. It\'s just a funny example!'),

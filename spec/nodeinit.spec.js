@@ -1,31 +1,31 @@
-import { NodeInit } from '../lib/nodeinit';
-import chai from 'chai';
+import { NodeInit } from '../lib/nodeinit'
+import chai from 'chai'
 
-const { assert } = chai;
-const { document } = window;
+const { assert } = chai
+const { document } = window
 
 describe('Node init', () => {
     it('return the same object', () => {
-        const init = { id : 'random-id' };
-        assert.equal(NodeInit(init), init);
-    });
+        const init = { id : 'random-id' }
+        assert.equal(NodeInit(init), init)
+    })
     it('properly assign string as children', () => {
-        const string = 'string as textContent';
-        const init = NodeInit(string);
-        assert.equal(init.children, string);
-    });
+        const string = 'string as textContent'
+        const init = NodeInit(string)
+        assert.equal(init.children, string)
+    })
     it('properly assign array as children', () => {
-        const children = ['a', 'b', 'c'];
-        const init = NodeInit(children);
-        assert.equal(init.children, children);
-    });
+        const children = ['a', 'b', 'c']
+        const init = NodeInit(children)
+        assert.equal(init.children, children)
+    })
     it('properly assign element as children', () => {
-        const child = document.createElement('a');
-        const init = NodeInit(child);
-        assert.equal(init.children, child);
-    });
+        const child = document.createElement('a')
+        const init = NodeInit(child)
+        assert.equal(init.children, child)
+    })
     it('passes through undefined', () => {
-        const init = NodeInit(undefined);
-        assert.equal(init, undefined);
-    });
-});
+        const init = NodeInit(undefined)
+        assert.equal(init, undefined)
+    })
+})
