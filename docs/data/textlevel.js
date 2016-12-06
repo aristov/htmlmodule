@@ -1,7 +1,8 @@
 htmlmodule => {
     const {
         // Special meaning
-        a, abbr, cite, dfn, mark, q, s, small, u,
+        a, abbr, cite, dfn, q, s, small, u,
+        // todo: mark
         // Emphasis
         b, em, i, strong,
         // Computers
@@ -36,7 +37,10 @@ htmlmodule => {
     }
 
     return article([
-        h1('Text-level semantics'),
+        h1([
+            a({ href : '#', target : '_top', children : 'Index' }),
+            ' → Text-level semantics'
+        ]),
         section([
             h1('Special meaning'),
             section([
@@ -44,6 +48,14 @@ htmlmodule => {
                 p(a({
                     href : '//html.spec.whatwg.org',
                     children : 'HTML Standard'
+                })),
+                p(a({
+                    href : '//dom.spec.whatwg.org',
+                    children : 'DOM Standard'
+                })),
+                p(a({
+                    href : '//www.w3.org/TR/wai-aria-1.1',
+                    children : 'WAI-ARIA specification'
                 })),
             ]),
             section([
@@ -115,15 +127,15 @@ htmlmodule => {
             h1('Emphasis'),
             section([
                 h1('High importance'),
-                p(['Normal text ', strong('important text'), ' normal text.',])
+                p(['Normal text ', strong('important text'), ' normal text.'])
             ]),
             section([
                 h1('Keywords'),
-                p(['Normal text ', b('keyword'), ' normal text',])
+                p(['Normal text ', b('keyword'), ' normal text'])
             ]),
             section([
                 h1('Alternative voice'),
-                p(['Normal text ', i('alternative voice'), ' normal text',])
+                p(['Normal text ', i('alternative voice'), ' normal text'])
             ]),
             section([
                 h1('Stress emphasis'),

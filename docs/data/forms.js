@@ -8,10 +8,13 @@ htmlmodule => {
         button, progress
     } = htmlmodule
 
-    const { article, br, h1, p, section, style } = htmlmodule
+    const { a, article, br, h1, p, section, style } = htmlmodule
 
     return article([
-        h1('Forms'),
+        h1([
+            a({ href : '#', target : '_top', children : 'Index' }),
+            ' → Forms'
+        ]),
         form({
             target : '_blank',
             children : [
@@ -129,7 +132,8 @@ htmlmodule => {
                                     selected : true,
                                     children : 'CSS'
                                 })
-                            ]})
+                            ]
+                        })
                     ])),
                 ]),
                 section([

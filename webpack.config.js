@@ -21,8 +21,6 @@ const babelLoader = env.ES6? {
     exclude: [nodepath]
 };
 
-const rawLoader = { test : /\.txt$/, loader : 'raw-loader' };
-
 const styleLoader = {
     test : /\.css$/,
     loader : 'style-loader!css-loader!postcss-loader'
@@ -84,7 +82,7 @@ switch(env.ENTRY) {
                 pathinfo : !env.MIN
             },
             module : {
-                loaders : [babelLoader, rawLoader, styleLoader],
+                loaders : [babelLoader, styleLoader],
             },
             postcss : () => [autoprefixer],
         });

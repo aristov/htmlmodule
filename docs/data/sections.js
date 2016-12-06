@@ -10,6 +10,9 @@ htmlmodule => {
 
     const { a, hr, p } = htmlmodule
 
+    /**
+     * @param event
+     */
     function onclick(event) {
         event.preventDefault()
         const target = event.target
@@ -43,12 +46,15 @@ htmlmodule => {
             'and a modification date of the page.'
     ].join(' ')
 
-    const ELEMENT_RE = /\[(\w+)\]/g
+    const ELEMENT_RE = /\[(\w+)]/g
     const anchor = a({ href : '#$1', children : '$1' })
 
     return article([
         header([
-            h1('Sections'),
+            h1([
+                a({ href : '#', target : '_top', children : 'Index' }),
+                ' → Sections'
+            ]),
             nav({
                 onclick,
                 children : p({

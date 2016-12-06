@@ -1,13 +1,16 @@
 htmlmodule => {
     const {
         img, audio, video, embed, iframe,
-        map, area, object, param, picture, source, track,
+        // todo: map, area, object, param, picture, source, track,
     } = htmlmodule
 
-    const { article, h1, section, style } = htmlmodule
+    const { a, article, h1, section, style } = htmlmodule
 
     return article([
-        h1('Embedded content'),
+        h1([
+            a({ href : '#', target : '_top', children : 'Index' }),
+            ' → Embedded content'
+        ]),
         section([
             h1('Image'),
             img({

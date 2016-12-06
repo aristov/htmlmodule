@@ -77,6 +77,8 @@ Just created `websearch` variable is a DOM structure with the respective HTML ma
 </form>
 ```
 
+[Open in REPL](//aristov.github.io/htmlmodule#websearch)
+
 ## Global script distribution
 
 Get the module by appending the distribution script to a page body:

@@ -1,14 +1,15 @@
-import { REPLMachine } from './replmachine'
 import { DOMSerializer } from './domserializer'
 
 import * as htmlmodule from './htmlmodule'
-import { main, section, iframe, button, details, summary } from './htmlmodule'
+import {
+    HTMLDOMAssembler,
+    section, iframe, html, head, body, details, summary
+} from './htmlmodule'
+
 import { codebox, markupbox } from './codemirror'
 import { es2015support, babel, standalone } from './babel'
 
 import './replapp.css'
-
-const START_INDEX = 0
 
 const { documentElement } = window.document
 
@@ -16,65 +17,77 @@ const useBabel = !es2015support()
 
 const serializer = new DOMSerializer
 
-export class REPLApp {
-    /**
-     * Build the REPL application
-     * @param {Array[]} data Array of sources for the site test case
-     */
-    constructor(data) {
-        this.data = data
-        this.replmachine = new REPLMachine({
-            input : this,
-            output : this
-        })
-        this.node = this.assemble()
-        window.onresize = () => this.refresh()
-    }
+const datapath = '../docs/data/'
 
-    /**
-     * Get a value from the source code text editor
-     * @returns {*} source code
-     */
-    get value() {
-        const source = this.inputcode.value.trim()
-        const value = 'exports.default=' + (source || '()=>{}')
-        return useBabel? babel(value) : value
+class OutputGroup extends HTMLDOMAssembler {
+    constructor({ onload }) {
+        super()
+        this.assemble('section', [
+          this.outputwin =
+            iframe({ className : 'outputwin', onload }),
+          this.markupview =
+            details({
+                className : 'markupview',
+                ontoggle : () => this.refresh(),
+                children : [
+                    summary({
+                        id : 'markuptoggle',
+                        className : 'markuptoggle',
+                        children : 'markup'
+                    }),
+                  this.outputcode =
+                    markupbox({ className : 'outputcode' })
+                ]
+            })
+        ])
     }
-
-    /**
-     * Set a result value, produced by the REPL-machine
-     * @param {String|Function|Node|Error} value
-     */
-    set value(value) {
-        const { markupview, outputcode } = this
-        const { body } = this.outputwin.contentDocument
-        body.innerHTML = ''
-        if(markupview.open) outputcode.value = ''
-        if(value instanceof Error) {
-            body.textContent = value
-        }
-        else {
-            try {
-                const resultnode = typeof value === 'function'?
-                    value(htmlmodule) :
-                    value
-                if(resultnode && !documentElement.contains(resultnode)) {
-                    body.appendChild(resultnode)
-                    outputcode.value = serializer.serializeToString(resultnode)
+    set value(node) {
+        const { outputwin, outputcode } = this
+        const doc = outputwin.contentDocument
+        let result
+        try {
+            if(!documentElement.contains(node)) {
+                switch(node.tagName) {
+                    case 'HTML':
+                        result = node
+                        break
+                    case 'HEAD':
+                    case 'BODY':
+                        result = html(node)
+                        break
+                    case 'TITLE':
+                    case 'BASE':
+                    case 'LINK':
+                    case 'META':
+                        result = html([head(node)])
+                        break
+                    default:
+                        result = html([head(), body(node)])
+                        break
                 }
-            }
-            catch(error) {
-                body.textContent = error
+                doc.documentElement.replaceWith(result)
+
+                outputcode.value = serializer.serializeToString(node)
             }
         }
+        catch(error) {
+            doc.documentElement.replaceWith(html([head(), body(error)]))
+        }
     }
+    refresh() {
+        const outputcode = this.outputcode
+        const innerHeight = window.innerHeight
+        this.outputwin.height = (this.markupview.open?
+            innerHeight - outputcode.height :
+                innerHeight) + 'px'
+        outputcode.refresh()
+    }
+}
 
-    /**
-     * Assemble the DOM structure of the REPL application
-     * @returns {HTMLElement} root application
-     */
-    assemble() {
-        return main({
+export class REPLApp extends HTMLDOMAssembler {
+    constructor() {
+        super()
+        this.assemble('article', {
             className : 'replapp',
             children : [
                 section([
@@ -82,48 +95,44 @@ export class REPLApp {
                     codebox({
                         id : 'replinputcode',
                         className : 'inputcode',
-                        value : this.data[this.index]
+                        value : ''
                     }),
-                  this.prevbutton =
-                    button({
-                        id : 'replbuttonprev',
-                        className : 'prevbutton',
-                        onclick : () => this.prev(),
-                        children : 'prev'
-                    }),
-                  this.nextbutton =
-                    button({
-                        id : 'replbuttonnext',
-                        className : 'nextbutton',
-                        onclick : () => this.next(),
-                        children : 'next'
-                    })
                 ]),
-                section([
-                  this.outputwin =
-                    iframe({
-                        className : 'outputwin',
-                        onload : () => this.onready()
-                        // iframe creates an inner document asynchronously
-                        // so we need to listen onload to access it's body
-                    }),
-                  this.markupview =
-                    details({
-                        className : 'markupview',
-                        ontoggle : () => this.refresh(),
-                        children : [
-                            summary({
-                                id : 'markuptoggle',
-                                className : 'markuptoggle',
-                                children : 'markup'
-                            }),
-                          this.outputcode =
-                            markupbox({ className : 'outputcode' })
-                        ]
-                    })
-                ])
+                this.outputgroup = new OutputGroup({
+                    onload : () => this.onready()
+                })
             ]
         })
+        window.onresize = () => this.refresh()
+        window.onhashchange = () => this.fetch()
+    }
+
+    /**
+     * @returns {String} source code
+     */
+    read() {
+        let value = this.inputcode.value.trim()
+        if(value) {
+            if(useBabel) value = babel(value)
+            return `return ${ value };`
+        }
+        else return ''
+    }
+
+    /**
+     * @param {String|Function|Node|Error} value
+     */
+    print(value) {
+        let node;
+        if(typeof value === 'function') {
+            node = value(htmlmodule)
+        }
+        else if(value instanceof Error) {
+            node = document.createTextNode(value.toString())
+        }
+        if(node instanceof Node) {
+            this.outputgroup.value = node
+        }
     }
 
     /**
@@ -140,61 +149,40 @@ export class REPLApp {
      * Add event listeners and refresh the application
      */
     start() {
-        this.inputcode.onchange = () => this.replmachine.loop()
-        window.onkeydown = this.onkeydown.bind(this)
+        this.inputcode.onchange = () => this.loop()
         this.refresh()
+        this.fetch()
     }
 
-    /**
-     * Event handler provides the keyboard navigational aims
-     * @param target
-     * @param keyCode
-     */
-    onkeydown({ target, keyCode }) {
-        if(target.tagName !== 'TEXTAREA') {
-            if(keyCode === 37) this.prev()
-            if(keyCode === 39) this.next()
-            if(keyCode === 38) this.markupview.open = true
-            if(keyCode === 40) this.markupview.open = false
-        }
+    fetch() {
+        const filename = location.hash.replace(/^#/, '')
+        const url = datapath + (filename || 'index') + '.js'
+        fetch(url).then(response => response.text())
+            .then(response => {
+                this.inputcode.value = response
+            })
     }
 
     /**
      * Refresh the application
      */
     refresh() {
-        const outputcode = this.outputcode
-        const innerHeight = window.innerHeight
-        this.outputwin.height =
-            (this.markupview.open?
-                innerHeight - outputcode.height :
-                innerHeight) + 'px'
-        this.inputcode.refresh()
-        this.replmachine.loop()
+        this.outputgroup.refresh()
+        this.loop()
     }
 
     /**
-     * Switch to the previous test
+     * Start a single REPL-loop
      */
-    prev() {
-        const data = this.data
-        if(--this.index < 0) this.index = data.length - 1
-        this.inputcode.value = data[this.index]
-    }
-
-    /**
-     * Switch to the next test
-     */
-    next() {
-        const data = this.data
-        if(++this.index === data.length) this.index = 0
-        this.inputcode.value = data[this.index]
+    loop() {
+        try {
+            const { contentWindow, contentDocument } = this.outputgroup.outputwin
+            const evaluable = new Function('window', 'document', this.read())
+            const result = evaluable(contentWindow, contentDocument)
+            this.print(result)
+        }
+        catch(error) {
+            this.print(document.createTextNode(error.toString()))
+        }
     }
 }
-
-Object.assign(REPLApp.prototype, {
-    replmachine : null,
-    node : null,
-    data : [''],
-    index :  START_INDEX,
-})

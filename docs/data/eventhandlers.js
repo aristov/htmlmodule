@@ -1,4 +1,4 @@
-({ article, section, h1, button, label, input, p, variable, code }) => {
+({ article, section, h1, button, label, input, p, variable, code, a }) => {
 
     // this text is used as initial button text
     const textContent = 'Give me a focus, please...'
@@ -65,7 +65,10 @@
 
     // build the article DOM structure
     return article([
-        h1('Event handlers'),
+        h1([
+            a({ href : '#', target : '_top', children : 'Index' }),
+            ' → Event handlers'
+        ]),
         p(['The htmlmodule provides a simple way to attach native ' +
             'event handlers directly during the assembly ' +
             'process of an element.']),

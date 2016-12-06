@@ -8,8 +8,12 @@
         children : '$1' // simple and well-known regexp magic
     })
 
-    // Gefine a template function that builds a list
-    // of links from the given list of short descriptions
+    /**
+     * Gefine a template function that builds a list
+     * of links from the given list of short descriptions
+     * @param items
+     * @returns {*}
+     */
     function apilist(items) {
         return ul(items.map(item => li({
             // use innerHTML to generate nested links
@@ -19,10 +23,15 @@
 
     // Assemble the API reference, using just defined function
     return nav([
-        h1(['The ', abbr({
-            title : 'Application programming interface',
-            children : 'API'
-        }), ' of htmlmodule']),
+        h1([
+            a({ href : '#', target : '_top', children : 'Index' }),
+            ' → The ',
+            abbr({
+                title : 'Application programming interface',
+                children : 'API'
+            }),
+            ' of htmlmodule'
+        ]),
         section([
             h1('Core'),
             apilist([

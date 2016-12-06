@@ -39,26 +39,11 @@
     border-left: 1px solid #444;
     box-sizing: border-box;
 }
-
-/* buttons */
-
-.replapp .prevbutton,
-.replapp .nextbutton,
 .replapp .markuptoggle
 {
     font: 13px monospace;
     position: absolute;
     z-index: 10;
-}
-.replapp .prevbutton
-{
-    bottom: 8px;
-    left: 8px;
-}
-.replapp .nextbutton
-{
-    bottom: 8px;
-    right: 8px;
 }
 .replapp .markuptoggle
 {
@@ -70,8 +55,6 @@
     padding: 1px 6px;
     user-select: none;
 }
-.replapp .prevbutton:not(:hover):not(:focus),
-.replapp .nextbutton:not(:hover):not(:focus),
 .replapp .markuptoggle:not(:hover):not(:focus)
 {
     opacity: 0.5;

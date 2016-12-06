@@ -12,10 +12,13 @@ htmlmodule => {
         hr, div,
     } = htmlmodule
 
-    const { article, b,  h1, section } = htmlmodule
+    const { a, article, b, h1, section } = htmlmodule
 
     return article([
-        h1('Grouping content'),
+        h1([
+            a({ href : '#', target : '_top', children : 'Index' }),
+            ' → Grouping content'
+        ]),
         section([
             h1('Blockquote'),
             blockquote({
@@ -32,12 +35,12 @@ htmlmodule => {
         section([
             h1('Figure'),
             figure([
-                figcaption('Image 1. Black square'),
+                figcaption('Image 1. Red square'),
                 div({
                     style : {
                         width : '200px',
                         height : '200px',
-                        background : 'black'
+                        background : 'red'
                     }
                 })
             ]),

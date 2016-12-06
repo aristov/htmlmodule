@@ -28,6 +28,11 @@ htmlmodule => {
     let htmlcount = 0
     let ariacount = 0
 
+    /**
+     * Builds a row group from input parameters
+     * @param items
+     * @param name
+     */
     function rowgroup(items, name) {
         return items.map(([htmlterm, ariaterm], i) => {
             htmlcount += htmlterm.split(', ').length
@@ -50,7 +55,10 @@ htmlmodule => {
         'tr:last-child td, tr th  { border-bottom: 4px solid #eee }'
     ])
     return article([
-        h1('Tabular data'),
+        h1([
+            a({ href : '#', target : '_top', children : 'Index' }),
+            ' → Tabular data'
+        ]),
         table([
             caption('Related web technology semantics'),
             colgroup(col()),
