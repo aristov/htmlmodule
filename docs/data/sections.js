@@ -49,7 +49,7 @@ htmlmodule => {
     const ELEMENT_RE = /\[(\w+)]/g
     const anchor = a({ href : '#$1', children : '$1' })
 
-    return article([
+    const root = article([
         header([
             h1([
                 a({ href : '#', target : '_top', children : 'Index' }),
@@ -85,4 +85,6 @@ htmlmodule => {
             ])
         ]),
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

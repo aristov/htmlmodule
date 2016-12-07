@@ -1,9 +1,9 @@
-import { DOMSerializer } from './domserializer'
+// import { DOMSerializer } from './domserializer'
 
 import * as htmlmodule from './htmlmodule'
 import {
     HTMLDOMAssembler,
-    section, iframe, html, head, body, details, summary
+    section, iframe, details, summary
 } from './htmlmodule'
 
 import { codebox, markupbox } from './codemirror'
@@ -11,11 +11,9 @@ import { es2015support, babel, standalone } from './babel'
 
 import './replapp.css'
 
-const { documentElement } = window.document
-
 const useBabel = !es2015support()
 
-const serializer = new DOMSerializer
+// const serializer = new DOMSerializer
 
 const datapath = '../docs/data/'
 
@@ -40,37 +38,6 @@ class OutputGroup extends HTMLDOMAssembler {
                 ]
             })
         ])
-    }
-    set value(node) {
-        const { outputwin, outputcode } = this
-        const doc = outputwin.contentDocument
-        try {
-            if(!documentElement.contains(node)) {
-                const child = doc.body.firstChild
-                switch(node.tagName) {
-                    case 'HTML':
-                        doc.documentElement.replaceWith(node)
-                        break
-                    case 'HEAD':
-                        doc.head.replaceWith(node)
-                        break
-                    case 'BODY':
-                        doc.body.replaceWith(node)
-                        break
-                    case 'TITLE':
-                        doc.querySelector('title').replaceWith(node)
-                        break
-                    default:
-                        if(child) child.replaceWith(node)
-                        else doc.body.append(node)
-                        break
-                }
-                outputcode.value = serializer.serializeToString(doc.documentElement)
-            }
-        }
-        catch(error) {
-            doc.documentElement.replaceWith(html([head(), body(error)]))
-        }
     }
     refresh() {
         const outputcode = this.outputcode
@@ -120,15 +87,11 @@ export class REPLApp extends HTMLDOMAssembler {
      * @param {String|Function|Node|Error} value
      */
     print(value) {
-        let node;
         if(typeof value === 'function') {
-            node = value(htmlmodule)
+            value(htmlmodule)
         }
         else if(value instanceof Error) {
-            node = document.createTextNode(value.toString())
-        }
-        if(node instanceof Node) {
-            this.outputgroup.value = node
+            // this.outputgroup.value = document.createTextNode(value.toString())
         }
     }
 

@@ -48,7 +48,7 @@ htmlmodule => {
         })
     }
 
-    return article([
+    const root = article([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
             ' → Tabular data'
@@ -72,4 +72,6 @@ htmlmodule => {
         ]),
         link({ rel : 'stylesheet', href : 'docs/data/tabulardata.css' })
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

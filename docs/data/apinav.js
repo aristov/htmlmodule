@@ -22,7 +22,7 @@
     }
 
     // Assemble the API reference, using just defined function
-    return nav([
+    const root = nav([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
             ' → The ',
@@ -151,4 +151,6 @@
             ':link:not(:hover):not(:focus) { text-decoration: none }'
         ])
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

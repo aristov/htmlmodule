@@ -36,7 +36,7 @@ htmlmodule => {
         HTTP : 'Hyper text trasform protocol',
     }
 
-    return article([
+    const root = article([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
             ' → Text-level semantics'
@@ -261,4 +261,6 @@ htmlmodule => {
         ]),
         style('article > section { border-top : 1px solid #ccc }')
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

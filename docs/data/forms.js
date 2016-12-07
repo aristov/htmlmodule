@@ -10,7 +10,7 @@ htmlmodule => {
 
     const { a, article, br, h1, p, section, style } = htmlmodule
 
-    return article([
+    const root = article([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
             ' → Forms'
@@ -163,4 +163,6 @@ htmlmodule => {
             'display: inline-block; margin-right: 50px;' +
             'margin-bottom: 10px; vertical-align: top; }')
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

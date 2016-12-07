@@ -64,7 +64,7 @@
     ])
 
     // build the article DOM structure
-    return article([
+    const root = article([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
             ' → Event handlers'
@@ -101,4 +101,6 @@
             charcountbox
         ])
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

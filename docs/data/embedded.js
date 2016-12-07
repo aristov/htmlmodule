@@ -6,7 +6,7 @@ htmlmodule => {
 
     const { a, article, h1, section, style } = htmlmodule
 
-    return article([
+    const root = article([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
             ' → Embedded content'
@@ -54,4 +54,6 @@ htmlmodule => {
             'margin-bottom: 10px;' +
             'vertical-align: top; }')
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

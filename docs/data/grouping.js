@@ -14,7 +14,7 @@ htmlmodule => {
 
     const { a, article, b, h1, section } = htmlmodule
 
-    return article([
+    const root = article([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
             ' → Grouping content'
@@ -139,4 +139,6 @@ _________________________________________________________`)
             })
         ])
     ])
+
+    document.body.firstChild.replaceWith(root)
 }

@@ -8,7 +8,7 @@ htmlmodule => {
 
     const { a, abbr, header, h1, li, main, nav, p, ul } = htmlmodule
 
-    return html({
+    const root = html({
         lang : 'en',
         children : [
             head([
@@ -124,8 +124,9 @@ htmlmodule => {
                         })),
                     ])
                 ]),
-
             ]))
         ]
     })
+
+    document.documentElement.replaceWith(root)
 }
