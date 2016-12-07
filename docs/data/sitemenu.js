@@ -1,5 +1,6 @@
 fetch('docs/data/sitemenu.html')
     .then(response => response.text())
     .then(response => {
-        document.body.insertAdjacentHTML('beforeend', response)
+        const result = response.replace(/\n\s*/mg, '')
+        document.body.insertAdjacentHTML('beforeend', result)
     })

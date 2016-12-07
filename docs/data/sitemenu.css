@@ -1,4 +1,4 @@
-.sitemenu
+#sitemenu
 {
     font-size: 12px;
     font-family: monospace;
@@ -9,8 +9,16 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px 10px;
 }
-.sitemenu ul
+#sitemenu summary
+{
+    cursor: default;
+}
+#sitemenu ul
 {
     list-style: none;
     padding: 0;
+}
+#sitemenu :link:not(:hover):not(:focus)
+{
+    text-decoration: none;
 }

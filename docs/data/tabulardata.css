@@ -1,0 +1,21 @@
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+caption
+{
+    padding: 15px;
+}
+thead, tfoot
+{
+    background: #eee;
+}
+th, td
+{
+    padding: 4px;
+}
+tr:last-child td, tr th
+{
+    border-bottom: 4px solid #eee
+}

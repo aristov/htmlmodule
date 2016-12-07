@@ -7,7 +7,7 @@ htmlmodule => {
         thead, tbody, tfoot, tr, th, td
     } = htmlmodule
 
-    const { a, abbr, article, h1, input, label, style } = htmlmodule
+    const { a, abbr, article, h1, link } = htmlmodule
 
     const roles = [
         ['button', 'button'],
@@ -47,13 +47,7 @@ htmlmodule => {
             ])
         })
     }
-    const stylesheet = style([
-        'table { width: 100%; border-collapse: collapse }',
-        'caption { padding: 15px }',
-        'thead, tfoot { background: #eee }',
-        'th, td { padding: 4px }',
-        'tr:last-child td, tr th  { border-bottom: 4px solid #eee }'
-    ])
+
     return article([
         h1([
             a({ href : '#', target : '_top', children : 'Index' }),
@@ -76,29 +70,6 @@ htmlmodule => {
                 th(String(ariacount))
             ]))
         ]),
-        label({
-            style : {
-                fontSize : 'small',
-                position : 'absolute',
-                top : '8px',
-                right: '16px',
-            },
-            title : 'Use this style box to switch table styling on/off',
-            children : [
-                input({
-                    id : 'stylebox',
-                    type : 'checkbox',
-                    checked : true,
-                    onchange : ({ target }) => {
-                        const { body } = target.ownerDocument
-                        target.checked?
-                            body.appendChild(stylesheet) :
-                            stylesheet.remove()
-                    },
-                }),
-                ' apply styling'
-            ],
-        }),
-        stylesheet
+        link({ rel : 'stylesheet', href : 'docs/data/tabulardata.css' })
     ])
 }
