@@ -15,7 +15,7 @@ const useBabel = !es2015support()
 
 // const serializer = new DOMSerializer
 
-const datapath = '../docs/data/'
+const datapath = 'docs/data/'
 
 class OutputGroup extends HTMLDOMAssembler {
     constructor({ onload }) {

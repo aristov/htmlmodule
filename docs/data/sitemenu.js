@@ -4,5 +4,6 @@ if(!document.getElementById('sitemenu')) {
         .then(response => {
             const result = response.replace(/\n\s*/mg, '')
             document.body.insertAdjacentHTML('beforeend', result)
+            document.documentElement.appendChild(document.body.lastChild)
         })
 }
