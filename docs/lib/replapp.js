@@ -58,10 +58,7 @@ class OutputGroup extends HTMLDOMAssembler {
                         doc.body.replaceWith(node)
                         break
                     case 'TITLE':
-                    case 'BASE':
-                    case 'LINK':
-                    case 'META':
-                        doc.head.append(node)
+                        doc.querySelector('title').replaceWith(node)
                         break
                     default:
                         if(child) child.replaceWith(node)
@@ -94,7 +91,6 @@ export class REPLApp extends HTMLDOMAssembler {
                 section([
                   this.inputcode =
                     codebox({
-                        id : 'replinputcode',
                         className : 'inputcode',
                         value : ''
                     }),
