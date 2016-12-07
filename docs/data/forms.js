@@ -157,6 +157,8 @@ htmlmodule => {
                 ]),
             ]
         }),
+        // script({ src : 'docs/data/sitemenu.js' }),
+        // link({ rel : 'stylesheet', href : 'docs/data/sitemenu.css' }),
         style('section {' +
             'display: inline-block; margin-right: 50px;' +
             'margin-bottom: 10px; vertical-align: top; }')

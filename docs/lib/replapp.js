@@ -44,30 +44,31 @@ class OutputGroup extends HTMLDOMAssembler {
     set value(node) {
         const { outputwin, outputcode } = this
         const doc = outputwin.contentDocument
-        let result
         try {
             if(!documentElement.contains(node)) {
+                const child = doc.body.firstChild
                 switch(node.tagName) {
                     case 'HTML':
-                        result = node
+                        doc.documentElement.replaceWith(node)
                         break
                     case 'HEAD':
+                        doc.head.replaceWith(node)
+                        break
                     case 'BODY':
-                        result = html(node)
+                        doc.body.replaceWith(node)
                         break
                     case 'TITLE':
                     case 'BASE':
                     case 'LINK':
                     case 'META':
-                        result = html([head(node)])
+                        doc.head.append(node)
                         break
                     default:
-                        result = html([head(), body(node)])
+                        if(child) child.replaceWith(node)
+                        else doc.body.append(node)
                         break
                 }
-                doc.documentElement.replaceWith(result)
-
-                outputcode.value = serializer.serializeToString(node)
+                outputcode.value = serializer.serializeToString(doc.documentElement)
             }
         }
         catch(error) {
@@ -182,7 +183,7 @@ export class REPLApp extends HTMLDOMAssembler {
             this.print(result)
         }
         catch(error) {
-            this.print(document.createTextNode(error.toString()))
+            this.print(error)
         }
     }
 }

@@ -1,0 +1,16 @@
+.sitemenu
+{
+    font-size: 12px;
+    font-family: monospace;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 5px 10px;
+}
+.sitemenu ul
+{
+    list-style: none;
+    padding: 0;
+}
