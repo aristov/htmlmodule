@@ -1,9 +1,9 @@
 // import { DOMSerializer } from './domserializer'
 
-import * as htmlmodule from './htmlmodule'
 import {
     HTMLDOMAssembler,
-    section, iframe, details, summary
+    html, head, body,
+    section, iframe, details, summary, script
 } from './htmlmodule'
 
 import { codebox, markupbox } from './codemirror'
@@ -21,23 +21,41 @@ class OutputGroup extends HTMLDOMAssembler {
     constructor({ onload }) {
         super()
         this.assemble('section', [
-          this.outputwin =
-            iframe({ className : 'outputwin', onload }),
-          this.markupview =
-            details({
-                className : 'markupview',
-                ontoggle : () => this.refresh(),
-                children : [
-                    summary({
-                        id : 'markuptoggle',
-                        className : 'markuptoggle',
-                        children : 'markup'
-                    }),
-                  this.outputcode =
-                    markupbox({ className : 'outputcode' })
-                ]
-            })
+            this.outputwin =
+                iframe({
+                    className : 'outputwin',
+                    srcdoc : '<script src=dist/dist.window.htmlmodule.js></script>',
+                    onload
+                }),
+            this.markupview =
+                details({
+                    className : 'markupview',
+                    ontoggle : () => this.refresh(),
+                    children : [
+                        summary({
+                            id : 'markuptoggle',
+                            className : 'markuptoggle',
+                            children : 'markup'
+                        }),
+                        this.outputcode =
+                            markupbox({ className : 'outputcode' })
+                    ]
+                })
         ])
+    }
+    eval(node) {
+        const doc = this.outputwin.contentDocument
+        if(!doc.documentElement) doc.append(html())
+        const root = doc.documentElement
+        if(!doc.head) root.prepend(head())
+        if(!doc.body) root.append(body())
+        try {
+            doc.body.append(node)
+        }
+        catch(error) {
+            // console.log(error)
+        }
+        node.remove()
     }
     refresh() {
         const outputcode = this.outputcode
@@ -56,15 +74,16 @@ export class REPLApp extends HTMLDOMAssembler {
             className : 'replapp',
             children : [
                 section([
-                  this.inputcode =
-                    codebox({
-                        className : 'inputcode',
-                        value : ''
-                    }),
+                    this.inputcode =
+                        codebox({
+                            className : 'inputcode',
+                            value : ''
+                        }),
                 ]),
-                this.outputgroup = new OutputGroup({
-                    onload : () => this.onready()
-                })
+                this.outputgroup =
+                    new OutputGroup({
+                        onload : () => this.onready()
+                    })
             ]
         })
         window.onresize = () => this.refresh()
@@ -76,23 +95,14 @@ export class REPLApp extends HTMLDOMAssembler {
      */
     read() {
         let value = this.inputcode.value.trim()
-        if(value) {
-            if(useBabel) value = babel(value)
-            return `return ${ value };`
-        }
-        else return ''
+        return useBabel? babel(value) : value
     }
 
     /**
-     * @param {String|Function|Node|Error} value
+     * @param {String|Function|Node|Error} scriptnode
      */
-    print(value) {
-        if(typeof value === 'function') {
-            value(htmlmodule)
-        }
-        else if(value instanceof Error) {
-            // this.outputgroup.value = document.createTextNode(value.toString())
-        }
+    print(scriptnode) {
+        this.outputgroup.eval(scriptnode)
     }
 
     /**
@@ -136,13 +146,11 @@ export class REPLApp extends HTMLDOMAssembler {
      */
     loop() {
         try {
-            const { contentWindow, contentDocument } = this.outputgroup.outputwin
-            const evaluable = new Function('window', 'document', this.read())
-            const result = evaluable(contentWindow, contentDocument)
-            this.print(result)
+            const src = this.read()
+            this.print(script(`{${ src }}`))
         }
         catch(error) {
-            this.print(error)
+            // console.log(error)
         }
     }
 }
