@@ -1,4 +1,4 @@
-({ form, label, img, br, input, button }) =>
+(({ form, label, img, br, input, button }) =>
     form({
         action : 'https://www.google.ru/search',
         target : '_blank',
@@ -18,4 +18,4 @@
             ]),
             button('Go!')
         ]
-    })
+    }))(htmlmodule)

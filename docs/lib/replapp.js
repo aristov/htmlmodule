@@ -102,6 +102,7 @@ export class REPLApp extends HTMLDOMAssembler {
      * @param {String|Function|Node|Error} scriptnode
      */
     print(scriptnode) {
+        // console.log(scriptnode)
         this.outputgroup.eval(scriptnode)
     }
 
@@ -127,7 +128,8 @@ export class REPLApp extends HTMLDOMAssembler {
     fetch() {
         const filename = location.hash.replace(/^#/, '')
         const url = datapath + (filename || 'index') + '.js'
-        fetch(url).then(response => response.text())
+        fetch(url)
+            .then(response => response.text())
             .then(response => {
                 this.inputcode.value = response
             })
@@ -147,7 +149,7 @@ export class REPLApp extends HTMLDOMAssembler {
     loop() {
         try {
             const src = this.read()
-            this.print(script(`{${ src }}`))
+            this.print(script(`(function(){${ src }})()`))
         }
         catch(error) {
             // console.log(error)
