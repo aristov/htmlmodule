@@ -42,7 +42,7 @@
     "docs": "npm run cov && npm run index && npm run api",
     "karma": "karma start",
     "karma-local": "LOCAL=true karma start",
-    "pretest": "npm run lint && npm run dist && npm run docs",
+    "pretest": "npm run dist && npm run docs",
     "test": "npm run karma",
     "posttest": "cat ./dist/coverage/chrome/lcov.info | coveralls",
     "test-local": "npm run pretest && npm run karma-local",
