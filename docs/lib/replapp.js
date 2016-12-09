@@ -1,4 +1,4 @@
-// import { DOMSerializer } from './domserializer'
+import { DOMSerializer } from './domserializer'
 
 import {
     HTMLDOMAssembler,
@@ -13,7 +13,7 @@ import './replapp.css'
 
 const useBabel = !es2015support()
 
-// const serializer = new DOMSerializer
+const serializer = new DOMSerializer
 
 const datapath = 'docs/data/'
 
@@ -25,12 +25,16 @@ class OutputGroup extends HTMLDOMAssembler {
                 iframe({
                     className : 'outputwin',
                     srcdoc : '<script src=dist/dist.window.htmlmodule.js></script>',
-                    onload
+                    onload : event => {
+                        onload(event)
+                        this.onready()
+                    }
                 }),
             this.markupview =
                 details({
                     className : 'markupview',
                     ontoggle : () => this.refresh(),
+                    open : true,
                     children : [
                         summary({
                             id : 'markuptoggle',
@@ -42,6 +46,20 @@ class OutputGroup extends HTMLDOMAssembler {
                     ]
                 })
         ])
+    }
+    onready() {
+        const target = this.outputwin.contentDocument
+        const observer = new MutationObserver(() => {
+            const root = target.documentElement;
+            this.outputcode.value = root?
+                serializer.serializeToString(root) : ''
+        })
+        observer.observe(target, {
+            attributes : true,
+            childList : true,
+            characterData : true,
+            subtree : true
+        })
     }
     eval(node) {
         const doc = this.outputwin.contentDocument
