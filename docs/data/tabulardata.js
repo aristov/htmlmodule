@@ -63,7 +63,7 @@ const root = article([
         tbody(rowgroup(roles, 'Roles')),
         tbody(rowgroup(attributes, 'Attributes')),
         tfoot(tr([
-            th('Total'),
+            th('Total items'),
             th(String(htmlcount)),
             th(String(ariacount))
         ]))

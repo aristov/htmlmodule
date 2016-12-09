@@ -3,7 +3,7 @@
     let sitemenu = document.getElementById(SITEMENU_ID)
 
     if(!sitemenu) {
-        const { details, summary, nav, p, a, ul, li, abbr, link } = htmlmodule;
+        const { details, summary, nav, p, a, ul, li, abbr } = htmlmodule
 
         sitemenu = details({
             id : SITEMENU_ID,
@@ -14,44 +14,36 @@
                     ul([
                         li(a({
                             href : '#sections',
-                            target : '_top',
                             children : 'Sections'
                         })),
                         li(a({
                             href : '#grouping',
-                            target : '_top',
                             children : 'Grouping content'
                         })),
                         li(a({
                             href : '#textlevel',
-                            target : '_top',
                             children : 'Text level semantics'
                         })),
                         li(a({
                             href : '#forms',
-                            target : '_top',
                             children : 'Forms'
                         })),
                         li(a({
                             href : '#tabulardata',
-                            target : '_top',
                             children : 'Tabular data'
                         })),
                         li(a({
                             href : '#embedded',
-                            target : '_top',
                             children : 'Embedded content'
                         })),
                     ]),
                     ul([
                         li(a({
                             href : '#apinav',
-                            target : '_top',
                             children : 'API index'
                         })),
                         li(a({
                             href : '#eventhandlers',
-                            target : '_top',
                             children : 'Event handlers'
                         })),
                     ]),
@@ -93,9 +85,9 @@
                 ])
             ]
         })
-
-        const stylesheet = link({ rel : 'stylesheet', href : 'docs/data/sitemenu.css' })
-
-        document.body.append(sitemenu, stylesheet)
+        document.body.append(
+            document.createComment('----- SITE MENU (BEGIN) -----'),
+            sitemenu,
+            document.createComment('----- SITE MENU (END) -----'))
     }
 }

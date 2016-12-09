@@ -6,7 +6,11 @@
         title('htmlmodule homepage'),
         base({ target : '_top' }),
         script({ src : 'docs/data/sitemenu.js' }),
-        link({ rel : 'stylesheet', href : 'docs/data/common.css' }),
+        link({
+            className : 'sitemenu',
+            rel : 'stylesheet',
+            href : 'docs/data/sitemenu.css'
+        }),
         style([
             'abbr { cursor: help }',
             'a[href][rel~=external]:not(:active) { color: #050 }'
