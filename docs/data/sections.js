@@ -1,13 +1,13 @@
 const {
     // Generic
-    article, section, header, footer,
+    body, article, section, header, footer,
     // Specialized
     address, aside, nav,
     // Headings
     h1, h2, h3, h4, h5, h6, hgroup,
 } = htmlmodule
 
-const { a, body, hr, p, script } = htmlmodule
+const { a, hr, p, script } = htmlmodule
 
 /**
  * @param event
@@ -30,7 +30,7 @@ function onclick(event) {
 }
 
 const text = [
-    'This [article] element contains ' +
+    'This [article] element is nested inside [body] and contains ' +
     'the [header], [section], [aside] and [footer] elements.',
 
     'The [header] element contains the main [h1] heading ' +

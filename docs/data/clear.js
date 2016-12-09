@@ -3,4 +3,3 @@
     if(root) root.remove()
     window.postMessage({ type : 'clear' }, '*')
 }
-

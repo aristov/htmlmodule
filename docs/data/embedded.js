@@ -1,9 +1,9 @@
 const {
-    body, img, audio, video, embed, iframe,
+    img, audio, video, embed, iframe,
     // todo: map, area, object, param, picture, source, track,
 } = htmlmodule
 
-const { a, article, h1, section, script, style } = htmlmodule
+const { a, article, body, h1, section, script, style } = htmlmodule
 
 const root = article([
     h1([

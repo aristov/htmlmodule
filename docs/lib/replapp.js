@@ -69,22 +69,22 @@ class OutputGroup extends HTMLDOMAssembler {
         this.group.hidden = Boolean(error)
     }
     onready() {
-        const target = this.outputwin.contentDocument
+        const doc = this.outputwin.contentDocument
         const observer = new MutationObserver(() => {
-            const root = target
-            this.outputcode.value = root? serializer.serializeToString(root) : ''
+            this.outputcode.value = serializer.serializeToString(doc)
         })
-        observer.observe(target, {
+        observer.observe(doc, {
             attributes : true,
             childList : true,
             characterData : true,
             subtree : true
         })
-        const win = this.outputwin.contentWindow
-        win.onmessage = ({ data }) => {
-            if(data.type === 'clear') location.hash = 'blank'
-            if(data.type === 'error') this.error = data.error
-        }
+        this.outputcode.value = serializer.serializeToString(doc)
+        this.outputwin.contentWindow.onmessage = this.onmessage.bind(this)
+    }
+    onmessage({ data }) {
+        if(data.type === 'clear') location.hash = 'blank'
+        if(data.type === 'error') this.error = data.error
     }
     eval(fn) {
         const node = script(`(${ fn })()`)
