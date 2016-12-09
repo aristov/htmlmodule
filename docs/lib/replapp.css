@@ -59,3 +59,18 @@
 {
     opacity: 0.5;
 }
+.replapp .errormessage
+{
+    position: fixed;
+    width: 50%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: white;
+    color: red;
+    font: 15px monospace;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: auto;
+}

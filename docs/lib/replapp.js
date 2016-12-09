@@ -2,7 +2,7 @@ import { DOMSerializer } from './domserializer'
 
 import {
     HTMLDOMAssembler,
-    html, head, body,
+    html, head, body, pre, div,
     section, iframe, details, summary, script
 } from './htmlmodule'
 
@@ -17,42 +17,62 @@ const serializer = new DOMSerializer
 
 const datapath = 'docs/data/'
 
+const srcdoc =
+    '<script>window.parent = window</script>' +
+    '<script src=dist/dist.window.htmlmodule.js></script>'
+
 class OutputGroup extends HTMLDOMAssembler {
-    constructor({ onload }) {
+    constructor({ onready }) {
         super()
-        this.assemble('section', [
-            this.outputwin =
-                iframe({
-                    className : 'outputwin',
-                    srcdoc : '<script src=dist/dist.window.htmlmodule.js></script>',
-                    onload : event => {
-                        onload(event)
-                        this.onready()
-                    }
-                }),
-            this.markupview =
-                details({
-                    className : 'markupview',
-                    ontoggle : () => this.refresh(),
-                    open : true,
-                    children : [
-                        summary({
-                            id : 'markuptoggle',
-                            className : 'markuptoggle',
-                            children : 'markup'
+        this.assemble('section', {
+            className : 'outputgroup',
+            children : [
+                this.group = div([
+                    this.outputwin =
+                        iframe({
+                            className : 'outputwin',
+                            srcdoc : '<!doctype html>' + srcdoc,
+                            onload : event => {
+                                this.onready()
+                                onready(event)
+                            }
                         }),
-                        this.outputcode =
-                            markupbox({ className : 'outputcode' })
-                    ]
-                })
-        ])
+                    this.markupview =
+                        details({
+                            className : 'markupview',
+                            ontoggle : () => this.refresh(),
+                            open : true,
+                            children : [
+                                summary({
+                                    id : 'markuptoggle',
+                                    className : 'markuptoggle',
+                                    children : 'markup'
+                                }),
+                                this.outputcode =
+                                    markupbox({ className : 'outputcode' })
+                            ]
+                        })
+                ]),
+                this.errormessage =
+                    pre({
+                        className : 'errormessage',
+                        hidden : true
+                    })
+            ]
+        })
+    }
+    set error(error) {
+        Object.assign(this.errormessage, {
+            textContent : error? error.stack : '',
+            hidden : !error
+        })
+        this.group.hidden = Boolean(error)
     }
     onready() {
         const target = this.outputwin.contentDocument
         const observer = new MutationObserver(() => {
-            const root = target.documentElement;
-            this.outputcode.value = root?
-                serializer.serializeToString(root) : ''
+            const root = target
+            this.outputcode.value = root? serializer.serializeToString(root) : ''
         })
         observer.observe(target, {
             attributes : true,
@@ -60,19 +80,20 @@ class OutputGroup extends HTMLDOMAssembler {
             characterData : true,
             subtree : true
         })
+        const win = this.outputwin.contentWindow
+        win.onmessage = ({ data }) => {
+            if(data.type === 'clear') location.hash = 'blank'
+            if(data.type === 'error') this.error = data.error
+        }
     }
-    eval(node) {
+    eval(fn) {
+        const node = script(`(${ fn })()`)
         const doc = this.outputwin.contentDocument
         if(!doc.documentElement) doc.append(html())
         const root = doc.documentElement
         if(!doc.head) root.prepend(head())
         if(!doc.body) root.append(body())
-        try {
-            doc.body.append(node)
-        }
-        catch(error) {
-            // console.log(error)
-        }
+        doc.body.append(node)
         node.remove()
     }
     refresh() {
@@ -99,9 +120,7 @@ export class REPLApp extends HTMLDOMAssembler {
                         }),
                 ]),
                 this.outputgroup =
-                    new OutputGroup({
-                        onload : () => this.onready()
-                    })
+                    new OutputGroup({ onready : () => this.onready() }),
             ]
         })
         window.onresize = () => this.refresh()
@@ -114,14 +133,6 @@ export class REPLApp extends HTMLDOMAssembler {
     read() {
         let value = this.inputcode.value.trim()
         return useBabel? babel(value) : value
-    }
-
-    /**
-     * @param {String|Function|Node|Error} scriptnode
-     */
-    print(scriptnode) {
-        // console.log(scriptnode)
-        this.outputgroup.eval(scriptnode)
     }
 
     /**
@@ -139,7 +150,6 @@ export class REPLApp extends HTMLDOMAssembler {
      */
     start() {
         this.inputcode.onchange = () => this.loop()
-        this.refresh()
         this.fetch()
     }
 
@@ -165,12 +175,16 @@ export class REPLApp extends HTMLDOMAssembler {
      * Start a single REPL-loop
      */
     loop() {
+        const outputgroup = this.outputgroup
+        outputgroup.error = null
         try {
-            const src = this.read()
-            this.print(script(`(function(){${ src }})()`))
+            const input = this.read()
+            const src = `try{${ input }}catch({message,stack})` +
+                '{window.postMessage({type:"error",error:{message,stack}},"*")}'
+            outputgroup.eval(new Function(src))
         }
         catch(error) {
-            // console.log(error)
+            outputgroup.error = error
         }
     }
 }

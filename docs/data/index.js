@@ -1,12 +1,12 @@
 const { html, head, body } = htmlmodule
 
-const { a, abbr, header, h1, main, p, script } = htmlmodule
+const { a, abbr, header, h1, p, script, nav, ul, li } = htmlmodule
 
 const root = html({
     lang : 'en',
     children : [
         head(script({ src : 'docs/data/metadata.js' })),
-        body(main([
+        body([
             header([
                 h1('Welcome!'),
                 p([
@@ -26,7 +26,7 @@ const root = html({
                     ' on the page load.'
                 ]),
             ]),
-            /*nav([
+            nav([
                 h1('Examples'),
                 p('Elements by category:'),
                 ul([
@@ -107,9 +107,8 @@ const root = html({
                         children : 'Github repo'
                     })),
                 ])
-            ]),*/
-        ])),
-        script({ src : 'docs/data/metadata.js' })
+            ]),
+        ]),
     ]
 })
 

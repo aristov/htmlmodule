@@ -1,6 +1,6 @@
 const { map } = Array.prototype
 const { Node, Element } = window
-const { TEXT_NODE, COMMENT_NODE, ELEMENT_NODE } = Node
+const { TEXT_NODE, COMMENT_NODE, ELEMENT_NODE, DOCUMENT_NODE, DOCUMENT_TYPE_NODE } = Node
 
 const EMPTY_TAG_LIST = 'AREA BASE BR COL EMBED HR IMG INPUT KEYGEN LINK META PARAM SOURCE TRACK WBR'
 const EMPTY_TAG_SET = EMPTY_TAG_LIST.split(' ').reduce((res, tag) => (res[tag] = true, res), {})
@@ -48,7 +48,8 @@ export class DOMSerializer {
             attributes,
             childNodes,
             innerHTML,
-            data
+            data,
+            name
         } = node
         const linebreak = this.linebreak
         let indent = this.indent.repeat(this.level)
@@ -91,6 +92,17 @@ export class DOMSerializer {
             }
             case COMMENT_NODE: {
                 result += `<!--${ data }-->`
+                break
+            }
+            case DOCUMENT_NODE: {
+                if(node.hasChildNodes()) {
+                    const childchunks = map.call(childNodes, this.serializeToString, this)
+                    result += childchunks.join('')
+                }
+                break
+            }
+            case DOCUMENT_TYPE_NODE: {
+                result += `<!DOCTYPE ${ name }>`
                 break
             }
         }

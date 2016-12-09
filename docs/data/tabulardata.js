@@ -68,8 +68,8 @@ const root = article([
             th(String(ariacount))
         ]))
     ]),
-    link({ rel : 'stylesheet', href : 'docs/data/tabulardata.css' }),
-    script({ src : 'docs/data/metadata.js' })
+    script({ src : 'docs/data/metadata.js' }),
+    link({ rel : 'stylesheet', href : 'docs/data/tabulardata.css' })
 ])
 
 document.body.replaceWith(body(root))
