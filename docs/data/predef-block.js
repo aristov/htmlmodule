@@ -1,13 +1,10 @@
 const {
-    // Core
-    htmldom,
-
     // Document root and metadata
     html, head, base, title, link, style, meta,
 
     // Sections
-    body, article, section, header, footer,
-    address, aside, nav,
+    article, section, header, footer,
+    address, aside, body, nav,
     h1, h2, h3, h4, h5, h6, hgroup,
 
     // Grouping
@@ -16,10 +13,6 @@ const {
     ul, ol, li, dl, dt, dd,
     pre,
     hr, div,
-
-    // Tabular data
-    table, caption, col, colgroup,
-    thead, tbody, tfoot, tr, th, td,
 
     // Text-level semantics
     a, abbr, cite, dfn, q, s, small, u, mark,
@@ -30,23 +23,31 @@ const {
     ruby, rt, rp,
     span,
     br, wbr,
+
+    // Edits
     ins, del,
+
+    // Embedded content
+    img, audio, video, embed, iframe,
+    map, area, object, param, picture, source, track,
+
+    // Tabular data
+    table, caption, col, colgroup,
+    thead, tbody, tfoot, tr, th, td,
 
     // Forms
     form, fieldset, label, legend,
     input, textarea, select, option,
     button, progress,
 
-    // Embedded content
-    img, audio, video, embed, iframe,
-    map, area, object, param, picture, source, track,
+    // Interactive content
+    details, summary,
 
     // Scripting
     script, noscript, canvas,
+
+    // Сustom
+    htmldom,
 } = htmlmodule
 
-document.body.replaceWith(body([
-
-    /* Your code */
-
-]))
+document.body = body(/* your code */)

@@ -20,7 +20,7 @@ const {
     ins, del,
 } = htmlmodule
 
-const { article, body, h1, li, p, script, section, style, ul } = htmlmodule
+const { article, div, body, h1, li, p, script, section, style, ul } = htmlmodule
 
 const children = 'АРОЗАУПАЛА'
 
@@ -250,7 +250,7 @@ const root = article([
             ]))
         ])
     ]),
-    section([
+    div([
         h1('Edits'),
         p([
             del('DOM is slow and complicated.'),
@@ -262,4 +262,4 @@ const root = article([
     style('article > section { border-top : 1px solid #ccc }')
 ])
 
-document.body.replaceWith(body(root))
+document.body = body(root)

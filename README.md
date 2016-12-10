@@ -12,17 +12,17 @@ _work in progress_
 The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
 
 ```js
-const htmlspec = a({ 
+const node = a({ 
     href : 'https://html.spec.whatwg.org', 
-    children : 'HTML specification' 
-});
+    children : 'HTML standard' 
+})
 ```
 
-The code above uses htmlmodule to create a hyperlink with a reference to specification.
+The code above uses htmlmodule to create a hyperlink with a reference to the living standard.
 A browser creates the same link, when it processes the following markup:
 
 ```html
-<a href=https://html.spec.whatwg.org>HTML specification</a>
+<a href=https://html.spec.whatwg.org>HTML standard</a>
 ```
 
 The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
@@ -45,11 +45,11 @@ npm install htmlmodule
 
 ```js
 // import element assemblers
-import { form, label, input, button } from 'htmlmodule';
+import { form, label, input, button } from 'htmlmodule'
 
 // create application
 const websearch = 
-    form({
+   form({
         action : '//www.google.ru/search',
         target : '_blank',
         children : [
@@ -59,10 +59,10 @@ const websearch =
             ]),
             button('Find')
         ]
-    });
+    })
     
 // insert to document
-document.body.append(websearch);
+document.body.append(websearch)
 ```
 
 Just created `websearch` variable is a DOM structure with the respective HTML markup:
@@ -86,11 +86,8 @@ Get the module by appending the distribution script to a page body:
 ```html
 <script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>
 <script>
-(({ header, main, footer, article, section, a, button, input, img, video, canvas, data, ... }) => {
-
-    // make magic...
-
-})(window.htmlmodule); // the script exposes the `htmlmodule` global variable to the `window` object
+{ body, header, main, footer, article, p, a, button, input, img, video, canvas, ... } = htmlmodule 
+// make magic...
 </script> 
 ```
 
@@ -115,7 +112,7 @@ and look the examples, provided on
 Module works fine without any shims, but some new HTML5 elements and features are implemented in modern browsers only.
 The built-in [shim bundle](/shim/index.js) partially fixes browser compatibility. It includes:
 
-- [Babel polyfill](http://babeljs.io/docs/usage/polyfill/)
+- [Babel polyfill](http://babeljs.io/docs/usage/polyfill)
 - [dom4 polyfill](https://www.npmjs.com/package/dom4)
 - [whatwg-fetch polyfill](https://www.npmjs.com/package/whatwg-fetch)
 - [author DOM shims](/shim)
@@ -137,10 +134,6 @@ There are some ways to do this.
 <script src=build/build.project.js></script>
 ```
 
-#### Shim-charged distribution 
-
-[The "global script" distribution](#global-script-distribution) includes the shim bundle out of the box.
-
 #### Single bundle for all
 
 Install the third-party polyfill libraries first:
@@ -154,7 +147,7 @@ npm install whatwg-fetch --save
 Import the shim bundle into your project:
 
 ```js
-import 'htmlmodule/shim';
+import 'htmlmodule/shim'
 
 // the rest of your code including htmlmodule imports
 ```
@@ -209,7 +202,7 @@ npm test
 
 This command runs project tests on the [Sauce Labs](https://saucelabs.com/).
 
-[![Build Status](https://saucelabs.com/buildstatus/aristov7)](https://saucelabs.com/beta/builds/44b58f67a1704937b76d4bb53241e970)
+[![Build Status](https://saucelabs.com/browser-matrix/aristov7.svg)](https://saucelabs.com/beta/builds/039fae1f5652404ab2afb069cf148492)
 
 #### Local testing
 

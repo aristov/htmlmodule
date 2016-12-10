@@ -72,4 +72,4 @@ const root = article([
     link({ rel : 'stylesheet', href : 'docs/data/tabulardata.css' })
 ])
 
-document.body.replaceWith(body(root))
+document.body = body(root)

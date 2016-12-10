@@ -68,10 +68,7 @@ const charcountbox = label([
 
 // build the article DOM structure
 const root = article([
-    h1([
-        a({ href : '#', children : 'Index' }),
-        ' → Event handlers'
-    ]),
+    h1([a({ href : '#', children : 'Index' }), ' → Event handlers']),
     p(['The htmlmodule provides a simple way to attach native ' +
     'event handlers directly during the assembly ' +
     'process of an element.']),
@@ -106,4 +103,4 @@ const root = article([
     script({ src : 'docs/data/metadata.js' }),
 ])
 
-document.body.replaceWith(body(root))
+document.body = body(root)

@@ -1,4 +1,4 @@
-const { a, body, ul, li, nav, h1, abbr, section, style, script } = htmlmodule
+const { a, body, ul, li, nav, h1, section, style, script } = htmlmodule
 
 // Generate a simple hyperlink to use it,
 // as a pattern for a regular expression replacement
@@ -22,16 +22,8 @@ function apilist(items) {
 }
 
 // Assemble the API reference, using just defined function
-const root = nav([
-    h1([
-        a({ href : '#', children : 'Index' }),
-        ' → The ',
-        abbr({
-            title : 'Application programming interface',
-            children : 'API'
-        }),
-        ' of htmlmodule'
-    ]),
+document.body = body(nav([
+    h1([a({ href : '#', children : 'Index' }), ' → The API of htmlmodule']),
     section([
         h1('Core'),
         apilist([
@@ -151,6 +143,4 @@ const root = nav([
         ':link:not(:hover):not(:focus) { text-decoration: none }'
     ]),
     script({ src : 'docs/data/metadata.js' })
-])
-
-document.body.replaceWith(body(root))
+]))

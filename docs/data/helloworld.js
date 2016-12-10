@@ -1,1 +1,1 @@
-document.body.replaceWith(htmlmodule.body('Hello world!'))
+document.body = htmlmodule.body('Hello world!')

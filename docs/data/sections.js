@@ -1,8 +1,8 @@
 const {
     // Generic
-    body, article, section, header, footer,
+    article, section, header, footer,
     // Specialized
-    address, aside, nav,
+    body, address, aside, nav,
     // Headings
     h1, h2, h3, h4, h5, h6, hgroup,
 } = htmlmodule

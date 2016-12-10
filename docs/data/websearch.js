@@ -21,4 +21,4 @@ const websearch = form({
     ]
 })
 
-document.body.replaceWith(body(websearch))
+document.body = body(websearch)

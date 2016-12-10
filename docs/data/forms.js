@@ -10,10 +10,7 @@ const {
 const { a, article, body, br, h1, p, script, section, style } = htmlmodule
 
 const root = article([
-    h1([
-        a({ href : '#', children : 'Index' }),
-        ' → Forms'
-    ]),
+    h1([a({ href : '#', children : 'Index' }), ' → Forms']),
     form({
         target : '_blank',
         children : [
@@ -162,4 +159,4 @@ const root = article([
         'margin-bottom: 10px; vertical-align: top; }')
 ])
 
-document.body.replaceWith(body(root))
+document.body = body(root)

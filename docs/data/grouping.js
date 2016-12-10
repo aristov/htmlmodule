@@ -14,10 +14,7 @@ const {
 const { a, article, b, body, h1, script, section } = htmlmodule
 
 const root = article([
-    h1([
-        a({ href : '#', children : 'Index' }),
-        ' → Grouping content'
-    ]),
+    h1([a({ href : '#', children : 'Index' }), ' → Grouping content']),
     section([
         h1('Blockquote'),
         blockquote({
@@ -140,4 +137,4 @@ _________________________________________________________`)
     script({ src : 'docs/data/metadata.js' })
 ])
 
-document.body.replaceWith(body(root))
+document.body = body(root)

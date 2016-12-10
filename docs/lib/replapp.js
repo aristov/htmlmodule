@@ -18,7 +18,7 @@ const serializer = new DOMSerializer
 const datapath = 'docs/data/'
 
 const srcdoc =
-    '<script>window.parent = window</script>' +
+    '<script>window.parent=window;document.scripts[0].remove()</script>' +
     '<script src=dist/dist.window.htmlmodule.js></script>'
 
 class OutputGroup extends HTMLDOMAssembler {
@@ -41,7 +41,7 @@ class OutputGroup extends HTMLDOMAssembler {
                         details({
                             className : 'markupview',
                             ontoggle : () => this.refresh(),
-                            open : true,
+                            // open : false,
                             children : [
                                 summary({
                                     id : 'markuptoggle',
@@ -68,6 +68,14 @@ class OutputGroup extends HTMLDOMAssembler {
         })
         this.group.hidden = Boolean(error)
     }
+    get document() {
+        const doc = this.outputwin.contentDocument
+        if(!doc.documentElement) doc.append(html())
+        const root = doc.documentElement
+        if(!doc.head) root.prepend(head())
+        if(!doc.body) doc.body = body()
+        return doc
+    }
     onready() {
         const doc = this.outputwin.contentDocument
         const observer = new MutationObserver(() => {
@@ -81,6 +89,7 @@ class OutputGroup extends HTMLDOMAssembler {
         })
         this.outputcode.value = serializer.serializeToString(doc)
         this.outputwin.contentWindow.onmessage = this.onmessage.bind(this)
+        this.refresh()
     }
     onmessage({ data }) {
         if(data.type === 'clear') location.hash = 'blank'
@@ -88,11 +97,7 @@ class OutputGroup extends HTMLDOMAssembler {
     }
     eval(fn) {
         const node = script(`(${ fn })()`)
-        const doc = this.outputwin.contentDocument
-        if(!doc.documentElement) doc.append(html())
-        const root = doc.documentElement
-        if(!doc.head) root.prepend(head())
-        if(!doc.body) root.append(body())
+        const doc = this.document
         doc.body.append(node)
         node.remove()
     }

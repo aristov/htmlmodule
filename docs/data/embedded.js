@@ -6,10 +6,7 @@ const {
 const { a, article, body, h1, section, script, style } = htmlmodule
 
 const root = article([
-    h1([
-        a({ href : '#', children : 'Index' }),
-        ' → Embedded content'
-    ]),
+    h1([a({ href : '#', children : 'Index' }), ' → Embedded content']),
     section([
         h1('Image'),
         img({
@@ -55,4 +52,4 @@ const root = article([
         'vertical-align: top; }')
 ])
 
-document.body.replaceWith(body(root))
+document.body = body(root)
