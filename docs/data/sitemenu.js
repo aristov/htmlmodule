@@ -48,13 +48,13 @@ if(!document.getElementById('sitemenu')) {
                 ]),
                 ul([
                     li(a({
-                        href : 'dist/api/',
+                        href : 'dist/api/identifiers.html',
                         target : '_blank',
                         rel : 'help',
                         children : [abbr({
                             title : 'Application programming interface',
                             children : 'API'
-                        }), ' documentation']
+                        }), ' reference']
                     })),
                     li(a({
                         href : 'dist/docs/spec.html',

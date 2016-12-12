@@ -25,14 +25,9 @@
         document.head.replaceWith(metadata)
     }
 
-    const SITEMENUJS_ID = 'sitemenu_js'
-    let sitemenujs = document.getElementById(SITEMENUJS_ID)
+    if(!document.getElementById('sitemenu')) {
+        document.body.append(script({ src : 'docs/data/sitemenu.js' }))
+    }
 
-    if(!sitemenujs) sitemenujs = script({
-        id : SITEMENUJS_ID,
-        src : 'docs/data/sitemenu.js'
-    })
-    document.body.append(sitemenujs)
-
-    document.currentScript.remove()
+    // document.currentScript.remove()
 }

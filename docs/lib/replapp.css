@@ -1,6 +1,6 @@
 .replapp,
-.replapp .inputcode,
-.replapp .inputcode .CodeMirror,
+.replapp .codeinput,
+.replapp .codeinput .CodeMirror,
 .replapp .outputcode .markupview,
 .replapp .outputcode .CodeMirror
 {
@@ -16,7 +16,7 @@
     width: 50%;
     box-sizing: border-box;
 }
-.replapp .inputcode /* Safari fix */
+.replapp .codeinput /* Safari fix */
 {
     position: absolute;
     top: 0;

@@ -46,18 +46,15 @@ const text = [
 ].join(' ')
 
 const ELEMENT_RE = /\[(\w+)]/g
-const anchor = a({ href : '#$1', children : '$1' })
+const anchor = '<a href=#$1>$1</a>'
 
 const root = article([
     header([
-        h1([
-            a({ href : '#', children : 'Index' }),
-            ' → Sections'
-        ]),
+        h1([a({ href : '#', children : 'Index' }), ' → Sections']),
         nav({
             onclick,
             children : p({
-                innerHTML : text.replace(ELEMENT_RE, anchor.outerHTML)
+                innerHTML : text.replace(ELEMENT_RE, anchor)
             })
         })
     ]),
@@ -86,4 +83,4 @@ const root = article([
     script({ src : 'docs/data/metadata.js' })
 ])
 
-document.body.replaceWith(body(root))
+document.body = body(root)

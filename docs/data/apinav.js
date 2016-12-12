@@ -2,27 +2,19 @@ const { a, body, ul, li, nav, h1, section, style, script } = htmlmodule
 
 // Generate a simple hyperlink to use it,
 // as a pattern for a regular expression replacement
-const apilink = a({
-    href : 'dist/api/function/#static-function-$1',
-    target : '_blank',
-    children : '$1' // simple and well-known regexp magic
-})
+const apilink = '<a href=dist/api/function/#static-function-$1 target=_blank>$1</a>'
 
-/**
- * Gefine a template function that builds a list
- * of links from the given list of short descriptions
- * @param items
- * @returns {*}
- */
+// Gefine a template function that builds a list
+// of links from the given list of short descriptions
 function apilist(items) {
     return ul(items.map(item => li({
         // use innerHTML to generate nested links
-        innerHTML : item.replace(/(\w+)/g, apilink.outerHTML)
+        innerHTML : item.replace(/(\w+)/g, apilink)
     })))
 }
 
 // Assemble the API reference, using just defined function
-document.body = body(nav([
+const root = nav([
     h1([a({ href : '#', children : 'Index' }), ' → The API of htmlmodule']),
     section([
         h1('Core'),
@@ -143,4 +135,6 @@ document.body = body(nav([
         ':link:not(:hover):not(:focus) { text-decoration: none }'
     ]),
     script({ src : 'docs/data/metadata.js' })
-]))
+])
+
+document.body = body(root)

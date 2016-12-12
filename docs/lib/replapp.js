@@ -16,14 +16,12 @@ const useBabel = !es2015support()
 const serializer = new DOMSerializer
 
 const datapath = 'docs/data/'
-
-const srcdoc =
-    '<script>window.parent=window;document.scripts[0].remove()</script>' +
-    '<script src=dist/dist.window.htmlmodule.js></script>'
+const srcdoc = '<!DOCTYPE html><html><head><script src="dist/dist.window.htmlmodule.js"></script></head><body></body></html>'
 
 class OutputGroup extends HTMLDOMAssembler {
     constructor({ onready }) {
         super()
+        const open = localStorage.getItem('makrupview.open') === 'true' || false
         this.assemble('section', {
             className : 'outputgroup',
             children : [
@@ -31,7 +29,7 @@ class OutputGroup extends HTMLDOMAssembler {
                     this.outputwin =
                         iframe({
                             className : 'outputwin',
-                            srcdoc : '<!doctype html>' + srcdoc,
+                            srcdoc,
                             onload : event => {
                                 this.onready()
                                 onready(event)
@@ -40,8 +38,11 @@ class OutputGroup extends HTMLDOMAssembler {
                     this.markupview =
                         details({
                             className : 'markupview',
-                            ontoggle : () => this.refresh(),
-                            // open : false,
+                            ontoggle : ({ target }) => {
+                                this.refresh()
+                                localStorage.setItem('makrupview.open', target.open)
+                            },
+                            open,
                             children : [
                                 summary({
                                     id : 'markuptoggle',
@@ -77,7 +78,8 @@ class OutputGroup extends HTMLDOMAssembler {
         return doc
     }
     onready() {
-        const doc = this.outputwin.contentDocument
+        const outputwin = this.outputwin
+        const doc = outputwin.contentDocument
         const observer = new MutationObserver(() => {
             this.outputcode.value = serializer.serializeToString(doc)
         })
@@ -87,12 +89,13 @@ class OutputGroup extends HTMLDOMAssembler {
             characterData : true,
             subtree : true
         })
+        const win = outputwin.contentWindow
+        win.onmessage = this.onmessage.bind(this)
+        win.onhashchange = () => location.hash = win.location.hash
         this.outputcode.value = serializer.serializeToString(doc)
-        this.outputwin.contentWindow.onmessage = this.onmessage.bind(this)
         this.refresh()
     }
     onmessage({ data }) {
-        if(data.type === 'clear') location.hash = 'blank'
         if(data.type === 'error') this.error = data.error
     }
     eval(fn) {
@@ -109,6 +112,9 @@ class OutputGroup extends HTMLDOMAssembler {
                 innerHeight) + 'px'
         outputcode.refresh()
     }
+    scroll(x, y) {
+        this.outputwin.contentWindow.scroll(x, y)
+    }
 }
 
 export class REPLApp extends HTMLDOMAssembler {
@@ -118,9 +124,10 @@ export class REPLApp extends HTMLDOMAssembler {
             className : 'replapp',
             children : [
                 section([
-                    this.inputcode =
+                    this.codeinput =
                         codebox({
-                            className : 'inputcode',
+                            id : 'codeinput',
+                            className : 'codeinput',
                             value : ''
                         }),
                 ]),
@@ -136,7 +143,7 @@ export class REPLApp extends HTMLDOMAssembler {
      * @returns {String} source code
      */
     read() {
-        let value = this.inputcode.value.trim()
+        let value = this.codeinput.value.trim()
         return useBabel? babel(value) : value
     }
 
@@ -154,18 +161,21 @@ export class REPLApp extends HTMLDOMAssembler {
      * Add event listeners and refresh the application
      */
     start() {
-        this.inputcode.onchange = () => this.loop()
+        this.codeinput.onchange = () => this.loop()
         this.fetch()
     }
 
     fetch() {
         const filename = location.hash.replace(/^#/, '')
         const url = datapath + (filename || 'index') + '.js'
-        fetch(url)
-            .then(response => response.text())
-            .then(response => {
-                this.inputcode.value = response
-            })
+        if(!document.getElementById(filename)) {
+            fetch(url)
+                .then(response => response.text())
+                .then(response => {
+                    this.codeinput.value = response
+                    this.outputgroup.scroll(0, 0)
+                })
+        }
     }
 
     /**

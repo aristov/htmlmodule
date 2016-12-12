@@ -1,137 +1,165 @@
 const {
-    a, abbr, body, h1, head, header,
-    html, li, nav, p, script, ul
+    a, abbr, body, h1, head, header, html,
+    li, nav, p, script, section, link, ul
 } = htmlmodule
 
-document.body = body([
-    header([
-        h1('Welcome!'),
-        p([
-            'You are inside the ',
-            abbr({
-                title : 'read-eval-print-loop',
-                children : 'REPL'
-            }),
-            '-machine. It was assembled instantly by ',
-            a({
-                href : 'https://npmjs.org/package/htmlmodule',
-                rel : 'external',
-                target : '_blank',
-                title : 'DOM assembler library',
-                children : 'htmlmodule'
-            }),
-            ' on the page load.'
+const onclick = () => parent.location.reload()
+
+document.body = body({
+    id : 'index',
+    children : [
+        header([
+            h1('Welcome!'),
+            p([
+                'You are inside the ',
+                abbr({
+                    title : 'read-eval-print-loop',
+                    children : 'REPL'
+                }),
+                '-machine. It was assembled instantly by ',
+                a({
+                    href : 'https://npmjs.org/package/htmlmodule',
+                    rel : 'external',
+                    target : '_blank',
+                    title : 'DOM assembler library',
+                    children : 'htmlmodule'
+                }),
+                ' on the page load.'
+            ]),
+            nav(p([
+                a({ href : '#codeinput', children : 'Edit the code' }),
+                ' to update the nested document. ',
+                'Document structure is placed behind the ',
+                a({ href : '#markuptoggle', children : 'markup button' }),
+                '.'
+            ]))
         ]),
-        p([
-            'Current HTML document is nested inside iframe window. ',
-            'The code editor on the left side of the page controls ',
-            'representation of this document.'
-        ])
-    ]),
-    nav([
-        h1('Examples'),
-        p('Elements by category:'),
-        ul([
-            li(a({
-                href : '#sections',
-                children : 'Sections'
-            })),
-            li(a({
-                href : '#grouping',
-                children : 'Grouping content'
-            })),
-            li(a({
-                href : '#textlevel',
-                children : 'Text level semantics'
-            })),
-            li(a({
-                href : '#forms',
-                children : 'Forms'
-            })),
-            li(a({
-                href : '#tabulardata',
-                children : 'Tabular data'
-            })),
-            li(a({
-                href : '#embedded',
-                children : 'Embedded content'
-            })),
+        nav([
+            h1('Examples'),
+            section([
+                h1('Elements by category'),
+                ul([
+                    li(a({
+                        href : '#sections',
+                        children : 'Sections'
+                    })),
+                    li(a({
+                        href : '#grouping',
+                        children : 'Grouping content'
+                    })),
+                    li(a({
+                        href : '#textlevel',
+                        children : 'Text level semantics'
+                    })),
+                    li(a({
+                        href : '#forms',
+                        children : 'Forms'
+                    })),
+                    li(a({
+                        href : '#tabulardata',
+                        children : 'Tabular data'
+                    })),
+                    li(a({
+                        href : '#embedded',
+                        children : 'Embedded content'
+                    })),
+                ]),
+            ]),
+            section([
+                h1('Other examples'),
+                ul([
+                    li(a({
+                        href : '#apinav',
+                        children : 'API index'
+                    })),
+                    li(a({
+                        href : '#eventhandlers',
+                        children : 'Event handlers'
+                    })),
+                ]),
+            ]),
+            section([
+                h1('Snippets'),
+                ul([
+                    li(a({
+                        href : '#helloworld',
+                        onclick,
+                        children : 'Hello world!'
+                    })),
+                    li(a({
+                        href : '#websearch',
+                        onclick,
+                        children : 'Web search'
+                    })),
+                ]),
+            ]),
+            section([
+                h1('Templates'),
+                ul([
+                    li(a({
+                        href : '#blank',
+                        onclick,
+                        children : 'Blank snippet'
+                    })),
+                    li([
+                        'Predefined variables: ',
+                        a({
+                            href : '#predef-line',
+                            onclick,
+                            children : 'short'
+                        }),
+                        ', ',
+                        a({
+                            href : '#predef-block',
+                            onclick,
+                            children : 'detailed'
+                        }),
+                    ])
+                ])
+            ]),
         ]),
-        p('Other examples:'),
-        ul([
-            li(a({
-                href : '#apinav',
-                children : 'API index'
-            })),
-            li(a({
-                href : '#eventhandlers',
-                children : 'Event handlers'
-            })),
-            li(a({
-                href : '#websearch',
-                children : 'Web search'
-            })),
-            li(a({
-                href : '#helloworld',
-                children : 'Hello world!'
-            })),
-            li(a({
-                href : '#blank',
-                children : 'Blank snippet'
-            })),
-            li(['Predefined variables: ', a({
-                href : '#predef-block',
-                children : 'detailed'
-            }), ' / ', a({
-                href : '#predef-line',
-                children : 'short'
-            })]),
-            li(a({
-                href : '#clear',
-                children : 'Clear data and document'
-            }))
-        ])
-    ]),
-    nav([
-        h1('Documentation'),
-        ul([
-            li(a({
-                href : 'dist/api/',
-                target : '_blank',
-                rel : 'help',
-                children : [abbr({
-                    title : 'Application programming interface',
-                    children : 'API'
-                }), ' documentation']
-            })),
-            li(a({
-                href : 'dist/docs/spec.html',
-                target : '_blank',
-                children : 'Spec suite'
-            })),
-            li(a({
-                href : 'dist/coverage/chrome/lcov-report/',
-                target : '_blank',
-                children : 'Coverage report'
-            })),
-        ])
-    ]),
-    nav([
-        h1('Project'),
-        ul([
-            li(a({
-                href : 'https://npmjs.com/package/htmlmodule',
-                target : '_blank',
-                rel : 'external',
-                children : 'NPM module'
-            })),
-            li(a({
-                href : 'https://github.com/aristov/htmlmodule',
-                target : '_blank',
-                rel : 'external',
-                children : 'Github repo'
-            })),
-        ])
-    ]),
-    script({ src : 'docs/data/metadata.js' })
-])
+        nav([
+            h1('Documentation'),
+            ul([
+                li(a({
+                    href : 'dist/api/identifiers.html',
+                    target : '_blank',
+                    rel : 'help',
+                    children : [abbr({
+                        title : 'Application programming interface',
+                        children : 'API'
+                    }), ' reference']
+                })),
+                li(a({
+                    href : 'dist/docs/spec.html',
+                    target : '_blank',
+                    children : 'Spec suite'
+                })),
+                li(a({
+                    href : 'dist/coverage/chrome/lcov-report/',
+                    target : '_blank',
+                    children : 'Coverage report'
+                })),
+            ])
+        ]),
+        nav([
+            h1('Source'),
+            ul([
+                li(a({
+                    href : 'https://npmjs.com/package/htmlmodule',
+                    target : '_blank',
+                    rel : 'external',
+                    children : 'NPM module'
+                })),
+                li(a({
+                    href : 'https://github.com/aristov/htmlmodule',
+                    target : '_blank',
+                    rel : 'external',
+                    children : 'Github repo'
+                })),
+            ])
+        ]),
+        script({ src : 'docs/data/metadata.js' }),
+        link({ rel : 'stylesheet', href : 'docs/data/index.css' })
+    ]
+})
