@@ -1,0 +1,75 @@
+:link,:visited
+{
+    color: #88b7db;
+}
+body
+{
+    font: 19px Arial;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 1px 1px 1px #222;
+    padding: 0 10px;
+    max-width: 1000px;
+    margin: auto;
+    background: black;
+}
+body::before
+{
+    content: "";
+    background: url(https://pp.vk.me/c630431/v630431762/4d6ba/H8uH_TMSVrA.jpg) no-repeat 50% 50%;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+}
+body > section
+{
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+.phonecontact
+{
+    text-align: right;
+}
+.phonecontact ul
+{
+    font-size: 17px;
+    list-style: none;
+    margin: -20px 0;
+}
+
+.layoutart
+{
+    font: bold 10px monospace;
+    background: white;
+    color: #000;
+    width: auto;
+    text-align: center;
+}
+.layoutart figure
+{
+    margin: 10px 10px 0 0;
+}
+.layoutart pre
+{
+    display: inline-block;
+    text-align: left;
+    padding: 20px 20px;
+}
+
+.contentinfo
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.contentinfo > hr:first-child
+{
+    opacity: 0.3;
+}
