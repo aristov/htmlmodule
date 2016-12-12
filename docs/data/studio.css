@@ -3,7 +3,8 @@
 {
     color: #88b7db;
 }
-:link:not(:hover):not(:focus)
+:link:not(:hover):not(:focus),
+:link[href^="#"]
 {
     text-decoration: none;
 }
@@ -43,10 +44,6 @@ body::before
     opacity: 0.1;
     z-index: -1;
 }
-body > div > main
-{
-    padding: 10px 0;
-}
 .dim:not(:hover):not(:focus)
 {
     opacity: 0.7;
@@ -77,44 +74,55 @@ body > div > main
     border-style: dotted;
     border-color: rgba(255, 255, 255, 0.2);
 }
-.siteheader > div
+.siteheader > address
 {
     white-space: nowrap;
 }
-.siteheader > div > address
+.siteheader > address > a
 {
+    font-style: inherit;
+    background: transparent;
+    border: none;
+    color: inherit;
     display: inline-block;
-    padding-left: 60px;
-    vertical-align: top;
+    padding: 0 0 0 60px;
     font-size: 15px;
     position: relative;
-    margin-left: 10px;
-    /*font-style: normal;*/
+    margin: 0 0 0 10px;
+    line-height: normal;
 }
-.siteheader > div > address::before
+.siteheader > address > a > pre
+{
+    font: inherit;
+    margin: 8px 0;
+    padding: 0 0 0 15px;
+}
+.siteheader > address > a::before
 {
     position: absolute;
     font-style: normal;
 }
-.siteheader > div > address.geo::before
+.siteheader > address > a.geo
+{
+    cursor: pointer;
+}
+.siteheader > address > a.geo::before
 {
     content: '🌐';
     font-size: 38px;
     top: 2px;
     left: 21px;
 }
-.siteheader > div > address.tel::before
+.siteheader > address > a.tel::before
 {
     content: '☏';
     font-size: 50px;
     top: -3px;
     left: 18px;
 }
-.siteheader > div > address > div
-{
-    margin: 8px 0;
-    padding: 0 0 0 15px;
-}
+
+/*================================================================*/
+
 .sitecontent details > summary
 {
     display: inline-block;
@@ -127,25 +135,37 @@ body > div > main
     display: flex;
     justify-content: space-between;
     padding: 20px 0 40px;
-    border-top: 1px dotted rgba(255, 255, 255, 0.1);
+    border-top: 1px dotted rgba(255, 255, 255, 0.2);
 }
 .contentinfo small:not(:hover) sup
 {
-    visibility: hidden
+    visibility: hidden;
 }
 
 /*================================================================*/
 
-.pathmap
-{
-    padding: 20px 0;
-}
-.pathmap > div
+#pathmap
 {
     height: 720px;
     background: rgba(255, 255, 255, 0.85);
+    position: relative;
+    margin-top: 20px;
 }
-.spacemap
+#pathmap > button.closebutton
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: inherit;
+    font-size: 20px;
+    margin: 10px;
+    color: #333;
+    padding: 2px 8px 1px;
+    border-radius: 3px;
+    background: #f3f3f3;
+    border: 1px solid rgba(0, 0, 0, 0.3)
+}
+#spacemap > div
 {
     font: bold 20px monospace;
     text-align: center;

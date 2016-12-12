@@ -10,7 +10,18 @@ const CURRENT_YEAR = (new Date).getFullYear()
 
 const time = init => htmldom('time', init)
 const nbsp = (count = 1) => ' '.repeat(count)
-const hash = location.hash.replace(/^#/, '')
+const hashname = () => location.hash.slice(1)
+
+/*onhashchange = ({ oldURL }) => {
+ const url = new URL(oldURL)
+ const hash = url.hash.slice(1)
+ const oldNode = document.getElementById(hash)
+ if(oldNode) oldNode.hidden = true;
+ const newNode = document.getElementById(hashname())
+ if(newNode) newNode.hidden = false;
+ }*/
+
+let pathmap
 
 document.body = body({
     children : [
@@ -26,24 +37,19 @@ document.body = body({
                             children : 'Fusion'
                         })
                     }),
-                    div({
+                    address({
                         className : 'dim',
                         children : [
-                            address({
+                            a({
                                 title : 'Наш адрес',
                                 className : 'geo dim',
-                                children : div([
-                                    div('2-я Звенигородская'),
-                                    div('дом 13, стр 17')
-                                ])
+                                onclick : () => pathmap.hidden = !pathmap.hidden,
+                                children : pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
                             }),
-                            address({
+                            a({
                                 title : 'Контактные телефоны',
                                 className : 'tel dim',
-                                children : div([
-                                    div('+7 926 602 25 87'),
-                                    div('+7 916 56 808 56')
-                                ])
+                                children : pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
                             })
                         ]
                     })
@@ -52,36 +58,10 @@ document.body = body({
             main({
                 className : 'sitecontent',
                 children : [
-                    address([
-                        0 && p(a({
-                            href : 'https://yandex.ru/maps/-/CZHMuBJ8',
-                            rel : 'external',
-                            title : 'Адрес студии',
-                            target : '_blank',
-                            className : 'dim',
-                            children : 'Москва, 2-я Звенигородская улица, дом 13, строение 17'
-                        })),
-                        details({
-                            open : hash === 'pathmap',
-                            className : 'pathmap',
-                            children : [
-                                summary({
-                                    className : 'dim',
-                                    innerHTML : 'Пеший маршрут от метро &laquo;Улица 1905 года&raquo;'
-                                }),
-                                div(script({
-                                    type : 'text/javascript',
-                                    charset : 'utf-8',
-                                    async : true,
-                                    src : 'https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=4L2HMAQC2mYDutWIKsc2LAD98hZTzzSe&amp;width=1000&amp;height=720&amp;lang=ru_RU&amp;sourceType=mymaps&amp;scroll=true'
-                                }))
-                            ]
-                        }),
-                    ]),
-                    section(details({
-                        open : hash === 'spacemap',
+                    0 && section({
+                        id : 'spacemap',
                         children : [
-                            summary({
+                            h1({
                                 className : 'dim',
                                 children : 'Студийное пространство'
                             }),
@@ -90,7 +70,25 @@ document.body = body({
                                 children : figure(layout)
                             }),
                         ]
-                    })),
+                    }),
+                    pathmap = article({
+                        id : 'pathmap',
+                        // hidden : hashname() !== 'pathmap',
+                        children : [
+                            script({
+                                type : 'text/javascript',
+                                charset : 'utf-8',
+                                async : true,
+                                src : 'https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=4L2HMAQC2mYDutWIKsc2LAD98hZTzzSe&amp;width=1000&amp;height=720&amp;lang=ru_RU&amp;sourceType=mymaps&amp;scroll=true'
+                            }),
+                            0 && button({
+                                className : 'closebutton',
+                                title : 'Закрыть карту',
+                                onclick : () => pathmap.hidden = true,
+                                children : '×'
+                            })
+                        ]
+                    })
                 ]
             }),
         ]),
