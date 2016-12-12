@@ -115,6 +115,7 @@
     "no-implied-eval": "error",
     "no-inline-comments": "off",
     "no-invalid-this": "off",
+    "no-irregular-whitespace": "off",
     "no-iterator": "error",
     "no-label-var": "error",
     "no-labels": "error",
