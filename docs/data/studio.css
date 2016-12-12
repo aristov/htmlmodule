@@ -7,10 +7,11 @@ body
     font: 19px Arial;
     color: rgba(255, 255, 255, 1);
     text-shadow: 1px 1px 1px #222;
-    padding: 0 10px;
+    padding: 0 20px;
     max-width: 1000px;
     margin: auto;
     background: black;
+    position: relative;
 }
 body::before
 {
@@ -25,22 +26,43 @@ body::before
     opacity: 0.3;
     z-index: -1;
 }
+body > header
+{
+    position: relative;
+}
 body > section
 {
     display: inline-block;
     vertical-align: top;
-    margin: 10px;
 }
-
+body > main
+{
+    padding: 10px 0;
+}
+details > summary
+{
+    display: inline;
+    cursor: default;
+}
 .phonecontact
 {
-    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.phonecontact::before
+{
+    content: '☏';
+    position: absolute;
+    font-style: normal;
+    font-size: 50px;
+    margin-top: 7px;
+    margin-left: -20px;
 }
 .phonecontact ul
 {
     font-size: 17px;
     list-style: none;
-    margin: -20px 0;
 }
 
 .layoutart
@@ -69,7 +91,7 @@ body > section
     padding: 10px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
-.contentinfo > hr:first-child
+.dim:not(:hover):not(:focus)
 {
-    opacity: 0.3;
+    opacity: 0.7;
 }

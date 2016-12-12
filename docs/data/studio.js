@@ -13,16 +13,19 @@ document.body = body([
             children : 'Фьюжн'
         }),
         address({
-            className : 'phonecontact',
-            children : [
-                ul([li('+7 926 602 2587'), li('+7 916 56 808 56')]),
-            ]
+            title : 'Контактные телефоны',
+            className : 'phonecontact dim',
+            children : ul([
+                li('+7 926 602 2587'),
+                li('+7 916 56 808 56')
+            ])
         }),
     ]),
-    section([
+    main([
         address([
             p(a({
                 href : 'https://yandex.ru/maps/-/CZHMuBJ8',
+                title : 'Адрес студии',
                 target : '_blank',
                 children : 'Москва, 2-я Звенигородская улица, дом 13, строение 17'
             })),
@@ -30,7 +33,10 @@ document.body = body([
                 open : true,
                 style : { padding : '10px 0 20px' },
                 children : [
-                    summary({ innerHTML : 'Метро &laquo;Улица 1905 года&raquo;' }),
+                    summary({
+                        className : 'dim',
+                        innerHTML : 'Метро &laquo;Улица 1905 года&raquo;'
+                    }),
                     div({
                         style : { padding : '10px 0 0' },
                         children : a({
@@ -64,12 +70,20 @@ document.body = body([
     footer({
         className : 'contentinfo',
         children : [
-            small(htmldom('time', {
+            small({
                 title : 'Время работы студии',
-                innerHTML : '&#x1f550;&nbsp;&nbsp;&nbsp;07:00&nbsp;&mdash;&nbsp;02:00'
-            })),
+                className : 'dim',
+                innerHTML : [
+                    '&#128338;',
+                    '&nbsp;&nbsp;&nbsp;',
+                    '<time>07:00</time>',
+                    '&nbsp;&mdash;&nbsp;',
+                    '<time>02:00</time>'
+                ].join('')
+            }),
             address(small(a({
                 href : 'mailto:vv.aristov@gmail.com',
+                className : 'dim',
                 innerHTML : '&copy; pypik'
             })))
         ]
