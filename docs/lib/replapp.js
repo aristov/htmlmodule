@@ -97,6 +97,9 @@ class OutputGroup extends HTMLDOMAssembler {
     }
     onmessage({ data }) {
         if(data.type === 'error') this.error = data.error
+        if(data.type === 'save') {
+            localStorage.setItem('codeinput.value', this.app.value)
+        }
     }
     eval(fn) {
         const node = script(`(${ fn })()`)
@@ -132,18 +135,25 @@ export class REPLApp extends HTMLDOMAssembler {
                         }),
                 ]),
                 this.outputgroup =
-                    new OutputGroup({ onready : () => this.onready() }),
+                    new OutputGroup({
+                        onready : () => this.onready(),
+                        app : this
+                    }),
             ]
         })
         window.onresize = () => this.refresh()
         window.onhashchange = () => this.fetch()
     }
 
+    get value() {
+        return this.codeinput.value.trim()
+    }
+
     /**
      * @returns {String} source code
      */
     read() {
-        let value = this.codeinput.value.trim()
+        let value = this.value
         return useBabel? babel(value) : value
     }
 
@@ -164,6 +174,15 @@ export class REPLApp extends HTMLDOMAssembler {
         this.codeinput.onchange = () => this.loop()
         this.fetch()
     }
+    /*start() {
+        const codeinput = this.codeinput
+        codeinput.onchange = () => this.loop()
+        let value = ''
+        // if(!location.endsWith('helloworld'))
+            value = localStorage.getItem('codeinput.value')
+        if(value) codeinput.value = value
+        else this.fetch()
+    }*/
 
     fetch() {
         const filename = location.hash.replace(/^#/, '')
@@ -194,8 +213,10 @@ export class REPLApp extends HTMLDOMAssembler {
         outputgroup.error = null
         try {
             const input = this.read()
-            const src = `try{${ input }}catch({message,stack})` +
-                '{window.postMessage({type:"error",error:{message,stack}},"*")}'
+            const src = 'try{' + input +
+                ';postMessage({type:"save"},"*")}' +
+                'catch({message,stack})' +
+                '{postMessage({type:"error",error:{message,stack}},"*")}'
             outputgroup.eval(new Function(src))
         }
         catch(error) {
