@@ -20,28 +20,40 @@ document.body = body({
                 children : [
                     h1({
                         title : 'Музыкальная студия',
-                        className : 'studiologo',
                         children : a({
                             // href : 'https://fusion1905.ru',
                             className : 'dim',
                             children : 'Fusion'
                         })
                     }),
-                    address({
-                        title : 'Контактные телефоны',
+                    div({
                         className : 'dim',
-                        children : ul([
-                            li('+7 926 602 2587'),
-                            li('+7 916 56 808 56')
-                        ])
-                    }),
+                        children : [
+                            address({
+                                title : 'Наш адрес',
+                                className : 'geo dim',
+                                children : div([
+                                    div('2-я Звенигородская'),
+                                    div('дом 13, стр 17')
+                                ])
+                            }),
+                            address({
+                                title : 'Контактные телефоны',
+                                className : 'tel dim',
+                                children : div([
+                                    div('+7 926 602 25 87'),
+                                    div('+7 916 56 808 56')
+                                ])
+                            })
+                        ]
+                    })
                 ]
             }),
             main({
                 className : 'sitecontent',
                 children : [
                     address([
-                        p(a({
+                        0 && p(a({
                             href : 'https://yandex.ru/maps/-/CZHMuBJ8',
                             rel : 'external',
                             title : 'Адрес студии',
@@ -71,7 +83,7 @@ document.body = body({
                         children : [
                             summary({
                                 className : 'dim',
-                                children : 'Пространство студии'
+                                children : 'Студийное пространство'
                             }),
                             div({
                                 className : 'spacemap',
@@ -123,4 +135,4 @@ document.head.append(
         rel : 'stylesheet',
         href : '/htmlmodule/docs/data/studio.css'
     }),
-    script({ src : '/htmlmodule/docs/data/studio-back.js' }))
+    script({ src : '/htmlmodule/docs/data/studio-backphoto.js' }))

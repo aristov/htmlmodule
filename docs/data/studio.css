@@ -65,26 +65,55 @@ body > div > main
 {
     margin: 0;
     font-family: serif;
-    font-weight: normal;
     font-style: italic;
-    font-size: 50px;
+    font-weight: normal;
+    font-size: 40px;
     cursor: default;
 }
-.siteheader > address:last-child::before
+.siteheader > h1:first-child > a
 {
-    content: '☏';
+    letter-spacing: 7px;
+    border-width: 1px 0 1px;
+    border-style: dotted;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.siteheader > div
+{
+    white-space: nowrap;
+}
+.siteheader > div > address
+{
+    display: inline-block;
+    padding-left: 60px;
+    vertical-align: top;
+    font-size: 15px;
+    position: relative;
+    margin-left: 10px;
+    /*font-style: normal;*/
+}
+.siteheader > div > address::before
+{
     position: absolute;
     font-style: normal;
-    font-size: 50px;
-    margin-top: 7px;
-    margin-left: -20px;
-    opacity: 0.7;
 }
-.siteheader > address:last-child ul
+.siteheader > div > address.geo::before
 {
-    font-size: 17px;
-    list-style: none;
-    text-align: right;
+    content: '🌐';
+    font-size: 38px;
+    top: 2px;
+    left: 21px;
+}
+.siteheader > div > address.tel::before
+{
+    content: '☏';
+    font-size: 50px;
+    top: -3px;
+    left: 18px;
+}
+.siteheader > div > address > div
+{
+    margin: 8px 0;
+    padding: 0 0 0 15px;
 }
 .sitecontent details > summary
 {
