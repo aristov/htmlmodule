@@ -19,9 +19,10 @@ const datapath = 'docs/data/'
 const srcdoc = '<!DOCTYPE html><html><head><script src="dist/dist.window.htmlmodule.js"></script></head><body></body></html>'
 
 class OutputGroup extends HTMLDOMAssembler {
-    constructor({ onready }) {
+    constructor({ onready, app }) {
         super()
         const open = localStorage.getItem('makrupview.open') === 'true' || false
+        this.app = app
         this.assemble('section', {
             className : 'outputgroup',
             children : [
