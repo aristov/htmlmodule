@@ -16,23 +16,51 @@
     const hashname = (hash = location.hash) => hash.slice(1)
     const hash = hashname()
 
+    const pathinfo = section({
+        className : 'pathinfo',
+        draggable : true,
+        ondragend : ({ target : { style, clientHeight, clientWidth }, x, y }) => {
+            const { innerWidth, innerHeight } = window
+            Object.assign(style, {
+                margin : '0',
+                left : Math.min(Math.max(0, x), innerWidth - clientWidth) + 'px',
+                top : Math.min(Math.max(0, y - clientHeight), innerHeight - clientHeight) + 'px'
+            })
+        },
+        children : [
+            h2('Как добраться'),
+            p('Станция метро «Улица 1905 года», последний вагон из центра, ' +
+                'из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль ' +
+                'Звенигородского шоссе в сторону области до 2-й Звенигородской улицы, ' +
+                'перейти догогу, затем свернуть налево, пройти ~100м, рядом с магазином «Пятерочка»' +
+                'металлические ворота со шлагбаумом и калиткой — зайти в нее, ' +
+                'обойти 15-е строение слева, и снова в калитку - ' +
+                'слева будет вход в кафе с вывеской «PH & B». ' +
+                'Студия находится на втором этаже здания в конце коридора.'),
+            button({
+                className : 'closebutton',
+                title : 'Закрыть',
+                onclick : ({ target }) => target.parentNode.hidden = true,
+                children : '×'
+            })
+        ]
+    })
+
     const pathmap = article({
         id : 'address',
         hidden : hash !== 'address',
         // hidden : false,
         children : [
             h1('Адрес студии'),
-            // p('Студия находится на третьем этаже старого заводского здания.'),
             address(a({
                 href : 'https://yandex.ru/maps/-/CZHeYA0i',
                 rel : 'external',
                 target : 'blank',
                 children : 'Москва, улица 2-я Звенигородская, дом 13 строение 17/18А'
             })),
-            h2('Как добраться:'),
-            p('Станция метро "Улица 1905 года", последний вагон из центра, из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль Звенигородского шоссе до 2-й Звенигородской ул., перейти догогу, затем свернуть налево, пройти 50м, будет калитка - в нее, обогнуть дом и снова в калитку - слева будет вход в здание с вывеской "PH&B".'),
+            pathinfo,
             address({
-                id : 'pathmap',
+                className : 'pathmap',
                 children : [
                     script({
                         type : 'text/javascript',
@@ -73,37 +101,28 @@
                                 children : ['Fusion', sub('Studio')]
                             })
                         }),
-                        address({
-                            // className : 'dim',
-                            children : [
-                                a({
-                                    title : 'Наш адрес',
-                                    // className : 'geo dim',
-                                    // classList : { 'geo' : true, 'dim' : hash !== 'pathmap' },
-                                    /*className : Object
-                                     .keys(geoClassList)
-                                     .map(item => geoClassList[item]? item : '')
-                                     .filter(item => item)
-                                     .join(' '),*/
-                                    className : classList({ 'geo' : true, 'dim' : hash !== 'address' }),
-                                    onclick : ({ currentTarget }) => {
-                                        pathmap.hidden = !pathmap.hidden
-                                        currentTarget.classList.toggle('dim', pathmap.hidden)
-                                    },
-                                    children : pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
-                                }),
-                                a({
-                                    title : 'Контактные телефоны',
-                                    className : 'tel dim',
-                                    children : pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
-                                })
-                            ]
-                        })
+                        address([
+                            a({
+                                title : 'Наш адрес',
+                                // classList : { 'geo' : true, 'dim' : hash !== 'pathmap' }, // todo
+                                className : classList({ 'geo' : true, 'dim' : hash !== 'address' }),
+                                onclick : ({ currentTarget }) => {
+                                    pathmap.hidden = !pathmap.hidden
+                                    pathinfo.hidden = false;
+                                    currentTarget.classList.toggle('dim', pathmap.hidden)
+                                },
+                                children : pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
+                            }),
+                            a({
+                                title : 'Контактные телефоны',
+                                className : 'tel dim',
+                                children : pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
+                            })
+                        ])
                     ]
                 }),
                 main({
                     className : 'sitecontent',
-                    // hidden : true,
                     children : [
                         section({
                             id : 'spacemap',

@@ -219,14 +219,36 @@ body main article p
 
 
 
-#pathmap
+.pathmap
 {
     height: 720px;
     background: rgba(255, 255, 255, 0.85);
     position: relative;
     margin-top: 20px;
 }
-/*#pathmap > button.closebutton
+.pathinfo
+{
+    position: fixed;
+    width: 600px;
+    margin: 70px 50px;
+    padding: 0 15px;
+    background: white;
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    color: black;
+    cursor: move;
+}
+.pathinfo *
+{
+    font-style: normal;
+    text-shadow: none;
+}
+.pathinfo p
+{
+    font-size: 13px;
+    line-height: 1.2rem;
+}
+.pathinfo > button.closebutton
 {
     position: absolute;
     right: 0;
@@ -236,10 +258,13 @@ body main article p
     margin: 10px;
     color: #333;
     padding: 2px 8px 1px;
-    border-radius: 3px;
-    background: #f3f3f3;
-    border: 1px solid rgba(0, 0, 0, 0.3)
-}*/
+    background: transparent;
+    border: transparent;
+}
+.pathinfo > button.closebutton:not(:hover)
+{
+    opacity: 0.5;
+}
 #spacemap > div
 {
     font: bold 20px monospace;
