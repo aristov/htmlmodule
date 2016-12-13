@@ -10,16 +10,6 @@ const CURRENT_YEAR = (new Date).getFullYear()
 
 const time = init => htmldom('time', init)
 const nbsp = (count = 1) => ' '.repeat(count)
-const hashname = () => location.hash.slice(1)
-
-/*onhashchange = ({ oldURL }) => {
- const url = new URL(oldURL)
- const hash = url.hash.slice(1)
- const oldNode = document.getElementById(hash)
- if(oldNode) oldNode.hidden = true;
- const newNode = document.getElementById(hashname())
- if(newNode) newNode.hidden = false;
- }*/
 
 let pathmap
 
@@ -31,10 +21,11 @@ document.body = body({
                 children : [
                     h1({
                         title : 'Музыкальная студия',
+                        className : 'sitelogo logo2',
                         children : a({
                             // href : 'https://fusion1905.ru',
                             className : 'dim',
-                            children : 'Fusion'
+                            children : ['Fusion', sub('Studio')]
                         })
                     }),
                     address({
@@ -74,6 +65,7 @@ document.body = body({
                     pathmap = article({
                         id : 'pathmap',
                         // hidden : hashname() !== 'pathmap',
+                        hidden : false,
                         children : [
                             script({
                                 type : 'text/javascript',
@@ -102,17 +94,17 @@ document.body = body({
                         '&#128197;',
                         nbsp(3),
                         time('7').outerHTML,
-                        nbsp(2),
+                        nbsp(1),
                         span({ className : 'dim', children : '/' }).outerHTML,
-                        nbsp(2),
+                        nbsp(1),
                         time('7').outerHTML,
                         nbsp(6),
                         '&#128344;',
                         nbsp(3),
                         time(b('9')).outerHTML,
-                        nbsp(2),
+                        nbsp(1),
                         span({ className : 'dim', children : '—' }).outerHTML,
-                        nbsp(2),
+                        nbsp(1),
                         time(b('24')).outerHTML,
                         nbsp(1),
                         sup({ className : 'dim', children : '±' }).outerHTML,

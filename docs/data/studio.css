@@ -58,21 +58,63 @@ body::before
     justify-content: space-between;
     margin: 35px 0;
 }
-.siteheader > h1:first-child
+.siteheader > .sitelogo
 {
-    margin: 0;
-    font-family: serif;
-    font-style: italic;
+    /*font-style: italic;*/
     font-weight: normal;
-    font-size: 40px;
     cursor: default;
+    margin: 0;
 }
-.siteheader > h1:first-child > a
+.siteheader > .sitelogo.logo0
 {
-    letter-spacing: 7px;
-    border-width: 1px 0 1px;
-    border-style: dotted;
-    border-color: rgba(255, 255, 255, 0.2);
+    font: italic normal 40px Impact, monospace;
+    letter-spacing: 10px;
+    margin-top: -9px;
+}
+.siteheader > .sitelogo.logo0 sub
+{
+    font-size: 18px;
+    margin-left: -93px;
+    position: relative;
+    bottom: -12px;
+}
+.siteheader > .sitelogo.logo1
+{
+    font: italic bold 40px "Malayalam MN", monospace;
+    letter-spacing: 8px;
+    margin-top: -12px;
+}
+.siteheader > .sitelogo.logo1 sub
+{
+    font-size: 18px;
+    margin-left: -90px;
+    position: relative;
+    bottom: -12px;
+}
+.siteheader > .sitelogo.logo2
+{
+    font: italic bold 40px Noteworthy, monospace;
+    letter-spacing: 6px;
+    margin-top: -20px;
+}
+.siteheader > .sitelogo.logo2 sub
+{
+    font-size: 18px;
+    margin-left: -83px;
+    position: relative;
+    bottom: -10px;
+}
+.siteheader > .sitelogo.logo3
+{
+    font: normal 35px Zapfino, monospace;
+    margin: -31px 0 -50px;
+}
+.siteheader > .sitelogo.logo3 sub
+{
+    font-size: 15px;
+    margin-left: -65px;
+    position: relative;
+    bottom: -14px;
 }
 .siteheader > address
 {
