@@ -60,10 +60,9 @@ body::before
 }
 .siteheader > .sitelogo
 {
-    /*font-style: italic;*/
-    font-weight: normal;
     cursor: default;
     margin: 0;
+    user-select: none;
 }
 .siteheader > .sitelogo.logo0
 {
