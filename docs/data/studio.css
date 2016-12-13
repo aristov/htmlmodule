@@ -166,33 +166,49 @@ body main article p
     margin: 8px 0;
     padding: 0 0 0 15px;
 }
-.siteheader > address > a::before
+/*.siteheader > address > a::before
 {
     position: absolute;
     font-style: normal;
-}
-.siteheader > address > a.geo
+}*/
+.siteheader > address > .addressbutton
 {
     cursor: pointer;
 }
-.siteheader > address > a.geo::before
+.siteheader > address span.fa
+{
+    position: absolute;
+}
+.siteheader > address span.fa-map-o
+{
+    font-size: 28px;
+    top: 12px;
+    left: 25px;
+}
+.siteheader > address span.fa-phone
+{
+    font-size: 35px;
+    top: 10px;
+    left: 32px;
+}
+/*.siteheader > address > a.geo::before
 {
     content: '🌐';
     font-size: 38px;
     top: 2px;
     left: 21px;
-}
-.siteheader > address > a.tel::before
+}*/
+/*.siteheader > address > a.tel::before
 {
     content: '☏';
     font-size: 50px;
     top: -3px;
     left: 18px;
-}
+}*/
 
 /*================================================================*/
 
-.sitecontent details > summary
+main.content details > summary
 {
     display: inline-block;
     cursor: default;

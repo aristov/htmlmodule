@@ -46,7 +46,7 @@
         ]
     })
 
-    const pathmap = article({
+    const addresspage = article({
         id : 'address',
         hidden : hash !== 'address',
         // hidden : false,
@@ -73,7 +73,7 @@
             0 && button({
                 className : 'closebutton',
                 title : 'Закрыть карту',
-                onclick : () => pathmap.hidden = true,
+                onclick : () => addresspage.hidden = true,
                 children : '×'
             })
         ]
@@ -85,6 +85,8 @@
             .map(item => list[item]? item : '')
             .filter(item => item)
             .join(' ')
+
+    const content = main(addresspage)
 
     document.body = body({
         children : [
@@ -104,43 +106,32 @@
                         address([
                             a({
                                 title : 'Наш адрес',
-                                // classList : { 'geo' : true, 'dim' : hash !== 'pathmap' }, // todo
-                                className : classList({ 'geo' : true, 'dim' : hash !== 'address' }),
+                                className : classList({
+                                    'addressbutton' : true,
+                                    'dim' : hash !== 'address'
+                                }), // todo
                                 onclick : ({ currentTarget }) => {
-                                    pathmap.hidden = !pathmap.hidden
+                                    addresspage.hidden = !addresspage.hidden
                                     pathinfo.hidden = false;
-                                    currentTarget.classList.toggle('dim', pathmap.hidden)
+                                    currentTarget.classList.toggle('dim', addresspage.hidden)
                                 },
-                                children : pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
+                                children : [
+                                    span({ className : 'fa fa-map-o' }),
+                                    pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
+                                ]
                             }),
                             a({
                                 title : 'Контактные телефоны',
-                                className : 'tel dim',
-                                children : pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
+                                className : 'dim',
+                                children : [
+                                    span({ className : 'fa fa-phone' }),
+                                    pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
+                                ]
                             })
                         ])
                     ]
                 }),
-                main({
-                    className : 'sitecontent',
-                    children : [
-                        section({
-                            id : 'spacemap',
-                            hidden : true,
-                            children : [
-                                h1({
-                                    className : 'dim',
-                                    children : 'Студийное пространство'
-                                }),
-                                div({
-                                    className : 'spacemap',
-                                    children : figure(layout)
-                                }),
-                            ]
-                        }),
-                        pathmap
-                    ]
-                }),
+                content
             ]),
             footer({
                 className : 'contentinfo',
@@ -149,16 +140,18 @@
                         title : 'Наша студия работает ежедневно с девяти утра до двенадцати ночи.',
                         className : 'dim',
                         innerHTML : [
-                            '&#128197;',
-                            nbsp(3),
+                            // '&#128197;',
+                            span({ className : 'fa fa-calendar' }).outerHTML,
+                            nbsp(2),
                             time('7').outerHTML,
                             nbsp(1),
                             span({ className : 'dim', children : '/' }).outerHTML,
                             nbsp(1),
                             time('7').outerHTML,
                             nbsp(6),
-                            '&#128344;',
-                            nbsp(3),
+                            // '&#128344;',
+                            span({ className : 'fa fa-clock-o' }).outerHTML,
+                            nbsp(2),
                             time(b('9')).outerHTML,
                             nbsp(1),
                             span({ className : 'dim', children : '—' }).outerHTML,
