@@ -210,7 +210,7 @@ body main article p
 {
     visibility: hidden;
 }
-.contentinfo address small a[rel~=author] time
+.contentinfo address small time
 {
     margin: 0 6px;
 }

@@ -168,12 +168,14 @@
                             sup({ className : 'dim', children : '±' }).outerHTML,
                         ].join('')
                     }),
-                    address(small(a({
-                        href : 'mailto:vv.aristov@gmail.com',
-                        rel : 'author',
+                    address(small({
                         className : 'dim',
-                        children : ['© ', time(CURRENT_YEAR), ' студия «Фьюжн»']
-                    })))
+                        children : ['© ', time(CURRENT_YEAR), ' ', a({
+                            href : 'mailto:vv.aristov@gmail.com',
+                            rel : 'author',
+                            children : 'студия «Фьюжн»'
+                        })]
+                    }))
                 ]
             }),
         ]
