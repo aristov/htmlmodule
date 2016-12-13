@@ -44,6 +44,32 @@ body::before
     opacity: 0.1;
     z-index: -1;
 }
+body main article h1,
+body main article h2
+{
+    font-weight: normal;
+    font-style: italic;
+}
+body main article h1
+{
+    font-size: 22px;
+}
+body main article h2
+{
+    font-size: 18px;
+}
+body main article p,
+body main article address
+{
+    font-size: 15px;
+    font-style: italic;
+    font-weight: normal;
+    line-height: 1.3rem;
+}
+body main article p
+{
+    opacity: 0.7;
+}
 .dim:not(:hover):not(:focus)
 {
     opacity: 0.7;
@@ -56,7 +82,9 @@ body::before
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin: 35px 0;
+    margin: 8px 0 20px;
+    padding: 20px 0;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
 }
 .siteheader > .sitelogo
 {
@@ -176,7 +204,7 @@ body::before
     display: flex;
     justify-content: space-between;
     padding: 20px 0 40px;
-    border-top: 1px dotted rgba(255, 255, 255, 0.2);
+    border-top: 1px dotted rgba(255, 255, 255, 0.15);
 }
 .contentinfo small:not(:hover) sup
 {
@@ -189,6 +217,8 @@ body::before
 
 /*================================================================*/
 
+
+
 #pathmap
 {
     height: 720px;
@@ -196,7 +226,7 @@ body::before
     position: relative;
     margin-top: 20px;
 }
-#pathmap > button.closebutton
+/*#pathmap > button.closebutton
 {
     position: absolute;
     right: 0;
@@ -209,7 +239,7 @@ body::before
     border-radius: 3px;
     background: #f3f3f3;
     border: 1px solid rgba(0, 0, 0, 0.3)
-}
+}*/
 #spacemap > div
 {
     font: bold 20px monospace;

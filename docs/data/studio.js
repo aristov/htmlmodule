@@ -17,15 +17,30 @@
     const hash = hashname()
 
     const pathmap = article({
-        id : 'pathmap',
-        hidden : hash !== 'pathmap',
+        id : 'address',
+        hidden : hash !== 'address',
         // hidden : false,
         children : [
-            script({
-                type : 'text/javascript',
-                charset : 'utf-8',
-                async : true,
-                src : 'https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=4L2HMAQC2mYDutWIKsc2LAD98hZTzzSe&amp;width=1000&amp;height=720&amp;lang=ru_RU&amp;sourceType=mymaps&amp;scroll=true'
+            h1('Адрес студии'),
+            // p('Студия находится на третьем этаже старого заводского здания.'),
+            address(a({
+                href : 'https://yandex.ru/maps/-/CZHeYA0i',
+                rel : 'external',
+                target : 'blank',
+                children : 'Москва, улица 2-я Звенигородская, дом 13 строение 17/18А'
+            })),
+            h2('Как добраться:'),
+            p('Станция метро "Улица 1905 года", последний вагон из центра, из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль Звенигородского шоссе до 2-й Звенигородской ул., перейти догогу, затем свернуть налево, пройти 50м, будет калитка - в нее, обогнуть дом и снова в калитку - слева будет вход в здание с вывеской "PH&B".'),
+            address({
+                id : 'pathmap',
+                children : [
+                    script({
+                        type : 'text/javascript',
+                        charset : 'utf-8',
+                        async : true,
+                        src : 'https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=4L2HMAQC2mYDutWIKsc2LAD98hZTzzSe&amp;width=1000&amp;height=720&amp;lang=ru_RU&amp;sourceType=mymaps&amp;scroll=true'
+                    })
+                ]
             }),
             0 && button({
                 className : 'closebutton',
@@ -66,11 +81,11 @@
                                     // className : 'geo dim',
                                     // classList : { 'geo' : true, 'dim' : hash !== 'pathmap' },
                                     /*className : Object
-                                        .keys(geoClassList)
-                                        .map(item => geoClassList[item]? item : '')
-                                        .filter(item => item)
-                                        .join(' '),*/
-                                    className : classList({ 'geo' : true, 'dim' : hash !== 'pathmap' }),
+                                     .keys(geoClassList)
+                                     .map(item => geoClassList[item]? item : '')
+                                     .filter(item => item)
+                                     .join(' '),*/
+                                    className : classList({ 'geo' : true, 'dim' : hash !== 'address' }),
                                     onclick : ({ currentTarget }) => {
                                         pathmap.hidden = !pathmap.hidden
                                         currentTarget.classList.toggle('dim', pathmap.hidden)
