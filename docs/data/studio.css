@@ -182,6 +182,10 @@ body::before
 {
     visibility: hidden;
 }
+.contentinfo address small a[rel~=author] time
+{
+    margin: 0 6px;
+}
 
 /*================================================================*/
 
