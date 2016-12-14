@@ -21,22 +21,27 @@
         draggable : true,
         ondragend : ({ target : { style, clientHeight, clientWidth }, x, y }) => {
             const { innerWidth, innerHeight } = window
+            const { scrollTop } = document.body
             Object.assign(style, {
                 margin : '0',
                 left : Math.min(Math.max(0, x), innerWidth - clientWidth) + 'px',
-                top : Math.min(Math.max(0, y - clientHeight), innerHeight - clientHeight) + 'px'
+                top : Math.min(
+                    Math.max(0, scrollTop + y - clientHeight),
+                    scrollTop + innerHeight - clientHeight) + 'px'
             })
         },
         children : [
             h2('Как добраться'),
-            p('Станция метро «Улица 1905 года», последний вагон из центра, ' +
+            p(('Станция метро «Улица 1905 года», последний вагон из центра, ' +
                 'из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль ' +
                 'Звенигородского шоссе в сторону области до 2-й Звенигородской улицы, ' +
                 'перейти догогу, затем свернуть налево, пройти ~100м, рядом с магазином «Пятерочка»' +
                 'металлические ворота со шлагбаумом и калиткой — зайти в нее, ' +
                 'обойти 15-е строение слева, и снова в калитку - ' +
-                'слева будет вход в кафе с вывеской «PH & B». ' +
-                'Студия находится на втором этаже здания в конце коридора.'),
+                'слева будет вход в кафе с вывеской «PH & B». ' +
+                'Студия находится на втором этаже здания в конце коридора.')
+                    .replace(/(\sиз|в|по|и|до|со?|на)\s/gi, '$1 ')
+            ),
             button({
                 className : 'closebutton',
                 title : 'Закрыть',
@@ -96,11 +101,17 @@
                     children : [
                         h1({
                             title : 'Музыкальная студия',
-                            className : 'sitelogo logo2',
+                            /*className : 'sitelogo logo2',
                             children : a({
                                 // href : 'https://fusion1905.ru',
                                 className : 'dim',
                                 children : ['Fusion', sub('Studio')]
+                            })*/
+                            children : img({
+                                alt : 'Fusion studio',
+                                width : 160,
+                                height : 76,
+                                src : 'studio.png'
                             })
                         }),
                         address([

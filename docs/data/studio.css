@@ -25,7 +25,7 @@ body
     max-width: 1000px;
     margin: auto;
     background: rgba(0, 0, 0, 0.9);
-    position: relative;
+    /*position: relative;*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -82,9 +82,13 @@ body main article p
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin: 8px 0 20px;
-    padding: 20px 0;
-    border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+    background: #212831;
+    padding: 7px;
+    box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+.siteheader > h1
+{
+    font-size: 0;
 }
 .siteheader > .sitelogo
 {
@@ -146,6 +150,7 @@ body main article p
 .siteheader > address
 {
     white-space: nowrap;
+    padding: 13px 30px 0;
 }
 .siteheader > address > a
 {
@@ -244,7 +249,7 @@ main.content details > summary
 }
 .pathinfo
 {
-    position: fixed;
+    position: absolute;
     width: 600px;
     margin: 70px 50px;
     padding: 0 15px;
@@ -253,10 +258,6 @@ main.content details > summary
     z-index: 10;
     color: black;
     cursor: move;
-}
-.pathinfo *
-{
-    font-style: normal;
     text-shadow: none;
 }
 .pathinfo p
