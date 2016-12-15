@@ -45,6 +45,18 @@
         ]
     })
 
+    const pathmap = address({
+        className : 'pathmap',
+        children : [
+            script({
+                type : 'text/javascript',
+                charset : 'utf-8',
+                async : true,
+                src : 'https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=4L2HMAQC2mYDutWIKsc2LAD98hZTzzSe&amp;width=1000&amp;height=720&amp;lang=ru_RU&amp;sourceType=mymaps&amp;scroll=true'
+            })
+        ]
+    })
+
     const addresspage = article({
         id : 'address',
         // hidden : hash !== 'address',
@@ -57,17 +69,7 @@
                 children : 'Москва, улица 2-я Звенигородская, дом 13 строение 17/18А'
             })),
             pathinfo,
-            address({
-                className : 'pathmap',
-                children : [
-                    script({
-                        type : 'text/javascript',
-                        charset : 'utf-8',
-                        async : true,
-                        src : 'https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=4L2HMAQC2mYDutWIKsc2LAD98hZTzzSe&amp;width=1000&amp;height=720&amp;lang=ru_RU&amp;sourceType=mymaps&amp;scroll=true'
-                    })
-                ]
-            }),
+            pathmap,
         ]
     })
 
@@ -85,8 +87,11 @@
         'https://pp.vk.me/c615821/v615821762/7992/NCe1WdV0JSc.jpg',
     ]
 
+    const pricetitle = 'Точную стоимость репетиций уточняйте по телефону +7 916 56 808 56 или +7 926 602 2587'
+
     const indexpage = article({
         id : 'index',
+        className : 'text',
         // hidden : Boolean(hash) || (hash !== 'index'),
         children : [
             h1('Музыкальная студия «Фьюжн»'),
@@ -101,7 +106,7 @@
             section([
                 h1('Студийное пространство'),
                 ul([
-                    li(['3 комнаты для репетиций, 25 — 30 м', sup('2')]),
+                    li(['3 комнаты для репетиций, 25-30 м', sup('2')]),
                     li(['концертный зал с окном, 50 м', sup('2')]),
                     li(['малый зал для индивидуальных занятий и небольших коллективов, 20 м', sup('2')])
                 ]),
@@ -120,10 +125,13 @@
             section([
                 h1('Как мы работаем'),
                 ul([
-                    li('репетиции от 200 до 400 рублей в час за аренду зала'),
+                    li({
+                        innerHTML : `репетиции <strong title="${ pricetitle }">` +
+                        'от 200 до 400 рублей в час</strong> за аренду зала'
+                    }),
                     li('почасовое бронирование'),
                     li('аренда инструментов'),
-                    li('парковка'),
+                    li('платная парковка у входа'),
                     li('вода, чай, кофе, снеки'),
                     li('кондиционер, wi-fi'),
                     li('ланч-кафе рядом')
@@ -131,17 +139,24 @@
             ]),
             section([
                 h1('Наше оборудование'),
-                p('Ampeg, EBS, Fender, JBL, Kustom, Mackie, Peavey, Randall, Roland, Sabian, Shure, Sonor, Soundcraft, VOX, Yamaha и др.')
+                p({
+                    innerHTML : 'У нас есть оборудование ' +
+                    'Ampeg, EBS, Fender, JBL, Kustom, Mackie, Peavey, Randall, Roland, Sabian, Shure, Sonor, Soundcraft, VOX, Yamaha'
+                        .replace(/\b([A-Z]+[a-z]*,?)/g, '<b>$1</b>') +
+                    ' и другие всякие крутые штуки!'
+                })
             ]),
             section([
                 h1('Телефон студии'),
                 p('По этим номерам можно узнать подробнее о студии и забронировать репетицию:'),
-                address(ul([
-                    li('+7 926 602-25-87'),
-                    li('+7 916 56-808-56')
-                ])),
+                address({
+                    className : 'tel',
+                    children : ul([
+                        li('+7 926 602-25-87'),
+                        li('+7 916 56-808-56')
+                    ])
+                }),
             ]),
-            addresspage
         ]
     })
 
@@ -152,7 +167,7 @@
             .filter(item => item)
             .join(' ')
 
-    const content = main([indexpage])
+    const content = main([indexpage, addresspage])
 
     document.body = body({
         children : [
@@ -172,14 +187,14 @@
                         }),
                         address([
                             a({
-                                title : 'Сообщество студии на vk.com',
+                                title : 'Наши друзья на vk.com',
                                 href : 'https://vk.com/bazafusion',
                                 rel : 'external',
                                 target : '_blank',
                                 className : 'dim',
                                 children : [
                                     span({ className : 'fa fa-vk dim', target : '_blank' }),
-                                    pre('Сообщество\nстудии')
+                                    pre('Сообщество\nмузыкантов')
                                 ]
                             }),
                             a({
@@ -190,11 +205,7 @@
                                     // 'dim' : hash !== 'address'
                                     'dim' : true
                                 }),
-                                /*onclick : ({ currentTarget }) => {
-                                 addresspage.hidden = !addresspage.hidden
-                                 pathinfo.hidden = false;
-                                 currentTarget.classList.toggle('dim', addresspage.hidden)
-                                 },*/
+                                onclick : () => pathinfo.hidden = false,
                                 children : [
                                     span({ className : 'fa fa-map dim' }),
                                     pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
@@ -205,7 +216,7 @@
                                 className : 'dim',
                                 children : [
                                     span({ className : 'fa fa-phone dim' }),
-                                    pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
+                                    pre(['+7 926 602-25-87', '\n', '+7 916 56-808-56'])
                                 ]
                             }),
                         ])
@@ -225,9 +236,9 @@
                             span({ className : 'dim', children : '/' }),
                             ' ', time('7'), ' '.repeat(6),
                             span({ className : 'fa fa-clock-o' }),
-                            '  ', time(b('9')), ' ',
+                            '  ', time('9'), ' ',
                             span({ className : 'dim', children : '—' }),
-                            ' ', time(b('24')), ' ',
+                            ' ', time('24'), ' ',
                             sup({ className : 'dim', children : '±' }),
                         ]
                     }),
@@ -247,4 +258,13 @@
     document.head.append(script({
         src : '/htmlmodule/docs/data/studio-backphoto.js'
     }))
+
+    window.onscroll = () => {
+        const half = window.innerHeight / 2
+        const { style } = pathmap
+        if(addresspage.offsetTop < window.scrollY + half) {
+            style.opacity = 1
+        }
+        else style.opacity = null
+    }
 }
