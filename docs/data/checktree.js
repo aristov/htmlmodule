@@ -30,13 +30,11 @@ const treesum = ({ accessKey } = {}) =>
         ]
     })
 
-const treegroup = (init = {}) => {
-    init = assign({
+const treegroup = (init = {}) =>
+    details(assign({
         open : true,
         className : 'treegroup',
-    }, NodeInit(init))
-    return details(init)
-}
+    }, NodeInit(init)))
 
 const updateTree = ({ parentNode, checked }) => {
     if(parentNode.tagName === 'SUMMARY') {
@@ -48,10 +46,11 @@ const updateTree = ({ parentNode, checked }) => {
             item.indeterminate = false
         })
     }
-    while(parentNode = parentNode.parentNode) {
-        if(parentNode.tagName === 'DETAILS') {
+    let node = parentNode.parentNode
+    do {
+        if(node.tagName === 'DETAILS') {
             const selector = 'input[type=checkbox]'
-            const items = Array.from(parentNode.querySelectorAll(selector))
+            const items = Array.from(node.querySelectorAll(selector))
             const itemsum = items[0]
             const group = items.slice(1)
             if(group.every(({ checked }) => checked)) {
@@ -61,11 +60,13 @@ const updateTree = ({ parentNode, checked }) => {
             else if(group.every(({ checked }) => !checked)) {
                 itemsum.checked = false
                 itemsum.indeterminate = false
-            } else {
+            }
+            else {
                 itemsum.indeterminate = true
             }
         }
     }
+    while(node = node.parentNode)
 }
 
 const checktree = ({
@@ -97,11 +98,10 @@ const checktree = ({
                     const treegroup = target.parentNode
                     if(key === 'ArrowLeft') {
                         if(tagName === 'DIV') treegroup.firstChild.focus()
-                        else {
-                            if(treegroup.open) treegroup.open = false
-                            else treegroup.parentNode.firstChild.focus()
-                        }
-                    } else if(tagName === 'SUMMARY') {
+                        else if(treegroup.open) treegroup.open = false
+                        else treegroup.parentNode.firstChild.focus()
+                    }
+                    else if(tagName === 'SUMMARY') {
                         if(treegroup.open) {
                             const node = treegroup.querySelector([
                                 'summary:focus + div',
@@ -144,7 +144,7 @@ const checktree = ({
                     else if(type !== 'text') {
                         const sibling = key === 'ArrowLeft'?
                             target.previousSibling :
-                            (key === 'ArrowRight' && target.nextSibling)
+                            key === 'ArrowRight' && target.nextSibling
                         if(key !== 'Enter') (sibling || target.parentNode).focus()
                         event.preventDefault()
                     }
