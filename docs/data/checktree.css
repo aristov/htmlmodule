@@ -1,0 +1,46 @@
+.checktree details
+{
+    padding-left: 22px;
+    font: 15px sans-serif;
+}
+.checktree details > summary,
+.checktree details > div
+{
+    margin: 10px 0 0;
+    padding: 10px;
+    background: rgba(0, 124, 0, 0.1);
+    display: flex;
+}
+.checktree details > summary
+{
+    margin-left: -22px;
+    outline: none;
+}
+.checktree details > div
+{
+    padding-left: 25px;
+}
+.checktree details.focus
+{
+    box-shadow: 0 0 2px 4px rgba(0, 124, 255, 0.5);
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.checktree details.focus > summary:focus,
+.checktree details > div:focus
+{
+    background: rgba(0, 124, 255, 0.2);
+}
+.checktree details > * > input[type=checkbox]
+{
+    width: 32px;
+    height: 32px;
+}
+.checktree details > * > input[type=text]
+{
+    width: 100%;
+}
+.checktree details > * > input
+{
+    font: inherit;
+    margin: 0 5px;
+}
