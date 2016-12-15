@@ -18,14 +18,17 @@ html, body
 }
 body
 {
-    font: 19px Arial;
+    /*font: 15px Arial;*/
+    /*font: 14px Verdana;*/
+    /*font: 14px Tahoma;*/
+    /*font: 13px "Lucida Console", Monaco, monospace;*/
+    font: 16px "Courier New";
     color: rgba(255, 255, 255, 1);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     padding: 0 20px;
     max-width: 1000px;
     margin: auto;
     background: rgba(0, 0, 0, 0.9);
-    /*position: relative;*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -44,32 +47,39 @@ body::before
     opacity: 0.1;
     z-index: -1;
 }
-body main article h1,
-body main article h2
+body main article
 {
-    font-weight: normal;
-    font-style: italic;
+    margin-bottom: 40px;
 }
 body main article h1
 {
+    font-weight: normal;
+    margin: 25px 0;
     font-size: 22px;
+    opacity: 0.8;
 }
-body main article h2
+body main section > h1,
+body main article article > h1
 {
     font-size: 18px;
 }
 body main article p,
+body main article ul,
 body main article address
 {
-    font-size: 15px;
-    font-style: italic;
-    font-weight: normal;
     line-height: 1.3rem;
 }
-body main article p
+body main article p,
+body main article ul
 {
-    opacity: 0.7;
+    opacity: 0.6;
 }
+body main article ul sup
+{
+    margin-top: -5px;
+    display: inline-block;
+}
+
 .dim:not(:hover):not(:focus)
 {
     opacity: 0.7;
@@ -82,16 +92,149 @@ body main article p
     position: relative;
     display: flex;
     justify-content: space-between;
-    /*background: #212831;*/
     padding: 10px 0;
-    /*box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.1);*/
     border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
 }
 .siteheader > h1
 {
     font-size: 0;
 }
-.siteheader > .sitelogo
+.siteheader > address
+{
+    white-space: nowrap;
+    padding: 5px 0;
+}
+.siteheader > address > a
+{
+    font-style: inherit;
+    background: transparent;
+    border: none;
+    color: inherit;
+    display: inline-block;
+    padding: 0 0 0 60px;
+    font-size: 15px;
+    position: relative;
+    margin: 0 0 0 10px;
+    line-height: normal;
+}
+.siteheader > address > a > pre
+{
+    font: inherit;
+    margin: 8px 0;
+    padding: 0 0 0 15px;
+}
+.siteheader > address > .addressbutton
+{
+    cursor: pointer;
+}
+.siteheader > address span.fa
+{
+    position: absolute;
+}
+.siteheader > address span.fa-map-o
+{
+    font-size: 28px;
+    top: 12px;
+    left: 25px;
+}
+.siteheader > address span.fa-phone
+{
+    font-size: 35px;
+    top: 10px;
+    left: 32px;
+}
+
+/*================================================================*/
+
+main.content details > summary
+{
+    display: inline-block;
+    cursor: default;
+    font-style: normal;
+    margin-bottom: 10px;
+}
+.contentinfo
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 40px;
+    border-top: 1px dotted rgba(255, 255, 255, 0.15);
+}
+.contentinfo small
+{
+    font-size: 14px;
+}
+.contentinfo small:not(:hover) sup
+{
+    visibility: hidden;
+}
+.contentinfo address small time
+{
+    margin: 0 6px;
+}
+
+/*================================================================*/
+
+
+
+.pathmap
+{
+    height: 720px;
+    background: rgba(255, 255, 255, 0.85);
+    position: relative;
+    margin-top: 20px;
+}
+.pathinfo
+{
+    position: absolute;
+    width: 600px;
+    margin: 70px 50px;
+    padding: 0 15px;
+    background: white;
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    color: black;
+    cursor: move;
+    text-shadow: none;
+    font-size: 14px;
+    font-style: italic;
+}
+.pathinfo h1
+{
+    margin: 15px 0 10px;
+    opacity: 1;
+}
+.pathinfo p
+{
+    line-height: 1.1rem;
+    opacity: 0.9;
+}
+.pathinfo > button.closebutton
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: inherit;
+    font-size: 20px;
+    margin: 10px;
+    color: #333;
+    padding: 2px 8px 1px;
+    background: transparent;
+    border: transparent;
+}
+.pathinfo > button.closebutton:not(:hover)
+{
+    opacity: 0.5;
+}
+#spacemap > div
+{
+    font: bold 20px monospace;
+    text-align: center;
+}
+
+/*================================================================*/
+
+/*.siteheader > .sitelogo
 {
     cursor: default;
     margin: 0;
@@ -147,144 +290,4 @@ body main article p
     margin-left: -65px;
     position: relative;
     bottom: -14px;
-}
-.siteheader > address
-{
-    white-space: nowrap;
-    padding: 5px 0;
-}
-.siteheader > address > a
-{
-    font-style: inherit;
-    background: transparent;
-    border: none;
-    color: inherit;
-    display: inline-block;
-    padding: 0 0 0 60px;
-    font-size: 15px;
-    position: relative;
-    margin: 0 0 0 10px;
-    line-height: normal;
-}
-.siteheader > address > a > pre
-{
-    font: inherit;
-    margin: 8px 0;
-    padding: 0 0 0 15px;
-}
-/*.siteheader > address > a::before
-{
-    position: absolute;
-    font-style: normal;
 }*/
-.siteheader > address > .addressbutton
-{
-    cursor: pointer;
-}
-.siteheader > address span.fa
-{
-    position: absolute;
-}
-.siteheader > address span.fa-map-o
-{
-    font-size: 28px;
-    top: 12px;
-    left: 25px;
-}
-.siteheader > address span.fa-phone
-{
-    font-size: 35px;
-    top: 10px;
-    left: 32px;
-}
-/*.siteheader > address > a.geo::before
-{
-    content: '🌐';
-    font-size: 38px;
-    top: 2px;
-    left: 21px;
-}*/
-/*.siteheader > address > a.tel::before
-{
-    content: '☏';
-    font-size: 50px;
-    top: -3px;
-    left: 18px;
-}*/
-
-/*================================================================*/
-
-main.content details > summary
-{
-    display: inline-block;
-    cursor: default;
-    font-style: normal;
-    margin-bottom: 10px;
-}
-.contentinfo
-{
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0 40px;
-    border-top: 1px dotted rgba(255, 255, 255, 0.15);
-}
-.contentinfo small:not(:hover) sup
-{
-    visibility: hidden;
-}
-.contentinfo address small time
-{
-    margin: 0 6px;
-}
-
-/*================================================================*/
-
-
-
-.pathmap
-{
-    height: 720px;
-    background: rgba(255, 255, 255, 0.85);
-    position: relative;
-    margin-top: 20px;
-}
-.pathinfo
-{
-    position: absolute;
-    width: 600px;
-    margin: 70px 50px;
-    padding: 0 15px;
-    background: white;
-    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-    color: black;
-    cursor: move;
-    text-shadow: none;
-}
-.pathinfo p
-{
-    font-size: 13px;
-    line-height: 1.2rem;
-}
-.pathinfo > button.closebutton
-{
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-family: inherit;
-    font-size: 20px;
-    margin: 10px;
-    color: #333;
-    padding: 2px 8px 1px;
-    background: transparent;
-    border: transparent;
-}
-.pathinfo > button.closebutton:not(:hover)
-{
-    opacity: 0.5;
-}
-#spacemap > div
-{
-    font: bold 20px monospace;
-    text-align: center;
-}

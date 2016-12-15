@@ -33,7 +33,7 @@
             })
         },
         children : [
-            h2('Как добраться'),
+            h1('Как добраться'),
             paragraph('Станция метро «Улица 1905 года», последний вагон из центра,',
                 'из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль',
                 'Звенигородского шоссе в сторону области до 2-й Звенигородской улицы,',
@@ -53,8 +53,7 @@
 
     const addresspage = article({
         id : 'address',
-        hidden : hash !== 'address',
-        // hidden : false,
+        // hidden : hash !== 'address',
         children : [
             h1('Адрес студии'),
             address(a({
@@ -75,12 +74,59 @@
                     })
                 ]
             }),
-            0 && button({
-                title : 'Закрыть карту',
-                className : 'closebutton',
-                onclick : () => addresspage.hidden = true,
-                children : '×'
-            })
+        ]
+    })
+
+    const indexpage = article({
+        id : 'index',
+        // hidden : Boolean(hash) || (hash !== 'index'),
+        children : [
+            h1('Музыкальная студия «Фьюжн»'),
+            p('Уютная студия на втором этаже заводского лофта недалеко от метро «Улица 1905 года».'),
+            section([
+                h1('Студийное пространство'),
+                ul([
+                    li(['3 комнаты для репетиций, 25 — 30 м', sup('2')]),
+                    li(['концертный зал с окном, 50 м', sup('2')]),
+                    li(['малый зал для индивидуальных занятий и небольших коллективов, 20 м', sup('2')])
+                ]),
+            ]),
+            section([
+                h1('Услуги'),
+                ul([
+                    li('репетиции музыкальных коллективов'),
+                    li('небольшие концерты'),
+                    li('индивидуальные занятия'),
+                    li('занятия с преподавателем'),
+                    li('фотосессии'),
+                    li('закрытые вечеринки')
+                ])
+            ]),
+            section([
+                h1('Как мы работаем'),
+                ul([
+                    li('репетиции от 200 до 400 рублей в час за аренду зала'),
+                    li('почасовое бронирование'),
+                    li('аренда инструментов'),
+                    li('парковка'),
+                    li('вода, чай, кофе, снеки'),
+                    li('кондиционер, wi-fi'),
+                    li('ланч-кафе рядом')
+                ])
+            ]),
+            section([
+                h1('Наше оборудование'),
+                p('Ampeg, EBS, Fender, JBL, Kustom, Mackie, Peavey, Randall, Roland, Sabian, Shure, Sonor, Soundcraft, VOX, Yamaha и др.')
+            ]),
+            section([
+                h1('Телефон студии'),
+                p('По этим номерам можно узнать подробнее о студии и забронировать репетицию:'),
+                address(ul([
+                    li('+7 926 602-25-87'),
+                    li('+7 916 56-808-56')
+                ])),
+            ]),
+            addresspage
         ]
     })
 
@@ -91,7 +137,7 @@
             .filter(item => item)
             .join(' ')
 
-    const content = main(addresspage)
+    const content = main([indexpage])
 
     document.body = body({
         children : [
@@ -101,12 +147,6 @@
                     children : [
                         h1({
                             title : 'Музыкальная студия',
-                            /*className : 'sitelogo log2',
-                            children : a({
-                                // href : 'https://fusion1905.ru',
-                                className : 'dim',
-                                children : ['Fusion', sub('Studio')]
-                            })*/
                             children : img({
                                 alt : 'Fusion studio',
                                 src : 'studio.png',
@@ -118,15 +158,16 @@
                         address([
                             a({
                                 title : 'Наш адрес',
+                                href : '#address',
                                 className : classList({
                                     'addressbutton' : true,
                                     'dim' : hash !== 'address'
-                                }), // todo
-                                onclick : ({ currentTarget }) => {
+                                }),
+                                /*onclick : ({ currentTarget }) => {
                                     addresspage.hidden = !addresspage.hidden
                                     pathinfo.hidden = false;
                                     currentTarget.classList.toggle('dim', addresspage.hidden)
-                                },
+                                },*/
                                 children : [
                                     span({ className : 'fa fa-map-o' }),
                                     pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
@@ -151,27 +192,17 @@
                     small({
                         title : 'Наша студия работает ежедневно с девяти утра до двенадцати ночи.',
                         className : 'dim',
-                        innerHTML : [
-                            // '&#128197;',
-                            span({ className : 'fa fa-calendar' }).outerHTML,
-                            nbsp(2),
-                            time('7').outerHTML,
-                            nbsp(1),
-                            span({ className : 'dim', children : '/' }).outerHTML,
-                            nbsp(1),
-                            time('7').outerHTML,
-                            nbsp(6),
-                            // '&#128344;',
-                            span({ className : 'fa fa-clock-o' }).outerHTML,
-                            nbsp(2),
-                            time(b('9')).outerHTML,
-                            nbsp(1),
-                            span({ className : 'dim', children : '—' }).outerHTML,
-                            nbsp(1),
-                            time(b('24')).outerHTML,
-                            nbsp(1),
-                            sup({ className : 'dim', children : '±' }).outerHTML,
-                        ].join('')
+                        children : [
+                            span({ className : 'fa fa-calendar' }),
+                            '  ', time('7'), ' ',
+                            span({ className : 'dim', children : '/' }),
+                            ' ', time('7'), ' '.repeat(6),
+                            span({ className : 'fa fa-clock-o' }),
+                            '  ', time(b('9')), ' ',
+                            span({ className : 'dim', children : '—' }),
+                            ' ', time(b('24')), ' ',
+                            sup({ className : 'dim', children : '±' }),
+                        ]
                     }),
                     address(small({
                         className : 'dim',
