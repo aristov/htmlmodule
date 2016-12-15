@@ -14,7 +14,7 @@ const treeitem = ({ checked } = {}) =>
         ]
     })
 
-const treesum = () =>
+const treesum = ({ accessKey } = {}) =>
     summary({
         className : 'treeitem treesum',
         onfocus : ({ target : { parentNode } }) => parentNode.classList.add('focus'),
@@ -24,7 +24,7 @@ const treesum = () =>
         },
         children : [
             input({ type : 'checkbox', indeterminate : true }),
-            input({ type : 'text' }),
+            input({ type : 'text', accessKey }),
             input({ type : 'button', value : '+' }),
             input({ type : 'button', value : '-' }),
         ]
@@ -178,8 +178,8 @@ document.body = body([
     checktree({
         open : true,
         children : treegroup([
-            treesum(),
-            treeitem({}),
+            treesum({ accessKey : '1' }),
+            treeitem(),
             treegroup({
                 open : true,
                 children : [

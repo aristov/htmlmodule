@@ -7,8 +7,9 @@
 .checktree details > div
 {
     margin: 10px 0 0;
-    padding: 10px;
-    background: rgba(0, 124, 0, 0.1);
+    padding: 20px;
+    /*background: rgba(255, 255, 255, 0.8);*/
+    /*box-shadow: -1px 2px 3px 1px rgba(0, 63, 127, 0.5);*/
     display: flex;
 }
 .checktree details > summary
@@ -18,17 +19,18 @@
 }
 .checktree details > div
 {
-    padding-left: 25px;
+    padding-left: 35px;
 }
 .checktree details.focus
 {
-    box-shadow: 0 0 2px 4px rgba(0, 124, 255, 0.5);
+    box-shadow: 0 0 2px 4px rgba(0, 127, 255, 0.9);
     outline: -webkit-focus-ring-color auto 5px;
 }
 .checktree details.focus > summary:focus,
 .checktree details > div:focus
 {
-    background: rgba(0, 124, 255, 0.2);
+    background: rgba(127, 255, 255, 0.3);
+    outline: -webkit-focus-ring-color auto 5px;
 }
 .checktree details > * > input[type=checkbox]
 {
@@ -38,6 +40,7 @@
 .checktree details > * > input[type=text]
 {
     width: 100%;
+    border: none;
 }
 .checktree details > * > input
 {
