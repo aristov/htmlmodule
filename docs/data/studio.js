@@ -58,8 +58,7 @@
     })
 
     const addresspage = article({
-        id : 'address',
-        // hidden : hash !== 'address',
+        id : 'adr',
         children : [
             h1('Адрес студии'),
             address(a({
@@ -106,9 +105,9 @@
             section([
                 h1('Студийное пространство'),
                 ul([
-                    li(['3 комнаты для репетиций, 25-30 м', sup('2')]),
-                    li(['концертный зал с окном, 50 м', sup('2')]),
-                    li(['малый зал для индивидуальных занятий и небольших коллективов, 20 м', sup('2')])
+                    li(['3 комнаты для репетиций, 25-30м', sup('2')]),
+                    li(['концертный зал с окном, 50м', sup('2')]),
+                    li(['малый зал для индивидуальных занятий и небольших коллективов, 20м', sup('2')])
                 ]),
             ]),
             section([
@@ -123,7 +122,7 @@
                 ])
             ]),
             section([
-                h1('Как мы работаем'),
+                h1('Условия'),
                 ul([
                     li({
                         innerHTML : `репетиции <strong title="${ pricetitle }">` +
@@ -138,7 +137,7 @@
                 ])
             ]),
             section([
-                h1('Наше оборудование'),
+                h1('Аппарат'),
                 p({
                     innerHTML : 'У нас есть оборудование ' +
                     'Ampeg, EBS, Fender, JBL, Kustom, Mackie, Peavey, Randall, Roland, Sabian, Shure, Sonor, Soundcraft, VOX, Yamaha'
@@ -146,17 +145,26 @@
                     ' и другие всякие крутые штуки!'
                 })
             ]),
-            section([
-                h1('Телефон студии'),
-                p('По этим номерам можно узнать подробнее о студии и забронировать репетицию:'),
-                address({
-                    className : 'tel',
-                    children : ul([
-                        li('+7 926 602-25-87'),
-                        li('+7 916 56-808-56')
-                    ])
-                }),
-            ]),
+            section({
+                id : 'tel',
+                children : [
+                    h1('Телефон студии'),
+                    p('По этим номерам можно узнать подробнее о студии и забронировать репетицию:'),
+                    address({
+                        className : 'tel nowrap',
+                        children : ul([
+                            li({
+                                tabIndex : -1,
+                                children : strong('+7 916 56-808-56')
+                            }),
+                            li({
+                                tabIndex : -1,
+                                children : strong('+7 926 602-25-87')
+                            }),
+                        ])
+                    }),
+                ]
+            }),
         ]
     })
 
@@ -199,13 +207,14 @@
                             }),
                             a({
                                 title : 'Наш адрес',
-                                href : '#address',
+                                href : '#adr',
                                 className : classList({
                                     'addressbutton' : true,
-                                    // 'dim' : hash !== 'address'
-                                    'dim' : true
+                                    'dim' : hash !== 'address'
                                 }),
-                                onclick : () => pathinfo.hidden = false,
+                                onclick : () => {
+                                    pathinfo.hidden = false
+                                },
                                 children : [
                                     span({ className : 'fa fa-map dim' }),
                                     pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
@@ -213,6 +222,7 @@
                             }),
                             a({
                                 title : 'Контактные телефоны',
+                                href : '#tel',
                                 className : 'dim',
                                 children : [
                                     span({ className : 'fa fa-phone dim' }),
@@ -261,10 +271,6 @@
 
     window.onscroll = () => {
         const half = window.innerHeight / 2
-        const { style } = pathmap
-        if(addresspage.offsetTop < window.scrollY + half) {
-            style.opacity = 1
-        }
-        else style.opacity = null
+        pathmap.style.opacity = Number(addresspage.offsetTop < window.scrollY + half) || null
     }
 }

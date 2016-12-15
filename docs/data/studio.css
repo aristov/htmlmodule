@@ -73,6 +73,10 @@ body main article address
 {
     line-height: 1.3rem;
 }
+body main article:not(:last-child)
+{
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.3)
+}
 body main article.text p:not(:hover),
 body main article.text ul:not(:hover)
 {
@@ -91,7 +95,7 @@ body main article img#mainphoto
     margin-left: 20px;
     position: relative;
     z-index: 1;
-    transition: opacity 0.1s ease-out;
+    transition: opacity 200ms ease;
 }
 body main article img#mainphoto:not(:hover)
 {
@@ -177,11 +181,36 @@ body main article img#mainphoto:not(:hover)
 
 /*================================================================*/
 
-main#index address.tel ul
+article#index address.tel ul
 {
-    line-height: 100px;
-    font-size: 77px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 70px;
+    font-size: 35px;
     list-style: none;
+    padding: 0;
+    opacity: 1;
+}
+article#index address.tel ul > li[tabindex]
+{
+    transition: transform 200ms linear, background 200ms linear;
+    padding: 0 20px;
+    cursor: pointer;
+    outline: none;
+}
+article#index address.tel ul > li[tabindex]:focus
+{
+    background: #490094;
+    box-shadow: 0 5px 5px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+article#index address.tel ul > li[tabindex]:first-child:focus
+{
+    transform: scale(2, 2) translate(33%, -55px);
+}
+article#index address.tel ul > li[tabindex]:last-child:focus
+{
+    transform: scale(2, 2) translate(-33%, -55px);
 }
 .contentinfo
 {
@@ -214,7 +243,7 @@ main#index address.tel ul
     background: rgba(255, 255, 255, 0.85);
     position: relative;
     margin-top: 20px;
-    transition: opacity 300ms ease;
+    transition: opacity 200ms ease;
 }
 .pathmap:not(:hover)
 {
@@ -233,19 +262,19 @@ main#index address.tel ul
     cursor: default;
     text-shadow: none;
     font-size: 14px;
-    font-style: italic;
-    transition: transform 300ms ease;
+    /*font-style: italic;*/
+    transition: transform 200ms ease;
 }
 .pathinfo h1
 {
     margin: 15px 0 10px;
     opacity: 1;
-    font-style: normal;
+    /*font-style: normal;*/
 }
 .pathinfo p
 {
     line-height: 1.1rem;
-    font-style: normal;
+    /*font-style: normal;*/
 }
 .pathinfo > button.closebutton
 {
