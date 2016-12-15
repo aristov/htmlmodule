@@ -56,7 +56,11 @@ body main article h1
     font-weight: normal;
     margin: 25px 0;
     font-size: 22px;
-    opacity: 0.8;
+    /*opacity: 0.8;*/
+}
+body main article > h1
+{
+    margin-top: 32px;
 }
 body main section > h1,
 body main article article > h1
@@ -78,6 +82,19 @@ body main article ul sup
 {
     margin-top: -5px;
     display: inline-block;
+}
+body main article img#mainphoto
+{
+    float: right;
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.1s ease-out;
+}
+body main article img#mainphoto:not(:hover)
+{
+    opacity: 0.5;
 }
 
 .dim:not(:hover):not(:focus)
@@ -114,7 +131,7 @@ body main article ul sup
     padding: 0 0 0 60px;
     font-size: 15px;
     position: relative;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 20px;
     line-height: normal;
 }
 .siteheader > address > a > pre
@@ -131,17 +148,25 @@ body main article ul sup
 {
     position: absolute;
 }
-.siteheader > address span.fa-map-o
+.siteheader > address span.fa-vk
 {
-    font-size: 28px;
-    top: 12px;
+    color: white;
+    font-size: 30px;
+    bottom: 50%;
+    margin-bottom: -12px;
     left: 25px;
+}
+.siteheader > address span.fa-map
+{
+    font-size: 22px;
+    top: 14px;
+    left: 34px;
 }
 .siteheader > address span.fa-phone
 {
-    font-size: 35px;
+    font-size: 30px;
     top: 10px;
-    left: 32px;
+    left: 37px;
 }
 
 /*================================================================*/
@@ -183,6 +208,11 @@ main.content details > summary
     background: rgba(255, 255, 255, 0.85);
     position: relative;
     margin-top: 20px;
+    transition: opacity 0.1s ease-out;
+}
+.pathmap:not(:hover)
+{
+    opacity: 0.5;
 }
 .pathinfo
 {
@@ -225,11 +255,6 @@ main.content details > summary
 .pathinfo > button.closebutton:not(:hover)
 {
     opacity: 0.5;
-}
-#spacemap > div
-{
-    font: bold 20px monospace;
-    text-align: center;
 }
 
 /*================================================================*/

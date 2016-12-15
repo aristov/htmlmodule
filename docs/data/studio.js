@@ -3,12 +3,6 @@
 
     const { htmldom, a, abbr, address, area, article, aside, audio, b, base, bdi, bdo, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, datalist, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, link, main, map, mark, meta, nav, noscript, object, ol, optgroup, option, p, param, picture, pre, progress, q, rp, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, summary, sup, table, tbody, td, textarea, tfoot, th, thead, title, tr, track, u, ul, variable, video, wbr } = htmlmodule
 
-    const layout = pre()
-
-    fetch('/htmlmodule/docs/data/studio.txt')
-        .then(res => res.text())
-        .then(res => layout.textContent = res)
-
     const CURRENT_YEAR = String((new Date).getFullYear())
 
     const time = init => htmldom('time', init)
@@ -77,18 +71,39 @@
         ]
     })
 
+    const mainphoto_urlmap = [
+        'https://pp.vk.me/c624430/v624430762/43f1d/lHoUGQxGtz8.jpg',
+        'https://pp.vk.me/c627625/v627625762/44563/1gumGbIJ5c4.jpg',
+        'https://pp.vk.me/c624430/v624430762/43f49/-B37c4K48AM.jpg',
+        'https://pp.vk.me/c624430/v624430762/43f40/2KwdVlkPIYQ.jpg',
+        'https://pp.vk.me/c624430/v624430762/43f38/0C1MjVTpaPA.jpg',
+        'https://pp.vk.me/c624430/v624430762/43f1d/lHoUGQxGtz8.jpg',
+        'https://pp.vk.me/c626927/v626927762/24f57/03-W9xjtNso.jpg',
+        'https://pp.vk.me/c630431/v630431762/4d8d8/JB5gWRX5C4o.jpg',
+        'https://pp.vk.me/c636029/v636029762/2b81b/4ml_9R8SF80.jpg',
+        'https://pp.vk.me/c636029/v636029762/2b824/KFj5cLrwWqg.jpg',
+        'https://pp.vk.me/c615821/v615821762/7992/NCe1WdV0JSc.jpg',
+    ]
+
     const indexpage = article({
         id : 'index',
         // hidden : Boolean(hash) || (hash !== 'index'),
         children : [
             h1('Музыкальная студия «Фьюжн»'),
-            p('Уютная студия на втором этаже заводского лофта недалеко от метро «Улица 1905 года».'),
+            img({
+                src : mainphoto_urlmap[Math.floor(Math.random() * 100 % mainphoto_urlmap.length)],
+                id : 'mainphoto',
+                alt : 'Instagram photo',
+                width : 400,
+                height : 400
+            }),
+            p('Уютная студия на втором этаже заводского лофта недалеко от метро «Улица 1905 года».'),
             section([
                 h1('Студийное пространство'),
                 ul([
-                    li(['3 комнаты для репетиций, 25 — 30 м', sup('2')]),
-                    li(['концертный зал с окном, 50 м', sup('2')]),
-                    li(['малый зал для индивидуальных занятий и небольших коллективов, 20 м', sup('2')])
+                    li(['3 комнаты для репетиций, 25 — 30 м', sup('2')]),
+                    li(['концертный зал с окном, 50 м', sup('2')]),
+                    li(['малый зал для индивидуальных занятий и небольших коллективов, 20 м', sup('2')])
                 ]),
             ]),
             section([
@@ -97,7 +112,7 @@
                     li('репетиции музыкальных коллективов'),
                     li('небольшие концерты'),
                     li('индивидуальные занятия'),
-                    li('занятия с преподавателем'),
+                    li('занятия с преподавателем'),
                     li('фотосессии'),
                     li('закрытые вечеринки')
                 ])
@@ -105,7 +120,7 @@
             section([
                 h1('Как мы работаем'),
                 ul([
-                    li('репетиции от 200 до 400 рублей в час за аренду зала'),
+                    li('репетиции от 200 до 400 рублей в час за аренду зала'),
                     li('почасовое бронирование'),
                     li('аренда инструментов'),
                     li('парковка'),
@@ -157,19 +172,31 @@
                         }),
                         address([
                             a({
+                                title : 'Сообщество студии на vk.com',
+                                href : 'https://vk.com/bazafusion',
+                                rel : 'external',
+                                target : '_blank',
+                                className : 'dim',
+                                children : [
+                                    span({ className : 'fa fa-vk dim', target : '_blank' }),
+                                    pre('Сообщество\nстудии')
+                                ]
+                            }),
+                            a({
                                 title : 'Наш адрес',
                                 href : '#address',
                                 className : classList({
                                     'addressbutton' : true,
-                                    'dim' : hash !== 'address'
+                                    // 'dim' : hash !== 'address'
+                                    'dim' : true
                                 }),
                                 /*onclick : ({ currentTarget }) => {
-                                    addresspage.hidden = !addresspage.hidden
-                                    pathinfo.hidden = false;
-                                    currentTarget.classList.toggle('dim', addresspage.hidden)
-                                },*/
+                                 addresspage.hidden = !addresspage.hidden
+                                 pathinfo.hidden = false;
+                                 currentTarget.classList.toggle('dim', addresspage.hidden)
+                                 },*/
                                 children : [
-                                    span({ className : 'fa fa-map-o' }),
+                                    span({ className : 'fa fa-map dim' }),
                                     pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
                                 ]
                             }),
@@ -177,10 +204,10 @@
                                 title : 'Контактные телефоны',
                                 className : 'dim',
                                 children : [
-                                    span({ className : 'fa fa-phone' }),
+                                    span({ className : 'fa fa-phone dim' }),
                                     pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
                                 ]
-                            })
+                            }),
                         ])
                     ]
                 }),
