@@ -14,8 +14,8 @@
 
     const pathinfo = section({
         className : 'pathinfo',
-        draggable : true,
-        ondragend : ({ target : { style, clientHeight, clientWidth }, x, y }) => {
+        // draggable : true,
+        /*ondragend : ({ target : { style, clientHeight, clientWidth }, x, y }) => {
             const { innerWidth, innerHeight } = window
             const { scrollTop } = document.body
             Object.assign(style, {
@@ -25,7 +25,7 @@
                     Math.max(0, scrollTop + y - clientHeight),
                     scrollTop + innerHeight - clientHeight) + 'px'
             })
-        },
+        },*/
         children : [
             h1('Как добраться'),
             paragraph('Станция метро «Улица 1905 года», последний вагон из центра,',
@@ -60,7 +60,7 @@
     const addresspage = article({
         id : 'adr',
         children : [
-            h1('Адрес студии'),
+            h1('Адрес'),
             address(a({
                 href : 'https://yandex.ru/maps/-/CZHeYA0i',
                 rel : 'external',
@@ -103,7 +103,7 @@
             }),
             p('Уютная студия на втором этаже заводского лофта недалеко от метро «Улица 1905 года».'),
             section([
-                h1('Студийное пространство'),
+                h1('Пространство'),
                 ul([
                     li(['3 комнаты для репетиций, 25-30м', sup('2')]),
                     li(['концертный зал с окном, 50м', sup('2')]),
@@ -111,7 +111,7 @@
                 ]),
             ]),
             section([
-                h1('Услуги'),
+                h1('Возможности'),
                 ul([
                     li('репетиции музыкальных коллективов'),
                     li('небольшие концерты'),
@@ -142,29 +142,9 @@
                     innerHTML : 'У нас есть оборудование ' +
                     'Ampeg, EBS, Fender, JBL, Kustom, Mackie, Peavey, Randall, Roland, Sabian, Shure, Sonor, Soundcraft, VOX, Yamaha'
                         .replace(/\b([A-Z]+[a-z]*,?)/g, '<b>$1</b>') +
-                    ' и другие всякие крутые штуки!'
+                    ' и всякие другие классные штуки!'
                 })
             ]),
-            section({
-                id : 'tel',
-                children : [
-                    h1('Телефон студии'),
-                    p('По этим номерам можно узнать подробнее о студии и забронировать репетицию:'),
-                    address({
-                        className : 'tel nowrap',
-                        children : ul([
-                            li({
-                                tabIndex : -1,
-                                children : strong('+7 916 56-808-56')
-                            }),
-                            li({
-                                tabIndex : -1,
-                                children : strong('+7 926 602-25-87')
-                            }),
-                        ])
-                    }),
-                ]
-            }),
         ]
     })
 
@@ -175,7 +155,27 @@
             .filter(item => item)
             .join(' ')
 
-    const content = main([indexpage, addresspage])
+    const content = main([
+        indexpage,
+        article({
+            id : 'tel',
+            className : 'text',
+            children : [
+                h1('Связь'),
+                address({
+                    className : 'tel nowrap',
+                    title : 'Это наши телефонные номера. Позвоните по одному из них, ' +
+                    'чтобы узнать о студии больше или забронировать время для вашей репетиции.',
+                    children : ul([
+                        li(strong('+7 916 56-808-56')),
+                        li(strong('+7 926 602-25-87')),
+                    ])
+                }),
+                // p('Позвонив по одному из этих номеров, можно узнать много нового и интересного и даже забронировать репетицию.'),
+            ]
+        }),
+        addresspage
+    ])
 
     document.body = body({
         children : [
@@ -212,7 +212,7 @@
                                     'addressbutton' : true,
                                     'dim' : hash !== 'address'
                                 }),
-                                onclick : () => {
+                                onclick : () => { // do not return false
                                     pathinfo.hidden = false
                                 },
                                 children : [

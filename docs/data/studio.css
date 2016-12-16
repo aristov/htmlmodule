@@ -73,10 +73,6 @@ body main article address
 {
     line-height: 1.3rem;
 }
-body main article:not(:last-child)
-{
-    border-bottom: 1px dotted rgba(255, 255, 255, 0.3)
-}
 body main article.text p:not(:hover),
 body main article.text ul:not(:hover)
 {
@@ -91,15 +87,15 @@ body main article ul sup
 body main article img#mainphoto
 {
     float: right;
-    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-left: 20px;
     position: relative;
     z-index: 1;
-    transition: opacity 200ms ease;
+    transition: opacity 250ms ease;
 }
 body main article img#mainphoto:not(:hover)
 {
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 .nowrap
@@ -181,36 +177,38 @@ body main article img#mainphoto:not(:hover)
 
 /*================================================================*/
 
-article#index address.tel ul
+article#index,
+article#tel
+{
+    padding-bottom: 20px;
+}
+article#tel
+{
+    border-width: 1px 0;
+    border-color: rgba(255, 255, 255, 0.2);
+    border-style: dotted;
+}
+article#tel address.tel ul
 {
     display: flex;
     justify-content: space-around;
-    line-height: 70px;
-    font-size: 35px;
+    line-height: 60px;
+    font-size: 30px;
     list-style: none;
     padding: 0;
     opacity: 1;
 }
-article#index address.tel ul > li[tabindex]
+article#tel address.tel ul > li
 {
-    transition: transform 200ms linear, background 200ms linear;
+    transition: transform 250ms ease 250ms;
     padding: 0 20px;
-    cursor: pointer;
     outline: none;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
 }
-article#index address.tel ul > li[tabindex]:focus
+article#tel address.tel ul > li:hover
 {
-    background: #490094;
-    box-shadow: 0 5px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.5, 1.5);
     opacity: 1;
-}
-article#index address.tel ul > li[tabindex]:first-child:focus
-{
-    transform: scale(2, 2) translate(33%, -55px);
-}
-article#index address.tel ul > li[tabindex]:last-child:focus
-{
-    transform: scale(2, 2) translate(-33%, -55px);
 }
 .contentinfo
 {
@@ -243,11 +241,11 @@ article#index address.tel ul > li[tabindex]:last-child:focus
     background: rgba(255, 255, 255, 0.85);
     position: relative;
     margin-top: 20px;
-    transition: opacity 200ms ease;
+    transition: opacity 250ms ease;
 }
 .pathmap:not(:hover)
 {
-    opacity: 0.5;
+    opacity: 0.3;
 }
 .pathinfo
 {
@@ -256,25 +254,21 @@ article#index address.tel ul > li[tabindex]:last-child:focus
     margin: 70px 50px;
     padding: 0 15px;
     background: white;
-    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
     z-index: 10;
     color: black;
-    cursor: default;
     text-shadow: none;
     font-size: 14px;
-    /*font-style: italic;*/
-    transition: transform 200ms ease;
+    transition: transform 250ms ease 250ms, box-shadow 250ms ease 250ms;
 }
 .pathinfo h1
 {
     margin: 15px 0 10px;
     opacity: 1;
-    /*font-style: normal;*/
 }
 .pathinfo p
 {
     line-height: 1.1rem;
-    /*font-style: normal;*/
 }
 .pathinfo > button.closebutton
 {
@@ -295,7 +289,8 @@ article#index address.tel ul > li[tabindex]:last-child:focus
 }
 .pathinfo:hover
 {
-    transform: scale(1.5, 1.5);
+    transform: scale(1.5, 1.5) translateY(-30px);
+    box-shadow: 0 3px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
 /*================================================================*/
