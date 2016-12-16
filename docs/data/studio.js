@@ -33,8 +33,8 @@
                 'Звенигородского шоссе в сторону области до 2-й Звенигородской улицы,',
                 'перейти догогу, затем свернуть налево, пройти ~100м, рядом с магазином «Пятерочка»',
                 'металлические ворота со шлагбаумом и калиткой — зайти в нее,',
-                'обойти 15-е строение слева, и снова в калитку -',
-                'слева будет вход в кафе с вывеской «PH & B».',
+                'обойти 15-е строение слева, и снова в калитку —',
+                'слева будет вход в кафе с вывеской «PH & B».',
                 'Студия находится на втором этаже здания в конце коридора.'),
             button({
                 title : 'Закрыть',
@@ -73,55 +73,56 @@
     })
 
     const mainphoto_urlmap = [
+        /*'https://pp.vk.me/c627625/v627625762/44563/1gumGbIJ5c4.jpg',*/
+        /*'https://pp.vk.me/c636029/v636029762/2b81b/4ml_9R8SF80.jpg',*/
+        /*'https://pp.vk.me/c624430/v624430762/43f26/BXS1VOryu6g.jpg',*/
         'https://pp.vk.me/c624430/v624430762/43f1d/lHoUGQxGtz8.jpg',
-        'https://pp.vk.me/c627625/v627625762/44563/1gumGbIJ5c4.jpg',
         'https://pp.vk.me/c624430/v624430762/43f49/-B37c4K48AM.jpg',
         'https://pp.vk.me/c624430/v624430762/43f40/2KwdVlkPIYQ.jpg',
         'https://pp.vk.me/c624430/v624430762/43f38/0C1MjVTpaPA.jpg',
-        'https://pp.vk.me/c624430/v624430762/43f1d/lHoUGQxGtz8.jpg',
         'https://pp.vk.me/c626927/v626927762/24f57/03-W9xjtNso.jpg',
         'https://pp.vk.me/c630431/v630431762/4d8d8/JB5gWRX5C4o.jpg',
-        'https://pp.vk.me/c636029/v636029762/2b81b/4ml_9R8SF80.jpg',
         'https://pp.vk.me/c636029/v636029762/2b824/KFj5cLrwWqg.jpg',
-        'https://pp.vk.me/c615821/v615821762/7992/NCe1WdV0JSc.jpg',
+        'https://pp.vk.me/c624430/v624430762/43f5b/1F2tOhwr82Y.jpg',
     ]
 
-    const pricetitle = 'Точную стоимость репетиций уточняйте по телефону +7 916 56 808 56 или +7 926 602 2587'
+    const pricetitle = 'Это базовая стоимость аренды зала. Точная стоимость репетиций — по телефону +7 916 56-808-56 или +7 926 602-2587'
 
     const indexpage = article({
         id : 'index',
         className : 'text',
         children : [
-            h1('Музыкальная студия «Фьюжн»'),
+            h1('Пространство для музыки'),
             img({
                 src : mainphoto_urlmap[Math.floor(Math.random() * 100 % mainphoto_urlmap.length)],
                 id : 'mainphoto',
-                alt : 'Случайное фото. Жизнь студии.',
-                width : 400,
-                height : 400
+                alt : 'Случайное фото',
+                title : 'Жизнь студии',
+                width : 500,
+                height : 500
             }),
-            p(['Уютная студия на втором этаже заводского лофта недалеко от станции ',
-                strong('метро «Улица 1905 года».')]),
+            p(['Уютная студия на втором этаже заводского лофта, недалеко от станции ',
+                strong('метро «Улица 1905 года»')]),
             section([
-                h1('Пространство'),
+                h1('Место'),
                 ul([
-                    li(['3 комнаты для репетиций ',
+                    li(['3 зала для репетиций ',
                         b(['25-30 м', sup('2')])]),
-                    li(['концертный зал с окном ',
+                    li(['Концертный зал с окном ',
                         b(['50 м', sup('2')])]),
-                    li(['малый зал для занятий ',
+                    li(['Малый зал для занятий ',
                         b(['20 м', sup('2')])])
                 ]),
             ]),
             section([
                 h1('Возможности'),
                 ul([
-                    li('репетиции музыкальных коллективов'),
-                    li('небольшие концерты'),
-                    li('индивидуальные занятия'),
-                    li('занятия с преподавателем'),
-                    li('фотосессии'),
-                    li('частные вечеринки')
+                    li('Репетиции музыкальных коллективов'),
+                    li('Небольшие концерты'),
+                    li('Индивидуальные занятия'),
+                    li('Занятия с преподавателем'),
+                    li('Фотосессии'),
+                    li('Частные вечеринки')
                 ])
             ]),
             section([
@@ -129,24 +130,26 @@
                 ul([
                     li({
                         innerHTML : `репетиции <strong title="${ pricetitle }">` +
-                        'от 200 до 400 рублей в час</strong> за аренду зала'
+                        'от 200 до 400 рублей / час</strong>'
                     }),
-                    li('почасовое бронирование'),
-                    li('аренда инструментов'),
-                    li('платная парковка у входа'),
-                    li('вода, чай, кофе, снеки'),
-                    li('кондиционер, wi-fi'),
-                    li('ланч-кафе рядом')
+                    li('Почасовое бронирование'),
+                    li('Аренда инструментов'),
+                    li('Платная парковка у входа'),
+                    li('Вода, чай, кофе, снеки'),
+                    li('Кондиционер, wi-fi'),
+                    li('Ланч-кафе рядом')
                 ])
             ]),
             section([
                 h1('Аппарат'),
                 p({
                     className : 'brandlist',
-                    innerHTML : 'У нас есть оборудование ' +
-                    'Ampeg, EBS, Fender, JBL, Kustom, Mackie, Peavey, Randall, Roland, Sabian, Shure, Sonor, Soundcraft, VOX, Yamaha'
-                        .replace(/\b([A-Z]+[a-z]*)(,?)/g, '<b>$1</b>$2') +
-                    ' и всякие другие классные штуки!'
+                    children : [
+                        'У нас есть оборудование ',
+                        ...'Ampeg, EBS, Fender, JBL, Kustom, Mackie, Peavey, Randall, Roland, Sabian, Shure, Sonor, Soundcraft, VOX, Yamaha'
+                            .split(', ').map(name => [b(name), ', ']),
+                        ' и всякие другие классные штуки!'
+                    ]
                 })
             ]),
         ]
@@ -165,16 +168,14 @@
             id : 'tel',
             className : 'text',
             children : [
-                // h1('Связь'),
                 address({
                     className : 'tel nowrap',
-                    title : 'Свяжитесь с нами по одному из этих номеров. Мы поможем забронировать время для репетиции и ответим на вопросы по студии.',
+                    title : 'Свяжитесь с нами по одному из этих номеров — мы поможем забронировать время для репетиции и ответим на вопросы по студии',
                     children : ul([
-                        li(strong('+7 916 56-808-56')),
-                        li(strong('+7 926 602-25-87')),
+                        li(strong('+7 916 56 808 56')),
+                        li(strong('+7 926 602 25 87')),
                     ])
                 }),
-                // p('Позвонив по одному из этих номеров, можно узнать много нового и интересного и даже забронировать репетицию.'),
             ]
         }),
         addresspage
@@ -187,16 +188,42 @@
                     className : 'siteheader',
                     children : [
                         h1({
+                            id : 'logo',
                             title : 'Музыкальная студия',
-                            children : img({
-                                alt : 'Fusion studio',
-                                src : 'studio.png',
-                                width : 138,
-                                height : 60,
-                                className : 'dim'
+                            children : a({
+                                href : '',
+                                children : img({
+                                    alt : 'Fusion studio',
+                                    src : 'studio.png',
+                                    width : 138,
+                                    height : 60,
+                                })
                             })
                         }),
                         address([
+                            a({
+                                title : 'Контактные телефоны',
+                                href : '#tel',
+                                // className : hash !== 'tel'? 'dim' : undefined,
+                                className : 'dim',
+                                children : [
+                                    span({ className : 'fa fa-phone dim' }),
+                                    pre(['+7 926 602 25 87', '\n', '+7 916 56 808 56'])
+                                ]
+                            }),
+                            a({
+                                title : 'Наш адрес',
+                                href : '#adr',
+                                // className : classList({ 'addressbutton' : true, 'dim' : hash !== 'adr' }),
+                                className : 'addressbutton dim',
+                                onclick : () => { // do not return false
+                                    pathinfo.hidden = false
+                                },
+                                children : [
+                                    span({ className : 'fa fa-map dim' }),
+                                    pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
+                                ]
+                            }),
                             a({
                                 title : 'Наши друзья на vk.com',
                                 href : 'https://vk.com/bazafusion',
@@ -208,30 +235,6 @@
                                     pre('Сообщество\nмузыкантов')
                                 ]
                             }),
-                            a({
-                                title : 'Наш адрес',
-                                href : '#adr',
-                                className : classList({
-                                    'addressbutton' : true,
-                                    'dim' : hash !== 'address'
-                                }),
-                                onclick : () => { // do not return false
-                                    pathinfo.hidden = false
-                                },
-                                children : [
-                                    span({ className : 'fa fa-map dim' }),
-                                    pre(['2-я Звенигородская', '\n', 'дом 13, стр 17'])
-                                ]
-                            }),
-                            a({
-                                title : 'Контактные телефоны',
-                                href : '#tel',
-                                className : 'dim',
-                                children : [
-                                    span({ className : 'fa fa-phone dim' }),
-                                    pre(['+7 926 602-25-87', '\n', '+7 916 56-808-56'])
-                                ]
-                            }),
                         ])
                     ]
                 }),
@@ -241,17 +244,17 @@
                 className : 'contentinfo',
                 children : [
                     small({
-                        title : 'Наша студия работает ежедневно с девяти утра до двенадцати ночи.',
-                        className : 'dim',
+                        title : 'Мы работаем ежедневно с девяти утра до двенадцати ночи',
+                        className : 'worktime dim',
                         children : [
                             span({ className : 'fa fa-calendar' }),
-                            '  ', time('7'), ' ',
-                            span({ className : 'dim', children : '/' }),
-                            ' ', time('7'), ' '.repeat(6),
+                            time('7'),
+                            span({ className : 'dim', children : ' / ' }),
+                            time('7'),
                             span({ className : 'fa fa-clock-o' }),
-                            '  ', time('9'), ' ',
-                            span({ className : 'dim', children : '—' }),
-                            ' ', time('24'), ' ',
+                            time('9'),
+                            span({ className : 'dim', children : ' — ' }),
+                            time('24'),
                             sup({ className : 'dim', children : '±' }),
                         ]
                     }),
