@@ -187,6 +187,7 @@ article#tel
     border-width: 1px 0;
     border-color: rgba(255, 255, 255, 0.2);
     border-style: dotted;
+    padding-top: 20px;
 }
 article#tel address.tel ul
 {
@@ -200,16 +201,41 @@ article#tel address.tel ul
 }
 article#tel address.tel ul > li
 {
-    transition: transform 250ms ease 250ms;
+    transition: opacity 250ms ease 250ms, transform 250ms ease 250ms;
     padding: 0 20px;
     outline: none;
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+    font-style: normal;
+    font-weight: bold;
+}
+article#tel address.tel ul > li:not(:hover)
+{
+    opacity: 0.75;
 }
 article#tel address.tel ul > li:hover
 {
-    transform: scale(1.5, 1.5);
+    transform: scale(2, 2);
     opacity: 1;
 }
+article#tel address.tel ul > li::first-letter
+{
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: normal;
+}
+article#tel address.tel ul > li:hover::first-letter
+{
+    color: rgba(255, 255, 255, 1);
+}
+
+.brandlist
+{
+    line-height: 26px;
+}
+.brandlist > b
+{
+    font-size: 18px;
+}
+
 .contentinfo
 {
     display: flex;
