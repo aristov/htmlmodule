@@ -12,36 +12,48 @@
 
     const paragraph = (...children) => p(children.join(' ').replace(/(\sиз|в|по|и|до|со?|на)\s/gi, '$1 '))
 
-    const pathinfo = section({
-        className : 'pathinfo',
+    const pathinfo = article({
+        // className : 'pathinfo',
         // draggable : true,
         /*ondragend : ({ target : { style, clientHeight, clientWidth }, x, y }) => {
-            const { innerWidth, innerHeight } = window
-            const { scrollTop } = document.body
-            Object.assign(style, {
-                margin : '0',
-                left : Math.min(Math.max(0, x), innerWidth - clientWidth) + 'px',
-                top : Math.min(
-                    Math.max(0, scrollTop + y - clientHeight),
-                    scrollTop + innerHeight - clientHeight) + 'px'
-            })
-        },*/
+         const { innerWidth, innerHeight } = window
+         const { scrollTop } = document.body
+         Object.assign(style, {
+         margin : '0',
+         left : Math.min(Math.max(0, x), innerWidth - clientWidth) + 'px',
+         top : Math.min(
+         Math.max(0, scrollTop + y - clientHeight),
+         scrollTop + innerHeight - clientHeight) + 'px'
+         })
+         },*/
+        className : 'text',
         children : [
-            h1('Как добраться'),
-            paragraph('Станция метро «Улица 1905 года», последний вагон из центра,',
-                'из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль',
-                'Звенигородского шоссе в сторону области до 2-й Звенигородской улицы,',
-                'перейти догогу, затем свернуть налево, пройти ~100м, рядом с магазином «Пятерочка»',
-                'металлические ворота со шлагбаумом и калиткой — зайти в нее,',
-                'обойти 15-е строение слева, и снова в калитку —',
-                'слева будет вход в кафе с вывеской «PH & B».',
-                'Студия находится на втором этаже здания в конце коридора.'),
-            button({
-                title : 'Закрыть',
-                className : 'closebutton',
-                onclick : ({ target }) => target.parentNode.hidden = true,
-                children : '×'
-            })
+            // h1('Как добраться'),
+            /*paragraph('Станция метро «Улица 1905 года», последний вагон из центра,',
+             'из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль',
+             'Звенигородского шоссе в сторону области до 2-й Звенигородской улицы,',
+             'перейти догогу, затем свернуть налево, пройти ~100м, рядом с магазином «Пятерочка»',
+             'металлические ворота со шлагбаумом и калиткой — зайти в нее,',
+             'обойти 15-е строение слева, и снова в калитку —',
+             'слева будет вход в кафе с вывеской «PH & B».',
+             'Студия находится на втором этаже здания в конце коридора.'),*/
+            p({
+                innerHTML : ['Мы располагаемся в <b>Москве</b>, недалеко от станции <b>метро «Улица 1905 года»</b>.',
+                    'Удобнее выходить у последнего вагона из центра.',
+                    'Из выхода в подземный переход, перейти перекресток по диагонали и идти вдоль',
+                    'Звенигородского шоссе в сторону области до <b>2-й Звенигородской улицы</b>,',
+                    'перейти догогу, затем свернуть налево, пройти ~100м, рядом с магазином «Пятерочка»',
+                    'металлические ворота со шлагбаумом и калиткой — зайти в нее,',
+                    'обойти 15-е строение слева, и снова в калитку —',
+                    'слева будет <b>вход в кафе с вывеской «PH & B»</b>.',
+                    'Студия находится на втором этаже здания в конце коридора.'].join(' ')
+            }),
+            /*button({
+             title : 'Закрыть',
+             className : 'closebutton',
+             onclick : ({ target }) => target.parentNode.hidden = true,
+             children : '×'
+             })*/
         ]
     })
 
@@ -60,15 +72,20 @@
     const addresspage = article({
         id : 'adr',
         children : [
-            h1('Адрес'),
-            address(a({
-                href : 'https://yandex.ru/maps/-/CZHeYA0i',
-                rel : 'external',
-                target : 'blank',
-                children : 'Москва, улица 2-я Звенигородская, дом 13 строение 17/18А'
-            })),
+            h1('Путь'),
             pathinfo,
-            pathmap,
+            address([
+                figure([
+                    figcaption(a({
+                        href : 'https://yandex.ru/maps/-/CZHeYA0i',
+                        className : 'adr',
+                        rel : 'external',
+                        target : 'blank',
+                        innerHTML : 'Москва, 2-я Звенигородская <b>13</b> <sup>строение <b>17</b></sup>'
+                    })),
+                    pathmap,
+                ])
+            ]),
         ]
     })
 
@@ -155,12 +172,12 @@
         ]
     })
 
-    const keys = Object.keys
-    const classList = list =>
-        keys(list)
-            .map(item => list[item]? item : '')
-            .filter(item => item)
-            .join(' ')
+    /*const keys = Object.keys
+     const classList = list =>
+     keys(list)
+     .map(item => list[item]? item : '')
+     .filter(item => item)
+     .join(' ')*/
 
     const content = main([
         indexpage,
@@ -168,9 +185,10 @@
             id : 'tel',
             className : 'text',
             children : [
+                h1('Связь'),
                 address({
                     className : 'tel nowrap',
-                    title : 'Свяжитесь с нами по одному из этих номеров — мы поможем забронировать время для репетиции и ответим на вопросы по студии',
+                    title : 'Свяжитесь с нами по одному из этих номеров и узнайте больше о студии',
                     children : ul([
                         li(strong('+7 916 56 808 56')),
                         li(strong('+7 926 602 25 87')),
@@ -182,6 +200,7 @@
     ])
 
     document.body = body({
+        className : 'vcard',
         children : [
             div([
                 header({
@@ -280,3 +299,12 @@
         pathmap.style.opacity = Number(addresspage.offsetTop < window.scrollY + half) || null
     }
 }
+
+/*================================================================*/
+
+/**
+ ## Идейка
+ Музыканты обмен аппаратом
+ Каждый несет свой аппарат на студию и получает проценты от аренды
+ Можно настроить на сайте
+ */
