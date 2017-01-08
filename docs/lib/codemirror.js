@@ -55,7 +55,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @returns {Number}
      */
     get height() {
-        return this.element.clientHeight
+        return this.node.clientHeight
     }
 
     /**
@@ -71,7 +71,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @param {String} id
      */
     set id(id) {
-        this.element.querySelector('textarea').id = id
+        this.node.querySelector('textarea').id = id
     }
 
     /**
@@ -92,7 +92,7 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      * @returns {CodeMirror}
      */
     createMirror(options) {
-        return this.mirror = new CodeMirror(this.element, options)
+        return this.mirror = new CodeMirror(this.node, options)
     }
 
     /**

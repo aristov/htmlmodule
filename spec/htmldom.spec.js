@@ -1643,7 +1643,7 @@ describe('HTMLDOM library', () => {
         })
         describe('html', () => {
             const node = html({
-                attrset : { manifest : 'https://example.com/manifest' },
+                attributes : { manifest : 'https://example.com/manifest' },
                 innerHTML :
                     '<head>' +
                         '<meta charset="utf-8">' +
@@ -1717,7 +1717,7 @@ describe('HTMLDOM library', () => {
                 src : '/nested.html',
                 // srcdoc : '<html><head><title>Nested document</title></head><body></body></html>', // todo ie11
                 width : '200px',
-                attrset : { sandbox : 'allow-forms' }
+                attributes : { sandbox : 'allow-forms' }
             })
             it('tagName', () => {
                 assert.equal(node.tagName, 'IFRAME')
@@ -1851,7 +1851,7 @@ describe('HTMLDOM library', () => {
                 value : 'User input value',
                 defaultValue : 'Default value',
                 title : 'A part number is a digit followed by three uppercase letters.',
-                attrset : {
+                attributes : {
                     form : 'saveform',
                     list : 'suggestlist'
                 }
@@ -2250,7 +2250,7 @@ describe('HTMLDOM library', () => {
                 name : 'keywords',
                 content : 'specification,html,dom,web,application,standard,api',
                 httpEquiv : 'x-ua-compatible',
-                attrset : { charset : 'utf-8' },
+                attributes : { charset : 'utf-8' },
             })
             it('tagName', () => {
                 assert.equal(node.tagName, 'META')
@@ -2337,7 +2337,7 @@ describe('HTMLDOM library', () => {
                 useMap : 'app-map',
                 width : '123',
                 height : '321',
-                attrset : { form : 'saveform' },
+                attributes : { form : 'saveform' },
                 innerHTML : '<param><param><param>'
             })
             it('tagName', () => {
@@ -2821,7 +2821,7 @@ describe('HTMLDOM library', () => {
                 name : 'select-9',
                 required : true,
                 size : 10,
-                attrset : { form : 'saveform' },
+                attributes : { form : 'saveform' },
                 innerHTML :
                     '<option>opt1</option>' +
                     '<optgroup><option>opt2</option></optgroup>' +
@@ -3017,7 +3017,7 @@ describe('HTMLDOM library', () => {
                 wrap : 'hard',
                 value : 'User multiline input value',
                 defaultValue : 'Default multiline value',
-                attrset : { form : 'saveform' }
+                attributes : { form : 'saveform' }
             })
             it('tagName', () => {
                 assert.equal(node.tagName, 'TEXTAREA')
@@ -3362,7 +3362,7 @@ describe('HTMLDOM library', () => {
             it('properly build form with search input and submit button inside', () => {
                 const node =
                     form({
-                        attrset : { role : 'search' },
+                        attributes : { role : 'search' },
                         children : [
                             input({ type : 'search' }),
                             button('Search')
@@ -3397,7 +3397,7 @@ describe('HTMLDOM library', () => {
                 assert(indeterminate.indeterminate)
             })
             it('proper initial state assignment', () => {
-                const sample = input({ type : 'checkbox', attrset : { checked : '' } })
+                const sample = input({ type : 'checkbox', attributes : { checked : '' } })
                 const container = div({ innerHTML : '<input type=checkbox checked>' })
                 assert(sample.isEqualNode(container.firstChild))
             })

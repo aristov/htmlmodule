@@ -35,7 +35,7 @@ describe('HTMLDOM assembler', () => {
     describe('init', () => {
         const node = assembler.create('a')
         assembler.init({
-            attrset : { rel : 'external' },
+            attributes : { rel : 'external' },
             dataset : { ref : '712-42' },
             style : { color : '#777' },
             children : 'W3C homepage',
@@ -47,7 +47,7 @@ describe('HTMLDOM assembler', () => {
             undef : undefined
         })
         describe('assembler interfaces', () => {
-            it('attrset', () => {
+            it('attributes', () => {
                 assert.equal(node.getAttribute('rel'), 'external')
                 assert.equal(node.rel, 'external')
             })
@@ -98,7 +98,7 @@ describe('HTMLDOM assembler', () => {
     })
     describe('attributes', () => {
         const node = assembler.create('input')
-        assembler.attrset = {
+        assembler.attributes = {
             checked : '',
             disabled : '',
             custom_string : 'string',
