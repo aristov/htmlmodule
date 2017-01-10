@@ -3,4 +3,4 @@ import './index.css'
 
 const replapp = new REPLApp()
 
-document.body.append(replapp.element)
+document.body.append(replapp.node)
