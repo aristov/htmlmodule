@@ -1,6 +1,6 @@
 const {
-    a, abbr, body, h1, head, header, html,
-    li, nav, p, script, section, link, ul
+    a, abbr, body, h1, head, header, li,
+    nav, p, script, section, link, ul
 } = htmlmodule
 
 const onclick = () => parent.location.reload()
