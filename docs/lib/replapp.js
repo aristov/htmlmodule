@@ -175,15 +175,6 @@ export class REPLApp extends HTMLDOMAssembler {
         this.codeinput.onchange = () => this.loop()
         this.fetch()
     }
-    /*start() {
-        const codeinput = this.codeinput
-        codeinput.onchange = () => this.loop()
-        let value = ''
-        // if(!location.endsWith('helloworld'))
-            value = localStorage.getItem('codeinput.value')
-        if(value) codeinput.value = value
-        else this.fetch()
-    }*/
 
     fetch() {
         const filename = location.hash.replace(/^#/, '')
