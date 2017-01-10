@@ -84,7 +84,7 @@ Just created `websearch` variable is a DOM structure with the respective HTML ma
 Get the module by appending the distribution script to a page body:
 
 ```html
-<script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.window.htmlmodule.min.js></script>
+<script src=https://rawgit.com/aristov/htmlmodule/gh-pages/dist/dist.window.htmlmodule.min.js></script>
 <script>
 { body, header, main, footer, article, p, a, button, input, img, video, canvas, ... } = htmlmodule 
 // make magic...
@@ -128,7 +128,7 @@ There are some ways to do this.
 
 ```html
 <!-- minified shim bundle -->
-<script src=https://rawgit.com/aristov/htmlmodule/master/dist/dist.shim.min.js></script>
+<script src=https://rawgit.com/aristov/htmlmodule/gh-pages/dist/dist.shim.min.js></script>
 
 <!-- project code including htmlmodule imports -->
 <script src=build/build.project.js></script>
