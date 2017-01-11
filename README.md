@@ -50,7 +50,7 @@ import { form, label, input, button } from 'htmlmodule'
 // create application
 const websearch = 
    form({
-        action : '//www.google.ru/search',
+        action : '//google.com/search',
         target : '_blank',
         children : [
             label([
@@ -68,7 +68,7 @@ document.body.append(websearch)
 Just created `websearch` variable is a DOM structure with the respective HTML markup:
 
 ```html
-<form action=//www.google.ru/search target=_blank>
+<form action=//google.com/search target=_blank>
     <label>
         Search 
         <input type=search name=q>
