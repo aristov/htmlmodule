@@ -61,6 +61,10 @@ document.body = body({
                         href : '#embedded',
                         children : 'Embedded content'
                     })),
+                    li(a({
+                        href : '#interscript',
+                        children : 'Interactive and scripting'
+                    })),
                 ]),
             ]),
             section([
