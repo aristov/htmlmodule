@@ -1,6 +1,9 @@
 const {
     a, body, h1, h2, article, section, p,
-    details, summary, script, canvas
+    // Interactive content
+    details, summary,
+    // Scripting
+    script, canvas
 } = htmlmodule
 
 const dangerscript = script(`(${(() => {
