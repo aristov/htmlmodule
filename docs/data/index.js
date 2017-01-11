@@ -3,8 +3,6 @@ const {
     nav, p, script, section, link, ul
 } = htmlmodule
 
-const onclick = () => parent.location.reload()
-
 document.body = body({
     id : 'index',
     children : [
@@ -163,3 +161,7 @@ document.body = body({
         link({ rel : 'stylesheet', href : 'docs/data/index.css' })
     ]
 })
+
+function onclick() {
+    parent.location.reload()
+}
