@@ -226,7 +226,7 @@ Run static HTTP-server:
 npm run static
 ```
 
-Point your browser to [localhost:8080](http://localhost:8080).
+Point your browser to [localhost:8080/htmlmodule](http://localhost:8080/htmlmodule).
 
 ## License
 
