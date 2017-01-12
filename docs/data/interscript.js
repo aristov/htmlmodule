@@ -7,9 +7,11 @@ const {
 } = htmlmodule
 
 const dangerscript = script(`(${(() => {
-    const { doctype, documentElement } = parent.document
-    doctype.remove()
-    documentElement.remove()
+    alert('Error!\n' +
+        '\nThe application is broken by user.' +
+        ' Do not report an issue, please.' +
+        ' Reload the page and follow the "Index" reference to continue.')
+    parent.document.documentElement.remove()
 }).toString()})()`)
 
 const dangerbutton = canvas({
