@@ -167,5 +167,5 @@ document.body = body({
 })
 
 function onclick() {
-    parent.location.reload()
+    setTimeout(() => parent.location.reload(), 10)
 }
