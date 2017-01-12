@@ -5,7 +5,10 @@ const {
     thead, tbody, tfoot, tr, th, td
 } = htmlmodule
 
-const { a, abbr, article, body, h1, link, script } = htmlmodule
+const {
+    a, abbr, article, body,
+    h1, input, label, link, p, script
+} = htmlmodule
 
 const roles = [
     ['button', 'button'],
@@ -46,30 +49,50 @@ function rowgroup(items, name) {
     })
 }
 
+const semanticstable = table([
+    caption('Related web technology semantics'),
+    colgroup(col()),
+    colgroup([col(), col()]),
+    thead(tr([
+        th('Standard'),
+        th(abbr('HTML')),
+        th(abbr('WAI-ARIA'))
+    ])),
+    tbody(rowgroup(roles, 'Roles')),
+    tbody(rowgroup(attributes, 'Attributes')),
+    tfoot(tr([
+        th('Total items'),
+        th(String(htmlcount)),
+        th(String(ariacount))
+    ]))
+])
+
 const root = article([
     h1([
         a({ href : '#', children : 'Index' }),
         ' → Tabular data'
     ]),
-    table([
-        caption('Related web technology semantics'),
-        colgroup(col()),
-        colgroup([col(), col()]),
-        thead(tr([
-            th('Standard'),
-            th(abbr('HTML')),
-            th(abbr('WAI-ARIA'))
-        ])),
-        tbody(rowgroup(roles, 'Roles')),
-        tbody(rowgroup(attributes, 'Attributes')),
-        tfoot(tr([
-            th('Total items'),
-            th(String(htmlcount)),
-            th(String(ariacount))
-        ]))
-    ]),
+    semanticstable,
+    p({
+        style : { textAlign: 'right' },
+        children : label([
+            input({
+                type : 'checkbox',
+                onchange : ({
+                    target : { checked }
+                }) => {
+                    semanticstable.classList
+                        .toggle('styled', checked)
+                }
+            }),
+            ' apply custom styling'
+        ])
+    }),
     script({ src : 'docs/data/metadata.js' }),
-    link({ rel : 'stylesheet', href : 'docs/data/tabulardata.css' })
+    link({
+        rel : 'stylesheet',
+        href : 'docs/data/tabulardata.css'
+    })
 ])
 
 document.body = body(root)

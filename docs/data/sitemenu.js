@@ -66,13 +66,6 @@ if(!document.getElementById('sitemenu')) {
                         children : 'Spec suite'
                     })),
                     li(a({
-                        href : 'dist/coverage/chrome/lcov-report/',
-                        target : '_blank',
-                        children : 'Coverage report'
-                    })),
-                ]),
-                ul([
-                    li(a({
                         href : 'https://npmjs.com/package/htmlmodule',
                         target : '_blank',
                         rel : 'external',

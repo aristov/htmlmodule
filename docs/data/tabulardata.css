@@ -1,21 +1,23 @@
-table
+table.styled
 {
     width: 100%;
     border-collapse: collapse;
 }
-caption
+table.styled caption
 {
     padding: 15px;
 }
-thead, tfoot
+table.styled thead,
+table.styled tfoot
 {
     background: #eee;
 }
-th, td
+table.styled th, td
 {
     padding: 4px;
 }
-tr:last-child td, tr th
+table.styled tr:last-child td,
+table.styled tr th
 {
     border-bottom: 4px solid #eee
 }

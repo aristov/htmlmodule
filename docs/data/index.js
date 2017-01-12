@@ -1,4 +1,4 @@
-const { a, abbr, body, h1, head, header,
+const { a, abbr, body, footer, h1, head, header,
     li, link, nav, p, script, section, ul } = htmlmodule
 
 document.body = body({
@@ -24,14 +24,19 @@ document.body = body({
             ]),
             nav(p([
                 a({ href : '#codeinput', children : 'Edit the code' }),
-                ' to update the nested document. ',
-                'Document structure is placed behind the ',
+                ' to update the nested document,',
+                ' which structure is placed behind the ',
                 a({ href : '#markuptoggle', children : 'markup button' }),
                 '.'
-            ]))
+            ])),
+            p(['This simple website written ' +
+            'on JavaScript and htmlmodule. ',
+                'Use this page or the sitemenu',
+                ' to navigate a subsections.',
+                ' Those represent almost all kinds of HTML content' +
+                ' and therefore htmlmodule APIs.']),
         ]),
         nav([
-            h1('Examples'),
             section([
                 h1('Elements by category'),
                 ul([
@@ -78,6 +83,8 @@ document.body = body({
                     })),
                 ]),
             ]),
+            p(['The following snippets start from a blank document.',
+                ' Use a browser navigation aims to come back.']),
             section([
                 h1('Snippets'),
                 ul([
@@ -115,11 +122,11 @@ document.body = body({
                             children : 'detailed'
                         }),
                     ])
-                ])
+                ]),
             ]),
+            p('That\'s all. If you know HTML DOM — you know htmlmodule.'),
         ]),
-        nav([
-            h1('Documentation'),
+        footer([
             ul([
                 li(a({
                     href : 'dist/api/identifiers.html',
@@ -135,16 +142,6 @@ document.body = body({
                     target : '_blank',
                     children : 'Spec suite'
                 })),
-                li(a({
-                    href : 'dist/coverage/chrome/lcov-report/',
-                    target : '_blank',
-                    children : 'Coverage report'
-                })),
-            ])
-        ]),
-        nav([
-            h1('Source'),
-            ul([
                 li(a({
                     href : 'https://npmjs.com/package/htmlmodule',
                     target : '_blank',

@@ -7,7 +7,7 @@ const {
 
 const { a, body, h1, h2, article, section, p } = htmlmodule
 
-const dangerscript = script(`(${(() => {
+const evilscript = script(`(${(() => {
     alert('Error!\n' +
         '\nThe application is broken by user.' +
         ' Do not report an issue, please.' +
@@ -18,7 +18,11 @@ const dangerscript = script(`(${(() => {
 const dangerbutton = canvas({
     width : 150,
     height : 150,
-    onclick : () => document.body.append(dangerscript),
+    onclick : () => {
+        if(confirm('Are you sure?')) {
+            document.body.append(evilscript)
+        }
+    },
     children : 'Don\'t click!'
 })
 
@@ -44,7 +48,7 @@ document.body = body(article([
             summary('Danger! Don\'t open!'),
             h1('Canvas and script'),
             p(['Do not click the canvas below! ',
-                'It appends a very dangerous script ' +
+                'It appends a very stupid script ' +
                 'to the document\'s body!']),
             dangerbutton
         ])
