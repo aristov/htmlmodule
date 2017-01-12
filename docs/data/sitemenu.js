@@ -35,6 +35,10 @@ if(!document.getElementById('sitemenu')) {
                         href : '#embedded',
                         children : 'Embedded content'
                     })),
+                    li(a({
+                        href : '#interscript',
+                        children : 'Interactive and scripting'
+                    })),
                 ]),
                 ul([
                     li(a({
