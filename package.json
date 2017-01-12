@@ -1,6 +1,6 @@
 {
   "name": "htmlmodule",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "DOM assembler",
   "keywords": [
     "html",
@@ -49,7 +49,7 @@
     "start": "webpack && ENTRY=index ES6=true WATCH=true webpack",
     "static": "http-server .. -c-1",
     "build": "npm run dist && npm run spec && npm run index && npm run api",
-    "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run build && git add index.html dist -f && git commit -am 'add dist' && git push --set-upstream origin gh-pages -f && git checkout master && git status"
+    "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run build && git add index.html dist -f && git commit -am 'add dist' && git push --set-upstream origin gh-pages -f && git checkout master && npm run build && git status"
   },
   "precommit": [
     "lint"
