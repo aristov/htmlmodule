@@ -106,13 +106,13 @@ document.body = body({
                     li([
                         'Predefined variables: ',
                         a({
-                            href : '#predef-line',
+                            href : '#predefline',
                             onclick,
                             children : 'short'
                         }),
                         ', ',
                         a({
-                            href : '#predef-block',
+                            href : '#predef',
                             onclick,
                             children : 'detailed'
                         }),
