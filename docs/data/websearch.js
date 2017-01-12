@@ -1,4 +1,5 @@
-const { body, form, label, img, br, input, button } = htmlmodule
+const { body, form, label,
+    img, br, input, button } = htmlmodule
 
 const websearch = form({
     action : 'https://google.com/search',

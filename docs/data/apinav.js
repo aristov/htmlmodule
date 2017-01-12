@@ -1,4 +1,5 @@
-const { a, body, ul, li, nav, h1, section, style, script } = htmlmodule
+const { a, body, ul, li, nav, h1,
+    section, style, script } = htmlmodule
 
 // Generate a simple hyperlink to use it,
 // as a pattern for a regular expression replacement

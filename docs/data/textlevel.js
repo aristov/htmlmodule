@@ -20,7 +20,8 @@ const {
     ins, del,
 } = htmlmodule
 
-const { article, div, body, h1, li, p, script, section, style, ul } = htmlmodule
+const { article, div, body, h1,
+    li, p, script, section, style, ul } = htmlmodule
 
 const children = 'АРОЗАУПАЛА'
 

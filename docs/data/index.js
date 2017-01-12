@@ -1,7 +1,5 @@
-const {
-    a, abbr, body, h1, head, header, li,
-    nav, p, script, section, link, ul
-} = htmlmodule
+const { a, abbr, body, h1, head, header,
+    li, link, nav, p, script, section, ul } = htmlmodule
 
 document.body = body({
     id : 'index',

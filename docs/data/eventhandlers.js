@@ -1,7 +1,5 @@
-const {
-    a, article, section, h1, button, body,
-    label, input, p, variable, code, script
-} = htmlmodule
+const { a, article, section, h1, button, body,
+    label, input, p, variable, code, script } = htmlmodule
 
 // this text is used as initial button text
 const textContent = 'Give me a focus, please...'
