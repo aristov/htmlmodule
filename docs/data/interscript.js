@@ -5,7 +5,7 @@ const {
     script, canvas
 } = htmlmodule
 
-const { a, body, h1, h2, article, section, p } = htmlmodule
+const { a, body, del, h1, h2, ins, article, section, p } = htmlmodule
 
 const evilscript = script(`(${(() => {
     alert('Error!\n' +
@@ -48,8 +48,9 @@ document.body = body(article([
             summary('Danger! Don\'t open!'),
             h1('Canvas and script'),
             p(['Do not click the canvas below! ',
-                'It appends a very stupid script ' +
-                'to the document\'s body!']),
+                'It appends a very ',
+                del('evil'), ' ', ins('stupid'),
+                ' script to the document\'s body!']),
             dangerbutton
         ])
     ])
