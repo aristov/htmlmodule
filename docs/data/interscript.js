@@ -9,8 +9,7 @@ const { a, body, del, h1, h2, ins, article, section, p } = htmlmodule
 
 const evilscript = script(`(${(() => {
     alert('Error!\n' +
-        '\nThe application is broken by user.' +
-        ' Do not report an issue, please.' +
+        '\nYou\'ve just broken the application!' +
         ' Reload the page and follow the "Index" reference to continue.')
     parent.document.documentElement.remove()
 }).toString()})()`)
@@ -28,12 +27,12 @@ const dangerbutton = canvas({
 
 const ctx = dangerbutton.getContext('2d')
 
-ctx.strokeStyle = '#000'
-ctx.strokeRect(10, 10, 130, 130)
-ctx.fillStyle = '#f00'
+ctx.fillStyle = 'red'
 ctx.fillRect(10, 10, 130, 130)
+ctx.strokeStyle = 'black'
+ctx.strokeRect(15, 15, 120, 120)
 ctx.font = '30px Arial'
-ctx.fillStyle = '#fff'
+ctx.fillStyle = 'white'
 ctx.fillText('DON\'T!', 24, 85)
 
 document.body = body(article([

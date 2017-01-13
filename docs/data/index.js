@@ -68,6 +68,10 @@ document.body = body({
                         href : '#interscript',
                         children : 'Interactive and scripting'
                     })),
+                    li(a({
+                        href : '#metadata',
+                        children : 'Metadata'
+                    })),
                 ]),
             ]),
             section([
@@ -90,12 +94,12 @@ document.body = body({
                 ul([
                     li(a({
                         href : '#helloworld',
-                        onclick,
+                        target : '_blank',
                         children : 'Hello world!'
                     })),
                     li(a({
                         href : '#websearch',
-                        onclick,
+                        target : '_blank',
                         children : 'Web search'
                     })),
                 ]),
@@ -105,20 +109,20 @@ document.body = body({
                 ul([
                     li(a({
                         href : '#blank',
-                        onclick,
+                        target : '_blank',
                         children : 'Blank snippet'
                     })),
                     li([
                         'Predefined variables: ',
                         a({
                             href : '#predefline',
-                            onclick,
+                            target : '_blank',
                             children : 'short'
                         }),
                         ', ',
                         a({
                             href : '#predef',
-                            onclick,
+                            target : '_blank',
                             children : 'detailed'
                         }),
                     ])
@@ -160,7 +164,3 @@ document.body = body({
         link({ rel : 'stylesheet', href : 'docs/data/index.css' })
     ]
 })
-
-function onclick() {
-    setTimeout(() => parent.location.reload(), 10)
-}
