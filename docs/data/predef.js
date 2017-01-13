@@ -46,7 +46,7 @@ const {
     // Scripting
     script, noscript, canvas,
 
-    // Сustom
+    // Any element
     htmldom,
 } = htmlmodule
 

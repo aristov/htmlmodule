@@ -87,8 +87,7 @@ document.body = body({
                     })),
                 ]),
             ]),
-            p(['The following snippets start from a blank document.',
-                ' Use a browser navigation aims to come back.']),
+            p('The following snippets start from a blank document.'),
             section([
                 h1('Snippets'),
                 ul([
