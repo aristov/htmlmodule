@@ -29,10 +29,9 @@ document.body = body({
                 a({ href : '#markuptoggle', children : 'markup button' }),
                 '.'
             ])),
-            p(['This simple website written ' +
-            'on JavaScript and htmlmodule. ',
-                'Use this page or the sitemenu',
-                ' to navigate a subsections.',
+            p(['This simple website lives inside iframe window.',
+                ' It is written on JavaScript and htmlmodule.',
+                ' Use this page or the sitemenu to navigate the subsections.',
                 ' Those represent almost all kinds of HTML content' +
                 ' and therefore htmlmodule APIs.']),
         ]),

@@ -7,12 +7,15 @@ const {
 
 const { a, body, del, h1, h2, ins, article, section, p } = htmlmodule
 
-const evilscript = script(`(${(() => {
+const fn = ({ location, document }) => {
     alert('Error!\n' +
         '\nYou\'ve just broken the application!' +
-        ' Reload the page and follow the "Index" reference to continue.')
-    parent.document.documentElement.remove()
-}).toString()})()`)
+        ' Reload the page to continue.')
+    location.hash = ''
+    document.documentElement.remove()
+}
+const src = fn.toString()
+const evilscript = script(`(${ src })(parent)`)
 
 const dangerbutton = canvas({
     width : 150,
@@ -46,10 +49,9 @@ document.body = body(article([
         details([
             summary('Danger! Don\'t open!'),
             h1('Canvas and script'),
-            p(['Do not click the canvas below! ',
-                'It appends a very ',
+            p(['Do not click the canvas below! It appends a very ',
                 del('evil'), ' ', ins('stupid'),
-                ' script to the document\'s body!']),
+                ' script to the document\'s body.']),
             dangerbutton
         ])
     ])
