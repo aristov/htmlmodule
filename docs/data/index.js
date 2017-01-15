@@ -29,7 +29,7 @@ document.body = body({
                 a({ href : '#markuptoggle', children : 'markup button' }),
                 '.'
             ])),
-            p(['This simple website lives inside iframe window.',
+            p(['This simple website lives inside the iframe window.',
                 ' It is written on JavaScript and htmlmodule.',
                 ' Use this page or the sitemenu to navigate the subsections.',
                 ' Those represent almost all kinds of HTML content' +
@@ -158,7 +158,6 @@ document.body = body({
                 })),
             ])
         ]),
-        script({ src : 'docs/data/metadata.js' }),
-        link({ rel : 'stylesheet', href : 'docs/data/index.css' })
+        script({ src : 'docs/data/metadata.js' })
     ]
 })

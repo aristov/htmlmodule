@@ -85,7 +85,7 @@ const root = article([
                         .toggle('styled', checked)
                 }
             }),
-            ' apply custom styling'
+            ' apply theme'
         ])
     }),
     script({ src : 'docs/data/metadata.js' }),

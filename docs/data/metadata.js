@@ -15,6 +15,7 @@
                     title('htmlmodule homepage'),
                     base({ target : '_top' }),
                     link({ rel : 'stylesheet', href : 'docs/data/sitemenu.css' }),
+                    link({ rel : 'stylesheet', href : 'docs/data/index.css' }),
                     style([
                         'abbr { cursor: help }',
                         'a[href][rel~=external]:not(:active) { color: #050 }'

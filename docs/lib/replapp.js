@@ -21,7 +21,7 @@ const srcdoc = '<!DOCTYPE html><html><head><script src="dist/dist.window.htmlmod
 class OutputGroup extends HTMLDOMAssembler {
     constructor({ onready, app }) {
         super()
-        const open = localStorage.getItem('makrupview.open') === 'true' || false
+        const open = localStorage.getItem('makrupview.open') === 'true' || localStorage.getItem('markupview.open')
         this.app = app
         this.assemble('section', {
             className : 'outputgroup',
@@ -122,6 +122,9 @@ class OutputGroup extends HTMLDOMAssembler {
 }
 
 export class REPLApp extends HTMLDOMAssembler {
+    /**
+     * The main window split application
+     */
     constructor() {
         super()
         this.assemble('article', {
@@ -151,20 +154,29 @@ export class REPLApp extends HTMLDOMAssembler {
     }
 
     /**
-     * @returns {String} source code
-     */
-    read() {
-        let value = this.value
-        return useBabel? babel(value) : value
-    }
-
-    /**
      * Start the application when it's DOM structure is ready
      * If a browser doesn't support ES2015 syntax, then load babel-standalone first
      */
     onready() {
         if(useBabel) standalone().then(() => this.start())
         else this.start()
+    }
+
+    /**
+     * Document onload handler
+     * @param response
+     */
+    onload(response) {
+        this.codeinput.value = response
+        this.outputgroup.scroll(0, 0)
+    }
+
+    /**
+     * @returns {String} source code
+     */
+    read() {
+        let value = this.value
+        return useBabel? babel(value) : value
     }
 
     /**
@@ -176,6 +188,9 @@ export class REPLApp extends HTMLDOMAssembler {
         this.fetch()
     }
 
+    /**
+     * Fetches the document specified by hash
+     */
     fetch() {
         const filename = location.hash.replace(/^#/, '')
         const url = datapath + (filename || 'index') + '.js'
@@ -183,8 +198,7 @@ export class REPLApp extends HTMLDOMAssembler {
             fetch(url)
                 .then(response => response.text())
                 .then(response => {
-                    this.codeinput.value = response
-                    this.outputgroup.scroll(0, 0)
+                    this.onload(response)
                 })
         }
     }
