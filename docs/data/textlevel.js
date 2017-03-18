@@ -1,7 +1,6 @@
 const {
     // Special meaning
-    a, abbr, cite, dfn, q, s, small, u,
-    // todo: mark
+    a, abbr, cite, dfn, q, s, small, u, // todo: mark
     // Emphasis
     b, em, i, strong,
     // Computers
@@ -32,7 +31,7 @@ const abbrlist = {
     IDL : 'Interface definition language',
     HTML : 'Hyper text markup language',
     'WAI-ARIA' : 'Web accessibility initiative — ' +
-    'Accessible rich internet applications',
+        'Accessible rich internet applications',
     HTTP : 'Hyper text trasform protocol',
 }
 
@@ -98,8 +97,8 @@ const root = article([
                 'The ', dfn('dfn'), ' element represents ' +
                 'the defining instance of a term. ' +
                 'The paragraph, description list group, ' +
-                'Or section that is the nearest ancestor ' +
-                'Of the ', dfn('dfn'), ' element must also contain ' +
+                'or section that is the nearest ancestor ' +
+                'of the ', dfn('dfn'), ' element must also contain ' +
                 'the definition(s) for the term given ' +
                 'by the ', dfn('dfn'), ' element.'
             ])
@@ -244,7 +243,7 @@ const root = article([
         p(['b', br(), 'r']),
         section([
             h1('Line breaking opportunity'),
-            p(Array.from(Array(15)).map(() => [
+            p(Array.from(new Array(15)).map(() => [
                 'Line', wbr(),
                 'Breaking', wbr(),
                 'Opportunity', wbr()
