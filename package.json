@@ -1,7 +1,7 @@
 {
   "name": "htmlmodule",
-  "version": "0.4.3",
-  "description": "DOM assembler",
+  "version": "0.5.0",
+  "description": "HTML DOM assembler",
   "keywords": [
     "html",
     "html5",
@@ -55,6 +55,9 @@
   "precommit": [
     "lint"
   ],
+  "dependencies": {
+    "dommodule": "github:aristov/dommodule"
+  },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
     "babel": "^6.5.2",
