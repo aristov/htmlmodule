@@ -14,11 +14,11 @@ const nodepath = path.resolve('node_modules/');
 const babelLoader = env.ES6? {
     test : /\.js$/,
     loader : 'babel?plugins[]=transform-es2015-modules-commonjs&compact=false',
-    exclude: [nodepath]
+    // exclude: [nodepath]
 } : {
     test : /\.js$/,
     loader : 'babel?presets[]=latest&compact=false',
-    exclude: [nodepath]
+    // exclude: [nodepath]
 };
 
 const styleLoader = {

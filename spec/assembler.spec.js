@@ -1,4 +1,4 @@
-import { HTMLDOMAssembler } from '../lib/assembler.js'
+import { HTMLElementAssembler } from '../lib/html'
 import chai from 'chai'
 
 const { assert } = chai
@@ -11,11 +11,11 @@ const {
     HTMLSpanElement,
 } = window
 
-const assembler = new HTMLDOMAssembler
+const assembler = new HTMLElementAssembler
 
 describe('HTMLDOM assembler', () => {
     describe('create', () => {
-        const node = assembler.create('html')
+        const node = assembler.assemble({ qualifiedName : 'html' })
         it('proper inheritance', () => {
             assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
         })
@@ -33,7 +33,7 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('init', () => {
-        const node = assembler.create('a')
+        const node = assembler.assemble({ qualifiedName : 'a' })
         assembler.init({
             attributes : { rel : 'external' },
             dataset : { ref : '712-42' },
@@ -97,7 +97,7 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('attributes', () => {
-        const node = assembler.create('input')
+        const node = assembler.assemble({ qualifiedName : 'input' })
         assembler.attributes = {
             checked : '',
             disabled : '',
@@ -146,7 +146,7 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('dataset', () => {
-        const node = assembler.create('div')
+        const node = assembler.assemble({ qualifiedName : 'div' })
         assembler.dataset = {
             simple : 'simple data-attribute',
             camelCased : 'camelCased data-attribute'
@@ -165,7 +165,7 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('style', () => {
-        const node = assembler.create('span')
+        const node = assembler.assemble({ qualifiedName : 'span' })
         assembler.style = {
             color : 'white',
             backgroundColor : 'black'
@@ -182,9 +182,9 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('children', () => {
-        const child = new HTMLDOMAssembler
+        const child = new HTMLElementAssembler
         child.create('span')
-        const node = assembler.create('div')
+        const node = assembler.assemble({ qualifiedName : 'div' })
         assembler.children = [
             0, // ignored
             document.createElement('button'),
