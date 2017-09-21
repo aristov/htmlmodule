@@ -13,7 +13,7 @@ const {
 
 const assembler = new HTMLElementAssembler
 
-describe('HTMLDOM assembler', () => {
+describe('HTMLElementAssembler', () => {
     describe('create', () => {
         const node = assembler.assemble({ qualifiedName : 'html' })
         it('proper inheritance', () => {
@@ -183,7 +183,7 @@ describe('HTMLDOM assembler', () => {
     })
     describe('children', () => {
         const child = new HTMLElementAssembler
-        child.create('span')
+        child.assemble({ qualifiedName : 'span' })
         const node = assembler.assemble({ qualifiedName : 'div' })
         assembler.children = [
             0, // ignored
