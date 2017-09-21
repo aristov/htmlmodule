@@ -31,9 +31,9 @@ const localBrowserSet = {
 const sauceBrowserSet = {
     sl_chrome : {
         base : 'SauceLabs',
-        platform : 'OS X 10.11',
+        platform : 'OS X 10.12',
         browserName : 'chrome',
-        version : '53.0',
+        version : '61.0',
         displayName : 'chrome'
     },
     /*sl_firefox : {
