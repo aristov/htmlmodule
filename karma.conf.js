@@ -36,13 +36,13 @@ const sauceBrowserSet = {
         version : '53.0',
         displayName : 'chrome'
     },
-    sl_firefox : {
+    /*sl_firefox : {
         base : 'SauceLabs',
         platform : 'Linux',
         browserName : 'firefox',
         version : '45.0',
         displayName : 'firefox'
-    },
+    },*/
     /*SL_Safari : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
@@ -50,13 +50,13 @@ const sauceBrowserSet = {
         version : '9.0',
         displayName : 'safari'
     },*/
-    sl_msie11 : {
+    /*sl_msie11 : {
         base : 'SauceLabs',
         platform : 'Windows 8.1',
         browserName : 'internet explorer',
         version : '11',
         displayName : 'msie11'
-    },
+    },*/
     /*SL_MSIE9 : {
         base : 'SauceLabs',
         platform : 'Windows 7',
