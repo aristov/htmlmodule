@@ -11,9 +11,7 @@
     "dom",
     "node",
     "element",
-    "htmlelement",
-    "htmldom",
-    "htmldomassembler"
+    "htmlelement"
   ],
   "homepage": "https://aristov.github.io/htmlmodule",
   "bugs": "https://github.com/aristov/htmlmodule/issues",
