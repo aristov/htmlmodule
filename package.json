@@ -55,7 +55,7 @@
     "lint"
   ],
   "dependencies": {
-    "dommodule": "github:aristov/dommodule"
+    "dommodule": "github:aristov/dommodule#v0.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",
