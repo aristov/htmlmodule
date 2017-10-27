@@ -55,7 +55,7 @@
     "lint"
   ],
   "dependencies": {
-    "dommodule": "github:aristov/dommodule#v0.2"
+    "dommodule": "^0.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",
@@ -65,6 +65,7 @@
     "babel-plugin-istanbul": "^3.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-polyfill": "^6.16.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-latest": "^6.16.0",
     "babel-register": "^6.18.0",
     "chai": "^4.1.2",

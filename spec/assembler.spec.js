@@ -35,14 +35,13 @@ describe('HTMLElementAssembler', () => {
     describe('init', () => {
         const node = assembler.assemble({ qualifiedName : 'a' })
         assembler.init({
-            attributes : { rel : 'external' },
+            attrset : { rel : 'external' },
             dataset : { ref : '712-42' },
             style : { color : '#777' },
             children : 'W3C homepage',
             id : 'w3-link',
             href : 'https://www.w3.org',
             ferh : 'gro.3w.www//:sptth',
-            '123' : '0987654321',
             className : undefined,
             undef : undefined
         })
@@ -80,10 +79,6 @@ describe('HTMLElementAssembler', () => {
                 assert(!('ferh' in node), 'ignore "ferh" property')
                 assert(!node.hasAttribute('ferh'), 'has no "ferh" attribute')
             })
-            it('123', () => {
-                assert(!('123' in node), 'ignore "123" property')
-                assert(!node.hasAttribute('123'), 'has no "123" attribute')
-            })
         })
         describe('undefined', () => {
             it('className', () => {
@@ -98,7 +93,7 @@ describe('HTMLElementAssembler', () => {
     })
     describe('attributes', () => {
         const node = assembler.assemble({ qualifiedName : 'input' })
-        assembler.attributes = {
+        assembler.attrset = {
             checked : '',
             disabled : '',
             custom_string : 'string',
@@ -110,7 +105,9 @@ describe('HTMLElementAssembler', () => {
         }
         it('has attributes', () => {
             assert(node.hasAttributes(), 'has attributes')
-            assert.equal(node.attributes.length, 3)
+        })
+        it('attributes.length', () => {
+            assert.equal(node.attributes.length, 8)
         })
         it('checked', () => {
             assert.equal(node.checked, true)
@@ -122,27 +119,27 @@ describe('HTMLElementAssembler', () => {
         })
         it('custom_string', () => {
             assert.equal(node.getAttribute('custom_string'), 'string')
-            assert(!('custom_string' in node), 'has no string property')
+            assert.isFalse('custom_string' in node, 'has no string property')
         })
         it('custom_boolean', () => {
-            assert(!node.hasAttribute('custom_boolean'), 'has no boolean attribute')
-            assert(!('custom_boolean' in node), 'has no such property')
+            assert(node.hasAttribute('custom_boolean'), 'has boolean attribute')
+            assert.equal(node.getAttribute('custom_boolean'), 'true')
         })
         it('custom_number', () => {
-            assert(!node.hasAttribute('custom_number'), 'has no number attribute')
-            assert(!('custom_number' in node), 'has no number property')
+            assert(node.hasAttribute('custom_number'), 'has number attribute')
+            assert.equal(node.getAttribute('custom_number'), '123')
         })
         it('custom_undef', () => {
-            assert(!node.hasAttribute('custom_undef'), 'has no undefined attribute')
-            assert(!('custom_undef' in node), 'has no undefined property')
+            assert(node.hasAttribute('custom_undef'), 'has undefined attribute')
+            assert.equal(node.getAttribute('custom_undef'), 'undefined')
         })
         it('class', () => {
-            assert(!node.hasAttribute('class'), 'has no class attribute')
-            assert.equal(node.className, '')
+            assert(node.hasAttribute('class'), 'has class attribute')
+            assert.equal(node.className, 'undefined')
         })
         it('custom_null', () => {
-            assert(!node.hasAttribute('custom_null'), 'has no null attribute')
-            assert(!('custom_null' in node), 'has no null property')
+            assert(node.hasAttribute('custom_null'), 'has null attribute')
+            assert.equal(node.getAttribute('custom_null'), 'null')
         })
     })
     describe('dataset', () => {

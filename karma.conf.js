@@ -11,7 +11,7 @@ const localBrowserSet = {
         browserName : 'chrome',
         displayName : 'chrome'
     },
-    firefox : {
+    /*firefox : {
         base : 'Firefox',
         browserName : 'firefox',
         displayName : 'firefox'
@@ -25,7 +25,7 @@ const localBrowserSet = {
         base : 'Opera',
         browserName : 'opera',
         displayName : 'opera'
-    },
+    },*/
 };
 
 const sauceBrowserSet = {
