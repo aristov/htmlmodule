@@ -36,6 +36,8 @@ describe('HTMLElementAssembler', () => {
     })
     describe('init', () => {
         const node = assembler.assemble({ qualifiedName : 'a' })
+        const warn = console.warn
+        const spy = console.warn = sinon.spy()
         assembler.init({
             attrset : { rel : 'external' },
             dataset : { ref : '712-42' },
@@ -47,6 +49,7 @@ describe('HTMLElementAssembler', () => {
             className : undefined,
             undef : undefined
         })
+        console.warn = warn
         describe('assembler interfaces', () => {
             it('attributes', () => {
                 assert.equal(node.getAttribute('rel'), 'external')
@@ -78,8 +81,9 @@ describe('HTMLElementAssembler', () => {
         })
         describe('unknown properties', () => {
             it('ferh', () => {
-                assert(!('ferh' in node), 'ignore "ferh" property')
-                assert(!node.hasAttribute('ferh'), 'has no "ferh" attribute')
+                assert.isFalse('ferh' in node)
+                assert.isFalse(node.hasAttribute('ferh'))
+                assert(spy.calledOnce, 'console.warn called once')
             })
         })
         describe('undefined', () => {
