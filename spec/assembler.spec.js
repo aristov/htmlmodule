@@ -7,8 +7,10 @@ const {
     Comment,
     HTMLAnchorElement,
     HTMLButtonElement,
+    HTMLElement,
     HTMLHtmlElement,
     HTMLSpanElement,
+    document
 } = window
 
 const assembler = new HTMLElementAssembler
