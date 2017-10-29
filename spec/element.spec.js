@@ -1,4 +1,4 @@
-import { HTMLElementAssembler } from '../lib/html'
+import { HTMLElementAssembler } from '../lib/element'
 import chai from 'chai'
 
 const { assert } = chai
@@ -17,7 +17,7 @@ const assembler = new HTMLElementAssembler
 
 describe('HTMLElementAssembler', () => {
     describe('create', () => {
-        const node = assembler.assemble({ qualifiedName : 'html' })
+        const node = assembler.assemble({ localName : 'html' })
         it('proper inheritance', () => {
             assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
         })
@@ -35,7 +35,7 @@ describe('HTMLElementAssembler', () => {
         })
     })
     describe('init', () => {
-        const node = assembler.assemble({ qualifiedName : 'a' })
+        const node = assembler.assemble({ localName : 'a' })
         const warn = console.warn
         const spy = console.warn = sinon.spy()
         assembler.init({
@@ -51,7 +51,7 @@ describe('HTMLElementAssembler', () => {
         })
         console.warn = warn
         describe('assembler interfaces', () => {
-            it('attributes', () => {
+            it('attrset', () => {
                 assert.equal(node.getAttribute('rel'), 'external')
                 assert.equal(node.rel, 'external')
             })
@@ -98,7 +98,7 @@ describe('HTMLElementAssembler', () => {
         })
     })
     describe('attributes', () => {
-        const node = assembler.assemble({ qualifiedName : 'input' })
+        const node = assembler.assemble({ localName : 'input' })
         assembler.attrset = {
             checked : '',
             disabled : '',
@@ -149,7 +149,7 @@ describe('HTMLElementAssembler', () => {
         })
     })
     describe('dataset', () => {
-        const node = assembler.assemble({ qualifiedName : 'div' })
+        const node = assembler.assemble({ localName : 'div' })
         assembler.dataset = {
             simple : 'simple data-attribute',
             camelCased : 'camelCased data-attribute'
@@ -168,7 +168,7 @@ describe('HTMLElementAssembler', () => {
         })
     })
     describe('style', () => {
-        const node = assembler.assemble({ qualifiedName : 'span' })
+        const node = assembler.assemble({ localName : 'span' })
         assembler.style = {
             color : 'white',
             backgroundColor : 'black'
@@ -186,8 +186,8 @@ describe('HTMLElementAssembler', () => {
     })
     describe('children', () => {
         const child = new HTMLElementAssembler
-        child.assemble({ qualifiedName : 'span' })
-        const node = assembler.assemble({ qualifiedName : 'div' })
+        child.assemble({ localName : 'span' })
+        const node = assembler.assemble({ localName : 'div' })
         assembler.children = [
             0, // ignored
             document.createElement('button'),

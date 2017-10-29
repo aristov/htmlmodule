@@ -1,2 +1,2 @@
-import './assembler.spec'
+import './element.spec'
 // import './htmldom.spec'
