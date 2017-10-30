@@ -1,71 +1,69 @@
-import { HTMLElementAssembler } from '../lib/element'
 import chai from 'chai'
+import { HTMLElementAssembler } from '../lib/element'
 
 const { assert } = chai
 const {
-    Text,
     Comment,
     HTMLAnchorElement,
     HTMLButtonElement,
     HTMLElement,
     HTMLHtmlElement,
     HTMLSpanElement,
+    Text,
     document
 } = window
 
 const assembler = new HTMLElementAssembler
 
 describe('HTMLElementAssembler', () => {
-    describe('create', () => {
-        const node = assembler.assemble({ localName : 'html' })
-        it('proper inheritance', () => {
-            assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+    describe('new HTMLElementAssembler', () => {
+        const test = new HTMLElementAssembler
+        const node = test.node
+        it('node', () => {
+            assert.instanceOf(node, HTMLElement)
         })
-        it('proper constructor', () => {
+        it('node.constructor', () => {
             assert.equal(node.constructor, HTMLHtmlElement)
         })
-        it('proper tagName', () => {
+        it('node.tagName', () => {
             assert.equal(node.tagName, 'HTML')
         })
-        it('proper number of attributes', () => {
-            assert(!node.hasAttributes(), 'has no attributes')
+        it('node.hasAttributes()', () => {
+            assert.isFalse(node.hasAttributes())
         })
-        it('proper outerHTML', () => {
+        it('node.outerHTML', () => {
             assert.equal(node.outerHTML, '<html></html>')
         })
     })
     describe('init', () => {
-        const node = assembler.assemble({ localName : 'a' })
-        const warn = console.warn
-        const spy = console.warn = sinon.spy()
-        assembler.init({
-            attrset : { rel : 'external' },
+        const test = new HTMLElementAssembler({ localName : 'a' })
+        const node = test.node
+        test.init({
+            attrset : { test : 'example' },
             dataset : { ref : '712-42' },
             style : { color : '#777' },
-            children : 'W3C homepage',
             id : 'w3-link',
-            href : 'https://www.w3.org',
-            ferh : 'gro.3w.www//:sptth',
             className : undefined,
-            undef : undefined
+            href : 'https://www.w3.org',
+            children : 'W3C homepage'
         })
-        console.warn = warn
         describe('assembler interfaces', () => {
             it('attrset', () => {
-                assert.equal(node.getAttribute('rel'), 'external')
-                assert.equal(node.rel, 'external')
+                assert.equal(node.getAttribute('test'), 'example')
             })
             it('dataset', () => {
                 assert.equal(node.dataset.ref, '712-42')
-                assert.equal(node.getAttribute('data-ref'), '712-42')
             })
             it('style', () => {
                 assert.equal(node.style.color, 'rgb(119, 119, 119)')
-                assert.equal(node.getAttribute('style'), 'color: rgb(119, 119, 119);')
             })
             it('children', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
+            })
+            it('children', () => {
                 assert.equal(node.childNodes.length, 1)
+            })
+            it('children', () => {
                 assert.equal(node.innerHTML, 'W3C homepage')
             })
         })
