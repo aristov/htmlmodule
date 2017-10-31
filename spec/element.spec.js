@@ -77,13 +77,6 @@ describe('HTMLElementAssembler', () => {
                 assert.equal(node.getAttribute('href'), 'https://www.w3.org')
             })
         })
-        describe('unknown properties', () => {
-            it('ferh', () => {
-                assert.isFalse('ferh' in node)
-                assert.isFalse(node.hasAttribute('ferh'))
-                assert(spy.calledOnce, 'console.warn called once')
-            })
-        })
         describe('undefined', () => {
             it('className', () => {
                 assert.equal(node.className, '')
