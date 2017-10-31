@@ -1,2 +1,2 @@
 import './element.spec'
-// import './htmldom.spec'
+import './htmlmodule.spec'
