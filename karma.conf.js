@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const path = require('path');
+const path = require('path')
 
 /**
  * Local browser set
@@ -11,7 +11,7 @@ const localBrowserSet = {
         browserName : 'chrome',
         displayName : 'chrome'
     },
-    /*firefox : {
+    firefox : {
         base : 'Firefox',
         browserName : 'firefox',
         displayName : 'firefox'
@@ -25,8 +25,8 @@ const localBrowserSet = {
         base : 'Opera',
         browserName : 'opera',
         displayName : 'opera'
-    },*/
-};
+    }
+}
 
 const sauceBrowserSet = {
     sl_chrome : {
@@ -64,10 +64,11 @@ const sauceBrowserSet = {
         version : '9',
         displayName : 'msie9'
     }*/
-};
+}
 
-const customLaunchers = process.env.LOCAL? localBrowserSet : sauceBrowserSet;
-const browsers = Object.keys(customLaunchers);
+// const customLaunchers = process.env.LOCAL? localBrowserSet : sauceBrowserSet
+const customLaunchers = localBrowserSet
+const browsers = Object.keys(customLaunchers)
 
 module.exports = function(config) {
     config.set({
@@ -75,7 +76,7 @@ module.exports = function(config) {
         frameworks : ['mocha', 'sinon'],
         files : [
             'dist/dist.shim.js',
-            'dist/docs/build.spec.js',
+            'docs/build/build.spec.js',
         ],
         exclude : [],
         reporters : ['mocha', 'coverage'],
@@ -103,5 +104,5 @@ module.exports = function(config) {
         browsers,
         singleRun : true,
         concurrency : Infinity
-    });
-};
+    })
+}
