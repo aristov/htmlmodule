@@ -50,4 +50,4 @@ const {
     htmldom,
 } = htmlmodule
 
-document.body = body(/* your code */)
+document.body = body(/* your code */).node

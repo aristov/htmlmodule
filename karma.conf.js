@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const path = require('path');
+const path = require('path')
 
 /**
  * Local browser set
@@ -25,24 +25,24 @@ const localBrowserSet = {
         base : 'Opera',
         browserName : 'opera',
         displayName : 'opera'
-    },
-};
+    }
+}
 
 const sauceBrowserSet = {
     sl_chrome : {
         base : 'SauceLabs',
-        platform : 'OS X 10.11',
+        platform : 'OS X 10.12',
         browserName : 'chrome',
-        version : '53.0',
+        version : '61.0',
         displayName : 'chrome'
     },
-    sl_firefox : {
+    /*sl_firefox : {
         base : 'SauceLabs',
         platform : 'Linux',
         browserName : 'firefox',
         version : '45.0',
         displayName : 'firefox'
-    },
+    },*/
     /*SL_Safari : {
         base : 'SauceLabs',
         platform : 'OS X 10.11',
@@ -50,13 +50,13 @@ const sauceBrowserSet = {
         version : '9.0',
         displayName : 'safari'
     },*/
-    sl_msie11 : {
+    /*sl_msie11 : {
         base : 'SauceLabs',
         platform : 'Windows 8.1',
         browserName : 'internet explorer',
         version : '11',
         displayName : 'msie11'
-    },
+    },*/
     /*SL_MSIE9 : {
         base : 'SauceLabs',
         platform : 'Windows 7',
@@ -64,10 +64,11 @@ const sauceBrowserSet = {
         version : '9',
         displayName : 'msie9'
     }*/
-};
+}
 
-const customLaunchers = process.env.LOCAL? localBrowserSet : sauceBrowserSet;
-const browsers = Object.keys(customLaunchers);
+// const customLaunchers = process.env.LOCAL? localBrowserSet : sauceBrowserSet
+const customLaunchers = localBrowserSet
+const browsers = Object.keys(customLaunchers)
 
 module.exports = function(config) {
     config.set({
@@ -75,7 +76,7 @@ module.exports = function(config) {
         frameworks : ['mocha', 'sinon'],
         files : [
             'dist/dist.shim.js',
-            'dist/docs/build.spec.js',
+            'docs/build/build.spec.js',
         ],
         exclude : [],
         reporters : ['mocha', 'coverage'],
@@ -103,5 +104,5 @@ module.exports = function(config) {
         browsers,
         singleRun : true,
         concurrency : Infinity
-    });
-};
+    })
+}

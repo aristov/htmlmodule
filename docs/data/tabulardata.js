@@ -88,11 +88,11 @@ const root = article([
             ' apply theme'
         ])
     }),
-    script({ src : 'docs/data/metadata.js' }),
+    script({ src : 'data/metadata.js' }),
     link({
         rel : 'stylesheet',
-        href : 'docs/data/tabulardata.css'
+        href : 'data/tabulardata.css'
     })
 ])
 
-document.body = body(root)
+document.body = body(root).node

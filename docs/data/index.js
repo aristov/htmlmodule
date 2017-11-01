@@ -131,7 +131,7 @@ document.body = body({
         footer([
             ul([
                 li(a({
-                    href : 'dist/api/identifiers.html',
+                    href : '../dist/api/identifiers.html',
                     target : '_blank',
                     rel : 'help',
                     children : [abbr({
@@ -140,7 +140,7 @@ document.body = body({
                     }), ' reference']
                 })),
                 li(a({
-                    href : 'dist/docs/spec.html',
+                    href : 'spec.html',
                     target : '_blank',
                     children : 'Spec suite'
                 })),
@@ -158,6 +158,6 @@ document.body = body({
                 })),
             ])
         ]),
-        script({ src : 'docs/data/metadata.js' })
+        script({ src : 'data/metadata.js' })
     ]
-})
+}).node

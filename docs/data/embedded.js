@@ -38,13 +38,12 @@ const root = article([
     section([
         h1('Nested browsing context'),
         iframe({
-            src : 'dist/docs/spec.html?grep=' +
-                'HTMLDOM%20library%20Single%20elements%20iframe',
-            width : '80%',
+            src : 'spec.html?grep=iframe',
+            width : 500,
             height : 400
         })
     ]),
-    script({ src : 'docs/data/metadata.js' }),
+    script({ src : 'data/metadata.js' }),
     style('section:not(:last-of-type) {' +
         'display: inline-block;' +
         'margin-right: 50px;' +
@@ -52,4 +51,4 @@ const root = article([
         'vertical-align: top; }')
 ])
 
-document.body = body(root)
+document.body = body(root).node

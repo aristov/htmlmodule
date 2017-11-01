@@ -214,5 +214,5 @@ document.body = body([
             }),
         ])
     }),
-    link({ rel : 'stylesheet', href : 'docs/data/checktree.css' })
+    link({ rel : 'stylesheet', href : 'data/checktree.css' })
 ])

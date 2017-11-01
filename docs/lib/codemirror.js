@@ -1,4 +1,4 @@
-import { HTMLDOMAssembler, NodeInit } from './htmlmodule'
+import { Div } from './htmlmodule'
 
 import CodeMirror from 'codemirror'
 import 'codemirror/mode/javascript/javascript'
@@ -24,14 +24,31 @@ const MARKUP_BOX_DEFAULTS = {
     readOnly : true,
 }
 
-export class CodeMirrorAssembler extends HTMLDOMAssembler {
+export class CodeMirrorAssembler extends Div {
     /**
-     * Assembles codemirror editor instance
-     * @param {Object} init
+     * Assemble widget DOM structure
+     * @param {*} init
      */
-    constructor(init) {
-        super(init)
-        this.assemble('div', NodeInit(init))
+    init(init) {
+        this.createMirror(init.options)
+        delete init.options
+        super.init(init)
+    }
+
+    /**
+     * Create the CodeMirror instance
+     * @param {Object} options
+     * @returns {CodeMirror}
+     */
+    createMirror(options) {
+        return this.mirror = new CodeMirror(this.node, options)
+    }
+
+    /**
+     * Refresh the CodeMirror instance
+     */
+    refresh() {
+        this.mirror.refresh()
     }
 
     /**
@@ -72,34 +89,6 @@ export class CodeMirrorAssembler extends HTMLDOMAssembler {
      */
     set id(id) {
         this.node.querySelector('textarea').id = id
-    }
-
-    /**
-     * Assemble widget DOM structure
-     * @param {String} tagName
-     * @param {*} init
-     */
-    assemble(tagName, init) {
-        super.assemble(tagName)
-        this.createMirror(init.options)
-        delete init.options
-        this.init(init)
-    }
-
-    /**
-     * Create the CodeMirror instance
-     * @param {Object} options
-     * @returns {CodeMirror}
-     */
-    createMirror(options) {
-        return this.mirror = new CodeMirror(this.node, options)
-    }
-
-    /**
-     * Refresh the CodeMirror instance
-     */
-    refresh() {
-        this.mirror.refresh()
     }
 }
 

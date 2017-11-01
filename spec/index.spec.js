@@ -1,3 +1,2 @@
-import './nodeinit.spec'
-import './assembler.spec'
-import './htmldom.spec'
+import './element.spec'
+import './htmlmodule.spec'

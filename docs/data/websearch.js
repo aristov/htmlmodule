@@ -23,4 +23,4 @@ const websearch = form({
     ]
 })
 
-document.body = body(websearch)
+document.body = body(websearch).node

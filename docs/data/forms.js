@@ -153,10 +153,10 @@ const root = article([
             ]),
         ]
     }),
-    script({ src : 'docs/data/metadata.js' }),
+    script({ src : 'data/metadata.js' }),
     style(['section',
         '{ display: inline-block; margin-right: 50px;',
         'margin-bottom: 10px; vertical-align: top; }'])
 ])
 
-document.body = body(root)
+document.body = body(root).node

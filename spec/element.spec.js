@@ -1,67 +1,69 @@
-import { HTMLDOMAssembler } from '../lib/assembler.js'
 import chai from 'chai'
+import { HTMLElementAssembler } from '../lib/element'
 
 const { assert } = chai
 const {
-    Text,
     Comment,
     HTMLAnchorElement,
     HTMLButtonElement,
+    HTMLElement,
     HTMLHtmlElement,
     HTMLSpanElement,
+    Text,
+    document
 } = window
 
-const assembler = new HTMLDOMAssembler
+const assembler = new HTMLElementAssembler
 
-describe('HTMLDOM assembler', () => {
-    describe('create', () => {
-        const node = assembler.create('html')
-        it('proper inheritance', () => {
-            assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+describe('HTMLElementAssembler', () => {
+    describe('new HTMLElementAssembler', () => {
+        const test = new HTMLElementAssembler
+        const node = test.node
+        it('node', () => {
+            assert.instanceOf(node, HTMLElement)
         })
-        it('proper constructor', () => {
+        it('node.constructor', () => {
             assert.equal(node.constructor, HTMLHtmlElement)
         })
-        it('proper tagName', () => {
+        it('node.tagName', () => {
             assert.equal(node.tagName, 'HTML')
         })
-        it('proper number of attributes', () => {
-            assert(!node.hasAttributes(), 'has no attributes')
+        it('node.hasAttributes()', () => {
+            assert.isFalse(node.hasAttributes())
         })
-        it('proper outerHTML', () => {
+        it('node.outerHTML', () => {
             assert.equal(node.outerHTML, '<html></html>')
         })
     })
     describe('init', () => {
-        const node = assembler.create('a')
-        assembler.init({
-            attributes : { rel : 'external' },
+        const test = new HTMLElementAssembler({ localName : 'a' })
+        const node = test.node
+        test.init({
+            attrset : { test : 'example' },
             dataset : { ref : '712-42' },
             style : { color : '#777' },
-            children : 'W3C homepage',
             id : 'w3-link',
-            href : 'https://www.w3.org',
-            ferh : 'gro.3w.www//:sptth',
-            '123' : '0987654321',
             className : undefined,
-            undef : undefined
+            href : 'https://www.w3.org',
+            children : 'W3C homepage'
         })
         describe('assembler interfaces', () => {
-            it('attributes', () => {
-                assert.equal(node.getAttribute('rel'), 'external')
-                assert.equal(node.rel, 'external')
+            it('attrset', () => {
+                assert.equal(node.getAttribute('test'), 'example')
             })
             it('dataset', () => {
                 assert.equal(node.dataset.ref, '712-42')
-                assert.equal(node.getAttribute('data-ref'), '712-42')
             })
             it('style', () => {
                 assert.equal(node.style.color, 'rgb(119, 119, 119)')
-                assert.equal(node.getAttribute('style'), 'color: rgb(119, 119, 119);')
             })
             it('children', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
+            })
+            it('children', () => {
                 assert.equal(node.childNodes.length, 1)
+            })
+            it('children', () => {
                 assert.equal(node.innerHTML, 'W3C homepage')
             })
         })
@@ -73,16 +75,6 @@ describe('HTMLDOM assembler', () => {
             it('href', () => {
                 assert.equal(node.href, 'https://www.w3.org/')
                 assert.equal(node.getAttribute('href'), 'https://www.w3.org')
-            })
-        })
-        describe('unknown properties', () => {
-            it('ferh', () => {
-                assert(!('ferh' in node), 'ignore "ferh" property')
-                assert(!node.hasAttribute('ferh'), 'has no "ferh" attribute')
-            })
-            it('123', () => {
-                assert(!('123' in node), 'ignore "123" property')
-                assert(!node.hasAttribute('123'), 'has no "123" attribute')
             })
         })
         describe('undefined', () => {
@@ -97,8 +89,8 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('attributes', () => {
-        const node = assembler.create('input')
-        assembler.attributes = {
+        const node = assembler.assemble({ localName : 'input' })
+        assembler.attrset = {
             checked : '',
             disabled : '',
             custom_string : 'string',
@@ -110,7 +102,9 @@ describe('HTMLDOM assembler', () => {
         }
         it('has attributes', () => {
             assert(node.hasAttributes(), 'has attributes')
-            assert.equal(node.attributes.length, 3)
+        })
+        it('attributes.length', () => {
+            assert.equal(node.attributes.length, 8)
         })
         it('checked', () => {
             assert.equal(node.checked, true)
@@ -122,31 +116,31 @@ describe('HTMLDOM assembler', () => {
         })
         it('custom_string', () => {
             assert.equal(node.getAttribute('custom_string'), 'string')
-            assert(!('custom_string' in node), 'has no string property')
+            assert.isFalse('custom_string' in node, 'has no string property')
         })
         it('custom_boolean', () => {
-            assert(!node.hasAttribute('custom_boolean'), 'has no boolean attribute')
-            assert(!('custom_boolean' in node), 'has no such property')
+            assert(node.hasAttribute('custom_boolean'), 'has boolean attribute')
+            assert.equal(node.getAttribute('custom_boolean'), 'true')
         })
         it('custom_number', () => {
-            assert(!node.hasAttribute('custom_number'), 'has no number attribute')
-            assert(!('custom_number' in node), 'has no number property')
+            assert(node.hasAttribute('custom_number'), 'has number attribute')
+            assert.equal(node.getAttribute('custom_number'), '123')
         })
         it('custom_undef', () => {
-            assert(!node.hasAttribute('custom_undef'), 'has no undefined attribute')
-            assert(!('custom_undef' in node), 'has no undefined property')
+            assert(node.hasAttribute('custom_undef'), 'has undefined attribute')
+            assert.equal(node.getAttribute('custom_undef'), 'undefined')
         })
         it('class', () => {
-            assert(!node.hasAttribute('class'), 'has no class attribute')
-            assert.equal(node.className, '')
+            assert(node.hasAttribute('class'), 'has class attribute')
+            assert.equal(node.className, 'undefined')
         })
         it('custom_null', () => {
-            assert(!node.hasAttribute('custom_null'), 'has no null attribute')
-            assert(!('custom_null' in node), 'has no null property')
+            assert(node.hasAttribute('custom_null'), 'has null attribute')
+            assert.equal(node.getAttribute('custom_null'), 'null')
         })
     })
     describe('dataset', () => {
-        const node = assembler.create('div')
+        const node = assembler.assemble({ localName : 'div' })
         assembler.dataset = {
             simple : 'simple data-attribute',
             camelCased : 'camelCased data-attribute'
@@ -165,7 +159,7 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('style', () => {
-        const node = assembler.create('span')
+        const node = assembler.assemble({ localName : 'span' })
         assembler.style = {
             color : 'white',
             backgroundColor : 'black'
@@ -182,9 +176,9 @@ describe('HTMLDOM assembler', () => {
         })
     })
     describe('children', () => {
-        const child = new HTMLDOMAssembler
-        child.create('span')
-        const node = assembler.create('div')
+        const child = new HTMLElementAssembler
+        child.assemble({ localName : 'span' })
+        const node = assembler.assemble({ localName : 'div' })
         assembler.children = [
             0, // ignored
             document.createElement('button'),

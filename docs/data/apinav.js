@@ -3,7 +3,7 @@ const { a, body, ul, li, nav, h1,
 
 // Generate a simple hyperlink to use it,
 // as a pattern for a regular expression replacement
-const apilink = '<a href=dist/api/function/#static-function-$1 target=_blank>$1</a>'
+const apilink = '<a href=../dist/api/function/#static-function-$1 target=_blank>$1</a>'
 
 // Gefine a template function that builds a list
 // of links from the given list of short descriptions
@@ -17,12 +17,14 @@ function apilist(items) {
 // Assemble the API reference, using just defined function
 const root = nav([
     h1([a({ href : '#', children : 'Index' }), ' → The API of htmlmodule']),
-    section([
+    /*section([
         h1('Core'),
         apilist([
-            'htmldom'
+            'HTMLElementAssembler',
+            'HTMLDocumentAssembler',
+            'HTMLDocumentTypeAssembler'
         ]),
-    ]),
+    ]),*/
     section([
         h1('Document root and metadata'),
         apilist([
@@ -135,7 +137,7 @@ const root = nav([
     style([
         ':link:not(:hover):not(:focus) { text-decoration: none }'
     ]),
-    script({ src : 'docs/data/metadata.js' })
+    script({ src : 'data/metadata.js' })
 ])
 
-document.body = body(root)
+document.body = body(root).node

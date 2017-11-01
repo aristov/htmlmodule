@@ -98,7 +98,7 @@ const root = article([
         ]),
         charcountbox
     ]),
-    script({ src : 'docs/data/metadata.js' }),
+    script({ src : 'data/metadata.js' }),
 ])
 
-document.body = body(root)
+document.body = body(root).node
