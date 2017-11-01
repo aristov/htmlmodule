@@ -19,7 +19,7 @@ module.exports = [
         entry : './lib/index.js',
         output : {
             path : distPath,
-            filename : 'dist.dommodule.js',
+            filename : 'dist.htmlmodule.js',
             libraryTarget : 'commonjs2'
         },
         module : { loaders : [babelLoader] }
@@ -28,8 +28,8 @@ module.exports = [
         entry : './lib/index.js',
         output : {
             path : distPath,
-            filename : 'window.dommodule.js',
-            library : 'dommodule',
+            filename : 'window.htmlmodule.js',
+            library : 'htmlmodule',
             libraryTarget : 'window'
         },
         module : { loaders : [babelLoader] },
@@ -51,5 +51,24 @@ module.exports = [
             filename : 'build.spec.js'
         },
         module : { loaders : [babelLoader] }
+    },
+    {
+        entry : './docs/index.js',
+        output : {
+            path : path.join(__dirname, 'docs', 'build'),
+            filename : 'build.app.js'
+        },
+        module : {
+            loaders : [babelLoader],
+            rules : [
+                {
+                    test : /\.css$/,
+                    use : [
+                        { loader : 'style-loader' },
+                        { loader : 'css-loader' }
+                    ]
+                }
+            ]
+        }
     }
 ]

@@ -26,7 +26,7 @@ const dangerbutton = canvas({
         }
     },
     children : 'Don\'t click!'
-})
+}).node
 
 const ctx = dangerbutton.getContext('2d')
 
@@ -55,4 +55,4 @@ document.body = body(article([
             dangerbutton
         ])
     ])
-]))
+])).node

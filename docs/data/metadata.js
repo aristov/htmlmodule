@@ -11,22 +11,22 @@
             head({
                 id : METADATA_ID,
                 children : [
-                    meta({ attributes : { charset : 'utf-8' } }),
+                    meta({ attrset : { charset : 'utf-8' } }),
                     title('htmlmodule homepage'),
                     base({ target : '_top' }),
-                    link({ rel : 'stylesheet', href : 'docs/data/sitemenu.css' }),
-                    link({ rel : 'stylesheet', href : 'docs/data/index.css' }),
+                    link({ rel : 'stylesheet', href : 'data/sitemenu.css' }),
+                    link({ rel : 'stylesheet', href : 'data/index.css' }),
                     style([
                         'abbr { cursor: help }',
                         'a[href][rel~=external]:not(:active) { color: #050 }'
                     ]),
                 ]
-            }),
+            }).node,
             document.createComment('-------------------- metadata.js [end] ----------------------'))
         document.head.replaceWith(metadata)
     }
 
     if(!document.getElementById('sitemenu')) {
-        document.body.append(script({ src : 'docs/data/sitemenu.js' }))
+        document.body.append(script({ src : 'data/sitemenu.js' }).node)
     }
 }

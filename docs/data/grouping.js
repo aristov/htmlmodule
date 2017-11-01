@@ -137,7 +137,7 @@ _________________________________________________________`
             'for when no other element is suitable'
         })
     ]),
-    script({ src : 'docs/data/metadata.js' })
+    script({ src : 'data/metadata.js' })
 ])
 
-document.body = body(root)
+document.body = body(root).node

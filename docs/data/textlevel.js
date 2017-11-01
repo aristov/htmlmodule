@@ -258,8 +258,8 @@ const root = article([
             ins('DOM is instant and clear.'),
         ]),
     ]),
-    script({ src : 'docs/data/metadata.js' }),
+    script({ src : 'data/metadata.js' }),
     style('article > section { border-top : 1px solid #ccc }')
 ])
 
-document.body = body(root)
+document.body = body(root).node

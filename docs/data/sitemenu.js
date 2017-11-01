@@ -1,7 +1,7 @@
 if(!document.getElementById('sitemenu')) {
     const { details, summary, nav, p, a, ul, li, abbr } = htmlmodule
 
-    sitemenu = details({
+    const sitemenu = details({
         id : 'sitemenu',
         onclick : ({ target }) => {
             if(target.href) sitemenu.open = false
@@ -52,7 +52,7 @@ if(!document.getElementById('sitemenu')) {
                 ]),
                 ul([
                     li(a({
-                        href : 'dist/api/identifiers.html',
+                        href : '../dist/api/identifiers.html',
                         target : '_blank',
                         rel : 'help',
                         children : [abbr({
@@ -61,7 +61,7 @@ if(!document.getElementById('sitemenu')) {
                         }), ' reference']
                     })),
                     li(a({
-                        href : 'dist/docs/spec.html',
+                        href : 'spec.html',
                         target : '_blank',
                         children : 'Spec suite'
                     })),
@@ -84,7 +84,7 @@ if(!document.getElementById('sitemenu')) {
     const fragment = document.createDocumentFragment()
     fragment.append(
         document.createComment('-------------------- sitemenu.js [start] --------------------'),
-        sitemenu,
+        sitemenu.node,
         document.createComment('-------------------- sitemenu.js [end] ----------------------'))
     document.documentElement.append(fragment)
 }

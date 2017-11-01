@@ -80,7 +80,7 @@ const root = article([
             })
         ])
     ]),
-    script({ src : 'docs/data/metadata.js' })
+    script({ src : 'data/metadata.js' })
 ])
 
-document.body = body(root)
+document.body = body(root).node

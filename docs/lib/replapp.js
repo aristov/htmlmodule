@@ -1,7 +1,7 @@
 import { DOMSerializer } from './domserializer'
 
 import {
-    HTMLDOMAssembler,
+    Article, Section,
     html, head, body, pre, div,
     section, iframe, details, summary, script
 } from './htmlmodule'
@@ -15,53 +15,51 @@ const useBabel = !es2015support()
 
 const serializer = new DOMSerializer
 
-const datapath = 'docs/data/'
-const srcdoc = '<!DOCTYPE html><html><head><script src="dist/dist.window.htmlmodule.js"></script></head><body></body></html>'
+const datapath = 'data/'
+const srcdoc = '<!DOCTYPE html><html><head><script src="../dist/window.htmlmodule.js"></script></head><body></body></html>'
 
-class OutputGroup extends HTMLDOMAssembler {
-    constructor({ onready, app }) {
-        super()
+class OutputGroup extends Section {
+    init(init) {
+        const { onready, app } = init
         const open = localStorage.getItem('makrupview.open') === 'true' || localStorage.getItem('markupview.open')
         this.app = app
-        this.assemble('section', {
-            className : 'outputgroup',
-            children : [
-                this.group = div([
-                    this.outputwin =
-                        iframe({
-                            className : 'outputwin',
-                            srcdoc,
-                            onload : event => {
-                                this.onready()
-                                onready(event)
-                            }
-                        }),
-                    this.markupview =
-                        details({
-                            className : 'markupview',
-                            ontoggle : ({ target }) => {
-                                this.refresh()
-                                localStorage.setItem('makrupview.open', target.open)
-                            },
-                            open,
-                            children : [
-                                summary({
-                                    id : 'markuptoggle',
-                                    className : 'markuptoggle',
-                                    children : 'markup'
-                                }),
-                                this.outputcode =
-                                    markupbox({ className : 'outputcode' })
-                            ]
-                        })
-                ]),
-                this.errormessage =
-                    pre({
-                        className : 'errormessage',
-                        hidden : true
-                    })
-            ]
-        })
+        this.className = 'outputgroup'
+        this.children = [
+            this.group = div([
+                this.outputwin =
+                    iframe({
+                        className : 'outputwin',
+                        srcdoc,
+                        onload : event => {
+                            this.onready()
+                            onready(event)
+                        }
+                    }).node,
+                this.markupview =
+                    details({
+                        className : 'markupview',
+                        ontoggle : ({ target }) => {
+                            this.refresh()
+                            localStorage.setItem('makrupview.open', target.open)
+                        },
+                        open,
+                        children : [
+                            summary({
+                                id : 'markuptoggle',
+                                className : 'markuptoggle',
+                                children : 'markup'
+                            }),
+                            this.outputcode =
+                                markupbox({ className : 'outputcode' })
+                        ]
+                    }).node
+            ]).node,
+            this.errormessage =
+                pre({
+                    className : 'errormessage',
+                    hidden : true
+                }).node
+        ]
     }
     set error(error) {
         Object.assign(this.errormessage, {
@@ -103,7 +101,7 @@ class OutputGroup extends HTMLDOMAssembler {
         }
     }
     eval(fn) {
-        const node = script(`(${ fn })()`)
+        const node = script(`(${ fn })()`).node
         const doc = this.document
         doc.body.append(node)
         node.remove()
@@ -121,30 +119,27 @@ class OutputGroup extends HTMLDOMAssembler {
     }
 }
 
-export class REPLApp extends HTMLDOMAssembler {
+export class REPLApp extends Article {
     /**
      * The main window split application
      */
-    constructor() {
-        super()
-        this.assemble('article', {
-            className : 'replapp',
-            children : [
-                section([
-                    this.codeinput =
-                        codebox({
-                            id : 'codeinput',
-                            className : 'codeinput',
-                            value : ''
-                        }),
-                ]),
-                this.outputgroup =
-                    new OutputGroup({
-                        onready : () => this.onready(),
-                        app : this
+    init() {
+        this.className = 'replapp'
+        this.children = [
+            section([
+                this.codeinput =
+                    codebox({
+                        id : 'codeinput',
+                        className : 'codeinput',
+                        value : ''
                     }),
-            ]
-        })
+            ]),
+            this.outputgroup =
+                new OutputGroup({
+                    onready : () => this.onready(),
+                    app : this
+                }),
+        ]
         window.onresize = () => this.refresh()
         window.onhashchange = () => this.fetch()
     }
