@@ -1343,7 +1343,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('form', () => {
-            const node = form({
+            const test = form({
                 acceptCharset : 'utf-8',
                 action : '/app/save',
                 autocomplete : 'off',
@@ -1359,7 +1359,8 @@ describe('htmlmodule library', () => {
                         '<option></option>' +
                         '<option></option>' +
                     '</select></label>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'FORM')
             })
@@ -1373,28 +1374,28 @@ describe('htmlmodule library', () => {
                 assert.equal(node.attributes.length, 8) // jsdom => 7
             })
             it('acceptCharset', () => {
-                assert.equal(node.acceptCharset, 'utf-8')
+                assert.equal(test.acceptCharset, 'utf-8')
             })
             it('action', () => {
-                assert(node.action.endsWith('/app/save'), 'proper action')
+                assert(test.action.endsWith('/app/save'), 'proper action')
             })
             it('autocomplete', () => {
-                assert.equal(node.autocomplete, 'off')
+                assert.equal(test.autocomplete, 'off')
             })
             it('enctype', () => {
-                assert.equal(node.enctype, 'text/plain')
+                assert.equal(test.enctype, 'text/plain')
             })
             it('method', () => {
-                assert.equal(node.method, 'post')
+                assert.equal(test.method, 'post')
             })
             it('name', () => {
-                assert.equal(node.name, 'saveform')
+                assert.equal(test.name, 'saveform')
             })
             it('noValidate', () => {
-                assert.equal(node.noValidate, true)
+                assert.equal(test.noValidate, true)
             })
             it('target', () => {
-                assert.equal(node.target, '_top')
+                assert.equal(test.target, '_top')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2638,8 +2639,8 @@ describe('htmlmodule library', () => {
                 assert.equal(node.outerHTML, '<pre>Pre &gt;&lt; formatted &gt;&lt; text</pre>')
             })
         })
-        describe.skip('progress', () => {
-            // const node = progress({ value : 0.6, max : 2 }).node
+        describe('progress', () => {
+            // const node = progress({ value : 0.6, max : 2 }).node // jsdom
             const node = progress().node
             it('tagName', () => {
                 assert.equal(node.tagName, 'PROGRESS')
@@ -2648,7 +2649,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLProgressElement, node + ' instance of ' + HTMLProgressElement)
             })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes')
+                assert.isFalse(node.hasAttributes(), 'has attributes')
             })
             it.skip('proper attributes length', () => {
                 assert.equal(node.attributes.length, 2)
@@ -3644,5 +3645,4 @@ describe('htmlmodule library', () => {
             })
         })
     })
-
 })
