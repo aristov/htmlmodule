@@ -22,7 +22,7 @@ const dangerbutton = canvas({
     height : 150,
     onclick : () => {
         if(confirm('Are you sure?')) {
-            document.body.append(evilscript)
+            document.body.append(evilscript.node)
         }
     },
     children : 'Don\'t click!'
