@@ -69,7 +69,7 @@
   },
   "nyc": {
     "require": [
-      "babel-register"
+      "./test/babel-register.js"
     ],
     "reporter": [
       "lcov",
