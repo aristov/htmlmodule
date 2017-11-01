@@ -31,7 +31,7 @@
     "api": "esdoc"
   },
   "dependencies": {
-    "dommodule": "^0.4.1"
+    "dommodule": "^0.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
