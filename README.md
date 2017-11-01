@@ -12,10 +12,7 @@ _work in progress_
 The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
 
 ```js
-const node = a({ 
-    href : 'https://html.spec.whatwg.org', 
-    children : 'HTML standard' 
-})
+a({ href : 'https://html.spec.whatwg.org', children : 'HTML standard' })
 ```
 
 The code above uses htmlmodule to create a hyperlink with a reference to the living standard.
@@ -29,7 +26,7 @@ The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` 
 
 ## Try now
 
-— <a href="https://aristov.github.io/htmlmodule" title="read-eval-print-loop">REPL machine!</a>
+— <a href="https://aristov.github.io/htmlmodule/docs" title="read-eval-print-loop">REPL machine!</a>
 
 ## Usage
 
@@ -77,7 +74,7 @@ Just created `websearch` variable is a DOM structure with the respective HTML ma
 </form>
 ```
 
-[Open in REPL](//aristov.github.io/htmlmodule#websearch)
+[Open in REPL](//aristov.github.io/htmlmodule/docs#websearch)
 
 ## Global script distribution
 
@@ -98,9 +95,9 @@ This is the simpliest way to start use the htmlmodule in your project.
 Applications, assembled by htmlmodule are accessible by design.
 This depends generally on a proper and accurate usage of the markup language semantics.
 Read [the spec](https://html.spec.whatwg.org),
-[the API reference](https://aristov.github.io/htmlmodule/docs/api/identifiers.html)
+[the API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html)
 and look the examples, provided on
-[the module homepage](https://aristov.github.io/htmlmodule).
+[the module homepage](https://aristov.github.io/htmlmodule/docs).
 
 ## Compatibility
 
@@ -161,10 +158,10 @@ import 'htmlmodule/shim'
 
 The project documentation contains:
 
-- [Home page](https://aristov.github.io/htmlmodule)
+- [Home page](https://aristov.github.io/htmlmodule/docs)
 - [API documentation](https://aristov.github.io/htmlmodule/dist/api)
-- [Spec suite](https://aristov.github.io/htmlmodule/dist/docs/spec.html)
-- [Coverage report](https://aristov.github.io/htmlmodule/dist/coverage/chrome/lcov-report/)
+- [Spec suite](https://aristov.github.io/htmlmodule/docs/spec.html)
+- [Coverage report](https://aristov.github.io/htmlmodule/coverage/lcov-report/)
 
 [The API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html) contains short extractions and relevant quotations from the following resources:
 
@@ -234,7 +231,7 @@ Run static HTTP-server:
 python -m SimpleHTTPServer 8080
 ```
 
-Point your browser to [localhost:8080/htmlmodule](http://localhost:8080/htmlmodule).
+Point your browser to [localhost:8080/htmlmodule/docs](http://localhost:8080/htmlmodule/docs).
 
 ## License
 
