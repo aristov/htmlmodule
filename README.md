@@ -62,7 +62,7 @@ const websearch =
     })
     
 // insert to document
-document.body.append(websearch)
+document.body.append(websearch.node)
 ```
 
 Just created `websearch` variable is a DOM structure with the respective HTML markup:
@@ -194,15 +194,23 @@ npm install
 
 ### Build
 
-Lint, build and test the whole project:
+Build the whole project:
+
+```
+npm run build
+```
+
+Run tests:
 
 ```
 npm test
 ```
 
-This command runs project tests on the [Sauce Labs](https://saucelabs.com/).
+Run Karma tests:
 
-[![Build Status](https://saucelabs.com/browser-matrix/aristov7.svg)](https://saucelabs.com/beta/builds/039fae1f5652404ab2afb069cf148492)
+```
+npm run karma
+```
 
 #### Local testing
 
@@ -214,16 +222,16 @@ Local testing requires [the local browser set](https://github.com/aristov/htmlmo
 
 ### Dev tools
 
-Run dev-server: 
+Run webpack in watch-mode:
 
 ```
-npm start
+npm run webpack
 ```
 
 Run static HTTP-server:
 
 ```
-npm run static
+python -m SimpleHTTPServer 8080
 ```
 
 Point your browser to [localhost:8080/htmlmodule](http://localhost:8080/htmlmodule).
