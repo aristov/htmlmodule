@@ -51,6 +51,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "mocha": "mocha",
     "karma": "karma start",
+    "test-full": "npm run karma && npm test",
     "build": "webpack",
     "webpack": "webpack -w",
     "api": "esdoc"
@@ -62,11 +63,13 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-istanbul": "^4.1.5",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
     "cross-env": "^5.1.0",
+    "dom4": "^1.8.5",
     "esdoc": "^1.0.3",
     "esdoc-standard-plugin": "^1.0.0",
     "jsdom": "^11.3.0",
@@ -82,7 +85,8 @@
     "mocha": "^4.0.1",
     "nyc": "^11.2.1",
     "sinon": "^4.0.1",
-    "webpack": "^3.5.0"
+    "webpack": "^3.5.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "nyc": {
     "require": [

@@ -36,6 +36,15 @@ module.exports = [
         plugins : [uglifyJsPlugin]
     },
     {
+        entry : './shim/index.js',
+        output : {
+            path : distPath,
+            filename : 'dist.shim.js'
+        },
+        module : { loaders : [babelLoader] },
+        plugins : [uglifyJsPlugin]
+    },
+    {
         entry : './spec/index.spec.js',
         output : {
             path : path.join(__dirname, 'docs', 'build'),
