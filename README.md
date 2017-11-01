@@ -200,25 +200,25 @@ Build the whole project:
 npm run build
 ```
 
-Run tests:
+Run tests using [jsdom](https://npmjs.com/package/jsdom) and generate coverage report:
 
 ```
 npm test
 ```
 
-Run Karma tests:
+Run tests using [Karma](http://karma-runner.github.io/1.0/index.html):
 
 ```
 npm run karma
 ```
 
-#### Local testing
+Run all tests:
 
 ```
-npm run test-local
+npm run test-full
 ```
 
-Local testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L8) to be installed on your system.
+Karma testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L8) to be installed on your system.
 
 ### Dev tools
 
