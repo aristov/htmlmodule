@@ -57,7 +57,7 @@
     "api": "esdoc"
   },
   "dependencies": {
-    "dommodule": "aristov/dommodule#postinstall"
+    "dommodule": "^0.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
