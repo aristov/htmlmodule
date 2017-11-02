@@ -102,10 +102,10 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('Unknown element', () => {
@@ -266,7 +266,7 @@ describe('htmlmodule library', () => {
             const node = span({ textContent : 'Arbitrary >< plain >< text' }).node
 
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -286,7 +286,7 @@ describe('htmlmodule library', () => {
             const node = div({ innerHTML : '<span>1</span>2<span>3</span>' }).node
 
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -322,13 +322,13 @@ describe('htmlmodule library', () => {
 
             document.body.appendChild(node)
             assert(onchange.notCalled, 'not called before click')
-            assert(!node.checked, 'not checked before click')
+            assert.isFalse(node.checked, 'not checked before click')
             node.click()
             assert(onchange.calledOnce, 'called once on click')
             assert(node.checked, 'checked on click')
             node.click()
             assert(onchange.calledTwice, 'called twice on the second click')
-            assert(!node.checked, 'not checked on the second click')
+            assert.isFalse(node.checked, 'not checked on the second click')
             document.body.removeChild(node)
         })
         it('onclick', () => {
@@ -389,7 +389,7 @@ describe('htmlmodule library', () => {
             assert(children.checked, 'checked before form reset')
             node.reset()
             assert(onreset.calledOnce, 'called once on form reset')
-            assert(!children.checked, 'not checked on form reset')
+            assert.isFalse(children.checked, 'not checked on form reset')
         })
         it('onsubmit', () => {
             const spy = sinon.spy()
@@ -424,7 +424,7 @@ describe('htmlmodule library', () => {
 
     describe('Elements', () => {
         describe('a', () => {
-            const node = a({
+            const test = a({
                 href : 'https://www.w3.org/TR/html',
                 target : '_parent',
                 // download : 'spec.html', // todo safari
@@ -434,12 +434,13 @@ describe('htmlmodule library', () => {
                 type : 'text/html',
                 // referrerPolicy : 'no-referrer', // todo safari
                 children : 'HTML5 specification'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'A')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLAnchorElement, node + ' instance of ' + HTMLAnchorElement)
+                assert.instanceOf(node, HTMLAnchorElement)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -448,22 +449,22 @@ describe('htmlmodule library', () => {
                 assert.equal(node.attributes.length, 5)
             })
             it('href', () => {
-                assert.equal(node.href, 'https://www.w3.org/TR/html')
+                assert.equal(test.href, 'https://www.w3.org/TR/html')
             })
             it('target', () => {
-                assert.equal(node.target, '_parent')
+                assert.equal(test.target, '_parent')
             })
             it.skip('ping', () => {
                 assert(node.ping.startsWith('https://www.w3.org'))
             })
             it('rel', () => {
-                assert.equal(node.rel, 'external help')
+                assert.equal(test.rel, 'external help')
             })
             it('hreflang', () => {
-                assert.equal(node.hreflang, 'en')
+                assert.equal(test.hreflang, 'en')
             })
             it('type', () => {
-                assert.equal(node.type, 'text/html')
+                assert.equal(test.type, 'text/html')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -517,7 +518,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('textContent', () => {
                 assert.equal(node.textContent, 'test@example.com')
@@ -571,7 +572,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.target, '_parent')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('article', () => {
@@ -583,7 +584,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('textContent', () => {
                 assert.equal(node.textContent, 'Hello world!')
@@ -607,7 +608,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('textContent', () => {
                 assert.equal(node.textContent, 'Your advert may be here!')
@@ -683,7 +684,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('textContent', () => {
                 assert.equal(node.textContent, 'warning')
@@ -719,7 +720,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.target, '_top')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('blockquote', () => {
@@ -771,7 +772,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLBodyElement, node + ' instance of ' + HTMLBodyElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -795,10 +796,10 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLBRElement, node + ' instance of ' + HTMLBRElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
             it('outerHTML', () => {
                 assert(/^<br\/?>$/.test(node.outerHTML), 'proper outerHTML')
@@ -892,7 +893,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.height, 50)
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('caption', () => {
@@ -904,7 +905,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLTableCaptionElement, node + ' instance of ' + HTMLTableCaptionElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -929,7 +930,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -954,7 +955,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -991,7 +992,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.span, 3)
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML, '<col span="3">')
@@ -1015,7 +1016,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.span, 5)
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML, '<colgroup span="5"></colgroup>')
@@ -1034,7 +1035,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLDataListElement, node + ' instance of ' + HTMLDataListElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1059,7 +1060,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1117,7 +1118,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLDivElement, node + ' instance of ' + HTMLDivElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1144,7 +1145,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLDListElement, node + ' instance of ' + HTMLDListElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has no child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1169,7 +1170,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1193,7 +1194,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1237,7 +1238,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.height, '50%')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('fieldset', () => {
@@ -1281,7 +1282,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1305,7 +1306,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1326,7 +1327,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1422,7 +1423,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1446,7 +1447,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1470,7 +1471,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1494,7 +1495,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1518,7 +1519,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1542,7 +1543,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1568,7 +1569,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHeadElement, node + ' instance of ' + HTMLHeadElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1590,7 +1591,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1616,7 +1617,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has no child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1638,10 +1639,10 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLHRElement, node + ' instance of ' + HTMLHRElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML, '<hr>')
@@ -1698,7 +1699,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -1757,7 +1758,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.getAttribute('sandbox'), 'allow-forms')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('img', () => {
@@ -1768,7 +1769,7 @@ describe('htmlmodule library', () => {
                 'ZeGl9i2icVqaNVailT6F5iJ90m6mvuTS4OK05M0vDk0Q4XUtwvKOzrcd3iq9uis' +
                 'F81M1OIcR7lEewwcLp7tuNNkM3uNna3F2JQFo97Vriy/Xl4/f1cf5VWzXyym7PH' +
                 'hhx4dbgYKAAA7'
-            const node = img({
+            const test = img({
                 alt : 'HTML logo',
                 src,
                 // todo msie11
@@ -1780,7 +1781,8 @@ describe('htmlmodule library', () => {
                 width : '150',
                 height : '150',
                 // referrerPolicy : 'no-referrer-when-downgrade', // todo safari
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'IMG')
             })
@@ -1794,10 +1796,10 @@ describe('htmlmodule library', () => {
                 assert.equal(node.attributes.length, 7)
             })
             it('alt', () => {
-                assert.equal(node.alt, 'HTML logo')
+                assert.equal(test.alt, 'HTML logo')
             })
             it('src', () => {
-                assert.equal(node.src, src)
+                assert.equal(test.src, src)
             })
             it.skip('srcset', () => {
                 assert.equal(node.srcset, '/data/150-logo.png 1.5x, /data/200-logo.png 2x')
@@ -1815,13 +1817,13 @@ describe('htmlmodule library', () => {
                 assert.equal(node.isMap, true)
             })
             it('width', () => {
-                assert.equal(node.width, '150')
+                assert.equal(test.width, '150')
             })
             it('height', () => {
-                assert.equal(node.height, '150')
+                assert.equal(test.height, '150')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('input', () => {
@@ -1970,7 +1972,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.getAttribute('list'), 'suggestlist')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('ins', () => {
@@ -2016,7 +2018,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2073,7 +2075,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLLegendElement, node + ' instance of ' + HTMLLegendElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2172,7 +2174,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.title, 'Application icon')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('main', () => {
@@ -2184,7 +2186,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2238,7 +2240,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2285,7 +2287,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.getAttribute('charset'), 'utf-8')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('nav', () => {
@@ -2297,7 +2299,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2321,7 +2323,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2552,7 +2554,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLParagraphElement, node + ' instance of ' + HTMLParagraphElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2588,7 +2590,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.value, '3')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('picture', () => {
@@ -2603,7 +2605,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLPictureElement, node + ' instance of ' + HTMLPictureElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2624,7 +2626,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLPreElement, node + ' instance of ' + HTMLPreElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2661,7 +2663,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.max, 2)
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('q', () => {
@@ -2708,7 +2710,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2732,7 +2734,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2808,7 +2810,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2889,7 +2891,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -2932,7 +2934,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.media, 'screen')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('style', () => {
@@ -2988,7 +2990,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLTableElement, node + ' instance of ' + HTMLTableElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -3129,7 +3131,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLTitleElement, node + ' instance of ' + HTMLTitleElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -3180,7 +3182,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.default, true)
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('u', () => {
@@ -3192,7 +3194,7 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
@@ -3291,10 +3293,10 @@ describe('htmlmodule library', () => {
                 assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
             })
             it('has no attributes', () => {
-                assert(!node.hasAttributes(), 'has no attributes')
+                assert.isFalse(node.hasAttributes(), 'has no attributes')
             })
             it('has no child nodes', () => {
-                assert(!node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML, '<wbr>')
@@ -3402,7 +3404,7 @@ describe('htmlmodule library', () => {
                     '</div>')
             })
             it('check current state of widgets', () => {
-                assert(!simple.checked)
+                assert.isFalse(simple.checked)
                 assert(checked.checked)
                 assert(indeterminate.indeterminate)
             })
