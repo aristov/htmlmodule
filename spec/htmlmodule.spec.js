@@ -1827,7 +1827,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('input', () => {
-            const node = input({
+            const test = input({
                 alt : 'alternative input text',
                 accept : 'SVG, PNG, PDF',
                 autocomplete : 'off',
@@ -1864,7 +1864,8 @@ describe('htmlmodule library', () => {
                     form : 'saveform',
                     list : 'suggestlist'
                 }
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'INPUT')
             })
@@ -1939,7 +1940,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.placeholder, 'Paste')
             })
             it('readOnly', () => {
-                assert.equal(node.readOnly, true)
+                assert.equal(test.readOnly, true)
             })
             it('required', () => {
                 assert.equal(node.required, true)
@@ -1954,10 +1955,10 @@ describe('htmlmodule library', () => {
                 assert.equal(node.step, '2')
             })
             it('type', () => {
-                assert.equal(node.type, 'text')
+                assert.equal(test.type, 'text')
             })
             it('value', () => {
-                assert.equal(node.value, 'User input value')
+                assert.equal(test.value, 'User input value')
             })
             it('defaultValue', () => {
                 assert.equal(node.defaultValue, 'Default value')
