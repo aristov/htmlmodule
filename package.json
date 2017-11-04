@@ -74,7 +74,8 @@
       "text"
     ],
     "sourceMap": false,
-    "instrument": false
+    "instrument": false,
+    "report-dir": "dist/coverage/jsdom"
   },
   "keywords": [
     "JavaScript",
