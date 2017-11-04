@@ -94,12 +94,13 @@ describe('htmlmodule library', () => {
 
     describe('HTMLElementAssembler', () => {
         describe('Simple empty span', () => {
-            const node = new HTMLElementAssembler({ localName : 'span' }).node
+            const test = new HTMLElementAssembler({ localName : 'span' })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'SPAN')
             })
             it('proper inheritance', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -137,7 +138,9 @@ describe('htmlmodule library', () => {
 
         describe('id', () => {
             const id = 'element_0'
-            const node = div({ id }).node
+            const test = div({ id })
+
+            const node = test.node
 
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -163,7 +166,9 @@ describe('htmlmodule library', () => {
 
         describe('className', () => {
             const className = 'foo bar wiz'
-            const node = span({ className }).node
+            const test = span({ className })
+
+            const node = test.node
 
             it('className', () => {
                 assert.equal(node.className, className)
@@ -195,7 +200,7 @@ describe('htmlmodule library', () => {
         })
 
         describe('HTMLElement attributes', () => {
-            const node = div({
+            const test = div({
                 accessKey : 'A',
                 // contentEditable : 'true',
                 dir : 'rtl',
@@ -204,7 +209,8 @@ describe('htmlmodule library', () => {
                 lang : 'ru',
                 tabIndex : 0,
                 title : 'HTMLElement title',
-            }).node
+            })
+            const node = test.node
             it('has attributes', () => {
                 assert(node.hasAttributes())
             })
@@ -263,7 +269,9 @@ describe('htmlmodule library', () => {
         })
 
         describe('textContent', () => {
-            const node = span({ textContent : 'Arbitrary >< plain >< text' }).node
+            const test = span({ textContent : 'Arbitrary >< plain >< text' })
+
+            const node = test.node
 
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -283,7 +291,9 @@ describe('htmlmodule library', () => {
         })
 
         describe('innerHTML', () => {
-            const node = div({ innerHTML : '<span>1</span>2<span>3</span>' }).node
+            const test = div({ innerHTML : '<span>1</span>2<span>3</span>' })
+
+            const node = test.node
 
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -309,7 +319,8 @@ describe('htmlmodule library', () => {
     describe('Event handlers', () => {
         it('onblur', () => {
             const onblur = sinon.spy()
-            const node = button({ onblur }).node
+            const test = button({ onblur })
+            const node = test.node
 
             node.focus()
             assert(onblur.notCalled, 'not called before blur')
@@ -318,7 +329,8 @@ describe('htmlmodule library', () => {
         })
         it('onchange', () => {
             const onchange = sinon.spy()
-            const node = input({ type : 'checkbox', onchange }).node
+            const test = input({ type : 'checkbox', onchange })
+            const node = test.node
 
             document.body.appendChild(node)
             assert(onchange.notCalled, 'not called before click')
@@ -333,7 +345,8 @@ describe('htmlmodule library', () => {
         })
         it('onclick', () => {
             const onclick = sinon.spy()
-            const node = button({ onclick }).node
+            const test = button({ onclick })
+            const node = test.node
 
             assert(onclick.notCalled, 'not called before click')
             node.click()
@@ -343,7 +356,8 @@ describe('htmlmodule library', () => {
         })
         it('ondblclick', () => {
             const ondblclick = sinon.spy()
-            const node = button({ ondblclick }).node
+            const test = button({ ondblclick })
+            const node = test.node
 
             assert(ondblclick.notCalled, 'not called before double click')
             // fixme MouseEvent
@@ -361,7 +375,8 @@ describe('htmlmodule library', () => {
         })
         it('onfocus', () => {
             const onfocus = sinon.spy()
-            const node = button({ onfocus }).node
+            const test = button({ onfocus })
+            const node = test.node
 
             assert(onfocus.notCalled, 'not called before focus')
             node.dispatchEvent(new CustomEvent('focus'))
@@ -369,10 +384,11 @@ describe('htmlmodule library', () => {
         })
         it.skip('oninvalid', () => { // todo msie11
             const oninvalid = sinon.spy()
-            const node = input({
+            const test = input({
                 required : true,
                 oninvalid
-            }).node
+            })
+            const node = test.node
             assert(oninvalid.notCalled, 'not called before validation')
             node.checkValidity()
             assert(oninvalid.calledOnce, 'called once on validation')
@@ -383,7 +399,8 @@ describe('htmlmodule library', () => {
                 type : 'checkbox',
                 checked : true
             }).node
-            const node = form({ onreset, children }).node
+            const test = form({ onreset, children })
+            const node = test.node
 
             assert(onreset.notCalled, 'not called before form reset')
             assert(children.checked, 'checked before form reset')
@@ -398,7 +415,8 @@ describe('htmlmodule library', () => {
                 event.preventDefault()
             }
             const children = button().node
-            const node = form({ onsubmit, children }).node
+            const test = form({ onsubmit, children })
+            const node = test.node
 
             document.body.appendChild(node)
             assert(spy.notCalled, 'not called before the submit click')
@@ -409,7 +427,8 @@ describe('htmlmodule library', () => {
         it('ontoggle', () => {
             const ontoggle = sinon.spy()
             const children = summary()
-            const node = details({ ontoggle, children }).node
+            const test = details({ ontoggle, children })
+            const node = test.node
 
             document.body.appendChild(node)
             assert(ontoggle.notCalled, 'not called before toggle')
@@ -440,7 +459,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.tagName, 'A')
             })
             it('proper constructor', () => {
-                assert.instanceOf(node, HTMLAnchorElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -477,15 +496,16 @@ describe('htmlmodule library', () => {
             })
         })
         describe('abbr', () => {
-            const node = abbr({
+            const test = abbr({
                 title : 'Hyper text markup language',
                 children : 'HTML'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'ABBR')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -510,12 +530,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('address', () => {
-            const node = address('test@example.com').node
+            const test = address('test@example.com')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'ADDRESS')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -534,7 +555,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('area', () => {
-            const node = area({
+            const test = area({
                 alt : 'Alternative text',
                 coords : '50,50,100,100',
                 shape : 'rect',
@@ -543,12 +564,13 @@ describe('htmlmodule library', () => {
                 // download : 'spec.txt', // todo
                 // ping : 'https://www.w3.org', // todo
                 // rel : 'external help', // todo
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'AREA')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLAreaElement, node + ' instance of ' + HTMLAreaElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -576,12 +598,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('article', () => {
-            const node = article('Hello world!').node
+            const test = article('Hello world!')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'ARTICLE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -600,12 +623,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('aside', () => {
-            const node = aside('Your advert may be here!').node
+            const test = aside('Your advert may be here!')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'ASIDE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -624,7 +648,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('audio', () => {
-            const node = audio({
+            const test = audio({
                 src : 'https://aristov.github.io/media-samples/sample.wav',
                 // crossOrigin : 'use-credentials', // fixme msie11
                 preload : 'metadata',
@@ -633,13 +657,13 @@ describe('htmlmodule library', () => {
                 muted : true,
                 controls : true,
                 innerHTML : '<track><track><track>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'AUDIO')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLAudioElement,
-                    node + ' instance of ' + HTMLAudioElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -676,12 +700,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('b', () => {
-            const node = b('warning').node
+            const test = b('warning')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'B')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -700,12 +725,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('base', () => {
-            const node = base({ href : 'https://w3.org', target : '_top' }).node
+            const test = base({ href : 'https://w3.org', target : '_top' })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'BASE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLBaseElement, node + ' instance of ' + HTMLBaseElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -724,10 +750,11 @@ describe('htmlmodule library', () => {
             })
         })
         describe('blockquote', () => {
-            const node = blockquote({
+            const test = blockquote({
                 cite : 'https://html.spec.whatwg.org/#the-blockquote-element',
                 children : 'The blockquote element represents a section that is quoted from another source.'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'BLOCKQUOTE')
             })
@@ -764,12 +791,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('body', () => {
-            const node = body('Test').node
+            const test = body('Test')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'BODY')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLBodyElement, node + ' instance of ' + HTMLBodyElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -788,12 +816,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('br', () => {
-            const node = br().node
+            const test = br()
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'BR')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLBRElement, node + ' instance of ' + HTMLBRElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -806,7 +835,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('button', () => {
-            const node = button({
+            const test = button({
                 autofocus : true,
                 disabled : true,
                 formAction : '/api/save',
@@ -819,12 +848,13 @@ describe('htmlmodule library', () => {
                 value : 'OK',
                 // menu : '???', // todo
                 children : 'Save'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'BUTTON')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLButtonElement, node + ' instance of ' + HTMLButtonElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -873,12 +903,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('canvas', () => {
-            const node = canvas({ width : 100, height : 50 }).node
+            const test = canvas({ width : 100, height : 50 })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'CANVAS')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLCanvasElement, node + ' instance of ' + HTMLCanvasElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -897,12 +928,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('caption', () => {
-            const node = caption('Table 1. Total score obtained from rolling two six-sided dice.').node
+            const test = caption('Table 1. Total score obtained from rolling two six-sided dice.')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'CAPTION')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableCaptionElement, node + ' instance of ' + HTMLTableCaptionElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -922,12 +954,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('cite', () => {
-            const node = cite('Fight club').node
+            const test = cite('Fight club')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'CITE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -946,13 +979,14 @@ describe('htmlmodule library', () => {
             })
         })
         describe('code', () => {
-            const node = code('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.' +
-                '+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.').node
+            const test = code('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.' +
+                '+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'CODE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -975,12 +1009,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('col', () => {
-            const node = col({ span : 3 }).node
+            const test = col({ span : 3 })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'COL')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableColElement, node + ' instance of ' + HTMLTableColElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -999,12 +1034,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('colgroup', () => {
-            const node = colgroup({ span : 5 }).node
+            const test = colgroup({ span : 5 })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'COLGROUP')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableColElement, node + ' instance of ' + HTMLTableColElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1023,16 +1059,17 @@ describe('htmlmodule library', () => {
             })
         })
         describe('datalist', () => {
-            const node = datalist({
+            const test = datalist({
                 innerHTML :
                     '<option value="Female"></option>' +
                     '<option value="Male"></option>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'DATALIST')
             })
             it.skip('proper constructor', () => { // todo safari
-                assert(node instanceof HTMLDataListElement, node + ' instance of ' + HTMLDataListElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1052,12 +1089,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('dd', () => {
-            const node = dd('part of a term-description group in a description list').node
+            const test = dd('part of a term-description group in a description list')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'DD')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1076,16 +1114,17 @@ describe('htmlmodule library', () => {
             })
         })
         describe('del', () => {
-            const node = del({
+            const test = del({
                 cite : '/edits/r192',
                 dateTime : '2011-05-02 14:23Z',
                 children : '10/10'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'DEL')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLModElement, node + ' instance of ' + HTMLModElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1110,12 +1149,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('div', () => {
-            const node = div('Abstract grouping block-level container').node
+            const test = div('Abstract grouping block-level container')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'DIV')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLDivElement, node + ' instance of ' + HTMLDivElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1134,15 +1174,16 @@ describe('htmlmodule library', () => {
             })
         })
         describe('dl', () => {
-            const node = dl({
+            const test = dl({
                 innerHTML : '<dt>dt</dt><dd>Description title</dd>' +
                             '<dt>dd</dt><dd>Description description</dd>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'DL')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLDListElement, node + ' instance of ' + HTMLDListElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1162,12 +1203,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('dt', () => {
-            const node = dt('Description title').node
+            const test = dt('Description title')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'DT')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1186,12 +1228,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('em', () => {
-            const node = em('Amazing!').node
+            const test = em('Amazing!')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'EM')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1210,17 +1253,18 @@ describe('htmlmodule library', () => {
             })
         })
         describe('embed', () => {
-            const node = embed({
+            const test = embed({
                 src : 'https://aristov.github.io/media-samples/sample.swf',
                 // type : 'application/x-shockwave-flash', // todo ie11
                 width : '100%',
                 height : '50%'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'EMBED')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLEmbedElement, node + ' instance of ' + HTMLEmbedElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1242,17 +1286,18 @@ describe('htmlmodule library', () => {
             })
         })
         describe('fieldset', () => {
-            const node = fieldset({
+            const test = fieldset({
                 disabled : true,
                 // form : '???', // todo
                 // name : 'geolocation', // todo ie11
                 innerHTML : '<input><input type="submit">'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'FIELDSET')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLFieldSetElement, node + ' instance of ' + HTMLFieldSetElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1274,12 +1319,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('figcaption', () => {
-            const node = figcaption('Image 1.1').node
+            const test = figcaption('Image 1.1')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'FIGCAPTION')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1298,12 +1344,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('figure', () => {
-            const node = figure({ innerHTML : '<img><figcaption>Figure #1.</figcaption>' }).node
+            const test = figure({ innerHTML : '<img><figcaption>Figure #1.</figcaption>' })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'FIGURE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1319,12 +1366,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('footer', () => {
-            const node = footer('Navigation menu, small text, copyright and contact information').node
+            const test = footer('Navigation menu, small text, copyright and contact information')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'FOOTER')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1366,7 +1414,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.tagName, 'FORM')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLFormElement, node + ' instance of ' + HTMLFormElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1415,12 +1463,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('h1', () => {
-            const node = h1('HTML Standard').node
+            const test = h1('HTML Standard')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'H1')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1439,12 +1488,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('h2', () => {
-            const node = h2('Full table of contents').node
+            const test = h2('Full table of contents')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'H2')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1463,12 +1513,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('h3', () => {
-            const node = h3('Introduction').node
+            const test = h3('Introduction')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'H3')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1487,12 +1538,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('h4', () => {
-            const node = h4('2.4 Common microsyntaxes').node
+            const test = h4('2.4 Common microsyntaxes')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'H4')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1511,12 +1563,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('h5', () => {
-            const node = h5('2.4.4 Numbers').node
+            const test = h5('2.4.4 Numbers')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'H5')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1535,12 +1588,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('h6', () => {
-            const node = h6('2.4.4.4 Percentages and lengths').node
+            const test = h6('2.4.4.4 Percentages and lengths')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'H6')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadingElement, node + ' instance of ' + HTMLHeadingElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1559,14 +1613,15 @@ describe('htmlmodule library', () => {
             })
         })
         describe('head', () => {
-            const node = head({
+            const test = head({
                 innerHTML : '<title></title><meta charset=utf-8><link rel=stylesheet>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'HEAD')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHeadElement, node + ' instance of ' + HTMLHeadElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1583,12 +1638,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('header', () => {
-            const node = header('The main heading, site navigation and search').node
+            const test = header('The main heading, site navigation and search')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'HEADER')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1607,14 +1663,15 @@ describe('htmlmodule library', () => {
             })
         })
         describe('hgroup', () => {
-            const node = hgroup({
+            const test = hgroup({
                 innerHTML : '<h4>2.4 Common microsyntaxes</h4><h5>2.4.4 Numbers</h5>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'HGROUP')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1631,12 +1688,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('hr', () => {
-            const node = hr().node
+            const test = hr()
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'HR')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHRElement, node + ' instance of ' + HTMLHRElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1649,7 +1707,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('html', () => {
-            const node = html({
+            const test = html({
                 attrset : { manifest : 'https://example.com/manifest' },
                 innerHTML :
                     '<head>' +
@@ -1657,12 +1715,13 @@ describe('htmlmodule library', () => {
                         '<title>Example document title</title>' +
                     '</head>' +
                     '<body>Example document body</body>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'HTML')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLHtmlElement, node + ' instance of ' + HTMLHtmlElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1691,12 +1750,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('i', () => {
-            const node = i('Alternative voice').node
+            const test = i('Alternative voice')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'I')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -1715,7 +1775,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('iframe', () => {
-            const node = iframe({
+            const test = iframe({
                 // allowFullscreen : true, // todo safari
                 // allowUserMedia : true, // todo chrome
                 height : '70%',
@@ -1725,12 +1785,13 @@ describe('htmlmodule library', () => {
                 // srcdoc : '<html><head><title>Nested document</title></head><body></body></html>', // todo ie11
                 width : '200px',
                 attrset : { sandbox : 'allow-forms' }
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'IFRAME')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLIFrameElement, node + ' instance of ' + HTMLIFrameElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1787,7 +1848,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.tagName, 'IMG')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLImageElement, node + ' instance of ' + HTMLImageElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1870,7 +1931,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.tagName, 'INPUT')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLInputElement, node + ' instance of ' + HTMLInputElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -1892,13 +1953,13 @@ describe('htmlmodule library', () => {
                 assert.equal(node.autofocus, true)
             })
             it('checked', () => {
-                assert.equal(node.checked, true)
+                assert.equal(test.checked, true)
             })
             it('defaultChecked', () => {
                 assert.equal(node.defaultChecked, true)
             })
             it('disabled', () => {
-                assert.equal(node.disabled, true)
+                assert.equal(test.disabled, true)
             })
             it.skip('formAction', () => {
                 assert(node.formAction.endsWith('/app/save'), 'proper action')
@@ -1943,7 +2004,7 @@ describe('htmlmodule library', () => {
                 assert.equal(test.readOnly, true)
             })
             it('required', () => {
-                assert.equal(node.required, true)
+                assert.equal(test.required, true)
             })
             it('size', () => {
                 assert.equal(node.size, 5)
@@ -1975,18 +2036,22 @@ describe('htmlmodule library', () => {
             it('has no child nodes', () => {
                 assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
+            it('interface', () => {
+                assert.equal(test.constructor.interface, HTMLInputElement)
+            })
         })
         describe('ins', () => {
-            const node = ins({
+            const test = ins({
                 cite : '/edits/r193',
                 dateTime : '2011-05-02 14:32Z',
                 children : '11/10'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'INS')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLModElement, node + ' instance of ' + HTMLModElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2011,12 +2076,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('kbd', () => {
-            const node = kbd('Ctrl + Z').node
+            const test = kbd('Ctrl + Z')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'KBD')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2035,15 +2101,16 @@ describe('htmlmodule library', () => {
             })
         })
         describe('label', () => {
-            const node = label({
+            const test = label({
                 htmlFor : 'userinput',
                 children : 'Input label'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'LABEL')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLabelElement, node + ' instance of ' + HTMLLabelElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2068,12 +2135,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('legend', () => {
-            const node = legend('Authorization').node
+            const test = legend('Authorization')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'LEGEND')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLegendElement, node + ' instance of ' + HTMLLegendElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2092,15 +2160,16 @@ describe('htmlmodule library', () => {
             })
         })
         describe('li', () => {
-            const node = li({
+            const test = li({
                 value : 4,
                 children : '4-th list item'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'LI')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLIElement, node + ' instance of ' + HTMLLIElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2125,7 +2194,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('link', () => {
-            const node = link({
+            const test = link({
                 href : '/icon.svg',
                 // crossOrigin : 'use-credentials', // todo msie11
                 rel : 'preload icon',
@@ -2137,12 +2206,13 @@ describe('htmlmodule library', () => {
                 title : 'Application icon',
                 // referrerPolicy : 'no-referrer', // todo
                 // nonce : 'abc', // todo
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'LINK')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLLinkElement, node + ' instance of ' + HTMLLinkElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2179,12 +2249,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('main', () => {
-            const node = main('The main application content').node
+            const test = main('The main application content')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'MAIN')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2203,15 +2274,16 @@ describe('htmlmodule library', () => {
             })
         })
         describe('map', () => {
-            const node = map({
+            const test = map({
                 name : 'app-image-map',
                 innerHTML : '<area><area><area>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'MAP')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLMapElement, node + ' instance of ' + HTMLMapElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2233,12 +2305,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('mark', () => {
-            const node = mark('Highlighted').node
+            const test = mark('Highlighted')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'MARK')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2257,17 +2330,18 @@ describe('htmlmodule library', () => {
             })
         })
         describe('meta', () => {
-            const node = meta({
+            const test = meta({
                 name : 'keywords',
                 content : 'specification,html,dom,web,application,standard,api',
                 httpEquiv : 'x-ua-compatible',
                 attrset : { charset : 'utf-8' },
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'META')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLMetaElement, node + ' instance of ' + HTMLMetaElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2292,12 +2366,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('nav', () => {
-            const node = nav('Navigation area').node
+            const test = nav('Navigation area')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'NAV')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2316,12 +2391,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('noscript', () => {
-            const node = noscript('Alternative content').node
+            const test = noscript('Alternative content')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'NOSCRIPT')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2340,7 +2416,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('object', () => {
-            const node = object({
+            const test = object({
                 data : 'https://aristov.github.io/media-samples/sample.swf',
                 type : 'application/x-shockwave-flash',
                 // typeMustMatch : true, // todo
@@ -2350,12 +2426,13 @@ describe('htmlmodule library', () => {
                 height : '321',
                 attrset : { form : 'saveform' },
                 innerHTML : '<param><param><param>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'OBJECT')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLObjectElement, node + ' instance of ' + HTMLObjectElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2395,17 +2472,18 @@ describe('htmlmodule library', () => {
             })
         })
         describe('ol', () => {
-            const node = ol({
+            const test = ol({
                 // reversed : true, // todo msie11
                 // start : 1, // todo msie11
                 type : 'A',
                 innerHTML : '<li>1</li><li>2</li><li>3</li>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'OL')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLOListElement, node + ' instance of ' + HTMLOListElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2433,16 +2511,17 @@ describe('htmlmodule library', () => {
             })
         })
         describe('optgroup', () => {
-            const node = optgroup({
+            const test = optgroup({
                 disabled : true,
                 label : 'Select option group',
                 innerHTML : '<option>1</option><option>2</option><option>3</option>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'OPTGROUP')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLOptGroupElement, node + ' instance of ' + HTMLOptGroupElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2467,18 +2546,19 @@ describe('htmlmodule library', () => {
             })
         })
         describe('option', () => {
-            const node = option({
+            const test = option({
                 disabled : true,
                 label : 'Select option label',
                 selected : true,
                 value : 'option-1',
                 innerHTML : 'Select option text'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'OPTION')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLOptionElement, node + ' instance of ' + HTMLOptionElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2509,17 +2589,18 @@ describe('htmlmodule library', () => {
             })
         })
         /*describe('output', () => { // todo msie11
-            const node = output({
+            const test = output({
                 htmlFor : 'user-input',
                 name : 'program-output',
                 attrset : { form : 'saveform' },
                 children : 'Output widget'
-            }).node
+            })
+            const node = test.node
             it.skip('tagName', () => {
                 assert.equal(node.tagName, 'OUTPUT')
             })
             it.skip('proper constructor', () => {
-                assert(node instanceof HTMLOutputElement, node + ' instance of ' + HTMLOutputElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it.skip('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2547,12 +2628,13 @@ describe('htmlmodule library', () => {
             })
         });*/
         describe('p', () => {
-            const node = p('Paragraph').node
+            const test = p('Paragraph')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'P')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLParagraphElement, node + ' instance of ' + HTMLParagraphElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2571,12 +2653,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('param', () => {
-            const node = param({ name : 'ratio', value : '3' }).node
+            const test = param({ name : 'ratio', value : '3' })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'PARAM')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLParamElement, node + ' instance of ' + HTMLParamElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2595,15 +2678,16 @@ describe('htmlmodule library', () => {
             })
         })
         describe('picture', () => {
-            const node = picture({ innerHTML : '<source><img>' }).node
+            const test = picture({ innerHTML : '<source><img>' })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'PICTURE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it.skip('proper constructor', () => { // fixme msie11
-                assert(node instanceof HTMLPictureElement, node + ' instance of ' + HTMLPictureElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2619,12 +2703,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('pre', () => {
-            const node = pre('Pre >< formatted >< text').node
+            const test = pre('Pre >< formatted >< text')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'PRE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLPreElement, node + ' instance of ' + HTMLPreElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2643,13 +2728,14 @@ describe('htmlmodule library', () => {
             })
         })
         describe('progress', () => {
-            // const node = progress({ value : 0.6, max : 2 }).node // jsdom
-            const node = progress().node
+            // const test = progress({ value : 0.6, max : 2 }).node // jsdom
+            const test = progress()
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'PROGRESS')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLProgressElement, node + ' instance of ' + HTMLProgressElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has attributes')
@@ -2668,15 +2754,16 @@ describe('htmlmodule library', () => {
             })
         })
         describe('q', () => {
-            const node = q({
+            const test = q({
                 cite : 'https://html.spec.whatwg.org/#the-q-element',
                 children : 'The q element represents some phrasing content quoted from another source'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'Q')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLQuoteElement, node + ' instance of ' + HTMLQuoteElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2703,12 +2790,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('s', () => {
-            const node = s('Not relevant').node
+            const test = s('Not relevant')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'S')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2727,12 +2815,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('samp', () => {
-            const node = samp('example').node
+            const test = samp('example')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'SAMP')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2751,7 +2840,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('script', () => {
-            const node = script({
+            const test = script({
                 src : 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',
                 type : 'javascript',
                 charset : 'utf-8',
@@ -2760,12 +2849,13 @@ describe('htmlmodule library', () => {
                 // crossOrigin : 'use-credentials', // todo msie11
                 // nonce : 'abc', // todo
                 children : script.toString(),
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'SCRIPT')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLScriptElement, node + ' instance of ' + HTMLScriptElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2803,12 +2893,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('section', () => {
-            const node = section('Application section').node
+            const test = section('Application section')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'SECTION')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2827,7 +2918,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('select', () => {
-            const node = select({
+            const test = select({
                 // autocomplete : 'off', // todo
                 autofocus : true,
                 disabled : true,
@@ -2839,12 +2930,13 @@ describe('htmlmodule library', () => {
                     '<option>opt1</option>' +
                     '<optgroup><option>opt2</option></optgroup>' +
                     '<option>opt3</option>',
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'SELECT')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLSelectElement, node + ' instance of ' + HTMLSelectElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2884,12 +2976,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('small', () => {
-            const node = small('Copyright © Vyacheslav Aritov').node
+            const test = small('Copyright © Vyacheslav Aritov')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'SMALL')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -2908,16 +3001,17 @@ describe('htmlmodule library', () => {
             })
         })
         describe('source', () => {
-            const node = source({
+            const test = source({
                 src : '/audio-01.mp3',
                 type : 'audio/*',
                 media : 'screen',
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'SOURCE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLSourceElement, node + ' instance of ' + HTMLSourceElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2939,19 +3033,20 @@ describe('htmlmodule library', () => {
             })
         })
         describe('style', () => {
-            const node = style({
+            const test = style({
                 media : 'screen',
                 type : 'text/css',
                 // defer : true, // todo
                 title : 'Application style sheet',
                 // nonce : 'abc', // todo
                 children : 'style { display: block }',
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'STYLE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLStyleElement, node + ' instance of ' + HTMLStyleElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2979,16 +3074,17 @@ describe('htmlmodule library', () => {
             })
         })
         describe('table', () => {
-            const node = table({
+            const test = table({
                 innerHTML :
                     '<tr><td>A1</td><td>A2</td><td>A3</td></tr>' +
                     '<tr><td>B1</td><td>B2</td><td>B3</td></tr>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'TABLE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTableElement, node + ' instance of ' + HTMLTableElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -3013,7 +3109,7 @@ describe('htmlmodule library', () => {
             })
         })
         describe('textarea', () => {
-            const node = textarea({
+            const test = textarea({
                 // autocomplete : 'off', // todo
                 autofocus : true,
                 cols : 15,
@@ -3031,12 +3127,13 @@ describe('htmlmodule library', () => {
                 value : 'User multiline input value',
                 defaultValue : 'Default multiline value',
                 attrset : { form : 'saveform' }
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'TEXTAREA')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTextAreaElement, node + ' instance of ' + HTMLTextAreaElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -3091,15 +3188,16 @@ describe('htmlmodule library', () => {
             })
         })
         /*describe('time', () => {
-            const node = time({
+            const test = time({
                 dateTime : '2016-11-11',
                 children : 'November 11'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'TIME')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTimeElement, node + ' instance of ' + HTMLTimeElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -3124,12 +3222,13 @@ describe('htmlmodule library', () => {
             })
         });*/
         describe('title', () => {
-            const node = title('Application title').node
+            const test = title('Application title')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'TITLE')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTitleElement, node + ' instance of ' + HTMLTitleElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -3148,18 +3247,19 @@ describe('htmlmodule library', () => {
             })
         })
         describe('track', () => {
-            const node = track({
+            const test = track({
                 kind : 'captions',
                 src : '/track-1.mp3',
                 srclang : 'uk',
                 label : 'First audio track',
                 default : true,
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'TRACK')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLTrackElement, node + ' instance of ' + HTMLTrackElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -3187,12 +3287,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('u', () => {
-            const node = u('Misspelt text').node
+            const test = u('Misspelt text')
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'U')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -3218,7 +3319,7 @@ describe('htmlmodule library', () => {
                 'ZeGl9i2icVqaNVailT6F5iJ90m6mvuTS4OK05M0vDk0Q4XUtwvKOzrcd3iq9uis' +
                 'F81M1OIcR7lEewwcLp7tuNNkM3uNna3F2JQFo97Vriy/Xl4/f1cf5VWzXyym7PH' +
                 'hhx4dbgYKAAA7'
-            const node = video({
+            const test = video({
                 src : 'https://aristov.github.io/media-samples/sample.mov',
                 // crossOrigin : 'use-credentials', // fixme msie11
                 poster,
@@ -3231,13 +3332,13 @@ describe('htmlmodule library', () => {
                 width : 100,
                 height : 75,
                 innerHTML : '<track><track><track>'
-            }).node
+            })
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'VIDEO')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLVideoElement,
-                    node + ' instance of ' + HTMLVideoElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -3286,12 +3387,13 @@ describe('htmlmodule library', () => {
             })
         })
         describe('wbr', () => {
-            const node = wbr().node
+            const test = wbr()
+            const node = test.node
             it('tagName', () => {
                 assert.equal(node.tagName, 'WBR')
             })
             it('proper constructor', () => {
-                assert(node instanceof HTMLElement, node + ' instance of ' + HTMLElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has no attributes', () => {
                 assert.isFalse(node.hasAttributes(), 'has no attributes')
@@ -3340,18 +3442,18 @@ describe('htmlmodule library', () => {
         })
         describe('Select box widget', () => {
             let widget, selected
-            const node =
-                label([
-                    'Select technology ',
-                    widget = select([
-                        option('DOM'),
-                        option('XML'),
-                        selected = option({ selected : true, textContent : 'HTML' }).node,
-                        option('SVG'),
-                        option('MathML'),
-                        option('WAI-ARIA')
-                    ]).node
+            const test = label([
+                'Select technology ',
+                widget = select([
+                    option('DOM'),
+                    option('XML'),
+                    selected = option({ selected : true, textContent : 'HTML' }).node,
+                    option('SVG'),
+                    option('MathML'),
+                    option('WAI-ARIA')
                 ]).node
+            ])
+            const node = test.node
             it('properly build label with select box option list inside', () => {
                 assert.equal(node.outerHTML,
                     '<label>' +
@@ -3617,23 +3719,26 @@ describe('htmlmodule library', () => {
                     '</main>')
             })
             it('HTMLElementAssembler, span', () => {
-                const node1 = new HTMLElementAssembler({
+                const test1 = new HTMLElementAssembler({
                     localName : 'span',
                     id : '00101',
                     className :'fa fi fu',
                     tabIndex : 0,
                     children : ['a', span('a b'), 'b']
-                }).node
-                const node2 = span({
+                })
+                const node1 = test1.node
+                const test2 = span({
                     id : '00101',
                     className :'fa fi fu',
                     tabIndex : 0,
                     children : ['a', span('a b'), 'b']
-                }).node
+                })
+                const node2 = test2.node
                 ;[node1, node2].forEach(node => {
                     assert.equal(node.nodeType, ELEMENT_NODE)
                     assert.equal(node.tagName, 'SPAN')
-                    assert(node instanceof HTMLSpanElement, node + ' instance of ' + HTMLSpanElement)
+                    assert.instanceOf(node, test1.constructor.interface)
+                    assert.instanceOf(node, test2.constructor.interface)
                     assert.equal(node.attributes.length, 3)
                     assert.equal(node.id, '00101')
                     assert.equal(node.className, 'fa fi fu')
