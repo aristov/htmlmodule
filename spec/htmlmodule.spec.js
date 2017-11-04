@@ -14,8 +14,8 @@ import {
     label, legend, li, link,
     main, map, mark, meta,
     nav, noscript,
-    object, ol, option, optgroup, p,
-    param, picture, pre, progress,
+    object, ol, option, optgroup, output,
+    p, param, picture, pre, progress,
     q,
     ruby, rt, rp,
     s, samp, script, section, select, small, source, span, sub,
@@ -2588,45 +2588,46 @@ describe('htmlmodule library', () => {
                 assert.equal(node.textContent, 'Select option text')
             })
         })
-        /*describe('output', () => { // todo msie11
+        describe('output', () => { // todo msie11
             const test = output({
-                htmlFor : 'user-input',
+                // htmlFor : 'user-input', // jsdom
                 name : 'program-output',
                 attrset : { form : 'saveform' },
                 children : 'Output widget'
             })
             const node = test.node
-            it.skip('tagName', () => {
+            it('tagName', () => {
                 assert.equal(node.tagName, 'OUTPUT')
             })
-            it.skip('proper constructor', () => {
+            it('proper constructor', () => {
                 assert.instanceOf(node, test.constructor.interface)
             })
-            it.skip('has attributes', () => {
+            it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
             })
-            it.skip('proper attributes length', () => {
-                assert.equal(node.attributes.length, 3)
+            it('proper attributes length', () => {
+                // assert.equal(node.attributes.length, 3) // jsdom
+                assert.equal(node.attributes.length, 2)
             })
             it.skip('htmlFor', () => {
                 assert.equal(node.htmlFor, 'user-input')
             })
-            it.skip('name', () => {
+            it('name', () => {
                 assert.equal(node.name, 'program-output')
             })
-            it.skip('form attribute', () => {
+            it('form attribute', () => {
                 assert.equal(node.getAttribute('form'), 'saveform')
             })
-            it.skip('has child nodes', () => {
+            it('has child nodes', () => {
                 assert(node.hasChildNodes(), 'has child nodes')
             })
-            it.skip('child nodes length', () => {
+            it('child nodes length', () => {
                 assert.equal(node.childNodes.length, 1)
             })
-            it.skip('textContent', () => {
+            it('textContent', () => {
                 assert.equal(node.textContent, 'Output widget')
             })
-        });*/
+        });
         describe('p', () => {
             const test = p('Paragraph')
             const node = test.node
