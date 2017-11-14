@@ -7,11 +7,11 @@
   "license": "MIT",
   "author": "Vyacheslav Aristov <vv.aristov@gmail.ru> (http://twitter.com/aristov7)",
   "files": [
-    "./lib"
+    "lib"
   ],
-  "main": "./lib",
+  "main": "lib",
   "directories": {
-    "lib": "./lib"
+    "lib": "lib"
   },
   "repository": {
     "type": "git",
