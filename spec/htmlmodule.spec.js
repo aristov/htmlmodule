@@ -1024,7 +1024,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.attributes.length, 1)
             })
             it('span', () => {
-                assert.equal(node.span, 3)
+                assert.equal(test.span, 3)
             })
             it('has no child nodes', () => {
                 assert.isFalse(node.hasChildNodes(), 'has no child nodes')
@@ -1049,7 +1049,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.attributes.length, 1)
             })
             it('span', () => {
-                assert.equal(node.span, 5)
+                assert.equal(test.span, 5)
             })
             it('has no child nodes', () => {
                 assert.isFalse(node.hasChildNodes(), 'has no child nodes')
