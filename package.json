@@ -11,7 +11,11 @@
   ],
   "main": "lib",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "bin": "dist",
+    "doc": "docs",
+    "example": "docs/data",
+    "test": "test"
   },
   "repository": {
     "type": "git",
