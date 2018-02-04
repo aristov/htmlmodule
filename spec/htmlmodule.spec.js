@@ -565,36 +565,35 @@ describe('htmlmodule library', () => {
                 // ping : 'https://www.w3.org', // todo
                 // rel : 'external help', // todo
             })
-            const node = test.node
             it('tagName', () => {
-                assert.equal(node.tagName, 'AREA')
+                assert.equal(test.tagName, 'AREA')
             })
             it('proper constructor', () => {
-                assert.instanceOf(node, test.constructor.interface)
+                assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes')
+                assert(test.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 5)
+                assert.equal(test.attributes.length, 5)
             })
             it('alt', () => {
-                assert.equal(node.alt, 'Alternative text')
+                assert.equal(test.alt, 'Alternative text')
             })
             it('coords', () => {
-                assert.equal(node.coords, '50,50,100,100')
+                assert.equal(test.coords, '50,50,100,100')
             })
             it('shape', () => {
-                assert.equal(node.shape, 'rect')
+                assert.equal(test.shape, 'rect')
             })
             it('href', () => {
-                assert.equal(node.href, 'https://www.w3.org/TR/html')
+                assert.equal(test.href, 'https://www.w3.org/TR/html')
             })
             it('target', () => {
-                assert.equal(node.target, '_parent')
+                assert.equal(test.target, '_parent')
             })
             it('has no child nodes', () => {
-                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(test.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('article', () => {
