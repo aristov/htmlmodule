@@ -1118,33 +1118,32 @@ describe('htmlmodule library', () => {
                 dateTime : '2011-05-02 14:23Z',
                 children : '10/10'
             })
-            const node = test.node
             it('tagName', () => {
-                assert.equal(node.tagName, 'DEL')
+                assert.equal(test.tagName, 'DEL')
             })
             it('proper constructor', () => {
-                assert.instanceOf(node, test.constructor.interface)
+                assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes')
+                assert(test.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2)
+                assert.equal(test.attributes.length, 2)
             })
             it('cite', () => {
-                assert(node.cite.endsWith('/edits/r192'), 'proper cite')
+                assert(test.cite.endsWith('/edits/r192'), 'proper cite')
             })
             it('dateTime', () => {
-                assert.equal(node.dateTime, '2011-05-02 14:23Z')
+                assert.equal(test.dateTime, '2011-05-02 14:23Z')
             })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes')
+                assert(test.hasChildNodes(), 'has child nodes')
             })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1)
+                assert.equal(test.childNodes.length, 1)
             })
             it('textContent', () => {
-                assert.equal(node.textContent, '10/10')
+                assert.equal(test.textContent, '10/10')
             })
         })
         describe('div', () => {
@@ -2045,33 +2044,32 @@ describe('htmlmodule library', () => {
                 dateTime : '2011-05-02 14:32Z',
                 children : '11/10'
             })
-            const node = test.node
             it('tagName', () => {
-                assert.equal(node.tagName, 'INS')
+                assert.equal(test.tagName, 'INS')
             })
             it('proper constructor', () => {
-                assert.instanceOf(node, test.constructor.interface)
+                assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes')
+                assert(test.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2)
+                assert.equal(test.attributes.length, 2)
             })
             it('cite', () => {
-                assert(node.cite.endsWith('/edits/r193'), 'proper cite')
+                assert(test.cite.endsWith('/edits/r193'), 'proper cite')
             })
             it('dateTime', () => {
-                assert.equal(node.dateTime, '2011-05-02 14:32Z')
+                assert.equal(test.dateTime, '2011-05-02 14:32Z')
             })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes')
+                assert(test.hasChildNodes(), 'has child nodes')
             })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 1)
+                assert.equal(test.childNodes.length, 1)
             })
             it('textContent', () => {
-                assert.equal(node.textContent, '11/10')
+                assert.equal(test.textContent, '11/10')
             })
         })
         describe('kbd', () => {
