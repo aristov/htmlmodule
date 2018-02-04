@@ -10,13 +10,6 @@
     "lib"
   ],
   "main": "lib",
-  "directories": {
-    "lib": "lib",
-    "bin": "dist",
-    "doc": "docs",
-    "example": "docs/data",
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aristov/htmlmodule.git"
