@@ -2277,25 +2277,25 @@ describe('htmlmodule library', () => {
             })
             const node = test.node
             it('tagName', () => {
-                assert.equal(node.tagName, 'MAP')
+                assert.equal(test.tagName, 'MAP')
             })
             it('proper constructor', () => {
                 assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(node.hasAttributes(), 'has attributes')
+                assert(test.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
-                assert.equal(node.attributes.length, 1)
+                assert.equal(test.attributes.length, 1)
             })
             it('name', () => {
-                assert.equal(node.name, 'app-image-map')
+                assert.equal(test.name, 'app-image-map')
             })
             it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes')
+                assert(test.hasChildNodes(), 'has child nodes')
             })
             it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 3)
+                assert.equal(test.childNodes.length, 3)
             })
             it('outerHTML', () => {
                 assert.equal(node.outerHTML, '<map name="app-image-map"><area><area><area></map>')
