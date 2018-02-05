@@ -2728,27 +2728,26 @@ describe('htmlmodule library', () => {
         describe('progress', () => {
             // const test = progress({ value : 0.6, max : 2 }).node // jsdom
             const test = progress()
-            const node = test.node
             it('tagName', () => {
-                assert.equal(node.tagName, 'PROGRESS')
+                assert.equal(test.tagName, 'PROGRESS')
             })
             it('proper constructor', () => {
-                assert.instanceOf(node, test.constructor.interface)
+                assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert.isFalse(node.hasAttributes(), 'has attributes')
+                assert.isFalse(test.hasAttributes(), 'has attributes')
             })
             it.skip('proper attributes length', () => {
-                assert.equal(node.attributes.length, 2)
+                assert.equal(test.attributes.length, 2)
             })
             it.skip('value', () => {
-                assert.equal(Math.floor(node.value * 10) / 10, 0.6)
+                assert.equal(Math.floor(test.value * 10) / 10, 0.6)
             })
             it.skip('name', () => {
-                assert.equal(node.max, 2)
+                assert.equal(test.max, 2)
             })
             it('has no child nodes', () => {
-                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(test.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('q', () => {
