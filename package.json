@@ -1,6 +1,6 @@
 {
   "name": "htmlmodule",
-  "version": "0.5.13",
+  "version": "0.5.14",
   "description": "HTML DOM assembler library",
   "homepage": "https://aristov.github.io/htmlmodule",
   "bugs": "https://github.com/aristov/htmlmodule/issues",
