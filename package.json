@@ -21,7 +21,7 @@
     "mocha": "mocha",
     "karma": "karma start",
     "test-full": "npm run karma && npm test",
-    "build": "webpack && npm run api",
+    "build": "webpack",
     "webpack": "webpack -w",
     "publish": "git push && git push --tags",
     "api": "esdoc",
