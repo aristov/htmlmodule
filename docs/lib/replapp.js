@@ -16,7 +16,7 @@ const useBabel = !es2015support()
 const serializer = new DOMSerializer
 
 const datapath = 'data/'
-const srcdoc = '<!DOCTYPE html><html><head><script src="../dist/window.htmlmodule.js"></script></head><body></body></html>'
+const srcdoc = '<!DOCTYPE html><html><head><script src="../dist/dist.shim.js"></script><script src="../dist/window.htmlmodule.js"></script></head><body></body></html>'
 
 class OutputGroup extends Section {
     init(init) {
