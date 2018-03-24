@@ -75,7 +75,6 @@
     "report-dir": "dist/coverage/jsdom"
   },
   "keywords": [
-    "JavaScript",
     "DOM",
     "HTML",
     "a",
