@@ -222,7 +222,7 @@ Karma testing requires [the local browser set](https://github.com/aristov/htmlmo
 Run webpack in watch-mode:
 
 ```
-npm run webpack
+npm run watch
 ```
 
 Run static HTTP-server:

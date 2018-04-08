@@ -22,7 +22,7 @@
     "karma": "karma start",
     "test-full": "npm run karma && npm test",
     "build": "webpack",
-    "webpack": "webpack -w",
+    "watch": "webpack -w",
     "publish": "git push && git push --tags",
     "api": "esdoc",
     "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run build && npm test && git add dist coverage docs/build -f && git commit -am 'Add files' && git push --set-upstream origin gh-pages -f && git checkout master && npm run build && git status"
