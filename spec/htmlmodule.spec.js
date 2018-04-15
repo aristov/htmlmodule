@@ -92,7 +92,7 @@ const { assert } = chai
 
 describe('htmlmodule library', () => {
 
-    describe('HTMLElementAssembler', () => {
+    /*describe('HTMLElementAssembler', () => {
         describe('Simple empty span', () => {
             const test = new HTMLElementAssembler({ localName : 'span' })
             const node = test.node
@@ -132,7 +132,7 @@ describe('htmlmodule library', () => {
                     node + ' instance of ' + HTMLUnknownElement)
             })
         })
-    })
+    })*/
 
     describe('Global attributes', () => {
 
@@ -3715,7 +3715,7 @@ describe('htmlmodule library', () => {
                         '</section>' +
                     '</main>')
             })
-            it('HTMLElementAssembler, span', () => {
+            /*it('HTMLElementAssembler, span', () => {
                 const test1 = new HTMLElementAssembler({
                     localName : 'span',
                     id : '00101',
@@ -3747,7 +3747,7 @@ describe('htmlmodule library', () => {
                     assert.equal(node.childNodes[2].textContent, 'b')
                 })
                 assert(node1.isEqualNode(node2), 'HTMLElementAssembler and span work properly')
-            })
+            })*/
         })
     })
 })

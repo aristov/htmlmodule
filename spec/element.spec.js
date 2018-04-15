@@ -1,5 +1,5 @@
 import chai from 'chai'
-import { HTMLElementAssembler } from '../lib/element'
+import { A } from '../lib/a'
 
 const { assert } = chai
 const {
@@ -13,30 +13,30 @@ const {
     document
 } = window
 
-const assembler = new HTMLElementAssembler
+const assembler = new A
 
-describe('HTMLElementAssembler', () => {
-    describe('new HTMLElementAssembler', () => {
-        const test = new HTMLElementAssembler
+describe('A', () => {
+    describe('new A', () => {
+        const test = new A
         const node = test.node
         it('node', () => {
-            assert.instanceOf(node, HTMLElement)
+            assert.instanceOf(node, HTMLAnchorElement)
         })
         it('node.constructor', () => {
-            assert.equal(node.constructor, HTMLHtmlElement)
+            assert.equal(node.constructor, HTMLAnchorElement)
         })
         it('node.tagName', () => {
-            assert.equal(node.tagName, 'HTML')
+            assert.equal(node.tagName, 'A')
         })
         it('node.hasAttributes()', () => {
             assert.isFalse(node.hasAttributes())
         })
         it('node.outerHTML', () => {
-            assert.equal(node.outerHTML, '<html></html>')
+            assert.equal(node.outerHTML, '<a></a>')
         })
     })
     describe('init', () => {
-        const test = new HTMLElementAssembler({ localName : 'a' })
+        const test = new A
         const node = test.node
         test.init({
             attrset : { test : 'example' },
@@ -81,10 +81,6 @@ describe('HTMLElementAssembler', () => {
             it('className', () => {
                 assert.equal(node.className, '')
                 assert(!node.hasAttribute('class'), 'has no "class" attribute')
-            })
-            it('undef', () => {
-                assert(!('undef' in node), 'ignore undefined property')
-                assert(!node.hasAttribute('undef'), 'has no "undef" attribute')
             })
         })
     })
@@ -176,7 +172,7 @@ describe('HTMLElementAssembler', () => {
         })
     })
     describe('children', () => {
-        const child = new HTMLElementAssembler
+        const child = new A
         child.assemble({ localName : 'span' })
         const node = assembler.assemble({ localName : 'div' })
         assembler.children = [
