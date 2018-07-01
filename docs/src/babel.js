@@ -1,4 +1,4 @@
-import { script } from './htmlmodule'
+import { Script } from './htmlmodule'
 
 const TEST_SRC = '()=>{}'
 const BABEL_URL = 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js'
@@ -28,7 +28,7 @@ export function es2015support(src = TEST_SRC) {
  */
 export function standalone(src = BABEL_URL) {
     return new Promise((resolve, reject) => {
-        const babelscript = script({
+        const babelscript = new Script({
             src,
             onload : resolve,
             onerror : reject

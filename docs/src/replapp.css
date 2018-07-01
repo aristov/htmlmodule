@@ -1,8 +1,8 @@
 .replapp,
 .replapp .codeinput,
 .replapp .codeinput .CodeMirror,
-.replapp .outputcode .markupview,
-.replapp .outputcode .CodeMirror
+.replapp .markupbox .markupview,
+.replapp .markupbox .CodeMirror
 {
     height: 100%;
 }
@@ -30,7 +30,7 @@
     margin-bottom: -4px;
     box-sizing: border-box;
 }
-.replapp .outputcode
+.replapp .markupbox
 {
     position: absolute;
     bottom: 0;
