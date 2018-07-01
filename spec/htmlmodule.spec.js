@@ -27,7 +27,7 @@ import {
 
 import chai from 'chai'
 
-const { CustomEvent, document } = window
+const { CustomEvent, document, navigator : { userAgent } } = window
 const { assert } = chai
 
 describe('htmlmodule library', () => {
@@ -953,36 +953,38 @@ describe('htmlmodule library', () => {
                 assert.equal(node.outerHTML, '<colgroup span="5"></colgroup>')
             })
         })
-        describe('datalist', () => {
-            const test = datalist({
-                innerHTML :
+        if(!(/Safari/.test(userAgent) && !/Chrome/.test(userAgent))) {
+            describe('datalist', () => {
+                const test = datalist({
+                    innerHTML :
                     '<option value="Female"></option>' +
                     '<option value="Male"></option>'
-            })
-            const node = test.node
-            it('tagName', () => {
-                assert.equal(node.tagName, 'DATALIST')
-            })
-            it.skip('proper constructor', () => { // todo safari
-                assert.instanceOf(node, test.constructor.interface)
-            })
-            it('has no attributes', () => {
-                assert.isFalse(node.hasAttributes(), 'has no attributes')
-            })
-            it('has child nodes', () => {
-                assert(node.hasChildNodes(), 'has child nodes')
-            })
-            it('child nodes length', () => {
-                assert.equal(node.childNodes.length, 2)
-            })
-            it('textContent', () => {
-                assert.equal(node.outerHTML,
-                    '<datalist>' +
+                })
+                const node = test.node
+                it('tagName', () => {
+                    assert.equal(node.tagName, 'DATALIST')
+                })
+                it.skip('proper constructor', () => { // todo safari
+                    assert.instanceOf(node, test.constructor.interface)
+                })
+                it('has no attributes', () => {
+                    assert.isFalse(node.hasAttributes(), 'has no attributes')
+                })
+                it('has child nodes', () => {
+                    assert(node.hasChildNodes(), 'has child nodes')
+                })
+                it('child nodes length', () => {
+                    assert.equal(node.childNodes.length, 2)
+                })
+                it('textContent', () => {
+                    assert.equal(node.outerHTML,
+                        '<datalist>' +
                         '<option value="Female"></option>' +
                         '<option value="Male"></option>' +
-                    '</datalist>')
+                        '</datalist>')
+                })
             })
-        })
+        }
         describe('dd', () => {
             const test = dd('part of a term-description group in a description list')
             const node = test.node
