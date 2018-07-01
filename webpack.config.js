@@ -4,19 +4,24 @@ const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const distPath = path.join(__dirname, 'dist')
-const babelLoader = {
-    test : /\.js$/,
-    use : { loader : 'babel-loader' }
-}
-const uglifyJsPlugin = new UglifyJsPlugin({
-    uglifyOptions : {
-        keep_fnames : true,
-        keep_classnames : true,
-        output : {
-            comments : false
+const rules = []
+const plugins = []
+
+if(process.env.NODE_ENV === 'production') {
+    rules.push({
+        test : /\.js$/,
+        use : { loader : 'babel-loader' }
+    })
+    plugins.push(new UglifyJsPlugin({
+        uglifyOptions : {
+            keep_fnames : true,
+            keep_classnames : true,
+            output : {
+                comments : false
+            }
         }
-    }
-})
+    }))
+}
 
 module.exports = [
     {
@@ -27,7 +32,7 @@ module.exports = [
             filename : 'dist.htmlmodule.js',
             libraryTarget : 'commonjs2'
         },
-        module : { rules : [babelLoader] }
+        module : { rules }
     },
     {
         mode : 'none',
@@ -38,8 +43,8 @@ module.exports = [
             library : 'htmlmodule',
             libraryTarget : 'window'
         },
-        module : { rules : [babelLoader] },
-        plugins : [uglifyJsPlugin]
+        module : { rules },
+        plugins
     },
     {
         mode : 'none',
@@ -48,8 +53,8 @@ module.exports = [
             path : distPath,
             filename : 'dist.shim.js'
         },
-        module : { rules : [babelLoader] },
-        plugins : [uglifyJsPlugin]
+        module : { rules },
+        plugins
     },
     {
         mode : 'none',
@@ -58,18 +63,18 @@ module.exports = [
             path : path.join(__dirname, 'docs', 'build'),
             filename : 'build.spec.js'
         },
-        module : { rules : [babelLoader] }
+        module : { rules }
     },
     {
         mode : 'none',
-        entry : './docs/index.js',
+        entry : './docs/src/index.js',
         output : {
             path : path.join(__dirname, 'docs', 'build'),
             filename : 'build.app.js'
         },
         module : {
             rules : [
-                babelLoader,
+                ...rules,
                 {
                     test : /\.css$/,
                     use : [
