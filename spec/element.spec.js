@@ -1,19 +1,15 @@
 import chai from 'chai'
-import { A } from '../lib/a'
+import { A, Input, Div, Span } from '../lib'
 
 const { assert } = chai
 const {
     Comment,
     HTMLAnchorElement,
     HTMLButtonElement,
-    HTMLElement,
-    HTMLHtmlElement,
     HTMLSpanElement,
     Text,
     document
 } = window
-
-const assembler = new A
 
 describe('A', () => {
     describe('new A', () => {
@@ -85,17 +81,18 @@ describe('A', () => {
         })
     })
     describe('attributes', () => {
-        const node = assembler.assemble({ localName : 'input' })
-        assembler.attrset = {
-            checked : '',
-            disabled : '',
-            custom_string : 'string',
-            custom_boolean : true,
-            custom_number : 123,
-            class : undefined,
-            custom_undef : undefined,
-            custom_null : null
-        }
+        const { node } = new Input({
+            attrset : {
+                checked : '',
+                disabled : '',
+                custom_string : 'string',
+                custom_boolean : true,
+                custom_number : 123,
+                class : undefined,
+                custom_undef : undefined,
+                custom_null : null
+            }
+        })
         it('has attributes', () => {
             assert(node.hasAttributes(), 'has attributes')
         })
@@ -136,11 +133,12 @@ describe('A', () => {
         })
     })
     describe('dataset', () => {
-        const node = assembler.assemble({ localName : 'div' })
-        assembler.dataset = {
-            simple : 'simple data-attribute',
-            camelCased : 'camelCased data-attribute'
-        }
+        const { node } = new Div({
+            dataset : {
+                simple : 'simple data-attribute',
+                camelCased : 'camelCased data-attribute'
+            }
+        })
         it('has attributes', () => {
             assert(node.hasAttributes(), 'has attributes')
             assert.equal(node.attributes.length, 2)
@@ -155,11 +153,12 @@ describe('A', () => {
         })
     })
     describe('style', () => {
-        const node = assembler.assemble({ localName : 'span' })
-        assembler.style = {
-            color : 'white',
-            backgroundColor : 'black'
-        }
+        const { node } = new Span({
+            style : {
+                color : 'white',
+                backgroundColor : 'black'
+            }
+        })
         it('has attributes', () => {
             assert(node.hasAttributes(), 'has attributes')
             assert.equal(node.attributes.length, 1)
@@ -172,10 +171,8 @@ describe('A', () => {
         })
     })
     describe('children', () => {
-        const child = new A
-        child.assemble({ localName : 'span' })
-        const node = assembler.assemble({ localName : 'div' })
-        assembler.children = [
+        const child = new Span
+        const { node } = new Div([
             0, // ignored
             document.createElement('button'),
             '', // ignored
@@ -188,7 +185,7 @@ describe('A', () => {
             document.createComment('Simple DOM Comment node'),
             undefined, // ignored
             child
-        ]
+        ])
         const childNodes = node.childNodes
         it(`has ${ childNodes.length } child nodes`, () => {
             assert(node.hasChildNodes(), 'has child nodes')
