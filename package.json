@@ -24,7 +24,9 @@
     "build": "webpack",
     "watch": "webpack -w",
     "publish": "git push && git push --tags",
-    "api": "esdoc",
+    "api": "rm -rf dist/api && npm run jsdoc && npm run esdoc",
+    "esdoc": "esdoc",
+    "jsdoc": "jsdoc lib/* -d dist/api/jsdoc --verbose",
     "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run build && npm test && git add dist coverage docs/build -f && git commit -am 'Add files' && git push --set-upstream origin gh-pages -f && git checkout master && npm run build && git status"
   },
   "dependencies": {
@@ -45,6 +47,7 @@
     "dom4": "^2.1.0",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
+    "jsdoc": "^3.5.5",
     "jsdom": "^11.11.0",
     "karma": "^2.0.4",
     "karma-chrome-launcher": "^2.2.0",
