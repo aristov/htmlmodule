@@ -1,5 +1,4 @@
 import {
-    HTMLElementAssembler,
     a, audio, abbr, address, area, article, aside,
     b, base, bdi, bdo, blockquote, body, br, button,
     canvas, caption, cite, code, col, colgroup,
@@ -20,7 +19,7 @@ import {
     ruby, rt, rp,
     s, samp, script, section, select, small, source, span, sub,
     summary, sup, strong, style,
-    table, textarea, tbody, td, tfoot, th, thead, title, tr, track,
+    table, textarea, tbody, td, tfoot, th, thead, time, title, tr, track,
     u, ul,
     variable, video,
     wbr
@@ -28,111 +27,10 @@ import {
 
 import chai from 'chai'
 
-const {
-    CustomEvent,
-    Node,
-    HTMLElement,
-    HTMLAnchorElement,
-    HTMLAreaElement,
-    HTMLAudioElement,
-    HTMLBaseElement,
-    HTMLBlockElement, // msie11
-    HTMLBodyElement,
-    HTMLButtonElement,
-    HTMLBRElement,
-    HTMLCanvasElement,
-    HTMLDataListElement,
-    HTMLDivElement,
-    HTMLDListElement,
-    HTMLEmbedElement,
-    HTMLFieldSetElement,
-    HTMLFormElement,
-    HTMLHeadingElement,
-    HTMLHeadElement,
-    HTMLHRElement,
-    HTMLHtmlElement,
-    HTMLIFrameElement,
-    HTMLImageElement,
-    HTMLInputElement,
-    HTMLLabelElement,
-    HTMLLegendElement,
-    HTMLLinkElement,
-    HTMLLIElement,
-    HTMLMapElement,
-    HTMLMetaElement,
-    HTMLModElement,
-    HTMLObjectElement,
-    HTMLOListElement,
-    HTMLOptGroupElement,
-    HTMLOptionElement,
-    HTMLParamElement,
-    HTMLParagraphElement,
-    HTMLPictureElement,
-    HTMLPreElement,
-    HTMLProgressElement,
-    HTMLScriptElement,
-    HTMLSelectElement,
-    HTMLSpanElement,
-    HTMLStyleElement,
-    HTMLSourceElement,
-    HTMLTableCaptionElement,
-    HTMLTableColElement,
-    HTMLTableElement,
-    HTMLTextAreaElement,
-    HTMLTitleElement,
-    HTMLTrackElement,
-    HTMLQuoteElement,
-    HTMLVideoElement,
-    HTMLUnknownElement,
-    document
-} = window
-
-const { TEXT_NODE, ELEMENT_NODE } = Node
+const { CustomEvent, document } = window
 const { assert } = chai
 
 describe('htmlmodule library', () => {
-
-    /*describe('HTMLElementAssembler', () => {
-        describe('Simple empty span', () => {
-            const test = new HTMLElementAssembler({ localName : 'span' })
-            const node = test.node
-            it('tagName', () => {
-                assert.equal(node.tagName, 'SPAN')
-            })
-            it('proper inheritance', () => {
-                assert.instanceOf(node, test.constructor.interface)
-            })
-            it('has no attributes', () => {
-                assert.isFalse(node.hasAttributes(), 'has no attributes')
-            })
-            it('has no child nodes', () => {
-                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
-            })
-        })
-        describe('Unknown element', () => {
-            it('unknown', () => {
-                const node = new HTMLElementAssembler({ localName : 'unknown' }).node
-                assert.equal(node.tagName, 'UNKNOWN')
-                assert(
-                    node instanceof HTMLUnknownElement,
-                    node + ' instance of ' + HTMLUnknownElement)
-            })
-            it('foobar', () => {
-                const node = new HTMLElementAssembler({ localName : 'foobar' }).node
-                assert.equal(node.tagName, 'FOOBAR')
-                assert(
-                    node instanceof HTMLUnknownElement,
-                    node + ' instance of ' + HTMLUnknownElement)
-            })
-            it('ari', () => {
-                const node = new HTMLElementAssembler({ localName : 'ari' }).node
-                assert.equal(node.tagName, 'ARI')
-                assert(
-                    node instanceof HTMLUnknownElement,
-                    node + ' instance of ' + HTMLUnknownElement)
-            })
-        })
-    })*/
 
     describe('Global attributes', () => {
 
@@ -758,9 +656,7 @@ describe('htmlmodule library', () => {
                 assert.equal(node.tagName, 'BLOCKQUOTE')
             })
             it('proper constructor', () => {
-                assert( // msie11
-                    node instanceof HTMLQuoteElement || node instanceof HTMLBlockElement,
-                    node + ' instance of ' + HTMLQuoteElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
                 assert(node.hasAttributes(), 'has attributes')
@@ -2035,7 +1931,7 @@ describe('htmlmodule library', () => {
                 assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
             it('interface', () => {
-                assert.equal(test.constructor.interface, HTMLInputElement)
+                assert.instanceOf(node, test.constructor.interface)
             })
         })
         describe('ins', () => {
@@ -3184,7 +3080,7 @@ describe('htmlmodule library', () => {
                 assert(node.textContent, 'Multiline user input')
             })
         })
-        /*describe('time', () => {
+        describe('time', () => {
             const test = time({
                 dateTime : '2016-11-11',
                 children : 'November 11'
@@ -3217,7 +3113,7 @@ describe('htmlmodule library', () => {
             it('outerHTML', () => {
                 assert.equal(node.outerHTML, '<time datetime="2016-11-11">November 11</time>')
             })
-        });*/
+        });
         describe('title', () => {
             const test = title('Application title')
             const node = test.node
@@ -3715,39 +3611,6 @@ describe('htmlmodule library', () => {
                         '</section>' +
                     '</main>')
             })
-            /*it('HTMLElementAssembler, span', () => {
-                const test1 = new HTMLElementAssembler({
-                    localName : 'span',
-                    id : '00101',
-                    className :'fa fi fu',
-                    tabIndex : 0,
-                    children : ['a', span('a b'), 'b']
-                })
-                const node1 = test1.node
-                const test2 = span({
-                    id : '00101',
-                    className :'fa fi fu',
-                    tabIndex : 0,
-                    children : ['a', span('a b'), 'b']
-                })
-                const node2 = test2.node
-                ;[node1, node2].forEach(node => {
-                    assert.equal(node.nodeType, ELEMENT_NODE)
-                    assert.equal(node.tagName, 'SPAN')
-                    assert.instanceOf(node, test1.constructor.interface)
-                    assert.instanceOf(node, test2.constructor.interface)
-                    assert.equal(node.attributes.length, 3)
-                    assert.equal(node.id, '00101')
-                    assert.equal(node.className, 'fa fi fu')
-                    assert.equal(node.tabIndex, 0)
-                    assert.equal(node.children.length, 1)
-                    assert.equal(node.childNodes.length, 3)
-                    assert.equal(node.childNodes[0].nodeType, TEXT_NODE)
-                    assert.equal(node.childNodes[1].constructor, HTMLSpanElement)
-                    assert.equal(node.childNodes[2].textContent, 'b')
-                })
-                assert(node1.isEqualNode(node2), 'HTMLElementAssembler and span work properly')
-            })*/
         })
     })
 })
