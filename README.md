@@ -1,4 +1,4 @@
-# htmlmodule
+# HTML Module
 
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
 [![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
@@ -9,20 +9,20 @@
 
 _work in progress_
 
-The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
+The HTML Module provides a web application semantics and functionality of a native browser DOM API.
 
 ```js
 a({ href : 'https://html.spec.whatwg.org', children : 'HTML standard' })
 ```
 
-The code above uses htmlmodule to create a hyperlink with a reference to the living standard.
+The code above uses HTML Module to create a hyperlink with a reference to the living standard.
 A browser creates the same link, when it processes the following markup:
 
 ```html
 <a href=https://html.spec.whatwg.org>HTML standard</a>
 ```
 
-The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
+The HTML Module does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
 
 ## Try now
 
@@ -45,21 +45,18 @@ npm install htmlmodule
 import { form, label, input, button } from 'htmlmodule'
 
 // create application
-const websearch = 
-   form({
-        action : '//google.com/search',
-        target : '_blank',
-        children : [
-            label([
-                'Search ',
-                input({ type : 'search', name : 'q' })
-            ]),
-            button('Find')
-        ]
-    })
-    
-// insert to document
-document.body.append(websearch.node)
+form({
+    parentNode : document.body, // append element to document
+    action : '//google.com/search',
+    target : '_blank',
+    children : [
+        label([
+            'Search ',
+            input({ type : 'search', name : 'q' })
+        ]),
+        button('Find')
+    ]
+})
 ```
 
 Just created `websearch` variable is a DOM structure with the respective HTML markup:
@@ -78,7 +75,7 @@ Just created `websearch` variable is a DOM structure with the respective HTML ma
 
 ## Global script distribution
 
-Get the module by appending the distribution script to a page body:
+Get the module by appending the distribution script to your page:
 
 ```html
 <script src=https://rawgit.com/aristov/htmlmodule/gh-pages/dist/dist.window.htmlmodule.min.js></script>
@@ -88,11 +85,11 @@ Get the module by appending the distribution script to a page body:
 </script> 
 ```
 
-This is the simpliest way to start use the htmlmodule in your project.
+This is the simpliest way to start using the HTML Module in your project.
 
 ## Accessibility
 
-Applications, assembled by htmlmodule are accessible by design.
+Applications, assembled by HTML Module are accessible by design.
 This depends generally on a proper and accurate usage of the markup language semantics.
 Read [the spec](https://html.spec.whatwg.org),
 [the API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html)
@@ -101,7 +98,7 @@ and look the examples, provided on
 
 ## Compatibility
 
-- The htmlmodule core doesn't require anything except DOM.
+- The HTML Module core doesn't require anything except DOM.
 - You can use the module in combination with any other framework, library and build system.
 
 ### Browser support
@@ -172,7 +169,6 @@ The project documentation contains:
 
 The module API includes almost all actual elements from the HTML living standard.
 Be watchful when use a modern HTML5 features, due to it's partial browser support.
-For convenience, these features are marked as `@version HTML5` in JSDoc.
 
 ## Development
 
@@ -219,7 +215,7 @@ Karma testing requires [the local browser set](https://github.com/aristov/htmlmo
 
 ### Dev tools
 
-Run webpack in watch-mode:
+Run webpack in the watch mode:
 
 ```
 npm run watch
