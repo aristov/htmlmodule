@@ -27,26 +27,26 @@ export class OutputGroup extends Section {
     }
 
     update() {
-        const doc = this._outputWin.node.contentDocument
+        const doc = this._outputWin.contentDocument
         if(!doc.documentElement) {
-            new Html({ parentNode : doc })
+            doc.documentElement = new Html
         }
         if(!doc.head) {
-            doc.prepend((new Head().node))
+            doc.head = new Head
         }
         if(!doc.body) {
-            doc.body = (new Body()).node
+            doc.body = new Body
         }
         return doc
     }
 
     setup() {
         const outputwin = this._outputWin
-        const doc = outputwin.node.contentDocument
+        const node = outputwin.contentDocument.node
         const observer = new MutationObserver(() => {
-            this._markupView.value = serializer.serializeToString(doc)
+            this._markupView.value = serializer.serializeToString(node)
         })
-        observer.observe(doc, {
+        observer.observe(node, {
             attributes : true,
             childList : true,
             characterData : true,
@@ -55,7 +55,7 @@ export class OutputGroup extends Section {
         const win = outputwin.node.contentWindow
         win.onmessage = this.onMessage.bind(this)
         win.onhashchange = () => location.hash = win.location.hash
-        this._markupView.value = serializer.serializeToString(doc)
+        this._markupView.value = serializer.serializeToString(node)
         this.refresh()
     }
 
@@ -71,7 +71,7 @@ export class OutputGroup extends Section {
     eval(fn) {
         const script = new Script(`(${ fn })()`)
         this.update()
-        script.parentNode = this._outputWin.node.contentDocument.body
+        script.parentNode = this._outputWin.contentDocument.body
         script.remove()
     }
 

@@ -11,7 +11,7 @@
             head({
                 id : METADATA_ID,
                 children : [
-                    meta({ attrset : { charset : 'utf-8' } }),
+                    meta({ attributes : { charset : 'utf-8' } }),
                     title('htmlmodule homepage'),
                     base({ target : '_top' }),
                     link({ rel : 'stylesheet', href : 'data/sitemenu.css' }),

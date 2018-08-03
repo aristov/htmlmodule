@@ -18,7 +18,7 @@ const focusbutton = button({
 // that contains certain event info
 const alertbutton = button({
     onclick : ({
-        type, // es2015 is crazy!
+        type,
         target : { tagName },
         constructor : { name }
     }) => {
