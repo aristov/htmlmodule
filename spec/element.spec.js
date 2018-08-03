@@ -35,7 +35,7 @@ describe('A', () => {
         const test = new A
         const node = test.node
         test.init({
-            attrset : { test : 'example' },
+            attributes : { test : 'example' },
             dataset : { ref : '712-42' },
             style : { color : '#777' },
             id : 'w3-link',
@@ -44,7 +44,7 @@ describe('A', () => {
             children : 'W3C homepage'
         })
         describe('assembler interfaces', () => {
-            it('attrset', () => {
+            it('attributes', () => {
                 assert.equal(node.getAttribute('test'), 'example')
             })
             it('dataset', () => {
@@ -82,7 +82,7 @@ describe('A', () => {
     })
     describe('attributes', () => {
         const { node } = new Input({
-            attrset : {
+            attributes : {
                 checked : '',
                 disabled : '',
                 custom_string : 'string',
@@ -97,7 +97,7 @@ describe('A', () => {
             assert(node.hasAttributes(), 'has attributes')
         })
         it('attributes.length', () => {
-            assert.equal(node.attributes.length, 8)
+            assert.equal(node.attributes.length, 7)
         })
         it('checked', () => {
             assert.equal(node.checked, true)
@@ -128,8 +128,8 @@ describe('A', () => {
             assert.equal(node.className, 'undefined')
         })
         it('custom_null', () => {
-            assert(node.hasAttribute('custom_null'), 'has null attribute')
-            assert.equal(node.getAttribute('custom_null'), 'null')
+            assert.isFalse(node.hasAttribute('custom_null'))
+            assert.equal(node.getAttribute('custom_null'), null)
         })
     })
     describe('dataset', () => {

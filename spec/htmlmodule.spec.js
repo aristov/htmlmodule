@@ -463,14 +463,15 @@ describe('htmlmodule library', () => {
                 // ping : 'https://www.w3.org', // todo
                 // rel : 'external help', // todo
             })
+            const node = test.node
             it('tagName', () => {
-                assert.equal(test.tagName, 'AREA')
+                assert.equal(node.tagName, 'AREA')
             })
             it('proper constructor', () => {
                 assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(test.hasAttributes(), 'has attributes')
+                assert(node.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
                 assert.equal(test.attributes.length, 5)
@@ -491,7 +492,7 @@ describe('htmlmodule library', () => {
                 assert.equal(test.target, '_parent')
             })
             it('has no child nodes', () => {
-                assert.isFalse(test.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('article', () => {
@@ -1016,14 +1017,15 @@ describe('htmlmodule library', () => {
                 dateTime : '2011-05-02 14:23Z',
                 children : '10/10'
             })
+            const node = test.node
             it('tagName', () => {
-                assert.equal(test.tagName, 'DEL')
+                assert.equal(node.tagName, 'DEL')
             })
             it('proper constructor', () => {
                 assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(test.hasAttributes(), 'has attributes')
+                assert(node.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
                 assert.equal(test.attributes.length, 2)
@@ -1035,7 +1037,7 @@ describe('htmlmodule library', () => {
                 assert.equal(test.dateTime, '2011-05-02 14:23Z')
             })
             it('has child nodes', () => {
-                assert(test.hasChildNodes(), 'has child nodes')
+                assert(node.hasChildNodes(), 'has child nodes')
             })
             it('child nodes length', () => {
                 assert.equal(test.childNodes.length, 1)
@@ -1604,7 +1606,7 @@ describe('htmlmodule library', () => {
         })
         describe('html', () => {
             const test = html({
-                attrset : { manifest : 'https://example.com/manifest' },
+                attributes : { manifest : 'https://example.com/manifest' },
                 innerHTML :
                     '<head>' +
                         '<meta charset="utf-8">' +
@@ -1680,7 +1682,7 @@ describe('htmlmodule library', () => {
                 src : '/nested.html',
                 // srcdoc : '<html><head><title>Nested document</title></head><body></body></html>', // todo ie11
                 width : '200px',
-                attrset : { sandbox : 'allow-forms' }
+                attributes : { sandbox : 'allow-forms' }
             })
             const node = test.node
             it('tagName', () => {
@@ -1817,7 +1819,7 @@ describe('htmlmodule library', () => {
                 value : 'User input value',
                 defaultValue : 'Default value',
                 title : 'A part number is a digit followed by three uppercase letters.',
-                attrset : {
+                attributes : {
                     form : 'saveform',
                     list : 'suggestlist'
                 }
@@ -1942,14 +1944,15 @@ describe('htmlmodule library', () => {
                 dateTime : '2011-05-02 14:32Z',
                 children : '11/10'
             })
+            const node = test.node
             it('tagName', () => {
-                assert.equal(test.tagName, 'INS')
+                assert.equal(node.tagName, 'INS')
             })
             it('proper constructor', () => {
                 assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(test.hasAttributes(), 'has attributes')
+                assert(node.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
                 assert.equal(test.attributes.length, 2)
@@ -1961,7 +1964,7 @@ describe('htmlmodule library', () => {
                 assert.equal(test.dateTime, '2011-05-02 14:32Z')
             })
             it('has child nodes', () => {
-                assert(test.hasChildNodes(), 'has child nodes')
+                assert(node.hasChildNodes(), 'has child nodes')
             })
             it('child nodes length', () => {
                 assert.equal(test.childNodes.length, 1)
@@ -2175,13 +2178,13 @@ describe('htmlmodule library', () => {
             })
             const node = test.node
             it('tagName', () => {
-                assert.equal(test.tagName, 'MAP')
+                assert.equal(node.tagName, 'MAP')
             })
             it('proper constructor', () => {
                 assert.instanceOf(node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert(test.hasAttributes(), 'has attributes')
+                assert(node.hasAttributes(), 'has attributes')
             })
             it('proper attributes length', () => {
                 assert.equal(test.attributes.length, 1)
@@ -2190,7 +2193,7 @@ describe('htmlmodule library', () => {
                 assert.equal(test.name, 'app-image-map')
             })
             it('has child nodes', () => {
-                assert(test.hasChildNodes(), 'has child nodes')
+                assert(node.hasChildNodes(), 'has child nodes')
             })
             it('child nodes length', () => {
                 assert.equal(test.childNodes.length, 3)
@@ -2229,7 +2232,7 @@ describe('htmlmodule library', () => {
                 name : 'keywords',
                 content : 'specification,html,dom,web,application,standard,api',
                 httpEquiv : 'x-ua-compatible',
-                attrset : { charset : 'utf-8' },
+                attributes : { charset : 'utf-8' },
             })
             const node = test.node
             it('tagName', () => {
@@ -2319,7 +2322,7 @@ describe('htmlmodule library', () => {
                 useMap : 'app-map',
                 width : '123',
                 height : '321',
-                attrset : { form : 'saveform' },
+                attributes : { form : 'saveform' },
                 innerHTML : '<param><param><param>'
             })
             const node = test.node
@@ -2487,7 +2490,7 @@ describe('htmlmodule library', () => {
             const test = output({
                 // htmlFor : 'user-input', // jsdom
                 name : 'program-output',
-                attrset : { form : 'saveform' },
+                attributes : { form : 'saveform' },
                 children : 'Output widget'
             })
             const node = test.node
@@ -2626,14 +2629,15 @@ describe('htmlmodule library', () => {
         describe('progress', () => {
             // const test = progress({ value : 0.6, max : 2 }).node // jsdom
             const test = progress()
+            const node = test.node
             it('tagName', () => {
-                assert.equal(test.tagName, 'PROGRESS')
+                assert.equal(node.tagName, 'PROGRESS')
             })
             it('proper constructor', () => {
                 assert.instanceOf(test.node, test.constructor.interface)
             })
             it('has attributes', () => {
-                assert.isFalse(test.hasAttributes(), 'has attributes')
+                assert.isFalse(node.hasAttributes(), 'has attributes')
             })
             it.skip('proper attributes length', () => {
                 assert.equal(test.attributes.length, 2)
@@ -2645,7 +2649,7 @@ describe('htmlmodule library', () => {
                 assert.equal(test.max, 2)
             })
             it('has no child nodes', () => {
-                assert.isFalse(test.hasChildNodes(), 'has no child nodes')
+                assert.isFalse(node.hasChildNodes(), 'has no child nodes')
             })
         })
         describe('q', () => {
@@ -2820,7 +2824,7 @@ describe('htmlmodule library', () => {
                 name : 'select-9',
                 required : true,
                 size : 10,
-                attrset : { form : 'saveform' },
+                attributes : { form : 'saveform' },
                 innerHTML :
                     '<option>opt1</option>' +
                     '<optgroup><option>opt2</option></optgroup>' +
@@ -3021,7 +3025,7 @@ describe('htmlmodule library', () => {
                 wrap : 'hard',
                 value : 'User multiline input value',
                 defaultValue : 'Default multiline value',
-                attrset : { form : 'saveform' }
+                attributes : { form : 'saveform' }
             })
             const node = test.node
             it('tagName', () => {
@@ -3372,7 +3376,7 @@ describe('htmlmodule library', () => {
             it('properly build form with search input and submit button inside', () => {
                 const node =
                     form({
-                        attrset : { role : 'search' },
+                        attributes : { role : 'search' },
                         children : [
                             input({ type : 'search' }),
                             button('Search')
@@ -3407,7 +3411,7 @@ describe('htmlmodule library', () => {
                 assert(indeterminate.indeterminate)
             })
             it('proper initial state assignment', () => {
-                const sample = input({ type : 'checkbox', attrset : { checked : '' } })
+                const sample = input({ type : 'checkbox', attributes : { checked : '' } })
                 const container = div({ innerHTML : '<input type=checkbox checked>' })
                 assert(sample.isEqualNode(container.firstChild))
             })
