@@ -1,4 +1,4 @@
-# HTML Module
+# htmlmodule
 
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
 [![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
@@ -9,20 +9,20 @@
 
 _work in progress_
 
-The HTML Module provides a web application semantics and functionality of a native browser DOM API.
+The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
 
 ```js
 a({ href : 'https://html.spec.whatwg.org', children : 'HTML standard' })
 ```
 
-The code above uses HTML Module to create a hyperlink with a reference to the living standard.
+The code above uses htmlmodule to create a hyperlink with a reference to the living standard.
 A browser creates the same link, when it processes the following markup:
 
 ```html
 <a href=https://html.spec.whatwg.org>HTML standard</a>
 ```
 
-The HTML Module does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
+The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
 
 ## Try now
 
@@ -85,11 +85,11 @@ Get the module by appending the distribution script to your page:
 </script> 
 ```
 
-This is the simpliest way to start using the HTML Module in your project.
+This is the simpliest way to start using the htmlmodule in your project.
 
 ## Accessibility
 
-Applications, assembled by HTML Module are accessible by design.
+Applications, assembled by htmlmodule are accessible by design.
 This depends generally on a proper and accurate usage of the markup language semantics.
 Read [the spec](https://html.spec.whatwg.org),
 [the API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html)
@@ -98,7 +98,7 @@ and look the examples, provided on
 
 ## Compatibility
 
-- The HTML Module core doesn't require anything except DOM.
+- The htmlmodule core doesn't require anything except DOM.
 - You can use the module in combination with any other framework, library and build system.
 
 ### Browser support
