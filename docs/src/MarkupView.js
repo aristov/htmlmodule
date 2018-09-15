@@ -1,5 +1,5 @@
 import { Details, Summary } from './htmlmodule'
-import { MarkupBox } from './markupbox'
+import { MarkupBox } from './MarkupBox'
 
 export class MarkupToggle extends Summary {}
 

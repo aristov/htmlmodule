@@ -3,7 +3,7 @@ import CodeMirror from 'codemirror'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/lib/codemirror.css'
-import './codemirror.css'
+import './style/CodeMirror.css'
 
 export class CodeBox extends Div {
     /**

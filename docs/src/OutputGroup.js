@@ -1,7 +1,7 @@
 import { Section, Body, Div, Head, Html, Pre, Script } from './htmlmodule'
-import { MarkupView } from './markupview'
-import { DOMSerializer } from './domserializer'
-import { OutputWin } from './outputwin'
+import { MarkupView } from './MarkupView'
+import { DOMSerializer } from './DOMSerializer'
+import { OutputWin } from './OutputWin'
 
 const serializer = new DOMSerializer
 

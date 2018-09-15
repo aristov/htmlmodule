@@ -1,7 +1,7 @@
-import './replapp.css'
+import './style/REPLApp.css'
 import { Article, Section } from './htmlmodule'
-import { OutputGroup } from './outputgroup'
-import { CodeInput } from './codeinput'
+import { OutputGroup } from './OutputGroup'
+import { CodeInput } from './CodeInput'
 import { es2015support, babel, standalone } from './babel'
 
 const useBabel = !es2015support()

@@ -1,4 +1,4 @@
-import { CodeBox } from './codebox'
+import { CodeBox } from './CodeBox'
 
 const CODE_BOX_DEFAULTS = {
     mode : 'javascript',

@@ -1,22 +1,21 @@
-.replapp,
-.replapp .codeinput,
-.replapp .codeinput .CodeMirror,
-.replapp .markupbox .markupview,
-.replapp .markupbox .CodeMirror
+.REPLApp,
+.REPLApp .CodeInput,
+.REPLApp .MarkupView,
+.REPLApp .CodeMirror
 {
     height: 100%;
 }
-.replapp
+.REPLApp
 {
     display : flex;
 }
-.replapp section
+.REPLApp section
 {
     position: relative;
     width: 50%;
     box-sizing: border-box;
 }
-.replapp .codeinput /* Safari fix */
+.REPLApp .CodeInput /* Safari fix */
 {
     position: absolute;
     top: 0;
@@ -24,13 +23,13 @@
     right: 0;
     left: 0;
 }
-.replapp .outputwin
+.REPLApp .OutputWin
 {
     width: 100%;
     margin-bottom: -4px;
     box-sizing: border-box;
 }
-.replapp .markupbox
+.REPLApp .MarkupBox
 {
     position: absolute;
     bottom: 0;
@@ -39,13 +38,13 @@
     border-left: 1px solid #444;
     box-sizing: border-box;
 }
-.replapp .markuptoggle
+.REPLApp .MarkupToggle
 {
     font: 13px monospace;
     position: absolute;
     z-index: 10;
 }
-.replapp .markuptoggle
+.REPLApp .MarkupToggle
 {
     right: 9px;
     bottom: 9px;
@@ -55,11 +54,11 @@
     padding: 1px 6px;
     user-select: none;
 }
-.replapp .markuptoggle:not(:hover):not(:focus)
+.REPLApp .MarkupToggle:not(:hover):not(:focus)
 {
     opacity: 0.5;
 }
-.replapp .errormessage
+.REPLApp .ErrorMessage
 {
     position: fixed;
     width: 50%;
