@@ -30,7 +30,7 @@
     "gh-pages": "git branch -D gh-pages && git checkout -b gh-pages && npm run build && npm test && git add dist coverage docs/build -f && git commit -am 'Add files' && git push --set-upstream origin gh-pages -f && git checkout master && npm run build && git status"
   },
   "dependencies": {
-    "dommodule": "github:aristov/dommodule"
+    "dommodule": "^0.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
