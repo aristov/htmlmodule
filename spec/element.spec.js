@@ -31,10 +31,8 @@ describe('A', () => {
             assert.equal(node.outerHTML, '<a></a>')
         })
     })
-    describe('init', () => {
-        const test = new A
-        const node = test.node
-        test.init({
+    describe('new A({...})', () => {
+        const test = new A({
             attributes : { test : 'example' },
             dataset : { ref : '712-42' },
             style : { color : '#777' },
@@ -43,6 +41,7 @@ describe('A', () => {
             href : 'https://www.w3.org',
             children : 'W3C homepage'
         })
+        const node = test.node
         describe('assembler interfaces', () => {
             it('attributes', () => {
                 assert.equal(node.getAttribute('test'), 'example')
