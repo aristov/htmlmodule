@@ -12,9 +12,9 @@ const MARKUP_BOX_DEFAULTS = {
  */
 export class MarkupBox extends CodeBox {
     init(init = {}) {
-        if(!init.options) {
-            init.options = MARKUP_BOX_DEFAULTS
-        }
         super.init(init)
+        if(!init.options) {
+            this.options = MARKUP_BOX_DEFAULTS
+        }
     }
 }

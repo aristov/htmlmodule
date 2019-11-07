@@ -18,10 +18,10 @@ const CODE_BOX_DEFAULTS = {
  * @returns {CodeBox}
  */
 export class CodeInput extends CodeBox {
-    init(init = {}) {
-        if(!init.options) {
-            init.options = CODE_BOX_DEFAULTS
-        }
+    init(init) {
         super.init(init)
+        if(!init.options) {
+            this.options = CODE_BOX_DEFAULTS
+        }
     }
 }

@@ -25,10 +25,10 @@ export class REPLApp extends Article {
     }
 
     init(init) {
+        super.init(init)
+        this.on('ready', this.onReady)
         window.onresize = () => this.refresh()
         window.onhashchange = () => this.fetch()
-        this.on('ready', this.onReady)
-        super.init(init)
     }
 
     get value() {

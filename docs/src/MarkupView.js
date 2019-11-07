@@ -16,9 +16,9 @@ export class MarkupView extends Details {
     }
 
     init(init) {
-        this.on('toggle', event => localStorage.setItem('makrupview.open', this.open))
-        this.open = localStorage.getItem('makrupview.open') === 'true' || localStorage.getItem('markupview.open')
         super.init(init)
+        this.open = localStorage.getItem('makrupview.open') === 'true' || localStorage.getItem('markupview.open')
+        this.on('toggle', event => localStorage.setItem('makrupview.open', this.open))
     }
 
     refresh() {

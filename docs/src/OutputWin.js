@@ -4,7 +4,7 @@ const srcdoc = '<!DOCTYPE html><html><head><script src="../dist/dist.shim.js"></
 
 export class OutputWin extends IFrame {
     init(init) {
-        this.srcdoc = srcdoc
         super.init(init)
+        this.srcdoc = srcdoc
     }
 }
