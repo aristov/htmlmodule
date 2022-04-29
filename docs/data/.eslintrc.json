@@ -1,9 +1,0 @@
-{
-  "rules": {
-    "no-unused-vars": "off",
-    "require-jsdoc": "off",
-    "no-confusing-arrow": "off",
-    "no-cond-assign": "off",
-    "complexity": "off"
-  }
-}
