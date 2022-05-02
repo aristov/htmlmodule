@@ -21,6 +21,7 @@
     "mocha": "mocha",
     "build": "NODE_ENV=production webpack",
     "watch": "webpack -w",
+    "serve": "webpack serve",
     "publish": "git push && git push --tags",
     "api": "rm -rf dist/api && npm run jsdoc",
     "jsdoc": "jsdoc lib/* -d dist/api/jsdoc --verbose"
