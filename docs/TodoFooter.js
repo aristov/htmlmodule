@@ -3,9 +3,7 @@ import api from './api'
 
 export class TodoFooter extends HtmlFooter
 {
-  setClassName() {
-    this.className = 'footer'
-  }
+  className = 'footer'
 
   render() {
     const items = this.props.items

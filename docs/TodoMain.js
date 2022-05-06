@@ -4,6 +4,8 @@ import api from './api'
 
 export class TodoMain extends HtmlSection
 {
+  className = 'main'
+
   render() {
     return [
       new HtmlInput({
@@ -16,9 +18,5 @@ export class TodoMain extends HtmlSection
       new HtmlLabel({ htmlFor : 'toggle-all' }),
       new TodoList({ items : this.props.items }),
     ]
-  }
-
-  setClassName() {
-    this.className = 'main'
   }
 }

@@ -5,9 +5,7 @@ export class TodoHeader extends HtmlHeader
 {
   state = { text : '', busy : false }
 
-  setClassName() {
-    this.className = 'header'
-  }
+  className = 'header'
 
   render() {
     return [

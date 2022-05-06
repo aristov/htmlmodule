@@ -8,9 +8,7 @@ export class TodoApp extends HtmlSection
 {
   state = { items : [] }
 
-  setClassName() {
-    this.className = 'todoapp'
-  }
+  className = 'todoapp'
 
   render() {
     const items = this.state.items
@@ -24,7 +22,7 @@ export class TodoApp extends HtmlSection
   }
 
   async componentDidMount() {
-    window.onhashchange = () => this.setState({ items : this.state.items })
+    window.onhashchange = () => this.setState()
     api.addEventListener('update', this.onUpdate)
     this.setState({ items : await api.getItems() })
   }

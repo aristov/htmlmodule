@@ -9,6 +9,8 @@ export class TodoItem extends HtmlLi
     text : '',
   }
 
+  className = null
+
   render() {
     const item = this.props.item
     this.class = {
