@@ -1,12 +1,12 @@
 import { Counter } from './Counter'
 
-function run() {
-  Counter.__storage.get(document.body.querySelector('div'))?.destroy()
-  new Counter({ parent : document.body })
+const render = app => {
+  app?.destroy()
+  return Counter.render({}, document.body)
 }
 
-run()
+let app = render()
 
 if(module.hot) {
-  module.hot.accept(['./Counter'], run)
+  module.hot.accept(['./Counter'], () => app = render(app))
 }
