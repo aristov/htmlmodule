@@ -9,14 +9,30 @@ module.exports = [
       publicPath : '/build/',
       filename : 'index.bundle.js',
     },
+    module : {
+      rules : [
+        {
+          test : /\.css$/,
+          use : [
+            'style-loader',
+            {
+              loader : 'css-loader',
+              options : {
+                importLoaders : 1,
+              },
+            },
+          ],
+        },
+      ],
+    },
+    externals : {
+      window : 'window',
+    },
     devServer : {
       static : {
         directory : path.join(__dirname, 'docs/public'),
       },
       hot : true,
-    },
-    externals : {
-      window : 'window',
     },
   },
 ]

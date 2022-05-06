@@ -1,4 +1,5 @@
 import { HtmlDiv, HtmlButton, HtmlSpan } from '../lib'
+import './Counter.css'
 
 export class Counter extends HtmlDiv
 {

@@ -1,0 +1,16 @@
+body
+{
+  font: 2rem Arial, sans-serif;
+  margin: 2rem;
+}
+button
+{
+  font: inherit;
+  width: 3rem;
+}
+span
+{
+  width: 5rem;
+  text-align: center;
+  display: inline-block;
+}
