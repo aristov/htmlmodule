@@ -30,13 +30,18 @@ export class AppInteface extends EventTarget
     return this._save()
   }
 
-  async removeItem(id) {
+  async updateItems(item) {
+    this._data.forEach(oldItem => Object.assign(oldItem, item))
+    return this._save()
+  }
+
+  async deleteItem(id) {
     this._data = this._data.filter(item => item.id !== id)
     return this._save()
   }
 
-  async updateItems(item) {
-    this._data.forEach(oldItem => Object.assign(oldItem, item))
+  async deleteItems(ids) {
+    this._data = this._data.filter(item => !ids.includes(item.id))
     return this._save()
   }
 }

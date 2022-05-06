@@ -28,6 +28,6 @@ export class TodoForm extends HtmlForm
       completed : false,
     })
     this.setState({ text : '', busy : false })
-    this._input.node.focus()
+    this._input.focus()
   }
 }
