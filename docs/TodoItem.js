@@ -1,4 +1,4 @@
-import { HtmlLi, HtmlInput, HtmlDiv, HtmlButton } from '../lib'
+import { HtmlLi, HtmlInput, HtmlDiv, HtmlButton, HtmlLabel } from '../lib'
 import api from './api'
 
 export class TodoItem extends HtmlLi
@@ -8,18 +8,29 @@ export class TodoItem extends HtmlLi
   render() {
     const item = this.props.item
     this.node.setAttribute('aria-busy', this.state.busy)
+    this.class.completed = item.completed
     return [
-      new HtmlInput({
-        type : 'checkbox',
-        checked : item.completed,
-        disabled : this.state.busy,
-        onchange : this.onChange,
+      new HtmlDiv({
+        class : 'view',
+        children : [
+          new HtmlInput({
+            class : 'toggle',
+            type : 'checkbox',
+            checked : item.completed,
+            disabled : this.state.busy,
+            onchange : this.onChange,
+          }),
+          new HtmlLabel(item.text),
+          new HtmlButton({
+            class : 'destroy',
+            disabled : this.state.busy,
+            onclick : this.onRemove,
+          }),
+        ],
       }),
-      new HtmlDiv(item.text),
-      new HtmlButton({
-        children : 'Delete',
-        disabled : this.state.busy,
-        onclick : this.onRemove,
+      new HtmlInput({
+        class : 'edit',
+        value : 'Create a TodoMVC template',
       }),
     ]
   }

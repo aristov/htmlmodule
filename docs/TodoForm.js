@@ -1,4 +1,4 @@
-import { HtmlForm, HtmlInput, HtmlButton } from '../lib'
+import { HtmlForm, HtmlInput } from '../lib'
 import api from './api'
 
 export class TodoForm extends HtmlForm
@@ -12,11 +12,10 @@ export class TodoForm extends HtmlForm
         disabled : this.state.busy,
         required : true,
         value : this.state.text,
+        class : 'new-todo',
+        placeholder : 'What needs to be done?',
+        autofocus : true,
         oninput : e => this.setState({ text : e.target.value }),
-      }),
-      new HtmlButton({
-        disabled : this.state.busy,
-        children : 'Add',
       }),
     ]
   }

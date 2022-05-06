@@ -1,10 +1,10 @@
-import { HtmlDiv } from '../lib'
-import { TodoList } from './TodoList'
-import { TodoForm } from './TodoForm'
+import { HtmlDiv, HtmlSection } from '../lib'
 import api from './api'
-import './TodoApp.css'
+import { TodoHeader } from './TodoHeader'
+import { TodoMain } from './TodoMain'
+import { TodoFooter } from './TodoFooter'
 
-export class TodoApp extends HtmlDiv
+export class TodoApp extends HtmlSection
 {
   state = { items : null }
 
@@ -13,9 +13,14 @@ export class TodoApp extends HtmlDiv
       return new HtmlDiv('Loading...')
     }
     return [
-      new TodoForm,
-      new TodoList({ items : this.state.items }),
+      new TodoHeader,
+      new TodoMain({ items : this.state.items }),
+      new TodoFooter,
     ]
+  }
+
+  setClassName() {
+    this.className = 'todoapp'
   }
 
   async componentDidMount() {

@@ -1,4 +1,4 @@
-const DELAY = 500
+const DELAY = 0
 
 export class AppInteface extends EventTarget
 {
@@ -35,9 +35,8 @@ export class AppInteface extends EventTarget
     return this._save()
   }
 
-  async reorderItems(type) {
-    type === 'pop' && this._data.unshift(this._data.pop())
-    type === 'push' && this._data.push(this._data.shift())
+  async updateItems(item) {
+    this._data.forEach(oldItem => Object.assign(oldItem, item))
     return this._save()
   }
 }
