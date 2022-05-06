@@ -77,7 +77,7 @@ export class TodoItem extends HtmlLi
     this._checkbox.focus()
   }
 
-  onEdit = e => {
+  onEdit = () => {
     this.setState({ editing : true })
     this._input.focus()
   }

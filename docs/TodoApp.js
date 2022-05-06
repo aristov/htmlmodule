@@ -1,35 +1,26 @@
-import { HtmlDiv, HtmlSection, HtmlHeader, HtmlH1 } from '../lib'
+import { HtmlSection } from '../lib'
 import { TodoMain } from './TodoMain'
 import { TodoFooter } from './TodoFooter'
-import { TodoForm } from './TodoForm'
+import { TodoHeader } from './TodoHeader'
 import api from './api'
 
 export class TodoApp extends HtmlSection
 {
-  state = { items : null }
+  state = { items : [] }
+
+  setClassName() {
+    this.className = 'todoapp'
+  }
 
   render() {
     const items = this.state.items
-    if(!items) {
-      return new HtmlDiv('Loading...')
-    }
     return [
-      new HtmlHeader({
-        class : 'header',
-        children : [
-          new HtmlH1('todos'),
-          new TodoForm,
-        ],
-      }),
+      new TodoHeader,
       !!items.length && [
         new TodoMain({ items }),
         new TodoFooter({ items }),
       ],
     ]
-  }
-
-  setClassName() {
-    this.className = 'todoapp'
   }
 
   async componentDidMount() {
