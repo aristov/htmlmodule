@@ -15,31 +15,20 @@
     "url": "git+https://github.com/aristov/htmlmodule.git"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "watch": "webpack -w",
+    "build": "webpack && NODE_ENV=production webpack",
     "serve": "webpack serve",
     "publish": "git push && git push --tags"
   },
   "dependencies": {
-    "morphdom": "^2.6.1",
-    "window": "github:aristov/window"
+    "morphdom": "^2.6.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
     "babel-loader": "^8.2.5",
-    "coveralls": "^3.1.1",
-    "cross-env": "^7.0.3",
-    "css-loader": "^6.7.1",
-    "jsdoc": "^3.6.10",
-    "jsdom": "^19.0.0",
-    "nyc": "^15.1.0",
-    "sinon": "^13.0.2",
-    "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-cli": "^4.9.2"
   },
   "keywords": [
     "DOM",
