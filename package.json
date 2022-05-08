@@ -1,7 +1,7 @@
 {
   "name": "htmlmodule",
   "version": "0.6.2",
-  "description": "HTML DOM assembler library",
+  "description": "Library of UI components",
   "homepage": "https://aristov.github.io/htmlmodule",
   "bugs": "https://github.com/aristov/htmlmodule/issues",
   "license": "MIT",
@@ -15,21 +15,18 @@
     "url": "git+https://github.com/aristov/htmlmodule.git"
   },
   "scripts": {
-    "lint": "eslint lib --ignore-pattern *.spec.js --quiet && eslint lib/*.spec.js --env browser,mocha && eslint shim docs",
-    "test": "cross-env NODE_ENV=test nyc mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "mocha": "mocha",
     "build": "NODE_ENV=production webpack",
     "watch": "webpack -w",
     "serve": "webpack serve",
-    "publish": "git push && git push --tags",
-    "api": "rm -rf dist/api && npm run jsdoc",
-    "jsdoc": "jsdoc lib/* -d dist/api/jsdoc --verbose"
+    "publish": "git push && git push --tags"
   },
   "dependencies": {
     "window": "github:aristov/window"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "babel-loader": "^8.2.5",
     "coveralls": "^3.1.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
@@ -39,21 +36,10 @@
     "nyc": "^15.1.0",
     "sinon": "^13.0.2",
     "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
-  },
-  "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "reporter": [
-      "lcov",
-      "text"
-    ],
-    "sourceMap": false,
-    "instrument": false,
-    "report-dir": "dist/coverage/jsdom"
   },
   "keywords": [
     "DOM",
