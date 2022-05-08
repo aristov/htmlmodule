@@ -11,7 +11,6 @@ It's inspired from React and based on the same ideas.
 - Convenient, JS-compatible syntax
 - There is no virtual DOM, but [morphdom](https://www.npmjs.com/package/morphdom) used under the hood
 - API to build your own high-level components
-- Namespaces support (e.g., SVG, MathML)
 - No extra markup in the result HTML
 - Small footprint, 13KB after gzip
 
@@ -21,7 +20,7 @@ It's inspired from React and based on the same ideas.
 
 ## Examples
 
-- [TodoMVC](https://aristov.github.io/htmlmodule-todomvc) ([source](https://aristov.github.io/htmlmodule-todomvc))
+- [TodoMVC](https://aristov.github.io/htmlmodule-todomvc) ([source](https://github.com/aristov/htmlmodule-todomvc))
 
 ## License
 
