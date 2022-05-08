@@ -1,233 +1,27 @@
 # htmlmodule
 
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
-[![Build Status](https://travis-ci.org/aristov/htmlmodule.svg?branch=master)](https://travis-ci.org/aristov/htmlmodule)
-[![Coverage Status](https://coveralls.io/repos/github/aristov/htmlmodule/badge.svg?branch=master)](https://coveralls.io/github/aristov/htmlmodule?branch=master)
-[![dependencies Status](https://david-dm.org/aristov/htmlmodule/status.svg)](https://david-dm.org/aristov/htmlmodule)
-[![devDependencies Status](https://david-dm.org/aristov/htmlmodule/dev-status.svg)](https://david-dm.org/aristov/htmlmodule?type=dev)
-[![Document Coverage](https://aristov.github.io/htmlmodule/dist/api/badge.svg)](https://aristov.github.io/htmlmodule/dist/api/)
 
-_work in progress_
+HtmlModule is a library to build UI.
+It's inspired from React and based on the same ideas.
 
-The htmlmodule provides a web application semantics and functionality of a native browser DOM API.
+## Main Features
 
-```js
-a({ href : 'https://html.spec.whatwg.org', children : 'HTML standard' })
-```
-
-The code above uses htmlmodule to create a hyperlink with a reference to the living standard.
-A browser creates the same link, when it processes the following markup:
-
-```html
-<a href=https://html.spec.whatwg.org>HTML standard</a>
-```
-
-The htmlmodule does not generate a markup. It assembles the `HTMLAnchorElement` instance from scratch.
-
-## Try now
-
-— <a href="https://aristov.github.io/htmlmodule/docs" title="read-eval-print-loop">REPL machine!</a>
-
-## Usage
-
-Use [a module bundler](http://webpack.github.io/) and [a transpiler](http://babeljs.io) to transform and pack modules for in-browser usage.
-
-### Installation
-
-```
-npm install htmlmodule
-```
-
-### Create application
-
-```js
-// import element assemblers
-import { form, label, input, button } from 'htmlmodule'
-
-// create application
-form({
-    parentNode : document.body, // append element to document
-    action : '//google.com/search',
-    target : '_blank',
-    children : [
-        label([
-            'Search ',
-            input({ type : 'search', name : 'q' })
-        ]),
-        button('Find')
-    ]
-})
-```
-
-Just created `websearch` variable is a DOM structure with the respective HTML markup:
-
-```html
-<form action=//google.com/search target=_blank>
-    <label>
-        Search 
-        <input type=search name=q>
-    </label>
-    <button>Find</button>
-</form>
-```
-
-[Open in REPL](//aristov.github.io/htmlmodule/docs#websearch)
-
-## Global script distribution
-
-Get the module by appending the distribution script to your page:
-
-```html
-<script src=https://rawgit.com/aristov/htmlmodule/gh-pages/dist/dist.window.htmlmodule.min.js></script>
-<script>
-{ body, header, main, footer, article, p, a, button, input, img, video, canvas, ... } = htmlmodule 
-// make magic...
-</script> 
-```
-
-This is the simpliest way to start using the htmlmodule in your project.
-
-## Accessibility
-
-Applications, assembled by htmlmodule are accessible by design.
-This depends generally on a proper and accurate usage of the markup language semantics.
-Read [the spec](https://html.spec.whatwg.org),
-[the API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html)
-and look the examples, provided on
-[the module homepage](https://aristov.github.io/htmlmodule/docs).
-
-## Compatibility
-
-- The htmlmodule core doesn't require anything except DOM.
-- You can use the module in combination with any other framework, library and build system.
-
-### Browser support
-
-Module works fine without any shims, but some new HTML5 elements and features are implemented in modern browsers only.
-The built-in [shim bundle](/shim/index.js) partially fixes browser compatibility. It includes:
-
-- [Babel polyfill](http://babeljs.io/docs/usage/polyfill)
-- [dom4 polyfill](https://www.npmjs.com/package/dom4)
-- [whatwg-fetch polyfill](https://www.npmjs.com/package/whatwg-fetch)
-- [author DOM shims](/shim)
-
-The shim bundle is used in [the unit-testing environments](#testing).
-
-### Shim bundle setup
-
-For a wide browser support you must import the shim bundle first.
-There are some ways to do this.
-
-#### Shim distribution script (recommended)
-
-```html
-<!-- minified shim bundle -->
-<script src=https://rawgit.com/aristov/htmlmodule/gh-pages/dist/dist.shim.min.js></script>
-
-<!-- project code including htmlmodule imports -->
-<script src=build/build.project.js></script>
-```
-
-#### Single bundle for all
-
-Install the third-party polyfill libraries first:
-
-```
-npm install babel-polyfill --save
-npm install dom4 --save
-npm install whatwg-fetch --save
-```
-
-Import the shim bundle into your project:
-
-```js
-import 'htmlmodule/shim'
-
-// the rest of your code including htmlmodule imports
-```
-
-#### Custom way
-
-- You may add your own and any other shims or build your custom bundle if needed.
-- You may decline to use the shim bundle at all, if there's no need to support an old browser versions.
+- The power of OOP
+- Convenient, JS-compatible syntax
+- There is no virtual DOM, but [morphdom](https://www.npmjs.com/package/morphdom) used under the hood
+- API to build your own high-level components
+- Namespaces support (e.g., SVG, MathML)
+- No extra markup in the result HTML
+- Small footprint, 13KB after gzip
 
 ## Documentation
 
-The project documentation contains:
+- [Getting started](https://github.com/aristov/htmlmodule/wiki/Getting-started)
 
-- [Home page](https://aristov.github.io/htmlmodule/docs)
-- [API documentation](https://aristov.github.io/htmlmodule/dist/api)
-- [Spec suite](https://aristov.github.io/htmlmodule/docs/spec.html)
-- [Coverage report](https://aristov.github.io/htmlmodule/coverage/lcov-report/)
+## Examples
 
-[The API reference](https://aristov.github.io/htmlmodule/dist/api/identifiers.html) contains short extractions and relevant quotations from the following resources:
-
-- [HTML](https://html.spec.whatwg.org) and [DOM](https://dom.spec.whatwg.org) living standards
-- W3C [HTML](https://www.w3.org/TR/html) and [DOM](https://www.w3.org/TR/dom) specifications
-- MDN [API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model#HTML_element_interfaces) and [element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) references
-- MSDN [API](https://msdn.microsoft.com/en-us/library/hh869680.aspx) and [element](https://msdn.microsoft.com/en-us/library/hh772721.aspx) references
-
-The module API includes almost all actual elements from the HTML living standard.
-Be watchful when use a modern HTML5 features, due to it's partial browser support.
-
-## Development
-
-### Environment
-
-- Browser
-- [Node.js](https://nodejs.org)
-
-### Installation
-
-```
-git clone git@github.com:aristov/htmlmodule.git
-cd htmlmodule
-npm install
-```
-
-### Build
-
-Build the whole project:
-
-```
-npm run build
-```
-
-Run tests using [jsdom](https://npmjs.com/package/jsdom) and generate coverage report:
-
-```
-npm test
-```
-
-Run tests using [Karma](http://karma-runner.github.io/1.0/index.html):
-
-```
-npm run karma
-```
-
-Run all tests:
-
-```
-npm run test-full
-```
-
-Karma testing requires [the local browser set](https://github.com/aristov/htmlmodule/blob/master/karma.conf.js#L8) to be installed on your system.
-
-### Dev tools
-
-Run webpack in the watch mode:
-
-```
-npm run watch
-```
-
-Run static HTTP-server:
-
-```
-python -m SimpleHTTPServer 8080
-```
-
-Point your browser to [localhost:8080/htmlmodule/docs](http://localhost:8080/htmlmodule/docs).
+- [TodoMVC](https://aristov.github.io/htmlmodule-todomvc) ([source](https://aristov.github.io/htmlmodule-todomvc))
 
 ## License
 
