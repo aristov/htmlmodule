@@ -21,6 +21,7 @@ It's inspired from React and based on the same ideas.
 ## Examples
 
 - [TodoMVC](https://aristov.github.io/htmlmodule-todomvc) ([source](https://github.com/aristov/htmlmodule-todomvc))
+- [Tic-Tac-Toe](https://aristov.github.io/htmlmodule-tictactoe) ([source](https://github.com/aristov/htmlmodule-tictactoe))
 
 ## License
 
