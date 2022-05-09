@@ -7,6 +7,9 @@
   "license": "MIT",
   "author": "Vyacheslav Aristov <vv.aristov@gmail.ru>",
   "main": "lib",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aristov/htmlmodule.git"

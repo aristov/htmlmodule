@@ -12,7 +12,7 @@ It's inspired from React and based on the same ideas.
 - No virtual DOM ([morphdom](https://www.npmjs.com/package/morphdom) under the hood)
 - API to build your own high-level components
 - No extra markup in the result HTML
-- Small footprint, 13KB after gzip
+- Small footprint, 12KB after gzip
 
 ## Documentation
 

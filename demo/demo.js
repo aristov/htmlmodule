@@ -1,6 +1,5 @@
 {
-  const { htmlmodule } = window
-  const { HtmlDiv, HtmlButton, HtmlSpan } = htmlmodule
+  const { HtmlDiv, HtmlButton, HtmlInput } = htmlmodule
 
   class Counter extends HtmlDiv
   {
@@ -12,7 +11,12 @@
           text : '−',
           onclick : () => this.setState({ counter : this.state.counter - 1 }),
         }),
-        new HtmlSpan(this.state.counter),
+        new HtmlInput({
+          size : 4,
+          readOnly : true,
+          style : { textAlign : 'center' },
+          value : this.state.counter,
+        }),
         new HtmlButton({
           text : '+',
           onclick : () => this.setState({ counter : this.state.counter + 1 }),
