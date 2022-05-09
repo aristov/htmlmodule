@@ -960,7 +960,6 @@ class AttrType
 
   /**
    * @returns {string}
-   * @override
    */
   static get attrName() {
     return this.name[0].toLowerCase() + this.name.slice(1)
@@ -985,8 +984,6 @@ const DomNode = __webpack_require__(6)
 const window = __webpack_require__(8)
 
 const { document } = window
-
-let counter = 0
 
 /**
  * @see https://dom.spec.whatwg.org/#interface-element
@@ -1041,20 +1038,6 @@ class DomElem extends DomNode
   }
 
   /**
-   * Generate a unique identifier among the document's tree
-   * @returns {String}
-   */
-  generateId() {
-    let id, str
-    do {
-      str = (counter++).toString(36)
-      id = 'ID_' + '0'.repeat(Math.max(0, 7 - str.length)) + str
-    }
-    while(document.getElementById(id))
-    return id
-  }
-
-  /**
    * @param {constructor|string} attr
    * @param {function} [attr.get]
    * @param {function} [attr.has]
@@ -1066,6 +1049,24 @@ class DomElem extends DomNode
       return attr.has(this)? attr.get(this) : attr.defaultValue
     }
     return this.node.getAttribute(attr)
+  }
+
+  /**
+   * @param {constructor|string} attr
+   * @param {function} [attr.removeOnValue]
+   * @param {function} [attr.set]
+   * @param {string|null|*} value
+   */
+  setAttr(attr, value) {
+    if(typeof attr === 'function') {
+      if(!attr.removeOnValue(this, value)) {
+        attr.set(this, value)
+      }
+    }
+    else if(value === null) {
+      this.node.removeAttribute(attr)
+    }
+    else this.node.setAttribute(attr, value)
   }
 
   /**
@@ -1088,46 +1089,6 @@ class DomElem extends DomNode
       attr.remove(this)
     }
     else this.node.removeAttribute(attr)
-  }
-
-  /**
-   * @param {constructor|string} attr
-   * @param {function} [attr.removeOnValue]
-   * @param {function} [attr.set]
-   * @param {string|null|*} value
-   */
-  setAttr(attr, value) {
-    if(typeof attr === 'function') {
-      if(!attr.removeOnValue(this, value)) {
-        attr.set(this, value)
-      }
-    }
-    else if(value === null) {
-      this.node.removeAttribute(attr)
-    }
-    else this.node.setAttribute(attr, value)
-  }
-
-  /**
-   * @param {KeyboardEvent} event
-   * @param {DomElem} elem
-   */
-  onKeyDown(event, elem) {
-    const handler = this['onKeyDown_' + event.code]
-    if(typeof handler === 'function') {
-      handler.apply(this, arguments)
-    }
-  }
-
-  /**
-   * @param {KeyboardEvent} event
-   * @param {DomElem} elem
-   */
-  onKeyUp(event, elem) {
-    const handler = this['onKeyUp_' + event.code]
-    if(typeof handler === 'function') {
-      handler.apply(this, arguments)
-    }
   }
 
   /**
@@ -1245,10 +1206,6 @@ DomElem.defineMethods([
   'scrollBy',
 ])
 
-DomElem.defineAttrs([
-  'role',
-])
-
 DomElem.defineProps([
   'clientLeft',
   'clientTop',
@@ -1275,7 +1232,7 @@ const { default : morphdom } = __webpack_require__(7)
 const window = __webpack_require__(8)
 
 const SPECIAL_PROPS = ['node', 'children']
-const { document, CustomEvent, DocumentFragment, EventTarget } = window
+const { document, CustomEvent, DocumentFragment, EventTarget, Node } = window
 
 /**
  * @see https://dom.spec.whatwg.org/#interface-node
@@ -1301,7 +1258,7 @@ class DomNode
    * @return {{}}
    */
   normalizeProps(props) {
-    if(props.constructor !== Object) {
+    if(props?.constructor !== Object) {
       props = { children : props }
     }
     else if(!props.children) {
@@ -1507,14 +1464,6 @@ class DomNode
   }
 
   /**
-   * @param {Node} node
-   * @return {*|DomNode}
-   */
-  static get(node) {
-    return node?.__instance || new this({ node })
-  }
-
-  /**
    * @param {{}} props
    * @param {Node} [parentNode]
    * @return {*|DomNode}
@@ -1534,28 +1483,35 @@ class DomNode
 const options = {
   childrenOnly : true,
   /**
-   * @param {Node} toNode
+   * @param {Element} node
+   * @return {string}
+   */
+  getNodeKey(node) {
+    return node.__instance?.key || node.id
+  },
+  /**
+   * @param {ChildNode} toNode
    */
   onNodeAdded(toNode) {
-    if(toNode.hasOwnProperty('__instance')) {
+    if(toNode.__instance) {
       document.contains(toNode) && toNode.__instance.componentDidMount()
     }
   },
   /**
-   * @param {Node} fromNode
-   * @param {Node} toNode
+   * @param {Element} fromNode
+   * @param {Element} toNode
    */
   onBeforeElUpdated(fromNode, toNode) {
-    if(toNode.hasOwnProperty('__instance') && fromNode.hasOwnProperty('__instance')) {
+    if(toNode.__instance && fromNode.__instance) {
       toNode.__instance.state = fromNode.__instance.state
     }
   },
   /**
-   * @param {Node} fromNode
-   * @param {Node} toNode
+   * @param {Element} fromNode
+   * @param {Element} toNode
    */
   onBeforeElChildrenUpdated(fromNode, toNode) {
-    if(toNode.hasOwnProperty('__instance') && fromNode.hasOwnProperty('__instance')) {
+    if(toNode.__instance && fromNode.__instance) {
       for(const type of fromNode.__instance.__handlers.keys()) {
         fromNode[type] = null
       }
@@ -1570,22 +1526,20 @@ const options = {
     }
   },
   /**
-   * @param {Node} fromNode
+   * @param {Element} fromNode
    */
   onElUpdated(fromNode) {
-    if(fromNode.hasOwnProperty('__instance')) {
+    if(fromNode.__instance) {
       const instance = fromNode.__instance
       instance.componentDidUpdate(instance.__prevProps, instance.state)
       delete instance.__prevProps
     }
   },
   /**
-   * @param {Node} fromNode
+   * @param {ChildNode} fromNode
    */
   onBeforeNodeDiscarded(fromNode) {
-    if(fromNode.hasOwnProperty('__instance')) {
-      fromNode.__instance?.destroy(true)
-    }
+    fromNode.__instance?.destroy(true)
   },
 }
 
@@ -1627,6 +1581,16 @@ const events = {
 }
 
 DomNode.defineEvents(Object.keys(events))
+
+Object.defineProperty(DomNode.prototype, 'key', {
+  writable : true,
+  value : null,
+})
+
+Object.defineProperty(Node.prototype, '__instance', {
+  writable : true,
+  value : null,
+})
 
 module.exports = DomNode
 
