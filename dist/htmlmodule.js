@@ -1,56 +1,922 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("window"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["window"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["htmlmodule"] = factory(require("window"));
+		exports["htmlmodule"] = factory();
 	else
-		root["htmlmodule"] = factory(root["window"]);
-})(this, (__WEBPACK_EXTERNAL_MODULE__5__) => {
+		root["htmlmodule"] = factory();
+})(this, () => {
 return /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
-/* 0 */,
-/* 1 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/* 0 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AttrType": () => (/* binding */ AttrType)
-/* harmony export */ });
+/**
+ * @module htmlmodule
+ * @author Vyacheslav Aristov <vv.aristov@gmail.com>
+ * @see {@link https://www.w3.org/TR/html}
+ * @see {@link https://html.spec.whatwg.org}
+ */
+module.exports = __webpack_require__(1)
+
+
+/***/ }),
+/* 1 */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+const HtmlElem = __webpack_require__(2)
+
+exports.HtmlA = class HtmlA extends HtmlElem {}
+exports.HtmlAbbr = class HtmlAbbr extends HtmlElem {}
+exports.HtmlAddress = class HtmlAddress extends HtmlElem {}
+exports.HtmlArea = class HtmlArea extends HtmlElem {}
+exports.HtmlArticle = class HtmlArticle extends HtmlElem {}
+exports.HtmlAside = class HtmlAside extends HtmlElem {}
+exports.HtmlAudio = class HtmlAudio extends HtmlElem {}
+exports.HtmlB = class HtmlB extends HtmlElem {}
+exports.HtmlBase = class HtmlBase extends HtmlElem {}
+exports.HtmlBdi = class HtmlBdi extends HtmlElem {}
+exports.HtmlBdo = class HtmlBdo extends HtmlElem {}
+exports.HtmlBlockQuote = class HtmlBlockQuote extends HtmlElem {}
+exports.HtmlBody = class HtmlBody extends HtmlElem {}
+exports.HtmlBr = class HtmlBr extends HtmlElem {}
+exports.HtmlButton = class HtmlButton extends HtmlElem {}
+exports.HtmlCanvas = class HtmlCanvas extends HtmlElem {}
+exports.HtmlCaption = class HtmlCaption extends HtmlElem {}
+exports.HtmlCite = class HtmlCite extends HtmlElem {}
+exports.HtmlCode = class HtmlCode extends HtmlElem {}
+exports.HtmlCol = class HtmlCol extends HtmlElem {}
+exports.HtmlColGroup = class HtmlColGroup extends HtmlElem {}
+exports.HtmlData = class HtmlData extends HtmlElem {}
+exports.HtmlDataList = class HtmlDataList extends HtmlElem {}
+exports.HtmlDd = class HtmlDd extends HtmlElem {}
+exports.HtmlDel = class HtmlDel extends HtmlElem {}
+exports.HtmlDetails = class HtmlDetails extends HtmlElem {}
+exports.HtmlDfn = class HtmlDfn extends HtmlElem {}
+exports.HtmlDialog = class HtmlDialog extends HtmlElem {}
+exports.HtmlDiv = class HtmlDiv extends HtmlElem {}
+exports.HtmlDl = class HtmlDl extends HtmlElem {}
+exports.HtmlDt = class HtmlDt extends HtmlElem {}
+exports.HtmlEm = class HtmlEm extends HtmlElem {}
+exports.HtmlEmbed = class HtmlEmbed extends HtmlElem {}
+exports.HtmlFieldSet = class HtmlFieldSet extends HtmlElem {}
+exports.HtmlFigCaption = class HtmlFigCaption extends HtmlElem {}
+exports.HtmlFigure = class HtmlFigure extends HtmlElem {}
+exports.HtmlFooter = class HtmlFooter extends HtmlElem {}
+exports.HtmlForm = class HtmlForm extends HtmlElem {}
+exports.HtmlH1 = class HtmlH1 extends HtmlElem {}
+exports.HtmlH2 = class HtmlH2 extends HtmlElem {}
+exports.HtmlH3 = class HtmlH3 extends HtmlElem {}
+exports.HtmlH4 = class HtmlH4 extends HtmlElem {}
+exports.HtmlH5 = class HtmlH5 extends HtmlElem {}
+exports.HtmlH6 = class HtmlH6 extends HtmlElem {}
+exports.HtmlHGroup = class HtmlHGroup extends HtmlElem {}
+exports.HtmlHead = class HtmlHead extends HtmlElem {}
+exports.HtmlHeader = class HtmlHeader extends HtmlElem {}
+exports.HtmlHr = class HtmlHr extends HtmlElem {}
+exports.HtmlHtml = class HtmlHtml extends HtmlElem {}
+exports.HtmlI = class HtmlI extends HtmlElem {}
+exports.HtmlIFrame = class HtmlIFrame extends HtmlElem {}
+exports.HtmlImg = class HtmlImg extends HtmlElem {}
+exports.HtmlInput = class HtmlInput extends HtmlElem {}
+exports.HtmlIns = class HtmlIns extends HtmlElem {}
+exports.HtmlKbd = class HtmlKbd extends HtmlElem {}
+exports.HtmlLabel = class HtmlLabel extends HtmlElem {}
+exports.HtmlLegend = class HtmlLegend extends HtmlElem {}
+exports.HtmlLi = class HtmlLi extends HtmlElem {}
+exports.HtmlLink = class HtmlLink extends HtmlElem {}
+exports.HtmlMain = class HtmlMain extends HtmlElem {}
+exports.HtmlMap = class HtmlMap extends HtmlElem {}
+exports.HtmlMark = class HtmlMark extends HtmlElem {}
+exports.HtmlMenu = class HtmlMenu extends HtmlElem {}
+exports.HtmlMeta = class HtmlMeta extends HtmlElem {}
+exports.HtmlMeter = class HtmlMeter extends HtmlElem {}
+exports.HtmlNav = class HtmlNav extends HtmlElem {}
+exports.HtmlNoScript = class HtmlNoScript extends HtmlElem {}
+exports.HtmlObject = class HtmlObject extends HtmlElem {}
+exports.HtmlOl = class HtmlOl extends HtmlElem {}
+exports.HtmlOptGroup = class HtmlOptGroup extends HtmlElem {}
+exports.HtmlOption = class HtmlOption extends HtmlElem {}
+exports.HtmlOutput = class HtmlOutput extends HtmlElem {}
+exports.HtmlP = class HtmlP extends HtmlElem {}
+exports.HtmlParam = class HtmlParam extends HtmlElem {}
+exports.HtmlPicture = class HtmlPicture extends HtmlElem {}
+exports.HtmlPre = class HtmlPre extends HtmlElem {}
+exports.HtmlProgress = class HtmlProgress extends HtmlElem {}
+exports.HtmlQ = class HtmlQ extends HtmlElem {}
+exports.HtmlRp = class HtmlRp extends HtmlElem {}
+exports.HtmlRt = class HtmlRt extends HtmlElem {}
+exports.HtmlRuby = class HtmlRuby extends HtmlElem {}
+exports.HtmlS = class HtmlS extends HtmlElem {}
+exports.HtmlSamp = class HtmlSamp extends HtmlElem {}
+exports.HtmlScript = class HtmlScript extends HtmlElem {}
+exports.HtmlSection = class HtmlSection extends HtmlElem {}
+exports.HtmlSelect = class HtmlSelect extends HtmlElem {}
+exports.HtmlSmall = class HtmlSmall extends HtmlElem {}
+exports.HtmlSource = class HtmlSource extends HtmlElem {}
+exports.HtmlSpan = class HtmlSpan extends HtmlElem {}
+exports.HtmlStrong = class HtmlStrong extends HtmlElem {}
+exports.HtmlStyle = class HtmlStyle extends HtmlElem {}
+exports.HtmlSub = class HtmlSub extends HtmlElem {}
+exports.HtmlSummary = class HtmlSummary extends HtmlElem {}
+exports.HtmlSup = class HtmlSup extends HtmlElem {}
+exports.HtmlTBody = class HtmlTBody extends HtmlElem {}
+exports.HtmlTFoot = class HtmlTFoot extends HtmlElem {}
+exports.HtmlTHead = class HtmlTHead extends HtmlElem {}
+exports.HtmlTable = class HtmlTable extends HtmlElem {}
+exports.HtmlTd = class HtmlTd extends HtmlElem {}
+exports.HtmlTemplate = class HtmlTemplate extends HtmlElem {}
+exports.HtmlTextArea = class HtmlTextArea extends HtmlElem {}
+exports.HtmlTh = class HtmlTh extends HtmlElem {}
+exports.HtmlTime = class HtmlTime extends HtmlElem {}
+exports.HtmlTitle = class HtmlTitle extends HtmlElem {}
+exports.HtmlTr = class HtmlTr extends HtmlElem {}
+exports.HtmlTrack = class HtmlTrack extends HtmlElem {}
+exports.HtmlU = class HtmlU extends HtmlElem {}
+exports.HtmlUl = class HtmlUl extends HtmlElem {}
+exports.HtmlVar = class HtmlVar extends HtmlElem {}
+exports.HtmlVideo = class HtmlVideo extends HtmlElem {}
+exports.HtmlWbr = class HtmlWbr extends HtmlElem {}
+
+exports.HtmlA.defineProps([
+  'origin',
+])
+
+exports.HtmlA.defineProps([
+  'href',
+  'protocol',
+  'username',
+  'password',
+  'host',
+  'hostname',
+  'port',
+  'pathname',
+  'search',
+  'hash',
+  'target',
+  'download',
+  'rel',
+  'rev',
+  'hreflang',
+  'type',
+  'referrerPolicy',
+], true)
+
+exports.HtmlArea.defineProps([
+  'origin',
+  'relList',
+])
+
+exports.HtmlArea.defineProps([
+  'href',
+  'protocol',
+  'username',
+  'password',
+  'host',
+  'hostname',
+  'port',
+  'pathname',
+  'search',
+  'hash',
+  'alt',
+  'coords',
+  'shape',
+  'target',
+  'download',
+  'rel',
+  'hreflang',
+  'type',
+  'referrerPolicy',
+], true)
+
+exports.HtmlAudio.defineMethods([
+  'load',
+  'canPlayType',
+  'fastSeek',
+  'getStartDate',
+  'play',
+  'pause',
+  'addTextTrack',
+])
+
+exports.HtmlAudio.defineProps([
+  'error',
+  'currentSrc',
+  'networkState',
+  'buffered',
+  'readyState',
+  'seeking',
+  'duration',
+  'paused',
+  'played',
+  'seekable',
+  'ended',
+  'audioTracks',
+  'videoTracks',
+  'textTracks',
+])
+
+exports.HtmlAudio.defineProps([
+  'src',
+  'srcObject',
+  'crossOrigin',
+  'preload',
+  'currentTime',
+  'defaultPlaybackRate',
+  'playbackRate',
+  'autoplay',
+  'loop',
+  'controls',
+  'volume',
+  'muted',
+  'defaultMuted',
+], true)
+
+exports.HtmlBase.defineProps([
+  'href',
+  'target',
+], true)
+
+exports.HtmlBlockQuote.defineProps([
+  'cite',
+], true)
+
+exports.HtmlButton.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'setCustomValidity',
+])
+
+exports.HtmlButton.defineProps([
+  'willValidate',
+  'validity',
+  'validationMessage',
+])
+
+exports.HtmlButton.defineProps([
+  'autofocus',
+  'disabled',
+  'formAction',
+  'formEnctype',
+  'formMethod',
+  'formNoValidate',
+  'formTarget',
+  'name',
+  'type',
+  'value',
+], true)
+
+exports.HtmlCanvas.defineMethods([
+  'getContext',
+  'probablySupportsContext',
+  'toDataURL',
+  'toBlob',
+])
+
+exports.HtmlCanvas.defineProps([
+  'width',
+  'height',
+], true)
+
+exports.HtmlCol.defineProps([
+  'span',
+], true)
+
+exports.HtmlColGroup.defineProps([
+  'span',
+], true)
+
+exports.HtmlData.defineProps([
+  'value',
+], true)
+
+exports.HtmlDel.defineProps([
+  'cite',
+  'dateTime',
+], true)
+
+exports.HtmlDetails.defineProps([
+  'open',
+], true)
+
+exports.HtmlDialog.defineMethods([
+  'show',
+  'showModal',
+  'close',
+])
+
+exports.HtmlDialog.defineProps([
+  'open',
+  'returnValue',
+], true)
+
+exports.HtmlEmbed.defineProps([
+  'src',
+  'type',
+  'width',
+  'height',
+], true)
+
+exports.HtmlFieldSet.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'setCustomValidity',
+])
+
+exports.HtmlFieldSet.defineProps([
+  'type',
+  'willValidate',
+  'validity',
+  'validationMessage',
+])
+
+exports.HtmlFieldSet.defineProps([
+  'disabled',
+  'name',
+], true)
+
+exports.HtmlForm.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'reset',
+  'submit',
+])
+
+exports.HtmlForm.defineProps([
+  'acceptCharset',
+  'action',
+  'autocomplete',
+  'enctype',
+  'method',
+  'name',
+  'noValidate',
+  'target',
+], true)
+
+exports.HtmlIFrame.defineProps([
+  'sandbox',
+])
+
+exports.HtmlIFrame.defineProps([
+  'src',
+  'srcdoc',
+  'allowFullScreen',
+  'allowPaymentRequest',
+  'width',
+  'height',
+  'referrerPolicy',
+], true)
+
+exports.HtmlImg.defineMethods([
+  'decode',
+])
+
+exports.HtmlImg.defineProps([
+  'complete',
+  'currentSrc',
+  'naturalWidth',
+  'naturalHeight',
+])
+
+exports.HtmlImg.defineProps([
+  'alt',
+  'referrerPolicy',
+  'src',
+  'srcset',
+  'sizes',
+  'crossOrigin',
+  'useMap',
+  'isMap',
+  'height',
+  'width',
+], true)
+
+exports.HtmlInput.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'select',
+  'setCustomValidity',
+  'setRangeText',
+  'setSelectionRange',
+  'stepDown',
+  'stepUp',
+])
+
+exports.HtmlInput.defineProps([
+  'willValidate',
+  'validity',
+  'validationMessage',
+])
+
+exports.HtmlInput.defineProps([
+  'accept',
+  'alt',
+  'autocomplete',
+  'autofocus',
+  'defaultChecked',
+  'checked',
+  'dirName',
+  'disabled',
+  'files',
+  'formAction',
+  'formEnctype',
+  'formMethod',
+  'formNoValidate',
+  'formTarget',
+  'height',
+  'indeterminate',
+  'inputMode',
+  'max',
+  'maxLength',
+  'min',
+  'minLength',
+  'multiple',
+  'name',
+  'pattern',
+  'placeholder',
+  'readOnly',
+  'required',
+  'size',
+  'src',
+  'step',
+  'type',
+  'defaultValue',
+  'value',
+  'valueAsDate',
+  'valueAsNumber',
+  'width',
+  'selectionStart',
+  'selectionEnd',
+  'selectionDirection',
+], true)
+
+exports.HtmlIns.defineProps([
+  'cite',
+  'dateTime',
+], true)
+
+exports.HtmlLabel.defineProps([
+  'htmlFor',
+], true)
+
+exports.HtmlLi.defineProps([
+  'value',
+], true)
+
+exports.HtmlLink.defineProps([
+  'relList',
+  'sizes',
+])
+
+exports.HtmlLink.defineProps([
+  'href',
+  'crossOrigin',
+  'rel',
+  'rev',
+  'media',
+  'nonce',
+  'hreflang',
+  'type',
+  'referrerPolicy',
+], true)
+
+exports.HtmlMap.defineProps([
+  'name',
+], true)
+
+exports.HtmlMeta.defineAttrs([
+  'charset',
+])
+
+exports.HtmlMeta.defineProps([
+  'httpEquiv',
+  'name',
+  'content',
+], true)
+
+exports.HtmlMeter.defineProps([
+  'value',
+  'min',
+  'max',
+  'low',
+  'high',
+  'optimum',
+], true)
+
+exports.HtmlObject.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'setCustomValidity',
+])
+
+exports.HtmlObject.defineProps([
+  'willValidate',
+  'validity',
+  'validationMessage',
+])
+
+exports.HtmlObject.defineProps([
+  'name',
+  'data',
+  'type',
+  'typeMustMatch',
+  'useMap',
+  'width',
+  'height',
+], true)
+
+exports.HtmlOl.defineProps([
+  'reversed',
+  'start',
+  'type',
+], true)
+
+exports.HtmlOptGroup.defineProps([
+  'disabled',
+  'label',
+], true)
+
+exports.HtmlOption.defineProps([
+  'index',
+])
+
+exports.HtmlOption.defineProps([
+  'disabled',
+  'label',
+  'defaultSelected',
+  'selected',
+  'value',
+  'text',
+], true)
+
+exports.HtmlOutput.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'setCustomValidity',
+])
+
+exports.HtmlOutput.defineProps([
+  'type',
+  'willValidate',
+  'validity',
+  'validationMessage',
+])
+
+exports.HtmlOutput.defineProps([
+  'htmlFor',
+  'defaultValue',
+  'name',
+  'value',
+], true)
+
+exports.HtmlParam.defineProps([
+  'name',
+  'value',
+], true)
+
+exports.HtmlProgress.defineProps([
+  'position',
+])
+
+exports.HtmlProgress.defineProps([
+  'value',
+  'max',
+], true)
+
+exports.HtmlQ.defineProps([
+  'cite',
+], true)
+
+exports.HtmlScript.defineProps([
+  'src',
+  'type',
+  'noModule',
+  'charset',
+  'async',
+  'defer',
+  'crossOrigin',
+  'integrity',
+  'referrerPolicy',
+  'text',
+  'nonce',
+], true)
+
+exports.HtmlSelect.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'setCustomValidity',
+])
+
+exports.HtmlSelect.defineProps([
+  'type',
+  'length',
+  'willValidate',
+  'validity',
+  'validationMessage',
+])
+
+exports.HtmlSelect.defineProps([
+  'autocomplete',
+  'autofocus',
+  'disabled',
+  'multiple',
+  'name',
+  'required',
+  'size',
+  'selectedIndex',
+  'value',
+], true)
+
+exports.HtmlSource.defineProps([
+  'src',
+  'type',
+  'srcset',
+  'sizes',
+  'media',
+], true)
+
+exports.HtmlStyle.defineProps([
+  'media',
+  'nonce',
+  'type',
+], true)
+
+exports.HtmlTd.defineProps([
+  'cellIndex',
+])
+
+exports.HtmlTd.defineProps([
+  'colSpan',
+  'rowSpan',
+  'headers',
+], true)
+
+exports.HtmlTextArea.defineMethods([
+  'checkValidity',
+  'reportValidity',
+  'select',
+  'setCustomValidity',
+  'setRangeText',
+  'setSelectionRange',
+])
+
+exports.HtmlTextArea.defineProps([
+  'type',
+  'textLength',
+  'willValidate',
+  'validity',
+  'validationMessage',
+])
+
+exports.HtmlTextArea.defineProps([
+  'autocomplete',
+  'autofocus',
+  'cols',
+  'dirName',
+  'disabled',
+  'inputMode',
+  'maxLength',
+  'minLength',
+  'name',
+  'placeholder',
+  'readOnly',
+  'required',
+  'rows',
+  'wrap',
+  'step',
+  'defaultValue',
+  'value',
+  'selectionStart',
+  'selectionEnd',
+  'selectionDirection',
+], true)
+
+exports.HtmlTh.defineProps([
+  'cellIndex',
+])
+
+exports.HtmlTh.defineProps([
+  'colSpan',
+  'rowSpan',
+  'headers',
+  'scope',
+  'abbr',
+], true)
+
+exports.HtmlTime.defineProps([
+  'dateTime',
+], true)
+
+exports.HtmlTitle.defineProps([
+  'text',
+], true)
+
+exports.HtmlTr.defineProps([
+  'rowIndex',
+  'sectionRowIndex',
+])
+
+exports.HtmlTrack.defineProps([
+  'readyState',
+  'track',
+])
+
+exports.HtmlTrack.defineProps([
+  'kind',
+  'src',
+  'srclang',
+  'label',
+  'default',
+], true)
+
+exports.HtmlVideo.defineMethods([
+  'load',
+  'canPlayType',
+  'fastSeek',
+  'getStartDate',
+  'play',
+  'pause',
+  'addTextTrack',
+])
+
+exports.HtmlVideo.defineProps([
+  'error',
+  'currentSrc',
+  'networkState',
+  'buffered',
+  'readyState',
+  'seeking',
+  'duration',
+  'paused',
+  'played',
+  'seekable',
+  'ended',
+  'audioTracks',
+  'videoTracks',
+  'textTracks',
+  'videoWidth',
+  'videoHeight',
+])
+
+exports.HtmlVideo.defineProps([
+  'src',
+  'srcObject',
+  'crossOrigin',
+  'preload',
+  'currentTime',
+  'defaultPlaybackRate',
+  'playbackRate',
+  'autoplay',
+  'loop',
+  'controls',
+  'volume',
+  'muted',
+  'defaultMuted',
+  'width',
+  'height',
+  'poster',
+], true)
+
+
+/***/ }),
+/* 2 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const Dataset = __webpack_require__(3)
+const DomElem = __webpack_require__(5)
+const Style = __webpack_require__(9)
+
+/**
+ * @see https://html.spec.whatwg.org/#htmlelement
+ * @abstract
+ */
+class HtmlElem extends DomElem
+{
+  static prefix = 'Html'
+
+  static namespace = 'http://www.w3.org/1999/xhtml'
+
+  /**
+   * @returns {string}
+   */
+  get innerText() {
+    return this.node.innerText
+  }
+
+  /**
+   * @param {string} innerText
+   */
+  set innerText(innerText) {
+    this.node.innerText = innerText
+  }
+
+  /**
+   * @returns {number|null}
+   */
+  get tabIndex() {
+    return this.hasAttr('tabindex') ? this.node.tabIndex : null
+  }
+
+  /**
+   * @param {number|null} tabIndex
+   */
+  set tabIndex(tabIndex) {
+    if(tabIndex === null) {
+      this.removeAttr('tabindex')
+    }
+    else this.node.tabIndex = tabIndex
+  }
+}
+
+HtmlElem.defineMethods([
+  'blur',
+  'click',
+  'focus',
+])
+
+HtmlElem.defineAttrs([
+  Dataset,
+  Style,
+])
+
+HtmlElem.defineProps([
+  'isContentEditable',
+  'offsetHeight',
+  'offsetLeft',
+  'offsetTop',
+  'offsetWidth',
+])
+
+HtmlElem.defineProps([
+  'accessKey',
+  'autofocus',
+  'contentEditable',
+  'dir',
+  'hidden',
+  'inputMode',
+  'lang',
+  'title',
+  'translate',
+], true)
+
+module.exports = HtmlElem
+
+
+/***/ }),
+/* 3 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const AttrType = __webpack_require__(4)
+
+let undefined
+
+class Dataset extends AttrType
+{
+  /**
+   * @param {DomElem} elem
+   * @returns {DOMStringMap}
+   */
+  static get(elem) {
+    return elem.node.dataset
+  }
+
+  /**
+   * @param {DomElem} elem
+   * @param {{}} dataset
+   */
+  static set(elem, dataset) {
+    const map = elem.node.dataset
+    for(let [name, value] of Object.entries(dataset)) {
+      if(value !== undefined) {
+        map[name] = dataset[name]
+      }
+    }
+  }
+
+  /**
+   * @param {DomElem} elem
+   * @returns {boolean}
+   */
+  static has(elem) {
+    return 'dataset' in elem.node
+  }
+}
+
+module.exports = Dataset
+
+
+/***/ }),
+/* 4 */
+/***/ ((module) => {
+
 /**
  * @see https://www.w3.org/TR/dom/#interface-attr
  */
 class AttrType
 {
-  /**
-   * @param {constructor} constructor (DomElem)
-   * @param {prototype} constructor.prototype
-   * @param {string|constructor} [attr]
-   * @param {string} [attr.attrName]
-   * @override
-   */
-  static define(constructor, attr = this) {
-    const name = typeof attr === 'string'? attr : attr.attrName
-    Object.defineProperty(constructor.prototype, name, {
-      configurable : true,
-      /**
-       * @this DomElem
-       * @return {*}
-       */
-      get() {
-        return this.getAttr(attr)
-      },
-      /**
-       * @this DomElem
-       * @param value
-       */
-      set(value) {
-        this.setAttr(attr, value)
-      },
-    })
-  }
+  static defaultValue = null
 
   /**
    * @param {DomElem} elem
@@ -58,6 +924,14 @@ class AttrType
    */
   static get(elem) {
     return elem.node.getAttribute(this.localName)
+  }
+
+  /**
+   * @param {DomElem} elem
+   * @param {string|*} value
+   */
+  static set(elem, value) {
+    elem.node.setAttribute(this.localName, value)
   }
 
   /**
@@ -73,14 +947,6 @@ class AttrType
    */
   static remove(elem) {
     elem.node.removeAttribute(this.localName)
-  }
-
-  /**
-   * @param {DomElem} elem
-   * @param {string|*} value
-   */
-  static set(elem, value) {
-    elem.node.setAttribute(this.localName, value)
   }
 
   /**
@@ -101,126 +967,31 @@ class AttrType
   }
 
   /**
-   * @returns {null|*}
+   * @returns {string}
    */
-  static get defaultValue() {
-    return null
+  static get localName() {
+    return this.name.toLowerCase()
   }
 }
 
-
-/***/ }),
-/* 2 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Dataset": () => (/* binding */ Dataset)
-/* harmony export */ });
-/* harmony import */ var _AttrType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-
-
-let undefined
-
-class Dataset extends _AttrType_js__WEBPACK_IMPORTED_MODULE_0__.AttrType
-{
-  /**
-   * @param {DomElem} elem
-   * @param {{}} dataset
-   */
-  static set(elem, dataset) {
-    const map = elem.node.dataset
-    for(let [name, value] of Object.entries(dataset)) {
-      if(value !== undefined) {
-        map[name] = dataset[name]
-      }
-    }
-  }
-
-  /**
-   * @param {DomElem} elem
-   * @returns {DOMStringMap}
-   */
-  static get(elem) {
-    return elem.node.dataset
-  }
-
-  /**
-   * @param {DomElem} elem
-   * @returns {boolean}
-   */
-  static has(elem) {
-    return 'dataset' in elem.node
-  }
-}
+module.exports = AttrType
 
 
 /***/ }),
-/* 3 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/* 5 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Style": () => (/* binding */ Style)
-/* harmony export */ });
-/* harmony import */ var _AttrType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+const DomNode = __webpack_require__(6)
+const window = __webpack_require__(8)
 
-
-class Style extends _AttrType_js__WEBPACK_IMPORTED_MODULE_0__.AttrType
-{
-  /**
-   * @param {HtmlElem} elem
-   * @param {string|{}} style
-   */
-  static set(elem, style) {
-    if(typeof style === 'string') {
-      elem.node.style = style
-    }
-    else Object.assign(elem.node.style, style)
-  }
-
-  /**
-   * @param {HtmlElem} elem
-   * @returns {CSSStyleDeclaration}
-   */
-  static get(elem) {
-    return elem.node.style
-  }
-
-  /**
-   * @param {HtmlElem} elem
-   * @returns {boolean}
-   */
-  static has(elem) {
-    return 'style' in elem.node
-  }
-}
-
-
-/***/ }),
-/* 4 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DomElem": () => (/* binding */ DomElem)
-/* harmony export */ });
-/* harmony import */ var window__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var window__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(window__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _AttrType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
-/* harmony import */ var _DomNode_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
-
-
-
-
-const { document } = (window__WEBPACK_IMPORTED_MODULE_0___default())
+const { document } = window
 
 let counter = 0
 
 /**
- * @see https://www.w3.org/TR/dom/#interface-element
+ * @see https://dom.spec.whatwg.org/#interface-element
  */
-class DomElem extends _DomNode_js__WEBPACK_IMPORTED_MODULE_2__.DomNode
+class DomElem extends DomNode
 {
   className = undefined
 
@@ -453,8 +1224,18 @@ class DomElem extends _DomNode_js__WEBPACK_IMPORTED_MODULE_2__.DomNode
    * @param {string[]|constructor[]} attrs
    */
   static defineAttrs(attrs) {
-    for(const item of attrs) {
-      _AttrType_js__WEBPACK_IMPORTED_MODULE_1__.AttrType.define(this, item)
+    let attr, name
+    for(attr of attrs) {
+      name = typeof attr === 'string'? attr : attr.attrName
+      Object.defineProperty(this.prototype, name, {
+        configurable : true,
+        get() {
+          return this.getAttr(attr)
+        },
+        set(value) {
+          this.setAttr(attr, value)
+        },
+      })
     }
   }
 }
@@ -483,32 +1264,21 @@ DomElem.defineProps([
   'id',
 ], true)
 
+module.exports = DomElem
 
-/***/ }),
-/* 5 */
-/***/ ((module) => {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 
 /***/ }),
 /* 6 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DomNode": () => (/* binding */ DomNode)
-/* harmony export */ });
-/* harmony import */ var window__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var window__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(window__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var morphdom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-
-
+const { default : morphdom } = __webpack_require__(7)
+const window = __webpack_require__(8)
 
 const SPECIAL_PROPS = ['node', 'children']
-const { document, CustomEvent, EventTarget } = (window__WEBPACK_IMPORTED_MODULE_0___default())
+const { document, CustomEvent, DocumentFragment, EventTarget } = window
 
 /**
- * @see https://www.w3.org/TR/dom/#interface-node
+ * @see https://dom.spec.whatwg.org/#interface-node
  * @abstract
  */
 class DomNode
@@ -516,7 +1286,7 @@ class DomNode
   state = {}
 
   /**
-   * @param {*} props
+   * @param {*} [props]
    */
   constructor(props = {}) {
     this.__handlers = new Map
@@ -597,7 +1367,7 @@ class DomNode
   }
 
   /**
-   * @param {{}} state
+   * @param {{}} [state]
    */
   setState(state) {
     const prevState = Object.assign({}, this.state)
@@ -612,7 +1382,7 @@ class DomNode
         }
         return child
       }))
-      ;(0,morphdom__WEBPACK_IMPORTED_MODULE_1__["default"])(this.node, fragment, options)
+      morphdom(this.node, fragment, options)
     }
     this.componentDidUpdate(this.props, prevState)
   }
@@ -746,15 +1516,17 @@ class DomNode
 
   /**
    * @param {{}} props
-   * @param {Node} parentNode
+   * @param {Node} [parentNode]
    * @return {*|DomNode}
    */
   static render(props, parentNode) {
     const instance = new this(props)
     const fragment = new DocumentFragment
     instance.init(true)
-    fragment.append(instance.node)
-    ;(0,morphdom__WEBPACK_IMPORTED_MODULE_1__["default"])(parentNode, fragment, options)
+    if(parentNode) {
+      fragment.append(instance.node)
+      morphdom(parentNode, fragment, options)
+    }
     return instance
   }
 }
@@ -821,46 +1593,49 @@ const options = {
  * type : [constructor, bubbles, cancelable]
  */
 const events = {
-  blur : [(window__WEBPACK_IMPORTED_MODULE_0___default().FocusEvent)],
-  cancel : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event), false, true],
-  change : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event), true],
-  click : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  close : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event)],
-  contextmenu : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  dblclick : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  error : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event)],
-  focus : [(window__WEBPACK_IMPORTED_MODULE_0___default().FocusEvent)],
-  focusin : [(window__WEBPACK_IMPORTED_MODULE_0___default().FocusEvent), true],
-  focusout : [(window__WEBPACK_IMPORTED_MODULE_0___default().FocusEvent), true],
-  input : [(window__WEBPACK_IMPORTED_MODULE_0___default().InputEvent), true],
-  invalid : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event), false, true],
-  keydown : [(window__WEBPACK_IMPORTED_MODULE_0___default().KeyboardEvent), true, true],
-  keyup : [(window__WEBPACK_IMPORTED_MODULE_0___default().KeyboardEvent), true, true],
-  load : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event)],
-  mousedown : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  mouseenter : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent)],
-  mouseleave : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent)],
-  mousemove : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  mouseout : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  mouseover : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  mouseup : [(window__WEBPACK_IMPORTED_MODULE_0___default().MouseEvent), true, true],
-  reset : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event), true, true],
-  resize : [(window__WEBPACK_IMPORTED_MODULE_0___default().UIEvent)],
-  scroll : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event), true],
-  submit : [(window__WEBPACK_IMPORTED_MODULE_0___default().Event), true, true],
-  touchcancel : [(window__WEBPACK_IMPORTED_MODULE_0___default().TouchEvent), true],
-  touchend : [(window__WEBPACK_IMPORTED_MODULE_0___default().TouchEvent), true, true],
-  touchmove : [(window__WEBPACK_IMPORTED_MODULE_0___default().TouchEvent), true, true],
-  touchstart : [(window__WEBPACK_IMPORTED_MODULE_0___default().TouchEvent), true, true],
+  blur : [window.FocusEvent],
+  cancel : [window.Event, false, true],
+  change : [window.Event, true],
+  click : [window.MouseEvent, true, true],
+  close : [window.Event],
+  contextmenu : [window.MouseEvent, true, true],
+  dblclick : [window.MouseEvent, true, true],
+  error : [window.Event],
+  focus : [window.FocusEvent],
+  focusin : [window.FocusEvent, true],
+  focusout : [window.FocusEvent, true],
+  input : [window.InputEvent, true],
+  invalid : [window.Event, false, true],
+  keydown : [window.KeyboardEvent, true, true],
+  keyup : [window.KeyboardEvent, true, true],
+  load : [window.Event],
+  mousedown : [window.MouseEvent, true, true],
+  mouseenter : [window.MouseEvent],
+  mouseleave : [window.MouseEvent],
+  mousemove : [window.MouseEvent, true, true],
+  mouseout : [window.MouseEvent, true, true],
+  mouseover : [window.MouseEvent, true, true],
+  mouseup : [window.MouseEvent, true, true],
+  reset : [window.Event, true, true],
+  resize : [window.UIEvent],
+  scroll : [window.Event, true],
+  submit : [window.Event, true, true],
+  touchcancel : [window.TouchEvent, true],
+  touchend : [window.TouchEvent, true, true],
+  touchmove : [window.TouchEvent, true, true],
+  touchstart : [window.TouchEvent, true, true],
 }
 
 DomNode.defineEvents(Object.keys(events))
+
+module.exports = DomNode
 
 
 /***/ }),
 /* 7 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1624,1407 +2399,53 @@ var morphdom = morphdomFactory(morphAttrs);
 
 /***/ }),
 /* 8 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HtmlA": () => (/* binding */ HtmlA),
-/* harmony export */   "HtmlAbbr": () => (/* binding */ HtmlAbbr),
-/* harmony export */   "HtmlAddress": () => (/* binding */ HtmlAddress),
-/* harmony export */   "HtmlArea": () => (/* binding */ HtmlArea),
-/* harmony export */   "HtmlArticle": () => (/* binding */ HtmlArticle),
-/* harmony export */   "HtmlAside": () => (/* binding */ HtmlAside),
-/* harmony export */   "HtmlAudio": () => (/* binding */ HtmlAudio),
-/* harmony export */   "HtmlB": () => (/* binding */ HtmlB),
-/* harmony export */   "HtmlBase": () => (/* binding */ HtmlBase),
-/* harmony export */   "HtmlBdi": () => (/* binding */ HtmlBdi),
-/* harmony export */   "HtmlBdo": () => (/* binding */ HtmlBdo),
-/* harmony export */   "HtmlBlockQuote": () => (/* binding */ HtmlBlockQuote),
-/* harmony export */   "HtmlBody": () => (/* binding */ HtmlBody),
-/* harmony export */   "HtmlBr": () => (/* binding */ HtmlBr),
-/* harmony export */   "HtmlButton": () => (/* binding */ HtmlButton),
-/* harmony export */   "HtmlCanvas": () => (/* binding */ HtmlCanvas),
-/* harmony export */   "HtmlCaption": () => (/* binding */ HtmlCaption),
-/* harmony export */   "HtmlCite": () => (/* binding */ HtmlCite),
-/* harmony export */   "HtmlCode": () => (/* binding */ HtmlCode),
-/* harmony export */   "HtmlCol": () => (/* binding */ HtmlCol),
-/* harmony export */   "HtmlColGroup": () => (/* binding */ HtmlColGroup),
-/* harmony export */   "HtmlData": () => (/* binding */ HtmlData),
-/* harmony export */   "HtmlDataList": () => (/* binding */ HtmlDataList),
-/* harmony export */   "HtmlDd": () => (/* binding */ HtmlDd),
-/* harmony export */   "HtmlDel": () => (/* binding */ HtmlDel),
-/* harmony export */   "HtmlDetails": () => (/* binding */ HtmlDetails),
-/* harmony export */   "HtmlDfn": () => (/* binding */ HtmlDfn),
-/* harmony export */   "HtmlDialog": () => (/* binding */ HtmlDialog),
-/* harmony export */   "HtmlDiv": () => (/* binding */ HtmlDiv),
-/* harmony export */   "HtmlDl": () => (/* binding */ HtmlDl),
-/* harmony export */   "HtmlDt": () => (/* binding */ HtmlDt),
-/* harmony export */   "HtmlEm": () => (/* binding */ HtmlEm),
-/* harmony export */   "HtmlEmbed": () => (/* binding */ HtmlEmbed),
-/* harmony export */   "HtmlFieldSet": () => (/* binding */ HtmlFieldSet),
-/* harmony export */   "HtmlFigCaption": () => (/* binding */ HtmlFigCaption),
-/* harmony export */   "HtmlFigure": () => (/* binding */ HtmlFigure),
-/* harmony export */   "HtmlFooter": () => (/* binding */ HtmlFooter),
-/* harmony export */   "HtmlForm": () => (/* binding */ HtmlForm),
-/* harmony export */   "HtmlH1": () => (/* binding */ HtmlH1),
-/* harmony export */   "HtmlH2": () => (/* binding */ HtmlH2),
-/* harmony export */   "HtmlH3": () => (/* binding */ HtmlH3),
-/* harmony export */   "HtmlH4": () => (/* binding */ HtmlH4),
-/* harmony export */   "HtmlH5": () => (/* binding */ HtmlH5),
-/* harmony export */   "HtmlH6": () => (/* binding */ HtmlH6),
-/* harmony export */   "HtmlHGroup": () => (/* binding */ HtmlHGroup),
-/* harmony export */   "HtmlHead": () => (/* binding */ HtmlHead),
-/* harmony export */   "HtmlHeader": () => (/* binding */ HtmlHeader),
-/* harmony export */   "HtmlHr": () => (/* binding */ HtmlHr),
-/* harmony export */   "HtmlHtml": () => (/* binding */ HtmlHtml),
-/* harmony export */   "HtmlI": () => (/* binding */ HtmlI),
-/* harmony export */   "HtmlIFrame": () => (/* binding */ HtmlIFrame),
-/* harmony export */   "HtmlImg": () => (/* binding */ HtmlImg),
-/* harmony export */   "HtmlInput": () => (/* binding */ HtmlInput),
-/* harmony export */   "HtmlIns": () => (/* binding */ HtmlIns),
-/* harmony export */   "HtmlKbd": () => (/* binding */ HtmlKbd),
-/* harmony export */   "HtmlLabel": () => (/* binding */ HtmlLabel),
-/* harmony export */   "HtmlLegend": () => (/* binding */ HtmlLegend),
-/* harmony export */   "HtmlLi": () => (/* binding */ HtmlLi),
-/* harmony export */   "HtmlLink": () => (/* binding */ HtmlLink),
-/* harmony export */   "HtmlMain": () => (/* binding */ HtmlMain),
-/* harmony export */   "HtmlMap": () => (/* binding */ HtmlMap),
-/* harmony export */   "HtmlMark": () => (/* binding */ HtmlMark),
-/* harmony export */   "HtmlMenu": () => (/* binding */ HtmlMenu),
-/* harmony export */   "HtmlMeta": () => (/* binding */ HtmlMeta),
-/* harmony export */   "HtmlMeter": () => (/* binding */ HtmlMeter),
-/* harmony export */   "HtmlNav": () => (/* binding */ HtmlNav),
-/* harmony export */   "HtmlNoScript": () => (/* binding */ HtmlNoScript),
-/* harmony export */   "HtmlObject": () => (/* binding */ HtmlObject),
-/* harmony export */   "HtmlOl": () => (/* binding */ HtmlOl),
-/* harmony export */   "HtmlOptGroup": () => (/* binding */ HtmlOptGroup),
-/* harmony export */   "HtmlOption": () => (/* binding */ HtmlOption),
-/* harmony export */   "HtmlOutput": () => (/* binding */ HtmlOutput),
-/* harmony export */   "HtmlP": () => (/* binding */ HtmlP),
-/* harmony export */   "HtmlParam": () => (/* binding */ HtmlParam),
-/* harmony export */   "HtmlPicture": () => (/* binding */ HtmlPicture),
-/* harmony export */   "HtmlPre": () => (/* binding */ HtmlPre),
-/* harmony export */   "HtmlProgress": () => (/* binding */ HtmlProgress),
-/* harmony export */   "HtmlQ": () => (/* binding */ HtmlQ),
-/* harmony export */   "HtmlRp": () => (/* binding */ HtmlRp),
-/* harmony export */   "HtmlRt": () => (/* binding */ HtmlRt),
-/* harmony export */   "HtmlRuby": () => (/* binding */ HtmlRuby),
-/* harmony export */   "HtmlS": () => (/* binding */ HtmlS),
-/* harmony export */   "HtmlSamp": () => (/* binding */ HtmlSamp),
-/* harmony export */   "HtmlScript": () => (/* binding */ HtmlScript),
-/* harmony export */   "HtmlSection": () => (/* binding */ HtmlSection),
-/* harmony export */   "HtmlSelect": () => (/* binding */ HtmlSelect),
-/* harmony export */   "HtmlSmall": () => (/* binding */ HtmlSmall),
-/* harmony export */   "HtmlSource": () => (/* binding */ HtmlSource),
-/* harmony export */   "HtmlSpan": () => (/* binding */ HtmlSpan),
-/* harmony export */   "HtmlStrong": () => (/* binding */ HtmlStrong),
-/* harmony export */   "HtmlStyle": () => (/* binding */ HtmlStyle),
-/* harmony export */   "HtmlSub": () => (/* binding */ HtmlSub),
-/* harmony export */   "HtmlSummary": () => (/* binding */ HtmlSummary),
-/* harmony export */   "HtmlSup": () => (/* binding */ HtmlSup),
-/* harmony export */   "HtmlTBody": () => (/* binding */ HtmlTBody),
-/* harmony export */   "HtmlTFoot": () => (/* binding */ HtmlTFoot),
-/* harmony export */   "HtmlTHead": () => (/* binding */ HtmlTHead),
-/* harmony export */   "HtmlTable": () => (/* binding */ HtmlTable),
-/* harmony export */   "HtmlTd": () => (/* binding */ HtmlTd),
-/* harmony export */   "HtmlTemplate": () => (/* binding */ HtmlTemplate),
-/* harmony export */   "HtmlTextArea": () => (/* binding */ HtmlTextArea),
-/* harmony export */   "HtmlTh": () => (/* binding */ HtmlTh),
-/* harmony export */   "HtmlTime": () => (/* binding */ HtmlTime),
-/* harmony export */   "HtmlTitle": () => (/* binding */ HtmlTitle),
-/* harmony export */   "HtmlTr": () => (/* binding */ HtmlTr),
-/* harmony export */   "HtmlTrack": () => (/* binding */ HtmlTrack),
-/* harmony export */   "HtmlU": () => (/* binding */ HtmlU),
-/* harmony export */   "HtmlUl": () => (/* binding */ HtmlUl),
-/* harmony export */   "HtmlVar": () => (/* binding */ HtmlVar),
-/* harmony export */   "HtmlVideo": () => (/* binding */ HtmlVideo),
-/* harmony export */   "HtmlWbr": () => (/* binding */ HtmlWbr)
-/* harmony export */ });
-/* harmony import */ var _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
-
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-a-element
- */
-class HtmlA extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-abbr-element
- */
-class HtmlAbbr extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-address-element
- */
-class HtmlAddress extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-area-element
- */
-class HtmlArea extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-article-element
- */
-class HtmlArticle extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-aside-element
- */
-class HtmlAside extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-audio-element
- */
-class HtmlAudio extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-b-element
- */
-class HtmlB extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-base-element
- */
-class HtmlBase extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-bdi-element
- */
-class HtmlBdi extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-bdo-element
- */
-class HtmlBdo extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-blockquote-element
- */
-class HtmlBlockQuote extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-body-element
- */
-class HtmlBody extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-br-element
- */
-class HtmlBr extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-button-element
- */
-class HtmlButton extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-canvas-element
- */
-class HtmlCanvas extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-caption-element
- */
-class HtmlCaption extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-cite-element
- */
-class HtmlCite extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-code-element
- */
-class HtmlCode extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-col-element
- */
-class HtmlCol extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-colgroup-element
- */
-class HtmlColGroup extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-data-element
- */
-class HtmlData extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-datalist-element
- */
-class HtmlDataList extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-dd-element
- */
-class HtmlDd extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-del-element
- */
-class HtmlDel extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-details-element
- */
-class HtmlDetails extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-dfn-element
- */
-class HtmlDfn extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-dialog-element
- */
-class HtmlDialog extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-div-element
- */
-class HtmlDiv extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-dl-element
- */
-class HtmlDl extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-dt-element
- */
-class HtmlDt extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-em-element
- */
-class HtmlEm extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-embed-element
- */
-class HtmlEmbed extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-fieldset-element
- */
-class HtmlFieldSet extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-figcaption-element
- */
-class HtmlFigCaption extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-figure-element
- */
-class HtmlFigure extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-footer-element
- */
-class HtmlFooter extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-form-element
- */
-class HtmlForm extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-h1-element
- */
-class HtmlH1 extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-h2-element
- */
-class HtmlH2 extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-h3-element
- */
-class HtmlH3 extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-h4-element
- */
-class HtmlH4 extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-h5-element
- */
-class HtmlH5 extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-h6-element
- */
-class HtmlH6 extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-hgroup-element
- */
-class HtmlHGroup extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-head-element
- */
-class HtmlHead extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-header-element
- */
-class HtmlHeader extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-hr-element
- */
-class HtmlHr extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-html-element
- */
-class HtmlHtml extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-i-element
- */
-class HtmlI extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-iframe-element
- */
-class HtmlIFrame extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-img-element
- */
-class HtmlImg extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-input-element
- */
-class HtmlInput extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-ins-element
- */
-class HtmlIns extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-kbd-element
- */
-class HtmlKbd extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-label-element
- */
-class HtmlLabel extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-legend-element
- */
-class HtmlLegend extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-li-element
- */
-class HtmlLi extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-link-element
- */
-class HtmlLink extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-main-element
- */
-class HtmlMain extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-map-element
- */
-class HtmlMap extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-mark-element
- */
-class HtmlMark extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-menu-element
- */
-class HtmlMenu extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-meta-element
- */
-class HtmlMeta extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-meter-element
- */
-class HtmlMeter extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-nav-element
- */
-class HtmlNav extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-noscript-element
- */
-class HtmlNoScript extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-object-element
- */
-class HtmlObject extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-ol-element
- */
-class HtmlOl extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-optgroup-element
- */
-class HtmlOptGroup extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-option-element
- */
-class HtmlOption extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-output-element
- */
-class HtmlOutput extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-p-element
- */
-class HtmlP extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-param-element
- */
-class HtmlParam extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-picture-element
- */
-class HtmlPicture extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-pre-element
- */
-class HtmlPre extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-progress-element
- */
-class HtmlProgress extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-q-element
- */
-class HtmlQ extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-rp-element
- */
-class HtmlRp extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-rt-element
- */
-class HtmlRt extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-ruby-element
- */
-class HtmlRuby extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-s-element
- */
-class HtmlS extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-samp-element
- */
-class HtmlSamp extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-script-element
- */
-class HtmlScript extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-section-element
- */
-class HtmlSection extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-select-element
- */
-class HtmlSelect extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-small-element
- */
-class HtmlSmall extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-source-element
- */
-class HtmlSource extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-span-element
- */
-class HtmlSpan extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-strong-element
- */
-class HtmlStrong extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-style-element
- */
-class HtmlStyle extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-sub-element
- */
-class HtmlSub extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-summary-element
- */
-class HtmlSummary extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-sup-element
- */
-class HtmlSup extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-tbody-element
- */
-class HtmlTBody extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-tfoot-element
- */
-class HtmlTFoot extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-thead-element
- */
-class HtmlTHead extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-table-element
- */
-class HtmlTable extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-td-element
- */
-class HtmlTd extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-template-element
- */
-class HtmlTemplate extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-textarea-element
- */
-class HtmlTextArea extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-th-element
- */
-class HtmlTh extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-time-element
- */
-class HtmlTime extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-title-element
- */
-class HtmlTitle extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-tr-element
- */
-class HtmlTr extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-track-element
- */
-class HtmlTrack extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-u-element
- */
-class HtmlU extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-ul-element
- */
-class HtmlUl extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-var-element
- */
-class HtmlVar extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-video-element
- */
-class HtmlVideo extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#the-wbr-element
- */
-class HtmlWbr extends _HtmlElem_js__WEBPACK_IMPORTED_MODULE_0__.HtmlElem {}
-
-HtmlA.defineProps([
-  'origin',
-])
-
-HtmlA.defineProps([
-  'href',
-  'protocol',
-  'username',
-  'password',
-  'host',
-  'hostname',
-  'port',
-  'pathname',
-  'search',
-  'hash',
-  'target',
-  'download',
-  'rel',
-  'rev',
-  'hreflang',
-  'type',
-  'referrerPolicy',
-], true)
-
-HtmlArea.defineProps([
-  'origin',
-  'relList',
-])
-
-HtmlArea.defineProps([
-  'href',
-  'protocol',
-  'username',
-  'password',
-  'host',
-  'hostname',
-  'port',
-  'pathname',
-  'search',
-  'hash',
-  'alt',
-  'coords',
-  'shape',
-  'target',
-  'download',
-  'rel',
-  'hreflang',
-  'type',
-  'referrerPolicy',
-], true)
-
-HtmlAudio.defineMethods([
-  'load',
-  'canPlayType',
-  'fastSeek',
-  'getStartDate',
-  'play',
-  'pause',
-  'addTextTrack',
-])
-
-HtmlAudio.defineProps([
-  'error',
-  'currentSrc',
-  'networkState',
-  'buffered',
-  'readyState',
-  'seeking',
-  'duration',
-  'paused',
-  'played',
-  'seekable',
-  'ended',
-  'audioTracks',
-  'videoTracks',
-  'textTracks',
-])
-
-HtmlAudio.defineProps([
-  'src',
-  'srcObject',
-  'crossOrigin',
-  'preload',
-  'currentTime',
-  'defaultPlaybackRate',
-  'playbackRate',
-  'autoplay',
-  'loop',
-  'controls',
-  'volume',
-  'muted',
-  'defaultMuted',
-], true)
-
-HtmlBase.defineProps([
-  'href',
-  'target',
-], true)
-
-HtmlBlockQuote.defineProps([
-  'cite',
-], true)
-
-HtmlButton.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-HtmlButton.defineProps([
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-HtmlButton.defineProps([
-  'autofocus',
-  'disabled',
-  'formAction',
-  'formEnctype',
-  'formMethod',
-  'formNoValidate',
-  'formTarget',
-  'name',
-  'type',
-  'value',
-], true)
-
-HtmlCanvas.defineMethods([
-  'getContext',
-  'probablySupportsContext',
-  'toDataURL',
-  'toBlob',
-])
-
-HtmlCanvas.defineProps([
-  'width',
-  'height',
-], true)
-
-HtmlCol.defineProps([
-  'span',
-], true)
-
-HtmlColGroup.defineProps([
-  'span',
-], true)
-
-HtmlData.defineProps([
-  'value',
-], true)
-
-HtmlDel.defineProps([
-  'cite',
-  'dateTime',
-], true)
-
-HtmlDetails.defineProps([
-  'open',
-], true)
-
-HtmlDialog.defineMethods([
-  'show',
-  'showModal',
-  'close',
-])
-
-HtmlDialog.defineProps([
-  'open',
-  'returnValue',
-], true)
-
-HtmlEmbed.defineProps([
-  'src',
-  'type',
-  'width',
-  'height',
-], true)
-
-HtmlFieldSet.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-HtmlFieldSet.defineProps([
-  'type',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-HtmlFieldSet.defineProps([
-  'disabled',
-  'name',
-], true)
-
-HtmlForm.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'reset',
-  'submit',
-])
-
-HtmlForm.defineProps([
-  'acceptCharset',
-  'action',
-  'autocomplete',
-  'enctype',
-  'method',
-  'name',
-  'noValidate',
-  'target',
-], true)
-
-HtmlIFrame.defineProps([
-  'sandbox',
-])
-
-HtmlIFrame.defineProps([
-  'src',
-  'srcdoc',
-  'allowFullScreen',
-  'allowPaymentRequest',
-  'width',
-  'height',
-  'referrerPolicy',
-], true)
-
-HtmlImg.defineMethods([
-  'decode',
-])
-
-HtmlImg.defineProps([
-  'complete',
-  'currentSrc',
-  'naturalWidth',
-  'naturalHeight',
-])
-
-HtmlImg.defineProps([
-  'alt',
-  'referrerPolicy',
-  'src',
-  'srcset',
-  'sizes',
-  'crossOrigin',
-  'useMap',
-  'isMap',
-  'height',
-  'width',
-], true)
-
-HtmlInput.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'select',
-  'setCustomValidity',
-  'setRangeText',
-  'setSelectionRange',
-  'stepDown',
-  'stepUp',
-])
-
-HtmlInput.defineProps([
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-HtmlInput.defineProps([
-  'accept',
-  'alt',
-  'autocomplete',
-  'autofocus',
-  'defaultChecked',
-  'checked',
-  'dirName',
-  'disabled',
-  'files',
-  'formAction',
-  'formEnctype',
-  'formMethod',
-  'formNoValidate',
-  'formTarget',
-  'height',
-  'indeterminate',
-  'inputMode',
-  'max',
-  'maxLength',
-  'min',
-  'minLength',
-  'multiple',
-  'name',
-  'pattern',
-  'placeholder',
-  'readOnly',
-  'required',
-  'size',
-  'src',
-  'step',
-  'type',
-  'defaultValue',
-  'value',
-  'valueAsDate',
-  'valueAsNumber',
-  'width',
-  'selectionStart',
-  'selectionEnd',
-  'selectionDirection',
-], true)
-
-HtmlIns.defineProps([
-  'cite',
-  'dateTime',
-], true)
-
-HtmlLabel.defineProps([
-  'htmlFor',
-], true)
-
-HtmlLi.defineProps([
-  'value',
-], true)
-
-HtmlLink.defineProps([
-  'relList',
-  'sizes',
-])
-
-HtmlLink.defineProps([
-  'href',
-  'crossOrigin',
-  'rel',
-  'rev',
-  'media',
-  'nonce',
-  'hreflang',
-  'type',
-  'referrerPolicy',
-], true)
-
-HtmlMap.defineProps([
-  'name',
-], true)
-
-HtmlMeta.defineAttrs([
-  'charset',
-])
-
-HtmlMeta.defineProps([
-  'httpEquiv',
-  'name',
-  'content',
-], true)
-
-HtmlMeter.defineProps([
-  'value',
-  'min',
-  'max',
-  'low',
-  'high',
-  'optimum',
-], true)
-
-HtmlObject.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-HtmlObject.defineProps([
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-HtmlObject.defineProps([
-  'name',
-  'data',
-  'type',
-  'typeMustMatch',
-  'useMap',
-  'width',
-  'height',
-], true)
-
-HtmlOl.defineProps([
-  'reversed',
-  'start',
-  'type',
-], true)
-
-HtmlOptGroup.defineProps([
-  'disabled',
-  'label',
-], true)
-
-HtmlOption.defineProps([
-  'index',
-])
-
-HtmlOption.defineProps([
-  'disabled',
-  'label',
-  'defaultSelected',
-  'selected',
-  'value',
-  'text',
-], true)
-
-HtmlOutput.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-HtmlOutput.defineProps([
-  'type',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-HtmlOutput.defineProps([
-  'htmlFor',
-  'defaultValue',
-  'name',
-  'value',
-], true)
-
-HtmlParam.defineProps([
-  'name',
-  'value',
-], true)
-
-HtmlProgress.defineProps([
-  'position',
-])
-
-HtmlProgress.defineProps([
-  'value',
-  'max',
-], true)
-
-HtmlQ.defineProps([
-  'cite',
-], true)
-
-HtmlScript.defineProps([
-  'src',
-  'type',
-  'noModule',
-  'charset',
-  'async',
-  'defer',
-  'crossOrigin',
-  'integrity',
-  'referrerPolicy',
-  'text',
-  'nonce',
-], true)
-
-HtmlSelect.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-HtmlSelect.defineProps([
-  'type',
-  'length',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-HtmlSelect.defineProps([
-  'autocomplete',
-  'autofocus',
-  'disabled',
-  'multiple',
-  'name',
-  'required',
-  'size',
-  'selectedIndex',
-  'value',
-], true)
-
-HtmlSource.defineProps([
-  'src',
-  'type',
-  'srcset',
-  'sizes',
-  'media',
-], true)
-
-HtmlStyle.defineProps([
-  'media',
-  'nonce',
-  'type',
-], true)
-
-HtmlTd.defineProps([
-  'cellIndex',
-])
-
-HtmlTd.defineProps([
-  'colSpan',
-  'rowSpan',
-  'headers',
-], true)
-
-HtmlTextArea.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'select',
-  'setCustomValidity',
-  'setRangeText',
-  'setSelectionRange',
-])
-
-HtmlTextArea.defineProps([
-  'type',
-  'textLength',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-HtmlTextArea.defineProps([
-  'autocomplete',
-  'autofocus',
-  'cols',
-  'dirName',
-  'disabled',
-  'inputMode',
-  'maxLength',
-  'minLength',
-  'name',
-  'placeholder',
-  'readOnly',
-  'required',
-  'rows',
-  'wrap',
-  'step',
-  'defaultValue',
-  'value',
-  'selectionStart',
-  'selectionEnd',
-  'selectionDirection',
-], true)
-
-HtmlTh.defineProps([
-  'cellIndex',
-])
-
-HtmlTh.defineProps([
-  'colSpan',
-  'rowSpan',
-  'headers',
-  'scope',
-  'abbr',
-], true)
-
-HtmlTime.defineProps([
-  'dateTime',
-], true)
-
-HtmlTitle.defineProps([
-  'text',
-], true)
-
-HtmlTr.defineProps([
-  'rowIndex',
-  'sectionRowIndex',
-])
-
-HtmlTrack.defineProps([
-  'readyState',
-  'track',
-])
-
-HtmlTrack.defineProps([
-  'kind',
-  'src',
-  'srclang',
-  'label',
-  'default',
-], true)
-
-HtmlVideo.defineMethods([
-  'load',
-  'canPlayType',
-  'fastSeek',
-  'getStartDate',
-  'play',
-  'pause',
-  'addTextTrack',
-])
-
-HtmlVideo.defineProps([
-  'error',
-  'currentSrc',
-  'networkState',
-  'buffered',
-  'readyState',
-  'seeking',
-  'duration',
-  'paused',
-  'played',
-  'seekable',
-  'ended',
-  'audioTracks',
-  'videoTracks',
-  'textTracks',
-  'videoWidth',
-  'videoHeight',
-])
-
-HtmlVideo.defineProps([
-  'src',
-  'srcObject',
-  'crossOrigin',
-  'preload',
-  'currentTime',
-  'defaultPlaybackRate',
-  'playbackRate',
-  'autoplay',
-  'loop',
-  'controls',
-  'volume',
-  'muted',
-  'defaultMuted',
-  'width',
-  'height',
-  'poster',
-], true)
+/***/ ((module) => {
+
+if(typeof window === 'undefined') {
+  const { JSDOM } = eval('require("jsdom")')
+  const { window } = new JSDOM
+  module.exports = window
+}
+else module.exports = window
 
 
 /***/ }),
 /* 9 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HtmlElem": () => (/* binding */ HtmlElem)
-/* harmony export */ });
-/* harmony import */ var _Dataset_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _DomElem_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _Style_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
+const AttrType = __webpack_require__(4)
 
-
-
-
-/**
- * @see https://www.w3.org/TR/html/single-page.html#htmlelement
- * @abstract
- */
-class HtmlElem extends _DomElem_js__WEBPACK_IMPORTED_MODULE_1__.DomElem
+class Style extends AttrType
 {
-  static prefix = 'Html'
-
-  static namespace = 'http://www.w3.org/1999/xhtml'
-
   /**
-   * @returns {string}
+   * @param {HtmlElem} elem
+   * @returns {CSSStyleDeclaration}
    */
-  get innerText() {
-    return this.node.innerText
+  static get(elem) {
+    return elem.node.style
   }
 
   /**
-   * @param {string} innerText
+   * @param {HtmlElem} elem
+   * @param {string|{}} style
    */
-  set innerText(innerText) {
-    this.node.innerText = innerText
-  }
-
-  /**
-   * @returns {number|null}
-   */
-  get tabIndex() {
-    return this.hasAttr('tabindex') ? this.node.tabIndex : null
-  }
-
-  /**
-   * @param {number|null} tabIndex
-   */
-  set tabIndex(tabIndex) {
-    if(tabIndex === null) {
-      this.removeAttr('tabindex')
+  static set(elem, style) {
+    if(typeof style === 'string') {
+      elem.node.style = style
     }
-    else this.node.tabIndex = tabIndex
+    else Object.assign(elem.node.style, style)
+  }
+
+  /**
+   * @param {HtmlElem} elem
+   * @returns {boolean}
+   */
+  static has(elem) {
+    return 'style' in elem.node
   }
 }
 
-HtmlElem.defineMethods([
-  'blur',
-  'click',
-  'focus',
-])
-
-HtmlElem.defineAttrs([
-  _Dataset_js__WEBPACK_IMPORTED_MODULE_0__.Dataset,
-  _Style_js__WEBPACK_IMPORTED_MODULE_2__.Style,
-])
-
-HtmlElem.defineProps([
-  'isContentEditable',
-  'offsetHeight',
-  'offsetLeft',
-  'offsetTop',
-  'offsetWidth',
-])
-
-HtmlElem.defineProps([
-  'accessKey',
-  'autofocus',
-  'contentEditable',
-  'dir',
-  'hidden',
-  'inputMode',
-  'lang',
-  'title',
-  'translate',
-], true)
+module.exports = Style
 
 
 /***/ })
@@ -3055,18 +2476,6 @@ HtmlElem.defineProps([
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -3096,151 +2505,12 @@ HtmlElem.defineProps([
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AttrType": () => (/* reexport safe */ _AttrType_js__WEBPACK_IMPORTED_MODULE_0__.AttrType),
-/* harmony export */   "Dataset": () => (/* reexport safe */ _Dataset_js__WEBPACK_IMPORTED_MODULE_1__.Dataset),
-/* harmony export */   "DomElem": () => (/* reexport safe */ _DomElem_js__WEBPACK_IMPORTED_MODULE_3__.DomElem),
-/* harmony export */   "DomNode": () => (/* reexport safe */ _DomNode_js__WEBPACK_IMPORTED_MODULE_4__.DomNode),
-/* harmony export */   "HtmlA": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlA),
-/* harmony export */   "HtmlAbbr": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlAbbr),
-/* harmony export */   "HtmlAddress": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlAddress),
-/* harmony export */   "HtmlArea": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlArea),
-/* harmony export */   "HtmlArticle": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlArticle),
-/* harmony export */   "HtmlAside": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlAside),
-/* harmony export */   "HtmlAudio": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlAudio),
-/* harmony export */   "HtmlB": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlB),
-/* harmony export */   "HtmlBase": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlBase),
-/* harmony export */   "HtmlBdi": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlBdi),
-/* harmony export */   "HtmlBdo": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlBdo),
-/* harmony export */   "HtmlBlockQuote": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlBlockQuote),
-/* harmony export */   "HtmlBody": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlBody),
-/* harmony export */   "HtmlBr": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlBr),
-/* harmony export */   "HtmlButton": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlButton),
-/* harmony export */   "HtmlCanvas": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlCanvas),
-/* harmony export */   "HtmlCaption": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlCaption),
-/* harmony export */   "HtmlCite": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlCite),
-/* harmony export */   "HtmlCode": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlCode),
-/* harmony export */   "HtmlCol": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlCol),
-/* harmony export */   "HtmlColGroup": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlColGroup),
-/* harmony export */   "HtmlData": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlData),
-/* harmony export */   "HtmlDataList": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDataList),
-/* harmony export */   "HtmlDd": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDd),
-/* harmony export */   "HtmlDel": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDel),
-/* harmony export */   "HtmlDetails": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDetails),
-/* harmony export */   "HtmlDfn": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDfn),
-/* harmony export */   "HtmlDialog": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDialog),
-/* harmony export */   "HtmlDiv": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDiv),
-/* harmony export */   "HtmlDl": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDl),
-/* harmony export */   "HtmlDt": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlDt),
-/* harmony export */   "HtmlEm": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlEm),
-/* harmony export */   "HtmlEmbed": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlEmbed),
-/* harmony export */   "HtmlFieldSet": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlFieldSet),
-/* harmony export */   "HtmlFigCaption": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlFigCaption),
-/* harmony export */   "HtmlFigure": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlFigure),
-/* harmony export */   "HtmlFooter": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlFooter),
-/* harmony export */   "HtmlForm": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlForm),
-/* harmony export */   "HtmlH1": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlH1),
-/* harmony export */   "HtmlH2": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlH2),
-/* harmony export */   "HtmlH3": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlH3),
-/* harmony export */   "HtmlH4": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlH4),
-/* harmony export */   "HtmlH5": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlH5),
-/* harmony export */   "HtmlH6": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlH6),
-/* harmony export */   "HtmlHGroup": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlHGroup),
-/* harmony export */   "HtmlHead": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlHead),
-/* harmony export */   "HtmlHeader": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlHeader),
-/* harmony export */   "HtmlHr": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlHr),
-/* harmony export */   "HtmlHtml": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlHtml),
-/* harmony export */   "HtmlI": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlI),
-/* harmony export */   "HtmlIFrame": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlIFrame),
-/* harmony export */   "HtmlImg": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlImg),
-/* harmony export */   "HtmlInput": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlInput),
-/* harmony export */   "HtmlIns": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlIns),
-/* harmony export */   "HtmlKbd": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlKbd),
-/* harmony export */   "HtmlLabel": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlLabel),
-/* harmony export */   "HtmlLegend": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlLegend),
-/* harmony export */   "HtmlLi": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlLi),
-/* harmony export */   "HtmlLink": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlLink),
-/* harmony export */   "HtmlMain": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlMain),
-/* harmony export */   "HtmlMap": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlMap),
-/* harmony export */   "HtmlMark": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlMark),
-/* harmony export */   "HtmlMenu": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlMenu),
-/* harmony export */   "HtmlMeta": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlMeta),
-/* harmony export */   "HtmlMeter": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlMeter),
-/* harmony export */   "HtmlNav": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlNav),
-/* harmony export */   "HtmlNoScript": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlNoScript),
-/* harmony export */   "HtmlObject": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlObject),
-/* harmony export */   "HtmlOl": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlOl),
-/* harmony export */   "HtmlOptGroup": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlOptGroup),
-/* harmony export */   "HtmlOption": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlOption),
-/* harmony export */   "HtmlOutput": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlOutput),
-/* harmony export */   "HtmlP": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlP),
-/* harmony export */   "HtmlParam": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlParam),
-/* harmony export */   "HtmlPicture": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlPicture),
-/* harmony export */   "HtmlPre": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlPre),
-/* harmony export */   "HtmlProgress": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlProgress),
-/* harmony export */   "HtmlQ": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlQ),
-/* harmony export */   "HtmlRp": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlRp),
-/* harmony export */   "HtmlRt": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlRt),
-/* harmony export */   "HtmlRuby": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlRuby),
-/* harmony export */   "HtmlS": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlS),
-/* harmony export */   "HtmlSamp": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSamp),
-/* harmony export */   "HtmlScript": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlScript),
-/* harmony export */   "HtmlSection": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSection),
-/* harmony export */   "HtmlSelect": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSelect),
-/* harmony export */   "HtmlSmall": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSmall),
-/* harmony export */   "HtmlSource": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSource),
-/* harmony export */   "HtmlSpan": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSpan),
-/* harmony export */   "HtmlStrong": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlStrong),
-/* harmony export */   "HtmlStyle": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlStyle),
-/* harmony export */   "HtmlSub": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSub),
-/* harmony export */   "HtmlSummary": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSummary),
-/* harmony export */   "HtmlSup": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlSup),
-/* harmony export */   "HtmlTBody": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTBody),
-/* harmony export */   "HtmlTFoot": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTFoot),
-/* harmony export */   "HtmlTHead": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTHead),
-/* harmony export */   "HtmlTable": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTable),
-/* harmony export */   "HtmlTd": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTd),
-/* harmony export */   "HtmlTemplate": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTemplate),
-/* harmony export */   "HtmlTextArea": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTextArea),
-/* harmony export */   "HtmlTh": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTh),
-/* harmony export */   "HtmlTime": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTime),
-/* harmony export */   "HtmlTitle": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTitle),
-/* harmony export */   "HtmlTr": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTr),
-/* harmony export */   "HtmlTrack": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlTrack),
-/* harmony export */   "HtmlU": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlU),
-/* harmony export */   "HtmlUl": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlUl),
-/* harmony export */   "HtmlVar": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlVar),
-/* harmony export */   "HtmlVideo": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlVideo),
-/* harmony export */   "HtmlWbr": () => (/* reexport safe */ _html_js__WEBPACK_IMPORTED_MODULE_5__.HtmlWbr),
-/* harmony export */   "Style": () => (/* reexport safe */ _Style_js__WEBPACK_IMPORTED_MODULE_2__.Style)
-/* harmony export */ });
-/* harmony import */ var _AttrType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _Dataset_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _Style_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
-/* harmony import */ var _DomElem_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);
-/* harmony import */ var _DomNode_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6);
-/* harmony import */ var _html_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8);
-/**
- * @module htmlmodule
- * @author Vyacheslav Aristov <vv.aristov@gmail.com>
- * @see {@link https://www.w3.org/TR/html}
- * @see {@link https://html.spec.whatwg.org}
- */
-
-
-
-
-
-
-
-
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module used 'module' so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__(0);
+/******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

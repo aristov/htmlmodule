@@ -6,8 +6,7 @@
   "bugs": "https://github.com/aristov/htmlmodule/issues",
   "license": "MIT",
   "author": "Vyacheslav Aristov <vv.aristov@gmail.ru>",
-  "type": "module",
-  "main": "dist/htmlmodule.js",
+  "main": "lib",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aristov/htmlmodule.git"
@@ -17,6 +16,7 @@
     "publish": "git push && git push --tags"
   },
   "dependencies": {
+    "jsdom": "^19.0.0",
     "morphdom": "^2.6.1"
   },
   "devDependencies": {
