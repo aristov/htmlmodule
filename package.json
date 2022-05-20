@@ -1,14 +1,14 @@
 {
   "name": "htmlmodule",
   "version": "0.6.2",
-  "description": "Library of UI components",
+  "description": "Library for creating UI",
   "homepage": "https://aristov.github.io/htmlmodule#readme",
   "bugs": "https://github.com/aristov/htmlmodule/issues",
   "license": "MIT",
   "author": "Vyacheslav Aristov <vv.aristov@gmail.ru>",
-  "main": "lib",
+  "main": "index.js",
   "files": [
-    "dist"
+    "lib"
   ],
   "repository": {
     "type": "git",
@@ -33,8 +33,9 @@
   "keywords": [
     "DOM",
     "HTML",
-    "Component",
-    "Library",
-    "UI"
+    "UI",
+    "component",
+    "library",
+    "virtual dom"
   ]
 }

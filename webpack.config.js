@@ -3,7 +3,7 @@ const JS_EXT = process.env.NODE_ENV === 'production' ? '.min.js' : '.js'
 
 module.exports = {
   mode : 'none',
-  entry : './lib/index.js',
+  entry : './index.js',
   output : {
     filename : 'htmlmodule' + JS_EXT,
     library : {
