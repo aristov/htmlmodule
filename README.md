@@ -1,6 +1,6 @@
 # htmlmodule
 
-[![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg?maxAge=2592000)](https://www.npmjs.com/package/htmlmodule)
+[![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg)](https://www.npmjs.com/package/htmlmodule)
 
 HtmlModule is a library to build UI.
 It's inspired from React and based on the same ideas.
