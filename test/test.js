@@ -41,9 +41,9 @@ test('className #1', t => {
 })
 
 test('className #2', t => {
-  const instance = Bar.render('foo', document.createElement('body'))
+  const instance = Bar.render('bat', document.createElement('body'))
   t.is(instance.node.className, 'Bar Foo')
-  t.is(instance.toString(), '<div class="Bar Foo">foo</div>')
+  t.is(instance.toString(), '<div class="Bar Foo">bat</div>')
 })
 
 test('className #3', t => {
