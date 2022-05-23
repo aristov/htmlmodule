@@ -2,4 +2,13 @@
  * @module htmlmodule
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
-module.exports = require('./lib/htmlmodule')
+exports = module.exports = require('./lib/htmlmodule')
+
+exports.AttrType = require('./lib/AttrType')
+exports.Dataset = require('./lib/Dataset')
+exports.DomElem = require('./lib/DomElem')
+exports.DomNode = require('./lib/DomNode')
+exports.HtmlElem = require('./lib/HtmlElem')
+exports.Style = require('./lib/Style')
+
+exports.window = require('xwindow')
