@@ -1,6 +1,6 @@
 const test = require('ava')
 const { HTMLAnchorElement } = require('xwindow')
-const { HtmlA } = require('../lib/htmlmodule')
+const { HtmlA } = require('..')
 
 let instance
 

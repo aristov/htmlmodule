@@ -1,15 +1,15 @@
 const test = require('ava')
 const sinon = require('sinon')
 const { CustomEvent, EventTarget } = require('xwindow')
-const DomNode = require('../lib/DomNode')
 const {
+  DomNode,
   HtmlA,
   HtmlDiv,
   HtmlSpan,
   HtmlArticle,
   HtmlButton,
   HtmlSection,
-} = require('../lib/htmlmodule')
+} = require('..')
 
 class Article extends HtmlArticle
 {
