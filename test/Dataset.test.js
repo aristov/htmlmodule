@@ -7,4 +7,5 @@ test('test', t => {
   t.is(instance.dataset.bat, undefined)
   t.is(instance.node.getAttribute('data-key'), null)
   t.false(instance.node.hasAttribute('data-bat'))
+  instance.destroy()
 })
