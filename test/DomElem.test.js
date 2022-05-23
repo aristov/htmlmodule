@@ -1,6 +1,6 @@
 const test = require('ava')
-const { HTMLAnchorElement, document } = require('xwindow')
-const { HtmlA, HtmlDiv } = require('../lib/htmlmodule')
+const { document } = require('xwindow')
+const { DomElem, HtmlDiv } = require('..')
 
 class Foo extends HtmlDiv
 {
@@ -20,20 +20,25 @@ class Baz extends HtmlDiv
   className = 'foo'
 }
 
+class Example extends DomElem
+{
+  static prefix = 'Test'
+}
+
 let instance
 
 test.afterEach(() => instance.destroy())
 
-test('HtmlA', t => {
-  instance = HtmlA.render({
-    href : 'https://example.com/',
-    children : 'Example',
-    title : undefined,
-  })
-  t.is(instance.node.constructor, HTMLAnchorElement)
-  t.is(instance.href, 'https://example.com/')
-  t.is(instance.text, 'Example')
-  t.is(instance.toString(), '<a href="https://example.com/">Example</a>')
+test('createNode: incorrect prefix', t => {
+  t.throws(() => Example.render())
+})
+
+test('attrs', t => {
+  instance = HtmlDiv.render({ attrs : { 'aria-hidden' : 'true', 'aria-label' : null } })
+  t.is(instance.attrs['aria-hidden'], 'true')
+  t.is(instance.attrs['aria-label'], undefined)
+  t.is(instance.node.getAttribute('aria-hidden'), 'true')
+  t.false(instance.node.hasAttribute('aria-label'))
 })
 
 test('className #1', t => {
