@@ -1,11 +1,5 @@
-.DS_Store
-node_modules
-/index.html
-/sauce_connect.log
-/.idea/
-/npm-debug.log
-/dist
-/docs/build
-/coverage
 /.nyc_output
+/coverage
+/node_modules
+/npm-debug.log
 /tmp
