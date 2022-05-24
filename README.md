@@ -1,6 +1,9 @@
 # htmlmodule
 
 [![NPM Version](https://img.shields.io/npm/v/htmlmodule.svg)](https://www.npmjs.com/package/htmlmodule)
+[![Node.js CI](https://github.com/aristov/htmlmodule/actions/workflows/node.js.yml/badge.svg)](https://github.com/aristov/htmlmodule/actions/workflows/node.js.yml)
+[![Coverage Status](https://coveralls.io/repos/github/aristov/htmlmodule/badge.svg?branch=master)](https://coveralls.io/github/aristov/htmlmodule?branch=master)
+[![NPM](https://img.shields.io/npm/l/htmlmodule)](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
 
 HtmlModule is a library for creating UI.
 It's inspired by React and based on the same ideas.
