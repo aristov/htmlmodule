@@ -1,7 +1,7 @@
 const test = require('ava')
 const { HtmlDiv } = require('..')
 
-test('test', t => {
+test('test #1', t => {
   const instance = HtmlDiv.render({ dataset : { foo : 'bar', bat : undefined } })
   t.is(instance.dataset.foo, 'bar')
   t.is(instance.dataset.bat, undefined)

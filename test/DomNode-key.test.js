@@ -38,4 +38,6 @@ test('test #1', t => {
   t.is(instance.props.children[0].node, li2.node)
   t.is(instance.props.children[1].node, li3.node)
   t.is(instance.props.children[2].node, li4.node)
+
+  instance.destroy()
 })
