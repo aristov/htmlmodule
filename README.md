@@ -14,7 +14,7 @@ It's inspired by React and based on the same ideas.
 - API to build your own high-level components
 - Automatic className generation
 - No extra markup in the result HTML
-- Small footprint, 12KB after gzip
+- Small footprint, 6KB after gzip
 
 ## Documentation
 
