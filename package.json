@@ -47,5 +47,8 @@
     "component",
     "library",
     "virtual dom"
-  ]
+  ],
+  "engines": {
+    "node": ">=14.19"
+  }
 }
