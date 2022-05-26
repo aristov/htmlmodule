@@ -3,17 +3,18 @@
   "version": "0.7.0",
   "description": "Library for creating UI",
   "homepage": "https://aristov.github.io/htmlmodule#readme",
-  "bugs": "https://github.com/aristov/htmlmodule/issues",
-  "license": "MIT",
   "author": "Vyacheslav Aristov <vv.aristov@gmail.ru>",
-  "main": "index.js",
-  "files": [
-    "lib"
-  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aristov/htmlmodule.git"
   },
+  "bugs": "https://github.com/aristov/htmlmodule/issues",
+  "main": "index.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
   "scripts": {
     "build": "npm-run-all -p build:*",
     "build:dev": "webpack",
