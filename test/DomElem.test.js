@@ -1,9 +1,14 @@
 const test = require('ava')
 const { DomElem, HtmlDiv } = require('..')
 
-class Example extends DomElem
+class Foo extends DomElem
 {
   static prefix = 'Test'
+}
+
+class Bar extends DomElem
+{
+  static localName = 'meta'
 }
 
 let instance
@@ -11,7 +16,19 @@ let instance
 test.afterEach(() => instance.destroy())
 
 test('createNode: incorrect prefix', t => {
-  t.throws(() => Example.render())
+  t.throws(() => Foo.render())
+})
+
+test('localName #1', t => {
+  instance = Bar.render()
+  t.is(instance.node.localName, 'meta')
+  t.is(instance.toString(), '<meta>')
+})
+
+test('localName #2', t => {
+  instance = DomElem.render({ localName : 'link' })
+  t.is(instance.node.localName, 'link')
+  t.is(instance.toString(), '<link>')
 })
 
 test('attrs', t => {
