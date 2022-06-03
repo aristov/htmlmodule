@@ -17,8 +17,8 @@ class List extends HtmlUl
     }
     if(this.state.step === 1) {
       return [
-        new HtmlLi({ key : 'id2', text : 'two' }),
-        new HtmlLi({ key : 'id3', text : 'three' }),
+        li2 = new HtmlLi({ key : 'id2', text : 'two' }),
+        li3 = new HtmlLi({ key : 'id3', text : 'three' }),
         li4 = new HtmlLi({ key : 'id4', text : 'four' }),
       ]
     }
