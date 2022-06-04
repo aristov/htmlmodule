@@ -70,8 +70,9 @@ class Foo extends HtmlDiv
   }
 }
 
-test('lifecycle', t => {
+test('test #1', t => {
   const instance = Foo.render({ qaz : 'wsx' }, new DocumentFragment)
+
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.notCalled)
   t.true(fooWillUnmount.notCalled)
@@ -81,6 +82,7 @@ test('lifecycle', t => {
   t.is(instance.toString(), '<div class="Foo">foo</div>')
 
   instance.setState({ step : 1 })
+
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.calledOnce)
   t.is(fooDidUpdate.args[0][0], instance.props)
@@ -92,6 +94,7 @@ test('lifecycle', t => {
   t.is(instance.toString(), '<div class="Foo"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
 
   instance.setState({ step : 2 })
+
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.calledTwice)
   t.deepEqual(fooDidUpdate.args[1][1], { step : 1 })
@@ -102,6 +105,7 @@ test('lifecycle', t => {
   t.is(instance.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">baz</span></div><br><a>bar</a></div>')
 
   instance.setState({ step : 3 })
+
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.calledThrice)
   t.deepEqual(fooDidUpdate.args[2][1], { step : 2 })
@@ -114,6 +118,7 @@ test('lifecycle', t => {
   t.is(instance.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">qwe</span></div></div>')
 
   instance.setState({ step : 0 })
+
   t.true(fooDidMount.calledOnce)
   t.is(fooDidUpdate.callCount, 4)
   t.deepEqual(fooDidUpdate.args[3][1], { step : 3 })
@@ -124,5 +129,7 @@ test('lifecycle', t => {
   t.is(instance.toString(), '<div class="Foo">foo</div>')
 
   instance.destroy()
+
   t.true(fooWillUnmount.calledOnce)
+  t.true(bazWillUnmount.calledOnce)
 })

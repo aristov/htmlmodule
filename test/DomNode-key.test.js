@@ -27,12 +27,14 @@ class List extends HtmlUl
 
 test('test #1', t => {
   const instance = List.render()
+
   t.is(instance.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
   t.is(instance.props.children[0].node, li1.node)
   t.is(instance.props.children[1].node, li2.node)
   t.is(instance.props.children[2].node, li3.node)
 
   instance.setState({ step : 1 })
+
   t.is(instance.toString(), '<ul class="List"><li>two</li><li>three</li><li>four</li></ul>')
   t.is(li1.node, null)
   t.is(instance.props.children[0].node, li2.node)

@@ -4,7 +4,7 @@ const { HtmlDiv, HtmlSpan } = require('..')
 
 const onclick1 = sinon.spy()
 const onclick2 = sinon.spy()
-const onchange = sinon.spy()
+const onclick3 = sinon.spy()
 
 class Child extends HtmlDiv
 {
@@ -22,7 +22,7 @@ class Parent extends HtmlDiv
     this.on('click', onclick2)
     return this._child = new Child({
       children : this.state.text,
-      onchange,
+      onclick : onclick3,
     })
   }
 }
@@ -46,11 +46,10 @@ test('setState', t => {
   t.is(onclick2.args[0][0].target, child.node)
   t.is(onclick2.args[0][1], child)
 
-  child.emit('change')
-
-  t.true(onchange.calledOnce)
-  t.is(onchange.getCall(0).thisValue, child)
-  t.is(onchange.args[0][0].target, child.node)
+  t.true(onclick3.calledOnce)
+  t.is(onclick3.getCall(0).thisValue, child)
+  t.is(onclick3.args[0][0].target, child.node)
+  t.is(onclick3.args[0][1], child)
 
   parent.setState({ text : 'bar' })
 
@@ -70,11 +69,10 @@ test('setState', t => {
   t.is(onclick2.args[1][0].target, parent._child.node)
   t.is(onclick2.args[1][1], parent._child)
 
-  parent._child.emit('change')
-
-  t.true(onchange.calledTwice)
-  t.is(onchange.getCall(1).thisValue, parent._child)
-  t.is(onchange.args[1][0].target, parent._child.node)
+  t.true(onclick3.calledTwice)
+  t.is(onclick3.getCall(1).thisValue, parent._child)
+  t.is(onclick3.args[1][0].target, parent._child.node)
+  t.is(onclick3.args[1][1], parent._child)
 
   parent.destroy()
 })

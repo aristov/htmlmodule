@@ -12,6 +12,7 @@ test('HtmlA', t => {
     children : 'Example',
     title : undefined,
   })
+
   t.is(instance.node.constructor, HTMLAnchorElement)
   t.is(instance.href, 'https://example.com/')
   t.is(instance.text, 'Example')

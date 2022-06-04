@@ -21,12 +21,14 @@ test('createNode: incorrect prefix', t => {
 
 test('localName #1', t => {
   instance = Bar.render()
+
   t.is(instance.node.localName, 'meta')
   t.is(instance.toString(), '<meta>')
 })
 
 test('localName #2', t => {
   instance = DomElem.render({ localName : 'link' })
+
   t.is(instance.node.localName, 'link')
   t.is(instance.toString(), '<link>')
 })
@@ -39,6 +41,7 @@ test('attrs', t => {
     },
     style : undefined,
   })
+
   t.is(instance.attrs['aria-hidden'], 'true')
   t.is(instance.attrs['aria-label'], undefined)
   t.is(instance.getAttr('aria-hidden'), 'true')
@@ -47,19 +50,24 @@ test('attrs', t => {
   t.is(instance.toString(), '<div aria-hidden="true"></div>')
 
   instance.setAttr('aria-hidden', 'false')
+
   t.is(instance.getAttr('aria-hidden'), 'false')
 
   instance.setAttr('aria-hidden', null)
+
   t.is(instance.getAttr('aria-hidden'), null)
 })
 
 test('class', t => {
   instance = HtmlDiv.render({ class : ['foo', null, 'bar'] })
+
   t.deepEqual(instance.class, ['foo', 'bar'])
 
   instance.class = { foo : false, bat : true }
+
   t.deepEqual(instance.class, ['bar', 'bat'])
 
   instance.class = 'foo baz'
+
   t.deepEqual(instance.class, ['foo', 'baz'])
 })
