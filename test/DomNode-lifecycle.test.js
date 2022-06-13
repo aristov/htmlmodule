@@ -1,7 +1,7 @@
 const test = require('ava')
 const sinon = require('sinon')
-const { HtmlDiv, HtmlA, HtmlB, HtmlSpan, window } = require('..')
-const { DocumentFragment, document } = window
+const { HtmlDiv, HtmlA, HtmlB, HtmlBr, HtmlSpan, window } = require('..')
+const { DocumentFragment } = window
 
 const bazDidMount = sinon.spy()
 const bazDidUpdate = sinon.spy()
@@ -36,7 +36,7 @@ class Foo extends HtmlDiv
       return [
         new HtmlA('bar'),
         new HtmlDiv(new HtmlSpan('baz')),
-        document.createElement('br'),
+        new HtmlBr,
         new HtmlB('bat'),
       ]
     }
@@ -44,7 +44,7 @@ class Foo extends HtmlDiv
       return [
         new HtmlB('bat'),
         new HtmlDiv(new Baz('baz')),
-        document.createElement('br'),
+        new HtmlBr,
         new HtmlA('bar'),
       ]
     }
