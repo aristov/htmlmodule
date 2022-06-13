@@ -113,7 +113,7 @@ test('test #1', t => {
   t.true(bazDidMount.calledOnce)
   t.true(bazDidUpdate.calledOnce)
   t.true(bazWillUnmount.notCalled)
-  t.deepEqual(bazDidUpdate.args[0][0], { children : ['baz'] })
+  t.deepEqual(bazDidUpdate.args[0][0], { children : 'baz' })
   t.deepEqual(bazDidUpdate.args[0][1], { asd : 'zxc' })
   t.is(instance.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">qwe</span></div></div>')
 

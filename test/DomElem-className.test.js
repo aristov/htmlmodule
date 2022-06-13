@@ -45,7 +45,7 @@ test('test #3', t => {
 })
 
 test('test #4', t => {
-  instance = Foo.render({ className : null, text : 'bar' })
+  instance = Foo.render({ className : null, children : 'bar' })
 
   t.is(instance.node.className, '')
   t.is(instance.toString(), '<div>bar</div>')

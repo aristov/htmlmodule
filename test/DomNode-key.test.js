@@ -10,16 +10,16 @@ class List extends HtmlUl
   render() {
     if(this.state.step === 0) {
       return [
-        li1 = new HtmlLi({ key : 'id1', text : 'one' }),
-        li2 = new HtmlLi({ key : 'id2', text : 'two' }),
-        li3 = new HtmlLi({ key : 'id3', text : 'three' }),
+        li1 = new HtmlLi({ key : 'id1', children : 'one' }),
+        li2 = new HtmlLi({ key : 'id2', children : 'two' }),
+        li3 = new HtmlLi({ key : 'id3', children : 'three' }),
       ]
     }
     if(this.state.step === 1) {
       return [
-        li2 = new HtmlLi({ key : 'id2', text : 'two' }),
-        li3 = new HtmlLi({ key : 'id3', text : 'three' }),
-        li4 = new HtmlLi({ key : 'id4', text : 'four' }),
+        new HtmlLi({ key : 'id2', children : 'two' }),
+        new HtmlLi({ key : 'id3', children : 'three' }),
+        li4 = new HtmlLi({ key : 'id4', children : 'four' }),
       ]
     }
   }
@@ -29,17 +29,17 @@ test('test #1', t => {
   const instance = List.render()
 
   t.is(instance.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
-  t.is(instance.props.children[0].node, li1.node)
-  t.is(instance.props.children[1].node, li2.node)
-  t.is(instance.props.children[2].node, li3.node)
+  t.is(instance.node.children[0], li1.node)
+  t.is(instance.node.children[1], li2.node)
+  t.is(instance.node.children[2], li3.node)
 
   instance.setState({ step : 1 })
 
   t.is(instance.toString(), '<ul class="List"><li>two</li><li>three</li><li>four</li></ul>')
   t.is(li1.node, null)
-  t.is(instance.props.children[0].node, li2.node)
-  t.is(instance.props.children[1].node, li3.node)
-  t.is(instance.props.children[2].node, li4.node)
+  t.is(instance.node.children[0], li2.node)
+  t.is(instance.node.children[1], li3.node)
+  t.is(instance.node.children[2], li4.node)
 
   instance.destroy()
 })

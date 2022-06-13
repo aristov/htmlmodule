@@ -10,7 +10,7 @@ class Article extends HtmlArticle
   render() {
     return [
       this.refs.button = new HtmlButton({
-        text : this.state.expanded ? 'Off' : 'On',
+        children : this.state.expanded ? 'Off' : 'On',
         onclick : this.onClick,
       }),
       new HtmlSection({
