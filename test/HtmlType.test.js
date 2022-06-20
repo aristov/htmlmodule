@@ -10,7 +10,7 @@ test('HtmlA', t => {
   instance = HtmlA.render({
     href : 'https://example.com/',
     children : 'Example',
-    title : undefined,
+    title : null,
   })
 
   t.is(instance.node.constructor, HTMLAnchorElement)
