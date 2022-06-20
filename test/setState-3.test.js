@@ -71,22 +71,29 @@ class Bat extends HtmlInput
 test('test #1', t => {
   const elem = Foo.render()
 
-  t.is(elem.toString(), '<div class="Foo" data-step="0"><label for="id1">rty</label><input class="Bar" id="id1"></div>')
+  t.is(elem.refs.input.constructor, Bar)
   t.is(elem.refs.input.value, 'qwe')
+  t.is(elem.refs.input.defaultValue, '')
+  t.is(elem.toString(), '<div class="Foo" data-step="0"><label for="id1">rty</label><input class="Bar" id="id1"></div>')
 
   elem.setState({ step : 1 })
 
-  t.is(elem.toString(), '<div class="Foo" data-step="1"><label>fgh</label><input class="Bar" id="id1" value="asd"></div>')
+  t.is(elem.refs.input.constructor, Bar)
   t.is(elem.refs.input.value, '')
+  t.is(elem.refs.input.defaultValue, 'asd')
+  t.is(elem.toString(), '<div class="Foo" data-step="1"><label>fgh</label><input class="Bar" id="id1" value="asd"></div>')
 
   elem.setState({ step : 2 })
 
-  t.is(elem.toString(), '<div class="Foo" data-step="2"><label for="id2">vbn</label><input class="Bar" id="id2"></div>')
+  t.is(elem.refs.input.constructor, Bar)
   t.is(elem.refs.input.value, 'zxc')
+  t.is(elem.refs.input.defaultValue, '')
+  t.is(elem.toString(), '<div class="Foo" data-step="2"><label for="id2">vbn</label><input class="Bar" id="id2"></div>')
 
   elem.setState({ step : 3 })
 
+  t.is(elem.refs.input.constructor, Bat)
+  t.is(elem.refs.input.value, 'wsx')
+  t.is(elem.refs.input.defaultValue, '')
   t.is(elem.toString(), '<div class="Foo" data-step="3"><label>qaz</label><input class="Bat" id="id2"></div>')
-  // t.is(elem.refs.input.constructor, Bat)
-  // t.is(elem.refs.input.value, 'wsx')
 })
