@@ -15,6 +15,6 @@ test('HtmlA', t => {
 
   t.is(instance.node.constructor, HTMLAnchorElement)
   t.is(instance.href, 'https://example.com/')
-  t.is(instance.textContent, 'Example')
+  t.is(instance.node.textContent, 'Example')
   t.is(instance.toString(), '<a href="https://example.com/">Example</a>')
 })
