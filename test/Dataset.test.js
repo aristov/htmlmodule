@@ -6,7 +6,6 @@ test('test #1', t => {
 
   t.is(instance.dataset.foo, 'bar')
   t.is(instance.dataset.bat, undefined)
-  t.deepEqual(instance.dataset, { foo : 'bar' })
   t.is(instance.getAttr('data-foo'), 'bar')
   t.is(instance.getAttr('data-bat'), null)
   t.false(instance.node.hasAttribute('data-bat'))
