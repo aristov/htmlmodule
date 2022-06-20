@@ -37,17 +37,15 @@ test('destroy', t => {
   t.is(children.node, null)
 })
 
-test('attrs', t => {
+test('attributes', t => {
   instance = HtmlDiv.render({
-    attrs : {
+    attributes : {
       'aria-hidden' : 'true',
       'aria-label' : null,
     },
     style : undefined,
   })
 
-  t.is(instance.attrs['aria-hidden'], 'true')
-  t.is(instance.attrs['aria-label'], undefined)
   t.is(instance.getAttr('aria-hidden'), 'true')
   t.false(instance.node.hasAttribute('aria-label'))
   t.false(instance.node.hasAttribute('style'))
