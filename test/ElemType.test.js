@@ -1,36 +1,40 @@
 const test = require('ava')
-const { ElemType, HtmlDiv } = require('..')
-
-class Foo extends ElemType
-{
-  static prefix = 'Test'
-}
-
-class Bar extends ElemType
-{
-  static localName = 'meta'
-}
+const { ElemType, HtmlA, HtmlDiv, HtmlSpan } = require('..')
 
 let instance
 
 test.afterEach(() => instance.destroy())
 
 test('createNode: incorrect prefix', t => {
+  class Foo extends ElemType
+  {
+    static prefix = 'Test'
+  }
+
   t.throws(() => Foo.render())
 })
 
-test('localName #1', t => {
-  instance = Bar.render()
+test('children', t => {
+  instance = HtmlDiv.render([
+    'foo', null, [new HtmlSpan('bar'), [], [['bat'], new HtmlA('baz')]],
+  ])
 
-  t.is(instance.node.localName, 'meta')
-  t.is(instance.toString(), '<meta>')
+  t.is(instance.node.childNodes.length, 4)
+  t.is(instance.node.childElementCount, 2)
+  t.is(instance.toString(), '<div>foo<span>bar</span>bat<a>baz</a></div>')
 })
 
-test('localName #2', t => {
-  instance = ElemType.render({ localName : 'link' })
+test('destroy', t => {
+  const children = new HtmlSpan('foo')
+  const instance = HtmlDiv.render({
+    onclick : () => {},
+    children,
+  })
+  instance.destroy()
 
-  t.is(instance.node.localName, 'link')
-  t.is(instance.toString(), '<link>')
+  t.is(instance.node, null)
+  t.is(instance.onclick, null)
+  t.is(children.node, null)
 })
 
 test('attrs', t => {
