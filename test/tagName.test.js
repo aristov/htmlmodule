@@ -8,18 +8,18 @@ test.afterEach(() => instance.destroy())
 test('test #1', t => {
   class Bar extends ElemType
   {
-    static localName = 'meta'
+    static tagName = 'meta'
   }
 
   instance = Bar.render()
 
-  t.is(instance.node.localName, 'meta')
+  t.is(instance.node.tagName, 'meta')
   t.is(instance.toString(), '<meta>')
 })
 
 test('test #2', t => {
-  instance = ElemType.render({ localName : 'link' })
+  instance = ElemType.render({ tagName : 'link' })
 
-  t.is(instance.node.localName, 'link')
+  t.is(instance.node.tagName, 'link')
   t.is(instance.toString(), '<link>')
 })
