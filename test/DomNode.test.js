@@ -1,16 +1,9 @@
 const test = require('ava')
-const { EventTarget } = require('xwindow')
-const { DomNode, HtmlA, HtmlDiv, HtmlSpan } = require('..')
+const { HtmlA, HtmlDiv, HtmlSpan } = require('..')
 
 let instance
 
 test.afterEach(() => instance.destroy())
-
-test('new DomNode', t => {
-  instance = new DomNode
-
-  t.is(instance.node.constructor, EventTarget)
-})
 
 test('children', t => {
   instance = HtmlDiv.render([
