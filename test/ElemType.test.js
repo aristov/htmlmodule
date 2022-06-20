@@ -1,17 +1,23 @@
 const test = require('ava')
+const { HTMLUnknownElement } = require('xwindow')
 const { ElemType, HtmlA, HtmlDiv, HtmlSpan } = require('..')
 
 let instance
 
 test.afterEach(() => instance.destroy())
 
-test('createNode: incorrect prefix', t => {
+test('className', t => {
   class Foo extends ElemType
   {
-    static prefix = 'Test'
   }
 
-  t.throws(() => Foo.render())
+  const elem = Foo.render('bar')
+
+  t.is(elem.tagName, 'UNDEFINED')
+  t.is(elem.node.className, 'Foo')
+  t.is(elem.node.textContent, 'bar')
+  t.is(elem.node.constructor, HTMLUnknownElement)
+  t.is(elem.toString(), '<undefined class="Foo">bar</undefined>')
 })
 
 test('children', t => {
@@ -27,7 +33,8 @@ test('children', t => {
 test('destroy', t => {
   const children = new HtmlSpan('foo')
   const instance = HtmlDiv.render({
-    onclick : () => {},
+    onclick : () => {
+    },
     children,
   })
   instance.destroy()
