@@ -9,6 +9,5 @@ exports.Dataset = require('./lib/Dataset')
 exports.DomElem = require('./lib/DomElem')
 exports.DomNode = require('./lib/DomNode')
 exports.HtmlElem = require('./lib/HtmlElem')
-exports.Style = require('./lib/Style')
 
 exports.window = require('xwindow')
