@@ -28,7 +28,7 @@ class Article extends HtmlArticle
   }
 }
 
-test('setState', t => {
+test('test #1', t => {
   const instance = Article.render()
 
   t.is(instance.toString(), '<article class="Article"><button>On</button><section hidden="">Foo</section>Bar</article>')
