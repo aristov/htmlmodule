@@ -60,16 +60,19 @@ test('attributes', t => {
   t.is(instance.getAttr('aria-hidden'), null)
 })
 
-test('class', t => {
-  instance = HtmlDiv.render({ class : ['foo', null, 'bar'] })
+test('classList', t => {
+  instance = HtmlDiv.render({ classList : ['foo', null, 'bar'] })
 
-  t.deepEqual(instance.class, ['foo', 'bar'])
+  t.is(instance.classList[0], 'foo')
+  t.is(instance.classList[1], 'bar')
 
-  instance.class = { foo : false, bat : true }
+  instance.classList = { foo : false, bat : true }
 
-  t.deepEqual(instance.class, ['bar', 'bat'])
+  t.is(instance.classList[0], 'bar')
+  t.is(instance.classList[1], 'bat')
 
-  instance.class = 'foo baz'
+  instance.classList = 'foo baz'
 
-  t.deepEqual(instance.class, ['foo', 'baz'])
+  t.is(instance.classList[0], 'foo')
+  t.is(instance.classList[1], 'baz')
 })
