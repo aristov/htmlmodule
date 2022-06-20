@@ -1,12 +1,12 @@
 const test = require('ava')
-const { DomNode, HtmlDiv } = require('..')
+const { ElemType, HtmlDiv } = require('..')
 
-class Foo extends DomNode
+class Foo extends ElemType
 {
   static prefix = 'Test'
 }
 
-class Bar extends DomNode
+class Bar extends ElemType
 {
   static localName = 'meta'
 }
@@ -27,7 +27,7 @@ test('localName #1', t => {
 })
 
 test('localName #2', t => {
-  instance = DomNode.render({ localName : 'link' })
+  instance = ElemType.render({ localName : 'link' })
 
   t.is(instance.node.localName, 'link')
   t.is(instance.toString(), '<link>')

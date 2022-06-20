@@ -5,7 +5,7 @@
 exports = module.exports = require('./lib/htmlmodule')
 
 exports.AttrType = require('./lib/AttrType')
-exports.DomNode = require('./lib/DomNode')
-exports.HtmlElem = require('./lib/HtmlElem')
+exports.ElemType = require('./lib/ElemType')
+exports.HtmlType = require('./lib/HtmlType')
 
 exports.window = require('xwindow')
