@@ -16,7 +16,8 @@ test('test #1', t => {
 
   t.is(instance.node.tagName, 'META')
   t.is(instance.node.constructor, HTMLMetaElement)
-  t.is(instance.toString(), '<meta>')
+  t.is(instance.node.className, 'Bar')
+  t.is(instance.toString(), '<meta class="Bar">')
 })
 
 test('test #2', t => {
