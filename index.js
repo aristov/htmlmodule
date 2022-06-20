@@ -5,7 +5,6 @@
 exports = module.exports = require('./lib/htmlmodule')
 
 exports.AttrType = require('./lib/AttrType')
-exports.Dataset = require('./lib/Dataset')
 exports.DomElem = require('./lib/DomElem')
 exports.DomNode = require('./lib/DomNode')
 exports.HtmlElem = require('./lib/HtmlElem')
