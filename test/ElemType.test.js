@@ -2,16 +2,26 @@ const test = require('ava')
 const { HTMLUnknownElement } = require('xwindow')
 const { ElemType, HtmlA, HtmlDiv, HtmlSpan } = require('..')
 
-let instance
+let elem
 
-test.afterEach(() => instance.destroy())
+test.afterEach(() => elem.destroy())
+
+test('test #1', t => {
+  elem = ElemType.render()
+
+  t.deepEqual(Object.keys(elem), [])
+  t.deepEqual(Object.assign({}, elem), {})
+  for(const key in elem) {
+    t.fail()
+  }
+})
 
 test('className', t => {
   class Foo extends ElemType
   {
   }
 
-  const elem = Foo.render('bar')
+  elem = Foo.render('bar')
 
   t.is(elem.tagName, 'UNDEFINED')
   t.is(elem.node.className, 'Foo')
@@ -21,13 +31,13 @@ test('className', t => {
 })
 
 test('children', t => {
-  instance = HtmlDiv.render([
+  elem = HtmlDiv.render([
     'foo', null, [new HtmlSpan('bar'), [], [['bat'], new HtmlA('baz')]],
   ])
 
-  t.is(instance.node.childNodes.length, 4)
-  t.is(instance.node.childElementCount, 2)
-  t.is(instance.toString(), '<div>foo<span>bar</span>bat<a>baz</a></div>')
+  t.is(elem.node.childNodes.length, 4)
+  t.is(elem.node.childElementCount, 2)
+  t.is(elem.toString(), '<div>foo<span>bar</span>bat<a>baz</a></div>')
 })
 
 test('destroy', t => {
@@ -45,7 +55,7 @@ test('destroy', t => {
 })
 
 test('attributes', t => {
-  instance = HtmlDiv.render({
+  elem = HtmlDiv.render({
     attributes : {
       'aria-hidden' : 'true',
       'aria-label' : null,
@@ -53,33 +63,33 @@ test('attributes', t => {
     style : undefined,
   })
 
-  t.is(instance.getAttr('aria-hidden'), 'true')
-  t.false(instance.node.hasAttribute('aria-label'))
-  t.false(instance.node.hasAttribute('style'))
-  t.is(instance.toString(), '<div aria-hidden="true"></div>')
+  t.is(elem.getAttr('aria-hidden'), 'true')
+  t.false(elem.node.hasAttribute('aria-label'))
+  t.false(elem.node.hasAttribute('style'))
+  t.is(elem.toString(), '<div aria-hidden="true"></div>')
 
-  instance.setAttr('aria-hidden', 'false')
+  elem.setAttr('aria-hidden', 'false')
 
-  t.is(instance.getAttr('aria-hidden'), 'false')
+  t.is(elem.getAttr('aria-hidden'), 'false')
 
-  instance.setAttr('aria-hidden', null)
+  elem.setAttr('aria-hidden', null)
 
-  t.is(instance.getAttr('aria-hidden'), null)
+  t.is(elem.getAttr('aria-hidden'), null)
 })
 
 test('classList', t => {
-  instance = HtmlDiv.render({ classList : ['foo', null, 'bar'] })
+  elem = HtmlDiv.render({ classList : ['foo', null, 'bar'] })
 
-  t.is(instance.classList[0], 'foo')
-  t.is(instance.classList[1], 'bar')
+  t.is(elem.classList[0], 'foo')
+  t.is(elem.classList[1], 'bar')
 
-  instance.classList = { foo : false, bat : true }
+  elem.classList = { foo : false, bat : true }
 
-  t.is(instance.classList[0], 'bar')
-  t.is(instance.classList[1], 'bat')
+  t.is(elem.classList[0], 'bar')
+  t.is(elem.classList[1], 'bat')
 
-  instance.classList = 'foo baz'
+  elem.classList = 'foo baz'
 
-  t.is(instance.classList[0], 'foo')
-  t.is(instance.classList[1], 'baz')
+  t.is(elem.classList[0], 'foo')
+  t.is(elem.classList[1], 'baz')
 })

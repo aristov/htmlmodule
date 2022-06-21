@@ -9,7 +9,7 @@ class Article extends HtmlArticle
 
   render() {
     return [
-      this.refs.button = new HtmlButton({
+      this._button = new HtmlButton({
         children : this.state.expanded ? 'Off' : 'On',
         onclick : this.onClick,
       }),
@@ -24,22 +24,22 @@ class Article extends HtmlArticle
   onClick = () => this.setState(state => ({ expanded : !state.expanded }))
 
   toggle() {
-    this.refs.button.click()
+    this._button.click()
   }
 }
 
 test('test #1', t => {
-  const instance = Article.render()
+  const elem = Article.render()
 
-  t.is(instance.toString(), '<article class="Article"><button>On</button><section hidden="">Foo</section>Bar</article>')
+  t.is(elem.toString(), '<article class="Article"><button>On</button><section hidden="">Foo</section>Bar</article>')
 
-  instance.toggle()
+  elem.toggle()
 
-  t.is(instance.toString(), '<article class="Article"><button>Off</button><section>Foo</section>Bat</article>')
+  t.is(elem.toString(), '<article class="Article"><button>Off</button><section>Foo</section>Bat</article>')
 
-  instance.toggle()
+  elem.toggle()
 
-  t.is(instance.toString(), '<article class="Article"><button>On</button><section hidden="">Foo</section>Bar</article>')
+  t.is(elem.toString(), '<article class="Article"><button>On</button><section hidden="">Foo</section>Bar</article>')
 
-  instance.destroy()
+  elem.destroy()
 })

@@ -20,7 +20,7 @@ class Parent extends HtmlDiv
 
   render() {
     this.on('click', onclick2)
-    return this.refs.child = new Child({
+    return this._child = new Child({
       children : this.state.text,
       onclick : onclick3,
     })
@@ -29,7 +29,7 @@ class Parent extends HtmlDiv
 
 test('setState', t => {
   const parent = Parent.render()
-  const child = parent.refs.child
+  const child = parent._child
   const node = child.node
 
   t.is(parent.toString(), '<div class="Parent"><div class="Child"><span>foo</span></div></div>')
@@ -54,25 +54,25 @@ test('setState', t => {
   parent.setState({ text : 'bar' })
 
   t.is(parent.toString(), '<div class="Parent"><div class="Child"><span>bar</span></div></div>')
-  t.is(parent.refs.child.node, node)
-  t.is(parent.refs.child, child)
+  t.is(parent._child.node, node)
+  t.is(parent._child, child)
 
-  parent.refs.child.click()
+  parent._child.click()
 
   t.true(onclick1.calledTwice)
-  t.is(onclick1.getCall(1).thisValue, parent.refs.child)
-  t.is(onclick1.args[1][0].target, parent.refs.child.node)
-  t.is(onclick1.args[1][1], parent.refs.child)
+  t.is(onclick1.getCall(1).thisValue, parent._child)
+  t.is(onclick1.args[1][0].target, parent._child.node)
+  t.is(onclick1.args[1][1], parent._child)
 
   t.true(onclick2.calledTwice)
   t.is(onclick2.getCall(1).thisValue, parent)
-  t.is(onclick2.args[1][0].target, parent.refs.child.node)
-  t.is(onclick2.args[1][1], parent.refs.child)
+  t.is(onclick2.args[1][0].target, parent._child.node)
+  t.is(onclick2.args[1][1], parent._child)
 
   t.true(onclick3.calledTwice)
-  t.is(onclick3.getCall(1).thisValue, parent.refs.child)
-  t.is(onclick3.args[1][0].target, parent.refs.child.node)
-  t.is(onclick3.args[1][1], parent.refs.child)
+  t.is(onclick3.getCall(1).thisValue, parent._child)
+  t.is(onclick3.args[1][0].target, parent._child.node)
+  t.is(onclick3.args[1][1], parent._child)
 
   parent.destroy()
 })
