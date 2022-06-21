@@ -2,19 +2,19 @@ const test = require('ava')
 const { HTMLAnchorElement } = require('xwindow')
 const { HtmlA } = require('..')
 
-let instance
+let elem
 
-test.afterEach(() => instance.destroy())
+test.afterEach(() => elem.destroy())
 
 test('HtmlA', t => {
-  instance = HtmlA.render({
+  elem = HtmlA.render({
     href : 'https://example.com/',
     children : 'Example',
     title : null,
   })
 
-  t.is(instance.node.constructor, HTMLAnchorElement)
-  t.is(instance.href, 'https://example.com/')
-  t.is(instance.node.textContent, 'Example')
-  t.is(instance.toString(), '<a href="https://example.com/">Example</a>')
+  t.is(elem.node.constructor, HTMLAnchorElement)
+  t.is(elem.href, 'https://example.com/')
+  t.is(elem.node.textContent, 'Example')
+  t.is(elem.toString(), '<a href="https://example.com/">Example</a>')
 })

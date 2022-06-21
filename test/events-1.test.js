@@ -3,71 +3,71 @@ const sinon = require('sinon')
 const { HtmlDiv } = require('..')
 const { CustomEvent, Event } = require('xwindow')
 
-let instance
+let elem
 
-test.afterEach(() => instance.destroy())
+test.afterEach(() => elem.destroy())
 
 test('onload', t => {
   const onload = sinon.spy()
-  instance = HtmlDiv.render({ onload })
+  elem = HtmlDiv.render({ onload })
 
-  t.is(instance.onload, onload)
+  t.is(elem.onload, onload)
 
-  instance.emit('load')
+  elem.emit('load')
 
   t.true(onload.calledOnce)
-  t.is(onload.getCall(0).thisValue, instance)
+  t.is(onload.getCall(0).thisValue, elem)
   t.is(onload.args[0][0].type, 'load')
-  t.is(onload.args[0][1], instance)
+  t.is(onload.args[0][1], elem)
 
-  instance.onload = null
+  elem.onload = null
 
-  t.is(instance.onload, null)
+  t.is(elem.onload, null)
 
-  instance.emit('load')
+  elem.emit('load')
 
   t.true(onload.calledOnce)
 })
 
 test('custom event', t => {
   const onfoo = sinon.spy()
-  instance = HtmlDiv.render()
-  instance.node.addEventListener('foo', onfoo)
-  instance.emit('foo', { detail : 'bar' })
+  elem = HtmlDiv.render()
+  elem.node.addEventListener('foo', onfoo)
+  elem.emit('foo', { detail : 'bar' })
 
   t.true(onfoo.calledOnce)
-  t.is(onfoo.getCall(0).thisValue, instance.node)
+  t.is(onfoo.getCall(0).thisValue, elem.node)
   t.is(onfoo.args[0][0].type, 'foo')
   t.is(onfoo.args[0][0].detail, 'bar')
 
   const event = new CustomEvent('foo', { detail : 'bat' })
-  instance.emit(event)
+  elem.emit(event)
 
   t.true(onfoo.calledTwice)
-  t.is(onfoo.getCall(1).thisValue, instance.node)
+  t.is(onfoo.getCall(1).thisValue, elem.node)
   t.is(onfoo.args[1][0], event)
 
-  instance.node.removeEventListener('foo', onfoo)
-  instance.emit('foo')
+  elem.node.removeEventListener('foo', onfoo)
+  elem.emit('foo')
 
   t.true(onfoo.calledTwice)
 })
 
 test('on/off', t => {
   const onclick = sinon.spy()
-  instance = HtmlDiv.render()
-  instance.on('click', onclick)
-  instance.on('click', onclick)
-  instance.click()
+  elem = HtmlDiv.render()
+  elem.on('click', onclick)
+  elem.on('click', onclick)
+  elem.click()
 
   t.true(onclick.calledOnce)
-  t.is(onclick.getCall(0).thisValue, instance)
+  t.is(onclick.getCall(0).thisValue, elem)
   t.is(onclick.args[0][0].type, 'click')
-  t.is(onclick.args[0][1], instance)
+  t.is(onclick.args[0][1], elem)
 
-  instance.off('click', onclick)
-  instance.off('click', onclick)
-  instance.click()
+  elem.off('click', onclick)
+  elem.off('click', onclick)
+  elem.click()
 
   t.true(onclick.calledOnce)
 })
@@ -80,14 +80,14 @@ test('capture', t => {
     spy(e, elem)
   }
   const child = new HtmlDiv
-  instance = HtmlDiv.render(child)
-  instance.on('click', onclick, true)
+  elem = HtmlDiv.render(child)
+  elem.on('click', onclick, true)
   child.click()
 
   t.true(spy.calledOnce)
   t.is(eventPhase, Event.CAPTURING_PHASE)
 
-  instance.off('click', onclick, true)
+  elem.off('click', onclick, true)
   child.click()
 
   t.true(spy.calledOnce)
@@ -98,16 +98,16 @@ test('capture', t => {
 test('context', t => {
   const context = HtmlDiv.render()
   const onclick = sinon.spy()
-  instance = HtmlDiv.render()
-  instance.on('click', onclick, context)
-  instance.click()
+  elem = HtmlDiv.render()
+  elem.on('click', onclick, context)
+  elem.click()
 
   t.true(onclick.calledOnce)
   t.is(onclick.getCall(0).thisValue, context)
-  t.is(onclick.args[0][1], instance)
+  t.is(onclick.args[0][1], elem)
 
-  instance.off('click', onclick, context)
-  instance.click()
+  elem.off('click', onclick, context)
+  elem.click()
 
   t.true(onclick.calledOnce)
 
@@ -116,13 +116,13 @@ test('context', t => {
 
 test('once', t => {
   const onclick = sinon.spy()
-  instance = HtmlDiv.render()
-  instance.on('click', onclick, { once : true })
-  instance.click()
+  elem = HtmlDiv.render()
+  elem.on('click', onclick, { once : true })
+  elem.click()
 
   t.true(onclick.calledOnce)
 
-  instance.click()
+  elem.click()
 
   t.true(onclick.calledOnce)
 })
@@ -130,19 +130,19 @@ test('once', t => {
 test('removeAllListeners', t => {
   const onfoo = sinon.spy()
   const onbar = sinon.spy()
-  instance = HtmlDiv.render()
-  instance.on('foo', onfoo)
-  instance.on('bar', onbar)
-  instance.emit('foo')
-  instance.emit('bar')
-  instance.emit('bar')
+  elem = HtmlDiv.render()
+  elem.on('foo', onfoo)
+  elem.on('bar', onbar)
+  elem.emit('foo')
+  elem.emit('bar')
+  elem.emit('bar')
 
   t.true(onfoo.calledOnce)
   t.true(onbar.calledTwice)
 
-  instance.removeAllListeners()
-  instance.emit('foo')
-  instance.emit('bar')
+  elem.removeAllListeners()
+  elem.emit('foo')
+  elem.emit('bar')
 
   t.true(onfoo.calledOnce)
   t.true(onbar.calledTwice)

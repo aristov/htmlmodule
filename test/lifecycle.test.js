@@ -71,7 +71,7 @@ class Foo extends HtmlDiv
 }
 
 test('test #1', t => {
-  const instance = Foo.render({ qaz : 'wsx' }, new DocumentFragment)
+  const elem = Foo.render({ qaz : 'wsx' }, new DocumentFragment)
 
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.notCalled)
@@ -79,21 +79,21 @@ test('test #1', t => {
   t.true(bazDidMount.notCalled)
   t.true(bazDidUpdate.notCalled)
   t.true(bazWillUnmount.notCalled)
-  t.is(instance.toString(), '<div class="Foo">foo</div>')
+  t.is(elem.toString(), '<div class="Foo">foo</div>')
 
-  instance.setState({ step : 1 })
+  elem.setState({ step : 1 })
 
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.calledOnce)
-  t.is(fooDidUpdate.args[0][0], instance.props)
+  t.is(fooDidUpdate.args[0][0], elem.props)
   t.deepEqual(fooDidUpdate.args[0][1], { step : 0 })
   t.true(fooWillUnmount.notCalled)
   t.true(bazDidMount.notCalled)
   t.true(bazDidUpdate.notCalled)
   t.true(bazWillUnmount.notCalled)
-  t.is(instance.toString(), '<div class="Foo"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
+  t.is(elem.toString(), '<div class="Foo"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
 
-  instance.setState({ step : 2 })
+  elem.setState({ step : 2 })
 
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.calledTwice)
@@ -102,9 +102,9 @@ test('test #1', t => {
   t.true(bazDidMount.calledOnce)
   t.true(bazDidUpdate.notCalled)
   t.true(bazWillUnmount.notCalled)
-  t.is(instance.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">baz</span></div><br><a>bar</a></div>')
+  t.is(elem.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">baz</span></div><br><a>bar</a></div>')
 
-  instance.setState({ step : 3 })
+  elem.setState({ step : 3 })
 
   t.true(fooDidMount.calledOnce)
   t.true(fooDidUpdate.calledThrice)
@@ -115,9 +115,9 @@ test('test #1', t => {
   t.true(bazWillUnmount.notCalled)
   t.deepEqual(bazDidUpdate.args[0][0], { children : 'baz' })
   t.deepEqual(bazDidUpdate.args[0][1], { asd : 'zxc' })
-  t.is(instance.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">qwe</span></div></div>')
+  t.is(elem.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">qwe</span></div></div>')
 
-  instance.setState({ step : 0 })
+  elem.setState({ step : 0 })
 
   t.true(fooDidMount.calledOnce)
   t.is(fooDidUpdate.callCount, 4)
@@ -126,9 +126,9 @@ test('test #1', t => {
   t.true(bazDidMount.calledOnce)
   t.true(bazDidUpdate.calledOnce)
   t.true(bazWillUnmount.calledOnce)
-  t.is(instance.toString(), '<div class="Foo">foo</div>')
+  t.is(elem.toString(), '<div class="Foo">foo</div>')
 
-  instance.destroy()
+  elem.destroy()
 
   t.true(fooWillUnmount.calledOnce)
   t.true(bazWillUnmount.calledOnce)

@@ -2,9 +2,9 @@ const test = require('ava')
 const { HTMLMetaElement, HTMLLinkElement } = require('xwindow')
 const { ElemType } = require('..')
 
-let instance
+let elem
 
-test.afterEach(() => instance.destroy())
+test.afterEach(() => elem.destroy())
 
 test('test #1', t => {
   class Bar extends ElemType
@@ -12,18 +12,18 @@ test('test #1', t => {
     static tagName = 'META'
   }
 
-  instance = Bar.render()
+  elem = Bar.render()
 
-  t.is(instance.node.tagName, 'META')
-  t.is(instance.node.constructor, HTMLMetaElement)
-  t.is(instance.node.className, 'Bar')
-  t.is(instance.toString(), '<meta class="Bar">')
+  t.is(elem.node.tagName, 'META')
+  t.is(elem.node.constructor, HTMLMetaElement)
+  t.is(elem.node.className, 'Bar')
+  t.is(elem.toString(), '<meta class="Bar">')
 })
 
 test('test #2', t => {
-  instance = ElemType.render({ tagName : 'LINK' })
+  elem = ElemType.render({ tagName : 'LINK' })
 
-  t.is(instance.node.tagName, 'LINK')
-  t.is(instance.node.constructor, HTMLLinkElement)
-  t.is(instance.toString(), '<link>')
+  t.is(elem.node.tagName, 'LINK')
+  t.is(elem.node.constructor, HTMLLinkElement)
+  t.is(elem.toString(), '<link>')
 })

@@ -26,20 +26,20 @@ class List extends HtmlUl
 }
 
 test('test #1', t => {
-  const instance = List.render()
+  const elem = List.render()
 
-  t.is(instance.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
-  t.is(instance.node.children[0], li1.node)
-  t.is(instance.node.children[1], li2.node)
-  t.is(instance.node.children[2], li3.node)
+  t.is(elem.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
+  t.is(elem.node.children[0], li1.node)
+  t.is(elem.node.children[1], li2.node)
+  t.is(elem.node.children[2], li3.node)
 
-  instance.setState({ step : 1 })
+  elem.setState({ step : 1 })
 
-  t.is(instance.toString(), '<ul class="List"><li>two</li><li>three</li><li>four</li></ul>')
+  t.is(elem.toString(), '<ul class="List"><li>two</li><li>three</li><li>four</li></ul>')
   t.is(li1.node, null)
-  t.is(instance.node.children[0], li2.node)
-  t.is(instance.node.children[1], li3.node)
-  t.is(instance.node.children[2], li4.node)
+  t.is(elem.node.children[0], li2.node)
+  t.is(elem.node.children[1], li3.node)
+  t.is(elem.node.children[2], li4.node)
 
-  instance.destroy()
+  elem.destroy()
 })
