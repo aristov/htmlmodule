@@ -1,5 +1,5 @@
 const test = require('ava')
-const { HTMLUnknownElement } = require('xwindow')
+const { HTMLDivElement } = require('xwindow')
 const { ElemType, HtmlA, HtmlDiv, HtmlSpan } = require('..')
 
 let elem
@@ -23,11 +23,11 @@ test('className', t => {
 
   elem = Foo.render('bar')
 
-  t.is(elem.tagName, 'UNDEFINED')
+  t.is(elem.tagName, 'DIV')
   t.is(elem.node.className, 'Foo')
   t.is(elem.node.textContent, 'bar')
-  t.is(elem.node.constructor, HTMLUnknownElement)
-  t.is(elem.toString(), '<undefined class="Foo">bar</undefined>')
+  t.is(elem.node.constructor, HTMLDivElement)
+  t.is(elem.toString(), '<div class="Foo">bar</div>')
 })
 
 test('children', t => {

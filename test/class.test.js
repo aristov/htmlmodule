@@ -23,7 +23,7 @@ test('test #1', t => {
   const elem = Cux.render('qwe')
 
   t.is(elem.node.className, 'Cux BAT Foo')
-  t.is(elem.toString(), '<undefined class="Cux BAT Foo">qwe</undefined>')
+  t.is(elem.toString(), '<div class="Cux BAT Foo">qwe</div>')
 })
 
 test('test #2', t => {
@@ -33,7 +33,7 @@ test('test #2', t => {
   })
 
   t.is(elem.node.className, 'xUC BAT Foo')
-  t.is(elem.toString(), '<undefined class="xUC BAT Foo">qwe</undefined>')
+  t.is(elem.toString(), '<div class="xUC BAT Foo">qwe</div>')
 })
 
 test('test #3', t => {
@@ -43,7 +43,7 @@ test('test #3', t => {
   })
 
   t.is(elem.node.className, 'BAT Foo')
-  t.is(elem.toString(), '<undefined class="BAT Foo">qwe</undefined>')
+  t.is(elem.toString(), '<div class="BAT Foo">qwe</div>')
 })
 
 test('test #4', t => {
@@ -53,7 +53,7 @@ test('test #4', t => {
   })
 
   t.is(elem.node.className, 'poi BAT Foo')
-  t.is(elem.toString(), '<undefined class="poi BAT Foo">qwe</undefined>')
+  t.is(elem.toString(), '<div class="poi BAT Foo">qwe</div>')
 })
 
 test('test #5', t => {
@@ -63,7 +63,7 @@ test('test #5', t => {
   })
 
   t.is(elem.node.className, 'qaz Foo')
-  t.is(elem.toString(), '<undefined class="qaz Foo">qwe</undefined>')
+  t.is(elem.toString(), '<div class="qaz Foo">qwe</div>')
 })
 
 test('test #6', t => {
@@ -73,7 +73,7 @@ test('test #6', t => {
   })
 
   t.is(elem.node.className, 'Foo')
-  t.is(elem.toString(), '<undefined class="Foo">qwe</undefined>')
+  t.is(elem.toString(), '<div class="Foo">qwe</div>')
 })
 
 test('test #7', t => {
@@ -83,7 +83,7 @@ test('test #7', t => {
   })
 
   t.is(elem.node.className, 'Wsx')
-  t.is(elem.toString(), '<undefined class="Wsx">qwe</undefined>')
+  t.is(elem.toString(), '<div class="Wsx">qwe</div>')
 })
 
 test('test #8', t => {
@@ -94,5 +94,5 @@ test('test #8', t => {
 
   t.is(elem.node.className, '')
   t.false(elem.node.hasAttribute('class'))
-  t.is(elem.toString(), '<undefined>qwe</undefined>')
+  t.is(elem.toString(), '<div>qwe</div>')
 })
