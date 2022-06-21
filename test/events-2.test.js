@@ -73,6 +73,4 @@ test('setState', t => {
   t.is(onclick3.getCall(1).thisValue, parent._child)
   t.is(onclick3.args[1][0].target, parent._child.node)
   t.is(onclick3.args[1][1], parent._child)
-
-  parent.destroy()
 })

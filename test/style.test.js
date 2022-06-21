@@ -8,8 +8,6 @@ test('object', t => {
   t.is(elem.style.font, '')
   t.is(elem.node.getAttribute('style'), 'color: rgb(255, 0, 0);')
   t.is(elem.toString(), '<div style="color: rgb(255, 0, 0);"></div>')
-
-  elem.destroy()
 })
 
 test('string', t => {
@@ -18,6 +16,4 @@ test('string', t => {
   t.is(elem.style.display, 'none')
   t.is(elem.node.getAttribute('style'), 'display: none;')
   t.is(elem.toString(), '<div style="display: none;"></div>')
-
-  elem.destroy()
 })

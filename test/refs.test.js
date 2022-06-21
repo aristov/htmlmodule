@@ -72,6 +72,4 @@ test('test #1', t => {
   t.is(elem._ref2, undefined)
   t.is(elem._ref3, undefined)
   t.is(elem.toString(), '<div class="Foo"></div>')
-
-  elem.destroy()
 })

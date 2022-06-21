@@ -2,12 +2,8 @@ const test = require('ava')
 const { HTMLDivElement } = require('xwindow')
 const { ElemType, HtmlA, HtmlDiv, HtmlSpan } = require('..')
 
-let elem
-
-test.afterEach(() => elem.destroy())
-
 test('test #1', t => {
-  elem = ElemType.render()
+  const elem = ElemType.render()
 
   t.deepEqual(Object.keys(elem), [])
   t.deepEqual(Object.assign({}, elem), {})
@@ -21,7 +17,7 @@ test('className', t => {
   {
   }
 
-  elem = Foo.render('bar')
+  const elem = Foo.render('bar')
 
   t.is(elem.tagName, 'DIV')
   t.is(elem.node.className, 'Foo')
@@ -31,7 +27,7 @@ test('className', t => {
 })
 
 test('children', t => {
-  elem = HtmlDiv.render([
+  const elem = HtmlDiv.render([
     'foo', null, [new HtmlSpan('bar'), [], [['bat'], new HtmlA('baz')]],
   ])
 
@@ -40,7 +36,7 @@ test('children', t => {
   t.is(elem.toString(), '<div>foo<span>bar</span>bat<a>baz</a></div>')
 })
 
-test('destroy', t => {
+/*test('destroy', t => {
   const children = new HtmlSpan('foo')
   const instance = HtmlDiv.render({
     onclick : () => {
@@ -52,10 +48,10 @@ test('destroy', t => {
   t.is(instance.node, null)
   t.is(instance.onclick, null)
   t.is(children.node, null)
-})
+})*/
 
 test('attributes', t => {
-  elem = HtmlDiv.render({
+  const elem = HtmlDiv.render({
     attributes : {
       'aria-hidden' : 'true',
       'aria-label' : null,
@@ -78,7 +74,7 @@ test('attributes', t => {
 })
 
 test('classList', t => {
-  elem = HtmlDiv.render({ classList : ['foo', null, 'bar'] })
+  const elem = HtmlDiv.render({ classList : ['foo', null, 'bar'] })
 
   t.is(elem.classList[0], 'foo')
   t.is(elem.classList[1], 'bar')

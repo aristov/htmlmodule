@@ -128,8 +128,8 @@ test('test #1', t => {
   t.true(bazWillUnmount.calledOnce)
   t.is(elem.toString(), '<div class="Foo">foo</div>')
 
-  elem.destroy()
+  // elem.destroy()
 
-  t.true(fooWillUnmount.calledOnce)
-  t.true(bazWillUnmount.calledOnce)
+  // t.true(fooWillUnmount.calledOnce)
+  // t.true(bazWillUnmount.calledOnce)
 })

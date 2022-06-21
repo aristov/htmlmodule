@@ -40,6 +40,4 @@ test('test #1', t => {
   t.is(elem.node.children[0], li2.node)
   t.is(elem.node.children[1], li3.node)
   t.is(elem.node.children[2], li4.node)
-
-  elem.destroy()
 })

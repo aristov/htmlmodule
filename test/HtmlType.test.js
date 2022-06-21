@@ -2,12 +2,8 @@ const test = require('ava')
 const { HTMLAnchorElement } = require('xwindow')
 const { HtmlA } = require('..')
 
-let elem
-
-test.afterEach(() => elem.destroy())
-
 test('HtmlA', t => {
-  elem = HtmlA.render({
+  const elem = HtmlA.render({
     href : 'https://example.com/',
     children : 'Example',
     title : null,

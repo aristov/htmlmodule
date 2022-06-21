@@ -30,8 +30,6 @@ test('test #1', t => {
 
   t.is(elem.getAttr(AriaHidden), 'true')
   t.is(elem.toString(), '<div aria-hidden="true">test</div>')
-
-  elem.destroy()
 })
 
 test('test #2', t => {
@@ -54,6 +52,4 @@ test('test #2', t => {
   t.is(elem.hidden, 'true')
   t.is(elem.getAttr(AriaHidden), 'true')
   t.is(elem.toString(), '<div class="Block" aria-hidden="true">test</div>')
-
-  elem.destroy()
 })

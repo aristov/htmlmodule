@@ -40,6 +40,4 @@ test('test #1', t => {
   elem.toggle()
 
   t.is(elem.toString(), '<article class="Article"><button>On</button><section hidden="">Foo</section>Bar</article>')
-
-  elem.destroy()
 })

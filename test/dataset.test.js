@@ -10,6 +10,4 @@ test('test #1', t => {
   t.is(elem.getAttr('data-bat'), null)
   t.false(elem.node.hasAttribute('data-bat'))
   t.is(elem.toString(), '<div data-foo="bar"></div>')
-
-  elem.destroy()
 })
