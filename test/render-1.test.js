@@ -27,10 +27,10 @@ test('parentNode', t => {
   const foo = new Foo
   const bar = Bar.render(foo, parentNode)
 
-  t.true(fooDidMount.calledOnce)
+  t.is(fooDidMount.callCount, 1)
   t.is(fooDidMount.getCall(0).thisValue, foo)
 
-  t.true(barDidMount.calledOnce)
+  t.is(barDidMount.callCount, 1)
   t.is(barDidMount.getCall(0).thisValue, bar)
 
   t.is(bar.node.parentNode, parentNode)
@@ -43,10 +43,10 @@ test('node', t => {
   const foo = new Foo
   const bar = Bar.render({ node, children : foo })
 
-  t.true(fooDidMount.calledOnce)
+  t.is(fooDidMount.callCount, 1)
   t.is(fooDidMount.getCall(0).thisValue, foo)
 
-  t.true(barDidMount.calledOnce)
+  t.is(barDidMount.callCount, 1)
   t.is(barDidMount.getCall(0).thisValue, bar)
 
   t.is(bar.node, node)
