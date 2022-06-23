@@ -3,27 +3,27 @@ const sinon = require('sinon')
 const { HtmlDiv, HtmlA, HtmlB, HtmlBr, HtmlSpan, window } = require('..')
 const { DocumentFragment } = window
 
-const bazDidMount = sinon.spy()
-const bazDidUpdate = sinon.spy()
-const bazWillUnmount = sinon.spy()
-const fooDidMount = sinon.spy()
-const fooDidUpdate = sinon.spy()
-const fooWillUnmount = sinon.spy()
+const fooInit = sinon.spy()
+const fooUpdate = sinon.spy()
+const fooDestroy = sinon.spy()
+const bazInit = sinon.spy()
+const bazUpdate = sinon.spy()
+const bazDestroy = sinon.spy()
 
 class Baz extends HtmlSpan
 {
   state = { asd : 'zxc' }
 
-  componentDidMount() {
-    bazDidMount()
+  init() {
+    bazInit.call(this)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    bazDidUpdate(prevProps, prevState)
+  update(prevProps, prevState) {
+    bazUpdate.call(this, prevProps, prevState)
   }
 
-  componentWillUnmount() {
-    bazWillUnmount()
+  destroy() {
+    bazDestroy.call(this)
   }
 }
 
@@ -57,79 +57,79 @@ class Foo extends HtmlDiv
     return 'foo'
   }
 
-  componentDidMount() {
-    fooDidMount()
+  init() {
+    fooInit.call(this)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    fooDidUpdate(prevProps, prevState)
+  update(prevProps, prevState) {
+    fooUpdate.call(this, prevProps, prevState)
   }
 
-  componentWillUnmount() {
-    fooWillUnmount()
+  destroy() {
+    fooDestroy.call(this)
   }
 }
 
 test('test #1', t => {
-  const elem = Foo.render({ qaz : 'wsx' }, new DocumentFragment)
+  const foo = Foo.render({ qaz : 'wsx' }, new DocumentFragment)
 
-  t.is(fooDidMount.callCount, 1)
-  t.is(fooDidUpdate.callCount, 0)
-  t.is(fooWillUnmount.callCount, 0)
-  t.is(bazDidMount.callCount, 0)
-  t.is(bazDidUpdate.callCount, 0)
-  t.is(bazWillUnmount.callCount, 0)
-  t.is(elem.toString(), '<div class="Foo">foo</div>')
+  t.is(fooInit.callCount, 1)
+  t.is(fooUpdate.callCount, 0)
+  t.is(fooDestroy.callCount, 0)
+  t.is(bazInit.callCount, 0)
+  t.is(bazUpdate.callCount, 0)
+  t.is(bazDestroy.callCount, 0)
+  t.is(foo.toString(), '<div class="Foo">foo</div>')
 
-  elem.setState({ step : 1 })
+  foo.setState({ step : 1 })
 
-  t.is(fooDidMount.callCount, 1)
-  t.is(fooDidUpdate.callCount, 1)
-  t.is(fooDidUpdate.args[0][0], elem.props)
-  t.deepEqual(fooDidUpdate.args[0][1], { step : 0 })
-  t.is(fooWillUnmount.callCount, 0)
-  t.is(bazDidMount.callCount, 0)
-  t.is(bazDidUpdate.callCount, 0)
-  t.is(bazWillUnmount.callCount, 0)
-  t.is(elem.toString(), '<div class="Foo"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
+  t.is(fooInit.callCount, 1)
+  t.is(fooUpdate.callCount, 1)
+  t.is(fooUpdate.args[0][0], foo.props)
+  t.deepEqual(fooUpdate.args[0][1], { step : 0 })
+  t.is(fooDestroy.callCount, 0)
+  t.is(bazInit.callCount, 0)
+  t.is(bazUpdate.callCount, 0)
+  t.is(bazDestroy.callCount, 0)
+  t.is(foo.toString(), '<div class="Foo"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
 
-  elem.setState({ step : 2 })
+  foo.setState({ step : 2 })
 
-  t.is(fooDidMount.callCount, 1)
-  t.is(fooDidUpdate.callCount, 2)
-  t.deepEqual(fooDidUpdate.args[1][1], { step : 1 })
-  t.is(fooWillUnmount.callCount, 0)
-  t.is(bazDidMount.callCount, 1)
-  t.is(bazDidUpdate.callCount, 0)
-  t.is(bazWillUnmount.callCount, 0)
-  t.is(elem.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">baz</span></div><br><a>bar</a></div>')
+  t.is(fooInit.callCount, 1)
+  t.is(fooUpdate.callCount, 2)
+  t.deepEqual(fooUpdate.args[1][1], { step : 1 })
+  t.is(fooDestroy.callCount, 0)
+  t.is(bazInit.callCount, 1)
+  t.is(bazUpdate.callCount, 0)
+  t.is(bazDestroy.callCount, 0)
+  t.is(foo.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">baz</span></div><br><a>bar</a></div>')
 
-  elem.setState({ step : 3 })
+  foo.setState({ step : 3 })
 
-  t.is(fooDidMount.callCount, 1)
-  t.is(fooDidUpdate.callCount, 3)
-  t.deepEqual(fooDidUpdate.args[2][1], { step : 2 })
-  t.is(fooWillUnmount.callCount, 0)
-  t.is(bazDidMount.callCount, 1)
-  t.is(bazDidUpdate.callCount, 1)
-  t.is(bazWillUnmount.callCount, 0)
-  t.deepEqual(bazDidUpdate.args[0][0], { children : 'baz' })
-  t.deepEqual(bazDidUpdate.args[0][1], { asd : 'zxc' })
-  t.is(elem.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">qwe</span></div></div>')
+  t.is(fooInit.callCount, 1)
+  t.is(fooUpdate.callCount, 3)
+  t.deepEqual(fooUpdate.args[2][1], { step : 2 })
+  t.is(fooDestroy.callCount, 0)
+  t.is(bazInit.callCount, 1)
+  t.is(bazUpdate.callCount, 1)
+  t.is(bazDestroy.callCount, 0)
+  t.deepEqual(bazUpdate.args[0][0], { children : 'baz' })
+  t.deepEqual(bazUpdate.args[0][1], { asd : 'zxc' })
+  t.is(foo.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">qwe</span></div></div>')
 
-  elem.setState({ step : 0 })
+  foo.setState({ step : 0 })
 
-  t.is(fooDidMount.callCount, 1)
-  t.is(fooDidUpdate.callCount, 4)
-  t.deepEqual(fooDidUpdate.args[3][1], { step : 3 })
-  t.is(fooWillUnmount.callCount, 0)
-  t.is(bazDidMount.callCount, 1)
-  t.is(bazDidUpdate.callCount, 1)
-  t.is(bazWillUnmount.callCount, 1)
-  t.is(elem.toString(), '<div class="Foo">foo</div>')
+  t.is(fooInit.callCount, 1)
+  t.is(fooUpdate.callCount, 4)
+  t.deepEqual(fooUpdate.args[3][1], { step : 3 })
+  t.is(fooDestroy.callCount, 0)
+  t.is(bazInit.callCount, 1)
+  t.is(bazUpdate.callCount, 1)
+  t.is(bazDestroy.callCount, 1)
+  t.is(foo.toString(), '<div class="Foo">foo</div>')
 
-  // elem.destroy()
+  foo.setState({ step : -1 })
 
-  // t.is(fooWillUnmount.callCount, 1)
-  // t.is(bazWillUnmount.callCount, 1)
+  t.is(fooDestroy.callCount, 0)
+  t.is(bazDestroy.callCount, 1)
 })

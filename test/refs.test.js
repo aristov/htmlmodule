@@ -35,41 +35,41 @@ class Foo extends HtmlDiv
     return null
   }
 
-  componentDidMount() {
+  init() {
     this._obj = obj = {}
   }
 }
 
 test('test #1', t => {
-  const elem = Foo.render()
+  const foo = Foo.render()
 
-  t.is(elem._obj, obj)
-  t.is(elem._ref1, a)
-  t.is(elem._ref2, div)
-  t.is(elem._ref3, b)
-  t.is(elem.toString(), '<div class="Foo"><a>one</a><div>two</div><b>three</b></div>')
+  t.is(foo._obj, obj)
+  t.is(foo._ref1, a)
+  t.is(foo._ref2, div)
+  t.is(foo._ref3, b)
+  t.is(foo.toString(), '<div class="Foo"><a>one</a><div>two</div><b>three</b></div>')
 
-  elem.setState({ step : 1 })
+  foo.setState({ step : 1 })
 
-  t.is(elem._obj, obj)
-  t.is(elem._ref1, a)
-  t.is(elem._ref2, span)
-  t.is(elem._ref3, b)
-  t.is(elem.toString(), '<div class="Foo"><a>first</a><span>second</span><b>third</b></div>')
+  t.is(foo._obj, obj)
+  t.is(foo._ref1, a)
+  t.is(foo._ref2, span)
+  t.is(foo._ref3, b)
+  t.is(foo.toString(), '<div class="Foo"><a>first</a><span>second</span><b>third</b></div>')
 
-  elem.setState({ step : 2 })
+  foo.setState({ step : 2 })
 
-  t.is(elem._obj, obj)
-  t.is(elem._ref1, b)
-  t.false('_ref2' in elem)
-  t.is(elem._ref3, a)
-  t.is(elem.toString(), '<div class="Foo"><b>1</b><div>2</div><a>3</a></div>')
+  t.is(foo._obj, obj)
+  t.is(foo._ref1, b)
+  t.false('_ref2' in foo)
+  t.is(foo._ref3, a)
+  t.is(foo.toString(), '<div class="Foo"><b>1</b><div>2</div><a>3</a></div>')
 
-  elem.setState({ step : -1 })
+  foo.setState({ step : -1 })
 
-  t.is(elem._obj, obj)
-  t.false('_ref1' in elem)
-  t.false('_ref2' in elem)
-  t.false('_ref3' in elem)
-  t.is(elem.toString(), '<div class="Foo"></div>')
+  t.is(foo._obj, obj)
+  t.false('_ref1' in foo)
+  t.false('_ref2' in foo)
+  t.false('_ref3' in foo)
+  t.is(foo.toString(), '<div class="Foo"></div>')
 })
