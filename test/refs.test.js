@@ -61,15 +61,15 @@ test('test #1', t => {
 
   t.is(elem._obj, obj)
   t.is(elem._ref1, b)
-  t.is(elem._ref2, undefined)
+  t.false('_ref2' in elem)
   t.is(elem._ref3, a)
   t.is(elem.toString(), '<div class="Foo"><b>1</b><div>2</div><a>3</a></div>')
 
   elem.setState({ step : -1 })
 
   t.is(elem._obj, obj)
-  t.is(elem._ref1, undefined)
-  t.is(elem._ref2, undefined)
-  t.is(elem._ref3, undefined)
+  t.false('_ref1' in elem)
+  t.false('_ref2' in elem)
+  t.false('_ref3' in elem)
   t.is(elem.toString(), '<div class="Foo"></div>')
 })

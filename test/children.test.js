@@ -35,17 +35,23 @@ test('test #1', t => {
 
   t.is(elem.children[0], child1)
   t.is(elem.children[1], child2)
+  t.is(elem.node.children[0], child1.node)
+  t.is(elem.node.children[1], child2.node)
   t.is(elem.toString(), '<div class="Test"><a>one</a><b>two</b></div>')
 
   elem.setState({ step : 1 })
 
   t.is(elem.children[0], child1)
   t.is(elem.children[1], child2)
+  t.is(elem.node.children[0], child1.node)
+  t.is(elem.node.children[1], child2.node)
   t.is(elem.toString(), '<div class="Test"><b>two</b><b>one</b></div>')
 
   elem.setState({ step : 2 })
 
   t.is(elem.children[0], child1)
   t.is(elem.children[1], child2)
+  t.is(elem.node.children[0], child1.node)
+  t.is(elem.node.children[1], child2.node)
   t.is(elem.toString(), '<div class="Test"><b>one</b><a>two</a></div>')
 })
