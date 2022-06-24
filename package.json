@@ -26,7 +26,6 @@
     "test": "ava"
   },
   "dependencies": {
-    "actualize": "^0.2.0",
     "xwindow": "^0.1.2"
   },
   "devDependencies": {
