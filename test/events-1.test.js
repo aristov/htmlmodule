@@ -1,11 +1,11 @@
 const test = require('ava')
 const sinon = require('sinon')
-const { HtmlDiv } = require('..')
+const { ElemType } = require('..')
 const { CustomEvent, Event } = require('xwindow')
 
 test('onload', t => {
   const onload = sinon.spy()
-  const elem = HtmlDiv.render({ onload })
+  const elem = ElemType.render({ onload })
 
   t.is(elem.onload, onload)
 
@@ -27,7 +27,7 @@ test('onload', t => {
 
 test('custom event', t => {
   const onfoo = sinon.spy()
-  const elem = HtmlDiv.render()
+  const elem = ElemType.render()
   elem.node.addEventListener('foo', onfoo)
   elem.emit('foo', { detail : 'bar' })
 
@@ -51,10 +51,10 @@ test('custom event', t => {
 
 test('on/off', t => {
   const onclick = sinon.spy()
-  const elem = HtmlDiv.render()
+  const elem = ElemType.render()
   elem.on('click', onclick)
   elem.on('click', onclick)
-  elem.click()
+  elem.emit('click')
 
   t.true(onclick.calledOnce)
   t.is(onclick.getCall(0).thisValue, elem)
@@ -63,7 +63,7 @@ test('on/off', t => {
 
   elem.off('click', onclick)
   elem.off('click', onclick)
-  elem.click()
+  elem.emit('click')
 
   t.true(onclick.calledOnce)
 })
@@ -75,46 +75,46 @@ test('capture', t => {
     eventPhase = e.eventPhase
     spy(e, elem)
   }
-  const child = new HtmlDiv
-  const elem = HtmlDiv.render(child)
+  const child = new ElemType
+  const elem = ElemType.render(child)
   elem.on('click', onclick, true)
-  child.click()
+  child.emit('click')
 
   t.true(spy.calledOnce)
   t.is(eventPhase, Event.CAPTURING_PHASE)
 
   elem.off('click', onclick, true)
-  child.click()
+  child.emit('click')
 
   t.true(spy.calledOnce)
 })
 
 test('context', t => {
-  const context = HtmlDiv.render()
+  const context = ElemType.render()
   const onclick = sinon.spy()
-  const elem = HtmlDiv.render()
+  const elem = ElemType.render()
   elem.on('click', onclick, context)
-  elem.click()
+  elem.emit('click')
 
   t.true(onclick.calledOnce)
   t.is(onclick.getCall(0).thisValue, context)
   t.is(onclick.args[0][1], elem)
 
   elem.off('click', onclick, context)
-  elem.click()
+  elem.emit('click')
 
   t.true(onclick.calledOnce)
 })
 
 test('once', t => {
   const onclick = sinon.spy()
-  const elem = HtmlDiv.render()
+  const elem = ElemType.render()
   elem.on('click', onclick, { once : true })
-  elem.click()
+  elem.emit('click')
 
   t.true(onclick.calledOnce)
 
-  elem.click()
+  elem.emit('click')
 
   t.true(onclick.calledOnce)
 })
@@ -122,7 +122,7 @@ test('once', t => {
 test('removeAllListeners', t => {
   const onfoo = sinon.spy()
   const onbar = sinon.spy()
-  const elem = HtmlDiv.render()
+  const elem = ElemType.render()
   elem.on('foo', onfoo)
   elem.on('bar', onbar)
   elem.emit('foo')

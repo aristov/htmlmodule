@@ -1,7 +1,7 @@
 const test = require('ava')
-const { HtmlDiv } = require('..')
+const { ElemType } = require('..')
 
-class Foo extends HtmlDiv
+class Foo extends ElemType
 {
 }
 
@@ -9,12 +9,12 @@ class Bar extends Foo
 {
 }
 
-class Bat extends HtmlDiv
+class Bat extends ElemType
 {
   className = null
 }
 
-class Baz extends HtmlDiv
+class Baz extends ElemType
 {
   className = 'foo'
 }

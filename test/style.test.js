@@ -1,8 +1,8 @@
 const test = require('ava')
-const { HtmlDiv } = require('..')
+const { ElemType } = require('..')
 
 test('object', t => {
-  const elem = HtmlDiv.render({ style : { color : '#f00', font : undefined } })
+  const elem = ElemType.render({ style : { color : '#f00', font : undefined } })
 
   t.is(elem.style.color, 'rgb(255, 0, 0)')
   t.is(elem.style.font, '')
@@ -11,7 +11,7 @@ test('object', t => {
 })
 
 test('string', t => {
-  const elem = HtmlDiv.render({ style : 'display: none;' })
+  const elem = ElemType.render({ style : 'display: none;' })
 
   t.is(elem.style.display, 'none')
   t.is(elem.node.getAttribute('style'), 'display: none;')

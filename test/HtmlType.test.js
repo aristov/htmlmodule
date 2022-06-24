@@ -1,16 +1,17 @@
 const test = require('ava')
-const { HTMLAnchorElement } = require('xwindow')
-const { HtmlA } = require('..')
+const { HTMLDivElement } = require('xwindow')
+const { HtmlType } = require('..')
 
-test('HtmlA', t => {
-  const elem = HtmlA.render({
-    href : 'https://example.com/',
+test('test #1', t => {
+  const elem = HtmlType.render({
+    title : 'Hello world!',
+    hidden : true,
     children : 'Example',
-    title : null,
   })
 
-  t.is(elem.node.constructor, HTMLAnchorElement)
-  t.is(elem.href, 'https://example.com/')
+  t.is(elem.node.constructor, HTMLDivElement)
+  t.is(elem.title, 'Hello world!')
+  t.is(elem.hidden, true)
   t.is(elem.node.textContent, 'Example')
-  t.is(elem.toString(), '<a href="https://example.com/">Example</a>')
+  t.is(elem.toString(), '<div title="Hello world!" hidden="">Example</div>')
 })

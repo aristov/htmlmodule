@@ -1,8 +1,8 @@
 const test = require('ava')
-const { HtmlDiv } = require('..')
+const { ElemType } = require('..')
 
 test('test #1', t => {
-  const elem = HtmlDiv.render({ dataset : { foo : 'bar', bat : null } })
+  const elem = ElemType.render({ dataset : { foo : 'bar', bat : null } })
 
   t.is(elem.dataset.foo, 'bar')
   t.is(elem.dataset.bat, undefined)

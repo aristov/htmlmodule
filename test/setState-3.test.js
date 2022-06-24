@@ -1,7 +1,7 @@
 const test = require('ava')
-const { HtmlDiv, HtmlInput, HtmlLabel } = require('..')
+const { ElemType, HtmlInput, HtmlLabel } = require('..')
 
-class Foo extends HtmlDiv
+class Foo extends ElemType
 {
   state = {
     step : 0,

@@ -1,18 +1,18 @@
 const test = require('ava')
 const sinon = require('sinon')
 const { document } = require('xwindow')
-const { HtmlDiv } = require('..')
+const { ElemType } = require('..')
 
 test.beforeEach(t => {
   const fooInit = sinon.spy()
   const barInit = sinon.spy()
-  class Foo extends HtmlDiv
+  class Foo extends ElemType
   {
     init() {
       fooInit.apply(this, arguments)
     }
   }
-  class Bar extends HtmlDiv
+  class Bar extends ElemType
   {
     init() {
       barInit.apply(this, arguments)
