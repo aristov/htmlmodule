@@ -5,6 +5,7 @@
 exports = module.exports = require('./lib/htmlmodule')
 
 exports.AttrType = require('./lib/AttrType')
+exports.Context = require('./lib/Context')
 exports.ElemType = require('./lib/ElemType')
 exports.HtmlType = require('./lib/HtmlType')
 
