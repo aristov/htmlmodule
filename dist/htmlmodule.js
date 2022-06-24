@@ -19,133 +19,464 @@ return /******/ (() => { // webpackBootstrap
  */
 exports = module.exports = __webpack_require__(1)
 
-exports.AttrType = __webpack_require__(4)
-exports.Dataset = __webpack_require__(3)
-exports.DomElem = __webpack_require__(5)
-exports.DomNode = __webpack_require__(7)
-exports.HtmlElem = __webpack_require__(2)
-exports.Style = __webpack_require__(17)
+exports.AttrType = __webpack_require__(6)
+exports.Context = __webpack_require__(7)
+exports.ElemType = __webpack_require__(3)
+exports.HtmlType = __webpack_require__(2)
 
-exports.window = __webpack_require__(6)
+exports.window = __webpack_require__(4)
 
 
 /***/ }),
 /* 1 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const HtmlElem = __webpack_require__(2)
+const HtmlType = __webpack_require__(2)
 
-exports.HtmlA = class HtmlA extends HtmlElem {}
-exports.HtmlAbbr = class HtmlAbbr extends HtmlElem {}
-exports.HtmlAddress = class HtmlAddress extends HtmlElem {}
-exports.HtmlArea = class HtmlArea extends HtmlElem {}
-exports.HtmlArticle = class HtmlArticle extends HtmlElem {}
-exports.HtmlAside = class HtmlAside extends HtmlElem {}
-exports.HtmlAudio = class HtmlAudio extends HtmlElem {}
-exports.HtmlB = class HtmlB extends HtmlElem {}
-exports.HtmlBase = class HtmlBase extends HtmlElem {}
-exports.HtmlBdi = class HtmlBdi extends HtmlElem {}
-exports.HtmlBdo = class HtmlBdo extends HtmlElem {}
-exports.HtmlBlockQuote = class HtmlBlockQuote extends HtmlElem {}
-exports.HtmlBody = class HtmlBody extends HtmlElem {}
-exports.HtmlBr = class HtmlBr extends HtmlElem {}
-exports.HtmlButton = class HtmlButton extends HtmlElem {}
-exports.HtmlCanvas = class HtmlCanvas extends HtmlElem {}
-exports.HtmlCaption = class HtmlCaption extends HtmlElem {}
-exports.HtmlCite = class HtmlCite extends HtmlElem {}
-exports.HtmlCode = class HtmlCode extends HtmlElem {}
-exports.HtmlCol = class HtmlCol extends HtmlElem {}
-exports.HtmlColGroup = class HtmlColGroup extends HtmlElem {}
-exports.HtmlData = class HtmlData extends HtmlElem {}
-exports.HtmlDataList = class HtmlDataList extends HtmlElem {}
-exports.HtmlDd = class HtmlDd extends HtmlElem {}
-exports.HtmlDel = class HtmlDel extends HtmlElem {}
-exports.HtmlDetails = class HtmlDetails extends HtmlElem {}
-exports.HtmlDfn = class HtmlDfn extends HtmlElem {}
-exports.HtmlDialog = class HtmlDialog extends HtmlElem {}
-exports.HtmlDiv = class HtmlDiv extends HtmlElem {}
-exports.HtmlDl = class HtmlDl extends HtmlElem {}
-exports.HtmlDt = class HtmlDt extends HtmlElem {}
-exports.HtmlEm = class HtmlEm extends HtmlElem {}
-exports.HtmlEmbed = class HtmlEmbed extends HtmlElem {}
-exports.HtmlFieldSet = class HtmlFieldSet extends HtmlElem {}
-exports.HtmlFigCaption = class HtmlFigCaption extends HtmlElem {}
-exports.HtmlFigure = class HtmlFigure extends HtmlElem {}
-exports.HtmlFooter = class HtmlFooter extends HtmlElem {}
-exports.HtmlForm = class HtmlForm extends HtmlElem {}
-exports.HtmlH1 = class HtmlH1 extends HtmlElem {}
-exports.HtmlH2 = class HtmlH2 extends HtmlElem {}
-exports.HtmlH3 = class HtmlH3 extends HtmlElem {}
-exports.HtmlH4 = class HtmlH4 extends HtmlElem {}
-exports.HtmlH5 = class HtmlH5 extends HtmlElem {}
-exports.HtmlH6 = class HtmlH6 extends HtmlElem {}
-exports.HtmlHGroup = class HtmlHGroup extends HtmlElem {}
-exports.HtmlHead = class HtmlHead extends HtmlElem {}
-exports.HtmlHeader = class HtmlHeader extends HtmlElem {}
-exports.HtmlHr = class HtmlHr extends HtmlElem {}
-exports.HtmlHtml = class HtmlHtml extends HtmlElem {}
-exports.HtmlI = class HtmlI extends HtmlElem {}
-exports.HtmlIFrame = class HtmlIFrame extends HtmlElem {}
-exports.HtmlImg = class HtmlImg extends HtmlElem {}
-exports.HtmlInput = class HtmlInput extends HtmlElem {}
-exports.HtmlIns = class HtmlIns extends HtmlElem {}
-exports.HtmlKbd = class HtmlKbd extends HtmlElem {}
-exports.HtmlLabel = class HtmlLabel extends HtmlElem {}
-exports.HtmlLegend = class HtmlLegend extends HtmlElem {}
-exports.HtmlLi = class HtmlLi extends HtmlElem {}
-exports.HtmlLink = class HtmlLink extends HtmlElem {}
-exports.HtmlMain = class HtmlMain extends HtmlElem {}
-exports.HtmlMap = class HtmlMap extends HtmlElem {}
-exports.HtmlMark = class HtmlMark extends HtmlElem {}
-exports.HtmlMenu = class HtmlMenu extends HtmlElem {}
-exports.HtmlMeta = class HtmlMeta extends HtmlElem {}
-exports.HtmlMeter = class HtmlMeter extends HtmlElem {}
-exports.HtmlNav = class HtmlNav extends HtmlElem {}
-exports.HtmlNoScript = class HtmlNoScript extends HtmlElem {}
-exports.HtmlObject = class HtmlObject extends HtmlElem {}
-exports.HtmlOl = class HtmlOl extends HtmlElem {}
-exports.HtmlOptGroup = class HtmlOptGroup extends HtmlElem {}
-exports.HtmlOption = class HtmlOption extends HtmlElem {}
-exports.HtmlOutput = class HtmlOutput extends HtmlElem {}
-exports.HtmlP = class HtmlP extends HtmlElem {}
-exports.HtmlParam = class HtmlParam extends HtmlElem {}
-exports.HtmlPicture = class HtmlPicture extends HtmlElem {}
-exports.HtmlPre = class HtmlPre extends HtmlElem {}
-exports.HtmlProgress = class HtmlProgress extends HtmlElem {}
-exports.HtmlQ = class HtmlQ extends HtmlElem {}
-exports.HtmlRp = class HtmlRp extends HtmlElem {}
-exports.HtmlRt = class HtmlRt extends HtmlElem {}
-exports.HtmlRuby = class HtmlRuby extends HtmlElem {}
-exports.HtmlS = class HtmlS extends HtmlElem {}
-exports.HtmlSamp = class HtmlSamp extends HtmlElem {}
-exports.HtmlScript = class HtmlScript extends HtmlElem {}
-exports.HtmlSection = class HtmlSection extends HtmlElem {}
-exports.HtmlSelect = class HtmlSelect extends HtmlElem {}
-exports.HtmlSmall = class HtmlSmall extends HtmlElem {}
-exports.HtmlSource = class HtmlSource extends HtmlElem {}
-exports.HtmlSpan = class HtmlSpan extends HtmlElem {}
-exports.HtmlStrong = class HtmlStrong extends HtmlElem {}
-exports.HtmlStyle = class HtmlStyle extends HtmlElem {}
-exports.HtmlSub = class HtmlSub extends HtmlElem {}
-exports.HtmlSummary = class HtmlSummary extends HtmlElem {}
-exports.HtmlSup = class HtmlSup extends HtmlElem {}
-exports.HtmlTBody = class HtmlTBody extends HtmlElem {}
-exports.HtmlTFoot = class HtmlTFoot extends HtmlElem {}
-exports.HtmlTHead = class HtmlTHead extends HtmlElem {}
-exports.HtmlTable = class HtmlTable extends HtmlElem {}
-exports.HtmlTd = class HtmlTd extends HtmlElem {}
-exports.HtmlTemplate = class HtmlTemplate extends HtmlElem {}
-exports.HtmlTextArea = class HtmlTextArea extends HtmlElem {}
-exports.HtmlTh = class HtmlTh extends HtmlElem {}
-exports.HtmlTime = class HtmlTime extends HtmlElem {}
-exports.HtmlTitle = class HtmlTitle extends HtmlElem {}
-exports.HtmlTr = class HtmlTr extends HtmlElem {}
-exports.HtmlTrack = class HtmlTrack extends HtmlElem {}
-exports.HtmlU = class HtmlU extends HtmlElem {}
-exports.HtmlUl = class HtmlUl extends HtmlElem {}
-exports.HtmlVar = class HtmlVar extends HtmlElem {}
-exports.HtmlVideo = class HtmlVideo extends HtmlElem {}
-exports.HtmlWbr = class HtmlWbr extends HtmlElem {}
+exports.HtmlA = class HtmlA extends HtmlType
+{
+  static tagName = 'A'
+}
+exports.HtmlAbbr = class HtmlAbbr extends HtmlType
+{
+  static tagName = 'ABBR'
+}
+exports.HtmlAddress = class HtmlAddress extends HtmlType
+{
+  static tagName = 'ADDRESS'
+}
+exports.HtmlArea = class HtmlArea extends HtmlType
+{
+  static tagName = 'AREA'
+}
+exports.HtmlArticle = class HtmlArticle extends HtmlType
+{
+  static tagName = 'ARTICLE'
+}
+exports.HtmlAside = class HtmlAside extends HtmlType
+{
+  static tagName = 'ASIDE'
+}
+exports.HtmlAudio = class HtmlAudio extends HtmlType
+{
+  static tagName = 'AUDIO'
+}
+exports.HtmlB = class HtmlB extends HtmlType
+{
+  static tagName = 'B'
+}
+exports.HtmlBase = class HtmlBase extends HtmlType
+{
+  static tagName = 'BASE'
+}
+exports.HtmlBdi = class HtmlBdi extends HtmlType
+{
+  static tagName = 'BDI'
+}
+exports.HtmlBdo = class HtmlBdo extends HtmlType
+{
+  static tagName = 'BDO'
+}
+exports.HtmlBlockQuote = class HtmlBlockQuote extends HtmlType
+{
+  static tagName = 'BLOCKQUOTE'
+}
+exports.HtmlBody = class HtmlBody extends HtmlType
+{
+  static tagName = 'BODY'
+}
+exports.HtmlBr = class HtmlBr extends HtmlType
+{
+  static tagName = 'BR'
+}
+exports.HtmlButton = class HtmlButton extends HtmlType
+{
+  static tagName = 'BUTTON'
+}
+exports.HtmlCanvas = class HtmlCanvas extends HtmlType
+{
+  static tagName = 'CANVAS'
+}
+exports.HtmlCaption = class HtmlCaption extends HtmlType
+{
+  static tagName = 'CAPTION'
+}
+exports.HtmlCite = class HtmlCite extends HtmlType
+{
+  static tagName = 'CITE'
+}
+exports.HtmlCode = class HtmlCode extends HtmlType
+{
+  static tagName = 'CODE'
+}
+exports.HtmlCol = class HtmlCol extends HtmlType
+{
+  static tagName = 'COL'
+}
+exports.HtmlColGroup = class HtmlColGroup extends HtmlType
+{
+  static tagName = 'COLGROUP'
+}
+exports.HtmlData = class HtmlData extends HtmlType
+{
+  static tagName = 'DATA'
+}
+exports.HtmlDataList = class HtmlDataList extends HtmlType
+{
+  static tagName = 'DATALIST'
+}
+exports.HtmlDd = class HtmlDd extends HtmlType
+{
+  static tagName = 'DD'
+}
+exports.HtmlDel = class HtmlDel extends HtmlType
+{
+  static tagName = 'DEL'
+}
+exports.HtmlDetails = class HtmlDetails extends HtmlType
+{
+  static tagName = 'DETAILS'
+}
+exports.HtmlDfn = class HtmlDfn extends HtmlType
+{
+  static tagName = 'DFN'
+}
+exports.HtmlDialog = class HtmlDialog extends HtmlType
+{
+  static tagName = 'DIALOG'
+}
+exports.HtmlDiv = class HtmlDiv extends HtmlType
+{
+  static tagName = 'DIV'
+}
+exports.HtmlDl = class HtmlDl extends HtmlType
+{
+  static tagName = 'DL'
+}
+exports.HtmlDt = class HtmlDt extends HtmlType
+{
+  static tagName = 'DT'
+}
+exports.HtmlEm = class HtmlEm extends HtmlType
+{
+  static tagName = 'EM'
+}
+exports.HtmlEmbed = class HtmlEmbed extends HtmlType
+{
+  static tagName = 'EMBED'
+}
+exports.HtmlFieldSet = class HtmlFieldSet extends HtmlType
+{
+  static tagName = 'FIELDSET'
+}
+exports.HtmlFigCaption = class HtmlFigCaption extends HtmlType
+{
+  static tagName = 'FIGCAPTION'
+}
+exports.HtmlFigure = class HtmlFigure extends HtmlType
+{
+  static tagName = 'FIGURE'
+}
+exports.HtmlFooter = class HtmlFooter extends HtmlType
+{
+  static tagName = 'FOOTER'
+}
+exports.HtmlForm = class HtmlForm extends HtmlType
+{
+  static tagName = 'FORM'
+}
+exports.HtmlH1 = class HtmlH1 extends HtmlType
+{
+  static tagName = 'H1'
+}
+exports.HtmlH2 = class HtmlH2 extends HtmlType
+{
+  static tagName = 'H2'
+}
+exports.HtmlH3 = class HtmlH3 extends HtmlType
+{
+  static tagName = 'H3'
+}
+exports.HtmlH4 = class HtmlH4 extends HtmlType
+{
+  static tagName = 'H4'
+}
+exports.HtmlH5 = class HtmlH5 extends HtmlType
+{
+  static tagName = 'H5'
+}
+exports.HtmlH6 = class HtmlH6 extends HtmlType
+{
+  static tagName = 'H6'
+}
+exports.HtmlHGroup = class HtmlHGroup extends HtmlType
+{
+  static tagName = 'HGROUP'
+}
+exports.HtmlHead = class HtmlHead extends HtmlType
+{
+  static tagName = 'HEAD'
+}
+exports.HtmlHeader = class HtmlHeader extends HtmlType
+{
+  static tagName = 'HEADER'
+}
+exports.HtmlHr = class HtmlHr extends HtmlType
+{
+  static tagName = 'HR'
+}
+exports.HtmlHtml = class HtmlHtml extends HtmlType
+{
+  static tagName = 'HTML'
+}
+exports.HtmlI = class HtmlI extends HtmlType
+{
+  static tagName = 'I'
+}
+exports.HtmlIFrame = class HtmlIFrame extends HtmlType
+{
+  static tagName = 'IFRAME'
+}
+exports.HtmlImg = class HtmlImg extends HtmlType
+{
+  static tagName = 'IMG'
+}
+exports.HtmlInput = class HtmlInput extends HtmlType
+{
+  static tagName = 'INPUT'
+}
+exports.HtmlIns = class HtmlIns extends HtmlType
+{
+  static tagName = 'INS'
+}
+exports.HtmlKbd = class HtmlKbd extends HtmlType
+{
+  static tagName = 'KBD'
+}
+exports.HtmlLabel = class HtmlLabel extends HtmlType
+{
+  static tagName = 'LABEL'
+}
+exports.HtmlLegend = class HtmlLegend extends HtmlType
+{
+  static tagName = 'LEGEND'
+}
+exports.HtmlLi = class HtmlLi extends HtmlType
+{
+  static tagName = 'LI'
+}
+exports.HtmlLink = class HtmlLink extends HtmlType
+{
+  static tagName = 'LINK'
+}
+exports.HtmlMain = class HtmlMain extends HtmlType
+{
+  static tagName = 'MAIN'
+}
+exports.HtmlMap = class HtmlMap extends HtmlType
+{
+  static tagName = 'MAP'
+}
+exports.HtmlMark = class HtmlMark extends HtmlType
+{
+  static tagName = 'MARK'
+}
+exports.HtmlMenu = class HtmlMenu extends HtmlType
+{
+  static tagName = 'MENU'
+}
+exports.HtmlMeta = class HtmlMeta extends HtmlType
+{
+  static tagName = 'META'
+}
+exports.HtmlMeter = class HtmlMeter extends HtmlType
+{
+  static tagName = 'METER'
+}
+exports.HtmlNav = class HtmlNav extends HtmlType
+{
+  static tagName = 'NAV'
+}
+exports.HtmlNoScript = class HtmlNoScript extends HtmlType
+{
+  static tagName = 'NOSCRIPT'
+}
+exports.HtmlObject = class HtmlObject extends HtmlType
+{
+  static tagName = 'OBJECT'
+}
+exports.HtmlOl = class HtmlOl extends HtmlType
+{
+  static tagName = 'OL'
+}
+exports.HtmlOptGroup = class HtmlOptGroup extends HtmlType
+{
+  static tagName = 'OPTGROUP'
+}
+exports.HtmlOption = class HtmlOption extends HtmlType
+{
+  static tagName = 'OPTION'
+}
+exports.HtmlOutput = class HtmlOutput extends HtmlType
+{
+  static tagName = 'OUTPUT'
+}
+exports.HtmlP = class HtmlP extends HtmlType
+{
+  static tagName = 'P'
+}
+exports.HtmlParam = class HtmlParam extends HtmlType
+{
+  static tagName = 'PARAM'
+}
+exports.HtmlPicture = class HtmlPicture extends HtmlType
+{
+  static tagName = 'PICTURE'
+}
+exports.HtmlPre = class HtmlPre extends HtmlType
+{
+  static tagName = 'PRE'
+}
+exports.HtmlProgress = class HtmlProgress extends HtmlType
+{
+  static tagName = 'PROGRESS'
+}
+exports.HtmlQ = class HtmlQ extends HtmlType
+{
+  static tagName = 'Q'
+}
+exports.HtmlRp = class HtmlRp extends HtmlType
+{
+  static tagName = 'RP'
+}
+exports.HtmlRt = class HtmlRt extends HtmlType
+{
+  static tagName = 'RT'
+}
+exports.HtmlRuby = class HtmlRuby extends HtmlType
+{
+  static tagName = 'RUBY'
+}
+exports.HtmlS = class HtmlS extends HtmlType
+{
+  static tagName = 'S'
+}
+exports.HtmlSamp = class HtmlSamp extends HtmlType
+{
+  static tagName = 'SAMP'
+}
+exports.HtmlScript = class HtmlScript extends HtmlType
+{
+  static tagName = 'SCRIPT'
+}
+exports.HtmlSection = class HtmlSection extends HtmlType
+{
+  static tagName = 'SECTION'
+}
+exports.HtmlSelect = class HtmlSelect extends HtmlType
+{
+  static tagName = 'SELECT'
+}
+exports.HtmlSmall = class HtmlSmall extends HtmlType
+{
+  static tagName = 'SMALL'
+}
+exports.HtmlSource = class HtmlSource extends HtmlType
+{
+  static tagName = 'SOURCE'
+}
+exports.HtmlSpan = class HtmlSpan extends HtmlType
+{
+  static tagName = 'SPAN'
+}
+exports.HtmlStrong = class HtmlStrong extends HtmlType
+{
+  static tagName = 'STRONG'
+}
+exports.HtmlStyle = class HtmlStyle extends HtmlType
+{
+  static tagName = 'STYLE'
+}
+exports.HtmlSub = class HtmlSub extends HtmlType
+{
+  static tagName = 'SUB'
+}
+exports.HtmlSummary = class HtmlSummary extends HtmlType
+{
+  static tagName = 'SUMMARY'
+}
+exports.HtmlSup = class HtmlSup extends HtmlType
+{
+  static tagName = 'SUP'
+}
+exports.HtmlTBody = class HtmlTBody extends HtmlType
+{
+  static tagName = 'TBODY'
+}
+exports.HtmlTFoot = class HtmlTFoot extends HtmlType
+{
+  static tagName = 'TFOOT'
+}
+exports.HtmlTHead = class HtmlTHead extends HtmlType
+{
+  static tagName = 'THEAD'
+}
+exports.HtmlTable = class HtmlTable extends HtmlType
+{
+  static tagName = 'TABLE'
+}
+exports.HtmlTd = class HtmlTd extends HtmlType
+{
+  static tagName = 'TD'
+}
+exports.HtmlTemplate = class HtmlTemplate extends HtmlType
+{
+  static tagName = 'TEMPLATE'
+}
+exports.HtmlTextArea = class HtmlTextArea extends HtmlType
+{
+  static tagName = 'TEXTAREA'
+}
+exports.HtmlTh = class HtmlTh extends HtmlType
+{
+  static tagName = 'TH'
+}
+exports.HtmlTime = class HtmlTime extends HtmlType
+{
+  static tagName = 'TIME'
+}
+exports.HtmlTitle = class HtmlTitle extends HtmlType
+{
+  static tagName = 'TITLE'
+}
+exports.HtmlTr = class HtmlTr extends HtmlType
+{
+  static tagName = 'TR'
+}
+exports.HtmlTrack = class HtmlTrack extends HtmlType
+{
+  static tagName = 'TRACK'
+}
+exports.HtmlU = class HtmlU extends HtmlType
+{
+  static tagName = 'U'
+}
+exports.HtmlUl = class HtmlUl extends HtmlType
+{
+  static tagName = 'UL'
+}
+exports.HtmlVar = class HtmlVar extends HtmlType
+{
+  static tagName = 'VAR'
+}
+exports.HtmlVideo = class HtmlVideo extends HtmlType
+{
+  static tagName = 'VIDEO'
+}
+exports.HtmlWbr = class HtmlWbr extends HtmlType
+{
+  static tagName = 'WBR'
+}
 
 exports.HtmlA.defineProps([
   'origin',
@@ -786,51 +1117,56 @@ exports.HtmlVideo.defineProps([
   'poster',
 ], true)
 
+Object.values(exports).forEach(type => type.class = undefined)
+
 
 /***/ }),
 /* 2 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const Dataset = __webpack_require__(3)
-const DomElem = __webpack_require__(5)
-const Style = __webpack_require__(17)
+const ElemType = __webpack_require__(3)
 
 /**
  * @see https://html.spec.whatwg.org/#htmlelement
- * @abstract
  */
-class HtmlElem extends DomElem
+class HtmlType extends ElemType
 {
-  static prefix = 'Html'
+  static class = undefined
 
-  static namespace = 'http://www.w3.org/1999/xhtml'
+  /**
+   * @return {string}
+   */
+  get innerText() {
+    return this.node.innerText
+  }
+
+  /**
+   * @param {string|null} innerText
+   */
+  set innerText(innerText) {
+    this.node.innerText = innerText
+  }
 }
 
-HtmlElem.defineAttrs([
-  Dataset,
-  Style,
-])
-
-HtmlElem.defineMethods([
+HtmlType.defineMethods([
   'blur',
   'click',
   'focus',
 ])
 
-HtmlElem.defineProps([
+HtmlType.defineProps([
   'offsetHeight',
   'offsetLeft',
   'offsetTop',
   'offsetWidth',
 ])
 
-HtmlElem.defineProps([
+HtmlType.defineProps([
   'accessKey',
   'autofocus',
   'contentEditable',
   'dir',
   'hidden',
-  'innerText',
   'inputMode',
   'lang',
   'tabIndex',
@@ -838,130 +1174,114 @@ HtmlElem.defineProps([
   'translate',
 ], true)
 
-module.exports = HtmlElem
+module.exports = HtmlType
 
 
 /***/ }),
 /* 3 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const AttrType = __webpack_require__(4)
+const window = __webpack_require__(4)
+const events = __webpack_require__(5)
 
-class Dataset extends AttrType
-{
-  /**
-   * @param {DomElem} elem
-   * @returns {DOMStringMap}
-   */
-  static get(elem) {
-    return elem.node.dataset
-  }
-
-  /**
-   * @param {DomElem} elem
-   * @param {{}} dataset
-   */
-  static set(elem, dataset) {
-    const map = elem.node.dataset
-    for(let [name, value] of Object.entries(dataset)) {
-      if(value !== undefined) {
-        map[name] = dataset[name]
-      }
-    }
-  }
+const { indexOf, map } = Array.prototype
+const { CustomEvent, document } = window
+const AttrNameMap = {
+  htmlFor : 'for',
+  defaultValue : 'value',
+  defaultChecked : 'checked',
+  defaultSelected : 'selected',
+  value : null,
+  checked : null,
+  selected : null,
+  indeterminate : null,
 }
-
-module.exports = Dataset
-
-
-/***/ }),
-/* 4 */
-/***/ ((module) => {
-
-/**
- * @see https://www.w3.org/TR/dom/#interface-attr
- */
-class AttrType
-{
-  static defaultValue = null
-
-  /**
-   * @param {DomElem} elem
-   * @returns {string|*}
-   */
-  static get(elem) {
-    return elem.node.getAttribute(this.localName)
-  }
-
-  /**
-   * @param {DomElem} elem
-   * @param {string|*} value
-   */
-  static set(elem, value) {
-    elem.node.setAttribute(this.localName, value)
-  }
-
-  /**
-   * @returns {string}
-   */
-  static get attrName() {
-    return this.name[0].toLowerCase() + this.name.slice(1)
-  }
-
-  /**
-   * @returns {string}
-   */
-  static get localName() {
-    return this.name.toLowerCase()
-  }
-}
-
-module.exports = AttrType
-
-
-/***/ }),
-/* 5 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-const window = __webpack_require__(6)
-const DomNode = __webpack_require__(7)
-
-const { document } = window
+const nullNode = document.createElement('div')
 
 /**
  * @see https://dom.spec.whatwg.org/#interface-element
  */
-class DomElem extends DomNode
+class ElemType
 {
-  className = undefined
+  static tagName = 'DIV'
 
-  static prefix = ''
+  static class = undefined
 
-  static namespace = ''
+  static specialProps = {
+    children : true,
+    class : true,
+    className : true,
+    key : true,
+    node : true,
+    role : true,
+    tagName : true,
+  }
+
+  /**
+   * @param {*} [props]
+   */
+  constructor(props = {}) {
+    if(props.constructor !== Object) {
+      props = { children : props }
+    }
+    Object.defineProperties(this, {
+      __handlers : {
+        value : new Map,
+      },
+      props : {
+        writable : true,
+        value : props,
+      },
+      state : {
+        configurable : true,
+        value : {},
+      },
+      node : {
+        writable : true,
+        value : null,
+      },
+      children : {
+        writable : true,
+        value : null,
+      },
+      className : {
+        configurable : true,
+        writable : true,
+        value : undefined,
+      },
+      key : {
+        writable : true,
+        value : props.key ?? null,
+      },
+    })
+  }
 
   /**
    * @return {*|Element}
+   * @protected
    */
   createNode() {
-    let constructor = this.constructor
-    const { prefix, namespace } = constructor
-    do if(constructor.name?.startsWith(prefix)) {
-      const name = constructor.name.slice(prefix.length)
-      return document.createElementNS(namespace, name.toLowerCase())
-    }
-    while(constructor = Object.getPrototypeOf(constructor))
-    throw Error(`Unable to resolve localName for "${ prefix }" prefix`)
+    return document.createElement(this.props.tagName || this.constructor.tagName)
   }
 
   /**
-   * @param {boolean} deep
+   * @private
    */
-  init(deep = false) {
-    this.setClassName()
-    super.init(deep)
+  _setRoleAttr() {
+    let role = this.props.role
+    if(role !== null) {
+      role ||= this.constructor.role
+    }
+    if(role) {
+      this.node.setAttribute('role', role)
+    }
+    else this.node.removeAttribute('role')
   }
 
-  setClassName() {
+  /**
+   * @private
+   */
+  _setClassName() {
     if(this.props.className !== undefined) {
       this.className = this.props.className
     }
@@ -971,20 +1291,31 @@ class DomElem extends DomNode
       }
       return
     }
+    const items = new Set
     let constructor = this.constructor
-    const prefix = constructor.prefix
-    const classList = this.node.classList
+    let name
     do {
-      if(constructor.name.startsWith(prefix)) {
-        return
+      name = constructor.hasOwnProperty('class') && constructor.class
+      if(name === undefined) {
+        break
       }
-      classList.add(constructor.name)
+      if(constructor === this.constructor && this.props.hasOwnProperty('class')) {
+        name = this.props.class
+      }
+      if(name === null) {
+        continue
+      }
+      name ||= constructor.name
+      name && items.add(name)
     }
     while(constructor = Object.getPrototypeOf(constructor))
+    if(items.size) {
+      this.node.className = Array.from(items).join(' ')
+    }
   }
 
   /**
-   * @param {constructor|string} attr
+   * @param {constructor @link AttrType|string} attr
    * @param {function} [attr.get]
    * @param {function} [attr.has]
    * @param {*|null} [attr.defaultValue]
@@ -998,17 +1329,18 @@ class DomElem extends DomNode
   }
 
   /**
-   * @param {constructor|string} attr
+   * @param {constructor @link AttrType|string} attr
+   * @param {string} [attr.nodeName]
    * @param {function} [attr.removeOnValue]
    * @param {function} [attr.set]
    * @param {string|null|*} value
    */
   setAttr(attr, value) {
-    if(typeof attr === 'function') {
-      value === null || attr.set(this, value)
+    if(value === null) {
+      this.node.removeAttribute(attr.nodeName || attr)
     }
-    else if(value === null) {
-      this.node.removeAttribute(attr)
+    else if(typeof attr === 'function') {
+      attr.set(this, value)
     }
     else this.node.setAttribute(attr, value)
   }
@@ -1021,229 +1353,47 @@ class DomElem extends DomNode
   }
 
   /**
-   * Get all attributes of the element as an array
-   * @returns {{}}
+   * @param {Element} [node]
+   * @private
    */
-  get attrs() {
-    const attrs = {}
-    for(const { name, value } of this.node.attributes) {
-      attrs[name] = value
-    }
-    return attrs
-  }
-
-  /**
-   * Set content attributes on the element
-   * @param {{}} attrs
-   */
-  set attrs(attrs) {
-    for(const [name, value] of Object.entries(attrs)) {
-      value === null ?
-        this.node.removeAttribute(name) :
-        this.node.setAttribute(name, value)
-    }
-  }
-
-  /**
-   * @return {string[]}
-   */
-  get class() {
-    return this.node.className.split(' ')
-  }
-
-  /**
-   * @param {*} value {string|string[]|{}}
-   */
-  set class(value) {
-    if(Array.isArray(value)) {
-      this.node.classList.add(...value.filter(Boolean))
-    }
-    else if(value.constructor === Object) {
-      for(const token of Object.keys(value)) {
-        this.node.classList.toggle(token, value[token])
-      }
-    }
-    else this.node.classList = value
-  }
-
-  /**
-   * @param {string[]|constructor[]} attrs
-   */
-  static defineAttrs(attrs) {
-    for(const attr of attrs) {
-      const name = typeof attr === 'string' ? attr : attr.attrName
-      Object.defineProperty(this.prototype, name, {
-        configurable : true,
-        get() {
-          return this.getAttr(attr)
-        },
-        set(value) {
-          if(value !== undefined) {
-            this.setAttr(attr, value)
-          }
-        },
-      })
-    }
-  }
-}
-
-DomElem.defineMethods([
-  'scrollTo',
-  'scrollBy',
-])
-
-DomElem.defineProps([
-  'classList',
-  'clientLeft',
-  'clientTop',
-  'clientWidth',
-  'clientHeight',
-  'scrollLeft',
-  'scrollTop',
-  'scrollWidth',
-  'scrollHeight',
-])
-
-DomElem.defineProps([
-  'id',
-  'innerHTML',
-  'textContent',
-], true)
-
-Object.defineProperties(DomElem.prototype, {
-  html : Object.getOwnPropertyDescriptor(DomElem.prototype, 'innerHTML'),
-  text : Object.getOwnPropertyDescriptor(DomElem.prototype, 'textContent'),
-})
-
-module.exports = DomElem
-
-
-/***/ }),
-/* 6 */
-/***/ ((module) => {
-
-/**
- * @module xwindow
- * @author Vyacheslav Aristov <vv.aristov@gmail.com>
- */
-if(typeof window === 'undefined') {
-  // Calling via eval() prevents jsdom extraction when using a module bundler
-  const { JSDOM } = eval('require("jsdom")')
-  const { window } = new JSDOM
-  module.exports = window
-}
-else module.exports = window
-
-
-/***/ }),
-/* 7 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-const window = __webpack_require__(6)
-const actualize = __webpack_require__(8)
-const events = __webpack_require__(15)
-const {
-  getKey,
-  nodeWillMount,
-  nodeDidMount,
-  nodeWillUpdate,
-  nodeDidUpdate,
-  childrenDidUpdate,
-  nodeWillUnmount,
-} = __webpack_require__(16)
-
-const { CustomEvent, DocumentFragment, EventTarget, Node } = window
-const SPECIAL_PROPS = {
-  children : true,
-  className : true,
-  key : true,
-  node : true,
-}
-
-/**
- * @see https://dom.spec.whatwg.org/#interface-node
- * @abstract
- */
-class DomNode
-{
-  state = {}
-
-  /**
-   * @param {*} [props]
-   */
-  constructor(props = {}) {
-    this.__handlers = new Map
-    this.props = props = this.normalizeProps(props)
-    this.node = props.node || this.createNode()
+  _init(node) {
+    this.node = node || this.createNode()
     this.node.__instance = this
-    if(props.key) {
-      this.key = props.key
+    this._setRoleAttr()
+    this._setClassName()
+    this._setProps()
+    const children = this.render()
+    this.children = [children].flat(Infinity).filter(Boolean)
+    if(node) {
+      if(children !== undefined) {
+        this._setChildren()
+      }
+      this.init()
+      return
     }
-  }
-
-  /**
-   * @param {*} [props]
-   * @return {{}}
-   */
-  normalizeProps(props) {
-    if(props?.constructor !== Object) {
-      props = { children : props }
-    }
-    else if(!props.children) {
-      props.children = []
-    }
-    return props
-  }
-
-  /**
-   * @returns {EventTarget}
-   */
-  createNode() {
-    return new EventTarget
-  }
-
-  /**
-   * @param {boolean} [deep]
-   * @returns {this}
-   */
-  init(deep) {
-    this.setProps()
-    this.props.children = this.normalizeChildren(this.render())
-    this.node.append(...this.props.children.map(child => {
-      if(child.node) {
-        deep && child.init(true)
+    this.node.append(...this.children.map(child => {
+      if(child.props) {
+        child._init()
         return child.node
       }
       return child
     }))
   }
 
-  setProps() {
-    let name, value
+  /**
+   * @private
+   */
+  _setProps() {
+    const specialProps = this.constructor.specialProps
+    let name
     for(name in this.props) {
-      value = this.props[name]
-      if(SPECIAL_PROPS[name]) {
+      if(specialProps[name]) {
         continue
       }
       if(name in this) {
-        this[name] = value
+        this[name] = this.props[name]
       }
     }
-  }
-
-  /**
-   * @param {*} [children]
-   * @return {(*|DomNode|string)[]}
-   */
-  normalizeChildren(children) {
-    const result = []
-    for(const child of [children].flat(Infinity)) {
-      if(child === false || child === null || child === undefined) {
-        continue
-      }
-      result.push(child)
-    }
-    return result
   }
 
   /**
@@ -1251,63 +1401,250 @@ class DomNode
    */
   setState(state) {
     const prevState = Object.assign({}, this.state)
-    const fragment = new DocumentFragment
-    if(typeof state === 'function') {
-      state = state(this.state)
+    if(state) {
+      if(typeof state === 'function') {
+        state = state(this.state)
+      }
+      Object.assign(this.state, state)
     }
-    Object.assign(this.state, state)
-    this.props.children = this.normalizeChildren(this.render())
-    fragment.append(...this.props.children.map(child => child.node || child))
-    actualize(this.node, fragment, {
-      childrenOnly : true,
-      getKey,
-      nodeWillMount,
-      nodeDidMount,
-      nodeWillUpdate,
-      nodeDidUpdate,
-      childrenDidUpdate,
-      nodeWillUnmount,
-    })
-    this.componentDidUpdate(this.props, prevState)
+    this._render()
+    this.update(this.props, prevState)
+  }
+
+  /**
+   * @private
+   */
+  _render() {
+    const refs = {}
+    let key, item
+    for(key in this) {
+      item = this[key]
+      if(item?.node) {
+        refs[key] = item
+      }
+    }
+    const children = this.render()
+    this.children = [children].flat(Infinity).filter(Boolean)
+    if(children !== undefined) {
+      this._setChildren()
+    }
+    for(key in refs) {
+      item = refs[key]
+      if(this.node.contains(item.node)) {
+        this[key] = item
+      }
+      if(!this.node.contains(this[key].node)) {
+        delete this[key]
+      }
+    }
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @private
+   */
+  _udpateElem(elem) {
+    if(this.constructor !== elem.constructor) {
+      this._replaceElem(elem)
+      return
+    }
+    const specialProps = this.constructor.specialProps
+    const prevProps = Object.assign({}, this.props)
+    const props = Object.assign({}, elem.props)
+    let name
+    for(name in prevProps) {
+      if(!specialProps[name]) {
+        if(props.hasOwnProperty(name)) {
+          this[name] = props[name]
+        }
+        else this[name] = null
+      }
+      delete props[name]
+    }
+    Object.assign(this, props)
+    this.props = elem.props
+    this._render()
+    this.update(prevProps, this.state)
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @private
+   */
+  _replaceElem(elem) {
+    const node = this.node
+    this.destroy()
+    this.removeAllListeners()
+    for(const attr of Array.from(node.attributes)) {
+      node.removeAttribute(attr.name)
+    }
+    this.node = nullNode
+    elem._init(node)
+  }
+
+  /**
+   * @private
+   */
+  _setChildren() {
+    const indexA = {}
+    const indexB = {}
+    let nodeA, childA, key
+    for(nodeA of this.node.childNodes) {
+      childA = nodeA.__instance
+      key = childA?.key
+      if(!key) {
+        this._setChildNodes()
+        return
+      }
+      indexA[key] = childA
+    }
+    let childB
+    for(childB of this.children) {
+      key = childB.key
+      if(!key) {
+        this._setChildNodes()
+        return
+      }
+      indexB[key] = childB
+    }
+    const children = map.call(this.node.children, node => node.__instance)
+    let nextA, i, j
+    for(childA of children) {
+      indexB[childA.key] || childA._destroy()
+    }
+    for(i = 0; i < this.children.length; i++) {
+      childB = this.children[i]
+      if(indexA[childB.key]) {
+        continue
+      }
+      nextA = this.node.children[i]
+      childB._init()
+      if(nextA) {
+        nextA.before(childB.node)
+      }
+      else {
+        this.node.append(childB.node)
+      }
+      init(childB)
+    }
+    for(i = 0; i < this.children.length; i++) {
+      childB = this.children[i]
+      childA = indexA[childB.key]
+      if(!childA) {
+        continue
+      }
+      j = indexOf.call(this.node.children, childA.node)
+      if(i !== j) {
+        nextA = this.node.children[i].nextSibling
+        if(nextA) {
+          if(childA.node !== nextA && childA.node.nextSibling !== nextA) {
+            nextA.before(childA.node)
+          }
+        }
+        else {
+          this.node.append(childA.node)
+        }
+      }
+      childA._udpateElem(childB)
+      if(childA.constructor === childB.constructor) {
+        this.children[i] = childA
+      }
+    }
+  }
+
+  /**
+   * @private
+   */
+  _setChildNodes() {
+    const childNodes = Array.from(this.node.childNodes)
+    const length = Math.max(childNodes.length, this.children.length)
+    let i, nodeA, childA, childB
+    for(i = 0; i < length; i++) {
+      nodeA = childNodes[i]
+      childB = this.children[i]
+      if(nodeA === undefined) {
+        childB._init?.()
+        this.node.append(childB.node || childB)
+        init(childB)
+        continue
+      }
+      childA = nodeA.__instance || nodeA.data || {}
+      if(childB === undefined) {
+        if(childA.node) {
+          childA._destroy()
+        }
+        else nodeA.remove()
+        continue
+      }
+      if(typeof childA === 'string' && typeof childB === 'string') {
+        if(childA !== childB) {
+          nodeA.data = childB
+        }
+        continue
+      }
+      if(childA.node && childB.props) {
+        if(nodeA.tagName === childB.tagName.toUpperCase() && childA.key === childB.key) {
+          childA._udpateElem(childB)
+          if(childA.constructor === childB.constructor) {
+            this.children[i] = childA
+          }
+          continue
+        }
+      }
+      childA._destroy?.(true)
+      childB._init?.()
+      nodeA.replaceWith(childB.node || childB)
+      init(childB)
+    }
   }
 
   /**
    * @return {*}
+   * @abstract
    */
   render() {
     return this.props.children
   }
 
-  componentDidMount() {
+  /**
+   * @abstract
+   */
+  init() {
     void null
   }
 
-  componentDidUpdate() {
+  /**
+   * @param {{}} prevProps
+   * @param {{}} prevState
+   * @abstract
+   */
+  update(prevProps, prevState) {
     void null
   }
 
-  componentWillUnmount() {
+  /**
+   * @abstract
+   */
+  destroy() {
     void null
   }
 
   /**
    * @param {boolean} [keepNode]
+   * @private
    */
-  destroy(keepNode = false) {
-    if(!this.node) {
+  _destroy(keepNode = false) {
+    if(this.node === nullNode) {
       return
     }
-    this.componentWillUnmount()
-    for(const child of this.props.children) {
-      child.node && child.destroy(true)
-    }
-    for(const type of this.__handlers.keys()) {
-      this.node[type] = null
-      this.__handlers.delete(type)
+    this.destroy()
+    this.removeAllListeners()
+    for(const node of this.node.children) {
+      node.__instance?._destroy(true)
     }
     keepNode || this.node.remove()
-    this.node.__instance = null
-    this.node = null
+    delete this.node.__instance
+    this.node = nullNode
   }
 
   /**
@@ -1331,6 +1668,258 @@ class DomNode
       event = new constructor(event, dict)
     }
     return this.node.dispatchEvent(event)
+  }
+
+  /**
+   * @param {string} eventName
+   * @param {function} callback
+   * @param {{context,capture,once,passive}|boolean|ElemType|*} [options]
+   * @param {ElemType} [options.context=this]
+   * @param {boolean} [options.capture=false]
+   * @param {boolean} [options.once=false]
+   * @param {boolean} [options.passive=false]
+   */
+  on(eventName, callback, options = {}) {
+    if(typeof options === 'boolean') {
+      options = { capture : options }
+    }
+    else if(options instanceof ElemType) {
+      options = { context : options }
+    }
+    const context = options.context || this
+    let listeners = context.__handlers.get(eventName)
+    listeners || context.__handlers.set(eventName, listeners = new Map)
+    if(listeners.has(callback)) {
+      return
+    }
+    const listener = event => {
+      options.once && listeners.delete(callback)
+      callback.call(context, event, event.target.__instance)
+    }
+    listener.__target = this.node
+    listener.__options = options
+    listeners.set(callback, listener)
+    this.node.addEventListener(eventName, listener, {
+      capture : options.capture || false,
+      once : options.once || false,
+      passive : options.passive || false,
+    })
+  }
+
+  /**
+   * @param {string} eventName
+   * @param {function} callback
+   * @param {{context,capture}|boolean|ElemType|*} [options]
+   * @param {ElemType} [options.context=this]
+   * @param {boolean} [options.capture=false]
+   */
+  off(eventName, callback, options = {}) {
+    if(typeof options === 'boolean') {
+      options = { capture : options }
+    }
+    else if(options instanceof ElemType) {
+      options = { context : options }
+    }
+    const context = options.context || this
+    let listeners = context.__handlers.get(eventName)
+    if(!listeners?.has(callback)) {
+      return
+    }
+    this.node.removeEventListener(eventName, listeners.get(callback), {
+      capture : options.capture,
+    })
+    listeners.delete(callback)
+    listeners.size || context.__handlers.delete(eventName)
+  }
+
+  /**
+   * @public
+   */
+  removeAllListeners() {
+    for(const [eventName, listeners] of this.__handlers.entries()) {
+      this.__handlers.delete(eventName)
+      if(typeof listeners === 'function') {
+        this.node[eventName] = null
+        continue
+      }
+      for(const listener of listeners.values()) {
+        listener.__target.removeEventListener(eventName, listener, {
+          capture : listener.__options.capture,
+        })
+      }
+      listeners.clear()
+    }
+  }
+
+  /**
+   * @param {constructor @link ElemType} type
+   * @return {null|ElemType|*}
+   */
+  find(type) {
+    let child
+    for(child of this.children) {
+      if(typeof child === 'string') {
+        continue
+      }
+      if(child instanceof type) {
+        return child
+      }
+      if(child = child.find(type)) {
+        return child
+      }
+    }
+    return null
+  }
+
+  /**
+   * @param {constructor @link ElemType} type
+   * @return {(null|ElemType|*)[]}
+   */
+  findAll(type) {
+    const result = []
+    let child
+    for(child of this.children) {
+      if(typeof child === 'string') {
+        continue
+      }
+      if(child instanceof type) {
+        result.push(child)
+      }
+      result.push(...child.findAll(type))
+    }
+    return result
+  }
+
+  /**
+   * @returns {NamedNodeMap}
+   */
+  get attributes() {
+    return this.node.attributes
+  }
+
+  /**
+   * @param {{}} attributes
+   */
+  set attributes(attributes) {
+    let name, value
+    for(name in attributes) {
+      value = attributes[name]
+      if(value === null) {
+        this.node.removeAttribute(name)
+      }
+      else this.node.setAttribute(name, value)
+    }
+  }
+
+  /**
+   * @return {DOMTokenList}
+   */
+  get classList() {
+    return this.node.classList
+  }
+
+  /**
+   * @param {*} value {string|string[]|{}}
+   */
+  set classList(value) {
+    if(Array.isArray(value)) {
+      this.node.classList.add(...value.filter(Boolean))
+      return
+    }
+    if(!value || value.constructor !== Object) {
+      this.node.classList = value
+      return
+    }
+    let key
+    for(key in value) {
+      this.node.classList.toggle(key, value[key])
+    }
+  }
+
+  /**
+   * @returns {DOMStringMap}
+   */
+  get dataset() {
+    return this.node.dataset
+  }
+
+  /**
+   * @param {{}} dataset
+   */
+  set dataset(dataset) {
+    let name, value
+    for(name in dataset) {
+      value = dataset[name]
+      if(value === null) {
+        delete this.node.dataset[name]
+      }
+      else this.node.dataset[name] = value
+    }
+  }
+
+  /**
+   * @return {string}
+   */
+  get innerHTML() {
+    return this.node.innerHTML
+  }
+
+  /**
+   * @param {string|null} innerHTML
+   */
+  set innerHTML(innerHTML) {
+    this.node.innerHTML = innerHTML
+  }
+
+  /**
+   * @returns {CSSStyleDeclaration}
+   */
+  get style() {
+    return this.node.style
+  }
+
+  /**
+   * @param {{}|string|null} style
+   */
+  set style(style) {
+    if(style === null) {
+      this.node.removeAttribute('style')
+      return
+    }
+    if(typeof style === 'string') {
+      this.node.style = style
+    }
+    else {
+      Object.assign(this.node.style, style)
+    }
+    if(this.node.getAttribute('style') === '') {
+      this.node.removeAttribute('style')
+    }
+  }
+
+  /**
+   * @return {string}
+   */
+  get tagName() {
+    return this.node?.tagName || this.props.tagName || this.constructor.tagName
+  }
+
+  /**
+   * @param {string[]|(constructor[] @link AttrType)} attrs
+   */
+  static defineAttrs(attrs) {
+    for(const attr of attrs) {
+      const name = attr.propName || attr
+      Object.defineProperty(this.prototype, name, {
+        configurable : true,
+        get() {
+          return this.getAttr(attr)
+        },
+        set(value) {
+          this.setAttr(attr, value)
+        },
+      })
+    }
   }
 
   /**
@@ -1365,7 +1954,7 @@ class DomNode
       Object.defineProperty(this.prototype, name, {
         configurable : true,
         writable : true,
-        value : function(...args) {
+        value(...args) {
           return this.node[name](...args)
         },
       })
@@ -1377,372 +1966,98 @@ class DomNode
    * @param {boolean} [setters]
    */
   static defineProps(props, setters = false) {
-    for(const name of props) {
+    for(const prop of props) {
       const desc = {
         configurable : true,
         get() {
-          return this.node[name]
+          return this.node[prop]
         },
       }
       if(setters) {
         desc.set = function(value) {
-          if(value !== undefined) {
-            this.node[name] = value
+          if(value === null && AttrNameMap[prop] !== null) {
+            const attr = AttrNameMap[prop] || prop.toLowerCase()
+            this.node.removeAttribute(attr)
           }
+          else this.node[prop] = value
         }
       }
-      Object.defineProperty(this.prototype, name, desc)
+      Object.defineProperty(this.prototype, prop, desc)
     }
   }
 
   /**
-   * @param {{}} props
-   * @param {Node} [parentNode]
-   * @return {*|DomNode}
+   * @param {{}} [props]
+   * @param {ParentNode} [parentNode]
+   * @return {*|ElemType}
    */
   static render(props, parentNode) {
-    const instance = new this(props)
-    if(!parentNode) {
-      instance.init(true)
-      return instance
-    }
-    const fragment = new DocumentFragment
-    fragment.append(instance.node)
-    actualize(parentNode, fragment, {
-      childrenOnly : true,
-      getKey,
-      nodeWillMount,
-      nodeDidMount,
-    })
-    return instance
+    const elem = new this(props)
+    const node = elem.props.node
+    elem._init(node)
+    parentNode?.append(elem.node)
+    node || init(elem)
+    return elem
   }
 }
 
-DomNode.defineEvents(Object.keys(events))
+/**
+ * @param {ElemType} item
+ */
+function init(item) {
+  if(item.node) {
+    item.children.forEach(init)
+    item.init()
+  }
+}
 
-Object.defineProperty(DomNode.prototype, 'key', {
-  writable : true,
-  value : null,
-})
+ElemType.defineEvents(Object.keys(events))
 
-Object.defineProperty(Node.prototype, '__instance', {
-  writable : true,
-  value : null,
-})
+ElemType.defineMethods([
+  'scrollTo',
+  'scrollBy',
+])
 
-module.exports = DomNode
+ElemType.defineProps([
+  'clientLeft',
+  'clientTop',
+  'clientWidth',
+  'clientHeight',
+  'scrollLeft',
+  'scrollTop',
+  'scrollWidth',
+  'scrollHeight',
+])
+
+ElemType.defineProps([
+  'id',
+], true)
+
+module.exports = ElemType
 
 
 /***/ }),
-/* 8 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/* 4 */
+/***/ ((module) => {
 
 /**
- * @module actualize
+ * @module xwindow
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
- * @see {@link https://github.com/aristov/actualize}
  */
-module.exports = __webpack_require__(9)
+if(typeof window === 'undefined') {
+  // Calling via eval() prevents jsdom extraction when using a module bundler
+  const { JSDOM } = eval('require("jsdom")')
+  const { window } = new JSDOM
+  module.exports = window
+}
+else module.exports = window
 
 
 /***/ }),
-/* 9 */
+/* 5 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const setChildren = __webpack_require__(10)
-const updateNode = __webpack_require__(13)
-
-const getNodeId = node => node.id
-
-/**
- * @param {*|Node} treeA node for updating
- * @param {*|Node} treeB node to which `treeA` should be updated
- * @param {{}} [options] actualize options
- * @param {boolean} [options.childrenOnly] Update only the child nodes of the `treeA`, the element itself will be skipped. The default value is `false`.
- * @param {function} [options.getKey] Called to get a custom key of the node in a child list.  The default value is `node.id`.
- * @param {function} [options.nodeWillMount] Called before a node from the `B` tree is mounted to the `A` tree.
- * @param {function} [options.nodeDidMount] Called after a node from the `B` tree has been mounted to the `A` tree.
- * @param {function} [options.nodeWillUnmount] Called before a node in the `A` tree is unmounted.
- * @param {function} [options.nodeDidUnmount] Called after a node in the `A` tree has been unmounted.
- * @param {function} [options.nodeWillUpdate] Called before updating a node in the `A` tree.
- * @param {function} [options.nodeDidUpdate] Called after updating a node in the `A` tree.
- * @param {function} [options.childrenWillUpdate] Called before updating the child nodes of an element in the `A` tree.
- * @param {function} [options.childrenDidUpdate] Called after updating the child nodes of an element in the `A` tree.
- * @return {Element}
- */
-function actualize(treeA, treeB, options = {}) {
-  if(!options.getKey) {
-    options.getKey = getNodeId
-  }
-  if(options.childrenOnly) {
-    setChildren(treeA, treeB, options)
-    return treeA
-  }
-  return updateNode(treeA, treeB, options)
-}
-
-module.exports = actualize
-
-
-/***/ }),
-/* 10 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-module.exports = setChildren // avoiding empty exports for circular dependency
-
-const getKeyIndex = __webpack_require__(11)
-const setChildNodes = __webpack_require__(12)
-const updateNode = __webpack_require__(13)
-
-const { indexOf } = Array.prototype
-
-/**
- * @param {*|Element} nodeA
- * @param {*|Element} nodeB
- * @param {{}} [options]
- */
-function setChildren(nodeA, nodeB, options) {
-  const indexA = getKeyIndex(nodeA, options.getKey)
-  const indexB = getKeyIndex(nodeB, options.getKey)
-  if(!indexA || !indexB) {
-    setChildNodes(nodeA, nodeB, options)
-    return
-  }
-  const {
-    getKey,
-    nodeWillMount,
-    nodeDidMount,
-    nodeWillUnmount,
-    nodeDidUnmount,
-  } = options
-  const childrenB = Array.from(nodeB.children)
-  let childA = nodeA.firstElementChild
-  let childB, nextA, i, j
-  while(childA) {
-    nextA = childA.nextElementSibling
-    if(!indexB[getKey(childA)]) {
-      nodeWillUnmount?.(childA)
-      childA.remove()
-      nodeDidUnmount?.(childA)
-    }
-    childA = nextA
-  }
-  for(i = 0; i < childrenB.length; i++) {
-    childB = childrenB[i]
-    childA = indexA[getKey(childB)]
-    if(childA) {
-      continue
-    }
-    nextA = nodeA.children[i]
-    nodeWillMount?.(childB)
-    if(nextA) {
-      nextA.before(childB)
-    }
-    else nodeA.append(childB)
-    nodeDidMount?.(childB)
-  }
-  for(i = 0; i < childrenB.length; i++) {
-    childB = childrenB[i]
-    childA = indexA[getKey(childB)]
-    if(!childA) {
-      continue
-    }
-    j = indexOf.call(nodeA.children, childA)
-    if(i === j) {
-      updateNode(childA, childB, options)
-      continue
-    }
-    nextA = nodeA.children[i].nextElementSibling
-    if(nextA) {
-      if(childA !== nextA && childA.nextElementSibling !== nextA) {
-        nextA.before(childA)
-      }
-    }
-    else nodeA.append(childA)
-    updateNode(childA, childB, options)
-  }
-}
-
-
-/***/ }),
-/* 11 */
-/***/ ((module) => {
-
-const ELEMENT_NODE = 1
-
-/**
- * @param {Node} node
- * @param {function} getKey
- * @return {{}|null}
- */
-function getKeyIndex(node, getKey) {
-  const index = {}
-  let child, key
-  for(child of node.childNodes) {
-    if(child.nodeType !== ELEMENT_NODE) {
-      return null
-    }
-    key = getKey(child)
-    if(!key) {
-      return null
-    }
-    index[key] = child
-  }
-  return index
-}
-
-module.exports = getKeyIndex
-
-
-/***/ }),
-/* 12 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-const updateNode = __webpack_require__(13)
-
-/**
- * @param {*|Element} nodeA
- * @param {*|Element} nodeB
- * @param {{}} [options]
- */
-function setChildNodes(nodeA, nodeB, options) {
-  const {
-    nodeWillMount,
-    nodeDidMount,
-    nodeWillUnmount,
-    nodeDidUnmount,
-  } = options
-  const childNodesA = Array.from(nodeA.childNodes)
-  const childNodesB = Array.from(nodeB.childNodes)
-  const length = Math.max(childNodesA.length, childNodesB.length)
-  let i, childA, childB
-  for(i = 0; i < length; i++) {
-    childA = childNodesA[i]
-    childB = childNodesB[i]
-    if(!childA) {
-      nodeWillMount?.(childB)
-      nodeA.append(childB)
-      nodeDidMount?.(childB)
-      continue
-    }
-    if(!childB) {
-      nodeWillUnmount?.(childA)
-      childA.remove()
-      nodeDidUnmount?.(childA)
-      continue
-    }
-    updateNode(childA, childB, options)
-  }
-}
-
-module.exports = setChildNodes
-
-
-/***/ }),
-/* 13 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-const setAttrs = __webpack_require__(14)
-const setChildren = __webpack_require__(10)
-
-const ELEMENT_NODE = 1
-const TEXT_NODE = 3
-
-/**
- * @param {*|Node} nodeA
- * @param {*|Node} nodeB
- * @param {{}} [options]
- * @retuns {Node}
- */
-function updateNode(nodeA, nodeB, options) {
-  const {
-    getKey,
-    nodeWillMount,
-    nodeDidMount,
-    nodeWillUnmount,
-    nodeDidUnmount,
-    nodeWillUpdate,
-    nodeDidUpdate,
-    childrenWillUpdate,
-    childrenDidUpdate,
-  } = options
-  if(nodeA.nodeType === TEXT_NODE && nodeB.nodeType === TEXT_NODE) {
-    if(nodeA.data !== nodeB.data) {
-      nodeWillUpdate?.(nodeA, nodeB)
-      nodeA.data = nodeB.data
-      nodeDidUpdate?.(nodeA, nodeB)
-    }
-    return nodeA
-  }
-  if(nodeA.nodeType === ELEMENT_NODE && nodeB.nodeType === ELEMENT_NODE) {
-    if(nodeA.tagName === nodeB.tagName && getKey(nodeA) === getKey(nodeB)) {
-      nodeWillUpdate?.(nodeA, nodeB)
-      setAttrs(nodeA, nodeB)
-      nodeDidUpdate?.(nodeA, nodeB)
-      childrenWillUpdate?.(nodeA, nodeB)
-      setChildren(nodeA, nodeB, options)
-      childrenDidUpdate?.(nodeA, nodeB)
-      return nodeA
-    }
-  }
-  nodeWillUnmount?.(nodeA)
-  nodeWillMount?.(nodeB)
-  nodeA.replaceWith(nodeB)
-  nodeDidUnmount?.(nodeA)
-  nodeDidMount?.(nodeB)
-  return nodeB
-}
-
-module.exports = updateNode
-
-
-/***/ }),
-/* 14 */
-/***/ ((module) => {
-
-/**
- * @param {*|Element} nodeA
- * @param {*|Element} nodeB
- */
-function setAttrs(nodeA, nodeB) {
-  const names = new Set
-  let attr, value
-  for(attr of nodeA.attributes) {
-    names.add(attr.name)
-    value = nodeB.getAttribute(attr.name)
-    if(value === null) {
-      nodeA.removeAttribute(attr.name)
-      continue
-    }
-    if(attr.value !== value) {
-      attr.value = value
-    }
-  }
-  for(attr of nodeB.attributes) {
-    if(!names.has(attr.name)) {
-      nodeA.setAttribute(attr.name, attr.value)
-    }
-  }
-  switch(nodeA.tagName) {
-    case 'OPTION':
-      nodeA.selected = nodeB.selected
-      break
-    case 'INPUT':
-      nodeA.checked = nodeB.checked
-      nodeA.indeterminate = nodeB.indeterminate
-    case 'TEXTAREA':
-      nodeA.value = nodeB.value
-  }
-}
-
-module.exports = setAttrs
-
-
-/***/ }),
-/* 15 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-const window = __webpack_require__(6)
+const window = __webpack_require__(4)
 
 /**
  * type : [constructor, bubbles, cancelable]
@@ -1771,6 +2086,7 @@ module.exports = {
   mouseout : [window.MouseEvent, true, true],
   mouseover : [window.MouseEvent, true, true],
   mouseup : [window.MouseEvent, true, true],
+  paste : [window.ClipboardEvent, true, true],
   reset : [window.Event, true, true],
   resize : [window.UIEvent],
   scroll : [window.Event, true],
@@ -1787,128 +2103,66 @@ module.exports = {
 
 
 /***/ }),
-/* 16 */
+/* 6 */
 /***/ ((module) => {
 
 /**
- * @param {DomElem|string} child
+ * @see https://www.w3.org/TR/dom/#interface-attr
+ * @abstract
  */
-const componentDidMount = child => {
-  if(child.node) {
-    child.componentDidMount()
-    child.props.children.forEach(componentDidMount)
+class AttrType
+{
+  static nodeName = undefined
+
+  static propName = undefined
+
+  static defaultValue = null
+
+  /**
+   * @param {ElemType} elem
+   * @returns {string|null|*}
+   */
+  static get(elem) {
+    return elem.node.getAttribute(this.nodeName)
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string|null|*} value
+   */
+  static set(elem, value) {
+    elem.node.setAttribute(this.nodeName, value)
   }
 }
 
-module.exports = {
-  /**
-   * @param {Element} node
-   * @return {string}
-   */
-  getKey(node) {
-    return node.__instance?.key || node.id
-  },
-  /**
-   * @param {ChildNode|Element} nodeB
-   */
-  nodeWillMount(nodeB) {
-    nodeB.__instance?.init(true)
-  },
-  /**
-   * @param {ChildNode|Element} nodeB
-   */
-  nodeDidMount(nodeB) {
-    nodeB.__instance && componentDidMount(nodeB.__instance)
-  },
-  /**
-   * @param {Element} nodeA
-   * @param {Element} nodeB
-   */
-  nodeWillUpdate(nodeA, nodeB) {
-    const instanceA = nodeA.__instance
-    const instanceB = nodeB.__instance
-    if(!instanceA || !instanceB) {
-      return
-    }
-    if(instanceA.constructor === instanceB.constructor) {
-      instanceB.state = instanceA.state
-    }
-    instanceB.init()
-  },
-  /**
-   * @param {Element} nodeA
-   * @param {Element} nodeB
-   */
-  nodeDidUpdate(nodeA, nodeB) {
-    const instanceA = nodeA.__instance
-    const instanceB = nodeB.__instance
-    if(!instanceA || !instanceB) {
-      return
-    }
-    for(const type of instanceA.__handlers.keys()) {
-      nodeA[type] = null
-    }
-    for(const type of instanceB.__handlers.keys()) {
-      nodeA[type] = nodeB[type]
-      nodeB[type] = null
-    }
-  },
-  /**
-   * @param {Element} nodeA
-   * @param {Element} nodeB
-   */
-  childrenDidUpdate(nodeA, nodeB) {
-    const instanceA = nodeA.__instance
-    const instanceB = nodeB.__instance
-    if(!instanceA || !instanceB) {
-      return
-    }
-    instanceB.node = nodeA
-    nodeA.__instance = instanceB
-    nodeB.__instance = null
-    if(instanceA.constructor === instanceB.constructor) {
-      instanceB.componentDidUpdate(instanceA.props, instanceB.state)
-    }
-    else instanceB.componentDidMount()
-  },
-  /**
-   * @param {ChildNode|Element} nodeA
-   */
-  nodeWillUnmount(nodeA) {
-    nodeA.__instance?.destroy(true)
-  },
-}
+module.exports = AttrType
 
 
 /***/ }),
-/* 17 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/* 7 */
+/***/ ((module) => {
 
-const AttrType = __webpack_require__(4)
-
-class Style extends AttrType
-{
+/**
+ * @param {*} value
+ * @constructor
+ */
+function Context(value) {
   /**
-   * @param {HtmlElem} elem
-   * @returns {CSSStyleDeclaration}
+   * @param {*} newValue
+   * @param {*} children
+   * @return {*}
    */
-  static get(elem) {
-    return elem.node.style
+  this.Provider = ({ value : newValue, children }) => {
+    value = newValue
+    return children
   }
-
   /**
-   * @param {HtmlElem} elem
-   * @param {string|{}} style
+   * @param {function} render
    */
-  static set(elem, style) {
-    if(typeof style === 'string') {
-      elem.node.style = style
-    }
-    else Object.assign(elem.node.style, style)
-  }
+  this.Consumer = render => render(value)
 }
 
-module.exports = Style
+module.exports = Context
 
 
 /***/ })
