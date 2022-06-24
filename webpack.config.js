@@ -1,4 +1,3 @@
-const TerserPlugin = require('terser-webpack-plugin')
 const FILE_EXT = process.env.FILE_EXT || '.js'
 
 exports = module.exports = {
@@ -17,13 +16,6 @@ exports = module.exports = {
 if(process.env.NODE_ENV === 'production') {
   exports.optimization = {
     minimize : true,
-    minimizer : [
-      new TerserPlugin({
-        terserOptions : FILE_EXT === '.es5.js' ?
-          { keep_fnames : true } :
-          { keep_classnames : true },
-      }),
-    ],
   }
   if(FILE_EXT === '.es5.js') {
     exports.module = {
