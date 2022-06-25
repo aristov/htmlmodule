@@ -34,10 +34,10 @@ test('test #2', t => {
 })
 
 test('test #3', t => {
-  const elem = Bat.render('bar')
+  const elem = Bat.render('baz')
 
   t.is(elem.node.className, '')
-  t.is(elem.toString(), '<div>bar</div>')
+  t.is(elem.toString(), '<div>baz</div>')
 })
 
 test('test #4', t => {
@@ -48,8 +48,8 @@ test('test #4', t => {
 })
 
 test('test #5', t => {
-  const elem = Baz.render('bar')
+  const elem = Baz.render('qaz')
 
   t.is(elem.node.className, 'foo')
-  t.is(elem.toString(), '<div class="foo">bar</div>')
+  t.is(elem.toString(), '<div class="foo">qaz</div>')
 })
