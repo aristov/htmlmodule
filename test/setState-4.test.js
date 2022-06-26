@@ -1,22 +1,22 @@
 const test = require('ava')
-const { ElemType } = require('..')
+const { HtmlInput } = require('..')
 
-let text = 'foo'
+let value = 'foo'
 
-class Example extends ElemType
+class Input extends HtmlInput
 {
   render() {
-    return text
+    this.defaultValue = value
   }
 }
 
 test('test #1', t => {
-  const elem = Example.render()
+  const input = Input.render()
 
-  t.is(elem.toString(), '<div class="Example">foo</div>')
+  t.is(input.toString(), '<input class="Input" value="foo">')
 
-  text = 'bar'
-  elem.setState()
+  value = 'bar'
+  input.setState()
 
-  t.is(elem.toString(), '<div class="Example">bar</div>')
+  t.is(input.toString(), '<input class="Input" value="bar">')
 })
