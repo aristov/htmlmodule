@@ -11,12 +11,20 @@ class Bar extends Foo
 
 class Bat extends ElemType
 {
-  className = null
+  static className = null
 }
 
 class Baz extends ElemType
 {
-  className = 'foo'
+  static className = 'foo'
+}
+
+class Cux extends ElemType
+{
+  render() {
+    this.className = null
+    return this.props.children
+  }
 }
 
 test('test #1', t => {
@@ -52,4 +60,11 @@ test('test #5', t => {
 
   t.is(elem.node.className, 'foo')
   t.is(elem.toString(), '<div class="foo">qaz</div>')
+})
+
+test('test #6', t => {
+  const elem = Cux.render('qwe')
+
+  t.is(elem.node.className, '')
+  t.is(elem.toString(), '<div>qwe</div>')
 })
