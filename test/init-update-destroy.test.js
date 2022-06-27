@@ -3,31 +3,31 @@ const sinon = require('sinon')
 const { HtmlDiv, HtmlA, HtmlB, HtmlBr, HtmlSpan, window } = require('..')
 const { DocumentFragment } = window
 
-const fooInit = sinon.spy()
-const fooUpdate = sinon.spy()
-const fooDestroy = sinon.spy()
-const bazInit = sinon.spy()
-const bazUpdate = sinon.spy()
-const bazDestroy = sinon.spy()
+const parentInit = sinon.spy()
+const parentUpdate = sinon.spy()
+const parentDestroy = sinon.spy()
+const childInit = sinon.spy()
+const childUpdate = sinon.spy()
+const childDestroy = sinon.spy()
 
-class Baz extends HtmlSpan
+class Child extends HtmlSpan
 {
   state = { asd : 'zxc' }
 
   init() {
-    bazInit.call(this)
+    childInit.call(this)
   }
 
   update(prevProps, prevState) {
-    bazUpdate.call(this, prevProps, prevState)
+    childUpdate.call(this, prevProps, prevState)
   }
 
   destroy() {
-    bazDestroy.call(this)
+    childDestroy.call(this)
   }
 }
 
-class Foo extends HtmlDiv
+class Parent extends HtmlDiv
 {
   state = { step : 0 }
 
@@ -43,7 +43,7 @@ class Foo extends HtmlDiv
     if(this.state.step === 2) {
       return [
         new HtmlB('bat'),
-        new HtmlDiv(new Baz('baz')),
+        new HtmlDiv(new Child('baz')),
         new HtmlBr,
         new HtmlA('bar'),
       ]
@@ -51,85 +51,85 @@ class Foo extends HtmlDiv
     if(this.state.step === 3) {
       return [
         new HtmlB('bat'),
-        new HtmlDiv(new Baz('qwe')),
+        new HtmlDiv(new Child('qwe')),
       ]
     }
     return 'foo'
   }
 
   init() {
-    fooInit.call(this)
+    parentInit.call(this)
   }
 
   update(prevProps, prevState) {
-    fooUpdate.call(this, prevProps, prevState)
+    parentUpdate.call(this, prevProps, prevState)
   }
 
   destroy() {
-    fooDestroy.call(this)
+    parentDestroy.call(this)
   }
 }
 
 test('test #1', t => {
-  const foo = Foo.render({ qaz : 'wsx' }, new DocumentFragment)
+  const foo = Parent.render({ qaz : 'wsx' }, new DocumentFragment)
 
-  t.is(fooInit.callCount, 1)
-  t.is(fooUpdate.callCount, 0)
-  t.is(fooDestroy.callCount, 0)
-  t.is(bazInit.callCount, 0)
-  t.is(bazUpdate.callCount, 0)
-  t.is(bazDestroy.callCount, 0)
-  t.is(foo.toString(), '<div class="Foo">foo</div>')
+  t.is(parentInit.callCount, 1)
+  t.is(parentUpdate.callCount, 0)
+  t.is(parentDestroy.callCount, 0)
+  t.is(childInit.callCount, 0)
+  t.is(childUpdate.callCount, 0)
+  t.is(childDestroy.callCount, 0)
+  t.is(foo.toString(), '<div class="Parent">foo</div>')
 
   foo.setState({ step : 1 })
 
-  t.is(fooInit.callCount, 1)
-  t.is(fooUpdate.callCount, 1)
-  t.is(fooUpdate.args[0][0], foo.props)
-  t.deepEqual(fooUpdate.args[0][1], { step : 0 })
-  t.is(fooDestroy.callCount, 0)
-  t.is(bazInit.callCount, 0)
-  t.is(bazUpdate.callCount, 0)
-  t.is(bazDestroy.callCount, 0)
-  t.is(foo.toString(), '<div class="Foo"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
+  t.is(parentInit.callCount, 1)
+  t.is(parentUpdate.callCount, 1)
+  t.is(parentUpdate.args[0][0], foo.props)
+  t.deepEqual(parentUpdate.args[0][1], { step : 0 })
+  t.is(parentDestroy.callCount, 0)
+  t.is(childInit.callCount, 0)
+  t.is(childUpdate.callCount, 0)
+  t.is(childDestroy.callCount, 0)
+  t.is(foo.toString(), '<div class="Parent"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
 
   foo.setState({ step : 2 })
 
-  t.is(fooInit.callCount, 1)
-  t.is(fooUpdate.callCount, 2)
-  t.deepEqual(fooUpdate.args[1][1], { step : 1 })
-  t.is(fooDestroy.callCount, 0)
-  t.is(bazInit.callCount, 1)
-  t.is(bazUpdate.callCount, 0)
-  t.is(bazDestroy.callCount, 0)
-  t.is(foo.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">baz</span></div><br><a>bar</a></div>')
+  t.is(parentInit.callCount, 1)
+  t.is(parentUpdate.callCount, 2)
+  t.deepEqual(parentUpdate.args[1][1], { step : 1 })
+  t.is(parentDestroy.callCount, 0)
+  t.is(childInit.callCount, 1)
+  t.is(childUpdate.callCount, 0)
+  t.is(childDestroy.callCount, 0)
+  t.is(foo.toString(), '<div class="Parent"><b>bat</b><div><span class="Child">baz</span></div><br><a>bar</a></div>')
 
   foo.setState({ step : 3 })
 
-  t.is(fooInit.callCount, 1)
-  t.is(fooUpdate.callCount, 3)
-  t.deepEqual(fooUpdate.args[2][1], { step : 2 })
-  t.is(fooDestroy.callCount, 0)
-  t.is(bazInit.callCount, 1)
-  t.is(bazUpdate.callCount, 1)
-  t.is(bazDestroy.callCount, 0)
-  t.deepEqual(bazUpdate.args[0][0], { children : 'baz' })
-  t.deepEqual(bazUpdate.args[0][1], { asd : 'zxc' })
-  t.is(foo.toString(), '<div class="Foo"><b>bat</b><div><span class="Baz">qwe</span></div></div>')
+  t.is(parentInit.callCount, 1)
+  t.is(parentUpdate.callCount, 3)
+  t.deepEqual(parentUpdate.args[2][1], { step : 2 })
+  t.is(parentDestroy.callCount, 0)
+  t.is(childInit.callCount, 1)
+  t.is(childUpdate.callCount, 1)
+  t.is(childDestroy.callCount, 0)
+  t.deepEqual(childUpdate.args[0][0], { children : 'baz' })
+  t.deepEqual(childUpdate.args[0][1], { asd : 'zxc' })
+  t.is(foo.toString(), '<div class="Parent"><b>bat</b><div><span class="Child">qwe</span></div></div>')
 
   foo.setState({ step : 0 })
 
-  t.is(fooInit.callCount, 1)
-  t.is(fooUpdate.callCount, 4)
-  t.deepEqual(fooUpdate.args[3][1], { step : 3 })
-  t.is(fooDestroy.callCount, 0)
-  t.is(bazInit.callCount, 1)
-  t.is(bazUpdate.callCount, 1)
-  t.is(bazDestroy.callCount, 1)
-  t.is(foo.toString(), '<div class="Foo">foo</div>')
+  t.is(parentInit.callCount, 1)
+  t.is(parentUpdate.callCount, 4)
+  t.deepEqual(parentUpdate.args[3][1], { step : 3 })
+  t.is(parentDestroy.callCount, 0)
+  t.is(childInit.callCount, 1)
+  t.is(childUpdate.callCount, 1)
+  t.is(childDestroy.callCount, 1)
+  t.is(foo.toString(), '<div class="Parent">foo</div>')
 
   foo.setState({ step : -1 })
 
-  t.is(fooDestroy.callCount, 0)
-  t.is(bazDestroy.callCount, 1)
+  t.is(parentDestroy.callCount, 0)
+  t.is(childDestroy.callCount, 1)
 })

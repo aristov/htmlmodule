@@ -4,51 +4,51 @@ const { document } = require('xwindow')
 const { ElemType } = require('..')
 
 test.beforeEach(t => {
-  const fooInit = sinon.spy()
-  const barInit = sinon.spy()
-  class Foo extends ElemType
+  const childInit = sinon.spy()
+  const parentInit = sinon.spy()
+  class Child extends ElemType
   {
     init() {
-      fooInit.apply(this, arguments)
+      childInit.apply(this, arguments)
     }
   }
-  class Bar extends ElemType
+  class Parent extends ElemType
   {
     init() {
-      barInit.apply(this, arguments)
+      parentInit.apply(this, arguments)
     }
   }
-  t.context = { Foo, Bar, fooInit, barInit }
+  t.context = { Child, Parent, childInit, parentInit }
 })
 
 test('parentNode', t => {
-  const { Foo, Bar, fooInit, barInit } = t.context
+  const { Child, Parent, childInit, parentInit } = t.context
   const parentNode = document.createElement('body')
-  const foo = new Foo
-  const bar = Bar.render(foo, parentNode)
+  const child = new Child
+  const parent = Parent.render(child, parentNode)
 
-  t.is(fooInit.callCount, 1)
-  t.is(fooInit.getCall(0).thisValue, foo)
+  t.is(childInit.callCount, 1)
+  t.is(childInit.getCall(0).thisValue, child)
 
-  t.is(barInit.callCount, 1)
-  t.is(barInit.getCall(0).thisValue, bar)
+  t.is(parentInit.callCount, 1)
+  t.is(parentInit.getCall(0).thisValue, parent)
 
-  t.is(bar.node.parentNode, parentNode)
-  t.is(bar.toString(), '<div class="Bar"><div class="Foo"></div></div>')
+  t.is(parent.node.parentNode, parentNode)
+  t.is(parent.toString(), '<div class="Parent"><div class="Child"></div></div>')
 })
 
 test('node', t => {
-  const { Foo, Bar, fooInit, barInit } = t.context
+  const { Child, Parent, childInit, parentInit } = t.context
   const node = document.createElement('div')
-  const foo = new Foo
-  const bar = Bar.render({ node, children : foo })
+  const child = new Child
+  const parent = Parent.render({ node, children : child })
 
-  t.is(fooInit.callCount, 1)
-  t.is(fooInit.getCall(0).thisValue, foo)
+  t.is(childInit.callCount, 1)
+  t.is(childInit.getCall(0).thisValue, child)
 
-  t.is(barInit.callCount, 1)
-  t.is(barInit.getCall(0).thisValue, bar)
+  t.is(parentInit.callCount, 1)
+  t.is(parentInit.getCall(0).thisValue, parent)
 
-  t.is(bar.node, node)
-  t.is(bar.toString(), '<div class="Bar"><div class="Foo"></div></div>')
+  t.is(parent.node, node)
+  t.is(parent.toString(), '<div class="Parent"><div class="Child"></div></div>')
 })
