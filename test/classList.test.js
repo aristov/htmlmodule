@@ -1,19 +1,47 @@
 const test = require('ava')
 const { ElemType } = require('../index')
 
+class Input extends ElemType
+{
+  static tagName = 'INPUT'
+}
+
+class Test extends ElemType
+{
+  state = {
+    step : 0,
+  }
+
+  render() {
+    switch(this.state.step) {
+      case 0:
+        this.classList = ['foo', null, 'bar']
+        return new Input({ classList : ['one', null, 'two'] })
+      case 1:
+        this.classList = { foo : false, bat : true }
+        return new Input({ classList : { one : false, three : true } })
+      case 2:
+        this.classList = 'foo baz'
+        return new Input({ classList : 'one four' })
+    }
+  }
+}
+
 test('test #1', t => {
-  const elem = ElemType.render({ classList : ['foo', null, 'bar'] })
+  const elem = Test.render()
 
-  t.is(elem.classList[0], 'foo')
-  t.is(elem.classList[1], 'bar')
+  t.is(elem.classList[1], 'foo')
+  t.is(elem.classList[2], 'bar')
+  t.is(elem.toString(), '<div class="Test foo bar"><input class="Input one two"></div>')
 
-  elem.classList = { foo : false, bat : true }
+  elem.setState({ step : 1 })
 
-  t.is(elem.classList[0], 'bar')
   t.is(elem.classList[1], 'bat')
+  t.is(elem.toString(), '<div class="Test bat"><input class="Input three"></div>')
 
-  elem.classList = 'foo baz'
+  elem.setState({ step : 2 })
 
   t.is(elem.classList[0], 'foo')
   t.is(elem.classList[1], 'baz')
+  t.is(elem.toString(), '<div class="foo baz"><input class="one four"></div>')
 })
