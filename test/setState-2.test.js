@@ -17,15 +17,17 @@ class Foo extends HtmlDiv
       })
     }
     if(step === 1) {
-      return new Bar({
-        hidden : true,
-        children : 'asd'
-      })
+      return [
+        new Bar({
+          hidden : true,
+          children : 'asd',
+        }), 'qaz',
+      ]
     }
     if(step === 2) {
       return new Bat({
         tabIndex : 0,
-        children : 'poi'
+        children : 'poi',
       })
     }
     return null
@@ -47,7 +49,7 @@ test('test #1', t => {
 
   elem.setState({ step : 1 })
 
-  t.is(elem.toString(), '<div class="Foo" data-step="1"><div class="Bar" hidden="">asd</div></div>')
+  t.is(elem.toString(), '<div class="Foo" data-step="1"><div class="Bar" hidden="">asd</div>qaz</div>')
 
   elem.setState({ step : 2 })
 
