@@ -120,22 +120,27 @@ test('once', t => {
 })
 
 test('removeAllListeners', t => {
+  const onclick = sinon.spy()
   const onfoo = sinon.spy()
   const onbar = sinon.spy()
-  const elem = ElemType.render()
+  const elem = ElemType.render({ onclick })
   elem.on('foo', onfoo)
   elem.on('bar', onbar)
+  elem.emit('click')
   elem.emit('foo')
   elem.emit('bar')
   elem.emit('bar')
 
+  t.true(onclick.calledOnce)
   t.true(onfoo.calledOnce)
   t.true(onbar.calledTwice)
 
   elem.removeAllListeners()
+  elem.emit('click')
   elem.emit('foo')
   elem.emit('bar')
 
+  t.true(onclick.calledOnce)
   t.true(onfoo.calledOnce)
   t.true(onbar.calledTwice)
 })
