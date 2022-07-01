@@ -8,6 +8,8 @@ class Input extends ElemType
 
 class Test extends ElemType
 {
+  static role = 'form'
+
   state = {
     step : 0,
   }
@@ -42,8 +44,16 @@ class Test extends ElemType
         }
         return new Input({
           attributes : {
-            'aria-placeholder' : 'Hey'
-          }
+            'aria-placeholder' : 'Hey',
+          },
+        })
+      case 3:
+        this.dataset = { id : '123' }
+        this.style = { display : 'inline' }
+        this.attributes = null
+        return new Input({
+          dataset : { id : '456' },
+          style : { display : 'block' },
         })
     }
   }
@@ -54,17 +64,21 @@ test('test #1', t => {
 
   t.is(elem.attributes['aria-hidden'].value, 'true')
   t.is(elem.attributes['aria-label'], undefined)
-  t.is(elem.toString(), '<div class="Test" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
+  t.is(elem.toString(), '<div role="form" class="Test" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
 
   elem.setState({ step : 1 })
 
   t.is(elem.attributes['aria-hidden'].value, 'false')
   t.is(elem.attributes['aria-label'].value, 'Go')
-  t.is(elem.toString(), '<div class="Test" aria-hidden="false" aria-label="Go"><input class="Input" aria-disabled="false" aria-placeholder="Wow"></div>')
+  t.is(elem.toString(), '<div role="form" class="Test" aria-hidden="false" aria-label="Go"><input class="Input" aria-disabled="false" aria-placeholder="Wow"></div>')
 
   elem.setState({ step : 2 })
 
   t.is(elem.attributes['aria-hidden'], undefined)
   t.is(elem.attributes['aria-label'].value, 'Think')
-  t.is(elem.toString(), '<div class="Test" aria-label="Think"><input class="Input" aria-placeholder="Hey"></div>')
+  t.is(elem.toString(), '<div role="form" class="Test" aria-label="Think"><input class="Input" aria-placeholder="Hey"></div>')
+
+  elem.setState({ step : 3 })
+
+  t.is(elem.toString(), '<div role="form" class="Test" data-id="123" style="display: inline;"><input class="Input" data-id="456" style="display: block;"></div>')
 })
