@@ -45,6 +45,9 @@ class Test extends ElemType
             three : 'six',
           },
         })
+      case 3:
+        this.dataset = null
+        return new Input
     }
   }
 }
@@ -65,4 +68,8 @@ test('test #1', t => {
 
   t.is(elem.dataset.bat, 'qaz')
   t.is(elem.toString(), '<div class="Test" data-bat="qaz"><input class="Input" data-three="six"></div>')
+
+  elem.setState({ step : 3 })
+
+  t.is(elem.toString(), '<div class="Test"><input class="Input"></div>')
 })
