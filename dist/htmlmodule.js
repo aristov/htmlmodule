@@ -1381,7 +1381,7 @@ class ElemType
     this.node.__instance = this
     this._setProps()
     this._setChildren()
-    node && init(this)
+    node && this.init()
   }
 
   /**
@@ -1500,13 +1500,14 @@ class ElemType
     const node = this.node
     const childNodes = node.childNodes
     if(!childNodes.length) {
-      node.append(...childrenB.map(child => {
+      for(child of childrenB) {
         if(child.props) {
           child._init()
-          return child.node
+          node.append(child.node)
+          init(child)
         }
-        return child
-      }))
+        else node.append(child)
+      }
       return
     }
     const indexA = {}
@@ -2021,7 +2022,7 @@ class ElemType
     const node = elem.props.node
     elem._init(node)
     parentNode?.append(elem.node)
-    node || init(elem)
+    node || elem.init()
     return elem
   }
 }
