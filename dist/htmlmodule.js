@@ -1182,12 +1182,13 @@ module.exports = HtmlType
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const window = __webpack_require__(4)
-const events = __webpack_require__(5)
+const EventType = __webpack_require__(5)
 
 const { indexOf, map } = Array.prototype
-const { CustomEvent, document } = window
-const AttrNameMap = {
+const { CustomEvent, HTMLElement, document } = window
+const attrNameMap = {
   htmlFor : 'for',
+  className : 'class',
   defaultValue : 'value',
   defaultChecked : 'checked',
   defaultSelected : 'selected',
@@ -1196,7 +1197,9 @@ const AttrNameMap = {
   selected : null,
   indeterminate : null,
 }
+const childFilterSet = new Set([undefined, null, false])
 const nullNode = document.createElement('div')
+const styleNode = document.createElement('div')
 
 /**
  * @see https://dom.spec.whatwg.org/#interface-element
@@ -1205,7 +1208,11 @@ class ElemType
 {
   static tagName = 'DIV'
 
+  static role = undefined
+
   static class = undefined
+
+  static className = undefined
 
   static specialProps = {
     children : true,
@@ -1217,12 +1224,21 @@ class ElemType
     tagName : true,
   }
 
+  static specialAttributes = {
+    class : true,
+    role : true,
+    style : true,
+  }
+
   /**
    * @param {*} [props]
    */
   constructor(props = {}) {
     if(props.constructor !== Object) {
       props = { children : props }
+    }
+    if(props.children === undefined) {
+      props.children = null
     }
     Object.defineProperties(this, {
       __handlers : {
@@ -1244,11 +1260,6 @@ class ElemType
         writable : true,
         value : null,
       },
-      className : {
-        configurable : true,
-        writable : true,
-        value : undefined,
-      },
       key : {
         writable : true,
         value : props.key ?? null,
@@ -1269,8 +1280,8 @@ class ElemType
    */
   _setRoleAttr() {
     let role = this.props.role
-    if(role !== null) {
-      role ||= this.constructor.role
+    if(role === undefined) {
+      role = this.constructor.role
     }
     if(role) {
       this.node.setAttribute('role', role)
@@ -1282,15 +1293,24 @@ class ElemType
    * @private
    */
   _setClassName() {
-    if(this.props.className !== undefined) {
-      this.className = this.props.className
+    let className = this.props.className
+    if(className === undefined) {
+      className = this.constructor.className
     }
-    if(this.className !== undefined) {
-      if(this.className !== null) {
-        this.node.className = this.className
-      }
+    if(className === undefined) {
+      this._setClass()
       return
     }
+    if(className === null) {
+      this.node.removeAttribute('class')
+    }
+    else this.node.className = className
+  }
+
+  /**
+   * @private
+   */
+  _setClass() {
     const items = new Set
     let constructor = this.constructor
     let name
@@ -1305,13 +1325,13 @@ class ElemType
       if(name === null) {
         continue
       }
-      name ||= constructor.name
-      name && items.add(name)
+      items.add(name || constructor.name)
     }
     while(constructor = Object.getPrototypeOf(constructor))
     if(items.size) {
-      this.node.className = Array.from(items).join(' ')
+      this.node.className = Array.from(items).filter(Boolean).join(' ')
     }
+    else this.node.removeAttribute('class')
   }
 
   /**
@@ -1359,38 +1379,30 @@ class ElemType
   _init(node) {
     this.node = node || this.createNode()
     this.node.__instance = this
-    this._setRoleAttr()
-    this._setClassName()
     this._setProps()
-    const children = this.render()
-    this.children = [children].flat(Infinity).filter(Boolean)
-    if(node) {
-      if(children !== undefined) {
-        this._setChildren()
-      }
-      this.init()
-      return
-    }
-    this.node.append(...this.children.map(child => {
-      if(child.props) {
-        child._init()
-        return child.node
-      }
-      return child
-    }))
+    this._setChildren()
+    node && init(this)
   }
 
   /**
+   * @param {{}} [props]
    * @private
    */
-  _setProps() {
+  _setProps(props) {
     const specialProps = this.constructor.specialProps
     let name
-    for(name in this.props) {
-      if(specialProps[name]) {
-        continue
+    if(props) {
+      for(name in this.props) {
+        if(!specialProps[name] && !props.hasOwnProperty(name)) {
+          this[name] = null
+        }
       }
-      if(name in this) {
+      this.props = props
+    }
+    this._setRoleAttr()
+    this._setClassName()
+    for(name in this.props) {
+      if(!specialProps[name] && name in this) {
         this[name] = this.props[name]
       }
     }
@@ -1407,6 +1419,7 @@ class ElemType
       }
       Object.assign(this.state, state)
     }
+    this._setClassName()
     this._render()
     this.update(this.props, prevState)
   }
@@ -1423,11 +1436,7 @@ class ElemType
         refs[key] = item
       }
     }
-    const children = this.render()
-    this.children = [children].flat(Infinity).filter(Boolean)
-    if(children !== undefined) {
-      this._setChildren()
-    }
+    this._setChildren()
     for(key in refs) {
       item = refs[key]
       if(this.node.contains(item.node)) {
@@ -1448,21 +1457,8 @@ class ElemType
       this._replaceElem(elem)
       return
     }
-    const specialProps = this.constructor.specialProps
-    const prevProps = Object.assign({}, this.props)
-    const props = Object.assign({}, elem.props)
-    let name
-    for(name in prevProps) {
-      if(!specialProps[name]) {
-        if(props.hasOwnProperty(name)) {
-          this[name] = props[name]
-        }
-        else this[name] = null
-      }
-      delete props[name]
-    }
-    Object.assign(this, props)
-    this.props = elem.props
+    const prevProps = this.props
+    this._setProps(elem.props)
     this._render()
     this.update(prevProps, this.state)
   }
@@ -1486,68 +1482,96 @@ class ElemType
    * @private
    */
   _setChildren() {
+    const props = this.props
+    const children = this.render()
+    const childrenB = this.children = []
+    if(children === undefined) {
+      return
+    }
+    if(props.hasOwnProperty('innerHTML') || props.hasOwnProperty('innerText')) {
+      return
+    }
+    let child
+    for(child of [children].flat(Infinity)) {
+      if(!childFilterSet.has(child)) {
+        childrenB.push(typeof child === 'number' ? String(child) : child)
+      }
+    }
+    const node = this.node
+    const childNodes = node.childNodes
+    if(!childNodes.length) {
+      node.append(...childrenB.map(child => {
+        if(child.props) {
+          child._init()
+          return child.node
+        }
+        return child
+      }))
+      return
+    }
     const indexA = {}
     const indexB = {}
     let nodeA, childA, key
-    for(nodeA of this.node.childNodes) {
+    for(nodeA of childNodes) {
       childA = nodeA.__instance
-      key = childA?.key
-      if(!key) {
+      key = childA?.key ?? null
+      if(key === null) {
         this._setChildNodes()
         return
       }
       indexA[key] = childA
     }
     let childB
-    for(childB of this.children) {
-      key = childB.key
-      if(!key) {
+    for(childB of childrenB) {
+      key = childB.key ?? null
+      if(key === null) {
         this._setChildNodes()
         return
       }
       indexB[key] = childB
     }
-    const children = map.call(this.node.children, node => node.__instance)
+    const childrenA = map.call(childNodes, node => node.__instance)
+    const length = childrenB.length
     let nextA, i, j
-    for(childA of children) {
+    for(childA of childrenA) {
       indexB[childA.key] || childA._destroy()
     }
-    for(i = 0; i < this.children.length; i++) {
-      childB = this.children[i]
+    for(i = 0; i < length; i++) {
+      childB = childrenB[i]
       if(indexA[childB.key]) {
         continue
       }
-      nextA = this.node.children[i]
+      nextA = childNodes[i]
       childB._init()
       if(nextA) {
         nextA.before(childB.node)
       }
       else {
-        this.node.append(childB.node)
+        node.append(childB.node)
       }
       init(childB)
     }
-    for(i = 0; i < this.children.length; i++) {
-      childB = this.children[i]
+    for(i = 0; i < length; i++) {
+      childB = childrenB[i]
       childA = indexA[childB.key]
       if(!childA) {
         continue
       }
-      j = indexOf.call(this.node.children, childA.node)
+      j = indexOf.call(childNodes, childA.node)
       if(i !== j) {
-        nextA = this.node.children[i].nextSibling
+        nextA = childNodes[i].nextSibling
         if(nextA) {
           if(childA.node !== nextA && childA.node.nextSibling !== nextA) {
             nextA.before(childA.node)
           }
         }
         else {
-          this.node.append(childA.node)
+          node.append(childA.node)
         }
       }
       childA._udpateElem(childB)
       if(childA.constructor === childB.constructor) {
-        this.children[i] = childA
+        childrenB[i] = childA
       }
     }
   }
@@ -1557,11 +1581,12 @@ class ElemType
    */
   _setChildNodes() {
     const childNodes = Array.from(this.node.childNodes)
-    const length = Math.max(childNodes.length, this.children.length)
+    const children = this.children
+    const length = Math.max(childNodes.length, children.length)
     let i, nodeA, childA, childB
     for(i = 0; i < length; i++) {
       nodeA = childNodes[i]
-      childB = this.children[i]
+      childB = children[i]
       if(nodeA === undefined) {
         childB._init?.()
         this.node.append(childB.node || childB)
@@ -1586,7 +1611,7 @@ class ElemType
         if(nodeA.tagName === childB.tagName.toUpperCase() && childA.key === childB.key) {
           childA._udpateElem(childB)
           if(childA.constructor === childB.constructor) {
-            this.children[i] = childA
+            children[i] = childA
           }
           continue
         }
@@ -1634,13 +1659,11 @@ class ElemType
    * @private
    */
   _destroy(keepNode = false) {
-    if(this.node === nullNode) {
-      return
-    }
     this.destroy()
     this.removeAllListeners()
-    for(const node of this.node.children) {
-      node.__instance?._destroy(true)
+    let item
+    for(item of this.children) {
+      item._destroy?.(true)
     }
     keepNode || this.node.remove()
     delete this.node.__instance
@@ -1657,7 +1680,7 @@ class ElemType
    */
   emit(event, dict) {
     if(typeof event === 'string') {
-      const description = events[event] || [CustomEvent]
+      const description = EventType[event] || [CustomEvent]
       const [constructor, bubbles, cancelable] = description
       if(!dict) {
         dict = {
@@ -1749,6 +1772,7 @@ class ElemType
       }
       listeners.clear()
     }
+    this.__handlers.clear()
   }
 
   /**
@@ -1798,10 +1822,22 @@ class ElemType
   }
 
   /**
-   * @param {{}} attributes
+   * @param {{}|null} attributes
    */
   set attributes(attributes) {
+    const specialAttributes = this.constructor.specialAttributes
     let name, value
+    for({ name } of Array.from(this.node.attributes)) {
+      if(specialAttributes[name] || name.startsWith('data-')) {
+        continue
+      }
+      if(!attributes?.hasOwnProperty(name)) {
+        this.node.removeAttribute(name)
+      }
+    }
+    if(!attributes) {
+      return
+    }
     for(name in attributes) {
       value = attributes[name]
       if(value === null) {
@@ -1819,20 +1855,23 @@ class ElemType
   }
 
   /**
-   * @param {*} value {string|string[]|{}}
+   * @param {*} classList {string|string[]|{}|null}
    */
-  set classList(value) {
-    if(Array.isArray(value)) {
-      this.node.classList.add(...value.filter(Boolean))
+  set classList(classList) {
+    if(classList === null) {
       return
     }
-    if(!value || value.constructor !== Object) {
-      this.node.classList = value
+    if(typeof classList === 'string') {
+      this.node.classList = classList
+      return
+    }
+    if(Array.isArray(classList)) {
+      this.node.classList.add(...classList.filter(Boolean))
       return
     }
     let key
-    for(key in value) {
-      this.node.classList.toggle(key, value[key])
+    for(key in classList) {
+      this.node.classList.toggle(key, classList[key])
     }
   }
 
@@ -1844,10 +1883,18 @@ class ElemType
   }
 
   /**
-   * @param {{}} dataset
+   * @param {{}|null} dataset
    */
   set dataset(dataset) {
     let name, value
+    for(name in Object.assign({}, this.node.dataset)) {
+      if(!dataset?.hasOwnProperty(name)) {
+        delete this.node.dataset[name]
+      }
+    }
+    if(!dataset) {
+      return
+    }
     for(name in dataset) {
       value = dataset[name]
       if(value === null) {
@@ -1888,13 +1935,15 @@ class ElemType
     }
     if(typeof style === 'string') {
       this.node.style = style
+      return
     }
-    else {
-      Object.assign(this.node.style, style)
+    Object.assign(styleNode.style, style)
+    const value = styleNode.getAttribute('style')
+    if(value) {
+      this.node.style = value
     }
-    if(this.node.getAttribute('style') === '') {
-      this.node.removeAttribute('style')
-    }
+    else this.node.removeAttribute('style')
+    styleNode.style = ''
   }
 
   /**
@@ -1917,30 +1966,6 @@ class ElemType
         },
         set(value) {
           this.setAttr(attr, value)
-        },
-      })
-    }
-  }
-
-  /**
-   * @param {string[]} events
-   */
-  static defineEvents(events) {
-    for(const type of events) {
-      const name = 'on' + type
-      Object.defineProperty(this.prototype, name, {
-        configurable : true,
-        set(callback) {
-          if(callback) {
-            this.node[name] = e => callback.call(this, e, e.target.__instance)
-            this.__handlers.set(name, callback)
-            return
-          }
-          this.node[name] = null
-          this.__handlers.delete(name)
-        },
-        get() {
-          return this.__handlers.get(name) || null
         },
       })
     }
@@ -1975,8 +2000,8 @@ class ElemType
       }
       if(setters) {
         desc.set = function(value) {
-          if(value === null && AttrNameMap[prop] !== null) {
-            const attr = AttrNameMap[prop] || prop.toLowerCase()
+          if(value === null && attrNameMap[prop] !== null) {
+            const attr = attrNameMap[prop] || prop.toLowerCase()
             this.node.removeAttribute(attr)
           }
           else this.node[prop] = value
@@ -2011,7 +2036,27 @@ function init(item) {
   }
 }
 
-ElemType.defineEvents(Object.keys(events))
+for(const type of Object.keys(EventType)) {
+  const name = 'on' + type
+  if(!(name in HTMLElement.prototype)) {
+    continue
+  }
+  Object.defineProperty(ElemType.prototype, name, {
+    configurable : true,
+    set(callback) {
+      if(callback) {
+        this.node[name] = e => callback.call(this, e, e.target.__instance)
+        this.__handlers.set(name, callback)
+        return
+      }
+      this.node[name] = null
+      this.__handlers.delete(name)
+    },
+    get() {
+      return this.__handlers.get(name) || null
+    },
+  })
+}
 
 ElemType.defineMethods([
   'scrollTo',
@@ -2031,6 +2076,7 @@ ElemType.defineProps([
 
 ElemType.defineProps([
   'id',
+  'className',
 ], true)
 
 module.exports = ElemType
@@ -2062,23 +2108,54 @@ const window = __webpack_require__(4)
 /**
  * type : [constructor, bubbles, cancelable]
  */
-module.exports = {
+const EventType = {
+  afterprint : [window.Event],
+  auxclick : [window.MouseEvent, true, true],
+  beforematch : [window.Event],
+  beforeprint : [window.Event],
+  beforeunload : [window.Event],
   blur : [window.FocusEvent],
   cancel : [window.Event, false, true],
+  canplay : [window.Event],
+  canplaythrough : [window.Event],
   change : [window.Event, true],
   click : [window.MouseEvent, true, true],
   close : [window.Event],
+  contextlost : [window.Event],
   contextmenu : [window.MouseEvent, true, true],
+  contextrestored : [window.Event],
+  copy : [window.ClipboardEvent, true, true],
+  cuechange : [window.Event],
+  cut : [window.ClipboardEvent, true, true],
   dblclick : [window.MouseEvent, true, true],
+  drag : [window.DragEvent, true, true],
+  dragend : [window.DragEvent, true],
+  dragenter : [window.DragEvent, true, true],
+  dragleave : [window.DragEvent, true],
+  dragover : [window.DragEvent, true, true],
+  dragstart : [window.DragEvent, true, true],
+  drop : [window.DragEvent, true, true],
+  durationchange : [window.Event],
+  emptied : [window.Event],
+  ended : [window.Event],
   error : [window.Event],
   focus : [window.FocusEvent],
   focusin : [window.FocusEvent, true],
   focusout : [window.FocusEvent, true],
+  formdata : [window.FormDataEvent],
+  hashchange : [window.HashChangeEvent],
   input : [window.InputEvent, true],
   invalid : [window.Event, false, true],
   keydown : [window.KeyboardEvent, true, true],
+  keypress : [window.KeyboardEvent, true, true],
   keyup : [window.KeyboardEvent, true, true],
+  languagechange : [window.Event],
   load : [window.Event],
+  loadeddata : [window.Event],
+  loadedmetadata : [window.Event],
+  loadstart : [window.Event],
+  message : [window.MessageEvent],
+  messageerror : [window.MessageEvent],
   mousedown : [window.MouseEvent, true, true],
   mouseenter : [window.MouseEvent],
   mouseleave : [window.MouseEvent],
@@ -2086,11 +2163,32 @@ module.exports = {
   mouseout : [window.MouseEvent, true, true],
   mouseover : [window.MouseEvent, true, true],
   mouseup : [window.MouseEvent, true, true],
+  offline : [window.Event],
+  online : [window.Event],
+  pagehide : [window.PageTransitionEvent],
+  pageshow : [window.PageTransitionEvent],
   paste : [window.ClipboardEvent, true, true],
+  pause : [window.Event],
+  play : [window.Event],
+  playing : [window.Event],
+  popstate : [window.PopStateEvent],
+  progress : [window.ProgressEvent],
+  ratechange : [window.Event],
   reset : [window.Event, true, true],
   resize : [window.UIEvent],
+  rejectionhandled : [window.PromiseRejectionEvent],
   scroll : [window.Event, true],
+  securitypolicyviolation : [window.SecurityPolicyViolationEvent, true],
+  seeked : [window.Event],
+  seeking : [window.Event],
+  select : [window.UIEvent, true],
+  slotchange : [window.Event, true],
+  stalled : [window.Event],
+  storage : [window.StorageEvent],
   submit : [window.Event, true, true],
+  suspend : [window.Event],
+  timeupdate : [window.Event],
+  toggle : [window.Event],
   touchcancel : [window.TouchEvent, true],
   touchend : [window.TouchEvent, true, true],
   touchmove : [window.TouchEvent, true, true],
@@ -2099,7 +2197,14 @@ module.exports = {
   transitionend : [window.TransitionEvent, true, true],
   transitionrun : [window.TransitionEvent, true],
   transitionstart : [window.TransitionEvent, true],
+  unhandledrejection : [window.PromiseRejectionEvent],
+  unload : [window.Event],
+  volumechange : [window.Event],
+  waiting : [window.Event],
+  wheel : [window.WheelEvent, true, true],
 }
+
+module.exports = EventType
 
 
 /***/ }),
