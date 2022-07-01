@@ -1,12 +1,12 @@
 const test = require('ava')
 const sinon = require('sinon')
-const { HtmlDiv, HtmlSpan } = require('..')
+const { ElemType, HtmlSpan } = require('..')
 
 const onclick1 = sinon.spy()
 const onclick2 = sinon.spy()
 const onclick3 = sinon.spy()
 
-class Child extends HtmlDiv
+class Child extends ElemType
 {
   render() {
     this.on('click', onclick1)
@@ -14,7 +14,7 @@ class Child extends HtmlDiv
   }
 }
 
-class Parent extends HtmlDiv
+class Parent extends ElemType
 {
   state = { text : 'foo' }
 
@@ -34,7 +34,7 @@ test('setState', t => {
 
   t.is(parent.toString(), '<div class="Parent"><div class="Child"><span>foo</span></div></div>')
 
-  child.click()
+  child.emit('click')
 
   t.true(onclick1.calledOnce)
   t.is(onclick1.getCall(0).thisValue, child)
@@ -55,9 +55,9 @@ test('setState', t => {
 
   t.is(parent.toString(), '<div class="Parent"><div class="Child"><span>bar</span></div></div>')
   t.is(parent._child.node, node)
-  t.not(parent._child, child)
+  t.is(parent._child, child)
 
-  parent._child.click()
+  parent._child.emit('click')
 
   t.true(onclick1.calledTwice)
   t.is(onclick1.getCall(1).thisValue, parent._child)
@@ -73,6 +73,4 @@ test('setState', t => {
   t.is(onclick3.getCall(1).thisValue, parent._child)
   t.is(onclick3.args[1][0].target, parent._child.node)
   t.is(onclick3.args[1][1], parent._child)
-
-  parent.destroy()
 })
