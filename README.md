@@ -12,7 +12,6 @@ It's inspired by React and based on the same ideas.
 
 - The power of OOP
 - Convenient JS-compatible syntax
-- No virtual DOM ([actualize](https://www.npmjs.com/package/actualize) under the hood)
 - Cross-platform, can be used in NodeJS and in the browser
 - API to build your own high-level components
 - Automatic className generation
