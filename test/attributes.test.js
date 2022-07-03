@@ -48,10 +48,12 @@ class Test extends ElemType
           },
         })
       case 3:
+        this.id = 'id1'
         this.dataset = { id : '123' }
         this.style = { display : 'inline' }
         this.attributes = null
         return new Input({
+          id : 'id2',
           dataset : { id : '456' },
           style : { display : 'block' },
         })
@@ -80,5 +82,5 @@ test('test #1', t => {
 
   elem.setState({ step : 3 })
 
-  t.is(elem.toString(), '<div role="form" class="Test" data-id="123" style="display: inline;"><input class="Input" data-id="456" style="display: block;"></div>')
+  t.is(elem.toString(), '<div role="form" class="Test" id="id1" data-id="123" style="display: inline;"><input class="Input" id="id2" data-id="456" style="display: block;"></div>')
 })
