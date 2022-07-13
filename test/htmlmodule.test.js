@@ -74,7 +74,6 @@ test('HtmlOptGroup', t => t.is(htmlmodule.HtmlOptGroup.render().toString(), '<op
 test('HtmlOption', t => t.is(htmlmodule.HtmlOption.render().toString(), '<option></option>'))
 test('HtmlOutput', t => t.is(htmlmodule.HtmlOutput.render().toString(), '<output></output>'))
 test('HtmlP', t => t.is(htmlmodule.HtmlP.render().toString(), '<p></p>'))
-test('HtmlParam', t => t.is(htmlmodule.HtmlParam.render().toString(), '<param>'))
 test('HtmlPicture', t => t.is(htmlmodule.HtmlPicture.render().toString(), '<picture></picture>'))
 test('HtmlPre', t => t.is(htmlmodule.HtmlPre.render().toString(), '<pre></pre>'))
 test('HtmlProgress', t => t.is(htmlmodule.HtmlProgress.render().toString(), '<progress></progress>'))
