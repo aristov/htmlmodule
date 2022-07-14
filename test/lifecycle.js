@@ -3,9 +3,11 @@ const sinon = require('sinon')
 const { HtmlDiv, HtmlA, HtmlB, HtmlBr, HtmlSpan, window } = require('..')
 const { DocumentFragment } = window
 
+const parentInit = sinon.spy()
 const parentMount = sinon.spy()
 const parentUpdate = sinon.spy()
 const parentDestroy = sinon.spy()
+const childInit = sinon.spy()
 const childMount = sinon.spy()
 const childUpdate = sinon.spy()
 const childDestroy = sinon.spy()
@@ -13,6 +15,10 @@ const childDestroy = sinon.spy()
 class Child extends HtmlSpan
 {
   state = { asd : 'zxc' }
+
+  init() {
+    childInit.call(this)
+  }
 
   mount() {
     childMount.call(this)
@@ -57,6 +63,10 @@ class Parent extends HtmlDiv
     return 'foo'
   }
 
+  init() {
+    parentInit.call(this)
+  }
+
   mount() {
     parentMount.call(this)
   }
@@ -73,43 +83,58 @@ class Parent extends HtmlDiv
 test('test #1', t => {
   const foo = Parent.render({ qaz : 'wsx' }, new DocumentFragment)
 
+  t.is(parentInit.callCount, 1)
   t.is(parentMount.callCount, 1)
   t.is(parentUpdate.callCount, 0)
   t.is(parentDestroy.callCount, 0)
+
+  t.is(childInit.callCount, 0)
   t.is(childMount.callCount, 0)
   t.is(childUpdate.callCount, 0)
   t.is(childDestroy.callCount, 0)
+
   t.is(foo.toString(), '<div class="Parent">foo</div>')
 
   foo.setState({ step : 1 })
 
+  t.is(parentInit.callCount, 1)
   t.is(parentMount.callCount, 1)
   t.is(parentUpdate.callCount, 1)
   t.is(parentUpdate.args[0][0], foo.props)
   t.deepEqual(parentUpdate.args[0][1], { step : 0 })
   t.is(parentDestroy.callCount, 0)
+
+  t.is(childInit.callCount, 0)
   t.is(childMount.callCount, 0)
   t.is(childUpdate.callCount, 0)
   t.is(childDestroy.callCount, 0)
+
   t.is(foo.toString(), '<div class="Parent"><a>bar</a><div><span>baz</span></div><br><b>bat</b></div>')
 
   foo.setState({ step : 2 })
 
+  t.is(parentInit.callCount, 1)
   t.is(parentMount.callCount, 1)
   t.is(parentUpdate.callCount, 2)
   t.deepEqual(parentUpdate.args[1][1], { step : 1 })
   t.is(parentDestroy.callCount, 0)
+
+  t.is(childInit.callCount, 1)
   t.is(childMount.callCount, 1)
   t.is(childUpdate.callCount, 0)
   t.is(childDestroy.callCount, 0)
+
   t.is(foo.toString(), '<div class="Parent"><b>bat</b><div><span class="Child">baz</span></div><br><a>bar</a></div>')
 
   foo.setState({ step : 3 })
 
+  t.is(parentInit.callCount, 1)
   t.is(parentMount.callCount, 1)
   t.is(parentUpdate.callCount, 3)
   t.deepEqual(parentUpdate.args[2][1], { step : 2 })
   t.is(parentDestroy.callCount, 0)
+
+  t.is(childInit.callCount, 1)
   t.is(childMount.callCount, 1)
   t.is(childUpdate.callCount, 1)
   t.is(childDestroy.callCount, 0)
@@ -119,10 +144,13 @@ test('test #1', t => {
 
   foo.setState({ step : 0 })
 
+  t.is(parentInit.callCount, 1)
   t.is(parentMount.callCount, 1)
   t.is(parentUpdate.callCount, 4)
   t.deepEqual(parentUpdate.args[3][1], { step : 3 })
   t.is(parentDestroy.callCount, 0)
+
+  t.is(childInit.callCount, 1)
   t.is(childMount.callCount, 1)
   t.is(childUpdate.callCount, 1)
   t.is(childDestroy.callCount, 1)
@@ -130,6 +158,8 @@ test('test #1', t => {
 
   foo.setState({ step : -1 })
 
+  t.is(parentInit.callCount, 1)
   t.is(parentDestroy.callCount, 0)
+  t.is(childInit.callCount, 1)
   t.is(childDestroy.callCount, 1)
 })
