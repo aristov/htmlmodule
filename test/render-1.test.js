@@ -4,50 +4,50 @@ const { document } = require('xwindow')
 const { ElemType } = require('..')
 
 test.beforeEach(t => {
-  const childInit = sinon.spy()
-  const parentInit = sinon.spy()
+  const childMount = sinon.spy()
+  const parentMount = sinon.spy()
   class Child extends ElemType
   {
-    init() {
-      childInit.apply(this, arguments)
+    mount() {
+      childMount.apply(this, arguments)
     }
   }
   class Parent extends ElemType
   {
-    init() {
-      parentInit.apply(this, arguments)
+    mount() {
+      parentMount.apply(this, arguments)
     }
   }
-  t.context = { Child, Parent, childInit, parentInit }
+  t.context = { Child, Parent, childMount, parentMount }
 })
 
 test('parentNode', t => {
-  const { Child, Parent, childInit, parentInit } = t.context
+  const { Child, Parent, childMount, parentMount } = t.context
   const parentNode = document.createElement('body')
   const child = new Child
   const parent = Parent.render(child, parentNode)
 
-  t.is(childInit.callCount, 1)
-  t.is(childInit.getCall(0).thisValue, child)
+  t.is(childMount.callCount, 1)
+  t.is(childMount.getCall(0).thisValue, child)
 
-  t.is(parentInit.callCount, 1)
-  t.is(parentInit.getCall(0).thisValue, parent)
+  t.is(parentMount.callCount, 1)
+  t.is(parentMount.getCall(0).thisValue, parent)
 
   t.is(parent.node.parentNode, parentNode)
   t.is(parent.toString(), '<div class="Parent"><div class="Child"></div></div>')
 })
 
 test('node', t => {
-  const { Child, Parent, childInit, parentInit } = t.context
+  const { Child, Parent, childMount, parentMount } = t.context
   const node = document.createElement('div')
   const child = new Child
   const parent = Parent.render({ node, children : child })
 
-  t.is(childInit.callCount, 1)
-  t.is(childInit.getCall(0).thisValue, child)
+  t.is(childMount.callCount, 1)
+  t.is(childMount.getCall(0).thisValue, child)
 
-  t.is(parentInit.callCount, 1)
-  t.is(parentInit.getCall(0).thisValue, parent)
+  t.is(parentMount.callCount, 1)
+  t.is(parentMount.getCall(0).thisValue, parent)
 
   t.is(parent.node, node)
   t.is(parent.toString(), '<div class="Parent"><div class="Child"></div></div>')

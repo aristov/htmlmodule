@@ -35,7 +35,7 @@ class Foo extends HtmlDiv
     return null
   }
 
-  init() {
+  mount() {
     this._obj = obj = {}
   }
 }
