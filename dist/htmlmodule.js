@@ -37,549 +37,710 @@ exports.HtmlA = class HtmlA extends HtmlType
 {
   static tagName = 'A'
 }
+
 exports.HtmlAbbr = class HtmlAbbr extends HtmlType
 {
   static tagName = 'ABBR'
 }
+
 exports.HtmlAddress = class HtmlAddress extends HtmlType
 {
   static tagName = 'ADDRESS'
 }
+
 exports.HtmlArea = class HtmlArea extends HtmlType
 {
   static tagName = 'AREA'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlArticle = class HtmlArticle extends HtmlType
 {
   static tagName = 'ARTICLE'
 }
+
 exports.HtmlAside = class HtmlAside extends HtmlType
 {
   static tagName = 'ASIDE'
 }
+
 exports.HtmlAudio = class HtmlAudio extends HtmlType
 {
   static tagName = 'AUDIO'
 }
+
 exports.HtmlB = class HtmlB extends HtmlType
 {
   static tagName = 'B'
 }
+
 exports.HtmlBase = class HtmlBase extends HtmlType
 {
   static tagName = 'BASE'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlBdi = class HtmlBdi extends HtmlType
 {
   static tagName = 'BDI'
 }
+
 exports.HtmlBdo = class HtmlBdo extends HtmlType
 {
   static tagName = 'BDO'
 }
+
 exports.HtmlBlockQuote = class HtmlBlockQuote extends HtmlType
 {
   static tagName = 'BLOCKQUOTE'
 }
+
 exports.HtmlBody = class HtmlBody extends HtmlType
 {
   static tagName = 'BODY'
 }
+
 exports.HtmlBr = class HtmlBr extends HtmlType
 {
   static tagName = 'BR'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlButton = class HtmlButton extends HtmlType
 {
   static tagName = 'BUTTON'
 }
+
 exports.HtmlCanvas = class HtmlCanvas extends HtmlType
 {
   static tagName = 'CANVAS'
 }
+
 exports.HtmlCaption = class HtmlCaption extends HtmlType
 {
   static tagName = 'CAPTION'
 }
+
 exports.HtmlCite = class HtmlCite extends HtmlType
 {
   static tagName = 'CITE'
 }
+
 exports.HtmlCode = class HtmlCode extends HtmlType
 {
   static tagName = 'CODE'
 }
+
 exports.HtmlCol = class HtmlCol extends HtmlType
 {
   static tagName = 'COL'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlColGroup = class HtmlColGroup extends HtmlType
 {
   static tagName = 'COLGROUP'
 }
+
 exports.HtmlData = class HtmlData extends HtmlType
 {
   static tagName = 'DATA'
 }
+
 exports.HtmlDataList = class HtmlDataList extends HtmlType
 {
   static tagName = 'DATALIST'
 }
+
 exports.HtmlDd = class HtmlDd extends HtmlType
 {
   static tagName = 'DD'
 }
+
 exports.HtmlDel = class HtmlDel extends HtmlType
 {
   static tagName = 'DEL'
 }
+
 exports.HtmlDetails = class HtmlDetails extends HtmlType
 {
   static tagName = 'DETAILS'
 }
+
 exports.HtmlDfn = class HtmlDfn extends HtmlType
 {
   static tagName = 'DFN'
 }
+
 exports.HtmlDialog = class HtmlDialog extends HtmlType
 {
   static tagName = 'DIALOG'
 }
+
 exports.HtmlDiv = class HtmlDiv extends HtmlType
 {
   static tagName = 'DIV'
 }
+
 exports.HtmlDl = class HtmlDl extends HtmlType
 {
   static tagName = 'DL'
 }
+
 exports.HtmlDt = class HtmlDt extends HtmlType
 {
   static tagName = 'DT'
 }
+
 exports.HtmlEm = class HtmlEm extends HtmlType
 {
   static tagName = 'EM'
 }
+
 exports.HtmlEmbed = class HtmlEmbed extends HtmlType
 {
   static tagName = 'EMBED'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlFieldSet = class HtmlFieldSet extends HtmlType
 {
   static tagName = 'FIELDSET'
 }
+
 exports.HtmlFigCaption = class HtmlFigCaption extends HtmlType
 {
   static tagName = 'FIGCAPTION'
 }
+
 exports.HtmlFigure = class HtmlFigure extends HtmlType
 {
   static tagName = 'FIGURE'
 }
+
 exports.HtmlFooter = class HtmlFooter extends HtmlType
 {
   static tagName = 'FOOTER'
 }
+
 exports.HtmlForm = class HtmlForm extends HtmlType
 {
   static tagName = 'FORM'
 }
+
 exports.HtmlH1 = class HtmlH1 extends HtmlType
 {
   static tagName = 'H1'
 }
+
 exports.HtmlH2 = class HtmlH2 extends HtmlType
 {
   static tagName = 'H2'
 }
+
 exports.HtmlH3 = class HtmlH3 extends HtmlType
 {
   static tagName = 'H3'
 }
+
 exports.HtmlH4 = class HtmlH4 extends HtmlType
 {
   static tagName = 'H4'
 }
+
 exports.HtmlH5 = class HtmlH5 extends HtmlType
 {
   static tagName = 'H5'
 }
+
 exports.HtmlH6 = class HtmlH6 extends HtmlType
 {
   static tagName = 'H6'
 }
+
 exports.HtmlHGroup = class HtmlHGroup extends HtmlType
 {
   static tagName = 'HGROUP'
 }
+
 exports.HtmlHead = class HtmlHead extends HtmlType
 {
   static tagName = 'HEAD'
 }
+
 exports.HtmlHeader = class HtmlHeader extends HtmlType
 {
   static tagName = 'HEADER'
 }
+
 exports.HtmlHr = class HtmlHr extends HtmlType
 {
   static tagName = 'HR'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlHtml = class HtmlHtml extends HtmlType
 {
   static tagName = 'HTML'
 }
+
 exports.HtmlI = class HtmlI extends HtmlType
 {
   static tagName = 'I'
 }
+
 exports.HtmlIFrame = class HtmlIFrame extends HtmlType
 {
   static tagName = 'IFRAME'
 }
+
 exports.HtmlImg = class HtmlImg extends HtmlType
 {
   static tagName = 'IMG'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlInput = class HtmlInput extends HtmlType
 {
   static tagName = 'INPUT'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlIns = class HtmlIns extends HtmlType
 {
   static tagName = 'INS'
 }
+
 exports.HtmlKbd = class HtmlKbd extends HtmlType
 {
   static tagName = 'KBD'
 }
+
 exports.HtmlLabel = class HtmlLabel extends HtmlType
 {
   static tagName = 'LABEL'
 }
+
 exports.HtmlLegend = class HtmlLegend extends HtmlType
 {
   static tagName = 'LEGEND'
 }
+
 exports.HtmlLi = class HtmlLi extends HtmlType
 {
   static tagName = 'LI'
 }
+
 exports.HtmlLink = class HtmlLink extends HtmlType
 {
   static tagName = 'LINK'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlMain = class HtmlMain extends HtmlType
 {
   static tagName = 'MAIN'
 }
+
 exports.HtmlMap = class HtmlMap extends HtmlType
 {
   static tagName = 'MAP'
 }
+
 exports.HtmlMark = class HtmlMark extends HtmlType
 {
   static tagName = 'MARK'
 }
+
 exports.HtmlMenu = class HtmlMenu extends HtmlType
 {
   static tagName = 'MENU'
 }
+
 exports.HtmlMeta = class HtmlMeta extends HtmlType
 {
   static tagName = 'META'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlMeter = class HtmlMeter extends HtmlType
 {
   static tagName = 'METER'
 }
+
 exports.HtmlNav = class HtmlNav extends HtmlType
 {
   static tagName = 'NAV'
 }
+
 exports.HtmlNoScript = class HtmlNoScript extends HtmlType
 {
   static tagName = 'NOSCRIPT'
 }
+
 exports.HtmlObject = class HtmlObject extends HtmlType
 {
   static tagName = 'OBJECT'
 }
+
 exports.HtmlOl = class HtmlOl extends HtmlType
 {
   static tagName = 'OL'
 }
+
 exports.HtmlOptGroup = class HtmlOptGroup extends HtmlType
 {
   static tagName = 'OPTGROUP'
 }
+
 exports.HtmlOption = class HtmlOption extends HtmlType
 {
   static tagName = 'OPTION'
 }
+
 exports.HtmlOutput = class HtmlOutput extends HtmlType
 {
   static tagName = 'OUTPUT'
+
+  constructor(props) {
+    super(props)
+    if(this.props.hasOwnProperty('value') || this.props.hasOwnProperty('defaultValue')) {
+      this.children = null
+    }
+  }
 }
+
 exports.HtmlP = class HtmlP extends HtmlType
 {
   static tagName = 'P'
 }
+
 exports.HtmlParam = class HtmlParam extends HtmlType
 {
   static tagName = 'PARAM'
 }
+
 exports.HtmlPicture = class HtmlPicture extends HtmlType
 {
   static tagName = 'PICTURE'
 }
+
 exports.HtmlPre = class HtmlPre extends HtmlType
 {
   static tagName = 'PRE'
 }
+
 exports.HtmlProgress = class HtmlProgress extends HtmlType
 {
   static tagName = 'PROGRESS'
 }
+
 exports.HtmlQ = class HtmlQ extends HtmlType
 {
   static tagName = 'Q'
 }
+
 exports.HtmlRp = class HtmlRp extends HtmlType
 {
   static tagName = 'RP'
 }
+
 exports.HtmlRt = class HtmlRt extends HtmlType
 {
   static tagName = 'RT'
 }
+
 exports.HtmlRuby = class HtmlRuby extends HtmlType
 {
   static tagName = 'RUBY'
 }
+
 exports.HtmlS = class HtmlS extends HtmlType
 {
   static tagName = 'S'
 }
+
 exports.HtmlSamp = class HtmlSamp extends HtmlType
 {
   static tagName = 'SAMP'
 }
+
 exports.HtmlScript = class HtmlScript extends HtmlType
 {
   static tagName = 'SCRIPT'
 }
+
 exports.HtmlSection = class HtmlSection extends HtmlType
 {
   static tagName = 'SECTION'
 }
+
 exports.HtmlSelect = class HtmlSelect extends HtmlType
 {
   static tagName = 'SELECT'
 }
+
 exports.HtmlSmall = class HtmlSmall extends HtmlType
 {
   static tagName = 'SMALL'
 }
+
 exports.HtmlSource = class HtmlSource extends HtmlType
 {
   static tagName = 'SOURCE'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlSpan = class HtmlSpan extends HtmlType
 {
   static tagName = 'SPAN'
 }
+
 exports.HtmlStrong = class HtmlStrong extends HtmlType
 {
   static tagName = 'STRONG'
 }
+
 exports.HtmlStyle = class HtmlStyle extends HtmlType
 {
   static tagName = 'STYLE'
 }
+
 exports.HtmlSub = class HtmlSub extends HtmlType
 {
   static tagName = 'SUB'
 }
+
 exports.HtmlSummary = class HtmlSummary extends HtmlType
 {
   static tagName = 'SUMMARY'
 }
+
 exports.HtmlSup = class HtmlSup extends HtmlType
 {
   static tagName = 'SUP'
 }
+
 exports.HtmlTBody = class HtmlTBody extends HtmlType
 {
   static tagName = 'TBODY'
 }
+
 exports.HtmlTFoot = class HtmlTFoot extends HtmlType
 {
   static tagName = 'TFOOT'
 }
+
 exports.HtmlTHead = class HtmlTHead extends HtmlType
 {
   static tagName = 'THEAD'
 }
+
 exports.HtmlTable = class HtmlTable extends HtmlType
 {
   static tagName = 'TABLE'
 }
+
 exports.HtmlTd = class HtmlTd extends HtmlType
 {
   static tagName = 'TD'
 }
+
 exports.HtmlTemplate = class HtmlTemplate extends HtmlType
 {
   static tagName = 'TEMPLATE'
 }
+
 exports.HtmlTextArea = class HtmlTextArea extends HtmlType
 {
   static tagName = 'TEXTAREA'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlTh = class HtmlTh extends HtmlType
 {
   static tagName = 'TH'
 }
+
 exports.HtmlTime = class HtmlTime extends HtmlType
 {
   static tagName = 'TIME'
 }
+
 exports.HtmlTitle = class HtmlTitle extends HtmlType
 {
   static tagName = 'TITLE'
 }
+
 exports.HtmlTr = class HtmlTr extends HtmlType
 {
   static tagName = 'TR'
 }
+
 exports.HtmlTrack = class HtmlTrack extends HtmlType
 {
   static tagName = 'TRACK'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
+
 exports.HtmlU = class HtmlU extends HtmlType
 {
   static tagName = 'U'
 }
+
 exports.HtmlUl = class HtmlUl extends HtmlType
 {
   static tagName = 'UL'
 }
+
 exports.HtmlVar = class HtmlVar extends HtmlType
 {
   static tagName = 'VAR'
 }
+
 exports.HtmlVideo = class HtmlVideo extends HtmlType
 {
   static tagName = 'VIDEO'
 }
+
 exports.HtmlWbr = class HtmlWbr extends HtmlType
 {
   static tagName = 'WBR'
+
+  constructor(props) {
+    super(props)
+    this.children = null
+  }
 }
 
-exports.HtmlA.defineProps([
-  'origin',
-])
+exports.HtmlA.defineProps({
+  download : 'download',
+  hash : 'hash',
+  host : 'host',
+  hostname : 'hostname',
+  href : 'href',
+  hreflang : 'hreflang',
+  password : 'password',
+  pathname : 'pathname',
+  port : 'port',
+  protocol : 'protocol',
+  referrerPolicy : 'referrerpolicy',
+  rel : 'rel',
+  rev : 'rev',
+  search : 'search',
+  target : 'target',
+  type : 'type',
+  username : 'username',
+})
 
-exports.HtmlA.defineProps([
-  'href',
-  'protocol',
-  'username',
-  'password',
-  'host',
-  'hostname',
-  'port',
-  'pathname',
-  'search',
-  'hash',
-  'target',
-  'download',
-  'rel',
-  'rev',
-  'hreflang',
-  'type',
-  'referrerPolicy',
-], true)
-
-exports.HtmlArea.defineProps([
-  'origin',
-  'relList',
-])
-
-exports.HtmlArea.defineProps([
-  'href',
-  'protocol',
-  'username',
-  'password',
-  'host',
-  'hostname',
-  'port',
-  'pathname',
-  'search',
-  'hash',
-  'alt',
-  'coords',
-  'shape',
-  'target',
-  'download',
-  'rel',
-  'hreflang',
-  'type',
-  'referrerPolicy',
-], true)
+exports.HtmlArea.defineProps({
+  alt : 'alt',
+  coords : 'coords',
+  download : 'download',
+  hash : 'hash',
+  host : 'host',
+  hostname : 'hostname',
+  href : 'href',
+  hreflang : 'hreflang',
+  password : 'password',
+  pathname : 'pathname',
+  port : 'port',
+  protocol : 'protocol',
+  referrerPolicy : 'referrerpolicy',
+  rel : 'rel',
+  search : 'search',
+  shape : 'shape',
+  target : 'target',
+  type : 'type',
+  username : 'username',
+})
 
 exports.HtmlAudio.defineMethods([
-  'load',
+  'addTextTrack',
   'canPlayType',
   'fastSeek',
   'getStartDate',
-  'play',
+  'load',
   'pause',
-  'addTextTrack',
+  'play',
 ])
 
-exports.HtmlAudio.defineProps([
-  'error',
-  'currentSrc',
-  'networkState',
-  'buffered',
-  'readyState',
-  'seeking',
-  'duration',
-  'paused',
-  'played',
-  'seekable',
-  'ended',
-  'audioTracks',
-  'videoTracks',
-  'textTracks',
-])
+exports.HtmlAudio.defineProps({
+  autoplay : 'autoplay',
+  controls : 'controls',
+  crossOrigin : 'crossorigin',
+  currentTime : null,
+  defaultMuted : null,
+  defaultPlaybackRate : null,
+  loop : 'loop',
+  muted : null,
+  playbackRate : null,
+  preload : 'preload',
+  src : 'src',
+  srcObject : null,
+  volume : null,
+})
 
-exports.HtmlAudio.defineProps([
-  'src',
-  'srcObject',
-  'crossOrigin',
-  'preload',
-  'currentTime',
-  'defaultPlaybackRate',
-  'playbackRate',
-  'autoplay',
-  'loop',
-  'controls',
-  'volume',
-  'muted',
-  'defaultMuted',
-], true)
+exports.HtmlBase.defineProps({
+  href : 'href',
+  target : 'target',
+})
 
-exports.HtmlBase.defineProps([
-  'href',
-  'target',
-], true)
-
-exports.HtmlBlockQuote.defineProps([
-  'cite',
-], true)
+exports.HtmlBlockQuote.defineProps({
+  cite : 'cite',
+})
 
 exports.HtmlButton.defineMethods([
   'checkValidity',
@@ -587,75 +748,69 @@ exports.HtmlButton.defineMethods([
   'setCustomValidity',
 ])
 
-exports.HtmlButton.defineProps([
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-exports.HtmlButton.defineProps([
-  'autofocus',
-  'disabled',
-  'formAction',
-  'formEnctype',
-  'formMethod',
-  'formNoValidate',
-  'formTarget',
-  'name',
-  'type',
-  'value',
-], true)
+exports.HtmlButton.defineProps({
+  autofocus : 'autofocus',
+  disabled : 'disabled',
+  formAction : 'formaction',
+  formEnctype : 'formenctype',
+  formMethod : 'formmethod',
+  formNoValidate : 'formnovalidate',
+  formTarget : 'formtarget',
+  name : 'name',
+  type : 'type',
+  value : null,
+})
 
 exports.HtmlCanvas.defineMethods([
   'getContext',
   'probablySupportsContext',
-  'toDataURL',
   'toBlob',
+  'toDataURL',
 ])
 
-exports.HtmlCanvas.defineProps([
-  'width',
-  'height',
-], true)
+exports.HtmlCanvas.defineProps({
+  height : 'height',
+  width : 'width',
+})
 
-exports.HtmlCol.defineProps([
-  'span',
-], true)
+exports.HtmlCol.defineProps({
+  span : 'span',
+})
 
-exports.HtmlColGroup.defineProps([
-  'span',
-], true)
+exports.HtmlColGroup.defineProps({
+  span : 'span',
+})
 
-exports.HtmlData.defineProps([
-  'value',
-], true)
+exports.HtmlData.defineProps({
+  value : null,
+})
 
-exports.HtmlDel.defineProps([
-  'cite',
-  'dateTime',
-], true)
+exports.HtmlDel.defineProps({
+  cite : 'cite',
+  dateTime : 'datetime',
+})
 
-exports.HtmlDetails.defineProps([
-  'open',
-], true)
+exports.HtmlDetails.defineProps({
+  open : 'open',
+})
 
 exports.HtmlDialog.defineMethods([
+  'close',
   'show',
   'showModal',
-  'close',
 ])
 
-exports.HtmlDialog.defineProps([
-  'open',
-  'returnValue',
-], true)
+exports.HtmlDialog.defineProps({
+  open : 'open',
+  returnValue : null,
+})
 
-exports.HtmlEmbed.defineProps([
-  'src',
-  'type',
-  'width',
-  'height',
-], true)
+exports.HtmlEmbed.defineProps({
+  height : 'height',
+  src : 'src',
+  type : 'type',
+  width : 'width',
+})
 
 exports.HtmlFieldSet.defineMethods([
   'checkValidity',
@@ -663,17 +818,10 @@ exports.HtmlFieldSet.defineMethods([
   'setCustomValidity',
 ])
 
-exports.HtmlFieldSet.defineProps([
-  'type',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
-
-exports.HtmlFieldSet.defineProps([
-  'disabled',
-  'name',
-], true)
+exports.HtmlFieldSet.defineProps({
+  disabled : 'disabled',
+  name : 'name',
+})
 
 exports.HtmlForm.defineMethods([
   'checkValidity',
@@ -682,54 +830,42 @@ exports.HtmlForm.defineMethods([
   'submit',
 ])
 
-exports.HtmlForm.defineProps([
-  'acceptCharset',
-  'action',
-  'autocomplete',
-  'enctype',
-  'method',
-  'name',
-  'noValidate',
-  'target',
-], true)
+exports.HtmlForm.defineProps({
+  acceptCharset : 'accept-charset',
+  action : 'action',
+  autocomplete : 'autocomplete',
+  enctype : 'enctype',
+  method : 'method',
+  name : 'name',
+  noValidate : 'novalidate',
+  target : 'target',
+})
 
-exports.HtmlIFrame.defineProps([
-  'sandbox',
-])
-
-exports.HtmlIFrame.defineProps([
-  'src',
-  'srcdoc',
-  'allowFullScreen',
-  'allowPaymentRequest',
-  'width',
-  'height',
-  'referrerPolicy',
-], true)
+exports.HtmlIFrame.defineProps({
+  allowFullScreen : 'allowfullscreen',
+  height : 'height',
+  referrerPolicy : 'referrerpolicy',
+  src : 'src',
+  srcdoc : 'srcdoc',
+  width : 'width',
+})
 
 exports.HtmlImg.defineMethods([
   'decode',
 ])
 
-exports.HtmlImg.defineProps([
-  'complete',
-  'currentSrc',
-  'naturalWidth',
-  'naturalHeight',
-])
-
-exports.HtmlImg.defineProps([
-  'alt',
-  'referrerPolicy',
-  'src',
-  'srcset',
-  'sizes',
-  'crossOrigin',
-  'useMap',
-  'isMap',
-  'height',
-  'width',
-], true)
+exports.HtmlImg.defineProps({
+  alt : 'alt',
+  crossOrigin : 'crossorigin',
+  height : 'height',
+  isMap : 'ismap',
+  referrerPolicy : 'referrerpolicy',
+  sizes : 'sizes',
+  src : 'src',
+  srcset : 'srcset',
+  useMap : 'usemap',
+  width : 'width',
+})
 
 exports.HtmlInput.defineMethods([
   'checkValidity',
@@ -742,106 +878,92 @@ exports.HtmlInput.defineMethods([
   'stepUp',
 ])
 
-exports.HtmlInput.defineProps([
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
+exports.HtmlInput.defineProps({
+  accept : 'accept',
+  alt : 'alt',
+  autocomplete : 'autocomplete',
+  autofocus : 'autofocus',
+  checked : null,
+  defaultChecked : null,
+  defaultValue : 'value',
+  dirName : 'dirname',
+  disabled : 'disabled',
+  files : 'files',
+  formAction : 'formaction',
+  formEnctype : 'formenctype',
+  formMethod : 'formmethod',
+  formNoValidate : 'formnovalidate',
+  formTarget : 'formtarget',
+  height : 'height',
+  indeterminate : null,
+  inputMode : 'inputmode',
+  max : 'max',
+  maxLength : 'maxlength',
+  min : 'min',
+  minLength : 'minlength',
+  multiple : 'multiple',
+  name : 'name',
+  pattern : 'pattern',
+  placeholder : 'placeholder',
+  readOnly : 'readonly',
+  required : 'required',
+  selectionDirection : null,
+  selectionEnd : null,
+  selectionStart : null,
+  size : 'size',
+  src : 'src',
+  step : 'step',
+  type : 'type',
+  value : null,
+  valueAsDate : null,
+  valueAsNumber : null,
+  width : 'width',
+})
 
-exports.HtmlInput.defineProps([
-  'accept',
-  'alt',
-  'autocomplete',
-  'autofocus',
-  'defaultChecked',
-  'checked',
-  'dirName',
-  'disabled',
-  'files',
-  'formAction',
-  'formEnctype',
-  'formMethod',
-  'formNoValidate',
-  'formTarget',
-  'height',
-  'indeterminate',
-  'inputMode',
-  'max',
-  'maxLength',
-  'min',
-  'minLength',
-  'multiple',
-  'name',
-  'pattern',
-  'placeholder',
-  'readOnly',
-  'required',
-  'size',
-  'src',
-  'step',
-  'type',
-  'defaultValue',
-  'value',
-  'valueAsDate',
-  'valueAsNumber',
-  'width',
-  'selectionStart',
-  'selectionEnd',
-  'selectionDirection',
-], true)
+exports.HtmlIns.defineProps({
+  cite : 'cite',
+  dateTime : 'datetime',
+})
 
-exports.HtmlIns.defineProps([
-  'cite',
-  'dateTime',
-], true)
+exports.HtmlLabel.defineProps({
+  htmlFor : 'for',
+})
 
-exports.HtmlLabel.defineProps([
-  'htmlFor',
-], true)
+exports.HtmlLi.defineProps({
+  value : null,
+})
 
-exports.HtmlLi.defineProps([
-  'value',
-], true)
+exports.HtmlLink.defineProps({
+  crossOrigin : 'crossorigin',
+  href : 'href',
+  hreflang : 'hreflang',
+  media : 'media',
+  nonce : 'nonce',
+  referrerPolicy : 'referrerpolicy',
+  rel : 'rel',
+  rev : 'rev',
+  type : 'type',
+})
 
-exports.HtmlLink.defineProps([
-  'relList',
-  'sizes',
-])
+exports.HtmlMap.defineProps({
+  name : 'name',
+})
 
-exports.HtmlLink.defineProps([
-  'href',
-  'crossOrigin',
-  'rel',
-  'rev',
-  'media',
-  'nonce',
-  'hreflang',
-  'type',
-  'referrerPolicy',
-], true)
+exports.HtmlMeta.defineProps({
+  charset : 'charset',
+  content : 'content',
+  httpEquiv : 'http-equiv',
+  name : 'name',
+})
 
-exports.HtmlMap.defineProps([
-  'name',
-], true)
-
-exports.HtmlMeta.defineAttrs([
-  'charset',
-])
-
-exports.HtmlMeta.defineProps([
-  'httpEquiv',
-  'name',
-  'content',
-], true)
-
-exports.HtmlMeter.defineProps([
-  'value',
-  'min',
-  'max',
-  'low',
-  'high',
-  'optimum',
-], true)
+exports.HtmlMeter.defineProps({
+  high : 'high',
+  low : 'low',
+  max : 'max',
+  min : 'min',
+  optimum : 'optimum',
+  value : null,
+})
 
 exports.HtmlObject.defineMethods([
   'checkValidity',
@@ -849,45 +971,34 @@ exports.HtmlObject.defineMethods([
   'setCustomValidity',
 ])
 
-exports.HtmlObject.defineProps([
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
+exports.HtmlObject.defineProps({
+  data : 'data',
+  height : 'height',
+  name : 'name',
+  type : 'type',
+  useMap : 'usemap',
+  width : 'width',
+})
 
-exports.HtmlObject.defineProps([
-  'name',
-  'data',
-  'type',
-  'typeMustMatch',
-  'useMap',
-  'width',
-  'height',
-], true)
+exports.HtmlOl.defineProps({
+  reversed : 'reversed',
+  start : 'start',
+  type : 'type',
+})
 
-exports.HtmlOl.defineProps([
-  'reversed',
-  'start',
-  'type',
-], true)
+exports.HtmlOptGroup.defineProps({
+  disabled : 'disabled',
+  label : 'label',
+})
 
-exports.HtmlOptGroup.defineProps([
-  'disabled',
-  'label',
-], true)
-
-exports.HtmlOption.defineProps([
-  'index',
-])
-
-exports.HtmlOption.defineProps([
-  'disabled',
-  'label',
-  'defaultSelected',
-  'selected',
-  'value',
-  'text',
-], true)
+exports.HtmlOption.defineProps({
+  defaultSelected : null,
+  disabled : 'disabled',
+  label : 'label',
+  selected : null,
+  text : 'text',
+  value : null,
+})
 
 exports.HtmlOutput.defineMethods([
   'checkValidity',
@@ -895,51 +1006,35 @@ exports.HtmlOutput.defineMethods([
   'setCustomValidity',
 ])
 
-exports.HtmlOutput.defineProps([
-  'type',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
+exports.HtmlOutput.defineProps({
+  defaultValue : null,
+  htmlFor : 'for',
+  name : 'name',
+  value : null,
+})
 
-exports.HtmlOutput.defineProps([
-  'htmlFor',
-  'defaultValue',
-  'name',
-  'value',
-], true)
+exports.HtmlProgress.defineProps({
+  max : 'max',
+  value : null,
+})
 
-exports.HtmlParam.defineProps([
-  'name',
-  'value',
-], true)
+exports.HtmlQ.defineProps({
+  cite : 'cite',
+})
 
-exports.HtmlProgress.defineProps([
-  'position',
-])
-
-exports.HtmlProgress.defineProps([
-  'value',
-  'max',
-], true)
-
-exports.HtmlQ.defineProps([
-  'cite',
-], true)
-
-exports.HtmlScript.defineProps([
-  'src',
-  'type',
-  'noModule',
-  'charset',
-  'async',
-  'defer',
-  'crossOrigin',
-  'integrity',
-  'referrerPolicy',
-  'text',
-  'nonce',
-], true)
+exports.HtmlScript.defineProps({
+  async : 'async',
+  charset : 'charset',
+  crossOrigin : 'crossorigin',
+  defer : 'defer',
+  integrity : 'integrity',
+  noModule : 'nomodule',
+  nonce : 'nonce',
+  referrerPolicy : 'referrerpolicy',
+  src : 'src',
+  text : 'text',
+  type : 'type',
+})
 
 exports.HtmlSelect.defineMethods([
   'checkValidity',
@@ -947,49 +1042,37 @@ exports.HtmlSelect.defineMethods([
   'setCustomValidity',
 ])
 
-exports.HtmlSelect.defineProps([
-  'type',
-  'length',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
+exports.HtmlSelect.defineProps({
+  autocomplete : 'autocomplete',
+  autofocus : 'autofocus',
+  disabled : 'disabled',
+  multiple : 'multiple',
+  name : 'name',
+  required : 'required',
+  selectedIndex : null,
+  size : 'size',
+  value : null,
+})
 
-exports.HtmlSelect.defineProps([
-  'autocomplete',
-  'autofocus',
-  'disabled',
-  'multiple',
-  'name',
-  'required',
-  'size',
-  'selectedIndex',
-  'value',
-], true)
+exports.HtmlSource.defineProps({
+  media : 'media',
+  sizes : 'sizes',
+  src : 'src',
+  srcset : 'srcset',
+  type : 'type',
+})
 
-exports.HtmlSource.defineProps([
-  'src',
-  'type',
-  'srcset',
-  'sizes',
-  'media',
-], true)
+exports.HtmlStyle.defineProps({
+  media : 'media',
+  nonce : 'nonce',
+  type : 'type',
+})
 
-exports.HtmlStyle.defineProps([
-  'media',
-  'nonce',
-  'type',
-], true)
-
-exports.HtmlTd.defineProps([
-  'cellIndex',
-])
-
-exports.HtmlTd.defineProps([
-  'colSpan',
-  'rowSpan',
-  'headers',
-], true)
+exports.HtmlTd.defineProps({
+  colSpan : 'colspan',
+  headers : 'headers',
+  rowSpan : 'rowspan',
+})
 
 exports.HtmlTextArea.defineMethods([
   'checkValidity',
@@ -1000,122 +1083,81 @@ exports.HtmlTextArea.defineMethods([
   'setSelectionRange',
 ])
 
-exports.HtmlTextArea.defineProps([
-  'type',
-  'textLength',
-  'willValidate',
-  'validity',
-  'validationMessage',
-])
+exports.HtmlTextArea.defineProps({
+  autocomplete : 'autocomplete',
+  autofocus : 'autofocus',
+  cols : 'cols',
+  defaultValue : null,
+  dirName : 'dirname',
+  disabled : 'disabled',
+  inputMode : 'inputmode',
+  maxLength : 'maxlength',
+  minLength : 'minlength',
+  name : 'name',
+  placeholder : 'placeholder',
+  readOnly : 'readonly',
+  required : 'required',
+  rows : 'rows',
+  selectionDirection : null,
+  selectionEnd : null,
+  selectionStart : null,
+  step : 'step',
+  value : null,
+  wrap : 'wrap',
+})
 
-exports.HtmlTextArea.defineProps([
-  'autocomplete',
-  'autofocus',
-  'cols',
-  'dirName',
-  'disabled',
-  'inputMode',
-  'maxLength',
-  'minLength',
-  'name',
-  'placeholder',
-  'readOnly',
-  'required',
-  'rows',
-  'wrap',
-  'step',
-  'defaultValue',
-  'value',
-  'selectionStart',
-  'selectionEnd',
-  'selectionDirection',
-], true)
+exports.HtmlTh.defineProps({
+  abbr : 'abbr',
+  colSpan : 'colspan',
+  headers : 'headers',
+  rowSpan : 'rowspan',
+  scope : 'scope',
+})
 
-exports.HtmlTh.defineProps([
-  'cellIndex',
-])
+exports.HtmlTime.defineProps({
+  dateTime : 'datetime',
+})
 
-exports.HtmlTh.defineProps([
-  'colSpan',
-  'rowSpan',
-  'headers',
-  'scope',
-  'abbr',
-], true)
+exports.HtmlTitle.defineProps({
+  text : 'text',
+})
 
-exports.HtmlTime.defineProps([
-  'dateTime',
-], true)
-
-exports.HtmlTitle.defineProps([
-  'text',
-], true)
-
-exports.HtmlTr.defineProps([
-  'rowIndex',
-  'sectionRowIndex',
-])
-
-exports.HtmlTrack.defineProps([
-  'readyState',
-  'track',
-])
-
-exports.HtmlTrack.defineProps([
-  'kind',
-  'src',
-  'srclang',
-  'label',
-  'default',
-], true)
+exports.HtmlTrack.defineProps({
+  default : 'default',
+  kind : 'kind',
+  label : 'label',
+  src : 'src',
+  srclang : 'srclang',
+})
 
 exports.HtmlVideo.defineMethods([
-  'load',
+  'addTextTrack',
   'canPlayType',
   'fastSeek',
   'getStartDate',
-  'play',
+  'load',
   'pause',
-  'addTextTrack',
+  'play',
 ])
 
-exports.HtmlVideo.defineProps([
-  'error',
-  'currentSrc',
-  'networkState',
-  'buffered',
-  'readyState',
-  'seeking',
-  'duration',
-  'paused',
-  'played',
-  'seekable',
-  'ended',
-  'audioTracks',
-  'videoTracks',
-  'textTracks',
-  'videoWidth',
-  'videoHeight',
-])
-
-exports.HtmlVideo.defineProps([
-  'src',
-  'srcObject',
-  'crossOrigin',
-  'preload',
-  'currentTime',
-  'defaultPlaybackRate',
-  'playbackRate',
-  'autoplay',
-  'loop',
-  'controls',
-  'volume',
-  'muted',
-  'defaultMuted',
-  'width',
-  'height',
-  'poster',
-], true)
+exports.HtmlVideo.defineProps({
+  autoplay : 'autoplay',
+  controls : 'controls',
+  crossOrigin : 'crossorigin',
+  currentTime : null,
+  defaultMuted : null,
+  defaultPlaybackRate : null,
+  height : 'height',
+  loop : 'loop',
+  muted : null,
+  playbackRate : null,
+  poster : 'poster',
+  preload : 'preload',
+  src : 'src',
+  srcObject : null,
+  volume : null,
+  width : 'width',
+})
 
 Object.values(exports).forEach(type => type.class = undefined)
 
@@ -1144,7 +1186,10 @@ class HtmlType extends ElemType
    * @param {string|null} innerText
    */
   set innerText(innerText) {
-    this.node.innerText = innerText
+    this.children = null
+    if(innerText !== this.node.innerText) {
+      this.node.innerText = innerText
+    }
   }
 }
 
@@ -1154,25 +1199,18 @@ HtmlType.defineMethods([
   'focus',
 ])
 
-HtmlType.defineProps([
-  'offsetHeight',
-  'offsetLeft',
-  'offsetTop',
-  'offsetWidth',
-])
-
-HtmlType.defineProps([
-  'accessKey',
-  'autofocus',
-  'contentEditable',
-  'dir',
-  'hidden',
-  'inputMode',
-  'lang',
-  'tabIndex',
-  'title',
-  'translate',
-], true)
+HtmlType.defineProps({
+  accessKey : 'accesskey',
+  autofocus : 'autofocus',
+  contentEditable : 'contenteditable',
+  dir : 'dir',
+  hidden : 'hidden',
+  inputMode : 'inputmode',
+  lang : 'lang',
+  tabIndex : 'tabindex',
+  title : 'title',
+  translate : 'translate',
+})
 
 module.exports = HtmlType
 
@@ -1186,20 +1224,50 @@ const EventType = __webpack_require__(5)
 
 const { indexOf, map } = Array.prototype
 const { CustomEvent, HTMLElement, document } = window
-const attrNameMap = {
-  htmlFor : 'for',
-  className : 'class',
-  defaultValue : 'value',
-  defaultChecked : 'checked',
-  defaultSelected : 'selected',
-  value : null,
-  checked : null,
-  selected : null,
-  indeterminate : null,
-}
 const childFilterSet = new Set([undefined, null, false])
 const nullNode = document.createElement('div')
-const styleNode = document.createElement('div')
+const sampleNode = document.createElement('div')
+const specialProps = {
+  children : true,
+  class : true,
+  classList : true,
+  className : true,
+  key : true,
+  node : true,
+  role : true,
+  tagName : true,
+}
+const descriptors = {
+  __inited : {
+    writable : true,
+    value : false,
+  },
+  __handlers : {
+    writable : true,
+    value : null,
+  },
+  props : {
+    writable : true,
+    value : null,
+  },
+  state : {
+    configurable : true,
+    writable : true,
+    value : null,
+  },
+  node : {
+    writable : true,
+    value : null,
+  },
+  children : {
+    writable : true,
+    value : undefined,
+  },
+  key : {
+    writable : true,
+    value : null,
+  },
+}
 
 /**
  * @see https://dom.spec.whatwg.org/#interface-element
@@ -1214,21 +1282,7 @@ class ElemType
 
   static className = undefined
 
-  static specialProps = {
-    children : true,
-    class : true,
-    className : true,
-    key : true,
-    node : true,
-    role : true,
-    tagName : true,
-  }
-
-  static specialAttributes = {
-    class : true,
-    role : true,
-    style : true,
-  }
+  static specialProps = specialProps
 
   /**
    * @param {*} [props]
@@ -1240,31 +1294,12 @@ class ElemType
     if(props.children === undefined) {
       props.children = null
     }
-    Object.defineProperties(this, {
-      __handlers : {
-        value : new Map,
-      },
-      props : {
-        writable : true,
-        value : props,
-      },
-      state : {
-        configurable : true,
-        value : {},
-      },
-      node : {
-        writable : true,
-        value : null,
-      },
-      children : {
-        writable : true,
-        value : null,
-      },
-      key : {
-        writable : true,
-        value : props.key ?? null,
-      },
-    })
+    Object.defineProperties(this, descriptors)
+    this.props = props
+    this.state = {}
+    if(props.hasOwnProperty('key')) {
+      this.key = props.key
+    }
   }
 
   /**
@@ -1276,62 +1311,41 @@ class ElemType
   }
 
   /**
-   * @private
+   * @abstract
    */
-  _setRoleAttr() {
-    let role = this.props.role
-    if(role === undefined) {
-      role = this.constructor.role
-    }
-    if(role) {
-      this.node.setAttribute('role', role)
-    }
-    else this.node.removeAttribute('role')
+  init() {
+    void null
   }
 
   /**
-   * @private
+   * @return {*}
+   * @abstract
    */
-  _setClassName() {
-    let className = this.props.className
-    if(className === undefined) {
-      className = this.constructor.className
-    }
-    if(className === undefined) {
-      this._setClass()
-      return
-    }
-    if(className === null) {
-      this.node.removeAttribute('class')
-    }
-    else this.node.className = className
+  render() {
+    return this.props.children
   }
 
   /**
-   * @private
+   * @abstract
    */
-  _setClass() {
-    const items = new Set
-    let constructor = this.constructor
-    let name
-    do {
-      name = constructor.hasOwnProperty('class') && constructor.class
-      if(name === undefined) {
-        break
-      }
-      if(constructor === this.constructor && this.props.hasOwnProperty('class')) {
-        name = this.props.class
-      }
-      if(name === null) {
-        continue
-      }
-      items.add(name || constructor.name)
-    }
-    while(constructor = Object.getPrototypeOf(constructor))
-    if(items.size) {
-      this.node.className = Array.from(items).filter(Boolean).join(' ')
-    }
-    else this.node.removeAttribute('class')
+  mount() {
+    void null
+  }
+
+  /**
+   * @param {{}} prevProps
+   * @param {{}} prevState
+   * @abstract
+   */
+  update(prevProps, prevState) {
+    void null
+  }
+
+  /**
+   * @abstract
+   */
+  destroy() {
+    void null
   }
 
   /**
@@ -1362,7 +1376,186 @@ class ElemType
     else if(typeof attr === 'function') {
       attr.set(this, value)
     }
-    else this.node.setAttribute(attr, value)
+    else if(value !== this.node.getAttribute(attr)) {
+      this.node.setAttribute(attr, value)
+    }
+  }
+
+  /**
+   * @param {{}|function} [state]
+   */
+  setState(state) {
+    const prevState = Object.assign({}, this.state)
+    if(state) {
+      if(typeof state === 'function') {
+        state = state(this.state)
+      }
+      Object.assign(this.state, state)
+    }
+    this._setClassName(this.props)
+    this._render()
+    this.update(this.props, prevState)
+  }
+
+  /**
+   * @param {constructor @link ElemType} type
+   * @return {null|ElemType|*}
+   */
+  find(type) {
+    if(!this.children) {
+      return null
+    }
+    let child
+    for(child of this.children) {
+      if(typeof child === 'string') {
+        continue
+      }
+      if(child instanceof type) {
+        return child
+      }
+      if(child = child.find(type)) {
+        return child
+      }
+    }
+    return null
+  }
+
+  /**
+   * @param {constructor @link ElemType} type
+   * @return {(null|ElemType|*)[]}
+   */
+  findAll(type) {
+    const result = []
+    if(!this.children) {
+      return result
+    }
+    let child
+    for(child of this.children) {
+      if(typeof child === 'string') {
+        continue
+      }
+      if(child instanceof type) {
+        result.push(child)
+      }
+      result.push(...child.findAll(type))
+    }
+    return result
+  }
+
+  /**
+   * @param {Event|string|*} event
+   * @param {CustomEventInit|EventInit|{}} [dict]
+   * @param {boolean} [dict.bubbles=false]
+   * @param {boolean} [dict.cancelable=false]
+   * @param {*} [dict.detail]
+   * @returns {boolean}
+   */
+  emit(event, dict) {
+    if(typeof event === 'string') {
+      const description = EventType[event] || [CustomEvent]
+      const [constructor, bubbles, cancelable] = description
+      if(!dict) {
+        dict = {
+          bubbles : bubbles || false,
+          cancelable : cancelable || false,
+        }
+      }
+      event = new constructor(event, dict)
+    }
+    return this.node.dispatchEvent(event)
+  }
+
+  /**
+   * @param {string} eventName
+   * @param {function} callback
+   * @param {{context,capture,once,passive}|boolean|ElemType|*} [options]
+   * @param {ElemType} [options.context=this]
+   * @param {boolean} [options.capture=false]
+   * @param {boolean} [options.once=false]
+   * @param {boolean} [options.passive=false]
+   */
+  on(eventName, callback, options = {}) {
+    if(typeof options === 'boolean') {
+      options = { capture : options }
+    }
+    else if(options instanceof ElemType) {
+      options = { context : options }
+    }
+    const context = options.context || this
+    if(!context.__handlers) {
+      context.__handlers = {}
+    }
+    let listeners = context.__handlers[eventName]
+    if(!listeners) {
+      context.__handlers[eventName] = listeners = new Map
+    }
+    if(listeners.has(callback)) {
+      return
+    }
+    const listener = event => {
+      options.once && listeners.delete(callback)
+      callback.call(context, event, event.target.__instance)
+    }
+    listener.__target = this.node
+    listener.__options = options
+    listeners.set(callback, listener)
+    this.node.addEventListener(eventName, listener, {
+      capture : options.capture || false,
+      once : options.once || false,
+      passive : options.passive || false,
+    })
+  }
+
+  /**
+   * @param {string} eventName
+   * @param {function} callback
+   * @param {{context,capture}|boolean|ElemType|*} [options]
+   * @param {ElemType} [options.context=this]
+   * @param {boolean} [options.capture=false]
+   */
+  off(eventName, callback, options = {}) {
+    if(typeof options === 'boolean') {
+      options = { capture : options }
+    }
+    else if(options instanceof ElemType) {
+      options = { context : options }
+    }
+    const context = options.context || this
+    if(!context.__handlers) {
+      return
+    }
+    let listeners = context.__handlers[eventName]
+    if(!listeners?.has(callback)) {
+      return
+    }
+    this.node.removeEventListener(eventName, listeners.get(callback), {
+      capture : options.capture,
+    })
+    listeners.delete(callback)
+    listeners.size || delete context.__handlers[eventName]
+  }
+
+  /**
+   * @public
+   */
+  removeAllListeners() {
+    if(!this.__handlers) {
+      return
+    }
+    let eventName, listeners, listener
+    for([eventName, listeners] of Object.entries(this.__handlers)) {
+      delete this.__handlers[eventName]
+      if(typeof listeners === 'function') {
+        this.node[eventName] = null
+        continue
+      }
+      for(listener of listeners.values()) {
+        listener.__target.removeEventListener(eventName, listener, {
+          capture : listener.__options.capture,
+        })
+      }
+      listeners.clear()
+    }
   }
 
   /**
@@ -1379,9 +1572,12 @@ class ElemType
   _init(node) {
     this.node = node || this.createNode()
     this.node.__instance = this
+    this.init()
     this._setProps()
-    this._setChildren()
-    node && this.init()
+    const children = this.render()
+    this._setChildren(children)
+    this.__inited = true
+    node && this.mount()
   }
 
   /**
@@ -1397,98 +1593,104 @@ class ElemType
           this[name] = null
         }
       }
-      this.props = props
     }
-    this._setRoleAttr()
-    this._setClassName()
-    for(name in this.props) {
+    else props = this.props
+    this._setRoleAttr(props)
+    this._setClassName(props)
+    for(name in props) {
       if(!specialProps[name] && name in this) {
-        this[name] = this.props[name]
+        this[name] = props[name]
       }
     }
+    this.props = props
   }
 
   /**
-   * @param {{}|function} [state]
-   */
-  setState(state) {
-    const prevState = Object.assign({}, this.state)
-    if(state) {
-      if(typeof state === 'function') {
-        state = state(this.state)
-      }
-      Object.assign(this.state, state)
-    }
-    this._setClassName()
-    this._render()
-    this.update(this.props, prevState)
-  }
-
-  /**
+   * @param {{}} props
    * @private
    */
-  _render() {
-    const refs = {}
-    let key, item
-    for(key in this) {
-      item = this[key]
-      if(item?.node) {
-        refs[key] = item
-      }
+  _setRoleAttr(props) {
+    let role = props.role
+    if(role === undefined) {
+      role = this.constructor.role
     }
-    this._setChildren()
-    for(key in refs) {
-      item = refs[key]
-      if(this.node.contains(item.node)) {
-        this[key] = item
-      }
-      if(!this.node.contains(this[key].node)) {
-        delete this[key]
-      }
+    if(!role) {
+      this.node.removeAttribute('role')
+    }
+    else if(role !== this.node.getAttribute('role')) {
+      this.node.setAttribute('role', role)
     }
   }
 
   /**
-   * @param {ElemType} elem
+   * @param {{}} props
    * @private
    */
-  _udpateElem(elem) {
-    if(this.constructor !== elem.constructor) {
-      this._replaceElem(elem)
+  _setClassName(props) {
+    let className = props.className
+    if(className === undefined) {
+      className = this.constructor.className
+    }
+    if(className === undefined) {
+      this._setClass(props)
+    }
+    else if(className === null) {
+      sampleNode.removeAttribute('class')
+    }
+    else sampleNode.className = className
+    if(props.hasOwnProperty('classList')) {
+      this.classList = props.classList
+    }
+    else if(!this.__inited) {
+      this._updateClassName()
+    }
+  }
+
+  /**
+   * @param {{}} props
+   * @private
+   */
+  _setClass(props) {
+    const items = new Set
+    let constructor = this.constructor
+    let name
+    do {
+      name = constructor.hasOwnProperty('class') && constructor.class
+      if(name === undefined) {
+        break
+      }
+      if(constructor === this.constructor && props.hasOwnProperty('class')) {
+        name = props.class
+      }
+      if(name === null) {
+        continue
+      }
+      items.add(name || constructor.name)
+    }
+    while(constructor = Object.getPrototypeOf(constructor))
+    if(items.size) {
+      sampleNode.className = Array.from(items).filter(Boolean).join(' ')
+    }
+    else sampleNode.removeAttribute('class')
+  }
+
+  _updateClassName() {
+    const className = sampleNode.getAttribute('class')
+    if(className !== this.node.getAttribute('class')) {
+      this.className = className
+    }
+  }
+
+  /**
+   * @param {*} children
+   * @private
+   */
+  _setChildren(children) {
+    if(this.children === null) {
       return
     }
-    const prevProps = this.props
-    this._setProps(elem.props)
-    this._render()
-    this.update(prevProps, this.state)
-  }
-
-  /**
-   * @param {ElemType} elem
-   * @private
-   */
-  _replaceElem(elem) {
-    const node = this.node
-    this.destroy()
-    this.removeAllListeners()
-    for(const attr of Array.from(node.attributes)) {
-      node.removeAttribute(attr.name)
-    }
-    this.node = nullNode
-    elem._init(node)
-  }
-
-  /**
-   * @private
-   */
-  _setChildren() {
-    const props = this.props
-    const children = this.render()
     const childrenB = this.children = []
     if(children === undefined) {
-      return
-    }
-    if(props.hasOwnProperty('innerHTML') || props.hasOwnProperty('innerText')) {
       return
     }
     let child
@@ -1504,7 +1706,7 @@ class ElemType
         if(child.props) {
           child._init()
           node.append(child.node)
-          init(child)
+          mount(child)
         }
         else node.append(child)
       }
@@ -1550,7 +1752,7 @@ class ElemType
       else {
         node.append(childB.node)
       }
-      init(childB)
+      mount(childB)
     }
     for(i = 0; i < length; i++) {
       childB = childrenB[i]
@@ -1591,7 +1793,7 @@ class ElemType
       if(nodeA === undefined) {
         childB._init?.()
         this.node.append(childB.node || childB)
-        init(childB)
+        mount(childB)
         continue
       }
       childA = nodeA.__instance || nodeA.data || {}
@@ -1620,39 +1822,64 @@ class ElemType
       childA._destroy?.(true)
       childB._init?.()
       nodeA.replaceWith(childB.node || childB)
-      init(childB)
+      mount(childB)
     }
   }
 
   /**
-   * @return {*}
-   * @abstract
+   * @param {ElemType} elem
+   * @private
    */
-  render() {
-    return this.props.children
+  _udpateElem(elem) {
+    if(this.constructor !== elem.constructor) {
+      this._replaceElem(elem)
+      return
+    }
+    const prevProps = this.props
+    this._setProps(elem.props)
+    this._render()
+    this.update(prevProps, this.state)
   }
 
   /**
-   * @abstract
+   * @param {ElemType} elem
+   * @private
    */
-  init() {
-    void null
+  _replaceElem(elem) {
+    const node = this.node
+    this.destroy()
+    this.removeAllListeners()
+    for(const attr of Array.from(node.attributes)) {
+      node.removeAttribute(attr.name)
+    }
+    this.node = nullNode
+    elem._init(node)
   }
 
   /**
-   * @param {{}} prevProps
-   * @param {{}} prevState
-   * @abstract
+   * @private
    */
-  update(prevProps, prevState) {
-    void null
-  }
-
-  /**
-   * @abstract
-   */
-  destroy() {
-    void null
+  _render() {
+    const refs = {}
+    let key, item
+    for(key in this) {
+      item = this[key]
+      if(item?.node) {
+        refs[key] = item
+      }
+    }
+    const children = this.render()
+    this._updateClassName()
+    this._setChildren(children)
+    for(key in refs) {
+      item = refs[key]
+      if(this.node.contains(item.node)) {
+        this[key] = item
+      }
+      if(!this.node.contains(this[key].node)) {
+        delete this[key]
+      }
+    }
   }
 
   /**
@@ -1662,157 +1889,15 @@ class ElemType
   _destroy(keepNode = false) {
     this.destroy()
     this.removeAllListeners()
-    let item
-    for(item of this.children) {
-      item._destroy?.(true)
+    if(this.children) {
+      let item
+      for(item of this.children) {
+        item._destroy?.(true)
+      }
     }
     keepNode || this.node.remove()
     delete this.node.__instance
     this.node = nullNode
-  }
-
-  /**
-   * @param {Event|string|*} event
-   * @param {CustomEventInit|EventInit|{}} [dict]
-   * @param {boolean} [dict.bubbles=false]
-   * @param {boolean} [dict.cancelable=false]
-   * @param {*} [dict.detail]
-   * @returns {boolean}
-   */
-  emit(event, dict) {
-    if(typeof event === 'string') {
-      const description = EventType[event] || [CustomEvent]
-      const [constructor, bubbles, cancelable] = description
-      if(!dict) {
-        dict = {
-          bubbles : bubbles || false,
-          cancelable : cancelable || false,
-        }
-      }
-      event = new constructor(event, dict)
-    }
-    return this.node.dispatchEvent(event)
-  }
-
-  /**
-   * @param {string} eventName
-   * @param {function} callback
-   * @param {{context,capture,once,passive}|boolean|ElemType|*} [options]
-   * @param {ElemType} [options.context=this]
-   * @param {boolean} [options.capture=false]
-   * @param {boolean} [options.once=false]
-   * @param {boolean} [options.passive=false]
-   */
-  on(eventName, callback, options = {}) {
-    if(typeof options === 'boolean') {
-      options = { capture : options }
-    }
-    else if(options instanceof ElemType) {
-      options = { context : options }
-    }
-    const context = options.context || this
-    let listeners = context.__handlers.get(eventName)
-    listeners || context.__handlers.set(eventName, listeners = new Map)
-    if(listeners.has(callback)) {
-      return
-    }
-    const listener = event => {
-      options.once && listeners.delete(callback)
-      callback.call(context, event, event.target.__instance)
-    }
-    listener.__target = this.node
-    listener.__options = options
-    listeners.set(callback, listener)
-    this.node.addEventListener(eventName, listener, {
-      capture : options.capture || false,
-      once : options.once || false,
-      passive : options.passive || false,
-    })
-  }
-
-  /**
-   * @param {string} eventName
-   * @param {function} callback
-   * @param {{context,capture}|boolean|ElemType|*} [options]
-   * @param {ElemType} [options.context=this]
-   * @param {boolean} [options.capture=false]
-   */
-  off(eventName, callback, options = {}) {
-    if(typeof options === 'boolean') {
-      options = { capture : options }
-    }
-    else if(options instanceof ElemType) {
-      options = { context : options }
-    }
-    const context = options.context || this
-    let listeners = context.__handlers.get(eventName)
-    if(!listeners?.has(callback)) {
-      return
-    }
-    this.node.removeEventListener(eventName, listeners.get(callback), {
-      capture : options.capture,
-    })
-    listeners.delete(callback)
-    listeners.size || context.__handlers.delete(eventName)
-  }
-
-  /**
-   * @public
-   */
-  removeAllListeners() {
-    for(const [eventName, listeners] of this.__handlers.entries()) {
-      this.__handlers.delete(eventName)
-      if(typeof listeners === 'function') {
-        this.node[eventName] = null
-        continue
-      }
-      for(const listener of listeners.values()) {
-        listener.__target.removeEventListener(eventName, listener, {
-          capture : listener.__options.capture,
-        })
-      }
-      listeners.clear()
-    }
-    this.__handlers.clear()
-  }
-
-  /**
-   * @param {constructor @link ElemType} type
-   * @return {null|ElemType|*}
-   */
-  find(type) {
-    let child
-    for(child of this.children) {
-      if(typeof child === 'string') {
-        continue
-      }
-      if(child instanceof type) {
-        return child
-      }
-      if(child = child.find(type)) {
-        return child
-      }
-    }
-    return null
-  }
-
-  /**
-   * @param {constructor @link ElemType} type
-   * @return {(null|ElemType|*)[]}
-   */
-  findAll(type) {
-    const result = []
-    let child
-    for(child of this.children) {
-      if(typeof child === 'string') {
-        continue
-      }
-      if(child instanceof type) {
-        result.push(child)
-      }
-      result.push(...child.findAll(type))
-    }
-    return result
   }
 
   /**
@@ -1826,16 +1911,15 @@ class ElemType
    * @param {{}|null} attributes
    */
   set attributes(attributes) {
-    const specialAttributes = this.constructor.specialAttributes
     let name, value
-    for({ name } of Array.from(this.node.attributes)) {
-      if(specialAttributes[name] || name.startsWith('data-')) {
-        continue
-      }
-      if(!attributes?.hasOwnProperty(name)) {
-        this.node.removeAttribute(name)
+    if(this.props.attributes) {
+      for(name in this.props.attributes) {
+        if(!attributes?.hasOwnProperty(name)) {
+          this.node.removeAttribute(name)
+        }
       }
     }
+    this.props.attributes = attributes
     if(!attributes) {
       return
     }
@@ -1844,7 +1928,9 @@ class ElemType
       if(value === null) {
         this.node.removeAttribute(name)
       }
-      else this.node.setAttribute(name, value)
+      else if(value !== this.node.getAttribute(name)) {
+        this.node.setAttribute(name, value)
+      }
     }
   }
 
@@ -1860,19 +1946,22 @@ class ElemType
    */
   set classList(classList) {
     if(classList === null) {
-      return
+      void null
     }
-    if(typeof classList === 'string') {
-      this.node.classList = classList
-      return
+    else if(typeof classList === 'string') {
+      sampleNode.classList = classList
     }
-    if(Array.isArray(classList)) {
-      this.node.classList.add(...classList.filter(Boolean))
-      return
+    else if(Array.isArray(classList)) {
+      sampleNode.classList.add(...classList.filter(Boolean))
     }
-    let key
-    for(key in classList) {
-      this.node.classList.toggle(key, classList[key])
+    else {
+      let key
+      for(key in classList) {
+        sampleNode.classList.toggle(key, classList[key])
+      }
+    }
+    if(!this.__inited) {
+      this._updateClassName()
     }
   }
 
@@ -1901,7 +1990,9 @@ class ElemType
       if(value === null) {
         delete this.node.dataset[name]
       }
-      else this.node.dataset[name] = value
+      else if(value !== this.node.dataset[name]) {
+        this.node.dataset[name] = value
+      }
     }
   }
 
@@ -1916,7 +2007,10 @@ class ElemType
    * @param {string|null} innerHTML
    */
   set innerHTML(innerHTML) {
-    this.node.innerHTML = innerHTML
+    this.children = null
+    if(innerHTML !== this.node.innerHTML) {
+      this.node.innerHTML = innerHTML
+    }
   }
 
   /**
@@ -1938,13 +2032,15 @@ class ElemType
       this.node.style = style
       return
     }
-    Object.assign(styleNode.style, style)
-    const value = styleNode.getAttribute('style')
+    Object.assign(sampleNode.style, style)
+    const value = sampleNode.getAttribute('style')
     if(value) {
-      this.node.style = value
+      if(value !== this.node.getAttribute('style')) {
+        this.node.style = value
+      }
     }
     else this.node.removeAttribute('style')
-    styleNode.style = ''
+    sampleNode.style = ''
   }
 
   /**
@@ -1988,32 +2084,41 @@ class ElemType
   }
 
   /**
-   * @param {string[]} props
-   * @param {boolean} [setters]
+   * @param {{}} props
    */
-  static defineProps(props, setters = false) {
-    for(const prop of props) {
-      const desc = {
+  static defineProps(props) {
+    for(const prop in props) {
+      const attr = props[prop]
+      Object.defineProperty(this.prototype, prop, {
         configurable : true,
         get() {
           return this.node[prop]
         },
-      }
-      if(setters) {
-        desc.set = function(value) {
-          if(value === null && attrNameMap[prop] !== null) {
-            const attr = attrNameMap[prop] || prop.toLowerCase()
-            this.node.removeAttribute(attr)
+        set(value) {
+          if(attr === null) {
+            this.node[prop] = value
+            return
           }
-          else this.node[prop] = value
-        }
-      }
-      Object.defineProperty(this.prototype, prop, desc)
+          if(value === null) {
+            this.node.removeAttribute(attr)
+            return
+          }
+          if(typeof value === 'boolean') {
+            if(value !== this.node[prop]) {
+              this.node[prop] = value
+            }
+            return
+          }
+          if(value != this.node.getAttribute(attr)) {
+            this.node[prop] = value
+          }
+        },
+      })
     }
   }
 
   /**
-   * @param {{}} [props]
+   * @param {*} [props]
    * @param {ParentNode} [parentNode]
    * @return {*|ElemType}
    */
@@ -2022,7 +2127,7 @@ class ElemType
     const node = elem.props.node
     elem._init(node)
     parentNode?.append(elem.node)
-    node || elem.init()
+    node || elem.mount()
     return elem
   }
 }
@@ -2030,14 +2135,14 @@ class ElemType
 /**
  * @param {ElemType} item
  */
-function init(item) {
+function mount(item) {
   if(item.node) {
-    item.children.forEach(init)
-    item.init()
+    item.children?.forEach(mount)
+    item.mount()
   }
 }
 
-for(const type of Object.keys(EventType)) {
+for(const type in EventType) {
   const name = 'on' + type
   if(!(name in HTMLElement.prototype)) {
     continue
@@ -2046,39 +2151,33 @@ for(const type of Object.keys(EventType)) {
     configurable : true,
     set(callback) {
       if(callback) {
+        if(!this.__handlers) {
+          this.__handlers = {}
+        }
         this.node[name] = e => callback.call(this, e, e.target.__instance)
-        this.__handlers.set(name, callback)
+        this.__handlers[name] = callback
         return
       }
-      this.node[name] = null
-      this.__handlers.delete(name)
+      if(this.__handlers) {
+        this.node[name] = null
+        delete this.__handlers[name]
+      }
     },
     get() {
-      return this.__handlers.get(name) || null
+      return this.__handlers?.[name] || null
     },
   })
 }
 
 ElemType.defineMethods([
-  'scrollTo',
   'scrollBy',
+  'scrollTo',
 ])
 
-ElemType.defineProps([
-  'clientLeft',
-  'clientTop',
-  'clientWidth',
-  'clientHeight',
-  'scrollLeft',
-  'scrollTop',
-  'scrollWidth',
-  'scrollHeight',
-])
-
-ElemType.defineProps([
-  'id',
-  'className',
-], true)
+ElemType.defineProps({
+  className : 'class',
+  id : 'id',
+})
 
 module.exports = ElemType
 
@@ -2237,7 +2336,9 @@ class AttrType
    * @param {string|null|*} value
    */
   static set(elem, value) {
-    elem.node.setAttribute(this.nodeName, value)
+    if(value !== elem.node.getAttribute(this.nodeName)) {
+      elem.node.setAttribute(this.nodeName, value)
+    }
   }
 }
 
