@@ -6,17 +6,17 @@
 [![NPM](https://img.shields.io/npm/l/htmlmodule)](https://raw.githubusercontent.com/aristov/htmlmodule/master/LICENSE)
 
 HtmlModule is a library for creating UI.
-It's inspired by React and based on the same ideas.
+
+It implements the "State model" approach (first introduced by React)
+and provides a convenient object-oriented API with a JavaScript-compatible syntax.
 
 ## Main Features
 
 - The power of OOP
-- Convenient JS-compatible syntax
-- Cross-platform, can be used in NodeJS and in the browser
+- No JSX, but convenient JS-compatible syntax
 - API to build your own high-level components
-- Automatic className generation
-- No extra markup in the result HTML
-- Small footprint, 6KB after gzip
+- Cross-platform, can be used in NodeJS and in the browser
+- Small footprint, 7KB after gzip
 
 ## Documentation
 
