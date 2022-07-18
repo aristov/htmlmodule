@@ -11,7 +11,7 @@ test('onload', t => {
 
   elem.emit('load')
 
-  t.true(onload.calledOnce)
+  t.is(onload.callCount, 1)
   t.is(onload.getCall(0).thisValue, elem)
   t.is(onload.args[0][0].type, 'load')
   t.is(onload.args[0][1], elem)
@@ -22,7 +22,7 @@ test('onload', t => {
 
   elem.emit('load')
 
-  t.true(onload.calledOnce)
+  t.is(onload.callCount, 1)
 })
 
 test('custom event', t => {
@@ -31,7 +31,7 @@ test('custom event', t => {
   elem.node.addEventListener('foo', onfoo)
   elem.emit('foo', { detail : 'bar' })
 
-  t.true(onfoo.calledOnce)
+  t.is(onfoo.callCount, 1)
   t.is(onfoo.getCall(0).thisValue, elem.node)
   t.is(onfoo.args[0][0].type, 'foo')
   t.is(onfoo.args[0][0].detail, 'bar')
@@ -39,14 +39,14 @@ test('custom event', t => {
   const event = new CustomEvent('foo', { detail : 'bat' })
   elem.emit(event)
 
-  t.true(onfoo.calledTwice)
+  t.is(onfoo.callCount, 2)
   t.is(onfoo.getCall(1).thisValue, elem.node)
   t.is(onfoo.args[1][0], event)
 
   elem.node.removeEventListener('foo', onfoo)
   elem.emit('foo')
 
-  t.true(onfoo.calledTwice)
+  t.is(onfoo.callCount, 2)
 })
 
 test('on/off', t => {
@@ -56,7 +56,7 @@ test('on/off', t => {
   elem.on('click', onclick)
   elem.emit('click')
 
-  t.true(onclick.calledOnce)
+  t.is(onclick.callCount, 1)
   t.is(onclick.getCall(0).thisValue, elem)
   t.is(onclick.args[0][0].type, 'click')
   t.is(onclick.args[0][1], elem)
@@ -65,7 +65,7 @@ test('on/off', t => {
   elem.off('click', onclick)
   elem.emit('click')
 
-  t.true(onclick.calledOnce)
+  t.is(onclick.callCount, 1)
 })
 
 test('capture', t => {
@@ -80,13 +80,13 @@ test('capture', t => {
   elem.on('click', onclick, true)
   child.emit('click')
 
-  t.true(spy.calledOnce)
+  t.is(spy.callCount, 1)
   t.is(eventPhase, Event.CAPTURING_PHASE)
 
   elem.off('click', onclick, true)
   child.emit('click')
 
-  t.true(spy.calledOnce)
+  t.is(spy.callCount, 1)
 })
 
 test('context', t => {
@@ -96,14 +96,14 @@ test('context', t => {
   elem.on('click', onclick, context)
   elem.emit('click')
 
-  t.true(onclick.calledOnce)
+  t.is(onclick.callCount, 1)
   t.is(onclick.getCall(0).thisValue, context)
   t.is(onclick.args[0][1], elem)
 
   elem.off('click', onclick, context)
   elem.emit('click')
 
-  t.true(onclick.calledOnce)
+  t.is(onclick.callCount, 1)
 })
 
 test('once', t => {
@@ -112,11 +112,11 @@ test('once', t => {
   elem.on('click', onclick, { once : true })
   elem.emit('click')
 
-  t.true(onclick.calledOnce)
+  t.is(onclick.callCount, 1)
 
   elem.emit('click')
 
-  t.true(onclick.calledOnce)
+  t.is(onclick.callCount, 1)
 })
 
 test('removeAllListeners', t => {
@@ -131,16 +131,23 @@ test('removeAllListeners', t => {
   elem.emit('bar')
   elem.emit('bar')
 
-  t.true(onclick.calledOnce)
-  t.true(onfoo.calledOnce)
-  t.true(onbar.calledTwice)
+  t.is(onclick.callCount, 1)
+  t.is(onfoo.callCount, 1)
+  t.is(onbar.callCount, 2)
 
   elem.removeAllListeners()
   elem.emit('click')
   elem.emit('foo')
   elem.emit('bar')
 
-  t.true(onclick.calledOnce)
-  t.true(onfoo.calledOnce)
-  t.true(onbar.calledTwice)
+  t.is(onclick.callCount, 1)
+  t.is(onfoo.callCount, 1)
+  t.is(onbar.callCount, 2)
+})
+
+test('off', t => {
+  const elem = ElemType.render()
+
+  t.notThrows(() => elem.onclick = null)
+  t.notThrows(() => elem.off('foo', () => {}))
 })

@@ -1,4 +1,6 @@
 const test = require('ava')
+const sinon = require('sinon')
+const { MutationObserver } = require('xwindow')
 const { ElemType } = require('..')
 
 class Input extends ElemType
@@ -6,8 +8,10 @@ class Input extends ElemType
   static tagName = 'INPUT'
 }
 
-class Test extends ElemType
+class App extends ElemType
 {
+  static role = 'form'
+
   state = {
     step : 0,
   }
@@ -18,16 +22,31 @@ class Test extends ElemType
         return new Input({ role : 'textbox' })
       case 1:
         return new Input({ role : 'searchbox' })
+      case 2:
+        return new Input({ role : 'searchbox' })
     }
   }
 }
 
-test('test #1', t => {
-  const elem = Test.render()
+test('test #1', async t => {
+  const elem = App.render()
+  const spy = sinon.spy()
+  const observer = new MutationObserver(spy)
+  observer.observe(elem.node, { attributes : true, subtree : true })
 
-  t.is(elem.toString(), '<div class="Test"><input role="textbox" class="Input"></div>')
+  t.is(elem.toString(), '<div role="form" class="App"><input role="textbox" class="Input"></div>')
 
   elem.setState({ step : 1 })
 
-  t.is(elem.toString(), '<div class="Test"><input role="searchbox" class="Input"></div>')
+  await new Promise(resolve => setImmediate(resolve))
+
+  t.is(spy.callCount, 1)
+  t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')
+
+  elem.setState({ step : 2 })
+
+  await new Promise(resolve => setImmediate(resolve))
+
+  t.is(spy.callCount, 1)
+  t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')
 })
