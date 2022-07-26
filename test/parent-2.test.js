@@ -11,8 +11,7 @@ class Child extends ElemType
 
   render() {
     if(this.state.hidden) {
-      this.parent = null
-      return
+      return this.parent = null
     }
     return this.props.children
   }
