@@ -10,8 +10,8 @@ class Article extends HtmlArticle
   render() {
     return [
       this._button = new HtmlButton({
-        children : this.state.expanded ? 'Off' : 'On',
         onclick : this.onClick,
+        children : this.state.expanded ? 'Off' : 'On',
       }),
       new HtmlSection({
         hidden : !this.state.expanded,
