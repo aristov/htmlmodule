@@ -64,20 +64,14 @@ class Test extends ElemType
 test('test #1', t => {
   const elem = Test.render()
 
-  t.is(elem.attributes['aria-hidden'].value, 'true')
-  t.is(elem.attributes['aria-label'], undefined)
   t.is(elem.toString(), '<div role="form" class="Test" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
 
   elem.setState({ step : 1 })
 
-  t.is(elem.attributes['aria-hidden'].value, 'false')
-  t.is(elem.attributes['aria-label'].value, 'Go')
   t.is(elem.toString(), '<div role="form" class="Test" aria-hidden="false" aria-label="Go"><input class="Input" aria-disabled="false" aria-placeholder="Wow"></div>')
 
   elem.setState({ step : 2 })
 
-  t.is(elem.attributes['aria-hidden'], undefined)
-  t.is(elem.attributes['aria-label'].value, 'Think')
   t.is(elem.toString(), '<div role="form" class="Test" aria-label="Think"><input class="Input" aria-placeholder="Hey"></div>')
 
   elem.setState({ step : 3 })

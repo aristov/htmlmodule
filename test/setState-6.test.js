@@ -22,7 +22,7 @@ test('test #1', async t => {
   observer.observe(elem.node, { attributes : true })
 
   t.is(spy.callCount, 0)
-  t.is(elem.id, 'foo')
+  t.is(elem.node.id, 'foo')
   t.is(elem.toString(), '<div class="App" id="foo"></div>')
 
   elem.setState({ id : 'foo' })
@@ -30,7 +30,7 @@ test('test #1', async t => {
   await new Promise(resolve => setImmediate(resolve))
 
   t.is(spy.callCount, 0)
-  t.is(elem.id, 'foo')
+  t.is(elem.node.id, 'foo')
   t.is(elem.toString(), '<div class="App" id="foo"></div>')
 
   elem.setState({ id : 'bar' })
@@ -38,6 +38,6 @@ test('test #1', async t => {
   await new Promise(resolve => setImmediate(resolve))
 
   t.is(spy.callCount, 1)
-  t.is(elem.id, 'bar')
+  t.is(elem.node.id, 'bar')
   t.is(elem.toString(), '<div class="App" id="bar"></div>')
 })

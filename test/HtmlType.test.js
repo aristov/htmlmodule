@@ -10,8 +10,8 @@ test('test #1', t => {
   })
 
   t.is(elem.node.constructor, HTMLDivElement)
-  t.is(elem.title, 'Hello world!')
-  t.is(elem.hidden, true)
+  t.is(elem.node.title, 'Hello world!')
+  t.is(elem.node.hidden, true)
   t.is(elem.node.textContent, 'Example')
   t.is(elem.toString(), '<div title="Hello world!" hidden="">Example</div>')
 })

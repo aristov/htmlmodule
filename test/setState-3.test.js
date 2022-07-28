@@ -72,28 +72,28 @@ test('test #1', t => {
   const elem = Foo.render()
 
   t.is(elem._input.constructor, Bar)
-  t.is(elem._input.value, 'qwe')
-  t.is(elem._input.defaultValue, '')
+  t.is(elem._input.node.value, 'qwe')
+  t.is(elem._input.node.defaultValue, '')
   t.is(elem.toString(), '<div class="Foo" data-step="0"><label for="id1">rty</label><input class="Bar" id="id1"></div>')
 
   elem.setState({ step : 1 })
 
   t.is(elem._input.constructor, Bar)
-  t.is(elem._input.value, '')
-  t.is(elem._input.defaultValue, 'asd')
+  t.is(elem._input.node.value, '')
+  t.is(elem._input.node.defaultValue, 'asd')
   t.is(elem.toString(), '<div class="Foo" data-step="1"><label>fgh</label><input class="Bar" id="id1" value="asd"></div>')
 
   elem.setState({ step : 2 })
 
   t.is(elem._input.constructor, Bar)
-  t.is(elem._input.value, 'zxc')
-  t.is(elem._input.defaultValue, '')
+  t.is(elem._input.node.value, 'zxc')
+  t.is(elem._input.node.defaultValue, '')
   t.is(elem.toString(), '<div class="Foo" data-step="2"><label for="id2">vbn</label><input class="Bar" id="id2"></div>')
 
   elem.setState({ step : 3 })
 
   t.is(elem._input.constructor, Bat)
-  t.is(elem._input.value, 'wsx')
-  t.is(elem._input.defaultValue, '')
+  t.is(elem._input.node.value, 'wsx')
+  t.is(elem._input.node.defaultValue, '')
   t.is(elem.toString(), '<div class="Foo" data-step="3"><label>qaz</label><input class="Bat" id="id2"></div>')
 })

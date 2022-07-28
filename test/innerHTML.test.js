@@ -18,7 +18,7 @@ class Test extends HtmlType
 test('test #1', t => {
   const elem = HtmlType.render({ innerHTML : 'foo<br>bar' })
 
-  t.is(elem.innerHTML, 'foo<br>bar')
+  t.is(elem.node.innerHTML, 'foo<br>bar')
   t.is(elem.toString(), '<div>foo<br>bar</div>')
 })
 
@@ -29,7 +29,7 @@ test('test #2', async t => {
   observer.observe(elem.node, { childList : true })
 
   t.is(spy.callCount, 0)
-  t.is(elem.innerHTML, 'foo<br>bar')
+  t.is(elem.node.innerHTML, 'foo<br>bar')
   t.is(elem.toString(), '<div class="Test">foo<br>bar</div>')
 
   elem.setState({ html : 'foo<br>bar' })
@@ -37,12 +37,12 @@ test('test #2', async t => {
   await new Promise(resolve => setImmediate(resolve))
 
   t.is(spy.callCount, 0)
-  t.is(elem.innerHTML, 'foo<br>bar')
+  t.is(elem.node.innerHTML, 'foo<br>bar')
 
   elem.setState({ html : 'bar<br>foo' })
 
   await new Promise(resolve => setImmediate(resolve))
 
   t.is(spy.callCount, 1)
-  t.is(elem.innerHTML, 'bar<br>foo')
+  t.is(elem.node.innerHTML, 'bar<br>foo')
 })

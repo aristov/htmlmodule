@@ -49,19 +49,3 @@ test('children', t => {
   t.is(elem.node.childElementCount, 4)
   t.is(elem.toString(), '<div>foo<a>bar</a>true<b>bat</b>baz<i>42</i>NaN<p>0</p></div>')
 })
-
-test('getAttr + setAttr', t => {
-  const elem = ElemType.render()
-
-  t.is(elem.toString(), '<div></div>')
-
-  elem.setAttr('aria-busy', 'true')
-
-  t.is(elem.getAttr('aria-busy'), 'true')
-  t.is(elem.toString(), '<div aria-busy="true"></div>')
-
-  elem.setAttr('aria-busy', null)
-
-  t.is(elem.getAttr('aria-busy'), null)
-  t.is(elem.toString(), '<div></div>')
-})

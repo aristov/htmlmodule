@@ -32,10 +32,10 @@ test('test #1', async t => {
   })
 
   t.is(spy.callCount, 0)
-  t.is(elem.className, 'App foo')
-  t.is(elem.hidden, true)
+  t.is(elem.node.className, 'App foo')
+  t.is(elem.node.hidden, true)
   t.is(elem.node.getAttribute('aria-label'), 'bar')
-  t.is(elem.style.display, 'flex')
+  t.is(elem.node.style.display, 'flex')
   t.is(elem.toString(), '<div class="App foo" hidden="" aria-label="bar" data-bat="baz" style="display: flex;"></div>')
 
   elem.setState({
@@ -49,10 +49,10 @@ test('test #1', async t => {
   await new Promise(resolve => setImmediate(resolve))
 
   t.is(spy.callCount, 0)
-  t.is(elem.className, 'App foo')
-  t.is(elem.hidden, true)
+  t.is(elem.node.className, 'App foo')
+  t.is(elem.node.hidden, true)
   t.is(elem.node.getAttribute('aria-label'), 'bar')
-  t.is(elem.style.display, 'flex')
+  t.is(elem.node.style.display, 'flex')
   t.is(elem.toString(), '<div class="App foo" hidden="" aria-label="bar" data-bat="baz" style="display: flex;"></div>')
 
   elem.setState({
@@ -66,9 +66,9 @@ test('test #1', async t => {
   await new Promise(resolve => setImmediate(resolve))
 
   t.is(spy.callCount, 1)
-  t.is(elem.className, 'App bar')
-  t.is(elem.hidden, false)
+  t.is(elem.node.className, 'App bar')
+  t.is(elem.node.hidden, false)
   t.is(elem.node.getAttribute('aria-label'), 'bat')
-  t.is(elem.style.display, 'grid')
+  t.is(elem.node.style.display, 'grid')
   t.is(elem.toString(), '<div class="App bar" aria-label="bat" data-bat="foo" style="display: grid;"></div>')
 })
