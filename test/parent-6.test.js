@@ -45,36 +45,36 @@ test('test #1', t => {
   const app = new App('test')
   const elem = ElemType.render(app)
 
-  t.is(mount.callCount, 1)
   t.is(elem.toString(), '<div><span class="App">test</span></div>')
+  t.is(mount.callCount, 1)
 
   app.setState({ step : 1 })
 
-  t.is(mount.callCount, 1)
   t.is(elem.toString(), '<div><a><span class="App">test</span></a></div>')
+  t.is(mount.callCount, 1)
 
   app.setState({ step : 2 })
 
-  t.is(mount.callCount, 1)
   t.is(elem.toString(), '<div><b><span class="App">test</span></b></div>')
+  t.is(mount.callCount, 1)
 
   app.setState({ step : 3 })
 
-  t.is(mount.callCount, 1)
   t.is(elem.toString(), '<div><p><q><span class="App">test</span></q></p></div>')
+  t.is(mount.callCount, 1)
 
   app.setState({ step : 4 })
 
-  t.is(mount.callCount, 1)
   t.is(elem.toString(), '<div><a class="Link"><span class="App">test</span></a></div>')
+  t.is(mount.callCount, 1)
 
   app.setState({ step : 1 })
 
-  t.is(mount.callCount, 1)
   t.is(elem.toString(), '<div><a><span class="App">test</span></a></div>')
+  t.is(mount.callCount, 1)
 
   app.setState({ step : 0 })
 
-  t.is(mount.callCount, 1)
   t.is(elem.toString(), '<div><span class="App">test</span></div>')
+  t.is(mount.callCount, 1)
 })
