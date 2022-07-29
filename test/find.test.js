@@ -26,7 +26,7 @@ test('test #1', t => {
             new ElemType([
               new ElemType('two'),
               new ElemType([
-                child = new Child('three')
+                child = new Child('three'),
               ]),
             ]),
           ]
@@ -35,6 +35,7 @@ test('test #1', t => {
       }
     }
   }
+
   let child
   const elem = App.render()
 
@@ -60,9 +61,21 @@ test('test #2', t => {
       this.children = null
     }
   }
+
   const elem = App.render(new Child('foobar'))
   const children = elem.find(Child)
 
   t.is(children, null)
   t.is(elem.toString(), '<div class="App"></div>')
+})
+
+test('filter', t => {
+  const elem = ElemType.render([
+    new Child({ id : 'id1' }),
+    new Child({ id : 'id2' }),
+    new Child({ id : 'id3' }),
+  ])
+  const result = elem.find(Child, item => item.id === 'id2')
+
+  t.is(result, elem.children[1])
 })
