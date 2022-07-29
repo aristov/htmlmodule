@@ -1,6 +1,6 @@
 const test = require('ava')
 const window = require('xwindow')
-const { ElemType } = require('..')
+const { ElemType, HtmlSpan } = require('..')
 
 const document = window.document.implementation.createHTMLDocument('test')
 
@@ -54,6 +54,10 @@ class App extends ElemType
         })
       case 1:
         return new ElemType('bat')
+      case 2:
+        return new HtmlSpan('baz')
+      case 3:
+        return null
     }
   }
 }
@@ -86,6 +90,22 @@ test('test #1', t => {
   elem.setState({ step : 1 })
 
   t.is(document.body.outerHTML, '<body><div class="App"><div>bat</div></div></body>')
+
+  elem.setState({ step : 0 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">bar</div></div></body>')
+
+  elem.setState({ step : 2 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><span>baz</span></div></body>')
+
+  elem.setState({ step : 0 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">bar</div></div></body>')
+
+  elem.setState({ step : 3 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"></div></body>')
 
   elem.setState({ step : 0 })
 
