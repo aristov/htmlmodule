@@ -74,3 +74,21 @@ test('test #2', t => {
   t.deepEqual(children, [])
   t.is(elem.toString(), '<div class="App"></div>')
 })
+
+test('filter', t => {
+  const elem = ElemType.render([
+    new Child({ className : 'foo' }),
+    new Child({ className : 'bar' }),
+    new Child({ className : 'foo' }),
+    new Child({ className : 'bat' }),
+    new Child({ className : 'foo' }),
+    new Child({ className : 'baz' }),
+    new Child({ className : 'foo' }),
+  ])
+  const result = elem.findAll(Child, item => item.className === 'foo')
+
+  t.is(result[0], elem.children[0])
+  t.is(result[1], elem.children[2])
+  t.is(result[2], elem.children[4])
+  t.is(result[3], elem.children[6])
+})
