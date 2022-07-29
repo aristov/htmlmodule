@@ -2,7 +2,7 @@ const test = require('ava')
 const window = require('xwindow')
 const { ElemType, HtmlSpan } = require('..')
 
-const document = window.document.implementation.createHTMLDocument('test')
+let document
 
 class Popup extends ElemType
 {
@@ -39,7 +39,7 @@ class App extends ElemType
 
   state = {
     step : 0,
-    hidden : false,
+    hidden : undefined,
     text : 'foo',
     modal : true,
   }
@@ -49,7 +49,7 @@ class App extends ElemType
       case 0:
         return new Dialog({
           modal : this.state.modal,
-          hidden : this.state.hidden,
+          hidden : this.state.hidden ?? this.props.hidden,
           children : this.state.text,
         })
       case 1:
@@ -63,7 +63,8 @@ class App extends ElemType
 }
 
 test('test #1', t => {
-  const elem = App.render(null, document.body)
+  document = window.document.implementation.createHTMLDocument('test')
+  const elem = App.render({ hidden : false }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">foo</div></div></body>')
 
@@ -110,4 +111,27 @@ test('test #1', t => {
   elem.setState({ step : 0 })
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">bar</div></div></body>')
+
+  elem.setState({ text : 'qwe' })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">qwe</div></div></body>')
+})
+
+test('test #2', t => {
+  document = window.document.implementation.createHTMLDocument('test')
+  const elem = App.render({ hidden : true }, document.body)
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div></body>')
+
+  elem.setState({ hidden : true })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div></body>')
+
+  elem.setState({ hidden : false })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">foo</div></div></body>')
+
+  elem.setState({ hidden : false })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">foo</div></div></body>')
 })
