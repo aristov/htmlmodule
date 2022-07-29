@@ -4,24 +4,34 @@ const window = require('xwindow')
 const { ElemType } = require('..')
 
 const init = sinon.spy()
-const init1 = sinon.spy()
-const init2 = sinon.spy()
-const init3 = sinon.spy()
-
 const mount = sinon.spy()
-const mount1 = sinon.spy()
-const mount2 = sinon.spy()
-const mount3 = sinon.spy()
-
 const update = sinon.spy()
-const update1 = sinon.spy()
-const update2 = sinon.spy()
-const update3 = sinon.spy()
-
 const destroy = sinon.spy()
-const destroy1 = sinon.spy()
-const destroy2 = sinon.spy()
-const destroy3 = sinon.spy()
+
+const initA = sinon.spy()
+const mountA = sinon.spy()
+const updateA = sinon.spy()
+const destroyA = sinon.spy()
+
+const initB = sinon.spy()
+const mountB = sinon.spy()
+const updateB = sinon.spy()
+const destroyB = sinon.spy()
+
+const initU = sinon.spy()
+const mountU = sinon.spy()
+const updateU = sinon.spy()
+const destroyU = sinon.spy()
+
+const initP = sinon.spy()
+const mountP = sinon.spy()
+const updateP = sinon.spy()
+const destroyP = sinon.spy()
+
+const initQ = sinon.spy()
+const mountQ = sinon.spy()
+const updateQ = sinon.spy()
+const destroyQ = sinon.spy()
 
 let document
 
@@ -30,7 +40,7 @@ class Child extends ElemType
   static class = 'Child'
 
   render() {
-    this.parent = new Parent1(this)
+    this.parent = new A(this)
     return this.props.children
   }
 
@@ -51,80 +61,127 @@ class Child extends ElemType
   }
 }
 
-class Parent1 extends ElemType
+class A extends ElemType
 {
-  static class = 'Parent1'
+  static tagName = 'A'
+  static class = null
 
   render() {
-    this.parent = new Parent2(this)
+    this.parent = new P(new B(this))
     return this.props.children
   }
 
   init() {
-    init1.apply(this)
+    initA.apply(this)
   }
 
   mount()  {
-    mount1.apply(this)
+    mountA.apply(this)
   }
 
   update() {
-    update1.apply(this, arguments)
+    updateA.apply(this, arguments)
   }
 
   destroy() {
-    destroy1.apply(this)
+    destroyA.apply(this)
   }
 }
 
-class Parent2 extends ElemType
+class B extends ElemType
 {
-  static class = 'Parent2'
+  static tagName = 'B'
+  static class = null
 
   render() {
-    this.parent = new Parent3(this)
+    this.parent = new U(this)
     return this.props.children
   }
 
   init() {
-    init2.apply(this)
+    initB.apply(this)
   }
 
   mount()  {
-    mount2.apply(this)
+    mountB.apply(this)
   }
 
   update() {
-    update2.apply(this, arguments)
+    updateB.apply(this, arguments)
   }
 
   destroy() {
-    destroy2.apply(this)
+    destroyB.apply(this)
   }
 }
 
-class Parent3 extends ElemType
+class U extends ElemType
 {
-  static class = 'Parent3'
-
-  render() {
-    return this.props.children
-  }
+  static tagName = 'U'
+  static class = null
 
   init() {
-    init3.apply(this)
+    initU.apply(this)
   }
 
   mount()  {
-    mount3.apply(this)
+    mountU.apply(this)
   }
 
   update() {
-    update3.apply(this, arguments)
+    updateU.apply(this, arguments)
   }
 
   destroy() {
-    destroy3.apply(this)
+    destroyU.apply(this)
+  }
+}
+
+class P extends ElemType
+{
+  static tagName = 'P'
+  static class = null
+
+  render() {
+    return new Q(this.props.children)
+  }
+
+  init() {
+    initP.apply(this)
+  }
+
+  mount()  {
+    mountP.apply(this)
+  }
+
+  update() {
+    updateP.apply(this, arguments)
+  }
+
+  destroy() {
+    destroyP.apply(this)
+  }
+}
+
+class Q extends ElemType
+{
+  static tagName = 'Q'
+  static class = null
+
+  init() {
+    initQ.apply(this)
+  }
+
+  mount()  {
+    mountQ.apply(this)
+  }
+
+  update() {
+    updateQ.apply(this, arguments)
+  }
+
+  destroy() {
+    destroyQ.apply(this)
   }
 }
 
@@ -155,61 +212,103 @@ test('test #1', t => {
   document = window.document.implementation.createHTMLDocument('test')
   const elem = App.render({ hidden : false }, document.body)
 
-  t.is(document.body.outerHTML, '<body><div class="App"><div class="Parent3"><div class="Parent2"><div class="Parent1"><div class="Child">foo</div></div></div></div></div></body>')
+  t.is(document.body.outerHTML, '<body><div class="App"><p><q><u><b><a><div class="Child">foo</div></a></b></u></q></p></div></body>')
+
   t.is(init.callCount, 1)
   t.is(mount.callCount, 1)
   t.is(update.callCount, 0)
   t.is(destroy.callCount, 0)
-  t.is(init1.callCount, 1)
-  t.is(mount1.callCount, 1)
-  t.is(update1.callCount, 0)
-  t.is(destroy1.callCount, 0)
-  t.is(init2.callCount, 1)
-  t.is(mount2.callCount, 1)
-  t.is(update2.callCount, 0)
-  t.is(destroy2.callCount, 0)
-  t.is(init3.callCount, 1)
-  t.is(mount3.callCount, 1)
-  t.is(update3.callCount, 0)
-  t.is(destroy3.callCount, 0)
+
+  t.is(initA.callCount, 1)
+  t.is(mountA.callCount, 1)
+  t.is(updateA.callCount, 0)
+  t.is(destroyA.callCount, 0)
+
+  t.is(initB.callCount, 1)
+  t.is(mountB.callCount, 1)
+  t.is(updateB.callCount, 0)
+  t.is(destroyB.callCount, 0)
+
+  t.is(initU.callCount, 1)
+  t.is(mountU.callCount, 1)
+  t.is(updateU.callCount, 0)
+  t.is(destroyU.callCount, 0)
+
+  t.is(initP.callCount, 1)
+  t.is(mountP.callCount, 1)
+  t.is(updateP.callCount, 0)
+  t.is(destroyP.callCount, 0)
+
+  t.is(initQ.callCount, 1)
+  t.is(mountQ.callCount, 1)
+  t.is(updateQ.callCount, 0)
+  t.is(destroyQ.callCount, 0)
 
   elem.setState({ text : 'bar' })
 
-  t.is(document.body.outerHTML, '<body><div class="App"><div class="Parent3"><div class="Parent2"><div class="Parent1"><div class="Child">bar</div></div></div></div></div></body>')
+  t.is(document.body.outerHTML, '<body><div class="App"><p><q><u><b><a><div class="Child">bar</div></a></b></u></q></p></div></body>')
+
   t.is(init.callCount, 1)
   t.is(mount.callCount, 1)
   t.is(update.callCount, 1)
   t.is(destroy.callCount, 0)
-  t.is(init1.callCount, 1)
-  t.is(mount1.callCount, 1)
-  t.is(update1.callCount, 1)
-  t.is(destroy1.callCount, 0)
-  t.is(init2.callCount, 1)
-  t.is(mount2.callCount, 1)
-  t.is(update2.callCount, 1)
-  t.is(destroy2.callCount, 0)
-  t.is(init3.callCount, 1)
-  t.is(mount3.callCount, 1)
-  t.is(update3.callCount, 1)
-  t.is(destroy3.callCount, 0)
+
+  t.is(initA.callCount, 1)
+  t.is(mountA.callCount, 1)
+  t.is(updateA.callCount, 1)
+  t.is(destroyA.callCount, 0)
+
+  t.is(initB.callCount, 1)
+  t.is(mountB.callCount, 1)
+  t.is(updateB.callCount, 1)
+  t.is(destroyB.callCount, 0)
+
+  t.is(initU.callCount, 1)
+  t.is(mountU.callCount, 1)
+  t.is(updateU.callCount, 1)
+  t.is(destroyU.callCount, 0)
+
+  t.is(initP.callCount, 1)
+  t.is(mountP.callCount, 1)
+  t.is(updateP.callCount, 1)
+  t.is(destroyP.callCount, 0)
+
+  t.is(initQ.callCount, 1)
+  t.is(mountQ.callCount, 1)
+  t.is(updateQ.callCount, 1)
+  t.is(destroyQ.callCount, 0)
 
   elem.setState({ step : 1 })
 
   t.is(document.body.outerHTML, '<body><div class="App"></div></body>')
+
   t.is(init.callCount, 1)
   t.is(mount.callCount, 1)
   t.is(update.callCount, 1)
   t.is(destroy.callCount, 1)
-  t.is(init1.callCount, 1)
-  t.is(mount1.callCount, 1)
-  t.is(update1.callCount, 1)
-  t.is(destroy1.callCount, 1)
-  t.is(init2.callCount, 1)
-  t.is(mount2.callCount, 1)
-  t.is(update2.callCount, 1)
-  t.is(destroy2.callCount, 1)
-  t.is(init3.callCount, 1)
-  t.is(mount3.callCount, 1)
-  t.is(update3.callCount, 1)
-  t.is(destroy3.callCount, 1)
+
+  t.is(initA.callCount, 1)
+  t.is(mountA.callCount, 1)
+  t.is(updateA.callCount, 1)
+  t.is(destroyA.callCount, 1)
+
+  t.is(initB.callCount, 1)
+  t.is(mountB.callCount, 1)
+  t.is(updateB.callCount, 1)
+  t.is(destroyB.callCount, 1)
+
+  t.is(initU.callCount, 1)
+  t.is(mountU.callCount, 1)
+  t.is(updateU.callCount, 1)
+  t.is(destroyU.callCount, 1)
+
+  t.is(initP.callCount, 1)
+  t.is(mountP.callCount, 1)
+  t.is(updateP.callCount, 1)
+  t.is(destroyP.callCount, 1)
+
+  t.is(initQ.callCount, 1)
+  t.is(mountQ.callCount, 1)
+  t.is(updateQ.callCount, 1)
+  t.is(destroyQ.callCount, 1)
 })
