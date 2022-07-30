@@ -27,7 +27,7 @@ test('test #1', async t => {
 
   elem.setState({ id : 'foo' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 0)
   t.is(elem.node.id, 'foo')
@@ -35,7 +35,7 @@ test('test #1', async t => {
 
   elem.setState({ id : 'bar' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 1)
   t.is(elem.node.id, 'bar')

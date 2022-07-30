@@ -46,7 +46,7 @@ test('test #1', async t => {
     expanded : null,
   })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 1)
   t.is(elem.hidden, 'false')
@@ -55,7 +55,7 @@ test('test #1', async t => {
 
   elem.setState({ hidden : 'false' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 1)
   t.is(elem.hidden, 'false')
@@ -64,7 +64,7 @@ test('test #1', async t => {
 
   elem.setState({ hidden : null })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 2)
   t.is(elem.hidden, null)
@@ -73,7 +73,7 @@ test('test #1', async t => {
 
   elem.setState({ hidden : 'true' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 3)
   t.is(elem.hidden, 'true')
@@ -82,7 +82,7 @@ test('test #1', async t => {
 
   elem.setAttr('aria-hidden', 'true')
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 3)
   t.is(elem.hidden, 'true')

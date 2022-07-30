@@ -44,14 +44,14 @@ test('test #2', async t => {
 
   elem.setState({ text : 'foo\nbar' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 0)
   t.is(elem.node.innerText, 'foo\nbar')
 
   elem.setState({ text : 'bar\nfoo' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 1)
   t.is(elem.node.innerText, 'bar\nfoo')

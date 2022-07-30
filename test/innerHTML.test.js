@@ -34,14 +34,14 @@ test('test #2', async t => {
 
   elem.setState({ html : 'foo<br>bar' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 0)
   t.is(elem.node.innerHTML, 'foo<br>bar')
 
   elem.setState({ html : 'bar<br>foo' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 1)
   t.is(elem.node.innerHTML, 'bar<br>foo')
