@@ -21,7 +21,8 @@ class Foo extends HtmlDiv
         new Bar({
           hidden : true,
           children : 'asd',
-        }), 'qaz',
+        }),
+        'qaz',
       ]
     }
     if(step === 2) {
