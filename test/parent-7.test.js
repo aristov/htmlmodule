@@ -2,7 +2,7 @@ const test = require('ava')
 const window = require('xwindow')
 const { ElemType, HtmlSpan } = require('..')
 
-let document
+let document, elem
 
 class Popup extends ElemType
 {
@@ -64,7 +64,7 @@ class App extends ElemType
 
 test('test #1', t => {
   document = window.document.implementation.createHTMLDocument('test')
-  const elem = App.render({ hidden : false }, document.body)
+  elem = App.render({ hidden : false }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">foo</div></div></body>')
 
@@ -119,7 +119,7 @@ test('test #1', t => {
 
 test('test #2', t => {
   document = window.document.implementation.createHTMLDocument('test')
-  const elem = App.render({ hidden : true }, document.body)
+  elem = App.render({ hidden : true }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div></body>')
 
