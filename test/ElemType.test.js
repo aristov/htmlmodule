@@ -3,7 +3,12 @@ const { HTMLDivElement } = require('xwindow')
 const { ElemType, HtmlA, HtmlB, HtmlI, HtmlP } = require('..')
 
 test('test #1', t => {
-  const elem = ElemType.render()
+  class App extends ElemType
+  {
+    state = { foo : 'bar' }
+  }
+
+  const elem = App.render()
 
   t.deepEqual(Object.keys(elem), [])
   t.deepEqual(Object.assign({}, elem), {})
