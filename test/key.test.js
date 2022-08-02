@@ -5,10 +5,13 @@ let li0, li1, li2, li3, li4
 
 class Item extends HtmlLi
 {
+  static class = 'Item'
 }
 
 class List extends HtmlUl
 {
+  static class = 'List'
+
   state = {
     step : 0,
   }
