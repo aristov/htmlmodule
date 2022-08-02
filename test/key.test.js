@@ -47,29 +47,29 @@ class List extends HtmlUl
 
 test('test #1', t => {
   const elem = List.render()
-  const node1 = li1.node
 
+  t.is(elem.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
   t.is(elem.children[0], li1)
   t.is(elem.children[1], li2)
   t.is(elem.children[2], li3)
   t.is(elem.node.children[0], li1.node)
   t.is(elem.node.children[1], li2.node)
   t.is(elem.node.children[2], li3.node)
-  t.is(elem.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
 
   elem.setState({ step : 1 })
 
-  t.not(li1.node, node1)
+  t.is(elem.toString(), '<ul class="List"><li>two</li><li>three</li><li>four</li></ul>')
+  t.is(li1.node.parentNode, null)
   t.is(elem.children[0], li2)
   t.is(elem.children[1], li3)
   t.is(elem.children[2], li4)
   t.is(elem.node.children[0], li2.node)
   t.is(elem.node.children[1], li3.node)
   t.is(elem.node.children[2], li4.node)
-  t.is(elem.toString(), '<ul class="List"><li>two</li><li>three</li><li>four</li></ul>')
 
   elem.setState({ step : 2 })
 
+  t.is(elem.toString(), '<ul class="List"><li>zero</li><li>four</li><li>three</li><li class="Item">two</li></ul>')
   t.is(elem.children[0], li0)
   t.is(elem.children[1], li4)
   t.is(elem.children[2], li3)
@@ -78,10 +78,10 @@ test('test #1', t => {
   t.is(elem.node.children[1], li4.node)
   t.is(elem.node.children[2], li3.node)
   t.is(elem.node.children[3], li2.node)
-  t.is(elem.toString(), '<ul class="List"><li>zero</li><li>four</li><li>three</li><li class="Item">two</li></ul>')
 
   elem.setState({ step : 3 })
 
+  t.is(elem.toString(), '<ul class="List"><li>0</li><li>4</li><li>3</li><li class="Item">2</li></ul>')
   t.is(elem.children[0], li0)
   t.is(elem.children[1], li4)
   t.is(elem.children[2], li3)
@@ -90,5 +90,4 @@ test('test #1', t => {
   t.is(elem.node.children[1], li4.node)
   t.is(elem.node.children[2], li3.node)
   t.is(elem.node.children[3], li2.node)
-  t.is(elem.toString(), '<ul class="List"><li>0</li><li>4</li><li>3</li><li class="Item">2</li></ul>')
 })
