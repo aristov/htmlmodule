@@ -3,11 +3,14 @@ const { ElemType } = require('..')
 
 class Child extends ElemType
 {
+  static class = 'Child'
 }
 
 test('test #1', t => {
   class App extends ElemType
   {
+    static class = 'App'
+
     state = {
       step : 0,
     }
@@ -39,23 +42,25 @@ test('test #1', t => {
   let child
   const elem = App.render()
 
-  t.is(elem.find(Child), child)
   t.is(elem.toString(), '<div class="App"><div>one</div><div class="Child">two</div><div>three</div></div>')
+  t.is(elem.find(Child), child)
 
   elem.setState({ step : 1 })
 
-  t.is(elem.find(Child), child)
   t.is(elem.toString(), '<div class="App"><div>one</div><div><div>two</div><div><div class="Child">three</div></div></div></div>')
+  t.is(elem.find(Child), child)
 
   elem.setState({ step : -1 })
 
-  t.is(elem.find(Child), null)
   t.is(elem.toString(), '<div class="App"><div>one</div></div>')
+  t.is(elem.find(Child), null)
 })
 
 test('test #2', t => {
   class App extends ElemType
   {
+    static class = 'App'
+
     constructor(props) {
       super(props)
       this.children = null
@@ -65,8 +70,8 @@ test('test #2', t => {
   const elem = App.render(new Child('foobar'))
   const children = elem.find(Child)
 
-  t.is(children, null)
   t.is(elem.toString(), '<div class="App"></div>')
+  t.is(children, null)
 })
 
 test('filter', t => {
@@ -82,5 +87,15 @@ test('filter', t => {
   ])
   const result = elem.find(Child, item => item.id === 'id3')
 
+  t.is(elem.toString(),
+    '<div>' +
+    '<div class="Child" id="id1"></div>' +
+    '<div>' +
+    '<div class="Child" id="id2"></div>' +
+    '<div class="Child" id="id3"></div>' +
+    '<div class="Child" id="id4"></div>' +
+    '</div>' +
+    '<div class="Child" id="id5"></div>' +
+    '</div>')
   t.is(result, child3)
 })

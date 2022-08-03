@@ -3,11 +3,14 @@ const { ElemType } = require('..')
 
 class Child extends ElemType
 {
+  static class = 'Child'
 }
 
 test('test #1', t => {
   class App extends ElemType
   {
+    static class = 'App'
+
     state = {
       step : 0,
     }
@@ -26,7 +29,7 @@ test('test #1', t => {
             new ElemType([
               child2 = new Child('two'),
               new ElemType([
-                child3 = new Child('three')
+                child3 = new Child('three'),
               ]),
             ]),
           ]
@@ -35,6 +38,7 @@ test('test #1', t => {
       }
     }
   }
+
   let child1, child2, child3
   let result
   const elem = App.render()
@@ -63,11 +67,14 @@ test('test #1', t => {
 test('test #2', t => {
   class App extends ElemType
   {
+    static class = 'App'
+
     constructor(props) {
       super(props)
       this.children = null
     }
   }
+
   const elem = App.render([new Child('foo'), new Child('bar')])
   const children = elem.findAll(Child)
 
@@ -95,6 +102,17 @@ test('filter', t => {
   ])
   const result = elem.findAll(Child, item => item.className === 'foo')
 
+  t.is(elem.toString(), '<div>' +
+    '<div class="foo"></div>' +
+    '<div class="bar"></div>' +
+    '<div>' +
+    '<div class="foo"></div>' +
+    '<div class="bat"></div>' +
+    '<div class="foo"></div>' +
+    '</div>' +
+    '<div class="baz"></div>' +
+    '<div class="foo"></div>' +
+    '</div>')
   t.is(result[0], children[0])
   t.is(result[1], children[1])
   t.is(result[2], children[2])
