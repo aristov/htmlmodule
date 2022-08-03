@@ -13,6 +13,8 @@ const {
 
 class App extends HtmlDiv
 {
+  static class = 'App'
+
   state = {
     defaultValue : 'foo',
     defaultChecked : true,
