@@ -76,19 +76,27 @@ test('test #2', t => {
 })
 
 test('filter', t => {
+  const children = [
+    new Child({ className : 'foo' }),
+    new Child({ className : 'foo' }),
+    new Child({ className : 'foo' }),
+    new Child({ className : 'foo' }),
+  ]
   const elem = ElemType.render([
-    new Child({ className : 'foo' }),
+    children[0],
     new Child({ className : 'bar' }),
-    new Child({ className : 'foo' }),
-    new Child({ className : 'bat' }),
-    new Child({ className : 'foo' }),
+    new ElemType([
+      children[1],
+      new Child({ className : 'bat' }),
+      children[2],
+    ]),
     new Child({ className : 'baz' }),
-    new Child({ className : 'foo' }),
+    children[3],
   ])
   const result = elem.findAll(Child, item => item.className === 'foo')
 
-  t.is(result[0], elem.children[0])
-  t.is(result[1], elem.children[2])
-  t.is(result[2], elem.children[4])
-  t.is(result[3], elem.children[6])
+  t.is(result[0], children[0])
+  t.is(result[1], children[1])
+  t.is(result[2], children[2])
+  t.is(result[3], children[3])
 })

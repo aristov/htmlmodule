@@ -70,12 +70,17 @@ test('test #2', t => {
 })
 
 test('filter', t => {
+  const child3 = new Child({ id : 'id3' })
   const elem = ElemType.render([
     new Child({ id : 'id1' }),
-    new Child({ id : 'id2' }),
-    new Child({ id : 'id3' }),
+    new ElemType([
+      new Child({ id : 'id2' }),
+      child3,
+      new Child({ id : 'id4' }),
+    ]),
+    new Child({ id : 'id5' }),
   ])
-  const result = elem.find(Child, item => item.id === 'id2')
+  const result = elem.find(Child, item => item.id === 'id3')
 
-  t.is(result, elem.children[1])
+  t.is(result, child3)
 })
