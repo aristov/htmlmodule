@@ -14,6 +14,7 @@ class App extends HtmlType
   static class = 'App'
 
   state = {
+    step : 0,
     token : 'foo',
     hidden : true,
     label : 'bar',
@@ -23,6 +24,9 @@ class App extends HtmlType
   }
 
   render() {
+    if(this.state.step === 1) {
+      return
+    }
     this.classList = [this.state.token]
     this.hidden = this.state.hidden
     this.attributes = { 'aria-label' : this.state.label }
@@ -89,4 +93,11 @@ test('test #1', async t => {
   t.is(elem.node.style.display, 'grid')
   t.is(elem.node.href, 'http://example.com/about')
   t.is(spy.callCount, 1)
+
+  elem.setState({ step : 1 })
+
+  await new Promise(setImmediate)
+
+  t.is(elem.toString(), '<a class="App"></a>')
+  t.is(spy.callCount, 2)
 })
