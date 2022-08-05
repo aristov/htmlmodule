@@ -55,3 +55,13 @@ test('children', t => {
   t.is(elem.node.childNodes.length, 8)
   t.is(elem.node.childElementCount, 4)
 })
+
+test('toString', t => {
+  const elem = new ElemType({
+    id : 'id1',
+    className : 'App',
+    children : new ElemType('foobar')
+  })
+
+  t.is(elem.toString(), '<div class="App" id="id1"><div>foobar</div></div>')
+})
