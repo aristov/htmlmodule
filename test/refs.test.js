@@ -1,10 +1,12 @@
 const test = require('ava')
-const { HtmlA, HtmlB, HtmlDiv, HtmlSpan } = require('..')
+const { ElemType, HtmlA, HtmlB, HtmlDiv, HtmlSpan } = require('..')
 
-let a, div, b, span, obj
+let a, div, b, span, obj, elem
 
-class Foo extends HtmlDiv
+class App extends ElemType
 {
+  static class = 'App'
+
   state = {
     step : 0,
   }
@@ -35,41 +37,49 @@ class Foo extends HtmlDiv
     return null
   }
 
+  init() {
+    this._elem = elem = new ElemType
+  }
+
   mount() {
     this._obj = obj = {}
   }
 }
 
 test('test #1', t => {
-  const foo = Foo.render()
+  const app = App.render()
 
-  t.is(foo._obj, obj)
-  t.is(foo._ref1, a)
-  t.is(foo._ref2, div)
-  t.is(foo._ref3, b)
-  t.is(foo.toString(), '<div class="Foo"><a>one</a><div>two</div><b>three</b></div>')
+  t.is(app.toString(), '<div class="App"><a>one</a><div>two</div><b>three</b></div>')
+  t.is(app._elem, elem)
+  t.is(app._obj, obj)
+  t.is(app._ref1, a)
+  t.is(app._ref2, div)
+  t.is(app._ref3, b)
 
-  foo.setState({ step : 1 })
+  app.setState({ step : 1 })
 
-  t.is(foo._obj, obj)
-  t.is(foo._ref1, a)
-  t.is(foo._ref2, span)
-  t.is(foo._ref3, b)
-  t.is(foo.toString(), '<div class="Foo"><a>first</a><span>second</span><b>third</b></div>')
+  t.is(app.toString(), '<div class="App"><a>first</a><span>second</span><b>third</b></div>')
+  t.is(app._elem, elem)
+  t.is(app._obj, obj)
+  t.is(app._ref1, a)
+  t.is(app._ref2, span)
+  t.is(app._ref3, b)
 
-  foo.setState({ step : 2 })
+  app.setState({ step : 2 })
 
-  t.is(foo._obj, obj)
-  t.is(foo._ref1, b)
-  t.false('_ref2' in foo)
-  t.is(foo._ref3, a)
-  t.is(foo.toString(), '<div class="Foo"><b>1</b><div>2</div><a>3</a></div>')
+  t.is(app.toString(), '<div class="App"><b>1</b><div>2</div><a>3</a></div>')
+  t.is(app._elem, elem)
+  t.is(app._obj, obj)
+  t.is(app._ref1, b)
+  t.is(app._ref2, span)
+  t.is(app._ref3, a)
 
-  foo.setState({ step : -1 })
+  app.setState({ step : -1 })
 
-  t.is(foo._obj, obj)
-  t.false('_ref1' in foo)
-  t.false('_ref2' in foo)
-  t.false('_ref3' in foo)
-  t.is(foo.toString(), '<div class="Foo"></div>')
+  t.is(app.toString(), '<div class="App"></div>')
+  t.is(app._elem, elem)
+  t.is(app._obj, obj)
+  t.is(app._ref1, b)
+  t.is(app._ref2, span)
+  t.is(app._ref3, a)
 })
