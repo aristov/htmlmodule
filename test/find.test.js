@@ -56,24 +56,6 @@ test('test #1', t => {
   t.is(elem.find(Child), null)
 })
 
-test('test #2', t => {
-  class App extends ElemType
-  {
-    static class = 'App'
-
-    constructor(props) {
-      super(props)
-      this.children = null
-    }
-  }
-
-  const elem = App.render(new Child('foobar'))
-  const children = elem.find(Child)
-
-  t.is(elem.toString(), '<div class="App"></div>')
-  t.is(children, null)
-})
-
 test('filter', t => {
   const child3 = new Child({ id : 'id3' })
   const elem = ElemType.render([

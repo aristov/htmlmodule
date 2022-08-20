@@ -64,24 +64,6 @@ test('test #1', t => {
   t.is(result.length, 0)
 })
 
-test('test #2', t => {
-  class App extends ElemType
-  {
-    static class = 'App'
-
-    constructor(props) {
-      super(props)
-      this.children = null
-    }
-  }
-
-  const elem = App.render([new Child('foo'), new Child('bar')])
-  const children = elem.findAll(Child)
-
-  t.is(elem.toString(), '<div class="App"></div>')
-  t.deepEqual(children, [])
-})
-
 test('filter', t => {
   const children = [
     new Child({ className : 'foo' }),
