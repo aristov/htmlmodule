@@ -1,7 +1,8 @@
 const test = require('ava')
+const sinon = require('sinon')
 const { HtmlUl, HtmlLi } = require('..')
 
-let li0, li1, li2, li3, li4
+let li0, li1, li2, li3, li4, li1A
 
 class Item extends HtmlLi
 {
@@ -44,12 +45,20 @@ class List extends HtmlUl
           li3 = new HtmlLi({ children : 3 }),
           li2 = new Item({ children : 2 }),
         ]
+      case 4:
+        return [
+          li1 = new HtmlLi({ key : 'id1', children : 'one' }),
+          li2 = new HtmlLi({ key : 'id1', children : 'two' }),
+        ]
     }
   }
 }
 
 test('test #1', t => {
   const elem = List.render()
+  const warn = console.warn
+
+  console.warn = sinon.spy()
 
   t.is(elem.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
   t.is(elem.children[0], li1)
@@ -93,4 +102,29 @@ test('test #1', t => {
   t.is(elem.node.children[1], li4.node)
   t.is(elem.node.children[2], li3.node)
   t.is(elem.node.children[3], li2.node)
+  t.is(console.warn.callCount, 0)
+
+  elem.setState({ step : 4 })
+
+  t.is(console.warn.callCount, 1)
+  t.is(elem.toString(), '<ul class="List"><li>one</li><li>two</li></ul>')
+  t.is(elem.children[0], li1)
+  t.is(elem.children[1], li2)
+  t.is(elem.node.children[0], li1.node)
+  t.is(elem.node.children[1], li2.node)
+
+
+  li1A = li1
+
+  elem.setState({ step : 0 })
+
+  t.is(elem.toString(), '<ul class="List"><li>one</li><li>two</li><li>three</li></ul>')
+  t.is(elem.children[0], li1A)
+  t.is(elem.children[1], li2)
+  t.is(elem.children[2], li3)
+  t.is(elem.node.children[0], li1A.node)
+  t.is(elem.node.children[1], li2.node)
+  t.is(elem.node.children[2], li3.node)
+
+  console.warn = warn
 })
