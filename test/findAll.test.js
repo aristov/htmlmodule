@@ -44,24 +44,24 @@ test('test #1', t => {
   const elem = App.render()
   result = elem.findAll(Child)
 
+  t.is(elem.toString(), '<div class="App"><div>one</div><div class="Child">two</div><div>three</div></div>')
   t.is(result.length, 1)
   t.is(result[0], child1)
-  t.is(elem.toString(), '<div class="App"><div>one</div><div class="Child">two</div><div>three</div></div>')
 
   elem.setState({ step : 1 })
   result = elem.findAll(Child)
 
+  t.is(elem.toString(), '<div class="App"><div class="Child">one</div><div><div class="Child">two</div><div><div class="Child">three</div></div></div></div>')
   t.is(result.length, 3)
   t.is(result[0], child1)
   t.is(result[1], child2)
   t.is(result[2], child3)
-  t.is(elem.toString(), '<div class="App"><div class="Child">one</div><div><div class="Child">two</div><div><div class="Child">three</div></div></div></div>')
 
   elem.setState({ step : -1 })
   result = elem.findAll(Child)
 
-  t.is(result.length, 0)
   t.is(elem.toString(), '<div class="App"><div>one</div></div>')
+  t.is(result.length, 0)
 })
 
 test('test #2', t => {
@@ -78,8 +78,8 @@ test('test #2', t => {
   const elem = App.render([new Child('foo'), new Child('bar')])
   const children = elem.findAll(Child)
 
-  t.deepEqual(children, [])
   t.is(elem.toString(), '<div class="App"></div>')
+  t.deepEqual(children, [])
 })
 
 test('filter', t => {
