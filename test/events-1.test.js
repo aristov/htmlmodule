@@ -16,8 +16,8 @@ test('onload', t => {
   }
 
   const onload = sinon.spy()
-  const elem = App.render()
-  const child = elem.children[0]
+  const app = App.render()
+  const child = app.children[0]
 
   child.emit('load')
 
@@ -26,7 +26,7 @@ test('onload', t => {
   t.is(onload.args[0][0].type, 'load')
   t.is(onload.args[0][1], child)
 
-  elem.setState({ onload : null })
+  app.setState({ onload : null })
 
   t.is(child.onload, null)
 
@@ -77,17 +77,17 @@ test('on/off', t => {
   }
 
   const onclick = sinon.spy()
-  const elem = App.render()
+  const app = App.render()
 
-  elem.emit('click')
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
-  t.is(onclick.getCall(0).thisValue, elem)
+  t.is(onclick.getCall(0).thisValue, app)
   t.is(onclick.args[0][0].type, 'click')
-  t.is(onclick.args[0][1], elem)
+  t.is(onclick.args[0][1], app)
 
-  elem.setState({ mode : 'off' })
-  elem.emit('click')
+  app.setState({ mode : 'off' })
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
 })
@@ -115,14 +115,14 @@ test('capture', t => {
     spy(e, elem)
   }
   const child = new ElemType
-  const elem = App.render(child)
+  const app = App.render(child)
 
   child.emit('click')
 
   t.is(spy.callCount, 1)
   t.is(eventPhase, Event.CAPTURING_PHASE)
 
-  elem.setState({ mode : 'off' })
+  app.setState({ mode : 'off' })
   child.emit('click')
 
   t.is(spy.callCount, 1)
@@ -137,13 +137,13 @@ test('once', t => {
   }
 
   const onclick = sinon.spy()
-  const elem = App.render()
+  const app = App.render()
 
-  elem.emit('click')
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
 
-  elem.emit('click')
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
 })
@@ -168,21 +168,21 @@ test('removeAllListeners', t => {
   const onclick = sinon.spy()
   const onfoo = sinon.spy()
   const onbar = sinon.spy()
-  const elem = App.render({ onclick })
+  const app = App.render({ onclick })
 
-  elem.emit('click')
-  elem.emit('foo')
-  elem.emit('bar')
-  elem.emit('bar')
+  app.emit('click')
+  app.emit('foo')
+  app.emit('bar')
+  app.emit('bar')
 
   t.is(onclick.callCount, 1)
   t.is(onfoo.callCount, 1)
   t.is(onbar.callCount, 2)
 
-  elem.setState({ mode : 'off' })
-  elem.emit('click')
-  elem.emit('foo')
-  elem.emit('bar')
+  app.setState({ mode : 'off' })
+  app.emit('click')
+  app.emit('foo')
+  app.emit('bar')
 
   t.is(onclick.callCount, 1)
   t.is(onfoo.callCount, 1)
@@ -204,7 +204,7 @@ test('off', t => {
     }
   }
 
-  const elem = App.render()
+  const app = App.render()
 
-  t.notThrows(() => elem.setState({ mode : 'off' }))
+  t.notThrows(() => app.setState({ mode : 'off' }))
 })
