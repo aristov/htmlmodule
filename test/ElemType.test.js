@@ -8,27 +8,36 @@ test('test #1', t => {
     state = { foo : 'bar' }
   }
 
-  const elem = App.render()
+  const app = App.render()
 
-  t.deepEqual(Object.keys(elem), [])
-  t.deepEqual(Object.assign({}, elem), {})
-  for(const key in elem) {
+  t.deepEqual(Object.keys(app), [])
+  t.deepEqual(Object.assign({}, app), {})
+  for(const key in app) {
     t.fail()
   }
 })
 
 test('className', t => {
-  class Foo extends ElemType
+  class App extends ElemType
   {
+    static class = 'App'
   }
 
-  const elem = Foo.render('bar')
+  App.defineProps({
+    foobar : null,
+  })
 
-  t.is(elem.toString(), '<div class="Foo">bar</div>')
-  t.is(elem.tagName, 'DIV')
-  t.is(elem.node.className, 'Foo')
-  t.is(elem.node.textContent, 'bar')
-  t.is(elem.node.constructor, HTMLDivElement)
+  const app = App.render({
+    foobar : '123',
+    children : 'test',
+  })
+
+  t.is(app.toString(), '<div class="App">test</div>')
+  t.is(app.tagName, 'DIV')
+  t.is(app.foobar, '123')
+  t.is(app.node.className, 'App')
+  t.is(app.node.textContent, 'test')
+  t.is(app.node.constructor, HTMLDivElement)
 })
 
 test('children', t => {
@@ -60,8 +69,18 @@ test('toString', t => {
   const elem = new ElemType({
     id : 'id1',
     className : 'App',
-    children : new ElemType('foobar')
+    children : new ElemType('foobar'),
   })
 
   t.is(elem.toString(), '<div class="App" id="id1"><div>foobar</div></div>')
+})
+
+test('debug', t => {
+  ElemType.__debug = true
+
+  const elem = ElemType.render()
+
+  t.is(elem.node.__elem, elem)
+
+  ElemType.__debug = false
 })

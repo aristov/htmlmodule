@@ -1,12 +1,25 @@
 const test = require('ava')
 const { ElemType } = require('..')
 
-class Child extends ElemType
+class ChildA extends ElemType
 {
-  static class = 'Child'
+  static class = 'ChildA'
 
   render() {
     this.parent = new Wrapper({
+      id : this.props.pid,
+      children : this,
+    })
+    return this.props.children
+  }
+}
+
+class ChildB extends ElemType
+{
+  static class = 'ChildB'
+
+  render() {
+    this.parent = new ElemType({
       id : this.props.pid,
       children : this,
     })
@@ -26,22 +39,35 @@ class App extends ElemType
   state = {
     text : 'foo',
     pid : 'id1',
+    step : 0,
   }
 
   render() {
-    return new Child({
-      pid : this.state.pid,
-      children : this.state.text,
-    })
+    switch(this.state.step) {
+      case 0:
+        return new ChildA({
+          pid : this.state.pid,
+          children : this.state.text,
+        })
+      case 1:
+        return new ChildB({
+          pid : this.state.pid,
+          children : this.state.text,
+        })
+    }
   }
 }
 
 test('test #1', t => {
-  const elem = App.render()
+  const app = App.render()
 
-  t.is(elem.toString(), '<div class="App"><div class="Wrapper" id="id1"><div class="Child">foo</div></div></div>')
+  t.is(app.toString(), '<div class="App"><div class="Wrapper" id="id1"><div class="ChildA">foo</div></div></div>')
 
-  elem.setState({ text : 'bar', pid : 'id2' })
+  app.setState({ text : 'bar', pid : 'id2' })
 
-  t.is(elem.toString(), '<div class="App"><div class="Wrapper" id="id2"><div class="Child">bar</div></div></div>')
+  t.is(app.toString(), '<div class="App"><div class="Wrapper" id="id2"><div class="ChildA">bar</div></div></div>')
+
+  app.setState({ step : 1 })
+
+  t.is(app.toString(), '<div class="App"><div id="id2"><div class="ChildB">bar</div></div></div>')
 })

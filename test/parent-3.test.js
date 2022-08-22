@@ -45,6 +45,7 @@ class App extends ElemType
 
 test('test #1', t => {
   document = window.document.implementation.createHTMLDocument('test')
+
   const elem = App.render({ modal : true }, document.body)
   const popup = elem.children[1]
 
@@ -89,6 +90,7 @@ test('test #1', t => {
 
 test('test #2', t => {
   document = window.document.implementation.createHTMLDocument('test')
+
   const elem = App.render({ modal : false }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><div class="Popup">foo</div></div></body>')
