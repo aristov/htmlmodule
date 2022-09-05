@@ -7,7 +7,7 @@
 
 HtmlModule is a library for creating UI.
 
-It implements the "State model" approach (first introduced by React)
+It implements the "virtual DOM" approach (first introduced in React)
 and provides a convenient object-oriented API with a JavaScript-compatible syntax.
 
 ## Main Features
@@ -16,7 +16,7 @@ and provides a convenient object-oriented API with a JavaScript-compatible synta
 - No JSX, but convenient JS-compatible syntax
 - API to build your own high-level components
 - Cross-platform, can be used in NodeJS and in the browser
-- Small footprint, 7KB after gzip
+- Small footprint, 8KB after gzip
 
 ## Documentation
 
