@@ -4,23 +4,33 @@ const { ElemType } = require('..')
 const { CustomEvent, Event } = require('xwindow')
 
 test('onload', t => {
+  class App extends ElemType
+  {
+    state = { onload }
+
+    render() {
+      return new ElemType({
+        onload : this.state.onload,
+      })
+    }
+  }
+
   const onload = sinon.spy()
-  const elem = ElemType.render({ onload })
+  const app = App.render()
+  const child = app.children[0]
 
-  t.is(elem.onload, onload)
-
-  elem.emit('load')
+  child.emit('load')
 
   t.is(onload.callCount, 1)
-  t.is(onload.getCall(0).thisValue, elem)
+  t.is(onload.getCall(0).thisValue, child)
   t.is(onload.args[0][0].type, 'load')
-  t.is(onload.args[0][1], elem)
+  t.is(onload.args[0][1], child)
 
-  elem.onload = null
+  app.setState({ onload : null })
 
-  t.is(elem.onload, null)
+  t.is(child.onload, null)
 
-  elem.emit('load')
+  child.emit('load')
 
   t.is(onload.callCount, 1)
 })
@@ -50,25 +60,54 @@ test('custom event', t => {
 })
 
 test('on/off', t => {
+  class App extends ElemType
+  {
+    state = { mode : 'on' }
+
+    render() {
+      if(this.state.mode === 'on') {
+        this.on('click', onclick)
+        this.on('click', onclick)
+      }
+      if(this.state.mode === 'off') {
+        this.off('click', onclick)
+        this.off('click', onclick)
+      }
+    }
+  }
+
   const onclick = sinon.spy()
-  const elem = ElemType.render()
-  elem.on('click', onclick)
-  elem.on('click', onclick)
-  elem.emit('click')
+  const app = App.render()
+
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
-  t.is(onclick.getCall(0).thisValue, elem)
+  t.is(onclick.getCall(0).thisValue, app)
   t.is(onclick.args[0][0].type, 'click')
-  t.is(onclick.args[0][1], elem)
+  t.is(onclick.args[0][1], app)
 
-  elem.off('click', onclick)
-  elem.off('click', onclick)
-  elem.emit('click')
+  app.setState({ mode : 'off' })
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
 })
 
 test('capture', t => {
+  class App extends ElemType
+  {
+    state = { mode : 'on' }
+
+    render() {
+      if(this.state.mode === 'on') {
+        this.on('click', onclick, true)
+      }
+      if(this.state.mode === 'off') {
+        this.off('click', onclick, true)
+      }
+      return this.props.children
+    }
+  }
+
   let eventPhase
   const spy = sinon.spy()
   const onclick = (e, elem) => {
@@ -76,69 +115,74 @@ test('capture', t => {
     spy(e, elem)
   }
   const child = new ElemType
-  const elem = ElemType.render(child)
-  elem.on('click', onclick, true)
+  const app = App.render(child)
+
   child.emit('click')
 
   t.is(spy.callCount, 1)
   t.is(eventPhase, Event.CAPTURING_PHASE)
 
-  elem.off('click', onclick, true)
+  app.setState({ mode : 'off' })
   child.emit('click')
 
   t.is(spy.callCount, 1)
 })
 
-test('context', t => {
-  const context = ElemType.render()
-  const onclick = sinon.spy()
-  const elem = ElemType.render()
-  elem.on('click', onclick, context)
-  elem.emit('click')
-
-  t.is(onclick.callCount, 1)
-  t.is(onclick.getCall(0).thisValue, context)
-  t.is(onclick.args[0][1], elem)
-
-  elem.off('click', onclick, context)
-  elem.emit('click')
-
-  t.is(onclick.callCount, 1)
-})
-
 test('once', t => {
+  class App extends ElemType
+  {
+    init() {
+      this.on('click', onclick, { once : true })
+    }
+  }
+
   const onclick = sinon.spy()
-  const elem = ElemType.render()
-  elem.on('click', onclick, { once : true })
-  elem.emit('click')
+  const app = App.render()
+
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
 
-  elem.emit('click')
+  app.emit('click')
 
   t.is(onclick.callCount, 1)
 })
 
 test('removeAllListeners', t => {
+  class App extends ElemType
+  {
+    state = { mode : 'on' }
+
+    render() {
+      if(this.state.mode === 'on') {
+        this.on('foo', onfoo)
+        this.on('bar', onbar)
+      }
+      if(this.state.mode === 'off') {
+        this.removeAllListeners()
+      }
+      return super.render()
+    }
+  }
+
   const onclick = sinon.spy()
   const onfoo = sinon.spy()
   const onbar = sinon.spy()
-  const elem = ElemType.render({ onclick })
-  elem.on('foo', onfoo)
-  elem.on('bar', onbar)
-  elem.emit('click')
-  elem.emit('foo')
-  elem.emit('bar')
-  elem.emit('bar')
+  const app = App.render({ onclick })
+
+  app.emit('click')
+  app.emit('foo')
+  app.emit('bar')
+  app.emit('bar')
 
   t.is(onclick.callCount, 1)
   t.is(onfoo.callCount, 1)
   t.is(onbar.callCount, 2)
 
-  elem.removeAllListeners()
-  elem.emit('click')
-  elem.emit('foo')
-  elem.emit('bar')
+  app.setState({ mode : 'off' })
+  app.emit('click')
+  app.emit('foo')
+  app.emit('bar')
 
   t.is(onclick.callCount, 1)
   t.is(onfoo.callCount, 1)
@@ -146,8 +190,21 @@ test('removeAllListeners', t => {
 })
 
 test('off', t => {
-  const elem = ElemType.render()
+  class App extends ElemType
+  {
+    state = { mode : 'on' }
 
-  t.notThrows(() => elem.onclick = null)
-  t.notThrows(() => elem.off('foo', () => {}))
+    render() {
+      if(this.state.mode === 'off') {
+        this.onclick = null
+        this.off('foo', () => {
+        })
+      }
+      return super.render()
+    }
+  }
+
+  const app = App.render()
+
+  t.notThrows(() => app.setState({ mode : 'off' }))
 })

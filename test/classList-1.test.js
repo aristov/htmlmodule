@@ -33,19 +33,14 @@ class Test extends ElemType
 test('test #1', t => {
   const elem = Test.render()
 
-  t.is(elem.classList[1], 'foo')
-  t.is(elem.classList[2], 'bar')
   t.is(elem.toString(), '<div class="Test foo bar"><input class="Input one two"></div>')
 
   elem.setState({ step : 1 })
 
-  t.is(elem.classList[1], 'bat')
   t.is(elem.toString(), '<div class="Test bat"><input class="Input three"></div>')
 
   elem.setState({ step : 2 })
 
-  t.is(elem.classList[0], 'foo')
-  t.is(elem.classList[1], 'baz')
   t.is(elem.toString(), '<div class="foo baz"><input class="one four"></div>')
 
   elem.setState({ step : 3 })

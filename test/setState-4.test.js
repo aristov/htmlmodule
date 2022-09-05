@@ -5,6 +5,8 @@ let value = 'foo'
 
 class Input extends HtmlInput
 {
+  static class = 'Input'
+
   render() {
     this.defaultValue = value
   }
@@ -16,7 +18,8 @@ test('test #1', t => {
   t.is(input.toString(), '<input class="Input" value="foo">')
 
   value = 'bar'
-  input.setState()
+
+  input.setState({})
 
   t.is(input.toString(), '<input class="Input" value="bar">')
 })

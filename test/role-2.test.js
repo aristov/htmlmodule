@@ -38,14 +38,14 @@ test('test #1', async t => {
 
   elem.setState({ step : 1 })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 1)
   t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')
 
   elem.setState({ step : 2 })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
   t.is(spy.callCount, 1)
   t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')

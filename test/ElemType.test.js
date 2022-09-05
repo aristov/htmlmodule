@@ -3,27 +3,41 @@ const { HTMLDivElement } = require('xwindow')
 const { ElemType, HtmlA, HtmlB, HtmlI, HtmlP } = require('..')
 
 test('test #1', t => {
-  const elem = ElemType.render()
+  class App extends ElemType
+  {
+    state = { foo : 'bar' }
+  }
 
-  t.deepEqual(Object.keys(elem), [])
-  t.deepEqual(Object.assign({}, elem), {})
-  for(const key in elem) {
+  const app = App.render()
+
+  t.deepEqual(Object.keys(app), [])
+  t.deepEqual(Object.assign({}, app), {})
+  for(const key in app) {
     t.fail()
   }
 })
 
 test('className', t => {
-  class Foo extends ElemType
+  class App extends ElemType
   {
+    static class = 'App'
   }
 
-  const elem = Foo.render('bar')
+  App.defineProps({
+    foobar : null,
+  })
 
-  t.is(elem.tagName, 'DIV')
-  t.is(elem.node.className, 'Foo')
-  t.is(elem.node.textContent, 'bar')
-  t.is(elem.node.constructor, HTMLDivElement)
-  t.is(elem.toString(), '<div class="Foo">bar</div>')
+  const app = App.render({
+    foobar : '123',
+    children : 'test',
+  })
+
+  t.is(app.toString(), '<div class="App">test</div>')
+  t.is(app.tagName, 'DIV')
+  t.is(app.foobar, '123')
+  t.is(app.node.className, 'App')
+  t.is(app.node.textContent, 'test')
+  t.is(app.node.constructor, HTMLDivElement)
 })
 
 test('children', t => {
@@ -33,35 +47,40 @@ test('children', t => {
     [
       new HtmlA('bar'),
       [],
-      true,
+      Infinity,
       [
         [new HtmlB('bat'), 'baz'],
         false,
         new HtmlI(42),
       ],
       NaN,
+      true,
       new HtmlP(0),
     ],
     undefined,
   ])
 
+  t.is(elem.toString(), '<div>foo<a>bar</a>Infinity<b>bat</b>baz<i>42</i>NaN<p>0</p></div>')
   t.is(elem.node.childNodes.length, 8)
   t.is(elem.node.childElementCount, 4)
-  t.is(elem.toString(), '<div>foo<a>bar</a>true<b>bat</b>baz<i>42</i>NaN<p>0</p></div>')
 })
 
-test('getAttr + setAttr', t => {
+test('toString', t => {
+  const elem = new ElemType({
+    id : 'id1',
+    className : 'App',
+    children : new ElemType('foobar'),
+  })
+
+  t.is(elem.toString(), '<div class="App" id="id1"><div>foobar</div></div>')
+})
+
+test('debug', t => {
+  ElemType.__debug = true
+
   const elem = ElemType.render()
 
-  t.is(elem.toString(), '<div></div>')
+  t.is(elem.node.__elem, elem)
 
-  elem.setAttr('aria-busy', 'true')
-
-  t.is(elem.getAttr('aria-busy'), 'true')
-  t.is(elem.toString(), '<div aria-busy="true"></div>')
-
-  elem.setAttr('aria-busy', null)
-
-  t.is(elem.getAttr('aria-busy'), null)
-  t.is(elem.toString(), '<div></div>')
+  ElemType.__debug = false
 })

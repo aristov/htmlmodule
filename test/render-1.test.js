@@ -3,26 +3,24 @@ const sinon = require('sinon')
 const { document } = require('xwindow')
 const { ElemType } = require('..')
 
-test.beforeEach(t => {
+test('parentNode', t => {
   const childMount = sinon.spy()
   const parentMount = sinon.spy()
+
   class Child extends ElemType
   {
     mount() {
       childMount.apply(this, arguments)
     }
   }
+
   class Parent extends ElemType
   {
     mount() {
       parentMount.apply(this, arguments)
     }
   }
-  t.context = { Child, Parent, childMount, parentMount }
-})
 
-test('parentNode', t => {
-  const { Child, Parent, childMount, parentMount } = t.context
   const parentNode = document.createElement('body')
   const child = new Child
   const parent = Parent.render(child, parentNode)
@@ -38,7 +36,23 @@ test('parentNode', t => {
 })
 
 test('node', t => {
-  const { Child, Parent, childMount, parentMount } = t.context
+  const childMount = sinon.spy()
+  const parentMount = sinon.spy()
+
+  class Child extends ElemType
+  {
+    mount() {
+      childMount.apply(this, arguments)
+    }
+  }
+
+  class Parent extends ElemType
+  {
+    mount() {
+      parentMount.apply(this, arguments)
+    }
+  }
+
   const node = document.createElement('div')
   const child = new Child
   const parent = Parent.render({ node, children : child })

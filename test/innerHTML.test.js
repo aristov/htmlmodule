@@ -6,6 +6,8 @@ const { MutationObserver } = window
 
 class Test extends HtmlType
 {
+  static class = 'Test'
+
   state = {
     html : 'foo<br>bar',
   }
@@ -18,8 +20,8 @@ class Test extends HtmlType
 test('test #1', t => {
   const elem = HtmlType.render({ innerHTML : 'foo<br>bar' })
 
-  t.is(elem.innerHTML, 'foo<br>bar')
   t.is(elem.toString(), '<div>foo<br>bar</div>')
+  t.is(elem.node.innerHTML, 'foo<br>bar')
 })
 
 test('test #2', async t => {
@@ -28,21 +30,23 @@ test('test #2', async t => {
   const observer = new MutationObserver(spy)
   observer.observe(elem.node, { childList : true })
 
-  t.is(spy.callCount, 0)
-  t.is(elem.innerHTML, 'foo<br>bar')
   t.is(elem.toString(), '<div class="Test">foo<br>bar</div>')
+  t.is(elem.node.innerHTML, 'foo<br>bar')
+  t.is(spy.callCount, 0)
 
   elem.setState({ html : 'foo<br>bar' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
+  t.is(elem.toString(), '<div class="Test">foo<br>bar</div>')
+  t.is(elem.node.innerHTML, 'foo<br>bar')
   t.is(spy.callCount, 0)
-  t.is(elem.innerHTML, 'foo<br>bar')
 
   elem.setState({ html : 'bar<br>foo' })
 
-  await new Promise(resolve => setImmediate(resolve))
+  await new Promise(setImmediate)
 
+  t.is(elem.toString(), '<div class="Test">bar<br>foo</div>')
+  t.is(elem.node.innerHTML, 'bar<br>foo')
   t.is(spy.callCount, 1)
-  t.is(elem.innerHTML, 'bar<br>foo')
 })
