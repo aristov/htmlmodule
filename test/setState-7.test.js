@@ -10,7 +10,7 @@ document.head.innerHTML = '<base href="http://example.com">'
 
 class App extends HtmlType
 {
-  static tagName = 'A'
+  static tagName = 'a'
   static class = 'App'
 
   state = {
@@ -34,11 +34,11 @@ class App extends HtmlType
     this.style = { display : this.state.display }
     this.href = this.state.href
   }
-}
 
-App.defineProps({
-  href : 'href',
-})
+  static props = {
+    href : 'href',
+  }
+}
 
 test('test #1', async t => {
   const elem = App.render(null, document.body)

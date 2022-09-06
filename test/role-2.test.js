@@ -5,7 +5,7 @@ const { ElemType } = require('..')
 
 class Input extends ElemType
 {
-  static tagName = 'INPUT'
+  static tagName = 'input'
 }
 
 class App extends ElemType

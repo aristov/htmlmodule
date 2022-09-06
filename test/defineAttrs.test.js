@@ -22,12 +22,12 @@ class App extends ElemType
     this.expanded = this.state.expanded
     return super.render()
   }
-}
 
-App.defineAttrs([
-  'expanded',
-  AriaHidden,
-])
+  static attrs = [
+    'expanded',
+    AriaHidden,
+  ]
+}
 
 test('test #1', async t => {
   const elem = App.render()

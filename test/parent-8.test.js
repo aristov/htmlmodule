@@ -63,7 +63,7 @@ class Child extends ElemType
 
 class A extends ElemType
 {
-  static tagName = 'A'
+  static tagName = 'a'
   static class = null
 
   render() {
@@ -90,7 +90,7 @@ class A extends ElemType
 
 class B extends ElemType
 {
-  static tagName = 'B'
+  static tagName = 'b'
   static class = null
 
   render() {
@@ -117,7 +117,7 @@ class B extends ElemType
 
 class U extends ElemType
 {
-  static tagName = 'U'
+  static tagName = 'u'
   static class = null
 
   init() {
@@ -139,7 +139,7 @@ class U extends ElemType
 
 class P extends ElemType
 {
-  static tagName = 'P'
+  static tagName = 'p'
   static class = null
 
   render() {
@@ -165,7 +165,7 @@ class P extends ElemType
 
 class Q extends ElemType
 {
-  static tagName = 'Q'
+  static tagName = 'q'
   static class = null
 
   init() {

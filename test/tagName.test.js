@@ -5,7 +5,7 @@ const { ElemType } = require('..')
 test('test #1', t => {
   class Bar extends ElemType
   {
-    static tagName = 'META'
+    static tagName = 'meta'
   }
 
   const elem = Bar.render()

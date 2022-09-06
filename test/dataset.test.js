@@ -3,7 +3,7 @@ const { ElemType } = require('..')
 
 class Input extends ElemType
 {
-  static tagName = 'INPUT'
+  static tagName = 'input'
 }
 
 class Test extends ElemType

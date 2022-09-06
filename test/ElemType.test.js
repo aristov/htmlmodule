@@ -21,11 +21,10 @@ test('className', t => {
   class App extends ElemType
   {
     static class = 'App'
+    static props = {
+      foobar : null,
+    }
   }
-
-  App.defineProps({
-    foobar : null,
-  })
 
   const app = App.render({
     foobar : '123',
@@ -33,7 +32,7 @@ test('className', t => {
   })
 
   t.is(app.toString(), '<div class="App">test</div>')
-  t.is(app.tagName, 'DIV')
+  t.is(app.tagName, 'div')
   t.is(app.foobar, '123')
   t.is(app.node.className, 'App')
   t.is(app.node.textContent, 'test')

@@ -14,22 +14,20 @@ class Svg extends SvgType
 {
   static tagName = 'svg'
   static class = undefined
+  static attrs = [
+    'width',
+    'height',
+  ]
 }
-
-Svg.defineAttrs([
-  'width',
-  'height',
-])
 
 class Path extends SvgType
 {
   static tagName = 'path'
   static class = undefined
+  static attrs = [
+    'd',
+  ]
 }
-
-Path.defineAttrs([
-  'd',
-])
 
 test('test #1', t => {
   const elem = Svg.render({

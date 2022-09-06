@@ -11,7 +11,7 @@ class Link extends HtmlA
 
 class App extends ElemType
 {
-  static tagName = 'SPAN'
+  static tagName = 'span'
 
   static class = 'App'
 
