@@ -44,13 +44,13 @@ test('test #1', async t => {
 
   await new Promise(setImmediate)
 
-  t.is(spy.callCount, 1)
   t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')
+  t.is(spy.callCount, 1)
 
   elem.setState({ step : 2 })
 
   await new Promise(setImmediate)
 
-  t.is(spy.callCount, 1)
   t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')
+  t.is(spy.callCount, 1)
 })
