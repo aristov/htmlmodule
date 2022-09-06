@@ -13,19 +13,19 @@ class Svg extends SvgType
 {
   static tagName = 'svg'
 
-  static attrs = [
-    'width',
-    'height',
-  ]
+  static props = {
+    width : 'width',
+    height : 'height',
+  }
 }
 
 class Path extends SvgType
 {
   static tagName = 'path'
 
-  static attrs = [
-    'd',
-  ]
+  static props = {
+    d : 'd',
+  }
 }
 
 test('test #1', t => {
