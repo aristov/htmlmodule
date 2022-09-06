@@ -5,6 +5,7 @@ const { HtmlBody, HtmlH1 } = require('..')
 test('test #1', t => {
   class App extends HtmlBody
   {
+    static class = 'App'
   }
 
   const doc = document.implementation.createHTMLDocument('test')
@@ -24,6 +25,8 @@ test('test #1', t => {
 test('test #2', t => {
   class App extends HtmlBody
   {
+    static class = 'App'
+
     render() {
       this.innerHTML = '<h1>Hello world!</h1>'
     }

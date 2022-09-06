@@ -12,6 +12,8 @@ class AriaHidden extends AttrType
 
 class App extends ElemType
 {
+  static class = 'App'
+
   state = {
     hidden : null,
     expanded : 'true',

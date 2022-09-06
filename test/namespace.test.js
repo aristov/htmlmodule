@@ -7,13 +7,12 @@ const SVG_NAMESPACE_URI = 'http://www.w3.org/2000/svg'
 class SvgType extends ElemType
 {
   static namespace = SVG_NAMESPACE_URI
-  static class = undefined
 }
 
 class Svg extends SvgType
 {
   static tagName = 'svg'
-  static class = undefined
+
   static attrs = [
     'width',
     'height',
@@ -23,7 +22,7 @@ class Svg extends SvgType
 class Path extends SvgType
 {
   static tagName = 'path'
-  static class = undefined
+
   static attrs = [
     'd',
   ]

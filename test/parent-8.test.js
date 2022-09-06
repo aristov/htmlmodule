@@ -64,7 +64,6 @@ class Child extends ElemType
 class A extends ElemType
 {
   static tagName = 'a'
-  static class = null
 
   render() {
     this.parent = new P(new B(this))
@@ -91,7 +90,6 @@ class A extends ElemType
 class B extends ElemType
 {
   static tagName = 'b'
-  static class = null
 
   render() {
     this.parent = new U(this)
@@ -118,7 +116,6 @@ class B extends ElemType
 class U extends ElemType
 {
   static tagName = 'u'
-  static class = null
 
   init() {
     initU.apply(this)
@@ -140,7 +137,6 @@ class U extends ElemType
 class P extends ElemType
 {
   static tagName = 'p'
-  static class = null
 
   render() {
     return new Q(this.props.children)
@@ -166,7 +162,6 @@ class P extends ElemType
 class Q extends ElemType
 {
   static tagName = 'q'
-  static class = null
 
   init() {
     initQ.apply(this)

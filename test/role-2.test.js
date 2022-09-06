@@ -6,11 +6,15 @@ const { ElemType } = require('..')
 class Input extends ElemType
 {
   static tagName = 'input'
+
+  static class = 'Input'
 }
 
 class App extends ElemType
 {
   static role = 'form'
+
+  static class = 'App'
 
   state = {
     step : 0,

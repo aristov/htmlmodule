@@ -5,6 +5,8 @@ let child1, child2
 
 class Test extends ElemType
 {
+  static class = 'Test'
+
   state = {
     step : 0,
   }

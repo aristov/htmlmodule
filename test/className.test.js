@@ -3,10 +3,12 @@ const { ElemType } = require('..')
 
 class Foo extends ElemType
 {
+  static class = 'Foo'
 }
 
 class Bar extends Foo
 {
+  static class = 'Bar'
 }
 
 class Bat extends ElemType
@@ -21,6 +23,8 @@ class Baz extends ElemType
 
 class Cux extends ElemType
 {
+  static class = 'Cux'
+
   render() {
     this.className = null
     return this.props.children

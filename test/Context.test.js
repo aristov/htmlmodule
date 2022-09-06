@@ -5,6 +5,8 @@ const ChildContext = new Context(null)
 
 class Parent extends ElemType
 {
+  static class = 'Parent'
+
   render() {
     return ChildContext.Provider({
       value : ['foo', this.props.value],
@@ -15,6 +17,8 @@ class Parent extends ElemType
 
 class Child extends ElemType
 {
+  static class = 'Child'
+
   render() {
     return ChildContext.Consumer(value => value.join(' '))
   }

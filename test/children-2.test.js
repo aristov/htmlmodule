@@ -3,6 +3,8 @@ const { ElemType } = require('..')
 
 class Test extends ElemType
 {
+  static class = 'Test'
+
   state = {
     step : 0,
   }

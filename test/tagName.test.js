@@ -6,6 +6,8 @@ test('test #1', t => {
   class Bar extends ElemType
   {
     static tagName = 'meta'
+
+    static class = 'Bar'
   }
 
   const elem = Bar.render()
