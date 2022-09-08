@@ -92,5 +92,5 @@ test('test #1', t => {
   elem.setState({ step : 3 })
 
   t.is(elem.toString(), '<div role="form" class="App" id="id1" data-id="123" style="display: inline;"><input class="Input" id="id2" data-id="456" style="display: block;"></div>')
-  t.is(elem.attributes, undefined)
+  t.is(elem.attributes, null)
 })
