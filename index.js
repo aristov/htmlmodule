@@ -11,6 +11,7 @@ exports.ElemType = require('./lib/ElemType')
 exports.HtmlType = require('./lib/HtmlType')
 exports.ListType = require('./lib/ListType')
 exports.PropType = require('./lib/PropType')
+exports.RoleType = require('./lib/RoleType')
 exports.TextType = require('./lib/TextType')
 exports.TokenType = require('./lib/TokenType')
 
