@@ -1,13 +1,9 @@
 const test = require('ava')
-const { ElemType, BooleanType } = require('..')
+const { ElemType } = require('..')
 
 class App extends ElemType
 {
   static class = 'App'
-
-  static props = {
-    disabled : BooleanType.define('aria-disabled'),
-  }
 
   state = {
     disabled : false,

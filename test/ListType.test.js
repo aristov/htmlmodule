@@ -1,14 +1,9 @@
 const test = require('ava')
-const { ElemType, ListType } = require('..')
+const { ElemType } = require('..')
 
 class App extends ElemType
 {
   static class = 'App'
-
-  static props = {
-    relevant : ListType.define('aria-relevant', ['additions', 'text']),
-    controls : ListType.define('aria-controls'),
-  }
 
   state = {
     relevant : null,

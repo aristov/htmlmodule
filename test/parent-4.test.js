@@ -9,14 +9,14 @@ class Popup extends ElemType
   static class = 'Popup'
 
   state = {
-    hidden : false,
+    isHidden : false,
   }
 
   render() {
-    if(this.state.hidden) {
+    if(this.state.isHidden) {
       return this.parent = null
     }
-    if(this.props.modal) {
+    if(this.props.isModal) {
       this.parent = document.body
     }
     return this.props.children
@@ -41,7 +41,7 @@ class Parent extends ElemType
         return [
           new HtmlH1('one'),
           new Popup({
-            modal : true,
+            isModal : true,
             children : 'two',
           }),
           new HtmlH3('three'),
@@ -72,11 +72,11 @@ test('test #2', t => {
 
   t.is(document.body.outerHTML, '<body><div class="Parent"><h1>one</h1><!--Popup--><h3>three</h3></div><div class="Popup">two</div></body>')
 
-  elem.children[1].setState({ hidden : true })
+  elem.children[1].setState({ isHidden : true })
 
   t.is(document.body.outerHTML, '<body><div class="Parent"><h1>one</h1><!--Popup--><h3>three</h3></div></body>')
 
-  elem.children[1].setState({ hidden : false })
+  elem.children[1].setState({ isHidden : false })
 
   t.is(document.body.outerHTML, '<body><div class="Parent"><h1>one</h1><!--Popup--><h3>three</h3></div><div class="Popup">two</div></body>')
 

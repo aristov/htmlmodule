@@ -1,15 +1,9 @@
 const test = require('ava')
-const { ElemType, TokenType } = require('..')
+const { ElemType } = require('..')
 
 class App extends ElemType
 {
   static class = 'App'
-
-  static props = {
-    hidden : TokenType.define('aria-hidden'),
-    checked : TokenType.define('aria-checked'),
-    current : TokenType.define('aria-current', false),
-  }
 
   state = {
     hidden : null,

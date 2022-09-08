@@ -9,14 +9,14 @@ class Popup extends ElemType
   static class = 'Popup'
 
   state = {
-    hidden : false,
+    isHidden : false,
   }
 
   render() {
-    if(this.state.hidden) {
+    if(this.state.isHidden) {
       return this.parent = null
     }
-    if(this.props.modal) {
+    if(this.props.isModal) {
       this.parent = document.body
     }
     return this.props.children
@@ -28,7 +28,7 @@ class App extends ElemType
   static class = 'App'
 
   state = {
-    modal : undefined,
+    isModal : undefined,
     text : 'foo',
   }
 
@@ -36,7 +36,7 @@ class App extends ElemType
     return [
       new HtmlButton('toggle'),
       new Popup({
-        modal : this.state.modal ?? this.props.modal,
+        isModal : this.state.isModal ?? this.props.isModal,
         children : this.state.text,
       }),
     ]
@@ -46,7 +46,7 @@ class App extends ElemType
 test('test #1', t => {
   document = window.document.implementation.createHTMLDocument('test')
 
-  const elem = App.render({ modal : true }, document.body)
+  const elem = App.render({ isModal : true }, document.body)
   const popup = elem.children[1]
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div><div class="Popup">foo</div></body>')
@@ -55,15 +55,15 @@ test('test #1', t => {
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div><div class="Popup">bar</div></body>')
 
-  elem.setState({ modal : false })
+  elem.setState({ isModal : false })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><div class="Popup">bar</div></div></body>')
 
-  elem.setState({ modal : true })
+  elem.setState({ isModal : true })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div><div class="Popup">bar</div></body>')
 
-  popup.setState({ hidden : true })
+  popup.setState({ isHidden : true })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div></body>')
 
@@ -71,19 +71,19 @@ test('test #1', t => {
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div></body>')
 
-  popup.setState({ hidden : false })
+  popup.setState({ isHidden : false })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div><div class="Popup">bat</div></body>')
 
-  popup.setState({ hidden : true })
+  popup.setState({ isHidden : true })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div></body>')
 
-  elem.setState({ modal : false, text : 'baz' })
+  elem.setState({ isModal : false, text : 'baz' })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div></body>')
 
-  popup.setState({ hidden : false })
+  popup.setState({ isHidden : false })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><div class="Popup">baz</div></div></body>')
 })
@@ -91,11 +91,11 @@ test('test #1', t => {
 test('test #2', t => {
   document = window.document.implementation.createHTMLDocument('test')
 
-  const elem = App.render({ modal : false }, document.body)
+  const elem = App.render({ isModal : false }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><div class="Popup">foo</div></div></body>')
 
-  elem.setState({ modal : true })
+  elem.setState({ isModal : true })
 
   t.is(document.body.outerHTML, '<body><div class="App"><button>toggle</button><!--Popup--></div><div class="Popup">foo</div></body>')
 })

@@ -186,7 +186,7 @@ class App extends ElemType
 
   state = {
     step : 0,
-    hidden : undefined,
+    isHidden : undefined,
     text : 'foo',
   }
 
@@ -194,7 +194,7 @@ class App extends ElemType
     switch(this.state.step) {
       case 0:
         return new Child({
-          hidden : this.state.hidden ?? this.props.hidden,
+          isHidden : this.state.isHidden ?? this.props.isHidden,
           children : this.state.text,
         })
       case 1:
@@ -205,7 +205,7 @@ class App extends ElemType
 
 test('test #1', t => {
   document = window.document.implementation.createHTMLDocument('test')
-  const elem = App.render({ hidden : false }, document.body)
+  const elem = App.render({ isHidden : false }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><p><q><u><b><a><div class="Child">foo</div></a></b></u></q></p></div></body>')
 

@@ -9,10 +9,10 @@ class Popup extends ElemType
   static class = 'Popup'
 
   render() {
-    if(this.props.hidden) {
+    if(this.props.isHidden) {
       return this.parent = null
     }
-    if(this.props.modal) {
+    if(this.props.isModal) {
       this.parent = document.body
     }
     return this.props.children
@@ -25,8 +25,8 @@ class Dialog extends ElemType
 
   render() {
     this.parent = new Popup({
-      modal : this.props.modal,
-      hidden : this.props.hidden,
+      isModal : this.props.isModal,
+      isHidden : this.props.isHidden,
       children : this,
     })
     return this.props.children
@@ -39,17 +39,17 @@ class App extends ElemType
 
   state = {
     step : 0,
-    hidden : undefined,
+    isHidden : undefined,
     text : 'foo',
-    modal : true,
+    isModal : true,
   }
 
   render() {
     switch(this.state.step) {
       case 0:
         return new Dialog({
-          modal : this.state.modal,
-          hidden : this.state.hidden ?? this.props.hidden,
+          isModal : this.state.isModal,
+          isHidden : this.state.isHidden ?? this.props.isHidden,
           children : this.state.text,
         })
       case 1:
@@ -64,11 +64,11 @@ class App extends ElemType
 
 test('test #1', t => {
   document = window.document.implementation.createHTMLDocument('test')
-  elem = App.render({ hidden : false }, document.body)
+  elem = App.render({ isHidden : false }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">foo</div></div></body>')
 
-  elem.setState({ hidden : true })
+  elem.setState({ isHidden : true })
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div></body>')
 
@@ -76,15 +76,15 @@ test('test #1', t => {
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div></body>')
 
-  elem.setState({ hidden : false })
+  elem.setState({ isHidden : false })
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">bar</div></div></body>')
 
-  elem.setState({ modal : false })
+  elem.setState({ isModal : false })
 
   t.is(document.body.outerHTML, '<body><div class="App"><div class="Popup"><div class="Dialog">bar</div></div></div></body>')
 
-  elem.setState({ modal : true })
+  elem.setState({ isModal : true })
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">bar</div></div></body>')
 
@@ -119,19 +119,19 @@ test('test #1', t => {
 
 test('test #2', t => {
   document = window.document.implementation.createHTMLDocument('test')
-  elem = App.render({ hidden : true }, document.body)
+  elem = App.render({ isHidden : true }, document.body)
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div></body>')
 
-  elem.setState({ hidden : true })
+  elem.setState({ isHidden : true })
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div></body>')
 
-  elem.setState({ hidden : false })
+  elem.setState({ isHidden : false })
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">foo</div></div></body>')
 
-  elem.setState({ hidden : false })
+  elem.setState({ isHidden : false })
 
   t.is(document.body.outerHTML, '<body><div class="App"><!--Popup--></div><div class="Popup"><div class="Dialog">foo</div></div></body>')
 })
