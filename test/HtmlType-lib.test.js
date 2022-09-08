@@ -1,5 +1,5 @@
 const test = require('ava')
-const h = require('../lib/htmlmodule')
+const h = require('../lib/HtmlType-lib')
 
 test('test #1', t => {
   t.is(h.HtmlA.render().toString(), '<a></a>')

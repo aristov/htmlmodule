@@ -2,7 +2,10 @@
  * @module htmlmodule
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
-exports = module.exports = require('./lib/htmlmodule')
+exports = module.exports = {
+  ...require('./lib/HtmlType-lib'),
+  ...require('./lib/RoleType-lib'),
+}
 
 exports.AttrType = require('./lib/AttrType')
 exports.BooleanType = require('./lib/BooleanType')

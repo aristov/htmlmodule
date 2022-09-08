@@ -6,7 +6,7 @@ const {
   HtmlOption,
   HtmlAudio,
   HtmlTextArea,
-} = require('../lib/htmlmodule')
+} = require('..')
 
 test('test #1', t => {
   const elem = HtmlDiv.render([
