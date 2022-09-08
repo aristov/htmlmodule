@@ -1,6 +1,6 @@
 const test = require('ava')
 const { HTMLDivElement } = require('xwindow')
-const { ElemType, HtmlA, HtmlB, HtmlI, HtmlP } = require('..')
+const { ElemType, PropType, HtmlA, HtmlB, HtmlI, HtmlP } = require('..')
 
 test('test #1', t => {
   class App extends ElemType
@@ -22,7 +22,7 @@ test('className', t => {
   {
     static class = 'App'
     static props = {
-      foobar : null,
+      foobar : PropType,
     }
   }
 

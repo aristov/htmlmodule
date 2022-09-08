@@ -4,6 +4,7 @@
  */
 exports = module.exports = require('./lib/htmlmodule')
 
+exports.PropType = require('./lib/PropType')
 exports.AttrType = require('./lib/AttrType')
 exports.Context = require('./lib/Context')
 exports.ElemType = require('./lib/ElemType')
