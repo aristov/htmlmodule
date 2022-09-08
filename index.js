@@ -11,5 +11,6 @@ exports.ElemType = require('./lib/ElemType')
 exports.HtmlType = require('./lib/HtmlType')
 exports.PropType = require('./lib/PropType')
 exports.TextType = require('./lib/TextType')
+exports.TokenType = require('./lib/TokenType')
 
 exports.window = require('xwindow')
