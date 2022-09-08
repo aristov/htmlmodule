@@ -184,7 +184,7 @@ test('removeAllListeners', t => {
   app.emit('foo')
   app.emit('bar')
 
-  t.is(onclick.callCount, 1)
+  t.is(onclick.callCount, 2)
   t.is(onfoo.callCount, 1)
   t.is(onbar.callCount, 2)
 })
