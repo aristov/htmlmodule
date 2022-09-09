@@ -75,11 +75,15 @@ test('toString', t => {
 })
 
 test('debug', t => {
-  ElemType.__debug = true
+  ElemType.setDebugMode(true)
 
-  const elem = ElemType.render()
+  let elem = ElemType.render()
 
   t.is(elem.node.__elem, elem)
 
-  ElemType.__debug = false
+  ElemType.setDebugMode(false)
+
+  elem = ElemType.render()
+
+  t.false('__elem' in elem.node)
 })
