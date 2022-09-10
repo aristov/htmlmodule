@@ -1,35 +1,27 @@
 const test = require('ava')
-const { ElemType } = require('..')
+const window = require('xwindow')
+const { ElemType, HtmlSpan } = require('..')
 
-class ChildA extends ElemType
+let document, elem
+
+class Popup extends ElemType
 {
-  static class = 'ChildA'
+  static class = 'Popup'
 
   render() {
-    this.parent = new Wrapper({
-      id : this.props.pid,
-      children : this,
-    })
+    if(this.props.isHidden) {
+      return this.parent = null
+    }
+    if(this.props.isModal) {
+      this.parent = document.body
+    }
     return this.props.children
   }
 }
 
-class ChildB extends ElemType
+class Dialog extends Popup
 {
-  static class = 'ChildB'
-
-  render() {
-    this.parent = new ElemType({
-      id : this.props.pid,
-      children : this,
-    })
-    return this.props.children
-  }
-}
-
-class Wrapper extends ElemType
-{
-  static class = 'Wrapper'
+  static class = 'Dialog'
 }
 
 class App extends ElemType
@@ -37,37 +29,100 @@ class App extends ElemType
   static class = 'App'
 
   state = {
-    text : 'foo',
-    pid : 'id1',
     step : 0,
+    isHidden : undefined,
+    text : 'foo',
+    isModal : true,
   }
 
   render() {
     switch(this.state.step) {
       case 0:
-        return new ChildA({
-          pid : this.state.pid,
+        return new Dialog({
+          isModal : this.state.isModal,
+          isHidden : this.state.isHidden ?? this.props.isHidden,
           children : this.state.text,
         })
       case 1:
-        return new ChildB({
-          pid : this.state.pid,
-          children : this.state.text,
-        })
+        return new ElemType('bat')
+      case 2:
+        return new HtmlSpan('baz')
+      case 3:
+        return null
     }
   }
 }
 
 test('test #1', t => {
-  const app = App.render()
+  document = window.document.implementation.createHTMLDocument('test')
+  elem = App.render({ isHidden : false }, document.body)
 
-  t.is(app.toString(), '<div class="App"><div class="Wrapper" id="id1"><div class="ChildA">foo</div></div></div>')
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">foo</div></body>')
 
-  app.setState({ text : 'bar', pid : 'id2' })
+  elem.setState({ isHidden : true })
 
-  t.is(app.toString(), '<div class="App"><div class="Wrapper" id="id2"><div class="ChildA">bar</div></div></div>')
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div></body>')
 
-  app.setState({ step : 1 })
+  elem.setState({ text : 'bar' })
 
-  t.is(app.toString(), '<div class="App"><div id="id2"><div class="ChildB">bar</div></div></div>')
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div></body>')
+
+  elem.setState({ isHidden : false })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">bar</div></body>')
+
+  elem.setState({ isModal : false })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><div class="Dialog Popup">bar</div></div></body>')
+
+  elem.setState({ isModal : true })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">bar</div></body>')
+
+  elem.setState({ step : 1 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><div>bat</div></div></body>')
+
+  elem.setState({ step : 0 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">bar</div></body>')
+
+  elem.setState({ step : 2 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><span>baz</span></div></body>')
+
+  elem.setState({ step : 0 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">bar</div></body>')
+
+  elem.setState({ step : 3 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"></div></body>')
+
+  elem.setState({ step : 0 })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">bar</div></body>')
+
+  elem.setState({ text : 'qwe' })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">qwe</div></body>')
+})
+
+test('test #2', t => {
+  document = window.document.implementation.createHTMLDocument('test')
+  elem = App.render({ isHidden : true }, document.body)
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div></body>')
+
+  elem.setState({ isHidden : true })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div></body>')
+
+  elem.setState({ isHidden : false })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">foo</div></body>')
+
+  elem.setState({ isHidden : false })
+
+  t.is(document.body.outerHTML, '<body><div class="App"><!--Dialog--></div><div class="Dialog Popup">foo</div></body>')
 })

@@ -22,4 +22,5 @@ test('test #1', t => {
   t.is(b.closest(ElemType), b)
   t.is(b.closest(HtmlDiv, elem => elem.id === 'id1'), div1)
   t.is(b.closest(ElemType, elem => elem.id === 'root'), elem)
+  t.is(a.closest(HtmlB), null)
 })

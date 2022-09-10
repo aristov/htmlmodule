@@ -1,6 +1,6 @@
 const test = require('ava')
 const window = require('xwindow')
-const { ElemType, HtmlP } = require('..')
+const { ElemType } = require('..')
 
 const document = window.document.implementation.createHTMLDocument('test')
 
@@ -30,14 +30,11 @@ class PortalItem extends ElemType
   }
 }
 
-class WrappedItem extends ElemType
+class NormalItem extends ElemType
 {
-  static class = 'WrappedItem'
+  static class = 'NormalItem'
 
   render() {
-    if(this.props.mode === 'on') {
-      this.parent = new HtmlP(this)
-    }
     return this.props.children
   }
 }
@@ -63,10 +60,9 @@ class App extends ElemType
             mode,
           }),
           new ElemType({ key : 'key3', children : 'three' }),
-          item4 = new WrappedItem({
+          item4 = new NormalItem({
             key : 'key4',
             children : 'four',
-            mode,
           }),
           new ElemType({ key : 'key5', children : 'five' }),
           item6 = new PortalItem({
@@ -83,13 +79,13 @@ class App extends ElemType
           new ElemType({ key : 'key5', children : 'five' }),
           new HiddenItem({ key : 'key2', children : 'two', mode }),
           new ElemType({ key : 'key3', children : 'three' }),
-          new WrappedItem({ key : 'key4', children : 'four', mode }),
+          new NormalItem({ key : 'key4', children : 'four' }),
           new ElemType({ key : 'key1', children : 'one' }),
         ]
       case 2:
         return [
           new ElemType({ key : 'key5', children : 'five' }),
-          new WrappedItem({ key : 'key4', children : 'four', mode }),
+          new NormalItem({ key : 'key4', children : 'four' }),
           new ElemType({ key : 'key1', children : 'one' }),
           new PortalItem({ key : 'key6', children : 'six', mode }),
           new ElemType({ key : 'key3', children : 'three' }),
@@ -109,7 +105,7 @@ test('test #1', t => {
     '<div>one</div>' +
     '<!--HiddenItem-->' +
     '<div>three</div>' +
-    '<p><div class="WrappedItem">four</div></p>' +
+    '<div class="NormalItem">four</div>' +
     '<div>five</div>' +
     '<!--PortalItem-->' +
     '<div>seven</div>' +
@@ -127,7 +123,7 @@ test('test #1', t => {
     '<div>five</div>' +
     '<!--HiddenItem-->' +
     '<div>three</div>' +
-    '<p><div class="WrappedItem">four</div></p>' +
+    '<div class="NormalItem">four</div>' +
     '<div>one</div>' +
     '</div>' +
     '<div class="PortalItem">six</div>' +
@@ -142,7 +138,7 @@ test('test #1', t => {
     '<body>' +
     '<div class="App">' +
     '<div>five</div>' +
-    '<div class="WrappedItem">four</div>' +
+    '<div class="NormalItem">four</div>' +
     '<div>one</div>' +
     '<div class="PortalItem">six</div>' +
     '<div>three</div>' +
@@ -164,7 +160,7 @@ test('test #1', t => {
     '<div>five</div>' +
     '<!--HiddenItem-->' +
     '<div>three</div>' +
-    '<p><div class="WrappedItem">four</div></p>' +
+    '<div class="NormalItem">four</div>' +
     '<div>one</div>' +
     '</div>' +
     '<div class="PortalItem">six</div>' +
