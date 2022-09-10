@@ -43,15 +43,15 @@ class Parent extends ElemType
     const { step, text } = this.state
     switch(step) {
       case 0:
-        this.on('click', onclick2)
+        this.on('click', onclick3)
         return new Child({
           step,
           children : text,
-          onclick : onclick3,
-          onchange : onchange3,
+          onclick : onclick2,
+          onchange : onchange2,
         })
       case 1:
-        this.off('click', onclick2)
+        this.off('click', onclick3)
         return new Child({
           step,
           children : text,
@@ -60,7 +60,7 @@ class Parent extends ElemType
   }
 
   init() {
-    this.on('change', onchange2)
+    this.on('change', onchange3)
   }
 }
 
@@ -77,22 +77,35 @@ test('test #1', t => {
   t.is(onclick1.getCall(0).thisValue, child)
   t.is(onclick1.args[0][0].target, child.node)
   t.is(onclick1.args[0][1], child)
+  t.true(onclick1.calledImmediatelyBefore(onclick2))
+  t.true(onclick1.calledBefore(onclick3))
 
   t.is(onclick2.callCount, 1)
-  t.is(onclick2.getCall(0).thisValue, parent)
+  t.is(onclick2.getCall(0).thisValue, child)
   t.is(onclick2.args[0][0].target, child.node)
   t.is(onclick2.args[0][1], child)
+  t.true(onclick2.calledImmediatelyAfter(onclick1))
+  t.true(onclick2.calledImmediatelyBefore(onclick3))
 
   t.is(onclick3.callCount, 1)
-  t.is(onclick3.getCall(0).thisValue, child)
+  t.is(onclick3.getCall(0).thisValue, parent)
   t.is(onclick3.args[0][0].target, child.node)
   t.is(onclick3.args[0][1], child)
+  t.true(onclick3.calledImmediatelyAfter(onclick2))
+  t.true(onclick3.calledAfter(onclick1))
 
   child.emit('change')
 
   t.is(onchange1.callCount, 1)
   t.is(onchange2.callCount, 1)
   t.is(onchange3.callCount, 1)
+
+  t.true(onchange1.calledImmediatelyBefore(onchange2))
+  t.true(onchange1.calledBefore(onchange3))
+  t.true(onchange2.calledImmediatelyAfter(onchange1))
+  t.true(onchange2.calledImmediatelyBefore(onchange3))
+  t.true(onchange3.calledImmediatelyAfter(onchange2))
+  t.true(onchange3.calledAfter(onchange1))
 
   parent.setState({ text : 'bar' })
 
@@ -108,12 +121,12 @@ test('test #1', t => {
   t.is(onclick1.args[1][1], child)
 
   t.is(onclick2.callCount, 2)
-  t.is(onclick2.getCall(1).thisValue, parent)
+  t.is(onclick2.getCall(1).thisValue, child)
   t.is(onclick2.args[1][0].target, child.node)
   t.is(onclick2.args[1][1], child)
 
   t.is(onclick3.callCount, 2)
-  t.is(onclick3.getCall(1).thisValue, child)
+  t.is(onclick3.getCall(1).thisValue, parent)
   t.is(onclick3.args[1][0].target, child.node)
   t.is(onclick3.args[1][1], child)
 
@@ -135,6 +148,6 @@ test('test #1', t => {
   child.emit('change')
 
   t.is(onchange1.callCount, 3)
-  t.is(onchange2.callCount, 3)
-  t.is(onchange3.callCount, 2)
+  t.is(onchange2.callCount, 2)
+  t.is(onchange3.callCount, 3)
 })
