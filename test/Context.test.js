@@ -20,7 +20,9 @@ class Child extends ElemType
   static class = 'Child'
 
   render() {
-    return ChildContext.Consumer(value => value.join(' '))
+    return ChildContext.Consumer(props => {
+      return props.value.join(' ')
+    })
   }
 }
 
