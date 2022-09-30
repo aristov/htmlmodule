@@ -33,6 +33,10 @@ test('token list', t => {
 
   t.is(app.toString(), '<div class="App" aria-relevant="all"></div>')
 
+  app.setState({ relevant : 'all' })
+
+  t.is(app.toString(), '<div class="App" aria-relevant="all"></div>')
+
   app.setState({ relevant : ['additions', 'text'] })
 
   t.is(app.toString(), '<div class="App"></div>')

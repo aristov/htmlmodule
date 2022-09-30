@@ -74,4 +74,8 @@ test('token', t => {
   app.setState({ current : true })
 
   t.is(app.toString(), '<div class="App" aria-current="true"></div>')
+
+  app.setState({ current : true })
+
+  t.is(app.toString(), '<div class="App" aria-current="true"></div>')
 })

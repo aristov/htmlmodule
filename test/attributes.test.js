@@ -94,3 +94,18 @@ test('test #1', t => {
   t.is(elem.toString(), '<div role="form" class="App" id="id1" data-id="123" style="display: inline;"><input class="Input" id="id2" data-id="456" style="display: block;"></div>')
   t.is(elem.attributes, null)
 })
+
+test('test #2', t => {
+  const elem = App.render({
+    attributes : {
+      'aria-busy' : 'true',
+    }
+  })
+
+  t.is(elem.toString(), '<div role="form" class="App" aria-busy="true" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
+  t.deepEqual(elem.attributes, {
+    'aria-busy' : 'true',
+    'aria-hidden' : 'true',
+    'aria-label' : null,
+  })
+})
