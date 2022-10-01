@@ -1,6 +1,6 @@
 const test = require('ava')
 const { HTMLDivElement } = require('xwindow')
-const { ElemType, HtmlA, HtmlB, HtmlI, HtmlP } = require('..')
+const { ElemType, PropType, HtmlA, HtmlB, HtmlI, HtmlP } = require('..')
 
 test('test #1', t => {
   class App extends ElemType
@@ -21,11 +21,10 @@ test('className', t => {
   class App extends ElemType
   {
     static class = 'App'
+    static props = {
+      foobar : PropType,
+    }
   }
-
-  App.defineProps({
-    foobar : null,
-  })
 
   const app = App.render({
     foobar : '123',
@@ -33,7 +32,7 @@ test('className', t => {
   })
 
   t.is(app.toString(), '<div class="App">test</div>')
-  t.is(app.tagName, 'DIV')
+  t.is(app.tagName, 'div')
   t.is(app.foobar, '123')
   t.is(app.node.className, 'App')
   t.is(app.node.textContent, 'test')
@@ -76,11 +75,15 @@ test('toString', t => {
 })
 
 test('debug', t => {
-  ElemType.__debug = true
+  ElemType.setDebugMode(true)
 
-  const elem = ElemType.render()
+  let elem = ElemType.render()
 
   t.is(elem.node.__elem, elem)
 
-  ElemType.__debug = false
+  ElemType.setDebugMode(false)
+
+  elem = ElemType.render()
+
+  t.false('__elem' in elem.node)
 })

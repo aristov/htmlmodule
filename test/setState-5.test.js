@@ -9,7 +9,7 @@ const {
   HtmlLabel,
   HtmlAudio,
   HtmlTextArea,
-} = require('../lib/htmlmodule')
+} = require('..')
 
 class App extends HtmlDiv
 {

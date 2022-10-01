@@ -3,11 +3,15 @@ const { ElemType } = require('..')
 
 class Input extends ElemType
 {
-  static tagName = 'INPUT'
+  static tagName = 'input'
+
+  static class = 'Input'
 }
 
 class Test extends ElemType
 {
+  static class = 'Test'
+
   state = {
     step : 0,
   }
@@ -50,6 +54,8 @@ class Test extends ElemType
         return new Input({
           style : null
         })
+      case 4:
+        return new Input
     }
   }
 }
@@ -68,6 +74,14 @@ test('test-1', t => {
   t.is(elem.toString(), '<div class="Test" style="background-color: rgb(0, 255, 0);"><input class="Input" style="line-height: 1.5;"></div>')
 
   elem.setState({ step : 3 })
+
+  t.is(elem.toString(), '<div class="Test"><input class="Input"></div>')
+
+  elem.setState({ step : 0 })
+
+  t.is(elem.toString(), '<div class="Test" style="color: rgb(255, 255, 255);"><input class="Input" style="display: none;"></div>')
+
+  elem.setState({ step : 4 })
 
   t.is(elem.toString(), '<div class="Test"><input class="Input"></div>')
 })

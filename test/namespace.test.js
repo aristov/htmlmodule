@@ -7,29 +7,26 @@ const SVG_NAMESPACE_URI = 'http://www.w3.org/2000/svg'
 class SvgType extends ElemType
 {
   static namespace = SVG_NAMESPACE_URI
-  static class = undefined
 }
 
 class Svg extends SvgType
 {
   static tagName = 'svg'
-  static class = undefined
-}
 
-Svg.defineAttrs([
-  'width',
-  'height',
-])
+  static props = {
+    width : 'width',
+    height : 'height',
+  }
+}
 
 class Path extends SvgType
 {
   static tagName = 'path'
-  static class = undefined
-}
 
-Path.defineAttrs([
-  'd',
-])
+  static props = {
+    d : 'd',
+  }
+}
 
 test('test #1', t => {
   const elem = Svg.render({

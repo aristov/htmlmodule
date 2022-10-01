@@ -4,15 +4,20 @@ const { ElemType } = require('..')
 class RoleLink extends ElemType
 {
   static role = 'Link'
+
+  static class = 'RoleLink'
 }
 
 class FooLink extends RoleLink
 {
+  static class = 'FooLink'
 }
 
 class BarLink extends RoleLink
 {
   static role = null
+
+  static class = 'BarLink'
 }
 
 test('test #1', t => {

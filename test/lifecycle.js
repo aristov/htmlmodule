@@ -14,6 +14,8 @@ const childDestroy = sinon.spy()
 
 class Child extends HtmlSpan
 {
+  static class = 'Child'
+
   state = { asd : 'zxc' }
 
   init() {
@@ -35,6 +37,8 @@ class Child extends HtmlSpan
 
 class Parent extends HtmlDiv
 {
+  static class = 'Parent'
+
   state = { step : 0 }
 
   render() {

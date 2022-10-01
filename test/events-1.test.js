@@ -1,7 +1,7 @@
 const test = require('ava')
 const sinon = require('sinon')
-const { ElemType } = require('..')
-const { CustomEvent, Event } = require('xwindow')
+const { CustomEvent, Event, window } = require('xwindow')
+const { ElemType, HtmlType } = require('..')
 
 test('onload', t => {
   class App extends ElemType
@@ -184,7 +184,7 @@ test('removeAllListeners', t => {
   app.emit('foo')
   app.emit('bar')
 
-  t.is(onclick.callCount, 1)
+  t.is(onclick.callCount, 2)
   t.is(onfoo.callCount, 1)
   t.is(onbar.callCount, 2)
 })
@@ -207,4 +207,28 @@ test('off', t => {
   const app = App.render()
 
   t.notThrows(() => app.setState({ mode : 'off' }))
+})
+
+test('focus + blur', t => {
+  const onfocus = sinon.spy()
+  const onblur = sinon.spy()
+  const elem = HtmlType.render({
+    tabIndex : 0,
+    onfocus,
+    onblur,
+  }, window.document.body)
+
+  t.is(elem.toString(), '<div tabindex="0"></div>')
+
+  elem.focus()
+
+  t.is(onfocus.callCount, 1)
+  t.is(onblur.callCount, 0)
+
+  elem.blur()
+
+  t.is(onfocus.callCount, 1)
+  t.is(onblur.callCount, 1)
+
+  window.document.body.innerHTML = ''
 })

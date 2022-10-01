@@ -3,6 +3,8 @@ const { HtmlArticle, HtmlButton, HtmlSection } = require('..')
 
 class Article extends HtmlArticle
 {
+  static class = 'Article'
+
   state = {
     expanded : false,
   }

@@ -9,6 +9,8 @@ test('parentNode', t => {
 
   class Child extends ElemType
   {
+    static class = 'Child'
+
     mount() {
       childMount.apply(this, arguments)
     }
@@ -16,6 +18,8 @@ test('parentNode', t => {
 
   class Parent extends ElemType
   {
+    static class = 'Parent'
+
     mount() {
       parentMount.apply(this, arguments)
     }
@@ -41,6 +45,8 @@ test('node', t => {
 
   class Child extends ElemType
   {
+    static class = 'Child'
+
     mount() {
       childMount.apply(this, arguments)
     }
@@ -48,6 +54,8 @@ test('node', t => {
 
   class Parent extends ElemType
   {
+    static class = 'Parent'
+
     mount() {
       parentMount.apply(this, arguments)
     }

@@ -7,6 +7,8 @@ test('test #1', t => {
 
   class Child extends ElemType
   {
+    static class = 'Child'
+
     mount() {
       childMount.apply(this, arguments)
     }
@@ -14,6 +16,8 @@ test('test #1', t => {
 
   class Parent extends ElemType
   {
+    static class = 'Parent'
+
     state = {
       step : 0,
     }
@@ -44,6 +48,8 @@ test('test #2', t => {
 
   class Child extends ElemType
   {
+    static class = 'Child'
+
     mount() {
       childMount.apply(this, arguments)
     }
@@ -51,6 +57,8 @@ test('test #2', t => {
 
   class Parent extends ElemType
   {
+    static class = 'Parent'
+
     state = {
       step : 0,
     }

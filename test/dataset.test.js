@@ -3,11 +3,15 @@ const { ElemType } = require('..')
 
 class Input extends ElemType
 {
-  static tagName = 'INPUT'
+  static tagName = 'input'
+
+  static class = 'Input'
 }
 
 class Test extends ElemType
 {
+  static class = 'Test'
+
   state = {
     step : 0,
   }
