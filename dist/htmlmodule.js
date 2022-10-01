@@ -17,13 +17,29 @@ return /******/ (() => { // webpackBootstrap
  * @module htmlmodule
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
-exports = module.exports = __webpack_require__(1)
+exports = module.exports = {
+  ...__webpack_require__(1),
+  ...__webpack_require__(19),
+}
 
-exports.AttrType = __webpack_require__(7)
-exports.Context = __webpack_require__(8)
+exports.AriaType = __webpack_require__(5)
+exports.Attributes = __webpack_require__(10)
+exports.AttrType = __webpack_require__(6)
+exports.BooleanType = __webpack_require__(7)
+exports.Class = __webpack_require__(12)
+exports.ClassList = __webpack_require__(13)
+exports.Context = __webpack_require__(21)
+exports.Dataset = __webpack_require__(14)
 exports.ElemType = __webpack_require__(3)
+exports.EventType = __webpack_require__(15)
 exports.HtmlType = __webpack_require__(2)
-exports.TextType = __webpack_require__(6)
+exports.Id = __webpack_require__(16)
+exports.ListType = __webpack_require__(8)
+exports.PropType = __webpack_require__(11)
+exports.RoleType = __webpack_require__(20)
+exports.Style = __webpack_require__(17)
+exports.TextType = __webpack_require__(18)
+exports.TokenType = __webpack_require__(9)
 
 exports.window = __webpack_require__(4)
 
@@ -33,1057 +49,960 @@ exports.window = __webpack_require__(4)
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 const HtmlType = __webpack_require__(2)
+const PropType = __webpack_require__(11)
 
 exports.HtmlA = class HtmlA extends HtmlType
 {
-  static tagName = 'A'
+  static tagName = 'a'
+
+  static props = {
+    download : 'download',
+    hash : PropType,
+    host : PropType,
+    hostname : PropType,
+    href : 'href',
+    hreflang : 'hreflang',
+    password : PropType,
+    pathname : PropType,
+    port : PropType,
+    protocol : PropType,
+    referrerPolicy : 'referrerpolicy',
+    rel : 'rel',
+    rev : 'rev',
+    search : PropType,
+    target : 'target',
+    type : 'type',
+    username : PropType,
+  }
 }
 
 exports.HtmlAbbr = class HtmlAbbr extends HtmlType
 {
-  static tagName = 'ABBR'
+  static tagName = 'abbr'
 }
 
 exports.HtmlAddress = class HtmlAddress extends HtmlType
 {
-  static tagName = 'ADDRESS'
+  static tagName = 'address'
 }
 
 exports.HtmlArea = class HtmlArea extends HtmlType
 {
-  static tagName = 'AREA'
+  static tagName = 'area'
+
+  static props = {
+    alt : 'alt',
+    coords : 'coords',
+    download : 'download',
+    hash : PropType,
+    host : PropType,
+    hostname : PropType,
+    href : 'href',
+    password : PropType,
+    pathname : PropType,
+    port : PropType,
+    protocol : PropType,
+    referrerPolicy : 'referrerpolicy',
+    rel : 'rel',
+    search : PropType,
+    shape : 'shape',
+    target : 'target',
+    username : PropType,
+  }
 }
 
 exports.HtmlArticle = class HtmlArticle extends HtmlType
 {
-  static tagName = 'ARTICLE'
+  static tagName = 'article'
 }
 
 exports.HtmlAside = class HtmlAside extends HtmlType
 {
-  static tagName = 'ASIDE'
+  static tagName = 'aside'
 }
 
 exports.HtmlAudio = class HtmlAudio extends HtmlType
 {
-  static tagName = 'AUDIO'
+  static tagName = 'audio'
+
+  static props = {
+    autoplay : 'autoplay',
+    controls : 'controls',
+    crossOrigin : 'crossorigin',
+    currentTime : PropType,
+    defaultMuted : PropType,
+    defaultPlaybackRate : PropType,
+    loop : 'loop',
+    muted : PropType,
+    playbackRate : PropType,
+    preload : 'preload',
+    src : 'src',
+    srcObject : PropType,
+    volume : PropType,
+  }
 }
 
 exports.HtmlB = class HtmlB extends HtmlType
 {
-  static tagName = 'B'
+  static tagName = 'b'
 }
 
 exports.HtmlBase = class HtmlBase extends HtmlType
 {
-  static tagName = 'BASE'
+  static tagName = 'base'
+
+  static props = {
+    href : 'href',
+    target : 'target',
+  }
 }
 
 exports.HtmlBdi = class HtmlBdi extends HtmlType
 {
-  static tagName = 'BDI'
+  static tagName = 'bdi'
 }
 
 exports.HtmlBdo = class HtmlBdo extends HtmlType
 {
-  static tagName = 'BDO'
+  static tagName = 'bdo'
 }
 
 exports.HtmlBlockQuote = class HtmlBlockQuote extends HtmlType
 {
-  static tagName = 'BLOCKQUOTE'
+  static tagName = 'blockquote'
+
+  static props = {
+    cite : 'cite',
+  }
 }
 
 exports.HtmlBody = class HtmlBody extends HtmlType
 {
-  static tagName = 'BODY'
+  static tagName = 'body'
 }
 
 exports.HtmlBr = class HtmlBr extends HtmlType
 {
-  static tagName = 'BR'
+  static tagName = 'br'
 }
 
 exports.HtmlButton = class HtmlButton extends HtmlType
 {
-  static tagName = 'BUTTON'
+  static tagName = 'button'
+
+  static props = {
+    autofocus : 'autofocus',
+    disabled : 'disabled',
+    formAction : 'formaction',
+    formEnctype : 'formenctype',
+    formMethod : 'formmethod',
+    formNoValidate : 'formnovalidate',
+    formTarget : 'formtarget',
+    name : 'name',
+    type : 'type',
+    value : PropType,
+  }
 }
 
 exports.HtmlCanvas = class HtmlCanvas extends HtmlType
 {
-  static tagName = 'CANVAS'
+  static tagName = 'canvas'
+
+  static props = {
+    height : 'height',
+    width : 'width',
+  }
 }
 
 exports.HtmlCaption = class HtmlCaption extends HtmlType
 {
-  static tagName = 'CAPTION'
+  static tagName = 'caption'
 }
 
 exports.HtmlCite = class HtmlCite extends HtmlType
 {
-  static tagName = 'CITE'
+  static tagName = 'cite'
 }
 
 exports.HtmlCode = class HtmlCode extends HtmlType
 {
-  static tagName = 'CODE'
+  static tagName = 'code'
 }
 
 exports.HtmlCol = class HtmlCol extends HtmlType
 {
-  static tagName = 'COL'
+  static tagName = 'col'
+
+  static props = {
+    span : 'span',
+  }
 }
 
 exports.HtmlColGroup = class HtmlColGroup extends HtmlType
 {
-  static tagName = 'COLGROUP'
+  static tagName = 'colgroup'
+
+  static props = {
+    span : 'span',
+  }
 }
 
 exports.HtmlData = class HtmlData extends HtmlType
 {
-  static tagName = 'DATA'
+  static tagName = 'data'
+
+  static props = {
+    value : PropType,
+  }
 }
 
 exports.HtmlDataList = class HtmlDataList extends HtmlType
 {
-  static tagName = 'DATALIST'
+  static tagName = 'datalist'
 }
 
 exports.HtmlDd = class HtmlDd extends HtmlType
 {
-  static tagName = 'DD'
+  static tagName = 'dd'
 }
 
 exports.HtmlDel = class HtmlDel extends HtmlType
 {
-  static tagName = 'DEL'
+  static tagName = 'del'
+
+  static props = {
+    cite : 'cite',
+    dateTime : 'datetime',
+  }
 }
 
 exports.HtmlDetails = class HtmlDetails extends HtmlType
 {
-  static tagName = 'DETAILS'
+  static tagName = 'details'
+
+  static props = {
+    open : 'open',
+  }
 }
 
 exports.HtmlDfn = class HtmlDfn extends HtmlType
 {
-  static tagName = 'DFN'
+  static tagName = 'dfn'
 }
 
 exports.HtmlDialog = class HtmlDialog extends HtmlType
 {
-  static tagName = 'DIALOG'
+  static tagName = 'dialog'
+
+  static props = {
+    open : 'open',
+    returnValue : PropType,
+  }
 }
 
 exports.HtmlDiv = class HtmlDiv extends HtmlType
 {
-  static tagName = 'DIV'
+  static tagName = 'div'
 }
 
 exports.HtmlDl = class HtmlDl extends HtmlType
 {
-  static tagName = 'DL'
+  static tagName = 'dl'
 }
 
 exports.HtmlDt = class HtmlDt extends HtmlType
 {
-  static tagName = 'DT'
+  static tagName = 'dt'
 }
 
 exports.HtmlEm = class HtmlEm extends HtmlType
 {
-  static tagName = 'EM'
+  static tagName = 'em'
 }
 
 exports.HtmlEmbed = class HtmlEmbed extends HtmlType
 {
-  static tagName = 'EMBED'
+  static tagName = 'embed'
+
+  static props = {
+    height : 'height',
+    src : 'src',
+    type : 'type',
+    width : 'width',
+  }
 }
 
 exports.HtmlFieldSet = class HtmlFieldSet extends HtmlType
 {
-  static tagName = 'FIELDSET'
+  static tagName = 'fieldset'
+
+  static props = {
+    disabled : 'disabled',
+    name : 'name',
+  }
 }
 
 exports.HtmlFigCaption = class HtmlFigCaption extends HtmlType
 {
-  static tagName = 'FIGCAPTION'
+  static tagName = 'figcaption'
 }
 
 exports.HtmlFigure = class HtmlFigure extends HtmlType
 {
-  static tagName = 'FIGURE'
+  static tagName = 'figure'
 }
 
 exports.HtmlFooter = class HtmlFooter extends HtmlType
 {
-  static tagName = 'FOOTER'
+  static tagName = 'footer'
 }
 
 exports.HtmlForm = class HtmlForm extends HtmlType
 {
-  static tagName = 'FORM'
+  static tagName = 'form'
+
+  static props = {
+    acceptCharset : 'accept-charset',
+    action : 'action',
+    autocomplete : 'autocomplete',
+    enctype : 'enctype',
+    method : 'method',
+    name : 'name',
+    noValidate : 'novalidate',
+    target : 'target',
+  }
 }
 
 exports.HtmlH1 = class HtmlH1 extends HtmlType
 {
-  static tagName = 'H1'
+  static tagName = 'h1'
 }
 
 exports.HtmlH2 = class HtmlH2 extends HtmlType
 {
-  static tagName = 'H2'
+  static tagName = 'h2'
 }
 
 exports.HtmlH3 = class HtmlH3 extends HtmlType
 {
-  static tagName = 'H3'
+  static tagName = 'h3'
 }
 
 exports.HtmlH4 = class HtmlH4 extends HtmlType
 {
-  static tagName = 'H4'
+  static tagName = 'h4'
 }
 
 exports.HtmlH5 = class HtmlH5 extends HtmlType
 {
-  static tagName = 'H5'
+  static tagName = 'h5'
 }
 
 exports.HtmlH6 = class HtmlH6 extends HtmlType
 {
-  static tagName = 'H6'
+  static tagName = 'h6'
 }
 
 exports.HtmlHGroup = class HtmlHGroup extends HtmlType
 {
-  static tagName = 'HGROUP'
+  static tagName = 'hgroup'
 }
 
 exports.HtmlHead = class HtmlHead extends HtmlType
 {
-  static tagName = 'HEAD'
+  static tagName = 'head'
 }
 
 exports.HtmlHeader = class HtmlHeader extends HtmlType
 {
-  static tagName = 'HEADER'
+  static tagName = 'header'
 }
 
 exports.HtmlHr = class HtmlHr extends HtmlType
 {
-  static tagName = 'HR'
+  static tagName = 'hr'
 }
 
 exports.HtmlHtml = class HtmlHtml extends HtmlType
 {
-  static tagName = 'HTML'
+  static tagName = 'html'
 }
 
 exports.HtmlI = class HtmlI extends HtmlType
 {
-  static tagName = 'I'
+  static tagName = 'i'
 }
 
 exports.HtmlIFrame = class HtmlIFrame extends HtmlType
 {
-  static tagName = 'IFRAME'
+  static tagName = 'iframe'
+
+  static props = {
+    allowFullScreen : 'allowfullscreen',
+    height : 'height',
+    referrerPolicy : 'referrerpolicy',
+    src : 'src',
+    srcdoc : 'srcdoc',
+    width : 'width',
+  }
 }
 
 exports.HtmlImg = class HtmlImg extends HtmlType
 {
-  static tagName = 'IMG'
+  static tagName = 'img'
+
+  static props = {
+    alt : 'alt',
+    crossOrigin : 'crossorigin',
+    height : 'height',
+    isMap : 'ismap',
+    referrerPolicy : 'referrerpolicy',
+    sizes : 'sizes',
+    src : 'src',
+    srcset : 'srcset',
+    useMap : 'usemap',
+    width : 'width',
+  }
 }
 
 exports.HtmlInput = class HtmlInput extends HtmlType
 {
-  static tagName = 'INPUT'
+  static tagName = 'input'
+
+  static props = {
+    accept : 'accept',
+    alt : 'alt',
+    autocomplete : 'autocomplete',
+    autofocus : 'autofocus',
+    checked : PropType,
+    defaultChecked : PropType,
+    defaultValue : 'value',
+    dirName : 'dirname',
+    disabled : 'disabled',
+    files : 'files',
+    formAction : 'formaction',
+    formEnctype : 'formenctype',
+    formMethod : 'formmethod',
+    formNoValidate : 'formnovalidate',
+    formTarget : 'formtarget',
+    height : 'height',
+    indeterminate : PropType,
+    inputMode : 'inputmode',
+    max : 'max',
+    maxLength : 'maxlength',
+    min : 'min',
+    minLength : 'minlength',
+    multiple : 'multiple',
+    name : 'name',
+    pattern : 'pattern',
+    placeholder : 'placeholder',
+    readOnly : 'readonly',
+    required : 'required',
+    selectionDirection : PropType,
+    selectionEnd : PropType,
+    selectionStart : PropType,
+    size : 'size',
+    src : 'src',
+    step : 'step',
+    type : 'type',
+    value : PropType,
+    valueAsDate : PropType,
+    valueAsNumber : PropType,
+    width : 'width',
+  }
 }
 
 exports.HtmlIns = class HtmlIns extends HtmlType
 {
-  static tagName = 'INS'
+  static tagName = 'ins'
+
+  static props = {
+    cite : 'cite',
+    dateTime : 'datetime',
+  }
 }
 
 exports.HtmlKbd = class HtmlKbd extends HtmlType
 {
-  static tagName = 'KBD'
+  static tagName = 'kbd'
 }
 
 exports.HtmlLabel = class HtmlLabel extends HtmlType
 {
-  static tagName = 'LABEL'
+  static tagName = 'label'
+
+  static props = {
+    htmlFor : 'for',
+  }
 }
 
 exports.HtmlLegend = class HtmlLegend extends HtmlType
 {
-  static tagName = 'LEGEND'
+  static tagName = 'legend'
 }
 
 exports.HtmlLi = class HtmlLi extends HtmlType
 {
-  static tagName = 'LI'
+  static tagName = 'li'
+
+  static props = {
+    value : PropType,
+  }
 }
 
 exports.HtmlLink = class HtmlLink extends HtmlType
 {
-  static tagName = 'LINK'
+  static tagName = 'link'
+
+  static props = {
+    crossOrigin : 'crossorigin',
+    href : 'href',
+    hreflang : 'hreflang',
+    media : 'media',
+    nonce : 'nonce',
+    referrerPolicy : 'referrerpolicy',
+    rel : 'rel',
+    rev : 'rev',
+    type : 'type',
+  }
 }
 
 exports.HtmlMain = class HtmlMain extends HtmlType
 {
-  static tagName = 'MAIN'
+  static tagName = 'main'
 }
 
 exports.HtmlMap = class HtmlMap extends HtmlType
 {
-  static tagName = 'MAP'
+  static tagName = 'map'
+
+  static props = {
+    name : 'name',
+  }
 }
 
 exports.HtmlMark = class HtmlMark extends HtmlType
 {
-  static tagName = 'MARK'
+  static tagName = 'mark'
 }
 
 exports.HtmlMenu = class HtmlMenu extends HtmlType
 {
-  static tagName = 'MENU'
+  static tagName = 'menu'
 }
 
 exports.HtmlMeta = class HtmlMeta extends HtmlType
 {
-  static tagName = 'META'
+  static tagName = 'meta'
+
+  static props = {
+    charset : 'charset',
+    content : 'content',
+    httpEquiv : 'http-equiv',
+    name : 'name',
+  }
 }
 
 exports.HtmlMeter = class HtmlMeter extends HtmlType
 {
-  static tagName = 'METER'
+  static tagName = 'meter'
+
+  static props = {
+    high : 'high',
+    low : 'low',
+    max : 'max',
+    min : 'min',
+    optimum : 'optimum',
+    value : PropType,
+  }
 }
 
 exports.HtmlNav = class HtmlNav extends HtmlType
 {
-  static tagName = 'NAV'
+  static tagName = 'nav'
 }
 
 exports.HtmlNoScript = class HtmlNoScript extends HtmlType
 {
-  static tagName = 'NOSCRIPT'
+  static tagName = 'noscript'
 }
 
 exports.HtmlObject = class HtmlObject extends HtmlType
 {
-  static tagName = 'OBJECT'
+  static tagName = 'object'
+
+  static props = {
+    data : 'data',
+    height : 'height',
+    name : 'name',
+    type : 'type',
+    useMap : 'usemap',
+    width : 'width',
+  }
 }
 
 exports.HtmlOl = class HtmlOl extends HtmlType
 {
-  static tagName = 'OL'
+  static tagName = 'ol'
+
+  static props = {
+    reversed : 'reversed',
+    start : 'start',
+    type : 'type',
+  }
 }
 
 exports.HtmlOptGroup = class HtmlOptGroup extends HtmlType
 {
-  static tagName = 'OPTGROUP'
+  static tagName = 'optgroup'
+
+  static props = {
+    disabled : 'disabled',
+    label : 'label',
+  }
 }
 
 exports.HtmlOption = class HtmlOption extends HtmlType
 {
-  static tagName = 'OPTION'
+  static tagName = 'option'
+
+  static props = {
+    defaultSelected : PropType,
+    disabled : 'disabled',
+    label : 'label',
+    selected : PropType,
+    text : 'text',
+    value : PropType,
+  }
 }
 
 exports.HtmlOutput = class HtmlOutput extends HtmlType
 {
-  static tagName = 'OUTPUT'
+  static tagName = 'output'
+
+  static props = {
+    defaultValue : PropType,
+    htmlFor : 'for',
+    name : 'name',
+    value : PropType,
+  }
 }
 
 exports.HtmlP = class HtmlP extends HtmlType
 {
-  static tagName = 'P'
+  static tagName = 'p'
 }
 
 exports.HtmlParam = class HtmlParam extends HtmlType
 {
-  static tagName = 'PARAM'
+  static tagName = 'param'
 }
 
 exports.HtmlPicture = class HtmlPicture extends HtmlType
 {
-  static tagName = 'PICTURE'
+  static tagName = 'picture'
 }
 
 exports.HtmlPre = class HtmlPre extends HtmlType
 {
-  static tagName = 'PRE'
+  static tagName = 'pre'
 }
 
 exports.HtmlProgress = class HtmlProgress extends HtmlType
 {
-  static tagName = 'PROGRESS'
+  static tagName = 'progress'
+
+  static props = {
+    max : 'max',
+    value : PropType,
+  }
 }
 
 exports.HtmlQ = class HtmlQ extends HtmlType
 {
-  static tagName = 'Q'
+  static tagName = 'q'
+
+  static props = {
+    cite : 'cite',
+  }
 }
 
 exports.HtmlRp = class HtmlRp extends HtmlType
 {
-  static tagName = 'RP'
+  static tagName = 'rp'
 }
 
 exports.HtmlRt = class HtmlRt extends HtmlType
 {
-  static tagName = 'RT'
+  static tagName = 'rt'
 }
 
 exports.HtmlRuby = class HtmlRuby extends HtmlType
 {
-  static tagName = 'RUBY'
+  static tagName = 'ruby'
 }
 
 exports.HtmlS = class HtmlS extends HtmlType
 {
-  static tagName = 'S'
+  static tagName = 's'
 }
 
 exports.HtmlSamp = class HtmlSamp extends HtmlType
 {
-  static tagName = 'SAMP'
+  static tagName = 'samp'
 }
 
 exports.HtmlScript = class HtmlScript extends HtmlType
 {
-  static tagName = 'SCRIPT'
+  static tagName = 'script'
+
+  static props = {
+    async : 'async',
+    charset : 'charset',
+    crossOrigin : 'crossorigin',
+    defer : 'defer',
+    integrity : 'integrity',
+    noModule : 'nomodule',
+    nonce : 'nonce',
+    referrerPolicy : 'referrerpolicy',
+    src : 'src',
+    text : 'text',
+    type : 'type',
+  }
 }
 
 exports.HtmlSection = class HtmlSection extends HtmlType
 {
-  static tagName = 'SECTION'
+  static tagName = 'section'
 }
 
 exports.HtmlSelect = class HtmlSelect extends HtmlType
 {
-  static tagName = 'SELECT'
+  static tagName = 'select'
+
+  static props = {
+    autocomplete : 'autocomplete',
+    autofocus : 'autofocus',
+    disabled : 'disabled',
+    multiple : 'multiple',
+    name : 'name',
+    required : 'required',
+    selectedIndex : PropType,
+    size : 'size',
+    value : PropType,
+  }
 }
 
 exports.HtmlSmall = class HtmlSmall extends HtmlType
 {
-  static tagName = 'SMALL'
+  static tagName = 'small'
 }
 
 exports.HtmlSource = class HtmlSource extends HtmlType
 {
-  static tagName = 'SOURCE'
+  static tagName = 'source'
+
+  static props = {
+    media : 'media',
+    sizes : 'sizes',
+    src : 'src',
+    srcset : 'srcset',
+    type : 'type',
+  }
 }
 
 exports.HtmlSpan = class HtmlSpan extends HtmlType
 {
-  static tagName = 'SPAN'
+  static tagName = 'span'
 }
 
 exports.HtmlStrong = class HtmlStrong extends HtmlType
 {
-  static tagName = 'STRONG'
+  static tagName = 'strong'
 }
 
 exports.HtmlStyle = class HtmlStyle extends HtmlType
 {
-  static tagName = 'STYLE'
+  static tagName = 'style'
+
+  static props = {
+    media : 'media',
+    nonce : 'nonce',
+    type : 'type',
+  }
 }
 
 exports.HtmlSub = class HtmlSub extends HtmlType
 {
-  static tagName = 'SUB'
+  static tagName = 'sub'
 }
 
 exports.HtmlSummary = class HtmlSummary extends HtmlType
 {
-  static tagName = 'SUMMARY'
+  static tagName = 'summary'
 }
 
 exports.HtmlSup = class HtmlSup extends HtmlType
 {
-  static tagName = 'SUP'
+  static tagName = 'sup'
 }
 
 exports.HtmlTBody = class HtmlTBody extends HtmlType
 {
-  static tagName = 'TBODY'
+  static tagName = 'tbody'
 }
 
 exports.HtmlTFoot = class HtmlTFoot extends HtmlType
 {
-  static tagName = 'TFOOT'
+  static tagName = 'tfoot'
 }
 
 exports.HtmlTHead = class HtmlTHead extends HtmlType
 {
-  static tagName = 'THEAD'
+  static tagName = 'thead'
 }
 
 exports.HtmlTable = class HtmlTable extends HtmlType
 {
-  static tagName = 'TABLE'
+  static tagName = 'table'
 }
 
 exports.HtmlTd = class HtmlTd extends HtmlType
 {
-  static tagName = 'TD'
+  static tagName = 'td'
+
+  static props = {
+    colSpan : 'colspan',
+    headers : 'headers',
+    rowSpan : 'rowspan',
+  }
 }
 
 exports.HtmlTemplate = class HtmlTemplate extends HtmlType
 {
-  static tagName = 'TEMPLATE'
+  static tagName = 'template'
 }
 
 exports.HtmlTextArea = class HtmlTextArea extends HtmlType
 {
-  static tagName = 'TEXTAREA'
+  static tagName = 'textarea'
+
+  static props = {
+    autocomplete : 'autocomplete',
+    autofocus : 'autofocus',
+    cols : 'cols',
+    defaultValue : PropType,
+    dirName : 'dirname',
+    disabled : 'disabled',
+    inputMode : 'inputmode',
+    maxLength : 'maxlength',
+    minLength : 'minlength',
+    name : 'name',
+    placeholder : 'placeholder',
+    readOnly : 'readonly',
+    required : 'required',
+    rows : 'rows',
+    selectionDirection : PropType,
+    selectionEnd : PropType,
+    selectionStart : PropType,
+    step : 'step',
+    value : PropType,
+    wrap : 'wrap',
+  }
 }
 
 exports.HtmlTh = class HtmlTh extends HtmlType
 {
-  static tagName = 'TH'
+  static tagName = 'th'
+
+  static props = {
+    abbr : 'abbr',
+    colSpan : 'colspan',
+    headers : 'headers',
+    rowSpan : 'rowspan',
+    scope : 'scope',
+  }
 }
 
 exports.HtmlTime = class HtmlTime extends HtmlType
 {
-  static tagName = 'TIME'
+  static tagName = 'time'
+
+  static props = {
+    dateTime : 'datetime',
+  }
 }
 
 exports.HtmlTitle = class HtmlTitle extends HtmlType
 {
-  static tagName = 'TITLE'
+  static tagName = 'title'
+
+  static props = {
+    text : 'text',
+  }
 }
 
 exports.HtmlTr = class HtmlTr extends HtmlType
 {
-  static tagName = 'TR'
+  static tagName = 'tr'
 }
 
 exports.HtmlTrack = class HtmlTrack extends HtmlType
 {
-  static tagName = 'TRACK'
+  static tagName = 'track'
+
+  static props = {
+    default : 'default',
+    kind : 'kind',
+    label : 'label',
+    src : 'src',
+    srclang : 'srclang',
+  }
 }
 
 exports.HtmlU = class HtmlU extends HtmlType
 {
-  static tagName = 'U'
+  static tagName = 'u'
 }
 
 exports.HtmlUl = class HtmlUl extends HtmlType
 {
-  static tagName = 'UL'
+  static tagName = 'ul'
 }
 
 exports.HtmlVar = class HtmlVar extends HtmlType
 {
-  static tagName = 'VAR'
+  static tagName = 'var'
 }
 
 exports.HtmlVideo = class HtmlVideo extends HtmlType
 {
-  static tagName = 'VIDEO'
+  static tagName = 'video'
+
+  static props = {
+    autoplay : 'autoplay',
+    controls : 'controls',
+    crossOrigin : 'crossorigin',
+    currentTime : PropType,
+    defaultMuted : PropType,
+    defaultPlaybackRate : PropType,
+    height : 'height',
+    loop : 'loop',
+    muted : PropType,
+    playbackRate : PropType,
+    poster : 'poster',
+    preload : 'preload',
+    src : 'src',
+    srcObject : PropType,
+    volume : PropType,
+    width : 'width',
+  }
 }
 
 exports.HtmlWbr = class HtmlWbr extends HtmlType
 {
-  static tagName = 'WBR'
+  static tagName = 'wbr'
 }
-
-exports.HtmlA.defineProps({
-  download : 'download',
-  hash : 'hash',
-  host : 'host',
-  hostname : 'hostname',
-  href : 'href',
-  hreflang : 'hreflang',
-  password : 'password',
-  pathname : 'pathname',
-  port : 'port',
-  protocol : 'protocol',
-  referrerPolicy : 'referrerpolicy',
-  rel : 'rel',
-  rev : 'rev',
-  search : 'search',
-  target : 'target',
-  type : 'type',
-  username : 'username',
-})
-
-exports.HtmlArea.defineProps({
-  alt : 'alt',
-  coords : 'coords',
-  download : 'download',
-  hash : 'hash',
-  host : 'host',
-  hostname : 'hostname',
-  href : 'href',
-  hreflang : 'hreflang',
-  password : 'password',
-  pathname : 'pathname',
-  port : 'port',
-  protocol : 'protocol',
-  referrerPolicy : 'referrerpolicy',
-  rel : 'rel',
-  search : 'search',
-  shape : 'shape',
-  target : 'target',
-  type : 'type',
-  username : 'username',
-})
-
-exports.HtmlAudio.defineMethods([
-  'addTextTrack',
-  'canPlayType',
-  'fastSeek',
-  'getStartDate',
-  'load',
-  'pause',
-  'play',
-])
-
-exports.HtmlAudio.defineProps({
-  autoplay : 'autoplay',
-  controls : 'controls',
-  crossOrigin : 'crossorigin',
-  currentTime : null,
-  defaultMuted : null,
-  defaultPlaybackRate : null,
-  loop : 'loop',
-  muted : null,
-  playbackRate : null,
-  preload : 'preload',
-  src : 'src',
-  srcObject : null,
-  volume : null,
-})
-
-exports.HtmlBase.defineProps({
-  href : 'href',
-  target : 'target',
-})
-
-exports.HtmlBlockQuote.defineProps({
-  cite : 'cite',
-})
-
-exports.HtmlButton.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-exports.HtmlButton.defineProps({
-  autofocus : 'autofocus',
-  disabled : 'disabled',
-  formAction : 'formaction',
-  formEnctype : 'formenctype',
-  formMethod : 'formmethod',
-  formNoValidate : 'formnovalidate',
-  formTarget : 'formtarget',
-  name : 'name',
-  type : 'type',
-  value : null,
-})
-
-exports.HtmlCanvas.defineMethods([
-  'getContext',
-  'probablySupportsContext',
-  'toBlob',
-  'toDataURL',
-])
-
-exports.HtmlCanvas.defineProps({
-  height : 'height',
-  width : 'width',
-})
-
-exports.HtmlCol.defineProps({
-  span : 'span',
-})
-
-exports.HtmlColGroup.defineProps({
-  span : 'span',
-})
-
-exports.HtmlData.defineProps({
-  value : null,
-})
-
-exports.HtmlDel.defineProps({
-  cite : 'cite',
-  dateTime : 'datetime',
-})
-
-exports.HtmlDetails.defineProps({
-  open : 'open',
-})
-
-exports.HtmlDialog.defineMethods([
-  'close',
-  'show',
-  'showModal',
-])
-
-exports.HtmlDialog.defineProps({
-  open : 'open',
-  returnValue : null,
-})
-
-exports.HtmlEmbed.defineProps({
-  height : 'height',
-  src : 'src',
-  type : 'type',
-  width : 'width',
-})
-
-exports.HtmlFieldSet.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-exports.HtmlFieldSet.defineProps({
-  disabled : 'disabled',
-  name : 'name',
-})
-
-exports.HtmlForm.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'reset',
-  'submit',
-])
-
-exports.HtmlForm.defineProps({
-  acceptCharset : 'accept-charset',
-  action : 'action',
-  autocomplete : 'autocomplete',
-  enctype : 'enctype',
-  method : 'method',
-  name : 'name',
-  noValidate : 'novalidate',
-  target : 'target',
-})
-
-exports.HtmlIFrame.defineProps({
-  allowFullScreen : 'allowfullscreen',
-  height : 'height',
-  referrerPolicy : 'referrerpolicy',
-  src : 'src',
-  srcdoc : 'srcdoc',
-  width : 'width',
-})
-
-exports.HtmlImg.defineMethods([
-  'decode',
-])
-
-exports.HtmlImg.defineProps({
-  alt : 'alt',
-  crossOrigin : 'crossorigin',
-  height : 'height',
-  isMap : 'ismap',
-  referrerPolicy : 'referrerpolicy',
-  sizes : 'sizes',
-  src : 'src',
-  srcset : 'srcset',
-  useMap : 'usemap',
-  width : 'width',
-})
-
-exports.HtmlInput.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'select',
-  'setCustomValidity',
-  'setRangeText',
-  'setSelectionRange',
-  'stepDown',
-  'stepUp',
-])
-
-exports.HtmlInput.defineProps({
-  accept : 'accept',
-  alt : 'alt',
-  autocomplete : 'autocomplete',
-  autofocus : 'autofocus',
-  checked : null,
-  defaultChecked : null,
-  defaultValue : 'value',
-  dirName : 'dirname',
-  disabled : 'disabled',
-  files : 'files',
-  formAction : 'formaction',
-  formEnctype : 'formenctype',
-  formMethod : 'formmethod',
-  formNoValidate : 'formnovalidate',
-  formTarget : 'formtarget',
-  height : 'height',
-  indeterminate : null,
-  inputMode : 'inputmode',
-  max : 'max',
-  maxLength : 'maxlength',
-  min : 'min',
-  minLength : 'minlength',
-  multiple : 'multiple',
-  name : 'name',
-  pattern : 'pattern',
-  placeholder : 'placeholder',
-  readOnly : 'readonly',
-  required : 'required',
-  selectionDirection : null,
-  selectionEnd : null,
-  selectionStart : null,
-  size : 'size',
-  src : 'src',
-  step : 'step',
-  type : 'type',
-  value : null,
-  valueAsDate : null,
-  valueAsNumber : null,
-  width : 'width',
-})
-
-exports.HtmlIns.defineProps({
-  cite : 'cite',
-  dateTime : 'datetime',
-})
-
-exports.HtmlLabel.defineProps({
-  htmlFor : 'for',
-})
-
-exports.HtmlLi.defineProps({
-  value : null,
-})
-
-exports.HtmlLink.defineProps({
-  crossOrigin : 'crossorigin',
-  href : 'href',
-  hreflang : 'hreflang',
-  media : 'media',
-  nonce : 'nonce',
-  referrerPolicy : 'referrerpolicy',
-  rel : 'rel',
-  rev : 'rev',
-  type : 'type',
-})
-
-exports.HtmlMap.defineProps({
-  name : 'name',
-})
-
-exports.HtmlMeta.defineProps({
-  charset : 'charset',
-  content : 'content',
-  httpEquiv : 'http-equiv',
-  name : 'name',
-})
-
-exports.HtmlMeter.defineProps({
-  high : 'high',
-  low : 'low',
-  max : 'max',
-  min : 'min',
-  optimum : 'optimum',
-  value : null,
-})
-
-exports.HtmlObject.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-exports.HtmlObject.defineProps({
-  data : 'data',
-  height : 'height',
-  name : 'name',
-  type : 'type',
-  useMap : 'usemap',
-  width : 'width',
-})
-
-exports.HtmlOl.defineProps({
-  reversed : 'reversed',
-  start : 'start',
-  type : 'type',
-})
-
-exports.HtmlOptGroup.defineProps({
-  disabled : 'disabled',
-  label : 'label',
-})
-
-exports.HtmlOption.defineProps({
-  defaultSelected : null,
-  disabled : 'disabled',
-  label : 'label',
-  selected : null,
-  text : 'text',
-  value : null,
-})
-
-exports.HtmlOutput.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-exports.HtmlOutput.defineProps({
-  defaultValue : null,
-  htmlFor : 'for',
-  name : 'name',
-  value : null,
-})
-
-exports.HtmlProgress.defineProps({
-  max : 'max',
-  value : null,
-})
-
-exports.HtmlQ.defineProps({
-  cite : 'cite',
-})
-
-exports.HtmlScript.defineProps({
-  async : 'async',
-  charset : 'charset',
-  crossOrigin : 'crossorigin',
-  defer : 'defer',
-  integrity : 'integrity',
-  noModule : 'nomodule',
-  nonce : 'nonce',
-  referrerPolicy : 'referrerpolicy',
-  src : 'src',
-  text : 'text',
-  type : 'type',
-})
-
-exports.HtmlSelect.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'setCustomValidity',
-])
-
-exports.HtmlSelect.defineProps({
-  autocomplete : 'autocomplete',
-  autofocus : 'autofocus',
-  disabled : 'disabled',
-  multiple : 'multiple',
-  name : 'name',
-  required : 'required',
-  selectedIndex : null,
-  size : 'size',
-  value : null,
-})
-
-exports.HtmlSource.defineProps({
-  media : 'media',
-  sizes : 'sizes',
-  src : 'src',
-  srcset : 'srcset',
-  type : 'type',
-})
-
-exports.HtmlStyle.defineProps({
-  media : 'media',
-  nonce : 'nonce',
-  type : 'type',
-})
-
-exports.HtmlTd.defineProps({
-  colSpan : 'colspan',
-  headers : 'headers',
-  rowSpan : 'rowspan',
-})
-
-exports.HtmlTextArea.defineMethods([
-  'checkValidity',
-  'reportValidity',
-  'select',
-  'setCustomValidity',
-  'setRangeText',
-  'setSelectionRange',
-])
-
-exports.HtmlTextArea.defineProps({
-  autocomplete : 'autocomplete',
-  autofocus : 'autofocus',
-  cols : 'cols',
-  defaultValue : null,
-  dirName : 'dirname',
-  disabled : 'disabled',
-  inputMode : 'inputmode',
-  maxLength : 'maxlength',
-  minLength : 'minlength',
-  name : 'name',
-  placeholder : 'placeholder',
-  readOnly : 'readonly',
-  required : 'required',
-  rows : 'rows',
-  selectionDirection : null,
-  selectionEnd : null,
-  selectionStart : null,
-  step : 'step',
-  value : null,
-  wrap : 'wrap',
-})
-
-exports.HtmlTh.defineProps({
-  abbr : 'abbr',
-  colSpan : 'colspan',
-  headers : 'headers',
-  rowSpan : 'rowspan',
-  scope : 'scope',
-})
-
-exports.HtmlTime.defineProps({
-  dateTime : 'datetime',
-})
-
-exports.HtmlTitle.defineProps({
-  text : 'text',
-})
-
-exports.HtmlTrack.defineProps({
-  default : 'default',
-  kind : 'kind',
-  label : 'label',
-  src : 'src',
-  srclang : 'srclang',
-})
-
-exports.HtmlVideo.defineMethods([
-  'addTextTrack',
-  'canPlayType',
-  'fastSeek',
-  'getStartDate',
-  'load',
-  'pause',
-  'play',
-])
-
-exports.HtmlVideo.defineProps({
-  autoplay : 'autoplay',
-  controls : 'controls',
-  crossOrigin : 'crossorigin',
-  currentTime : null,
-  defaultMuted : null,
-  defaultPlaybackRate : null,
-  height : 'height',
-  loop : 'loop',
-  muted : null,
-  playbackRate : null,
-  poster : 'poster',
-  preload : 'preload',
-  src : 'src',
-  srcObject : null,
-  volume : null,
-  width : 'width',
-})
-
-Object.values(exports).forEach(type => type.class = undefined)
 
 
 /***/ }),
@@ -1091,34 +1010,27 @@ Object.values(exports).forEach(type => type.class = undefined)
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const ElemType = __webpack_require__(3)
+const PropType = __webpack_require__(11)
 
 /**
  * @abstract
  */
 class HtmlType extends ElemType
 {
-  static class = undefined
+  static props = {
+    accessKey : 'accesskey',
+    autofocus : 'autofocus',
+    contentEditable : 'contenteditable',
+    dir : 'dir',
+    hidden : 'hidden',
+    inputMode : 'inputmode',
+    lang : 'lang',
+    tabIndex : 'tabindex',
+    title : 'title',
+    translate : 'translate',
+    innerText : PropType,
+  }
 }
-
-HtmlType.defineMethods([
-  'blur',
-  'click',
-  'focus',
-])
-
-HtmlType.defineProps({
-  accessKey : 'accesskey',
-  autofocus : 'autofocus',
-  contentEditable : 'contenteditable',
-  dir : 'dir',
-  hidden : 'hidden',
-  innerText : null,
-  inputMode : 'inputmode',
-  lang : 'lang',
-  tabIndex : 'tabindex',
-  title : 'title',
-  translate : 'translate',
-})
 
 module.exports = HtmlType
 
@@ -1127,67 +1039,57 @@ module.exports = HtmlType
 /* 3 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const { Comment, CustomEvent, HTMLElement, document } = __webpack_require__(4)
-const EventType = __webpack_require__(5)
-const TextType = __webpack_require__(6)
+const { Comment, CustomEvent, document } = __webpack_require__(4)
+const AriaType = __webpack_require__(5)
+const AttrType = __webpack_require__(6)
+const Attributes = __webpack_require__(10)
+const Class = __webpack_require__(12)
+const ClassList = __webpack_require__(13)
+const Dataset = __webpack_require__(14)
+const EventType = __webpack_require__(15)
+const Id = __webpack_require__(16)
+const PropType = __webpack_require__(11)
+const Style = __webpack_require__(17)
+const TextType = __webpack_require__(18)
 
 const { indexOf } = Array.prototype
-const sampleNode = document.createElement('div')
 const skipTypes = {
   undefined : true,
   boolean : true,
 }
 const specialProps = {
   children : true,
+  class : true,
   node : true,
   parent : true,
   tagName : true,
 }
+const nullDescriptor = {
+  writable : true,
+  value : null,
+}
 const descriptors = {
-  __vnode : {
-    writable : true,
-    value : null,
-  },
-  __node : {
-    writable : true,
-    value : null,
-  },
-  __children : {
-    writable : true,
-    value : null,
-  },
-  __index : {
-    writable : true,
-    value : null,
-  },
-  __handlers : {
-    writable : true,
-    value : null,
-  },
-  __loop : {
-    writable : true,
-    value : false,
-  },
-  props : {
-    writable : true,
-    value : null,
-  },
-  vnode : {
-    writable : true,
-    value : null,
-  },
-  node : {
-    writable : true,
-    value : null,
-  },
-  children : {
-    writable : true,
-    value : undefined,
-  },
+  __vnode : nullDescriptor,
+  __node : nullDescriptor,
+  __children : nullDescriptor,
+  __parent : nullDescriptor,
+  __index : nullDescriptor,
+  __ref : nullDescriptor,
+  __handlers : nullDescriptor,
+  __sampleNode : nullDescriptor,
+  vnode : nullDescriptor,
+  node : nullDescriptor,
+  children : nullDescriptor,
   parent : {
     writable : true,
     value : undefined,
   },
+}
+let init
+
+function debug() {
+  init.apply(this, arguments)
+  this.node.__elem = this
 }
 
 /**
@@ -1195,34 +1097,51 @@ const descriptors = {
  */
 class ElemType
 {
-  static namespace = undefined
+  static namespace = null
 
-  static tagName = 'DIV'
+  static tagName = 'div'
 
-  static role = undefined
+  static role = null
 
-  static class = undefined
+  static class = null
 
-  static className = undefined
+  static className = null
 
-  static specialProps = specialProps
+  static props = {
+    role : 'role',
+    className : Class,
+    classList : ClassList,
+    id : Id,
+    style : Style,
+    dataset : Dataset,
+    attributes : Attributes,
+    textContent : PropType,
+    innerHTML : PropType,
+    ...EventType.props,
+    ...AriaType.props,
+  }
 
-  static __mounted = new Set
-
-  static __debug = false
+  static defaultProps = null
 
   /**
    * @param {*} [props]
    */
-  constructor(props = {}) {
-    if(props?.constructor !== Object) {
-      props = { children : props }
-    }
-    if(props.children === undefined) {
-      props.children = null
-    }
+  constructor(props) {
+    this.constructor.__init()
     Object.defineProperties(this, descriptors)
-    this.props = props
+    Object.defineProperty(this, 'props', {
+      writable : true,
+      value : {
+        children : null,
+        ...this.constructor.defaultProps,
+      },
+    })
+    if(props?.constructor === Object) {
+      Object.assign(this.props, props)
+    }
+    else if(props !== undefined) {
+      this.props.children = props
+    }
   }
 
   /**
@@ -1237,7 +1156,7 @@ class ElemType
    * @param {{}|function} state
    */
   setState(state) {
-    const prevState = Object.assign({}, this.state)
+    const prevState = { ...this.state }
     if(!this.state) {
       this.state = {}
     }
@@ -1245,11 +1164,10 @@ class ElemType
       state = state(this.state)
     }
     Object.assign(this.state, state)
-    this.vnode = { attributes : {} }
+    this.vnode = this.__createVNode()
     this.__assignProps()
     this.__update()
     this.update(this.props, prevState)
-    ElemType.__mounted.clear()
   }
 
   /**
@@ -1298,30 +1216,68 @@ class ElemType
   }
 
   /**
+   * @param {Element} node
+   * @return {ElemType|*|null}
+   */
+  getElemByNode(node) {
+    return node === this.node ?
+      this :
+      this.find(ElemType, elem => elem.node === node)
+  }
+
+  /**
+   * @param {constructor @link ElemType} type
+   * @param {function} [filter]
+   * @return {ElemType|*|null}
+   */
+  closest(type, filter) {
+    if(this instanceof type) {
+      if(!filter || filter(this)) {
+        return this
+      }
+    }
+    return this.__parent?.closest(type, filter) || null
+  }
+
+  /**
+   * @public
+   */
+  blur() {
+    this.node.blur()
+  }
+
+  /**
+   * @public
+   */
+  click() {
+    this.node.click()
+  }
+
+  /**
+   * @public
+   */
+  focus() {
+    this.node.focus()
+  }
+
+  /**
    * @param {Event|string|*} event
-   * @param {CustomEventInit|EventInit|{}} [dict]
-   * @param {boolean} [dict.bubbles=false]
-   * @param {boolean} [dict.cancelable=false]
-   * @param {*} [dict.detail]
+   * @param {CustomEventInit|EventInit|{}|*} [dict]
    * @returns {boolean}
    */
   emit(event, dict) {
-    if(typeof event === 'string') {
-      const description = EventType[event] || [CustomEvent]
-      const [constructor, bubbles, cancelable] = description
-      if(!dict) {
-        dict = {
-          bubbles : bubbles || false,
-          cancelable : cancelable || false,
-        }
-      }
-      event = new constructor(event, dict)
+    if(typeof event !== 'string') {
+      return this.node.dispatchEvent(event)
     }
+    const desc = EventType.types[event]
+    event = desc ?
+      new desc.constructor(event, { ...desc.dict, ...dict }) :
+      new CustomEvent(event, dict)
     return this.node.dispatchEvent(event)
   }
 
   /**
-   * @param {string} eventName
+   * @param {string} type
    * @param {function} callback
    * @param {{capture,once,passive}|boolean|*} [options]
    * @param {boolean} [options.capture=false]
@@ -1329,43 +1285,50 @@ class ElemType
    * @param {boolean} [options.passive=false]
    * @protected
    */
-  on(eventName, callback, options = {}) {
+  on(type, callback, options = {}) {
+    if(!this.__handlers) {
+      this.__handlers = new Map
+    }
     if(typeof options === 'boolean') {
       options = { capture : options }
     }
-    let listeners = this.__handlers.get(eventName)
+    let listeners = this.__handlers.get(type)
     if(!listeners) {
-      this.__handlers.set(eventName, listeners = new Map)
+      this.__handlers.set(type, listeners = new Map)
     }
     let listener = listeners.get(callback)
     if(listener) {
-      listener.__on = true
       return
     }
     listener = e => {
       options.once && listeners.delete(callback)
-      callback.call(this, e, this.__getElemByNode(e.target))
+      callback.call(this, e, this.getElemByNode(e.target))
     }
-    listener.__on = true
     listener.__options = options
     listeners.set(callback, listener)
+    this.node.addEventListener(type, listener, options)
   }
 
   /**
-   * @param {string} eventName
+   * @param {string} type
    * @param {function} callback
    * @param {{capture}|boolean|*} [options]
    * @param {boolean} [options.capture=false]
    * @protected
    */
-  off(eventName, callback, options = {}) {
+  off(type, callback, options = {}) {
+    if(!this.__handlers) {
+      return
+    }
     if(typeof options === 'boolean') {
       options = { capture : options }
     }
-    const listeners = this.__handlers.get(eventName)
+    const listeners = this.__handlers.get(type)
     const listener = listeners?.get(callback)
     if(listener) {
-      listener.__on = false
+      this.node.removeEventListener(type, listener, options)
+      listeners.delete(callback)
+      listeners.size || this.__handlers.delete(type)
     }
   }
 
@@ -1373,16 +1336,18 @@ class ElemType
    * @protected
    */
   removeAllListeners() {
-    let eventName, listeners, listener
-    for([eventName, listeners] of this.__handlers.entries()) {
-      if(typeof listeners === 'function') {
-        listeners.__on = false
-        continue
-      }
-      for(listener of listeners.values()) {
-        listener.__on = false
-      }
+    if(!this.__handlers) {
+      return
     }
+    let type, listeners, callback, listener
+    for([type, listeners] of this.__handlers.entries()) {
+      for([callback, listener] of listeners.entries()) {
+        this.node.removeEventListener(type, listener, listener.__options)
+        listeners.delete(callback)
+      }
+      this.__handlers.delete(type)
+    }
+    this.__handlers = null
   }
 
   /**
@@ -1390,6 +1355,14 @@ class ElemType
    * @abstract
    */
   init() {
+    void null
+  }
+
+  /**
+   * @protected
+   * @abstract
+   */
+  assign() {
     void null
   }
 
@@ -1429,42 +1402,6 @@ class ElemType
   }
 
   /**
-   * @param {constructor @link AttrType|string} attr
-   * @param {function} [attr.get]
-   * @param {function} [attr.has]
-   * @param {*|null} [attr.defaultValue]
-   * @returns {string|*|null}
-   * @protected
-   */
-  getAttr(attr) {
-    if(typeof attr === 'function') {
-      return attr.get(this)
-    }
-    return this.vnode.attributes[attr]
-  }
-
-  /**
-   * @param {constructor @link AttrType|string} attr
-   * @param {string} [attr.nodeName]
-   * @param {function} [attr.removeOnValue]
-   * @param {function} [attr.set]
-   * @param {string|null|*} value
-   * @protected
-   */
-  setAttr(attr, value) {
-    const attributes = this.vnode.attributes
-    if(value === null) {
-      delete attributes[attr.nodeName || attr]
-    }
-    else if(typeof attr === 'function') {
-      attr.set(this, value)
-    }
-    else if(value !== attributes[attr]) {
-      attributes[attr] = value
-    }
-  }
-
-  /**
    * @param {Element} [node]
    * @param {Element} [parentNode]
    * @private
@@ -1473,62 +1410,60 @@ class ElemType
     if(this.node) {
       return
     }
-    this.__handlers = new Map
-    this.vnode = { attributes : {} }
+    this.node = node || this.__createNode()
+    this.__sampleNode = this.props.tagName ?
+      this.__createNode() :
+      this.constructor.__sampleNode
+    this.vnode = this.__createVNode()
     this.state && Object.defineProperty(this, 'state', {
       enumerable : false,
       value : this.state,
     })
     this.init()
     this.__assignProps()
+    this.assign()
     this.__children = this.render()
+    this.__setRefs()
     if(this.parent === undefined) {
-      this.node = node || this.__createNode()
       node || parentNode?.append(this.node)
       this.__setProps()
       this.__setChildren()
-      node && ElemType.__mount(this)
+      node && this.__mount()
       return
     }
     if(this.parent === null) {
-      this.node = node || this.__createNode()
       this.__node = new Comment(this.constructor.name)
       if(node?.parentNode) {
         node.replaceWith(this.__node)
       }
       else parentNode?.append(this.__node)
       this.children = []
-      node && ElemType.__mount(this)
+      node && this.__mount()
       return
-    }
-    if(!this.parent.props) {
-      this.node = node || this.__createNode()
-      this.__setProps()
-      this.__setChildren()
-      this.__node = new Comment(this.constructor.name)
-      this.node.replaceWith(this.__node)
-      this.parent.append(this.node)
-      node && ElemType.__mount(this)
-      return
-    }
-    this.node = !parentNode && node || this.__createNode()
-    if(node && parentNode) {
-      this.children.forEach(child => child.__destroy())
-      this.children = []
     }
     this.__setProps()
     this.__setChildren()
-    this.parent.__init()
-    this.__node = this.parent.node
-    node?.replaceWith(this.parent.__node || this.parent.node)
-    node && ElemType.__mount(this)
+    this.__node = new Comment(this.constructor.name)
+    this.node.replaceWith(this.__node)
+    this.parent.append(this.node)
+    node && this.__mount()
+  }
+
+  /**
+   * @private
+   */
+  __mount() {
+    let child
+    for(child of this.children) {
+      child.props && child.__mount()
+    }
+    this.mount()
   }
 
   /**
    * @private
    */
   __assignProps() {
-    const specialProps = this.constructor.specialProps
     const props = this.props
     let name
     for(name in props) {
@@ -1543,16 +1478,20 @@ class ElemType
    * @private
    */
   __createNode() {
-    const constructor = this.constructor
-    const namespace = constructor.namespace
-    const tagName = this.props.tagName || constructor.tagName
-    const node = namespace === undefined ?
-      document.createElement(tagName) :
-      document.createElementNS(namespace, tagName)
-    if(ElemType.__debug) {
-      node.__elem = this
+    return this.constructor.__createNode(this.props.tagName)
+  }
+
+  /**
+   * @private
+   * @return {{role,className,classList}}
+   */
+  __createVNode() {
+    const vnode = {
+      role : this.constructor.role,
+      className : Class.generate(this.constructor),
     }
-    return node
+    Object.defineProperty(vnode, 'classList', nullDescriptor)
+    return vnode
   }
 
   /**
@@ -1562,10 +1501,13 @@ class ElemType
     if(this.__vnode) {
       this.__resetProps()
     }
-    this.__setRoleAttr()
-    this.__setClassName()
-    this.__updateProps()
-    this.__setHandlers()
+    const map = this.constructor.__props
+    const vnode = this.vnode
+    let name, type
+    for(name in vnode) {
+      type = map[name]
+      type.update(this, name, vnode[name])
+    }
     this.__vnode = this.vnode
   }
 
@@ -1573,252 +1515,12 @@ class ElemType
    * @private
    */
   __resetProps() {
-    const map = this.constructor.props
-    const vnodeA = this.__vnode
-    const vnodeB = this.vnode
-    const node = this.node
-    const handlers = {
-      classList() {
-        void null
-      },
-      className() {
-        void null
-      },
-      attributes() {
-        for(attr in vnodeA.attributes) {
-          if(!vnodeB.attributes.hasOwnProperty(attr)) {
-            node.removeAttribute(attr)
-          }
-        }
-      },
-      dataset() {
-        for(attr in vnodeA.dataset) {
-          if(!vnodeB.dataset?.hasOwnProperty(attr)) {
-            delete node.dataset[attr]
-          }
-        }
-      },
-      style() {
-        if(!vnodeB.hasOwnProperty('style')) {
-          node.removeAttribute('style')
-        }
-      },
-    }
-    let name, attr, handler
-    for(name in vnodeA) {
-      if(handler = handlers[name]) {
-        handler()
-        continue
-      }
-      if(vnodeB.hasOwnProperty(name)) {
-        continue
-      }
-      attr = map[name]
-      if(attr) {
-        node.removeAttribute(attr)
-      }
-      else node[name] = null
-    }
-  }
-
-  /**
-   * @private
-   */
-  __updateProps() {
-    const map = this.constructor.props
-    const vnode = this.vnode
-    const node = this.node
-    const handlers = {
-      classList() {
-        void null
-      },
-      className() {
-        void null
-      },
-      attributes() {
-        for(attr in vnode.attributes) {
-          valueB = vnode.attributes[attr]
-          if(valueB === null) {
-            node.removeAttribute(attr)
-          }
-          else if(valueB !== node.getAttribute(attr)) {
-            node.setAttribute(attr, valueB)
-          }
-        }
-      },
-      dataset() {
-        for(attr in vnode.dataset) {
-          valueB = vnode.dataset[attr]
-          if(valueB === null) {
-            delete node.dataset[attr]
-          }
-          else if(valueB !== node.dataset[attr]) {
-            node.dataset[attr] = valueB
-          }
-        }
-      },
-      style() {
-        if(typeof vnode.style !== 'string' && vnode.style !== null) {
-          Object.assign(sampleNode.style, vnode.style)
-          valueB = sampleNode.getAttribute('style')
-        }
-        else valueB = vnode.style ?? ''
-        if(!valueB.length) {
-          node.removeAttribute('style')
-        }
-        else if(valueB !== node.getAttribute('style')) {
-          node.style = valueB
-        }
-        sampleNode.style = ''
-      },
-    }
-    let name, attr, valueA, valueB, handler
+    const map = this.constructor.__props
+    const vnode = this.__vnode
+    let name, type
     for(name in vnode) {
-      if(handler = handlers[name]) {
-        handler()
-        continue
-      }
-      if(!(name in node)) {
-        continue
-      }
-      attr = map[name]
-      valueB = vnode[name]
-      if(valueB === null) {
-        if(attr) {
-          node.removeAttribute(attr)
-        }
-        else node[name] = null
-        continue
-      }
-      valueA = attr && typeof valueB !== 'boolean' ?
-        node.getAttribute(attr) :
-        node[name]
-      if(valueA != valueB) {
-        node[name] = valueB
-      }
-    }
-  }
-
-  /**
-   * @private
-   */
-  __setHandlers() {
-    const handlers = this.__handlers
-    let eventName, listeners, callback, listener, options
-    for([eventName, listeners] of handlers.entries()) {
-      if(typeof listeners === 'function') {
-        if(listeners.__on) {
-          this.node[eventName] = listeners
-          listeners.__on = false
-          continue
-        }
-        this.node[eventName] = null
-        handlers.delete(eventName)
-        continue
-      }
-      for([callback, listener] of listeners.entries()) {
-        options = listener.__options
-        if(listener.__on) {
-          this.node.addEventListener(eventName, listener, {
-            capture : options.capture || false,
-            once : options.once || false,
-            passive : options.passive || false,
-          })
-          continue
-        }
-        this.node.removeEventListener(eventName, listener, {
-          capture : options.capture,
-        })
-        listeners.delete(callback)
-      }
-      listeners.size || handlers.delete(eventName)
-    }
-  }
-
-  /**
-   * @private
-   */
-  __setRoleAttr() {
-    let role = this.props.role
-    if(role === undefined) {
-      role = this.constructor.role
-    }
-    if(!role) {
-      this.node.removeAttribute('role')
-    }
-    else if(role !== this.node.getAttribute('role')) {
-      this.node.setAttribute('role', role)
-    }
-  }
-
-  /**
-   * @private
-   */
-  __setClassName() {
-    let className = this.vnode.className
-    if(className === null) {
-      this.node.removeAttribute('class')
-      return
-    }
-    if(className === undefined) {
-      className = this.constructor.className
-    }
-    if(className === undefined) {
-      this.__setClass()
-    }
-    else this.__setClassList([className])
-  }
-
-  /**
-   * @private
-   */
-  __setClass() {
-    const props = this.props
-    const items = new Set
-    let constructor = this.constructor
-    let name
-    do {
-      name = constructor.hasOwnProperty('class') && constructor.class
-      if(name === undefined) {
-        break
-      }
-      if(constructor === this.constructor && props.hasOwnProperty('class')) {
-        name = props.class
-      }
-      if(name === null) {
-        continue
-      }
-      items.add(name || constructor.name)
-    }
-    while(constructor = Object.getPrototypeOf(constructor))
-    this.__setClassList(Array.from(items))
-  }
-
-  /**
-   * @param classList
-   * @private
-   */
-  __setClassList(classList) {
-    const list = this.vnode.classList
-    if(typeof list === 'string') {
-      this.node.className = list
-      return
-    }
-    if(!Array.isArray(list)) {
-      let name
-      for(name in list) {
-        list[name] && classList.push(name)
-      }
-    }
-    else classList.push(...list)
-    classList = classList.filter(Boolean)
-    if(!classList.length) {
-      this.node.removeAttribute('class')
-      return
-    }
-    const className = classList.join(' ')
-    if(className !== this.node.className) {
-      this.node.className = className
+      type = map[name]
+      type.reset(this, name, vnode[name])
     }
   }
 
@@ -1850,8 +1552,9 @@ class ElemType
       }
       childrenB.push(childB)
       if(!childrenA) {
+        childB.__parent = this
         childB.__init()
-        node.append(childB.__getAnchorNode(this))
+        node.append(childB.__node || childB.node)
       }
       if(!indexB) {
         return
@@ -1892,14 +1595,15 @@ class ElemType
         continue
       }
       nextA = childNodes[i]
+      childB.__parent = this
       childB.__init()
       if(nextA) {
-        nextA.before(childB.__getAnchorNode(this))
+        nextA.before(childB.__node || childB.node)
       }
       else {
-        node.append(childB.__getAnchorNode(this))
+        node.append(childB.__node || childB.node)
       }
-      ElemType.__mount(childB)
+      childB.__mount()
     }
     for(i = 0; i < length; i++) {
       childB = childrenB[i]
@@ -1908,7 +1612,7 @@ class ElemType
       if(!childA) {
         continue
       }
-      nodeA = childA.__getAnchorNode(this)
+      nodeA = childA.__node || childA.node
       j = indexOf.call(childNodes, nodeA)
       if(i !== j) {
         nextA = childNodes[i].nextSibling
@@ -1919,11 +1623,14 @@ class ElemType
         }
         else node.append(nodeA)
       }
-      childA.__updateElem(childB)
-      if(childA.constructor === childB.constructor) {
-        childrenB[i] = childA
-        indexB[key] = childA
+      if(childA.constructor !== childB.constructor) {
+        childA.__replaceElem(childB)
+        continue
       }
+      childrenB[i] = childA
+      indexB[key] = childA
+      childA.__parent = this
+      childA.__updateElem(childB)
     }
     this.children = childrenB
   }
@@ -1940,9 +1647,10 @@ class ElemType
       childA = childrenA[i]
       childB = childrenB[i]
       if(childA === undefined) {
+        childB.__parent = this
         childB.__init()
-        this.node.append(childB.__getAnchorNode(this))
-        ElemType.__mount(childB)
+        this.node.append(childB.__node || childB.node)
+        childB.__mount?.()
         continue
       }
       if(childB === undefined) {
@@ -1958,35 +1666,23 @@ class ElemType
       }
       if(childA.props && childB.props) {
         if(childA.tagName === childB.tagName && childA.props.key === childB.props.key) {
-          childA.__updateElem(childB)
-          if(childA.constructor === childB.constructor) {
-            childrenB[i] = childA
+          if(childA.constructor !== childB.constructor) {
+            childA.__replaceElem(childB)
+            continue
           }
+          childrenB[i] = childA
+          childA.__parent = this
+          childA.__updateElem(childB)
           continue
         }
       }
       nodeA = childA.node
       childA.__destroy(true)
+      childB.__parent = this
       childB.__init()
-      nodeA.replaceWith(childB.__getAnchorNode(this))
-      ElemType.__mount(childB)
+      nodeA.replaceWith(childB.__node || childB.node)
+      childB.__mount?.()
     }
-  }
-
-  /**
-   * @param {ElemType} context
-   * @return {null|Comment|Element}
-   * @private
-   */
-  __getAnchorNode(context) {
-    const node = arguments[1] ? null : this.node
-    if(this.parent === undefined || this.parent === context) {
-      return node
-    }
-    if(this.parent === null || !this.parent.props) {
-      return this.__node
-    }
-    return this.parent.__getAnchorNode(context, true) || this.__node || node
   }
 
   /**
@@ -1994,18 +1690,16 @@ class ElemType
    * @private
    */
   __updateElem(elem) {
-    if(this.__loop) {
-      return
-    }
-    if(this.constructor !== elem.constructor) {
-      this.__replaceElem(elem)
-      return
-    }
     const prevProps = this.props
+    const refA = this.__ref
+    const refB = elem.__ref
     this.props = elem.props
-    this.vnode = { attributes : {} }
+    this.vnode = this.__createVNode()
     this.__assignProps()
     this.__update()
+    if(refA && refB) {
+      refB.ctx[refB.name] = this
+    }
     this.update(prevProps, this.state)
   }
 
@@ -2016,56 +1710,39 @@ class ElemType
   __replaceElem(elem) {
     const node = this.node
     const children = this.children
+    const parent = this.__parent
     this.children = []
-    this.__destroy(true)
-    this.vnode = { attributes : {} }
+    this.vnode = this.__createVNode()
     this.__resetProps()
+    this.__destroy(true)
     this.node = null
     elem.children = children
-    elem.__init(node, node.parentNode)
+    elem.__parent = parent
+    elem.__init(node)
+  }
+
+  /**
+   * @private
+   */
+  __setRefs() {
+    let name, item
+    for(name in this) {
+      item = this[name]
+      if(item?.props) {
+        item.__ref = { name, ctx : this }
+      }
+    }
   }
 
   /**
    * @private
    */
   __update() {
-    const refs = {}
-    let ref, item
-    for(ref in this) {
-      item = this[ref]
-      if(item?.props) {
-        refs[ref] = item
-      }
-    }
-    this.__render()
-    for(ref in refs) {
-      item = refs[ref]
-      if(this.__contains(item)) {
-        this[ref] = item
-      }
-    }
-  }
-
-  /**
-   * @param {ElemType} elem
-   * @return {boolean}
-   * @private
-   * todo __parent (optimization)
-   */
-  __contains(elem) {
-    return !!this.find(ElemType, item => item.node === elem.node)
-  }
-
-  /**
-   * @private
-   */
-  __render() {
-    const parentA = this.parent
     this.parent = undefined
+    this.assign()
     this.__children = this.render()
-    const parentB = this.parent
-    if(parentB === undefined) {
-      parentA?.props && parentA.__destroy(true)
+    this.__setRefs()
+    if(this.parent === undefined) {
       if(this.__node) {
         this.__node.replaceWith(this.node)
         this.__node = null
@@ -2074,8 +1751,7 @@ class ElemType
       this.__setChildren()
       return
     }
-    if(parentB === null) {
-      parentA?.props && parentA.__destroy(true)
+    if(this.parent === null) {
       if(!this.__node) {
         this.__node = new Comment(this.constructor.name)
         this.node.replaceWith(this.__node)
@@ -2083,64 +1759,15 @@ class ElemType
       else this.node.remove()
       return
     }
-    if(!parentB.props) {
-      parentA?.props && parentA.__destroy(true)
-      if(!this.__node) {
-        this.__node = new Comment(this.constructor.name)
-        this.node.replaceWith(this.__node)
-      }
-      this.__setProps()
-      this.__setChildren()
-      if(this.node.parentNode !== parentB) {
-        parentB.append(this.node)
-      }
-      return
-    }
-    if(!parentA) {
-      const node = new Comment(this.constructor.name)
-      this.node.replaceWith(node)
-      this.__setProps()
-      this.__setChildren()
-      parentB.__init()
-      node.replaceWith(this.__node = parentB.node)
-      return
-    }
-    if(!parentA.props) {
-      this.__setProps()
-      this.__setChildren()
-      parentB.__init()
-      this.__node.replaceWith(parentB.node)
-      this.__node = parentB.node
-      return
+    if(!this.__node) {
+      this.__node = new Comment(this.constructor.name)
+      this.node.replaceWith(this.__node)
     }
     this.__setProps()
     this.__setChildren()
-    if(parentB.tagName === parentA.tagName) {
-      if(parentA.constructor === parentB.constructor) {
-        this.parent = parentA
-      }
-      this.__loop = true
-      parentA.__updateElem(parentB)
-      this.__loop = false
-      return
+    if(this.node.parentNode !== this.parent) {
+      this.parent.append(this.node)
     }
-    this.__node = null
-    parentA.children = []
-    parentA.__destroy(true)
-    parentB.__init()
-    this.__node = parentB.node
-    parentA.node.replaceWith(this.__node)
-  }
-
-  /**
-   * @param {Element} node
-   * @return {ElemType|*|null}
-   * @private
-   */
-  __getElemByNode(node) {
-    return node === this.node ?
-      this :
-      this.find(ElemType, elem => elem.node === node)
   }
 
   /**
@@ -2148,43 +1775,16 @@ class ElemType
    * @private
    */
   __destroy(keepNode = false) {
-    if(this.__loop) {
-      return
-    }
     this.destroy()
     this.removeAllListeners()
-    this.__setHandlers()
-    this.__loop = true
     this.children.forEach(child => child.__destroy(true))
-    if(this.parent?.props) {
-      this.parent.__destroy(true)
-    }
-    this.__loop = false
     if(this.__node) {
       this.__node.replaceWith(this.node)
       this.__node = null
     }
+    this.__parent = null
+    this.__ref = null
     keepNode || this.node.remove()
-  }
-
-  /**
-   * @return {{}}
-   */
-  get attributes() {
-    return this.vnode.attributes
-  }
-
-  /**
-   * @param {{}} attributes
-   */
-  set attributes(attributes) {
-    const vnode = this.vnode
-    if(attributes) {
-      attributes = Object.assign(vnode.attributes, attributes)
-      delete vnode.attributes
-      vnode.attributes = attributes
-    }
-    else vnode.attributes = {}
   }
 
   /**
@@ -2192,89 +1792,6 @@ class ElemType
    */
   get tagName() {
     return this.props.tagName || this.constructor.tagName
-  }
-
-  /**
-   * @param {string[]|(constructor[] @link AttrType)} attrs
-   */
-  static defineAttrs(attrs) {
-    for(const attr of attrs) {
-      const name = attr.propName || attr
-      Object.defineProperty(this.prototype, name, {
-        configurable : true,
-        get() {
-          return this.getAttr(attr)
-        },
-        set(value) {
-          this.setAttr(attr, value)
-        },
-      })
-    }
-  }
-
-  /**
-   * @param {string[]} methods
-   */
-  static defineMethods(methods) {
-    for(const name of methods) {
-      Object.defineProperty(this.prototype, name, {
-        configurable : true,
-        writable : true,
-        value(...args) {
-          return this.node[name](...args)
-        },
-      })
-    }
-  }
-
-  /**
-   * @param {{}} props
-   */
-  static defineProps(props) {
-    this.props = { ...this.props, ...props }
-    for(const prop in props) {
-      Object.defineProperty(this.prototype, prop, {
-        configurable : true,
-        get() {
-          return this.vnode[prop]
-        },
-        set(value) {
-          this.vnode[prop] = value
-        },
-      })
-    }
-  }
-
-  /**
-   * @param {[]} types
-   */
-  static defineHandlers(types) {
-    for(const type of types) {
-      const name = 'on' + type
-      if(!(name in HTMLElement.prototype)) {
-        continue
-      }
-      Object.defineProperty(ElemType.prototype, name, {
-        configurable : true,
-        set(callback) {
-          if(!callback) {
-            const listener = this.__handlers.get(name)
-            if(listener) {
-              listener.__on = false
-            }
-            return
-          }
-          const listener = e => {
-            return callback.call(this, e, this.__getElemByNode(e.target))
-          }
-          listener.__on = true
-          this.__handlers.set(name, listener)
-        },
-        get() {
-          return this.__handlers.get(name) || null
-        },
-      })
-    }
   }
 
   /**
@@ -2289,45 +1806,84 @@ class ElemType
       node.innerHTML = ''
     }
     elem.__init(node, parentNode)
-    node || ElemType.__mount(elem)
-    ElemType.__mounted.clear()
+    node || elem.__mount()
     return elem
   }
 
   /**
-   * @param {ElemType|TextType} item
+   * @param {boolean} value
+   */
+  static setDebugMode(value) {
+    init = init || ElemType.prototype.__init
+    ElemType.prototype.__init = value ? debug : init
+  }
+
+  /**
+   * @param {string} prop
+   * @param {constructor @link PropType|constructor @link AttrType|constructor @link EventType} type
+   * @return {*}
    * @private
    */
-  static __mount(item) {
-    if(!item.props || item.__loop || ElemType.__mounted.has(item)) {
-      return
-    }
-    item.children?.forEach(ElemType.__mount)
-    item.mount()
-    ElemType.__mounted.add(item)
-    let parent = item
-    while(parent.parent?.props) {
-      ElemType.__mount(parent.parent)
-      parent = parent.parent
+  static __defineProp(prop, type) {
+    Object.defineProperty(this.prototype, prop, {
+      configurable : true,
+      get() {
+        return type.get(this, prop)
+      },
+      set(value) {
+        type.set(this, prop, value)
+      },
+    })
+  }
+
+  /**
+   * @param {{}} props
+   */
+  static __defineProps(props) {
+    let prop, type
+    for(prop in props) {
+      type = props[prop]
+      if(typeof type === 'string') {
+        type = props[prop] = AttrType.define(type)
+      }
+      this.__defineProp(prop, type)
     }
   }
+
+  /**
+   * @private
+   */
+  static __init() {
+    if(this.hasOwnProperty('__props')) {
+      return
+    }
+    if(this !== ElemType) {
+      Object.getPrototypeOf(this).__init()
+    }
+    if(this.hasOwnProperty('props')) {
+      this.__defineProps(this.props)
+    }
+    Object.defineProperties(this, {
+      __props : {
+        value : { ...this.__props, ...this.props },
+      },
+      __sampleNode : {
+        value : this.__createNode(),
+      },
+    })
+  }
+
+  /**
+   * @param {string} [tagName]
+   * @return {HTMLElement|*}
+   * @private
+   */
+  static __createNode(tagName = this.tagName) {
+    return this.namespace === null ?
+      document.createElement(tagName) :
+      document.createElementNS(this.namespace, tagName)
+  }
 }
-
-ElemType.defineHandlers(Object.keys(EventType))
-
-ElemType.defineMethods([
-  'scrollBy',
-  'scrollTo',
-])
-
-ElemType.defineProps({
-  classList : null,
-  className : 'class',
-  dataset : null,
-  id : 'id',
-  innerHTML : null,
-  style : null,
-})
 
 module.exports = ElemType
 
@@ -2353,112 +1909,686 @@ else module.exports = window
 /* 5 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const window = __webpack_require__(4)
+const AttrType = __webpack_require__(6)
+const BooleanType = __webpack_require__(7)
+const ListType = __webpack_require__(8)
+const TokenType = __webpack_require__(9)
 
 /**
- * type : [constructor, bubbles, cancelable]
+ * @mixin
  */
-const EventType = {
-  afterprint : [window.Event],
-  auxclick : [window.MouseEvent, true, true],
-  beforematch : [window.Event],
-  beforeprint : [window.Event],
-  beforeunload : [window.Event],
-  blur : [window.FocusEvent],
-  cancel : [window.Event, false, true],
-  canplay : [window.Event],
-  canplaythrough : [window.Event],
-  change : [window.Event, true],
-  click : [window.MouseEvent, true, true],
-  close : [window.Event],
-  contextlost : [window.Event],
-  contextmenu : [window.MouseEvent, true, true],
-  contextrestored : [window.Event],
-  copy : [window.ClipboardEvent, true, true],
-  cuechange : [window.Event],
-  cut : [window.ClipboardEvent, true, true],
-  dblclick : [window.MouseEvent, true, true],
-  drag : [window.DragEvent, true, true],
-  dragend : [window.DragEvent, true],
-  dragenter : [window.DragEvent, true, true],
-  dragleave : [window.DragEvent, true],
-  dragover : [window.DragEvent, true, true],
-  dragstart : [window.DragEvent, true, true],
-  drop : [window.DragEvent, true, true],
-  durationchange : [window.Event],
-  emptied : [window.Event],
-  ended : [window.Event],
-  error : [window.Event],
-  focus : [window.FocusEvent],
-  focusin : [window.FocusEvent, true],
-  focusout : [window.FocusEvent, true],
-  formdata : [window.FormDataEvent],
-  hashchange : [window.HashChangeEvent],
-  input : [window.InputEvent, true],
-  invalid : [window.Event, false, true],
-  keydown : [window.KeyboardEvent, true, true],
-  keypress : [window.KeyboardEvent, true, true],
-  keyup : [window.KeyboardEvent, true, true],
-  languagechange : [window.Event],
-  load : [window.Event],
-  loadeddata : [window.Event],
-  loadedmetadata : [window.Event],
-  loadstart : [window.Event],
-  message : [window.MessageEvent],
-  messageerror : [window.MessageEvent],
-  mousedown : [window.MouseEvent, true, true],
-  mouseenter : [window.MouseEvent],
-  mouseleave : [window.MouseEvent],
-  mousemove : [window.MouseEvent, true, true],
-  mouseout : [window.MouseEvent, true, true],
-  mouseover : [window.MouseEvent, true, true],
-  mouseup : [window.MouseEvent, true, true],
-  offline : [window.Event],
-  online : [window.Event],
-  pagehide : [window.PageTransitionEvent],
-  pageshow : [window.PageTransitionEvent],
-  paste : [window.ClipboardEvent, true, true],
-  pause : [window.Event],
-  play : [window.Event],
-  playing : [window.Event],
-  popstate : [window.PopStateEvent],
-  progress : [window.ProgressEvent],
-  ratechange : [window.Event],
-  reset : [window.Event, true, true],
-  resize : [window.UIEvent],
-  rejectionhandled : [window.PromiseRejectionEvent],
-  scroll : [window.Event, true],
-  securitypolicyviolation : [window.SecurityPolicyViolationEvent, true],
-  seeked : [window.Event],
-  seeking : [window.Event],
-  select : [window.UIEvent, true],
-  slotchange : [window.Event, true],
-  stalled : [window.Event],
-  storage : [window.StorageEvent],
-  submit : [window.SubmitEvent, true, true],
-  suspend : [window.Event],
-  timeupdate : [window.Event],
-  toggle : [window.Event],
-  touchcancel : [window.TouchEvent, true],
-  touchend : [window.TouchEvent, true, true],
-  touchmove : [window.TouchEvent, true, true],
-  touchstart : [window.TouchEvent, true, true],
-  transitioncancel : [window.TransitionEvent, true],
-  transitionend : [window.TransitionEvent, true, true],
-  transitionrun : [window.TransitionEvent, true],
-  transitionstart : [window.TransitionEvent, true],
-  unhandledrejection : [window.PromiseRejectionEvent],
-  unload : [window.Event],
-  volumechange : [window.Event],
-  waiting : [window.Event],
-  wheel : [window.WheelEvent, true, true],
+class AriaType
+{
+  static props = {
+    activeDescendant : AttrType.define('aria-activedescendant'),
+    atomic : BooleanType.define('aria-atomic'),
+    autoComplete : TokenType.define('aria-autocomplete', 'none'),
+    busy : BooleanType.define('aria-busy'),
+    checked : TokenType.define('aria-checked'),
+    colCount : AttrType.define('aria-colcount'),
+    colIndex : AttrType.define('aria-colindex'),
+    colSpan : AttrType.define('aria-colspan'),
+    controls : ListType.define('aria-controls'),
+    current : TokenType.define('aria-current', false),
+    describedBy : ListType.define('aria-describedby'),
+    details : AttrType.define('aria-details'),
+    disabled : BooleanType.define('aria-disabled'),
+    dropEffect : ListType.define('aria-dropeffect', 'none'),
+    errorMessage : AttrType.define('aria-errormessage'),
+    expanded : TokenType.define('aria-expanded'),
+    flowTo : ListType.define('aria-flowto'),
+    grabbed : TokenType.define('aria-grabbed'),
+    hasPopup : TokenType.define('aria-haspopup', false),
+    hidden : TokenType.define('aria-hidden'),
+    invalid : TokenType.define('aria-invalid', false),
+    keyShortcuts : AttrType.define('aria-keyshortcuts'),
+    label : AttrType.define('aria-label'),
+    labelledBy : ListType.define('aria-labelledby'),
+    level : AttrType.define('aria-level'),
+    live : TokenType.define('aria-live', 'off'),
+    modal : BooleanType.define('aria-modal'),
+    multiLine : BooleanType.define('aria-multiline'),
+    multiSelectable : BooleanType.define('aria-multiselectable'),
+    orientation : TokenType.define('aria-orientation'),
+    owns : ListType.define('aria-owns'),
+    placeholder : AttrType.define('aria-placeholder'),
+    posInSet : AttrType.define('aria-posinset'),
+    pressed : TokenType.define('aria-pressed'),
+    readOnly : BooleanType.define('aria-readonly'),
+    relevant : ListType.define('aria-relevant', ['additions', 'text']),
+    required : BooleanType.define('aria-required'),
+    roleDescription : AttrType.define('aria-roledescription'),
+    rowCount : AttrType.define('aria-rowcount'),
+    rowIndex : AttrType.define('aria-rowindex'),
+    rowSpan : AttrType.define('aria-rowspan'),
+    selected : TokenType.define('aria-selected'),
+    setSize : AttrType.define('aria-setsize'),
+    sort : TokenType.define('aria-sort', 'none'),
+    valueMax : AttrType.define('aria-valuemax'),
+    valueMin : AttrType.define('aria-valuemin'),
+    valueNow : AttrType.define('aria-valuenow'),
+    valueText : AttrType.define('aria-valuetext'),
+  }
+}
+
+module.exports = AriaType
+
+
+/***/ }),
+/* 6 */
+/***/ ((module) => {
+
+/**
+ * @abstract
+ */
+class AttrType
+{
+  static nodeName = null
+
+  static defaultValue = null
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} propName
+   * @returns {string|null|*}
+   */
+  static get(elem, propName) {
+    return elem.vnode[propName] ?? this.defaultValue
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} propName
+   * @param {string|null|*} value
+   */
+  static set(elem, propName, value) {
+    elem.vnode[propName] = value
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} propName
+   * @param {*} value
+   */
+  static update(elem, propName, value) {
+    if(value === true) {
+      value = ''
+    }
+    else if(value === false || value === null || value === this.defaultValue) {
+      elem.node.removeAttribute(this.nodeName)
+      return
+    }
+    if(value != elem.node.getAttribute(this.nodeName)) {
+      elem.node.setAttribute(this.nodeName, value)
+    }
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} propName
+   */
+  static reset(elem, propName) {
+    if(!elem.vnode.hasOwnProperty(propName)) {
+      elem.node.removeAttribute(this.nodeName)
+    }
+  }
+
+  /**
+   * @param {string} nodeName
+   * @param {*} [defaultValue]
+   * @return {constructor @link AttrType}
+   */
+  static define(nodeName, defaultValue = this.defaultValue) {
+    return class extends this
+    {
+      static nodeName = nodeName
+      static defaultValue = defaultValue
+    }
+  }
+}
+
+module.exports = AttrType
+
+
+/***/ }),
+/* 7 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const AttrType = __webpack_require__(6)
+
+class BooleanType extends AttrType
+{
+  static defaultValue = false
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} propName
+   * @param {boolean} value
+   */
+  static update(elem, propName, value) {
+    if(value) {
+      elem.node.setAttribute(this.nodeName, 'true')
+    }
+    else elem.node.removeAttribute(this.nodeName)
+  }
+}
+
+module.exports = BooleanType
+
+
+/***/ }),
+/* 8 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const AttrType = __webpack_require__(6)
+
+class ListType extends AttrType
+{
+  static defaultValue = []
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} propName
+   * @param {string|string[]|null} value
+   */
+  static update(elem, propName, value) {
+    if(Array.isArray(value)) {
+      value = value.join(' ')
+    }
+    if(!value || value === this.defaultValue.join(' ')) {
+      elem.node.removeAttribute(this.nodeName)
+    }
+    else if(value !== elem.node.getAttribute(this.nodeName)) {
+      elem.node.setAttribute(this.nodeName, value)
+    }
+  }
+}
+
+module.exports = ListType
+
+
+/***/ }),
+/* 9 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const AttrType = __webpack_require__(6)
+
+class TokenType extends AttrType
+{
+  static defaultValue = undefined
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} propName
+   * @param {string|boolean|null|undefined} value
+   */
+  static update(elem, propName, value) {
+    if(value === null || value === this.defaultValue) {
+      elem.node.removeAttribute(this.nodeName)
+    }
+    else if(String(value) !== elem.node.getAttribute(this.nodeName)) {
+      elem.node.setAttribute(this.nodeName, value)
+    }
+  }
+}
+
+module.exports = TokenType
+
+
+/***/ }),
+/* 10 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const PropType = __webpack_require__(11)
+
+class Attributes extends PropType
+{
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {{}|null} value
+   */
+  static set(elem, name, value) {
+    const vnode = elem.vnode
+    if(!value) {
+      delete vnode.attributes
+      return
+    }
+    if(vnode.attributes) {
+      value = Object.assign(vnode.attributes, value)
+    }
+    delete vnode.attributes
+    vnode.attributes = value
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {*} attributes
+   */
+  static update(elem, name, attributes) {
+    let attr, value
+    for(attr in attributes) {
+      value = attributes[attr]
+      if(value === null) {
+        elem.node.removeAttribute(attr)
+      }
+      else if(value !== elem.node.getAttribute(attr)) {
+        elem.node.setAttribute(attr, value)
+      }
+    }
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {{}} attributes
+   */
+  static reset(elem, name, attributes) {
+    let attr
+    for(attr in attributes) {
+      if(!elem.vnode.attributes?.hasOwnProperty(attr)) {
+        elem.node.removeAttribute(attr)
+      }
+    }
+  }
+}
+
+module.exports = Attributes
+
+
+/***/ }),
+/* 11 */
+/***/ ((module) => {
+
+/**
+ * @abstract
+ */
+class PropType
+{
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @returns {string|null|*}
+   */
+  static get(elem, name) {
+    return elem.vnode[name] ?? null
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {string|null|*} value
+   */
+  static set(elem, name, value) {
+    elem.vnode[name] = value
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {*} value
+   */
+  static update(elem, name, value) {
+    if(value !== elem.node[name]) {
+      elem.node[name] = value
+    }
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   */
+  static reset(elem, name) {
+    if(!elem.vnode.hasOwnProperty(name)) {
+      elem.node[name] = elem.__sampleNode[name]
+    }
+  }
+}
+
+module.exports = PropType
+
+
+/***/ }),
+/* 12 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const AttrType = __webpack_require__(6)
+
+class Class extends AttrType
+{
+  static nodeName = 'class'
+
+  /**
+   * @param {ElemType} elem
+   */
+  static update(elem) {
+    const arr = [elem.vnode.className]
+    const classList = elem.vnode.classList
+    if(classList) {
+      arr.push(...classList)
+    }
+    const className = arr.filter(Boolean).join(' ')
+    super.update(elem, this.nodeName, className || null)
+  }
+
+  /**
+   * @param {constructor @link ElemType} constructor
+   * @return {string}
+   */
+  static generate(constructor) {
+    if(constructor.hasOwnProperty('className')) {
+      return constructor.className
+    }
+    const set = new Set
+    let proto = constructor
+    while(proto.class !== null) {
+      set.add(proto.class)
+      proto = Object.getPrototypeOf(proto)
+    }
+    const className = Array.from(set).join(' ')
+    return constructor.className = className || null
+  }
+}
+
+module.exports = Class
+
+
+/***/ }),
+/* 13 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const PropType = __webpack_require__(11)
+
+class ClassList extends PropType
+{
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {string|null|*} value
+   */
+  static set(elem, name, value) {
+    elem.vnode.classList = [elem.vnode.classList, value].flat()
+  }
+}
+
+module.exports = ClassList
+
+
+/***/ }),
+/* 14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const PropType = __webpack_require__(11)
+
+class Dataset extends PropType
+{
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {*} dataset
+   */
+  static update(elem, name, dataset) {
+    let attr, value
+    for(attr in dataset) {
+      value = dataset[attr]
+      if(value === null) {
+        delete elem.node.dataset[attr]
+      }
+      else if(value !== elem.node.dataset[attr]) {
+        elem.node.dataset[attr] = value
+      }
+    }
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {{}} dataset
+   */
+  static reset(elem, name, dataset) {
+    let attr
+    for(attr in dataset) {
+      if(!elem.vnode.dataset?.hasOwnProperty(attr)) {
+        delete elem.node.dataset[attr]
+      }
+    }
+  }
+}
+
+module.exports = Dataset
+
+
+/***/ }),
+/* 15 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const window = __webpack_require__(4)
+const { HTMLElement } = window
+
+class EventType
+{
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @return {function|null}
+   */
+  static get(elem, name) {
+    return elem.vnode[name] || null
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {function|null} callback
+   */
+  static set(elem, name, callback) {
+    if(!callback) {
+      delete elem.vnode[name]
+      return
+    }
+    elem.vnode[name] = e => {
+      return callback.call(elem, e, elem.getElemByNode(e.target))
+    }
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   * @param {function} callback
+   */
+  static update(elem, name, callback) {
+    elem.node[name] = callback
+  }
+
+  /**
+   * @param {ElemType} elem
+   * @param {string} name
+   */
+  static reset(elem, name) {
+    if(!elem.vnode.hasOwnProperty(name)) {
+      elem.node[name] = null
+    }
+  }
+
+  /**
+   * @return {{string: constructor @link EventType}}
+   */
+  static types = {
+    afterprint : define(window.Event),
+    auxclick : define(window.MouseEvent, true, true),
+    beforematch : define(window.Event),
+    beforeprint : define(window.Event),
+    beforeunload : define(window.Event),
+    blur : define(window.FocusEvent),
+    cancel : define(window.Event, false, true),
+    canplay : define(window.Event),
+    canplaythrough : define(window.Event),
+    change : define(window.Event, true),
+    click : define(window.MouseEvent, true, true),
+    close : define(window.Event),
+    contextlost : define(window.Event),
+    contextmenu : define(window.MouseEvent, true, true),
+    contextrestored : define(window.Event),
+    copy : define(window.ClipboardEvent, true, true),
+    cuechange : define(window.Event),
+    cut : define(window.ClipboardEvent, true, true),
+    dblclick : define(window.MouseEvent, true, true),
+    drag : define(window.DragEvent, true, true),
+    dragend : define(window.DragEvent, true),
+    dragenter : define(window.DragEvent, true, true),
+    dragleave : define(window.DragEvent, true),
+    dragover : define(window.DragEvent, true, true),
+    dragstart : define(window.DragEvent, true, true),
+    drop : define(window.DragEvent, true, true),
+    durationchange : define(window.Event),
+    emptied : define(window.Event),
+    ended : define(window.Event),
+    error : define(window.Event),
+    focus : define(window.FocusEvent),
+    focusin : define(window.FocusEvent, true),
+    focusout : define(window.FocusEvent, true),
+    formdata : define(window.FormDataEvent),
+    hashchange : define(window.HashChangeEvent),
+    input : define(window.InputEvent, true),
+    invalid : define(window.Event, false, true),
+    keydown : define(window.KeyboardEvent, true, true),
+    keypress : define(window.KeyboardEvent, true, true),
+    keyup : define(window.KeyboardEvent, true, true),
+    languagechange : define(window.Event),
+    load : define(window.Event),
+    loadeddata : define(window.Event),
+    loadedmetadata : define(window.Event),
+    loadstart : define(window.Event),
+    message : define(window.MessageEvent),
+    messageerror : define(window.MessageEvent),
+    mousedown : define(window.MouseEvent, true, true),
+    mouseenter : define(window.MouseEvent),
+    mouseleave : define(window.MouseEvent),
+    mousemove : define(window.MouseEvent, true, true),
+    mouseout : define(window.MouseEvent, true, true),
+    mouseover : define(window.MouseEvent, true, true),
+    mouseup : define(window.MouseEvent, true, true),
+    offline : define(window.Event),
+    online : define(window.Event),
+    pagehide : define(window.PageTransitionEvent),
+    pageshow : define(window.PageTransitionEvent),
+    paste : define(window.ClipboardEvent, true, true),
+    pause : define(window.Event),
+    play : define(window.Event),
+    playing : define(window.Event),
+    popstate : define(window.PopStateEvent),
+    progress : define(window.ProgressEvent),
+    ratechange : define(window.Event),
+    reset : define(window.Event, true, true),
+    resize : define(window.UIEvent),
+    rejectionhandled : define(window.PromiseRejectionEvent),
+    scroll : define(window.Event, true),
+    securitypolicyviolation : define(window.SecurityPolicyViolationEvent, true),
+    seeked : define(window.Event),
+    seeking : define(window.Event),
+    select : define(window.UIEvent, true),
+    slotchange : define(window.Event, true),
+    stalled : define(window.Event),
+    storage : define(window.StorageEvent),
+    submit : define(window.SubmitEvent, true, true),
+    suspend : define(window.Event),
+    timeupdate : define(window.Event),
+    toggle : define(window.Event),
+    touchcancel : define(window.TouchEvent, true),
+    touchend : define(window.TouchEvent, true, true),
+    touchmove : define(window.TouchEvent, true, true),
+    touchstart : define(window.TouchEvent, true, true),
+    transitioncancel : define(window.TransitionEvent, true),
+    transitionend : define(window.TransitionEvent, true, true),
+    transitionrun : define(window.TransitionEvent, true),
+    transitionstart : define(window.TransitionEvent, true),
+    unhandledrejection : define(window.PromiseRejectionEvent),
+    unload : define(window.Event),
+    volumechange : define(window.Event),
+    waiting : define(window.Event),
+    wheel : define(window.WheelEvent, true, true),
+  }
+
+  static get props() {
+    const props = {}
+    let type, name
+    for(type in this.types) {
+      name = 'on' + type
+      if(name in HTMLElement.prototype) {
+        props[name] = EventType
+      }
+    }
+    return props
+  }
+}
+
+/**
+ * @param {constructor @link Event} constructor
+ * @param {boolean} bubbles
+ * @param {boolean} cancelable
+ * @return {{constructor, dict: {cancelable, bubbles}}}
+ */
+function define(constructor, bubbles, cancelable) {
+  return {
+    constructor,
+    dict : { bubbles, cancelable },
+  }
 }
 
 module.exports = EventType
 
 
 /***/ }),
-/* 6 */
+/* 16 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const AttrType = __webpack_require__(6)
+
+let counter = 0
+
+class Id extends AttrType
+{
+  static nodeName = 'id'
+
+  static generate() {
+    const str = (counter++).toString(36)
+    return 'ID_' + str.padStart(4, '0')
+  }
+}
+
+module.exports = Id
+
+
+/***/ }),
+/* 17 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const { document } = __webpack_require__(4)
+const AttrType = __webpack_require__(6)
+
+const sampleNode = document.createElement('div')
+
+class Style extends AttrType
+{
+  static nodeName = 'style'
+
+  static set(elem, prop, value) {
+    if(typeof value === 'string' || value === null) {
+      elem.vnode.style = value || null
+      return
+    }
+    Object.assign(sampleNode.style, value)
+    elem.vnode.style = sampleNode.getAttribute('style') || null
+    sampleNode.style = ''
+  }
+}
+
+module.exports = Style
+
+
+/***/ }),
+/* 18 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const { Text } = __webpack_require__(4)
@@ -2488,76 +2618,439 @@ class TextType
   __destroy(keepNode) {
     keepNode || this.node.remove()
   }
-
-  /**
-   * @return {Text|null}
-   * @private
-   */
-  __getAnchorNode() {
-    return this.node
-  }
 }
 
 module.exports = TextType
 
 
 /***/ }),
-/* 7 */
-/***/ ((module) => {
+/* 19 */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+const RoleType = __webpack_require__(20)
+
+exports.RoleAlert = class RoleAlert extends RoleType
+{
+  static role = 'Alert'
+}
+
+exports.RoleAlertDialog = class RoleAlertDialog extends RoleType
+{
+  static role = 'AlertDialog'
+}
+
+exports.RoleApplication = class RoleApplication extends RoleType
+{
+  static role = 'Application'
+}
+
+exports.RoleArticle = class RoleArticle extends RoleType
+{
+  static role = 'Article'
+}
+
+exports.RoleBanner = class RoleBanner extends RoleType
+{
+  static role = 'Banner'
+}
+
+exports.RoleBlockQuote = class RoleBlockQuote extends RoleType
+{
+  static role = 'BlockQuote'
+}
+
+exports.RoleButton = class RoleButton extends RoleType
+{
+  static role = 'Button'
+}
+
+exports.RoleCaption = class RoleCaption extends RoleType
+{
+  static role = 'Caption'
+}
+
+exports.RoleCell = class RoleCell extends RoleType
+{
+  static role = 'Cell'
+}
+
+exports.RoleCheckBox = class RoleCheckBox extends RoleType
+{
+  static role = 'CheckBox'
+}
+
+exports.RoleColumnHeader = class RoleColumnHeader extends RoleType
+{
+  static role = 'ColumnHeader'
+}
+
+exports.RoleComboBox = class RoleComboBox extends RoleType
+{
+  static role = 'ComboBox'
+}
+
+exports.RoleComplementary = class RoleComplementary extends RoleType
+{
+  static role = 'Complementary'
+}
+
+exports.RoleContentInfo = class RoleContentInfo extends RoleType
+{
+  static role = 'ContentInfo'
+}
+
+exports.RoleDefinition = class RoleDefinition extends RoleType
+{
+  static role = 'Definition'
+}
+
+exports.RoleDialog = class RoleDialog extends RoleType
+{
+  static role = 'Dialog'
+}
+
+exports.RoleDirectory = class RoleDirectory extends RoleType
+{
+  static role = 'Directory'
+}
+
+exports.RoleDocument = class RoleDocument extends RoleType
+{
+  static role = 'Document'
+}
+
+exports.RoleFeed = class RoleFeed extends RoleType
+{
+  static role = 'Feed'
+}
+
+exports.RoleFigure = class RoleFigure extends RoleType
+{
+  static role = 'Figure'
+}
+
+exports.RoleForm = class RoleForm extends RoleType
+{
+  static role = 'Form'
+}
+
+exports.RoleGrid = class RoleGrid extends RoleType
+{
+  static role = 'Grid'
+}
+
+exports.RoleGridCell = class RoleGridCell extends RoleType
+{
+  static role = 'GridCell'
+}
+
+exports.RoleGroup = class RoleGroup extends RoleType
+{
+  static role = 'Group'
+}
+
+exports.RoleHeading = class RoleHeading extends RoleType
+{
+  static role = 'Heading'
+}
+
+exports.RoleImg = class RoleImg extends RoleType
+{
+  static role = 'Img'
+}
+
+exports.RoleLink = class RoleLink extends RoleType
+{
+  static role = 'Link'
+}
+
+exports.RoleList = class RoleList extends RoleType
+{
+  static role = 'List'
+}
+
+exports.RoleListBox = class RoleListBox extends RoleType
+{
+  static role = 'ListBox'
+}
+
+exports.RoleListItem = class RoleListItem extends RoleType
+{
+  static role = 'ListItem'
+}
+
+exports.RoleLog = class RoleLog extends RoleType
+{
+  static role = 'Log'
+}
+
+exports.RoleMain = class RoleMain extends RoleType
+{
+  static role = 'Main'
+}
+
+exports.RoleMarquee = class RoleMarquee extends RoleType
+{
+  static role = 'Marquee'
+}
+
+exports.RoleMath = class RoleMath extends RoleType
+{
+  static role = 'Math'
+}
+
+exports.RoleMenu = class RoleMenu extends RoleType
+{
+  static role = 'Menu'
+}
+
+exports.RoleMenuBar = class RoleMenuBar extends RoleType
+{
+  static role = 'MenuBar'
+}
+
+exports.RoleMenuItem = class RoleMenuItem extends RoleType
+{
+  static role = 'MenuItem'
+}
+
+exports.RoleMenuItemCheckBox = class RoleMenuItemCheckBox extends RoleType
+{
+  static role = 'MenuItemCheckBox'
+}
+
+exports.RoleMenuItemRadio = class RoleMenuItemRadio extends RoleType
+{
+  static role = 'MenuItemRadio'
+}
+
+exports.RoleNavigation = class RoleNavigation extends RoleType
+{
+  static role = 'Navigation'
+}
+
+exports.RoleNone = class RoleNone extends RoleType
+{
+  static role = 'None'
+}
+
+exports.RoleNote = class RoleNote extends RoleType
+{
+  static role = 'Note'
+}
+
+exports.RoleOption = class RoleOption extends RoleType
+{
+  static role = 'Option'
+}
+
+exports.RoleParagraph = class RoleParagraph extends RoleType
+{
+  static role = 'Paragraph'
+}
+
+exports.RolePresentation = class RolePresentation extends RoleType
+{
+  static role = 'Presentation'
+}
+
+exports.RoleProgressBar = class RoleProgressBar extends RoleType
+{
+  static role = 'ProgressBar'
+}
+
+exports.RoleRadio = class RoleRadio extends RoleType
+{
+  static role = 'Radio'
+}
+
+exports.RoleRadioGroup = class RoleRadioGroup extends RoleType
+{
+  static role = 'RadioGroup'
+}
+
+exports.RoleRegion = class RoleRegion extends RoleType
+{
+  static role = 'Region'
+}
+
+exports.RoleRow = class RoleRow extends RoleType
+{
+  static role = 'Row'
+}
+
+exports.RoleRowGroup = class RoleRowGroup extends RoleType
+{
+  static role = 'RowGroup'
+}
+
+exports.RoleRowHeader = class RoleRowHeader extends RoleType
+{
+  static role = 'RowHeader'
+}
+
+exports.RoleScrollBar = class RoleScrollBar extends RoleType
+{
+  static role = 'ScrollBar'
+}
+
+exports.RoleSearch = class RoleSearch extends RoleType
+{
+  static role = 'Search'
+}
+
+exports.RoleSearchBox = class RoleSearchBox extends RoleType
+{
+  static role = 'SearchBox'
+}
+
+exports.RoleSectionHead = class RoleSectionHead extends RoleType
+{
+  static role = 'SectionHead'
+}
+
+exports.RoleSeparator = class RoleSeparator extends RoleType
+{
+  static role = 'Separator'
+}
+
+exports.RoleSlider = class RoleSlider extends RoleType
+{
+  static role = 'Slider'
+}
+
+exports.RoleSpinButton = class RoleSpinButton extends RoleType
+{
+  static role = 'SpinButton'
+}
+
+exports.RoleStatus = class RoleStatus extends RoleType
+{
+  static role = 'Status'
+}
+
+exports.RoleStrong = class RoleStrong extends RoleType
+{
+  static role = 'Strong'
+}
+
+exports.RoleSwitch = class RoleSwitch extends RoleType
+{
+  static role = 'Switch'
+}
+
+exports.RoleTab = class RoleTab extends RoleType
+{
+  static role = 'Tab'
+}
+
+exports.RoleTabList = class RoleTabList extends RoleType
+{
+  static role = 'TabList'
+}
+
+exports.RoleTabPanel = class RoleTabPanel extends RoleType
+{
+  static role = 'TabPanel'
+}
+
+exports.RoleTable = class RoleTable extends RoleType
+{
+  static role = 'Table'
+}
+
+exports.RoleTerm = class RoleTerm extends RoleType
+{
+  static role = 'Term'
+}
+
+exports.RoleTextBox = class RoleTextBox extends RoleType
+{
+  static role = 'TextBox'
+}
+
+exports.RoleTimer = class RoleTimer extends RoleType
+{
+  static role = 'Timer'
+}
+
+exports.RoleToolBar = class RoleToolBar extends RoleType
+{
+  static role = 'ToolBar'
+}
+
+exports.RoleToolTip = class RoleToolTip extends RoleType
+{
+  static role = 'ToolTip'
+}
+
+exports.RoleTree = class RoleTree extends RoleType
+{
+  static role = 'Tree'
+}
+
+exports.RoleTreeGrid = class RoleTreeGrid extends RoleType
+{
+  static role = 'TreeGrid'
+}
+
+exports.RoleTreeItem = class RoleTreeItem extends RoleType
+{
+  static role = 'TreeItem'
+}
+
+
+/***/ }),
+/* 20 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const ElemType = __webpack_require__(3)
+const PropType = __webpack_require__(11)
 
 /**
  * @abstract
  */
-class AttrType
+class RoleType extends ElemType
 {
-  static nodeName = undefined
-
-  static propName = undefined
-
-  static defaultValue = null
-
-  /**
-   * @param {ElemType} elem
-   * @returns {string|null|*}
-   */
-  static get(elem) {
-    return elem.vnode.attributes[this.nodeName] ?? null
-  }
-
-  /**
-   * @param {ElemType} elem
-   * @param {string|null|*} value
-   */
-  static set(elem, value) {
-    elem.vnode.attributes[this.nodeName] = value
+  static props = {
+    accessKey : 'accesskey',
+    autofocus : 'autofocus',
+    contentEditable : 'contenteditable',
+    dir : 'dir',
+    inputMode : 'inputmode',
+    lang : 'lang',
+    tabIndex : 'tabindex',
+    title : 'title',
+    translate : 'translate',
+    innerText : PropType,
   }
 }
 
-module.exports = AttrType
+module.exports = RoleType
 
 
 /***/ }),
-/* 8 */
+/* 21 */
 /***/ ((module) => {
 
 /**
- * @param {*} value
+ * @param {*} props
  * @constructor
  */
-function Context(value) {
+function Context(props) {
   /**
-   * @param {*} newValue
+   * @param {*} newProps
    * @param {*} children
    * @return {*}
    */
-  this.Provider = ({ value : newValue, children }) => {
-    value = newValue
+  this.Provider = ({ children, ...newProps }) => {
+    props = newProps
     return children
   }
   /**
    * @param {function} render
    */
-  this.Consumer = render => render(value)
+  this.Consumer = render => render(props)
 }
 
 module.exports = Context
