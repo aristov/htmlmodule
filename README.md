@@ -16,7 +16,7 @@ and provides a convenient object-oriented API with a JavaScript-compatible synta
 - No JSX, but convenient JS-compatible syntax
 - API to build your own high-level components
 - Cross-platform, can be used in NodeJS and in the browser
-- Small footprint, 8KB after gzip
+- Small footprint, 14KB after gzip
 
 ## Documentation
 
