@@ -23,7 +23,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "xwindow": "^0.1.2"
+    "xwindow": "^0.2.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.19.1",
