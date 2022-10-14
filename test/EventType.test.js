@@ -2,15 +2,18 @@ const test = require('ava')
 const sinon = require('sinon')
 const { window, document } = require('xwindow')
 
-// SubmitEvent polyfill for JSDOM
-class SubmitEvent extends window.Event
-{
-  constructor(type, init) {
-    super(type, init)
-    this.submitter = init.submitter
+if(!window.SubmitEvent) {
+  // SubmitEvent polyfill for JSDOM
+  class SubmitEvent extends window.Event
+  {
+    constructor(type, init) {
+      super(type, init)
+      this.submitter = init.submitter
+    }
   }
+
+  window.SubmitEvent = SubmitEvent
 }
-window.SubmitEvent = SubmitEvent
 
 const { HtmlForm, HtmlButton } = require('..')
 
@@ -29,7 +32,7 @@ test('submitter', t => {
   })
 
   t.is(onsubmit.callCount, 1)
-  t.is(onsubmit.args[0][0].nativeEvent.constructor, SubmitEvent)
+  t.is(onsubmit.args[0][0].nativeEvent.constructor, window.SubmitEvent)
   t.is(onsubmit.args[0][0].nativeEvent.submitter, button.node)
   t.is(onsubmit.args[0][0].submitter, button)
 })
@@ -39,11 +42,11 @@ test('relatedTarget', t => {
   const onfocusB = sinon.spy()
   const buttonA = new HtmlButton({
     onfocus : onfocusA,
-    children : 'A'
+    children : 'A',
   })
   const buttonB = new HtmlButton({
     onfocus : onfocusB,
-    children : 'B'
+    children : 'B',
   })
   const form = HtmlForm.render([
     buttonA,
@@ -66,4 +69,27 @@ test('relatedTarget', t => {
   t.is(onfocusB.args[0][0].relatedTarget, buttonA)
 
   document.body.innerHTML = ''
+})
+
+test('stopPropagation', t => {
+  const onclickA = sinon.spy()
+  const onclickB = sinon.spy()
+  const button = new HtmlButton({
+    onclick : e => {
+      e.stopPropagation()
+      onclickA(e)
+    },
+    children : 'Click me!',
+  })
+  const form = HtmlForm.render({
+    onclick : onclickB,
+    children : button,
+  })
+
+  t.is(form.toString(), '<form><button>Click me!</button></form>')
+
+  button.click()
+
+  t.is(onclickA.callCount, 1)
+  t.is(onclickB.callCount, 0)
 })
