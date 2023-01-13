@@ -3,8 +3,8 @@
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
 exports = module.exports = {
-  ...require('./lib/HtmlType-lib'),
-  ...require('./lib/RoleType-lib'),
+  ...require('./lib/HtmlLib'),
+  ...require('./lib/RoleLib'),
 }
 
 exports.AriaType = require('./lib/AriaType')

@@ -75,21 +75,21 @@ test('test #1', t => {
 
   t.is(onclick1.callCount, 1)
   t.is(onclick1.getCall(0).thisValue, child)
-  t.is(onclick1.args[0][0].target, child.node)
+  t.is(onclick1.args[0][0].target, child)
   t.is(onclick1.args[0][1], child)
   t.true(onclick1.calledImmediatelyBefore(onclick2))
   t.true(onclick1.calledBefore(onclick3))
 
   t.is(onclick2.callCount, 1)
   t.is(onclick2.getCall(0).thisValue, child)
-  t.is(onclick2.args[0][0].target, child.node)
+  t.is(onclick2.args[0][0].target, child)
   t.is(onclick2.args[0][1], child)
   t.true(onclick2.calledImmediatelyAfter(onclick1))
   t.true(onclick2.calledImmediatelyBefore(onclick3))
 
   t.is(onclick3.callCount, 1)
   t.is(onclick3.getCall(0).thisValue, parent)
-  t.is(onclick3.args[0][0].target, child.node)
+  t.is(onclick3.args[0][0].target, child)
   t.is(onclick3.args[0][1], child)
   t.true(onclick3.calledImmediatelyAfter(onclick2))
   t.true(onclick3.calledAfter(onclick1))
@@ -117,17 +117,17 @@ test('test #1', t => {
 
   t.is(onclick1.callCount, 2)
   t.is(onclick1.getCall(1).thisValue, child)
-  t.is(onclick1.args[1][0].target, child.node)
+  t.is(onclick1.args[1][0].target, child)
   t.is(onclick1.args[1][1], child)
 
   t.is(onclick2.callCount, 2)
   t.is(onclick2.getCall(1).thisValue, child)
-  t.is(onclick2.args[1][0].target, child.node)
+  t.is(onclick2.args[1][0].target, child)
   t.is(onclick2.args[1][1], child)
 
   t.is(onclick3.callCount, 2)
   t.is(onclick3.getCall(1).thisValue, parent)
-  t.is(onclick3.args[1][0].target, child.node)
+  t.is(onclick3.args[1][0].target, child)
   t.is(onclick3.args[1][1], child)
 
   child.emit('change')
