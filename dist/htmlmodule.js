@@ -3287,8 +3287,7 @@ var PropType = /*#__PURE__*/function () {
      * @returns {string|null|*}
      */
     function get(elem, name) {
-      var _elem$vnode$name;
-      return (_elem$vnode$name = elem.vnode[name]) !== null && _elem$vnode$name !== void 0 ? _elem$vnode$name : null;
+      return elem.node[name];
     }
 
     /**
@@ -3689,6 +3688,7 @@ var EventType = /*#__PURE__*/function () {
   animationiteration: define(window.AnimationEvent, true),
   animationstart: define(window.AnimationEvent, true),
   auxclick: define(window.MouseEvent, true, true),
+  beforeinput: define(window.Event, true, true),
   beforematch: define(window.Event),
   beforeprint: define(window.Event),
   beforeunload: define(window.Event),
