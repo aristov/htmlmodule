@@ -57,12 +57,14 @@ class LoginForm extends HtmlForm
   render() {
     return [
       new HtmlInput({
+        name : 'login',
         placeholder : 'Login',
         value : this.state.login,
         oninput : e => this.setState({ login : e.target.value }),
       }),
       new HtmlInput({
         type : 'password',
+        name : 'password',
         placeholder : 'Password',
         value : this.state.password,
         oninput : e => this.setState({ password : e.target.value }),
@@ -78,9 +80,9 @@ LoginForm.render({ action : '/login' }, document.body)
 This code creates and processes a form with the appropriate DOM structure:
 
 ```html
-<form method="post" action="/login">
-  <input placeholder="Login">
-  <input type="password" placeholder="Password">
+<form class="LoginForm" method="post" action="/login">
+  <input name="login" placeholder="Login">
+  <input type="password" name="password" placeholder="Password">
   <button>Login</button>
 </form>
 ```
