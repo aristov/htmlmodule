@@ -1599,12 +1599,16 @@ var HtmlType = /*#__PURE__*/function (_ElemType) {
 }(ElemType);
 (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(HtmlType, "props", {
   accessKey: 'accesskey',
+  autocapitalize: 'autocapitalize',
   autofocus: 'autofocus',
   contentEditable: 'contenteditable',
   dir: 'dir',
+  draggable: 'draggable',
+  enterKeyHint: 'enterkeyhint',
   hidden: 'hidden',
   inputMode: 'inputmode',
   lang: 'lang',
+  spellcheck: 'spellcheck',
   tabIndex: 'tabindex',
   title: 'title',
   translate: 'translate',
@@ -1725,7 +1729,7 @@ var ElemType = /*#__PURE__*/function () {
     }
 
     /**
-     * @param {{}|function} state
+     * @param {{}|function} [state]
      */
   }, {
     key: "setState",
@@ -2141,7 +2145,7 @@ var ElemType = /*#__PURE__*/function () {
     }
 
     /**
-     * @return {*|Element}
+     * @return {Element|*}
      * @private
      */
   }, {
@@ -2500,7 +2504,7 @@ var ElemType = /*#__PURE__*/function () {
     }
 
     /**
-     * @return {ElemType}
+     * @return {ElemType|*}
      */
   }, {
     key: "rootElem",
@@ -2515,7 +2519,7 @@ var ElemType = /*#__PURE__*/function () {
     /**
      * @param {*} [props]
      * @param {ParentNode} [parentNode]
-     * @return {*|ElemType}
+     * @return {ElemType|*}
      */
   }], [{
     key: "render",
@@ -3851,6 +3855,7 @@ var EventType = /*#__PURE__*/function () {
   inputType: true,
   isComposing: true,
   isPrimary: true,
+  isTrusted: true,
   key: true,
   keyCode: true,
   lastEventId: true,
@@ -4816,11 +4821,15 @@ var RoleType = /*#__PURE__*/function (_ElemType) {
 }(ElemType);
 (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(RoleType, "props", {
   accessKey: 'accesskey',
+  autocapitalize: 'autocapitalize',
   autofocus: 'autofocus',
   contentEditable: 'contenteditable',
   dir: 'dir',
+  draggable: 'draggable',
+  enterKeyHint: 'enterkeyhint',
   inputMode: 'inputmode',
   lang: 'lang',
+  spellcheck: 'spellcheck',
   tabIndex: 'tabindex',
   title: 'title',
   translate: 'translate',
