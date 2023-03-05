@@ -1,5 +1,5 @@
 const test = require('ava')
-const lib = require('../lib/RoleLib')
+const lib = require('../lib/AriaModule')
 
 test('test #1', t => {
   t.is(lib.RoleAlert.render().toString(), '<div role="Alert"></div>')

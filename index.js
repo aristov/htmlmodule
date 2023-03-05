@@ -3,8 +3,8 @@
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
 exports = module.exports = {
-  ...require('./lib/HtmlLib'),
-  ...require('./lib/RoleLib'),
+  ...require('./lib/HtmlModule'),
+  ...require('./lib/AriaModule'),
 }
 
 exports.AriaType = require('./lib/AriaType')
@@ -19,6 +19,8 @@ exports.ElemType = require('./lib/ElemType')
 exports.EventType = require('./lib/EventType')
 exports.HtmlType = require('./lib/HtmlType')
 exports.Id = require('./lib/Id')
+exports.InnerHTML = require('./lib/InnerHTML')
+exports.InnerText = require('./lib/InnerText')
 exports.ListType = require('./lib/ListType')
 exports.PropType = require('./lib/PropType')
 exports.RoleType = require('./lib/RoleType')
