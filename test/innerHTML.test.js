@@ -24,7 +24,14 @@ test('test #1', t => {
   t.is(elem.node.innerHTML, 'foo<br>bar')
 })
 
-test('test #2', async t => {
+test('test #2', t => {
+  const elem = HtmlType.render({ innerHTML : ['foo', null, '<br>', false, 'bar'] })
+
+  t.is(elem.toString(), '<div>foo<br>bar</div>')
+  t.is(elem.node.innerHTML, 'foo<br>bar')
+})
+
+test('test #3', async t => {
   const elem = Test.render()
   const spy = sinon.spy()
   const observer = new MutationObserver(spy)
