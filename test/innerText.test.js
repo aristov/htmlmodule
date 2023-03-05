@@ -10,7 +10,7 @@ Object.defineProperty(window.HTMLElement.prototype, 'innerText', {
     return this.innerHTML.replace(/<br>/g, '\n')
   },
   set(innerText) {
-    this.innerHTML = innerText.replace(/\n/g, '<br>')
+    this.innerHTML = String(innerText).replace(/\n/g, '<br>')
   },
 })
 
@@ -34,7 +34,16 @@ test('test #1', t => {
   t.is(elem.node.innerText, 'foo\nbar')
 })
 
-test('test #2', async t => {
+test('test #2', t => {
+  const elem = HtmlType.render({
+    innerText : ['foo', null, 'bar'],
+  })
+
+  t.is(elem.toString(), '<div>foo<br>bar</div>')
+  t.is(elem.node.innerText, 'foo\nbar')
+})
+
+test('test #3', async t => {
   const elem = Test.render()
   const spy = sinon.spy()
   const observer = new MutationObserver(spy)
