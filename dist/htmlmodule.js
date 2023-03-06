@@ -9,51 +9,63 @@
 		root["htmlmodule"] = factory();
 })(this, () => {
 return /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
 /* 0 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
 
+
+var _interopRequireDefault = __webpack_require__(1);
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
  * @module htmlmodule
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
-exports = module.exports = _objectSpread(_objectSpread({}, __webpack_require__(2)), __webpack_require__(40));
-exports.AriaType = __webpack_require__(24);
-exports.Attributes = __webpack_require__(29);
-exports.AttrType = __webpack_require__(25);
-exports.BooleanType = __webpack_require__(26);
-exports.Class = __webpack_require__(31);
-exports.ClassList = __webpack_require__(34);
-exports.Context = __webpack_require__(42);
-exports.Dataset = __webpack_require__(35);
-exports.ElemType = __webpack_require__(12);
-exports.EventType = __webpack_require__(36);
-exports.HtmlType = __webpack_require__(11);
-exports.Id = __webpack_require__(37);
-exports.ListType = __webpack_require__(27);
-exports.PropType = __webpack_require__(30);
-exports.RoleType = __webpack_require__(41);
-exports.Style = __webpack_require__(38);
-exports.TextType = __webpack_require__(39);
-exports.TokenType = __webpack_require__(28);
-exports.window = __webpack_require__(23);
+exports = module.exports = _objectSpread(_objectSpread({}, __webpack_require__(3)), __webpack_require__(43));
+exports.AriaType = __webpack_require__(25);
+exports.Attributes = __webpack_require__(30);
+exports.AttrType = __webpack_require__(26);
+exports.BooleanType = __webpack_require__(27);
+exports.Class = __webpack_require__(32);
+exports.ClassList = __webpack_require__(35);
+exports.Context = __webpack_require__(45);
+exports.Dataset = __webpack_require__(36);
+exports.ElemType = __webpack_require__(13);
+exports.EventType = __webpack_require__(37);
+exports.HtmlType = __webpack_require__(12);
+exports.Id = __webpack_require__(38);
+exports.InnerHTML = __webpack_require__(39);
+exports.InnerText = __webpack_require__(42);
+exports.ListType = __webpack_require__(28);
+exports.PropType = __webpack_require__(31);
+exports.RoleType = __webpack_require__(44);
+exports.Style = __webpack_require__(40);
+exports.TextType = __webpack_require__(41);
+exports.TokenType = __webpack_require__(29);
+exports.window = __webpack_require__(24);
 
 /***/ }),
 /* 1 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _defineProperty)
-/* harmony export */ });
+
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 2 */
+/***/ ((module) => {
+
+
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -67,39 +79,35 @@ function _defineProperty(obj, key, value) {
   }
   return obj;
 }
+module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 2 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
+/* 3 */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
-
-
-
+var _interopRequireDefault = __webpack_require__(1);
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 var _class, _class2, _class3, _class4, _class5, _class6, _class7, _class8, _class9, _class10, _class11, _class12, _class13, _class14, _class15, _class16, _class17, _class18, _class19, _class20, _class21, _class22, _class23, _class24, _class25, _class26, _class27, _class28, _class29, _class30, _class31, _class32, _class33, _class34, _class35, _class36, _class37, _class38, _class39, _class40, _class41, _class42, _class43, _class44, _class45, _class46, _class47, _class48, _class49, _class50, _class51, _class52, _class53, _class54, _class55, _class56, _class57, _class58, _class59, _class60, _class61, _class62, _class63, _class64, _class65, _class66, _class67, _class68, _class69, _class70, _class71, _class72, _class73, _class74, _class75, _class76, _class77, _class78, _class79, _class80, _class81, _class82, _class83, _class84, _class85, _class86, _class87, _class88, _class89, _class90, _class91, _class92, _class93, _class94, _class95, _class96, _class97, _class98, _class99, _class100, _class101, _class102, _class103, _class104, _class105, _class106, _class107, _class108, _class109, _class110, _class111;
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var HtmlType = __webpack_require__(11);
-var PropType = __webpack_require__(30);
+var HtmlType = __webpack_require__(12);
+var PropType = __webpack_require__(31);
 exports.HtmlA = (_class = /*#__PURE__*/function (_HtmlType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlA, _HtmlType);
+  (0, _inherits2["default"])(HtmlA, _HtmlType);
   var _super = _createSuper(HtmlA);
   function HtmlA() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlA);
+    (0, _classCallCheck2["default"])(this, HtmlA);
     return _super.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlA);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class, "tagName", 'a'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class, "props", {
+  return (0, _createClass2["default"])(HtmlA);
+}(HtmlType), (0, _defineProperty2["default"])(_class, "tagName", 'a'), (0, _defineProperty2["default"])(_class, "props", {
   download: 'download',
   hash: PropType,
   host: PropType,
@@ -119,32 +127,32 @@ exports.HtmlA = (_class = /*#__PURE__*/function (_HtmlType) {
   username: PropType
 }), _class);
 exports.HtmlAbbr = (_class2 = /*#__PURE__*/function (_HtmlType2) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlAbbr, _HtmlType2);
+  (0, _inherits2["default"])(HtmlAbbr, _HtmlType2);
   var _super2 = _createSuper(HtmlAbbr);
   function HtmlAbbr() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlAbbr);
+    (0, _classCallCheck2["default"])(this, HtmlAbbr);
     return _super2.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlAbbr);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2, "tagName", 'abbr'), _class2);
+  return (0, _createClass2["default"])(HtmlAbbr);
+}(HtmlType), (0, _defineProperty2["default"])(_class2, "tagName", 'abbr'), _class2);
 exports.HtmlAddress = (_class3 = /*#__PURE__*/function (_HtmlType3) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlAddress, _HtmlType3);
+  (0, _inherits2["default"])(HtmlAddress, _HtmlType3);
   var _super3 = _createSuper(HtmlAddress);
   function HtmlAddress() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlAddress);
+    (0, _classCallCheck2["default"])(this, HtmlAddress);
     return _super3.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlAddress);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class3, "tagName", 'address'), _class3);
+  return (0, _createClass2["default"])(HtmlAddress);
+}(HtmlType), (0, _defineProperty2["default"])(_class3, "tagName", 'address'), _class3);
 exports.HtmlArea = (_class4 = /*#__PURE__*/function (_HtmlType4) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlArea, _HtmlType4);
+  (0, _inherits2["default"])(HtmlArea, _HtmlType4);
   var _super4 = _createSuper(HtmlArea);
   function HtmlArea() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlArea);
+    (0, _classCallCheck2["default"])(this, HtmlArea);
     return _super4.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlArea);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class4, "tagName", 'area'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class4, "props", {
+  return (0, _createClass2["default"])(HtmlArea);
+}(HtmlType), (0, _defineProperty2["default"])(_class4, "tagName", 'area'), (0, _defineProperty2["default"])(_class4, "props", {
   alt: 'alt',
   coords: 'coords',
   download: 'download',
@@ -164,32 +172,32 @@ exports.HtmlArea = (_class4 = /*#__PURE__*/function (_HtmlType4) {
   username: PropType
 }), _class4);
 exports.HtmlArticle = (_class5 = /*#__PURE__*/function (_HtmlType5) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlArticle, _HtmlType5);
+  (0, _inherits2["default"])(HtmlArticle, _HtmlType5);
   var _super5 = _createSuper(HtmlArticle);
   function HtmlArticle() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlArticle);
+    (0, _classCallCheck2["default"])(this, HtmlArticle);
     return _super5.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlArticle);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class5, "tagName", 'article'), _class5);
+  return (0, _createClass2["default"])(HtmlArticle);
+}(HtmlType), (0, _defineProperty2["default"])(_class5, "tagName", 'article'), _class5);
 exports.HtmlAside = (_class6 = /*#__PURE__*/function (_HtmlType6) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlAside, _HtmlType6);
+  (0, _inherits2["default"])(HtmlAside, _HtmlType6);
   var _super6 = _createSuper(HtmlAside);
   function HtmlAside() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlAside);
+    (0, _classCallCheck2["default"])(this, HtmlAside);
     return _super6.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlAside);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class6, "tagName", 'aside'), _class6);
+  return (0, _createClass2["default"])(HtmlAside);
+}(HtmlType), (0, _defineProperty2["default"])(_class6, "tagName", 'aside'), _class6);
 exports.HtmlAudio = (_class7 = /*#__PURE__*/function (_HtmlType7) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlAudio, _HtmlType7);
+  (0, _inherits2["default"])(HtmlAudio, _HtmlType7);
   var _super7 = _createSuper(HtmlAudio);
   function HtmlAudio() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlAudio);
+    (0, _classCallCheck2["default"])(this, HtmlAudio);
     return _super7.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlAudio);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class7, "tagName", 'audio'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class7, "props", {
+  return (0, _createClass2["default"])(HtmlAudio);
+}(HtmlType), (0, _defineProperty2["default"])(_class7, "tagName", 'audio'), (0, _defineProperty2["default"])(_class7, "props", {
   autoplay: 'autoplay',
   controls: 'controls',
   crossOrigin: 'crossorigin',
@@ -205,82 +213,82 @@ exports.HtmlAudio = (_class7 = /*#__PURE__*/function (_HtmlType7) {
   volume: PropType
 }), _class7);
 exports.HtmlB = (_class8 = /*#__PURE__*/function (_HtmlType8) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlB, _HtmlType8);
+  (0, _inherits2["default"])(HtmlB, _HtmlType8);
   var _super8 = _createSuper(HtmlB);
   function HtmlB() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlB);
+    (0, _classCallCheck2["default"])(this, HtmlB);
     return _super8.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlB);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class8, "tagName", 'b'), _class8);
+  return (0, _createClass2["default"])(HtmlB);
+}(HtmlType), (0, _defineProperty2["default"])(_class8, "tagName", 'b'), _class8);
 exports.HtmlBase = (_class9 = /*#__PURE__*/function (_HtmlType9) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlBase, _HtmlType9);
+  (0, _inherits2["default"])(HtmlBase, _HtmlType9);
   var _super9 = _createSuper(HtmlBase);
   function HtmlBase() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlBase);
+    (0, _classCallCheck2["default"])(this, HtmlBase);
     return _super9.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlBase);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class9, "tagName", 'base'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class9, "props", {
+  return (0, _createClass2["default"])(HtmlBase);
+}(HtmlType), (0, _defineProperty2["default"])(_class9, "tagName", 'base'), (0, _defineProperty2["default"])(_class9, "props", {
   href: 'href',
   target: 'target'
 }), _class9);
 exports.HtmlBdi = (_class10 = /*#__PURE__*/function (_HtmlType10) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlBdi, _HtmlType10);
+  (0, _inherits2["default"])(HtmlBdi, _HtmlType10);
   var _super10 = _createSuper(HtmlBdi);
   function HtmlBdi() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlBdi);
+    (0, _classCallCheck2["default"])(this, HtmlBdi);
     return _super10.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlBdi);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class10, "tagName", 'bdi'), _class10);
+  return (0, _createClass2["default"])(HtmlBdi);
+}(HtmlType), (0, _defineProperty2["default"])(_class10, "tagName", 'bdi'), _class10);
 exports.HtmlBdo = (_class11 = /*#__PURE__*/function (_HtmlType11) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlBdo, _HtmlType11);
+  (0, _inherits2["default"])(HtmlBdo, _HtmlType11);
   var _super11 = _createSuper(HtmlBdo);
   function HtmlBdo() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlBdo);
+    (0, _classCallCheck2["default"])(this, HtmlBdo);
     return _super11.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlBdo);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class11, "tagName", 'bdo'), _class11);
+  return (0, _createClass2["default"])(HtmlBdo);
+}(HtmlType), (0, _defineProperty2["default"])(_class11, "tagName", 'bdo'), _class11);
 exports.HtmlBlockQuote = (_class12 = /*#__PURE__*/function (_HtmlType12) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlBlockQuote, _HtmlType12);
+  (0, _inherits2["default"])(HtmlBlockQuote, _HtmlType12);
   var _super12 = _createSuper(HtmlBlockQuote);
   function HtmlBlockQuote() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlBlockQuote);
+    (0, _classCallCheck2["default"])(this, HtmlBlockQuote);
     return _super12.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlBlockQuote);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class12, "tagName", 'blockquote'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class12, "props", {
+  return (0, _createClass2["default"])(HtmlBlockQuote);
+}(HtmlType), (0, _defineProperty2["default"])(_class12, "tagName", 'blockquote'), (0, _defineProperty2["default"])(_class12, "props", {
   cite: 'cite'
 }), _class12);
 exports.HtmlBody = (_class13 = /*#__PURE__*/function (_HtmlType13) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlBody, _HtmlType13);
+  (0, _inherits2["default"])(HtmlBody, _HtmlType13);
   var _super13 = _createSuper(HtmlBody);
   function HtmlBody() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlBody);
+    (0, _classCallCheck2["default"])(this, HtmlBody);
     return _super13.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlBody);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class13, "tagName", 'body'), _class13);
+  return (0, _createClass2["default"])(HtmlBody);
+}(HtmlType), (0, _defineProperty2["default"])(_class13, "tagName", 'body'), _class13);
 exports.HtmlBr = (_class14 = /*#__PURE__*/function (_HtmlType14) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlBr, _HtmlType14);
+  (0, _inherits2["default"])(HtmlBr, _HtmlType14);
   var _super14 = _createSuper(HtmlBr);
   function HtmlBr() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlBr);
+    (0, _classCallCheck2["default"])(this, HtmlBr);
     return _super14.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlBr);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class14, "tagName", 'br'), _class14);
+  return (0, _createClass2["default"])(HtmlBr);
+}(HtmlType), (0, _defineProperty2["default"])(_class14, "tagName", 'br'), _class14);
 exports.HtmlButton = (_class15 = /*#__PURE__*/function (_HtmlType15) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlButton, _HtmlType15);
+  (0, _inherits2["default"])(HtmlButton, _HtmlType15);
   var _super15 = _createSuper(HtmlButton);
   function HtmlButton() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlButton);
+    (0, _classCallCheck2["default"])(this, HtmlButton);
     return _super15.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlButton);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class15, "tagName", 'button'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class15, "props", {
+  return (0, _createClass2["default"])(HtmlButton);
+}(HtmlType), (0, _defineProperty2["default"])(_class15, "tagName", 'button'), (0, _defineProperty2["default"])(_class15, "props", {
   autofocus: 'autofocus',
   disabled: 'disabled',
   formAction: 'formaction',
@@ -293,237 +301,237 @@ exports.HtmlButton = (_class15 = /*#__PURE__*/function (_HtmlType15) {
   value: PropType
 }), _class15);
 exports.HtmlCanvas = (_class16 = /*#__PURE__*/function (_HtmlType16) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlCanvas, _HtmlType16);
+  (0, _inherits2["default"])(HtmlCanvas, _HtmlType16);
   var _super16 = _createSuper(HtmlCanvas);
   function HtmlCanvas() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlCanvas);
+    (0, _classCallCheck2["default"])(this, HtmlCanvas);
     return _super16.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlCanvas);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class16, "tagName", 'canvas'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class16, "props", {
+  return (0, _createClass2["default"])(HtmlCanvas);
+}(HtmlType), (0, _defineProperty2["default"])(_class16, "tagName", 'canvas'), (0, _defineProperty2["default"])(_class16, "props", {
   height: 'height',
   width: 'width'
 }), _class16);
 exports.HtmlCaption = (_class17 = /*#__PURE__*/function (_HtmlType17) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlCaption, _HtmlType17);
+  (0, _inherits2["default"])(HtmlCaption, _HtmlType17);
   var _super17 = _createSuper(HtmlCaption);
   function HtmlCaption() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlCaption);
+    (0, _classCallCheck2["default"])(this, HtmlCaption);
     return _super17.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlCaption);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class17, "tagName", 'caption'), _class17);
+  return (0, _createClass2["default"])(HtmlCaption);
+}(HtmlType), (0, _defineProperty2["default"])(_class17, "tagName", 'caption'), _class17);
 exports.HtmlCite = (_class18 = /*#__PURE__*/function (_HtmlType18) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlCite, _HtmlType18);
+  (0, _inherits2["default"])(HtmlCite, _HtmlType18);
   var _super18 = _createSuper(HtmlCite);
   function HtmlCite() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlCite);
+    (0, _classCallCheck2["default"])(this, HtmlCite);
     return _super18.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlCite);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class18, "tagName", 'cite'), _class18);
+  return (0, _createClass2["default"])(HtmlCite);
+}(HtmlType), (0, _defineProperty2["default"])(_class18, "tagName", 'cite'), _class18);
 exports.HtmlCode = (_class19 = /*#__PURE__*/function (_HtmlType19) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlCode, _HtmlType19);
+  (0, _inherits2["default"])(HtmlCode, _HtmlType19);
   var _super19 = _createSuper(HtmlCode);
   function HtmlCode() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlCode);
+    (0, _classCallCheck2["default"])(this, HtmlCode);
     return _super19.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlCode);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class19, "tagName", 'code'), _class19);
+  return (0, _createClass2["default"])(HtmlCode);
+}(HtmlType), (0, _defineProperty2["default"])(_class19, "tagName", 'code'), _class19);
 exports.HtmlCol = (_class20 = /*#__PURE__*/function (_HtmlType20) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlCol, _HtmlType20);
+  (0, _inherits2["default"])(HtmlCol, _HtmlType20);
   var _super20 = _createSuper(HtmlCol);
   function HtmlCol() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlCol);
+    (0, _classCallCheck2["default"])(this, HtmlCol);
     return _super20.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlCol);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class20, "tagName", 'col'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class20, "props", {
+  return (0, _createClass2["default"])(HtmlCol);
+}(HtmlType), (0, _defineProperty2["default"])(_class20, "tagName", 'col'), (0, _defineProperty2["default"])(_class20, "props", {
   span: 'span'
 }), _class20);
 exports.HtmlColGroup = (_class21 = /*#__PURE__*/function (_HtmlType21) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlColGroup, _HtmlType21);
+  (0, _inherits2["default"])(HtmlColGroup, _HtmlType21);
   var _super21 = _createSuper(HtmlColGroup);
   function HtmlColGroup() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlColGroup);
+    (0, _classCallCheck2["default"])(this, HtmlColGroup);
     return _super21.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlColGroup);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class21, "tagName", 'colgroup'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class21, "props", {
+  return (0, _createClass2["default"])(HtmlColGroup);
+}(HtmlType), (0, _defineProperty2["default"])(_class21, "tagName", 'colgroup'), (0, _defineProperty2["default"])(_class21, "props", {
   span: 'span'
 }), _class21);
 exports.HtmlData = (_class22 = /*#__PURE__*/function (_HtmlType22) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlData, _HtmlType22);
+  (0, _inherits2["default"])(HtmlData, _HtmlType22);
   var _super22 = _createSuper(HtmlData);
   function HtmlData() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlData);
+    (0, _classCallCheck2["default"])(this, HtmlData);
     return _super22.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlData);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class22, "tagName", 'data'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class22, "props", {
+  return (0, _createClass2["default"])(HtmlData);
+}(HtmlType), (0, _defineProperty2["default"])(_class22, "tagName", 'data'), (0, _defineProperty2["default"])(_class22, "props", {
   value: PropType
 }), _class22);
 exports.HtmlDataList = (_class23 = /*#__PURE__*/function (_HtmlType23) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDataList, _HtmlType23);
+  (0, _inherits2["default"])(HtmlDataList, _HtmlType23);
   var _super23 = _createSuper(HtmlDataList);
   function HtmlDataList() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDataList);
+    (0, _classCallCheck2["default"])(this, HtmlDataList);
     return _super23.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDataList);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class23, "tagName", 'datalist'), _class23);
+  return (0, _createClass2["default"])(HtmlDataList);
+}(HtmlType), (0, _defineProperty2["default"])(_class23, "tagName", 'datalist'), _class23);
 exports.HtmlDd = (_class24 = /*#__PURE__*/function (_HtmlType24) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDd, _HtmlType24);
+  (0, _inherits2["default"])(HtmlDd, _HtmlType24);
   var _super24 = _createSuper(HtmlDd);
   function HtmlDd() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDd);
+    (0, _classCallCheck2["default"])(this, HtmlDd);
     return _super24.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDd);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class24, "tagName", 'dd'), _class24);
+  return (0, _createClass2["default"])(HtmlDd);
+}(HtmlType), (0, _defineProperty2["default"])(_class24, "tagName", 'dd'), _class24);
 exports.HtmlDel = (_class25 = /*#__PURE__*/function (_HtmlType25) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDel, _HtmlType25);
+  (0, _inherits2["default"])(HtmlDel, _HtmlType25);
   var _super25 = _createSuper(HtmlDel);
   function HtmlDel() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDel);
+    (0, _classCallCheck2["default"])(this, HtmlDel);
     return _super25.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDel);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class25, "tagName", 'del'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class25, "props", {
+  return (0, _createClass2["default"])(HtmlDel);
+}(HtmlType), (0, _defineProperty2["default"])(_class25, "tagName", 'del'), (0, _defineProperty2["default"])(_class25, "props", {
   cite: 'cite',
   dateTime: 'datetime'
 }), _class25);
 exports.HtmlDetails = (_class26 = /*#__PURE__*/function (_HtmlType26) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDetails, _HtmlType26);
+  (0, _inherits2["default"])(HtmlDetails, _HtmlType26);
   var _super26 = _createSuper(HtmlDetails);
   function HtmlDetails() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDetails);
+    (0, _classCallCheck2["default"])(this, HtmlDetails);
     return _super26.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDetails);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class26, "tagName", 'details'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class26, "props", {
+  return (0, _createClass2["default"])(HtmlDetails);
+}(HtmlType), (0, _defineProperty2["default"])(_class26, "tagName", 'details'), (0, _defineProperty2["default"])(_class26, "props", {
   open: 'open'
 }), _class26);
 exports.HtmlDfn = (_class27 = /*#__PURE__*/function (_HtmlType27) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDfn, _HtmlType27);
+  (0, _inherits2["default"])(HtmlDfn, _HtmlType27);
   var _super27 = _createSuper(HtmlDfn);
   function HtmlDfn() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDfn);
+    (0, _classCallCheck2["default"])(this, HtmlDfn);
     return _super27.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDfn);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class27, "tagName", 'dfn'), _class27);
+  return (0, _createClass2["default"])(HtmlDfn);
+}(HtmlType), (0, _defineProperty2["default"])(_class27, "tagName", 'dfn'), _class27);
 exports.HtmlDialog = (_class28 = /*#__PURE__*/function (_HtmlType28) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDialog, _HtmlType28);
+  (0, _inherits2["default"])(HtmlDialog, _HtmlType28);
   var _super28 = _createSuper(HtmlDialog);
   function HtmlDialog() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDialog);
+    (0, _classCallCheck2["default"])(this, HtmlDialog);
     return _super28.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDialog);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class28, "tagName", 'dialog'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class28, "props", {
+  return (0, _createClass2["default"])(HtmlDialog);
+}(HtmlType), (0, _defineProperty2["default"])(_class28, "tagName", 'dialog'), (0, _defineProperty2["default"])(_class28, "props", {
   open: 'open',
   returnValue: PropType
 }), _class28);
 exports.HtmlDiv = (_class29 = /*#__PURE__*/function (_HtmlType29) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDiv, _HtmlType29);
+  (0, _inherits2["default"])(HtmlDiv, _HtmlType29);
   var _super29 = _createSuper(HtmlDiv);
   function HtmlDiv() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDiv);
+    (0, _classCallCheck2["default"])(this, HtmlDiv);
     return _super29.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDiv);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class29, "tagName", 'div'), _class29);
+  return (0, _createClass2["default"])(HtmlDiv);
+}(HtmlType), (0, _defineProperty2["default"])(_class29, "tagName", 'div'), _class29);
 exports.HtmlDl = (_class30 = /*#__PURE__*/function (_HtmlType30) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDl, _HtmlType30);
+  (0, _inherits2["default"])(HtmlDl, _HtmlType30);
   var _super30 = _createSuper(HtmlDl);
   function HtmlDl() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDl);
+    (0, _classCallCheck2["default"])(this, HtmlDl);
     return _super30.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDl);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class30, "tagName", 'dl'), _class30);
+  return (0, _createClass2["default"])(HtmlDl);
+}(HtmlType), (0, _defineProperty2["default"])(_class30, "tagName", 'dl'), _class30);
 exports.HtmlDt = (_class31 = /*#__PURE__*/function (_HtmlType31) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlDt, _HtmlType31);
+  (0, _inherits2["default"])(HtmlDt, _HtmlType31);
   var _super31 = _createSuper(HtmlDt);
   function HtmlDt() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlDt);
+    (0, _classCallCheck2["default"])(this, HtmlDt);
     return _super31.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlDt);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class31, "tagName", 'dt'), _class31);
+  return (0, _createClass2["default"])(HtmlDt);
+}(HtmlType), (0, _defineProperty2["default"])(_class31, "tagName", 'dt'), _class31);
 exports.HtmlEm = (_class32 = /*#__PURE__*/function (_HtmlType32) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlEm, _HtmlType32);
+  (0, _inherits2["default"])(HtmlEm, _HtmlType32);
   var _super32 = _createSuper(HtmlEm);
   function HtmlEm() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlEm);
+    (0, _classCallCheck2["default"])(this, HtmlEm);
     return _super32.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlEm);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class32, "tagName", 'em'), _class32);
+  return (0, _createClass2["default"])(HtmlEm);
+}(HtmlType), (0, _defineProperty2["default"])(_class32, "tagName", 'em'), _class32);
 exports.HtmlEmbed = (_class33 = /*#__PURE__*/function (_HtmlType33) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlEmbed, _HtmlType33);
+  (0, _inherits2["default"])(HtmlEmbed, _HtmlType33);
   var _super33 = _createSuper(HtmlEmbed);
   function HtmlEmbed() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlEmbed);
+    (0, _classCallCheck2["default"])(this, HtmlEmbed);
     return _super33.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlEmbed);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class33, "tagName", 'embed'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class33, "props", {
+  return (0, _createClass2["default"])(HtmlEmbed);
+}(HtmlType), (0, _defineProperty2["default"])(_class33, "tagName", 'embed'), (0, _defineProperty2["default"])(_class33, "props", {
   height: 'height',
   src: 'src',
   type: 'type',
   width: 'width'
 }), _class33);
 exports.HtmlFieldSet = (_class34 = /*#__PURE__*/function (_HtmlType34) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlFieldSet, _HtmlType34);
+  (0, _inherits2["default"])(HtmlFieldSet, _HtmlType34);
   var _super34 = _createSuper(HtmlFieldSet);
   function HtmlFieldSet() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlFieldSet);
+    (0, _classCallCheck2["default"])(this, HtmlFieldSet);
     return _super34.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlFieldSet);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class34, "tagName", 'fieldset'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class34, "props", {
+  return (0, _createClass2["default"])(HtmlFieldSet);
+}(HtmlType), (0, _defineProperty2["default"])(_class34, "tagName", 'fieldset'), (0, _defineProperty2["default"])(_class34, "props", {
   disabled: 'disabled',
   name: 'name'
 }), _class34);
 exports.HtmlFigCaption = (_class35 = /*#__PURE__*/function (_HtmlType35) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlFigCaption, _HtmlType35);
+  (0, _inherits2["default"])(HtmlFigCaption, _HtmlType35);
   var _super35 = _createSuper(HtmlFigCaption);
   function HtmlFigCaption() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlFigCaption);
+    (0, _classCallCheck2["default"])(this, HtmlFigCaption);
     return _super35.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlFigCaption);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class35, "tagName", 'figcaption'), _class35);
+  return (0, _createClass2["default"])(HtmlFigCaption);
+}(HtmlType), (0, _defineProperty2["default"])(_class35, "tagName", 'figcaption'), _class35);
 exports.HtmlFigure = (_class36 = /*#__PURE__*/function (_HtmlType36) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlFigure, _HtmlType36);
+  (0, _inherits2["default"])(HtmlFigure, _HtmlType36);
   var _super36 = _createSuper(HtmlFigure);
   function HtmlFigure() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlFigure);
+    (0, _classCallCheck2["default"])(this, HtmlFigure);
     return _super36.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlFigure);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class36, "tagName", 'figure'), _class36);
+  return (0, _createClass2["default"])(HtmlFigure);
+}(HtmlType), (0, _defineProperty2["default"])(_class36, "tagName", 'figure'), _class36);
 exports.HtmlFooter = (_class37 = /*#__PURE__*/function (_HtmlType37) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlFooter, _HtmlType37);
+  (0, _inherits2["default"])(HtmlFooter, _HtmlType37);
   var _super37 = _createSuper(HtmlFooter);
   function HtmlFooter() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlFooter);
+    (0, _classCallCheck2["default"])(this, HtmlFooter);
     return _super37.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlFooter);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class37, "tagName", 'footer'), _class37);
+  return (0, _createClass2["default"])(HtmlFooter);
+}(HtmlType), (0, _defineProperty2["default"])(_class37, "tagName", 'footer'), _class37);
 exports.HtmlForm = (_class38 = /*#__PURE__*/function (_HtmlType38) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlForm, _HtmlType38);
+  (0, _inherits2["default"])(HtmlForm, _HtmlType38);
   var _super38 = _createSuper(HtmlForm);
   function HtmlForm() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlForm);
+    (0, _classCallCheck2["default"])(this, HtmlForm);
     return _super38.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlForm);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class38, "tagName", 'form'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class38, "props", {
+  return (0, _createClass2["default"])(HtmlForm);
+}(HtmlType), (0, _defineProperty2["default"])(_class38, "tagName", 'form'), (0, _defineProperty2["default"])(_class38, "props", {
   acceptCharset: 'accept-charset',
   action: 'action',
   autocomplete: 'autocomplete',
@@ -534,122 +542,122 @@ exports.HtmlForm = (_class38 = /*#__PURE__*/function (_HtmlType38) {
   target: 'target'
 }), _class38);
 exports.HtmlH1 = (_class39 = /*#__PURE__*/function (_HtmlType39) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlH1, _HtmlType39);
+  (0, _inherits2["default"])(HtmlH1, _HtmlType39);
   var _super39 = _createSuper(HtmlH1);
   function HtmlH1() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlH1);
+    (0, _classCallCheck2["default"])(this, HtmlH1);
     return _super39.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlH1);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class39, "tagName", 'h1'), _class39);
+  return (0, _createClass2["default"])(HtmlH1);
+}(HtmlType), (0, _defineProperty2["default"])(_class39, "tagName", 'h1'), _class39);
 exports.HtmlH2 = (_class40 = /*#__PURE__*/function (_HtmlType40) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlH2, _HtmlType40);
+  (0, _inherits2["default"])(HtmlH2, _HtmlType40);
   var _super40 = _createSuper(HtmlH2);
   function HtmlH2() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlH2);
+    (0, _classCallCheck2["default"])(this, HtmlH2);
     return _super40.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlH2);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class40, "tagName", 'h2'), _class40);
+  return (0, _createClass2["default"])(HtmlH2);
+}(HtmlType), (0, _defineProperty2["default"])(_class40, "tagName", 'h2'), _class40);
 exports.HtmlH3 = (_class41 = /*#__PURE__*/function (_HtmlType41) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlH3, _HtmlType41);
+  (0, _inherits2["default"])(HtmlH3, _HtmlType41);
   var _super41 = _createSuper(HtmlH3);
   function HtmlH3() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlH3);
+    (0, _classCallCheck2["default"])(this, HtmlH3);
     return _super41.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlH3);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class41, "tagName", 'h3'), _class41);
+  return (0, _createClass2["default"])(HtmlH3);
+}(HtmlType), (0, _defineProperty2["default"])(_class41, "tagName", 'h3'), _class41);
 exports.HtmlH4 = (_class42 = /*#__PURE__*/function (_HtmlType42) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlH4, _HtmlType42);
+  (0, _inherits2["default"])(HtmlH4, _HtmlType42);
   var _super42 = _createSuper(HtmlH4);
   function HtmlH4() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlH4);
+    (0, _classCallCheck2["default"])(this, HtmlH4);
     return _super42.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlH4);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class42, "tagName", 'h4'), _class42);
+  return (0, _createClass2["default"])(HtmlH4);
+}(HtmlType), (0, _defineProperty2["default"])(_class42, "tagName", 'h4'), _class42);
 exports.HtmlH5 = (_class43 = /*#__PURE__*/function (_HtmlType43) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlH5, _HtmlType43);
+  (0, _inherits2["default"])(HtmlH5, _HtmlType43);
   var _super43 = _createSuper(HtmlH5);
   function HtmlH5() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlH5);
+    (0, _classCallCheck2["default"])(this, HtmlH5);
     return _super43.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlH5);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class43, "tagName", 'h5'), _class43);
+  return (0, _createClass2["default"])(HtmlH5);
+}(HtmlType), (0, _defineProperty2["default"])(_class43, "tagName", 'h5'), _class43);
 exports.HtmlH6 = (_class44 = /*#__PURE__*/function (_HtmlType44) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlH6, _HtmlType44);
+  (0, _inherits2["default"])(HtmlH6, _HtmlType44);
   var _super44 = _createSuper(HtmlH6);
   function HtmlH6() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlH6);
+    (0, _classCallCheck2["default"])(this, HtmlH6);
     return _super44.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlH6);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class44, "tagName", 'h6'), _class44);
+  return (0, _createClass2["default"])(HtmlH6);
+}(HtmlType), (0, _defineProperty2["default"])(_class44, "tagName", 'h6'), _class44);
 exports.HtmlHGroup = (_class45 = /*#__PURE__*/function (_HtmlType45) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlHGroup, _HtmlType45);
+  (0, _inherits2["default"])(HtmlHGroup, _HtmlType45);
   var _super45 = _createSuper(HtmlHGroup);
   function HtmlHGroup() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlHGroup);
+    (0, _classCallCheck2["default"])(this, HtmlHGroup);
     return _super45.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlHGroup);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class45, "tagName", 'hgroup'), _class45);
+  return (0, _createClass2["default"])(HtmlHGroup);
+}(HtmlType), (0, _defineProperty2["default"])(_class45, "tagName", 'hgroup'), _class45);
 exports.HtmlHead = (_class46 = /*#__PURE__*/function (_HtmlType46) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlHead, _HtmlType46);
+  (0, _inherits2["default"])(HtmlHead, _HtmlType46);
   var _super46 = _createSuper(HtmlHead);
   function HtmlHead() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlHead);
+    (0, _classCallCheck2["default"])(this, HtmlHead);
     return _super46.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlHead);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class46, "tagName", 'head'), _class46);
+  return (0, _createClass2["default"])(HtmlHead);
+}(HtmlType), (0, _defineProperty2["default"])(_class46, "tagName", 'head'), _class46);
 exports.HtmlHeader = (_class47 = /*#__PURE__*/function (_HtmlType47) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlHeader, _HtmlType47);
+  (0, _inherits2["default"])(HtmlHeader, _HtmlType47);
   var _super47 = _createSuper(HtmlHeader);
   function HtmlHeader() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlHeader);
+    (0, _classCallCheck2["default"])(this, HtmlHeader);
     return _super47.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlHeader);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class47, "tagName", 'header'), _class47);
+  return (0, _createClass2["default"])(HtmlHeader);
+}(HtmlType), (0, _defineProperty2["default"])(_class47, "tagName", 'header'), _class47);
 exports.HtmlHr = (_class48 = /*#__PURE__*/function (_HtmlType48) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlHr, _HtmlType48);
+  (0, _inherits2["default"])(HtmlHr, _HtmlType48);
   var _super48 = _createSuper(HtmlHr);
   function HtmlHr() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlHr);
+    (0, _classCallCheck2["default"])(this, HtmlHr);
     return _super48.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlHr);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class48, "tagName", 'hr'), _class48);
+  return (0, _createClass2["default"])(HtmlHr);
+}(HtmlType), (0, _defineProperty2["default"])(_class48, "tagName", 'hr'), _class48);
 exports.HtmlHtml = (_class49 = /*#__PURE__*/function (_HtmlType49) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlHtml, _HtmlType49);
+  (0, _inherits2["default"])(HtmlHtml, _HtmlType49);
   var _super49 = _createSuper(HtmlHtml);
   function HtmlHtml() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlHtml);
+    (0, _classCallCheck2["default"])(this, HtmlHtml);
     return _super49.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlHtml);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class49, "tagName", 'html'), _class49);
+  return (0, _createClass2["default"])(HtmlHtml);
+}(HtmlType), (0, _defineProperty2["default"])(_class49, "tagName", 'html'), _class49);
 exports.HtmlI = (_class50 = /*#__PURE__*/function (_HtmlType50) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlI, _HtmlType50);
+  (0, _inherits2["default"])(HtmlI, _HtmlType50);
   var _super50 = _createSuper(HtmlI);
   function HtmlI() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlI);
+    (0, _classCallCheck2["default"])(this, HtmlI);
     return _super50.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlI);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class50, "tagName", 'i'), _class50);
+  return (0, _createClass2["default"])(HtmlI);
+}(HtmlType), (0, _defineProperty2["default"])(_class50, "tagName", 'i'), _class50);
 exports.HtmlIFrame = (_class51 = /*#__PURE__*/function (_HtmlType51) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlIFrame, _HtmlType51);
+  (0, _inherits2["default"])(HtmlIFrame, _HtmlType51);
   var _super51 = _createSuper(HtmlIFrame);
   function HtmlIFrame() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlIFrame);
+    (0, _classCallCheck2["default"])(this, HtmlIFrame);
     return _super51.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlIFrame);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class51, "tagName", 'iframe'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class51, "props", {
+  return (0, _createClass2["default"])(HtmlIFrame);
+}(HtmlType), (0, _defineProperty2["default"])(_class51, "tagName", 'iframe'), (0, _defineProperty2["default"])(_class51, "props", {
   allowFullScreen: 'allowfullscreen',
   height: 'height',
   referrerPolicy: 'referrerpolicy',
@@ -658,14 +666,14 @@ exports.HtmlIFrame = (_class51 = /*#__PURE__*/function (_HtmlType51) {
   width: 'width'
 }), _class51);
 exports.HtmlImg = (_class52 = /*#__PURE__*/function (_HtmlType52) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlImg, _HtmlType52);
+  (0, _inherits2["default"])(HtmlImg, _HtmlType52);
   var _super52 = _createSuper(HtmlImg);
   function HtmlImg() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlImg);
+    (0, _classCallCheck2["default"])(this, HtmlImg);
     return _super52.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlImg);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class52, "tagName", 'img'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class52, "props", {
+  return (0, _createClass2["default"])(HtmlImg);
+}(HtmlType), (0, _defineProperty2["default"])(_class52, "tagName", 'img'), (0, _defineProperty2["default"])(_class52, "props", {
   alt: 'alt',
   crossOrigin: 'crossorigin',
   height: 'height',
@@ -678,14 +686,14 @@ exports.HtmlImg = (_class52 = /*#__PURE__*/function (_HtmlType52) {
   width: 'width'
 }), _class52);
 exports.HtmlInput = (_class53 = /*#__PURE__*/function (_HtmlType53) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlInput, _HtmlType53);
+  (0, _inherits2["default"])(HtmlInput, _HtmlType53);
   var _super53 = _createSuper(HtmlInput);
   function HtmlInput() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlInput);
+    (0, _classCallCheck2["default"])(this, HtmlInput);
     return _super53.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlInput);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class53, "tagName", 'input'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class53, "props", {
+  return (0, _createClass2["default"])(HtmlInput);
+}(HtmlType), (0, _defineProperty2["default"])(_class53, "tagName", 'input'), (0, _defineProperty2["default"])(_class53, "props", {
   accept: 'accept',
   alt: 'alt',
   autocomplete: 'autocomplete',
@@ -727,66 +735,66 @@ exports.HtmlInput = (_class53 = /*#__PURE__*/function (_HtmlType53) {
   width: 'width'
 }), _class53);
 exports.HtmlIns = (_class54 = /*#__PURE__*/function (_HtmlType54) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlIns, _HtmlType54);
+  (0, _inherits2["default"])(HtmlIns, _HtmlType54);
   var _super54 = _createSuper(HtmlIns);
   function HtmlIns() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlIns);
+    (0, _classCallCheck2["default"])(this, HtmlIns);
     return _super54.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlIns);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class54, "tagName", 'ins'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class54, "props", {
+  return (0, _createClass2["default"])(HtmlIns);
+}(HtmlType), (0, _defineProperty2["default"])(_class54, "tagName", 'ins'), (0, _defineProperty2["default"])(_class54, "props", {
   cite: 'cite',
   dateTime: 'datetime'
 }), _class54);
 exports.HtmlKbd = (_class55 = /*#__PURE__*/function (_HtmlType55) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlKbd, _HtmlType55);
+  (0, _inherits2["default"])(HtmlKbd, _HtmlType55);
   var _super55 = _createSuper(HtmlKbd);
   function HtmlKbd() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlKbd);
+    (0, _classCallCheck2["default"])(this, HtmlKbd);
     return _super55.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlKbd);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class55, "tagName", 'kbd'), _class55);
+  return (0, _createClass2["default"])(HtmlKbd);
+}(HtmlType), (0, _defineProperty2["default"])(_class55, "tagName", 'kbd'), _class55);
 exports.HtmlLabel = (_class56 = /*#__PURE__*/function (_HtmlType56) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlLabel, _HtmlType56);
+  (0, _inherits2["default"])(HtmlLabel, _HtmlType56);
   var _super56 = _createSuper(HtmlLabel);
   function HtmlLabel() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlLabel);
+    (0, _classCallCheck2["default"])(this, HtmlLabel);
     return _super56.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlLabel);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class56, "tagName", 'label'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class56, "props", {
+  return (0, _createClass2["default"])(HtmlLabel);
+}(HtmlType), (0, _defineProperty2["default"])(_class56, "tagName", 'label'), (0, _defineProperty2["default"])(_class56, "props", {
   htmlFor: 'for'
 }), _class56);
 exports.HtmlLegend = (_class57 = /*#__PURE__*/function (_HtmlType57) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlLegend, _HtmlType57);
+  (0, _inherits2["default"])(HtmlLegend, _HtmlType57);
   var _super57 = _createSuper(HtmlLegend);
   function HtmlLegend() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlLegend);
+    (0, _classCallCheck2["default"])(this, HtmlLegend);
     return _super57.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlLegend);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class57, "tagName", 'legend'), _class57);
+  return (0, _createClass2["default"])(HtmlLegend);
+}(HtmlType), (0, _defineProperty2["default"])(_class57, "tagName", 'legend'), _class57);
 exports.HtmlLi = (_class58 = /*#__PURE__*/function (_HtmlType58) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlLi, _HtmlType58);
+  (0, _inherits2["default"])(HtmlLi, _HtmlType58);
   var _super58 = _createSuper(HtmlLi);
   function HtmlLi() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlLi);
+    (0, _classCallCheck2["default"])(this, HtmlLi);
     return _super58.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlLi);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class58, "tagName", 'li'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class58, "props", {
+  return (0, _createClass2["default"])(HtmlLi);
+}(HtmlType), (0, _defineProperty2["default"])(_class58, "tagName", 'li'), (0, _defineProperty2["default"])(_class58, "props", {
   value: PropType
 }), _class58);
 exports.HtmlLink = (_class59 = /*#__PURE__*/function (_HtmlType59) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlLink, _HtmlType59);
+  (0, _inherits2["default"])(HtmlLink, _HtmlType59);
   var _super59 = _createSuper(HtmlLink);
   function HtmlLink() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlLink);
+    (0, _classCallCheck2["default"])(this, HtmlLink);
     return _super59.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlLink);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class59, "tagName", 'link'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class59, "props", {
+  return (0, _createClass2["default"])(HtmlLink);
+}(HtmlType), (0, _defineProperty2["default"])(_class59, "tagName", 'link'), (0, _defineProperty2["default"])(_class59, "props", {
   crossOrigin: 'crossorigin',
   href: 'href',
   hreflang: 'hreflang',
@@ -798,66 +806,66 @@ exports.HtmlLink = (_class59 = /*#__PURE__*/function (_HtmlType59) {
   type: 'type'
 }), _class59);
 exports.HtmlMain = (_class60 = /*#__PURE__*/function (_HtmlType60) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlMain, _HtmlType60);
+  (0, _inherits2["default"])(HtmlMain, _HtmlType60);
   var _super60 = _createSuper(HtmlMain);
   function HtmlMain() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlMain);
+    (0, _classCallCheck2["default"])(this, HtmlMain);
     return _super60.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlMain);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class60, "tagName", 'main'), _class60);
+  return (0, _createClass2["default"])(HtmlMain);
+}(HtmlType), (0, _defineProperty2["default"])(_class60, "tagName", 'main'), _class60);
 exports.HtmlMap = (_class61 = /*#__PURE__*/function (_HtmlType61) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlMap, _HtmlType61);
+  (0, _inherits2["default"])(HtmlMap, _HtmlType61);
   var _super61 = _createSuper(HtmlMap);
   function HtmlMap() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlMap);
+    (0, _classCallCheck2["default"])(this, HtmlMap);
     return _super61.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlMap);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class61, "tagName", 'map'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class61, "props", {
+  return (0, _createClass2["default"])(HtmlMap);
+}(HtmlType), (0, _defineProperty2["default"])(_class61, "tagName", 'map'), (0, _defineProperty2["default"])(_class61, "props", {
   name: 'name'
 }), _class61);
 exports.HtmlMark = (_class62 = /*#__PURE__*/function (_HtmlType62) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlMark, _HtmlType62);
+  (0, _inherits2["default"])(HtmlMark, _HtmlType62);
   var _super62 = _createSuper(HtmlMark);
   function HtmlMark() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlMark);
+    (0, _classCallCheck2["default"])(this, HtmlMark);
     return _super62.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlMark);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class62, "tagName", 'mark'), _class62);
+  return (0, _createClass2["default"])(HtmlMark);
+}(HtmlType), (0, _defineProperty2["default"])(_class62, "tagName", 'mark'), _class62);
 exports.HtmlMenu = (_class63 = /*#__PURE__*/function (_HtmlType63) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlMenu, _HtmlType63);
+  (0, _inherits2["default"])(HtmlMenu, _HtmlType63);
   var _super63 = _createSuper(HtmlMenu);
   function HtmlMenu() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlMenu);
+    (0, _classCallCheck2["default"])(this, HtmlMenu);
     return _super63.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlMenu);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class63, "tagName", 'menu'), _class63);
+  return (0, _createClass2["default"])(HtmlMenu);
+}(HtmlType), (0, _defineProperty2["default"])(_class63, "tagName", 'menu'), _class63);
 exports.HtmlMeta = (_class64 = /*#__PURE__*/function (_HtmlType64) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlMeta, _HtmlType64);
+  (0, _inherits2["default"])(HtmlMeta, _HtmlType64);
   var _super64 = _createSuper(HtmlMeta);
   function HtmlMeta() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlMeta);
+    (0, _classCallCheck2["default"])(this, HtmlMeta);
     return _super64.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlMeta);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class64, "tagName", 'meta'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class64, "props", {
+  return (0, _createClass2["default"])(HtmlMeta);
+}(HtmlType), (0, _defineProperty2["default"])(_class64, "tagName", 'meta'), (0, _defineProperty2["default"])(_class64, "props", {
   charset: 'charset',
   content: 'content',
   httpEquiv: 'http-equiv',
   name: 'name'
 }), _class64);
 exports.HtmlMeter = (_class65 = /*#__PURE__*/function (_HtmlType65) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlMeter, _HtmlType65);
+  (0, _inherits2["default"])(HtmlMeter, _HtmlType65);
   var _super65 = _createSuper(HtmlMeter);
   function HtmlMeter() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlMeter);
+    (0, _classCallCheck2["default"])(this, HtmlMeter);
     return _super65.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlMeter);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class65, "tagName", 'meter'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class65, "props", {
+  return (0, _createClass2["default"])(HtmlMeter);
+}(HtmlType), (0, _defineProperty2["default"])(_class65, "tagName", 'meter'), (0, _defineProperty2["default"])(_class65, "props", {
   high: 'high',
   low: 'low',
   max: 'max',
@@ -866,32 +874,32 @@ exports.HtmlMeter = (_class65 = /*#__PURE__*/function (_HtmlType65) {
   value: PropType
 }), _class65);
 exports.HtmlNav = (_class66 = /*#__PURE__*/function (_HtmlType66) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlNav, _HtmlType66);
+  (0, _inherits2["default"])(HtmlNav, _HtmlType66);
   var _super66 = _createSuper(HtmlNav);
   function HtmlNav() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlNav);
+    (0, _classCallCheck2["default"])(this, HtmlNav);
     return _super66.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlNav);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class66, "tagName", 'nav'), _class66);
+  return (0, _createClass2["default"])(HtmlNav);
+}(HtmlType), (0, _defineProperty2["default"])(_class66, "tagName", 'nav'), _class66);
 exports.HtmlNoScript = (_class67 = /*#__PURE__*/function (_HtmlType67) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlNoScript, _HtmlType67);
+  (0, _inherits2["default"])(HtmlNoScript, _HtmlType67);
   var _super67 = _createSuper(HtmlNoScript);
   function HtmlNoScript() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlNoScript);
+    (0, _classCallCheck2["default"])(this, HtmlNoScript);
     return _super67.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlNoScript);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class67, "tagName", 'noscript'), _class67);
+  return (0, _createClass2["default"])(HtmlNoScript);
+}(HtmlType), (0, _defineProperty2["default"])(_class67, "tagName", 'noscript'), _class67);
 exports.HtmlObject = (_class68 = /*#__PURE__*/function (_HtmlType68) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlObject, _HtmlType68);
+  (0, _inherits2["default"])(HtmlObject, _HtmlType68);
   var _super68 = _createSuper(HtmlObject);
   function HtmlObject() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlObject);
+    (0, _classCallCheck2["default"])(this, HtmlObject);
     return _super68.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlObject);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class68, "tagName", 'object'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class68, "props", {
+  return (0, _createClass2["default"])(HtmlObject);
+}(HtmlType), (0, _defineProperty2["default"])(_class68, "tagName", 'object'), (0, _defineProperty2["default"])(_class68, "props", {
   data: 'data',
   height: 'height',
   name: 'name',
@@ -900,39 +908,39 @@ exports.HtmlObject = (_class68 = /*#__PURE__*/function (_HtmlType68) {
   width: 'width'
 }), _class68);
 exports.HtmlOl = (_class69 = /*#__PURE__*/function (_HtmlType69) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlOl, _HtmlType69);
+  (0, _inherits2["default"])(HtmlOl, _HtmlType69);
   var _super69 = _createSuper(HtmlOl);
   function HtmlOl() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlOl);
+    (0, _classCallCheck2["default"])(this, HtmlOl);
     return _super69.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlOl);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class69, "tagName", 'ol'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class69, "props", {
+  return (0, _createClass2["default"])(HtmlOl);
+}(HtmlType), (0, _defineProperty2["default"])(_class69, "tagName", 'ol'), (0, _defineProperty2["default"])(_class69, "props", {
   reversed: 'reversed',
   start: 'start',
   type: 'type'
 }), _class69);
 exports.HtmlOptGroup = (_class70 = /*#__PURE__*/function (_HtmlType70) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlOptGroup, _HtmlType70);
+  (0, _inherits2["default"])(HtmlOptGroup, _HtmlType70);
   var _super70 = _createSuper(HtmlOptGroup);
   function HtmlOptGroup() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlOptGroup);
+    (0, _classCallCheck2["default"])(this, HtmlOptGroup);
     return _super70.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlOptGroup);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class70, "tagName", 'optgroup'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class70, "props", {
+  return (0, _createClass2["default"])(HtmlOptGroup);
+}(HtmlType), (0, _defineProperty2["default"])(_class70, "tagName", 'optgroup'), (0, _defineProperty2["default"])(_class70, "props", {
   disabled: 'disabled',
   label: 'label'
 }), _class70);
 exports.HtmlOption = (_class71 = /*#__PURE__*/function (_HtmlType71) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlOption, _HtmlType71);
+  (0, _inherits2["default"])(HtmlOption, _HtmlType71);
   var _super71 = _createSuper(HtmlOption);
   function HtmlOption() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlOption);
+    (0, _classCallCheck2["default"])(this, HtmlOption);
     return _super71.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlOption);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class71, "tagName", 'option'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class71, "props", {
+  return (0, _createClass2["default"])(HtmlOption);
+}(HtmlType), (0, _defineProperty2["default"])(_class71, "tagName", 'option'), (0, _defineProperty2["default"])(_class71, "props", {
   defaultSelected: PropType,
   disabled: 'disabled',
   label: 'label',
@@ -941,132 +949,132 @@ exports.HtmlOption = (_class71 = /*#__PURE__*/function (_HtmlType71) {
   value: PropType
 }), _class71);
 exports.HtmlOutput = (_class72 = /*#__PURE__*/function (_HtmlType72) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlOutput, _HtmlType72);
+  (0, _inherits2["default"])(HtmlOutput, _HtmlType72);
   var _super72 = _createSuper(HtmlOutput);
   function HtmlOutput() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlOutput);
+    (0, _classCallCheck2["default"])(this, HtmlOutput);
     return _super72.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlOutput);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class72, "tagName", 'output'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class72, "props", {
+  return (0, _createClass2["default"])(HtmlOutput);
+}(HtmlType), (0, _defineProperty2["default"])(_class72, "tagName", 'output'), (0, _defineProperty2["default"])(_class72, "props", {
   defaultValue: PropType,
   htmlFor: 'for',
   name: 'name',
   value: PropType
 }), _class72);
 exports.HtmlP = (_class73 = /*#__PURE__*/function (_HtmlType73) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlP, _HtmlType73);
+  (0, _inherits2["default"])(HtmlP, _HtmlType73);
   var _super73 = _createSuper(HtmlP);
   function HtmlP() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlP);
+    (0, _classCallCheck2["default"])(this, HtmlP);
     return _super73.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlP);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class73, "tagName", 'p'), _class73);
+  return (0, _createClass2["default"])(HtmlP);
+}(HtmlType), (0, _defineProperty2["default"])(_class73, "tagName", 'p'), _class73);
 exports.HtmlParam = (_class74 = /*#__PURE__*/function (_HtmlType74) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlParam, _HtmlType74);
+  (0, _inherits2["default"])(HtmlParam, _HtmlType74);
   var _super74 = _createSuper(HtmlParam);
   function HtmlParam() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlParam);
+    (0, _classCallCheck2["default"])(this, HtmlParam);
     return _super74.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlParam);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class74, "tagName", 'param'), _class74);
+  return (0, _createClass2["default"])(HtmlParam);
+}(HtmlType), (0, _defineProperty2["default"])(_class74, "tagName", 'param'), _class74);
 exports.HtmlPicture = (_class75 = /*#__PURE__*/function (_HtmlType75) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlPicture, _HtmlType75);
+  (0, _inherits2["default"])(HtmlPicture, _HtmlType75);
   var _super75 = _createSuper(HtmlPicture);
   function HtmlPicture() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlPicture);
+    (0, _classCallCheck2["default"])(this, HtmlPicture);
     return _super75.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlPicture);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class75, "tagName", 'picture'), _class75);
+  return (0, _createClass2["default"])(HtmlPicture);
+}(HtmlType), (0, _defineProperty2["default"])(_class75, "tagName", 'picture'), _class75);
 exports.HtmlPre = (_class76 = /*#__PURE__*/function (_HtmlType76) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlPre, _HtmlType76);
+  (0, _inherits2["default"])(HtmlPre, _HtmlType76);
   var _super76 = _createSuper(HtmlPre);
   function HtmlPre() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlPre);
+    (0, _classCallCheck2["default"])(this, HtmlPre);
     return _super76.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlPre);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class76, "tagName", 'pre'), _class76);
+  return (0, _createClass2["default"])(HtmlPre);
+}(HtmlType), (0, _defineProperty2["default"])(_class76, "tagName", 'pre'), _class76);
 exports.HtmlProgress = (_class77 = /*#__PURE__*/function (_HtmlType77) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlProgress, _HtmlType77);
+  (0, _inherits2["default"])(HtmlProgress, _HtmlType77);
   var _super77 = _createSuper(HtmlProgress);
   function HtmlProgress() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlProgress);
+    (0, _classCallCheck2["default"])(this, HtmlProgress);
     return _super77.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlProgress);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class77, "tagName", 'progress'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class77, "props", {
+  return (0, _createClass2["default"])(HtmlProgress);
+}(HtmlType), (0, _defineProperty2["default"])(_class77, "tagName", 'progress'), (0, _defineProperty2["default"])(_class77, "props", {
   max: 'max',
   value: PropType
 }), _class77);
 exports.HtmlQ = (_class78 = /*#__PURE__*/function (_HtmlType78) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlQ, _HtmlType78);
+  (0, _inherits2["default"])(HtmlQ, _HtmlType78);
   var _super78 = _createSuper(HtmlQ);
   function HtmlQ() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlQ);
+    (0, _classCallCheck2["default"])(this, HtmlQ);
     return _super78.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlQ);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class78, "tagName", 'q'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class78, "props", {
+  return (0, _createClass2["default"])(HtmlQ);
+}(HtmlType), (0, _defineProperty2["default"])(_class78, "tagName", 'q'), (0, _defineProperty2["default"])(_class78, "props", {
   cite: 'cite'
 }), _class78);
 exports.HtmlRp = (_class79 = /*#__PURE__*/function (_HtmlType79) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlRp, _HtmlType79);
+  (0, _inherits2["default"])(HtmlRp, _HtmlType79);
   var _super79 = _createSuper(HtmlRp);
   function HtmlRp() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlRp);
+    (0, _classCallCheck2["default"])(this, HtmlRp);
     return _super79.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlRp);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class79, "tagName", 'rp'), _class79);
+  return (0, _createClass2["default"])(HtmlRp);
+}(HtmlType), (0, _defineProperty2["default"])(_class79, "tagName", 'rp'), _class79);
 exports.HtmlRt = (_class80 = /*#__PURE__*/function (_HtmlType80) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlRt, _HtmlType80);
+  (0, _inherits2["default"])(HtmlRt, _HtmlType80);
   var _super80 = _createSuper(HtmlRt);
   function HtmlRt() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlRt);
+    (0, _classCallCheck2["default"])(this, HtmlRt);
     return _super80.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlRt);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class80, "tagName", 'rt'), _class80);
+  return (0, _createClass2["default"])(HtmlRt);
+}(HtmlType), (0, _defineProperty2["default"])(_class80, "tagName", 'rt'), _class80);
 exports.HtmlRuby = (_class81 = /*#__PURE__*/function (_HtmlType81) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlRuby, _HtmlType81);
+  (0, _inherits2["default"])(HtmlRuby, _HtmlType81);
   var _super81 = _createSuper(HtmlRuby);
   function HtmlRuby() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlRuby);
+    (0, _classCallCheck2["default"])(this, HtmlRuby);
     return _super81.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlRuby);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class81, "tagName", 'ruby'), _class81);
+  return (0, _createClass2["default"])(HtmlRuby);
+}(HtmlType), (0, _defineProperty2["default"])(_class81, "tagName", 'ruby'), _class81);
 exports.HtmlS = (_class82 = /*#__PURE__*/function (_HtmlType82) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlS, _HtmlType82);
+  (0, _inherits2["default"])(HtmlS, _HtmlType82);
   var _super82 = _createSuper(HtmlS);
   function HtmlS() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlS);
+    (0, _classCallCheck2["default"])(this, HtmlS);
     return _super82.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlS);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class82, "tagName", 's'), _class82);
+  return (0, _createClass2["default"])(HtmlS);
+}(HtmlType), (0, _defineProperty2["default"])(_class82, "tagName", 's'), _class82);
 exports.HtmlSamp = (_class83 = /*#__PURE__*/function (_HtmlType83) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSamp, _HtmlType83);
+  (0, _inherits2["default"])(HtmlSamp, _HtmlType83);
   var _super83 = _createSuper(HtmlSamp);
   function HtmlSamp() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSamp);
+    (0, _classCallCheck2["default"])(this, HtmlSamp);
     return _super83.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSamp);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class83, "tagName", 'samp'), _class83);
+  return (0, _createClass2["default"])(HtmlSamp);
+}(HtmlType), (0, _defineProperty2["default"])(_class83, "tagName", 'samp'), _class83);
 exports.HtmlScript = (_class84 = /*#__PURE__*/function (_HtmlType84) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlScript, _HtmlType84);
+  (0, _inherits2["default"])(HtmlScript, _HtmlType84);
   var _super84 = _createSuper(HtmlScript);
   function HtmlScript() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlScript);
+    (0, _classCallCheck2["default"])(this, HtmlScript);
     return _super84.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlScript);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class84, "tagName", 'script'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class84, "props", {
+  return (0, _createClass2["default"])(HtmlScript);
+}(HtmlType), (0, _defineProperty2["default"])(_class84, "tagName", 'script'), (0, _defineProperty2["default"])(_class84, "props", {
   async: 'async',
   charset: 'charset',
   crossOrigin: 'crossorigin',
@@ -1080,23 +1088,23 @@ exports.HtmlScript = (_class84 = /*#__PURE__*/function (_HtmlType84) {
   type: 'type'
 }), _class84);
 exports.HtmlSection = (_class85 = /*#__PURE__*/function (_HtmlType85) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSection, _HtmlType85);
+  (0, _inherits2["default"])(HtmlSection, _HtmlType85);
   var _super85 = _createSuper(HtmlSection);
   function HtmlSection() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSection);
+    (0, _classCallCheck2["default"])(this, HtmlSection);
     return _super85.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSection);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class85, "tagName", 'section'), _class85);
+  return (0, _createClass2["default"])(HtmlSection);
+}(HtmlType), (0, _defineProperty2["default"])(_class85, "tagName", 'section'), _class85);
 exports.HtmlSelect = (_class86 = /*#__PURE__*/function (_HtmlType86) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSelect, _HtmlType86);
+  (0, _inherits2["default"])(HtmlSelect, _HtmlType86);
   var _super86 = _createSuper(HtmlSelect);
   function HtmlSelect() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSelect);
+    (0, _classCallCheck2["default"])(this, HtmlSelect);
     return _super86.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSelect);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class86, "tagName", 'select'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class86, "props", {
+  return (0, _createClass2["default"])(HtmlSelect);
+}(HtmlType), (0, _defineProperty2["default"])(_class86, "tagName", 'select'), (0, _defineProperty2["default"])(_class86, "props", {
   autocomplete: 'autocomplete',
   autofocus: 'autofocus',
   disabled: 'disabled',
@@ -1108,23 +1116,23 @@ exports.HtmlSelect = (_class86 = /*#__PURE__*/function (_HtmlType86) {
   value: PropType
 }), _class86);
 exports.HtmlSmall = (_class87 = /*#__PURE__*/function (_HtmlType87) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSmall, _HtmlType87);
+  (0, _inherits2["default"])(HtmlSmall, _HtmlType87);
   var _super87 = _createSuper(HtmlSmall);
   function HtmlSmall() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSmall);
+    (0, _classCallCheck2["default"])(this, HtmlSmall);
     return _super87.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSmall);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class87, "tagName", 'small'), _class87);
+  return (0, _createClass2["default"])(HtmlSmall);
+}(HtmlType), (0, _defineProperty2["default"])(_class87, "tagName", 'small'), _class87);
 exports.HtmlSource = (_class88 = /*#__PURE__*/function (_HtmlType88) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSource, _HtmlType88);
+  (0, _inherits2["default"])(HtmlSource, _HtmlType88);
   var _super88 = _createSuper(HtmlSource);
   function HtmlSource() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSource);
+    (0, _classCallCheck2["default"])(this, HtmlSource);
     return _super88.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSource);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class88, "tagName", 'source'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class88, "props", {
+  return (0, _createClass2["default"])(HtmlSource);
+}(HtmlType), (0, _defineProperty2["default"])(_class88, "tagName", 'source'), (0, _defineProperty2["default"])(_class88, "props", {
   media: 'media',
   sizes: 'sizes',
   src: 'src',
@@ -1132,130 +1140,130 @@ exports.HtmlSource = (_class88 = /*#__PURE__*/function (_HtmlType88) {
   type: 'type'
 }), _class88);
 exports.HtmlSpan = (_class89 = /*#__PURE__*/function (_HtmlType89) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSpan, _HtmlType89);
+  (0, _inherits2["default"])(HtmlSpan, _HtmlType89);
   var _super89 = _createSuper(HtmlSpan);
   function HtmlSpan() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSpan);
+    (0, _classCallCheck2["default"])(this, HtmlSpan);
     return _super89.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSpan);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class89, "tagName", 'span'), _class89);
+  return (0, _createClass2["default"])(HtmlSpan);
+}(HtmlType), (0, _defineProperty2["default"])(_class89, "tagName", 'span'), _class89);
 exports.HtmlStrong = (_class90 = /*#__PURE__*/function (_HtmlType90) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlStrong, _HtmlType90);
+  (0, _inherits2["default"])(HtmlStrong, _HtmlType90);
   var _super90 = _createSuper(HtmlStrong);
   function HtmlStrong() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlStrong);
+    (0, _classCallCheck2["default"])(this, HtmlStrong);
     return _super90.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlStrong);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class90, "tagName", 'strong'), _class90);
+  return (0, _createClass2["default"])(HtmlStrong);
+}(HtmlType), (0, _defineProperty2["default"])(_class90, "tagName", 'strong'), _class90);
 exports.HtmlStyle = (_class91 = /*#__PURE__*/function (_HtmlType91) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlStyle, _HtmlType91);
+  (0, _inherits2["default"])(HtmlStyle, _HtmlType91);
   var _super91 = _createSuper(HtmlStyle);
   function HtmlStyle() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlStyle);
+    (0, _classCallCheck2["default"])(this, HtmlStyle);
     return _super91.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlStyle);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class91, "tagName", 'style'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class91, "props", {
+  return (0, _createClass2["default"])(HtmlStyle);
+}(HtmlType), (0, _defineProperty2["default"])(_class91, "tagName", 'style'), (0, _defineProperty2["default"])(_class91, "props", {
   media: 'media',
   nonce: 'nonce',
   type: 'type'
 }), _class91);
 exports.HtmlSub = (_class92 = /*#__PURE__*/function (_HtmlType92) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSub, _HtmlType92);
+  (0, _inherits2["default"])(HtmlSub, _HtmlType92);
   var _super92 = _createSuper(HtmlSub);
   function HtmlSub() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSub);
+    (0, _classCallCheck2["default"])(this, HtmlSub);
     return _super92.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSub);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class92, "tagName", 'sub'), _class92);
+  return (0, _createClass2["default"])(HtmlSub);
+}(HtmlType), (0, _defineProperty2["default"])(_class92, "tagName", 'sub'), _class92);
 exports.HtmlSummary = (_class93 = /*#__PURE__*/function (_HtmlType93) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSummary, _HtmlType93);
+  (0, _inherits2["default"])(HtmlSummary, _HtmlType93);
   var _super93 = _createSuper(HtmlSummary);
   function HtmlSummary() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSummary);
+    (0, _classCallCheck2["default"])(this, HtmlSummary);
     return _super93.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSummary);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class93, "tagName", 'summary'), _class93);
+  return (0, _createClass2["default"])(HtmlSummary);
+}(HtmlType), (0, _defineProperty2["default"])(_class93, "tagName", 'summary'), _class93);
 exports.HtmlSup = (_class94 = /*#__PURE__*/function (_HtmlType94) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlSup, _HtmlType94);
+  (0, _inherits2["default"])(HtmlSup, _HtmlType94);
   var _super94 = _createSuper(HtmlSup);
   function HtmlSup() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlSup);
+    (0, _classCallCheck2["default"])(this, HtmlSup);
     return _super94.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlSup);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class94, "tagName", 'sup'), _class94);
+  return (0, _createClass2["default"])(HtmlSup);
+}(HtmlType), (0, _defineProperty2["default"])(_class94, "tagName", 'sup'), _class94);
 exports.HtmlTBody = (_class95 = /*#__PURE__*/function (_HtmlType95) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTBody, _HtmlType95);
+  (0, _inherits2["default"])(HtmlTBody, _HtmlType95);
   var _super95 = _createSuper(HtmlTBody);
   function HtmlTBody() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTBody);
+    (0, _classCallCheck2["default"])(this, HtmlTBody);
     return _super95.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTBody);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class95, "tagName", 'tbody'), _class95);
+  return (0, _createClass2["default"])(HtmlTBody);
+}(HtmlType), (0, _defineProperty2["default"])(_class95, "tagName", 'tbody'), _class95);
 exports.HtmlTFoot = (_class96 = /*#__PURE__*/function (_HtmlType96) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTFoot, _HtmlType96);
+  (0, _inherits2["default"])(HtmlTFoot, _HtmlType96);
   var _super96 = _createSuper(HtmlTFoot);
   function HtmlTFoot() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTFoot);
+    (0, _classCallCheck2["default"])(this, HtmlTFoot);
     return _super96.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTFoot);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class96, "tagName", 'tfoot'), _class96);
+  return (0, _createClass2["default"])(HtmlTFoot);
+}(HtmlType), (0, _defineProperty2["default"])(_class96, "tagName", 'tfoot'), _class96);
 exports.HtmlTHead = (_class97 = /*#__PURE__*/function (_HtmlType97) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTHead, _HtmlType97);
+  (0, _inherits2["default"])(HtmlTHead, _HtmlType97);
   var _super97 = _createSuper(HtmlTHead);
   function HtmlTHead() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTHead);
+    (0, _classCallCheck2["default"])(this, HtmlTHead);
     return _super97.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTHead);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class97, "tagName", 'thead'), _class97);
+  return (0, _createClass2["default"])(HtmlTHead);
+}(HtmlType), (0, _defineProperty2["default"])(_class97, "tagName", 'thead'), _class97);
 exports.HtmlTable = (_class98 = /*#__PURE__*/function (_HtmlType98) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTable, _HtmlType98);
+  (0, _inherits2["default"])(HtmlTable, _HtmlType98);
   var _super98 = _createSuper(HtmlTable);
   function HtmlTable() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTable);
+    (0, _classCallCheck2["default"])(this, HtmlTable);
     return _super98.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTable);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class98, "tagName", 'table'), _class98);
+  return (0, _createClass2["default"])(HtmlTable);
+}(HtmlType), (0, _defineProperty2["default"])(_class98, "tagName", 'table'), _class98);
 exports.HtmlTd = (_class99 = /*#__PURE__*/function (_HtmlType99) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTd, _HtmlType99);
+  (0, _inherits2["default"])(HtmlTd, _HtmlType99);
   var _super99 = _createSuper(HtmlTd);
   function HtmlTd() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTd);
+    (0, _classCallCheck2["default"])(this, HtmlTd);
     return _super99.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTd);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class99, "tagName", 'td'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class99, "props", {
+  return (0, _createClass2["default"])(HtmlTd);
+}(HtmlType), (0, _defineProperty2["default"])(_class99, "tagName", 'td'), (0, _defineProperty2["default"])(_class99, "props", {
   colSpan: 'colspan',
   headers: 'headers',
   rowSpan: 'rowspan'
 }), _class99);
 exports.HtmlTemplate = (_class100 = /*#__PURE__*/function (_HtmlType100) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTemplate, _HtmlType100);
+  (0, _inherits2["default"])(HtmlTemplate, _HtmlType100);
   var _super100 = _createSuper(HtmlTemplate);
   function HtmlTemplate() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTemplate);
+    (0, _classCallCheck2["default"])(this, HtmlTemplate);
     return _super100.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTemplate);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class100, "tagName", 'template'), _class100);
+  return (0, _createClass2["default"])(HtmlTemplate);
+}(HtmlType), (0, _defineProperty2["default"])(_class100, "tagName", 'template'), _class100);
 exports.HtmlTextArea = (_class101 = /*#__PURE__*/function (_HtmlType101) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTextArea, _HtmlType101);
+  (0, _inherits2["default"])(HtmlTextArea, _HtmlType101);
   var _super101 = _createSuper(HtmlTextArea);
   function HtmlTextArea() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTextArea);
+    (0, _classCallCheck2["default"])(this, HtmlTextArea);
     return _super101.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTextArea);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class101, "tagName", 'textarea'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class101, "props", {
+  return (0, _createClass2["default"])(HtmlTextArea);
+}(HtmlType), (0, _defineProperty2["default"])(_class101, "tagName", 'textarea'), (0, _defineProperty2["default"])(_class101, "props", {
   autocomplete: 'autocomplete',
   autofocus: 'autofocus',
   cols: 'cols',
@@ -1278,14 +1286,14 @@ exports.HtmlTextArea = (_class101 = /*#__PURE__*/function (_HtmlType101) {
   wrap: 'wrap'
 }), _class101);
 exports.HtmlTh = (_class102 = /*#__PURE__*/function (_HtmlType102) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTh, _HtmlType102);
+  (0, _inherits2["default"])(HtmlTh, _HtmlType102);
   var _super102 = _createSuper(HtmlTh);
   function HtmlTh() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTh);
+    (0, _classCallCheck2["default"])(this, HtmlTh);
     return _super102.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTh);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class102, "tagName", 'th'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class102, "props", {
+  return (0, _createClass2["default"])(HtmlTh);
+}(HtmlType), (0, _defineProperty2["default"])(_class102, "tagName", 'th'), (0, _defineProperty2["default"])(_class102, "props", {
   abbr: 'abbr',
   colSpan: 'colspan',
   headers: 'headers',
@@ -1293,45 +1301,45 @@ exports.HtmlTh = (_class102 = /*#__PURE__*/function (_HtmlType102) {
   scope: 'scope'
 }), _class102);
 exports.HtmlTime = (_class103 = /*#__PURE__*/function (_HtmlType103) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTime, _HtmlType103);
+  (0, _inherits2["default"])(HtmlTime, _HtmlType103);
   var _super103 = _createSuper(HtmlTime);
   function HtmlTime() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTime);
+    (0, _classCallCheck2["default"])(this, HtmlTime);
     return _super103.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTime);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class103, "tagName", 'time'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class103, "props", {
+  return (0, _createClass2["default"])(HtmlTime);
+}(HtmlType), (0, _defineProperty2["default"])(_class103, "tagName", 'time'), (0, _defineProperty2["default"])(_class103, "props", {
   dateTime: 'datetime'
 }), _class103);
 exports.HtmlTitle = (_class104 = /*#__PURE__*/function (_HtmlType104) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTitle, _HtmlType104);
+  (0, _inherits2["default"])(HtmlTitle, _HtmlType104);
   var _super104 = _createSuper(HtmlTitle);
   function HtmlTitle() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTitle);
+    (0, _classCallCheck2["default"])(this, HtmlTitle);
     return _super104.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTitle);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class104, "tagName", 'title'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class104, "props", {
+  return (0, _createClass2["default"])(HtmlTitle);
+}(HtmlType), (0, _defineProperty2["default"])(_class104, "tagName", 'title'), (0, _defineProperty2["default"])(_class104, "props", {
   text: 'text'
 }), _class104);
 exports.HtmlTr = (_class105 = /*#__PURE__*/function (_HtmlType105) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTr, _HtmlType105);
+  (0, _inherits2["default"])(HtmlTr, _HtmlType105);
   var _super105 = _createSuper(HtmlTr);
   function HtmlTr() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTr);
+    (0, _classCallCheck2["default"])(this, HtmlTr);
     return _super105.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTr);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class105, "tagName", 'tr'), _class105);
+  return (0, _createClass2["default"])(HtmlTr);
+}(HtmlType), (0, _defineProperty2["default"])(_class105, "tagName", 'tr'), _class105);
 exports.HtmlTrack = (_class106 = /*#__PURE__*/function (_HtmlType106) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlTrack, _HtmlType106);
+  (0, _inherits2["default"])(HtmlTrack, _HtmlType106);
   var _super106 = _createSuper(HtmlTrack);
   function HtmlTrack() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlTrack);
+    (0, _classCallCheck2["default"])(this, HtmlTrack);
     return _super106.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlTrack);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class106, "tagName", 'track'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class106, "props", {
+  return (0, _createClass2["default"])(HtmlTrack);
+}(HtmlType), (0, _defineProperty2["default"])(_class106, "tagName", 'track'), (0, _defineProperty2["default"])(_class106, "props", {
   "default": 'default',
   kind: 'kind',
   label: 'label',
@@ -1339,41 +1347,41 @@ exports.HtmlTrack = (_class106 = /*#__PURE__*/function (_HtmlType106) {
   srclang: 'srclang'
 }), _class106);
 exports.HtmlU = (_class107 = /*#__PURE__*/function (_HtmlType107) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlU, _HtmlType107);
+  (0, _inherits2["default"])(HtmlU, _HtmlType107);
   var _super107 = _createSuper(HtmlU);
   function HtmlU() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlU);
+    (0, _classCallCheck2["default"])(this, HtmlU);
     return _super107.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlU);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class107, "tagName", 'u'), _class107);
+  return (0, _createClass2["default"])(HtmlU);
+}(HtmlType), (0, _defineProperty2["default"])(_class107, "tagName", 'u'), _class107);
 exports.HtmlUl = (_class108 = /*#__PURE__*/function (_HtmlType108) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlUl, _HtmlType108);
+  (0, _inherits2["default"])(HtmlUl, _HtmlType108);
   var _super108 = _createSuper(HtmlUl);
   function HtmlUl() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlUl);
+    (0, _classCallCheck2["default"])(this, HtmlUl);
     return _super108.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlUl);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class108, "tagName", 'ul'), _class108);
+  return (0, _createClass2["default"])(HtmlUl);
+}(HtmlType), (0, _defineProperty2["default"])(_class108, "tagName", 'ul'), _class108);
 exports.HtmlVar = (_class109 = /*#__PURE__*/function (_HtmlType109) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlVar, _HtmlType109);
+  (0, _inherits2["default"])(HtmlVar, _HtmlType109);
   var _super109 = _createSuper(HtmlVar);
   function HtmlVar() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlVar);
+    (0, _classCallCheck2["default"])(this, HtmlVar);
     return _super109.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlVar);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class109, "tagName", 'var'), _class109);
+  return (0, _createClass2["default"])(HtmlVar);
+}(HtmlType), (0, _defineProperty2["default"])(_class109, "tagName", 'var'), _class109);
 exports.HtmlVideo = (_class110 = /*#__PURE__*/function (_HtmlType110) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlVideo, _HtmlType110);
+  (0, _inherits2["default"])(HtmlVideo, _HtmlType110);
   var _super110 = _createSuper(HtmlVideo);
   function HtmlVideo() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlVideo);
+    (0, _classCallCheck2["default"])(this, HtmlVideo);
     return _super110.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlVideo);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class110, "tagName", 'video'), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class110, "props", {
+  return (0, _createClass2["default"])(HtmlVideo);
+}(HtmlType), (0, _defineProperty2["default"])(_class110, "tagName", 'video'), (0, _defineProperty2["default"])(_class110, "props", {
   autoplay: 'autoplay',
   controls: 'controls',
   crossOrigin: 'crossorigin',
@@ -1392,24 +1400,21 @@ exports.HtmlVideo = (_class110 = /*#__PURE__*/function (_HtmlType110) {
   width: 'width'
 }), _class110);
 exports.HtmlWbr = (_class111 = /*#__PURE__*/function (_HtmlType111) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlWbr, _HtmlType111);
+  (0, _inherits2["default"])(HtmlWbr, _HtmlType111);
   var _super111 = _createSuper(HtmlWbr);
   function HtmlWbr() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlWbr);
+    (0, _classCallCheck2["default"])(this, HtmlWbr);
     return _super111.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlWbr);
-}(HtmlType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class111, "tagName", 'wbr'), _class111);
+  return (0, _createClass2["default"])(HtmlWbr);
+}(HtmlType), (0, _defineProperty2["default"])(_class111, "tagName", 'wbr'), _class111);
 
 /***/ }),
-/* 3 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/* 4 */
+/***/ ((module) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _createClass)
-/* harmony export */ });
+
+
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
@@ -1427,33 +1432,28 @@ function _createClass(Constructor, protoProps, staticProps) {
   });
   return Constructor;
 }
+module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 4 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/* 5 */
+/***/ ((module) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _classCallCheck)
-/* harmony export */ });
+
+
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 5 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/* 6 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _inherits)
-/* harmony export */ });
-/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
 
+
+var setPrototypeOf = __webpack_require__(7);
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -1468,136 +1468,119 @@ function _inherits(subClass, superClass) {
   Object.defineProperty(subClass, "prototype", {
     writable: false
   });
-  if (superClass) (0,_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(subClass, superClass);
+  if (superClass) setPrototypeOf(subClass, superClass);
 }
-
-/***/ }),
-/* 6 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _setPrototypeOf)
-/* harmony export */ });
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-  return _setPrototypeOf(o, p);
-}
+module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 7 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _possibleConstructorReturn)
-/* harmony export */ });
-/* harmony import */ var _typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
-/* harmony import */ var _assertThisInitialized_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
+/***/ ((module) => {
 
 
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  return _setPrototypeOf(o, p);
+}
+module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 8 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+var _typeof = (__webpack_require__(9)["default"]);
+var assertThisInitialized = __webpack_require__(10);
 function _possibleConstructorReturn(self, call) {
-  if (call && ((0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(call) === "object" || typeof call === "function")) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
   } else if (call !== void 0) {
     throw new TypeError("Derived constructors may only return object or undefined");
   }
-  return (0,_assertThisInitialized_js__WEBPACK_IMPORTED_MODULE_1__["default"])(self);
+  return assertThisInitialized(self);
 }
-
-/***/ }),
-/* 8 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _typeof)
-/* harmony export */ });
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, _typeof(obj);
-}
+module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 9 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _assertThisInitialized)
-/* harmony export */ });
+
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 10 */
+/***/ ((module) => {
+
+
+
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
   return self;
 }
-
-/***/ }),
-/* 10 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _getPrototypeOf)
-/* harmony export */ });
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
+module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 11 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/***/ ((module) => {
 
 
 
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  return _getPrototypeOf(o);
+}
+module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 12 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var ElemType = __webpack_require__(12);
-var PropType = __webpack_require__(30);
+var ElemType = __webpack_require__(13);
+var InnerText = __webpack_require__(42);
 
 /**
  * @abstract
  */
 var HtmlType = /*#__PURE__*/function (_ElemType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(HtmlType, _ElemType);
+  (0, _inherits2["default"])(HtmlType, _ElemType);
   var _super = _createSuper(HtmlType);
   function HtmlType() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, HtmlType);
+    (0, _classCallCheck2["default"])(this, HtmlType);
     return _super.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(HtmlType);
+  return (0, _createClass2["default"])(HtmlType);
 }(ElemType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(HtmlType, "props", {
+(0, _defineProperty2["default"])(HtmlType, "props", {
   accessKey: 'accesskey',
   autocapitalize: 'autocapitalize',
   autofocus: 'autofocus',
@@ -1612,54 +1595,44 @@ var HtmlType = /*#__PURE__*/function (_ElemType) {
   tabIndex: 'tabindex',
   title: 'title',
   translate: 'translate',
-  innerText: PropType
+  innerText: InnerText
 });
 module.exports = HtmlType;
 
 /***/ }),
-/* 12 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 13 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
+var _interopRequireDefault = __webpack_require__(1);
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(14));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(20));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var _require = __webpack_require__(23),
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var _require = __webpack_require__(24),
   Comment = _require.Comment,
   CustomEvent = _require.CustomEvent,
   document = _require.document;
-var AriaType = __webpack_require__(24);
-var AttrType = __webpack_require__(25);
-var Attributes = __webpack_require__(29);
-var Class = __webpack_require__(31);
-var ClassList = __webpack_require__(34);
-var Dataset = __webpack_require__(35);
-var EventType = __webpack_require__(36);
-var Id = __webpack_require__(37);
-var PropType = __webpack_require__(30);
-var Style = __webpack_require__(38);
-var TextType = __webpack_require__(39);
+var AriaType = __webpack_require__(25);
+var AttrType = __webpack_require__(26);
+var Attributes = __webpack_require__(30);
+var Class = __webpack_require__(32);
+var ClassList = __webpack_require__(35);
+var Dataset = __webpack_require__(36);
+var EventType = __webpack_require__(37);
+var Id = __webpack_require__(38);
+var InnerHTML = __webpack_require__(39);
+var PropType = __webpack_require__(31);
+var Style = __webpack_require__(40);
+var TextType = __webpack_require__(41);
 var indexOf = Array.prototype.indexOf;
-var skipTypes = {
-  undefined: true,
-  "boolean": true
-};
 var specialProps = {
   children: true,
   "class": true,
@@ -1702,7 +1675,7 @@ var ElemType = /*#__PURE__*/function () {
    * @param {*} [props]
    */
   function ElemType(props) {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, ElemType);
+    (0, _classCallCheck2["default"])(this, ElemType);
     this.constructor.__init();
     Object.defineProperties(this, descriptors);
     Object.defineProperty(this, 'props', {
@@ -1721,7 +1694,7 @@ var ElemType = /*#__PURE__*/function () {
   /**
    * @return {string}
    */
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__["default"])(ElemType, [{
+  (0, _createClass2["default"])(ElemType, [{
     key: "toString",
     value: function toString() {
       this.__init();
@@ -1805,7 +1778,7 @@ var ElemType = /*#__PURE__*/function () {
               result.push(child);
             }
           }
-          result.push.apply(result, (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(child.findAll(type, filter)));
+          result.push.apply(result, (0, _toConsumableArray2["default"])(child.findAll(type, filter)));
         }
       } catch (err) {
         _iterator2.e(err);
@@ -1969,14 +1942,14 @@ var ElemType = /*#__PURE__*/function () {
         _step3;
       try {
         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var _step3$value = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_step3.value, 2);
+          var _step3$value = (0, _slicedToArray2["default"])(_step3.value, 2);
           type = _step3$value[0];
           listeners = _step3$value[1];
           var _iterator4 = _createForOfIteratorHelper(listeners.entries()),
             _step4;
           try {
             for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-              var _step4$value = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_step4.value, 2);
+              var _step4$value = (0, _slicedToArray2["default"])(_step4.value, 2);
               callback = _step4$value[0];
               listener = _step4$value[1];
               this.node.removeEventListener(type, listener, listener.__options);
@@ -2221,7 +2194,7 @@ var ElemType = /*#__PURE__*/function () {
       var indexB = {};
       var childB, key;
       var forEach = function forEach(childB) {
-        if (skipTypes[(0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(childB)] || childB === null) {
+        if (!PropType.filter(childB)) {
           return;
         }
         if (Array.isArray(childB)) {
@@ -2619,12 +2592,12 @@ var ElemType = /*#__PURE__*/function () {
   }]);
   return ElemType;
 }();
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ElemType, "namespace", null);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ElemType, "tagName", 'div');
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ElemType, "role", null);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ElemType, "class", null);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ElemType, "className", null);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ElemType, "props", _objectSpread(_objectSpread({
+(0, _defineProperty2["default"])(ElemType, "namespace", null);
+(0, _defineProperty2["default"])(ElemType, "tagName", 'div');
+(0, _defineProperty2["default"])(ElemType, "role", null);
+(0, _defineProperty2["default"])(ElemType, "class", null);
+(0, _defineProperty2["default"])(ElemType, "className", null);
+(0, _defineProperty2["default"])(ElemType, "props", _objectSpread(_objectSpread({
   role: 'role',
   className: Class,
   classList: ClassList,
@@ -2632,55 +2605,43 @@ var ElemType = /*#__PURE__*/function () {
   style: Style,
   dataset: Dataset,
   attributes: Attributes,
-  textContent: PropType,
-  innerHTML: PropType
+  innerHTML: InnerHTML
 }, EventType.props), AriaType.props));
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ElemType, "defaultProps", null);
+(0, _defineProperty2["default"])(ElemType, "defaultProps", null);
 module.exports = ElemType;
 
 /***/ }),
-/* 13 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _slicedToArray)
-/* harmony export */ });
-/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(14);
-/* harmony import */ var _iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
-/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
-/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(18);
-
-
-
-
-function _slicedToArray(arr, i) {
-  return (0,_arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || (0,_iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(arr, i) || (0,_nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
-}
-
-/***/ }),
 /* 14 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _arrayWithHoles)
-/* harmony export */ });
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
+
+
+var arrayWithHoles = __webpack_require__(15);
+var iterableToArrayLimit = __webpack_require__(16);
+var unsupportedIterableToArray = __webpack_require__(17);
+var nonIterableRest = __webpack_require__(19);
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 15 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _iterableToArrayLimit)
-/* harmony export */ });
+
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 16 */
+/***/ ((module) => {
+
+
+
 function _iterableToArrayLimit(arr, i) {
   var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
   if (_i == null) return;
@@ -2705,36 +2666,31 @@ function _iterableToArrayLimit(arr, i) {
   }
   return _arr;
 }
-
-/***/ }),
-/* 16 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _unsupportedIterableToArray)
-/* harmony export */ });
-/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(o, minLen);
-}
+module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 17 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _arrayLikeToArray)
-/* harmony export */ });
+
+
+var arrayLikeToArray = __webpack_require__(18);
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 18 */
+/***/ ((module) => {
+
+
+
 function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -2742,85 +2698,73 @@ function _arrayLikeToArray(arr, len) {
   }
   return arr2;
 }
-
-/***/ }),
-/* 18 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _nonIterableRest)
-/* harmony export */ });
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
+module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 19 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _toConsumableArray)
-/* harmony export */ });
-/* harmony import */ var _arrayWithoutHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(20);
-/* harmony import */ var _iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(21);
-/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
-/* harmony import */ var _nonIterableSpread_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(22);
+/***/ ((module) => {
 
 
 
-
-function _toConsumableArray(arr) {
-  return (0,_arrayWithoutHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || (0,_iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arr) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(arr) || (0,_nonIterableSpread_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
+module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 20 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _arrayWithoutHoles)
-/* harmony export */ });
-/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
 
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr);
+
+var arrayWithoutHoles = __webpack_require__(21);
+var iterableToArray = __webpack_require__(22);
+var unsupportedIterableToArray = __webpack_require__(17);
+var nonIterableSpread = __webpack_require__(23);
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
 }
+module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 21 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _iterableToArray)
-/* harmony export */ });
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+
+
+var arrayLikeToArray = __webpack_require__(18);
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
 }
+module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 22 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ ((module) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _nonIterableSpread)
-/* harmony export */ });
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
 }
+module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 23 */
 /***/ ((module) => {
+
+
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 24 */
+/***/ ((module) => {
+
+
 
 /**
  * @module xwindow
@@ -2836,30 +2780,27 @@ if (typeof window === 'undefined') {
 } else module.exports = window;
 
 /***/ }),
-/* 24 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 25 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-var AttrType = __webpack_require__(25);
-var BooleanType = __webpack_require__(26);
-var ListType = __webpack_require__(27);
-var TokenType = __webpack_require__(28);
+var _interopRequireDefault = __webpack_require__(1);
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+var AttrType = __webpack_require__(26);
+var BooleanType = __webpack_require__(27);
+var ListType = __webpack_require__(28);
+var TokenType = __webpack_require__(29);
 
 /**
  * @mixin
  */
-var AriaType = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(function AriaType() {
-  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, AriaType);
+var AriaType = /*#__PURE__*/(0, _createClass2["default"])(function AriaType() {
+  (0, _classCallCheck2["default"])(this, AriaType);
 });
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(AriaType, "props", {
+(0, _defineProperty2["default"])(AriaType, "props", {
   activeDescendant: AttrType.define('aria-activedescendant'),
   atomic: BooleanType.define('aria-atomic'),
   autoComplete: TokenType.define('aria-autocomplete', 'none'),
@@ -2912,34 +2853,28 @@ var AriaType = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPOR
 module.exports = AriaType;
 
 /***/ }),
-/* 25 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 26 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * @abstract
  */
 var AttrType = /*#__PURE__*/function () {
   function AttrType() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, AttrType);
+    (0, _classCallCheck2["default"])(this, AttrType);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__["default"])(AttrType, null, [{
+  (0, _createClass2["default"])(AttrType, null, [{
     key: "get",
     value:
     /**
@@ -3005,52 +2940,46 @@ var AttrType = /*#__PURE__*/function () {
       var _class;
       var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.defaultValue;
       return _class = /*#__PURE__*/function (_this) {
-        (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_0__["default"])(_class, _this);
+        (0, _inherits2["default"])(_class, _this);
         var _super = _createSuper(_class);
         function _class() {
-          (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _class);
+          (0, _classCallCheck2["default"])(this, _class);
           return _super.apply(this, arguments);
         }
-        return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__["default"])(_class);
-      }(this), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class, "nodeName", nodeName), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class, "defaultValue", defaultValue), _class;
+        return (0, _createClass2["default"])(_class);
+      }(this), (0, _defineProperty2["default"])(_class, "nodeName", nodeName), (0, _defineProperty2["default"])(_class, "defaultValue", defaultValue), _class;
     }
   }]);
   return AttrType;
 }();
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(AttrType, "nodeName", null);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(AttrType, "defaultValue", null);
+(0, _defineProperty2["default"])(AttrType, "nodeName", null);
+(0, _defineProperty2["default"])(AttrType, "defaultValue", null);
 module.exports = AttrType;
 
 /***/ }),
-/* 26 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 27 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(25);
+var AttrType = __webpack_require__(26);
 var BooleanType = /*#__PURE__*/function (_AttrType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(BooleanType, _AttrType);
+  (0, _inherits2["default"])(BooleanType, _AttrType);
   var _super = _createSuper(BooleanType);
   function BooleanType() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, BooleanType);
+    (0, _classCallCheck2["default"])(this, BooleanType);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(BooleanType, null, [{
+  (0, _createClass2["default"])(BooleanType, null, [{
     key: "update",
     value:
     /**
@@ -3066,39 +2995,33 @@ var BooleanType = /*#__PURE__*/function (_AttrType) {
   }]);
   return BooleanType;
 }(AttrType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(BooleanType, "defaultValue", false);
+(0, _defineProperty2["default"])(BooleanType, "defaultValue", false);
 module.exports = BooleanType;
 
 /***/ }),
-/* 27 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 28 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(25);
+var AttrType = __webpack_require__(26);
 var ListType = /*#__PURE__*/function (_AttrType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(ListType, _AttrType);
+  (0, _inherits2["default"])(ListType, _AttrType);
   var _super = _createSuper(ListType);
   function ListType() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, ListType);
+    (0, _classCallCheck2["default"])(this, ListType);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(ListType, null, [{
+  (0, _createClass2["default"])(ListType, null, [{
     key: "update",
     value:
     /**
@@ -3119,39 +3042,33 @@ var ListType = /*#__PURE__*/function (_AttrType) {
   }]);
   return ListType;
 }(AttrType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(ListType, "defaultValue", []);
+(0, _defineProperty2["default"])(ListType, "defaultValue", []);
 module.exports = ListType;
 
 /***/ }),
-/* 28 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 29 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(25);
+var AttrType = __webpack_require__(26);
 var TokenType = /*#__PURE__*/function (_AttrType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(TokenType, _AttrType);
+  (0, _inherits2["default"])(TokenType, _AttrType);
   var _super = _createSuper(TokenType);
   function TokenType() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, TokenType);
+    (0, _classCallCheck2["default"])(this, TokenType);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(TokenType, null, [{
+  (0, _createClass2["default"])(TokenType, null, [{
     key: "update",
     value:
     /**
@@ -3169,37 +3086,32 @@ var TokenType = /*#__PURE__*/function (_AttrType) {
   }]);
   return TokenType;
 }(AttrType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(TokenType, "defaultValue", undefined);
+(0, _defineProperty2["default"])(TokenType, "defaultValue", undefined);
 module.exports = TokenType;
 
 /***/ }),
-/* 29 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 30 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var PropType = __webpack_require__(30);
+var PropType = __webpack_require__(31);
 var Attributes = /*#__PURE__*/function (_PropType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(Attributes, _PropType);
+  (0, _inherits2["default"])(Attributes, _PropType);
   var _super = _createSuper(Attributes);
   function Attributes() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Attributes);
+    (0, _classCallCheck2["default"])(this, Attributes);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Attributes, null, [{
+  (0, _createClass2["default"])(Attributes, null, [{
     key: "set",
     value:
     /**
@@ -3261,24 +3173,28 @@ var Attributes = /*#__PURE__*/function (_PropType) {
 module.exports = Attributes;
 
 /***/ }),
-/* 30 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/* 31 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* module decorator */ module = __webpack_require__.hmd(module);
 
+
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var filterTypes = {
+  '[object Null]': true,
+  '[object Boolean]': true,
+  '[object Undefined]': true
+};
 
 /**
  * @abstract
  */
 var PropType = /*#__PURE__*/function () {
   function PropType() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, PropType);
+    (0, _classCallCheck2["default"])(this, PropType);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(PropType, null, [{
+  (0, _createClass2["default"])(PropType, null, [{
     key: "get",
     value:
     /**
@@ -3325,45 +3241,47 @@ var PropType = /*#__PURE__*/function () {
         elem.node[name] = elem.__sampleNode[name];
       }
     }
+
+    /**
+     * @param {*} value
+     * @return {boolean}
+     */
+  }, {
+    key: "filter",
+    value: function filter(value) {
+      return !filterTypes[toString.call(value)];
+    }
   }]);
   return PropType;
 }();
 module.exports = PropType;
 
 /***/ }),
-/* 31 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(19);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_get__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 32 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(20));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _get2 = _interopRequireDefault(__webpack_require__(33));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(25);
+var AttrType = __webpack_require__(26);
 var Class = /*#__PURE__*/function (_AttrType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(Class, _AttrType);
+  (0, _inherits2["default"])(Class, _AttrType);
   var _super = _createSuper(Class);
   function Class() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, Class);
+    (0, _classCallCheck2["default"])(this, Class);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Class, null, [{
+  (0, _createClass2["default"])(Class, null, [{
     key: "update",
     value:
     /**
@@ -3373,10 +3291,10 @@ var Class = /*#__PURE__*/function (_AttrType) {
       var arr = [elem.vnode.className];
       var classList = elem.vnode.classList;
       if (classList) {
-        arr.push.apply(arr, (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(classList));
+        arr.push.apply(arr, (0, _toConsumableArray2["default"])(classList));
       }
       var className = arr.filter(Boolean).join(' ');
-      (0,_babel_runtime_helpers_get__WEBPACK_IMPORTED_MODULE_3__["default"])((0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Class), "update", this).call(this, elem, this.nodeName, className || null);
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(Class), "update", this).call(this, elem, this.nodeName, className || null);
     }
 
     /**
@@ -3401,84 +3319,73 @@ var Class = /*#__PURE__*/function (_AttrType) {
   }]);
   return Class;
 }(AttrType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Class, "nodeName", 'class');
+(0, _defineProperty2["default"])(Class, "nodeName", 'class');
 module.exports = Class;
 
 /***/ }),
-/* 32 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/* 33 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _get)
-/* harmony export */ });
-/* harmony import */ var _superPropBase_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(33);
 
+
+var superPropBase = __webpack_require__(34);
 function _get() {
   if (typeof Reflect !== "undefined" && Reflect.get) {
-    _get = Reflect.get.bind();
+    module.exports = _get = Reflect.get.bind(), module.exports.__esModule = true, module.exports["default"] = module.exports;
   } else {
-    _get = function _get(target, property, receiver) {
-      var base = (0,_superPropBase_js__WEBPACK_IMPORTED_MODULE_0__["default"])(target, property);
+    module.exports = _get = function _get(target, property, receiver) {
+      var base = superPropBase(target, property);
       if (!base) return;
       var desc = Object.getOwnPropertyDescriptor(base, property);
       if (desc.get) {
         return desc.get.call(arguments.length < 3 ? target : receiver);
       }
       return desc.value;
-    };
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
   }
   return _get.apply(this, arguments);
 }
+module.exports = _get, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 33 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/* 34 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _superPropBase)
-/* harmony export */ });
-/* harmony import */ var _getPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
 
+
+var getPrototypeOf = __webpack_require__(11);
 function _superPropBase(object, property) {
   while (!Object.prototype.hasOwnProperty.call(object, property)) {
-    object = (0,_getPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(object);
+    object = getPrototypeOf(object);
     if (object === null) break;
   }
   return object;
 }
+module.exports = _superPropBase, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 34 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 35 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var PropType = __webpack_require__(30);
+var PropType = __webpack_require__(31);
 var ClassList = /*#__PURE__*/function (_PropType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(ClassList, _PropType);
+  (0, _inherits2["default"])(ClassList, _PropType);
   var _super = _createSuper(ClassList);
   function ClassList() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, ClassList);
+    (0, _classCallCheck2["default"])(this, ClassList);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(ClassList, null, [{
+  (0, _createClass2["default"])(ClassList, null, [{
     key: "set",
     value:
     /**
@@ -3495,33 +3402,28 @@ var ClassList = /*#__PURE__*/function (_PropType) {
 module.exports = ClassList;
 
 /***/ }),
-/* 35 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 36 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var PropType = __webpack_require__(30);
+var PropType = __webpack_require__(31);
 var Dataset = /*#__PURE__*/function (_PropType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(Dataset, _PropType);
+  (0, _inherits2["default"])(Dataset, _PropType);
   var _super = _createSuper(Dataset);
   function Dataset() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Dataset);
+    (0, _classCallCheck2["default"])(this, Dataset);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Dataset, null, [{
+  (0, _createClass2["default"])(Dataset, null, [{
     key: "update",
     value:
     /**
@@ -3563,19 +3465,16 @@ var Dataset = /*#__PURE__*/function (_PropType) {
 module.exports = Dataset;
 
 /***/ }),
-/* 36 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 37 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-var window = __webpack_require__(23);
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+var window = __webpack_require__(24);
 var HTMLElement = window.HTMLElement;
 var EventType = /*#__PURE__*/function () {
   /**
@@ -3583,7 +3482,7 @@ var EventType = /*#__PURE__*/function () {
    * @param {ElemType|*} context
    */
   function EventType(e, context) {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, EventType);
+    (0, _classCallCheck2["default"])(this, EventType);
     this.nativeEvent = e;
     this.currentTarget = context;
   }
@@ -3591,7 +3490,7 @@ var EventType = /*#__PURE__*/function () {
   /**
    * @return {ElemType|*|null}
    */
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(EventType, [{
+  (0, _createClass2["default"])(EventType, [{
     key: "target",
     get: function get() {
       return this.currentTarget.getElemByNode(this.nativeEvent.target);
@@ -3681,7 +3580,7 @@ var EventType = /*#__PURE__*/function () {
  * @param {boolean} [cancelable=false]
  * @return {{constructor, dict: {cancelable, bubbles}}}
  */
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(EventType, "types", {
+(0, _defineProperty2["default"])(EventType, "types", {
   afterprint: define(window.Event),
   animationcancel: define(window.AnimationEvent, true),
   animationend: define(window.AnimationEvent, true),
@@ -3792,7 +3691,7 @@ var EventType = /*#__PURE__*/function () {
   waiting: define(window.Event),
   wheel: define(window.WheelEvent, true, true)
 });
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(EventType, "props", {});
+(0, _defineProperty2["default"])(EventType, "props", {});
 (function () {
   var type, prop;
   for (type in EventType.types) {
@@ -3802,7 +3701,7 @@ var EventType = /*#__PURE__*/function () {
     }
   }
 })();
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(EventType, "members", {
+(0, _defineProperty2["default"])(EventType, "members", {
   AT_TARGET: true,
   BUBBLING_PHASE: true,
   CAPTURING_PHASE: true,
@@ -3957,36 +3856,30 @@ function define(constructor) {
 module.exports = EventType;
 
 /***/ }),
-/* 37 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 38 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(25);
+var AttrType = __webpack_require__(26);
 var counter = 0;
 var Id = /*#__PURE__*/function (_AttrType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(Id, _AttrType);
+  (0, _inherits2["default"])(Id, _AttrType);
   var _super = _createSuper(Id);
   function Id() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Id);
+    (0, _classCallCheck2["default"])(this, Id);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Id, null, [{
+  (0, _createClass2["default"])(Id, null, [{
     key: "generate",
     value: function generate() {
       var str = (counter++).toString(36);
@@ -3995,42 +3888,74 @@ var Id = /*#__PURE__*/function (_AttrType) {
   }]);
   return Id;
 }(AttrType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(Id, "nodeName", 'id');
+(0, _defineProperty2["default"])(Id, "nodeName", 'id');
 module.exports = Id;
 
 /***/ }),
-/* 38 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 39 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var _require = __webpack_require__(23),
-  document = _require.document;
-var AttrType = __webpack_require__(25);
-var sampleNode = document.createElement('div');
-var Style = /*#__PURE__*/function (_AttrType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(Style, _AttrType);
-  var _super = _createSuper(Style);
-  function Style() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Style);
+var PropType = __webpack_require__(31);
+var InnerHTML = /*#__PURE__*/function (_PropType) {
+  (0, _inherits2["default"])(InnerHTML, _PropType);
+  var _super = _createSuper(InnerHTML);
+  function InnerHTML() {
+    (0, _classCallCheck2["default"])(this, InnerHTML);
     return _super.apply(this, arguments);
   }
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Style, null, [{
+  (0, _createClass2["default"])(InnerHTML, null, [{
+    key: "set",
+    value:
+    /**
+     * @param {ElemType} elem
+     * @param {string} name
+     * @param {string|null|*[]|*} value
+     */
+    function set(elem, name, value) {
+      elem.vnode[name] = Array.isArray(value) ? value.filter(PropType.filter).join('') : value;
+    }
+  }]);
+  return InnerHTML;
+}(PropType);
+module.exports = InnerHTML;
+
+/***/ }),
+/* 40 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var _require = __webpack_require__(24),
+  document = _require.document;
+var AttrType = __webpack_require__(26);
+var sampleNode = document.createElement('div');
+var Style = /*#__PURE__*/function (_AttrType) {
+  (0, _inherits2["default"])(Style, _AttrType);
+  var _super = _createSuper(Style);
+  function Style() {
+    (0, _classCallCheck2["default"])(this, Style);
+    return _super.apply(this, arguments);
+  }
+  (0, _createClass2["default"])(Style, null, [{
     key: "set",
     value: function set(elem, prop, value) {
       if (typeof value === 'string' || value === null) {
@@ -4044,28 +3969,26 @@ var Style = /*#__PURE__*/function (_AttrType) {
   }]);
   return Style;
 }(AttrType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(Style, "nodeName", 'style');
+(0, _defineProperty2["default"])(Style, "nodeName", 'style');
 module.exports = Style;
 
 /***/ }),
-/* 39 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 41 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
-var _require = __webpack_require__(23),
+
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _require = __webpack_require__(24),
   Text = _require.Text;
 var TextType = /*#__PURE__*/function () {
   /**
    * @param {string|number|*} data
    */
   function TextType(data) {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, TextType);
+    (0, _classCallCheck2["default"])(this, TextType);
     this.data = String(data);
     this.node = null;
   }
@@ -4074,7 +3997,7 @@ var TextType = /*#__PURE__*/function () {
    * @param {Text} [node]
    * @private
    */
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(TextType, [{
+  (0, _createClass2["default"])(TextType, [{
     key: "__init",
     value: function __init(node) {
       this.node = node || new Text(this.data);
@@ -4095,731 +4018,758 @@ var TextType = /*#__PURE__*/function () {
 module.exports = TextType;
 
 /***/ }),
-/* 40 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
+/* 42 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-
-
-
-var _class, _class2, _class3, _class4, _class5, _class6, _class7, _class8, _class9, _class10, _class11, _class12, _class13, _class14, _class15, _class16, _class17, _class18, _class19, _class20, _class21, _class22, _class23, _class24, _class25, _class26, _class27, _class28, _class29, _class30, _class31, _class32, _class33, _class34, _class35, _class36, _class37, _class38, _class39, _class40, _class41, _class42, _class43, _class44, _class45, _class46, _class47, _class48, _class49, _class50, _class51, _class52, _class53, _class54, _class55, _class56, _class57, _class58, _class59, _class60, _class61, _class62, _class63, _class64, _class65, _class66, _class67, _class68, _class69, _class70, _class71, _class72, _class73, _class74;
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var RoleType = __webpack_require__(41);
-exports.RoleAlert = (_class = /*#__PURE__*/function (_RoleType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleAlert, _RoleType);
-  var _super = _createSuper(RoleAlert);
-  function RoleAlert() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleAlert);
+var PropType = __webpack_require__(31);
+var InnerText = /*#__PURE__*/function (_PropType) {
+  (0, _inherits2["default"])(InnerText, _PropType);
+  var _super = _createSuper(InnerText);
+  function InnerText() {
+    (0, _classCallCheck2["default"])(this, InnerText);
     return _super.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleAlert);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class, "role", 'Alert'), _class);
-exports.RoleAlertDialog = (_class2 = /*#__PURE__*/function (_RoleType2) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleAlertDialog, _RoleType2);
-  var _super2 = _createSuper(RoleAlertDialog);
-  function RoleAlertDialog() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleAlertDialog);
-    return _super2.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleAlertDialog);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2, "role", 'AlertDialog'), _class2);
-exports.RoleApplication = (_class3 = /*#__PURE__*/function (_RoleType3) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleApplication, _RoleType3);
-  var _super3 = _createSuper(RoleApplication);
-  function RoleApplication() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleApplication);
-    return _super3.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleApplication);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class3, "role", 'Application'), _class3);
-exports.RoleArticle = (_class4 = /*#__PURE__*/function (_RoleType4) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleArticle, _RoleType4);
-  var _super4 = _createSuper(RoleArticle);
-  function RoleArticle() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleArticle);
-    return _super4.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleArticle);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class4, "role", 'Article'), _class4);
-exports.RoleBanner = (_class5 = /*#__PURE__*/function (_RoleType5) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleBanner, _RoleType5);
-  var _super5 = _createSuper(RoleBanner);
-  function RoleBanner() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleBanner);
-    return _super5.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleBanner);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class5, "role", 'Banner'), _class5);
-exports.RoleBlockQuote = (_class6 = /*#__PURE__*/function (_RoleType6) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleBlockQuote, _RoleType6);
-  var _super6 = _createSuper(RoleBlockQuote);
-  function RoleBlockQuote() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleBlockQuote);
-    return _super6.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleBlockQuote);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class6, "role", 'BlockQuote'), _class6);
-exports.RoleButton = (_class7 = /*#__PURE__*/function (_RoleType7) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleButton, _RoleType7);
-  var _super7 = _createSuper(RoleButton);
-  function RoleButton() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleButton);
-    return _super7.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleButton);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class7, "role", 'Button'), _class7);
-exports.RoleCaption = (_class8 = /*#__PURE__*/function (_RoleType8) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleCaption, _RoleType8);
-  var _super8 = _createSuper(RoleCaption);
-  function RoleCaption() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleCaption);
-    return _super8.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleCaption);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class8, "role", 'Caption'), _class8);
-exports.RoleCell = (_class9 = /*#__PURE__*/function (_RoleType9) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleCell, _RoleType9);
-  var _super9 = _createSuper(RoleCell);
-  function RoleCell() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleCell);
-    return _super9.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleCell);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class9, "role", 'Cell'), _class9);
-exports.RoleCheckBox = (_class10 = /*#__PURE__*/function (_RoleType10) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleCheckBox, _RoleType10);
-  var _super10 = _createSuper(RoleCheckBox);
-  function RoleCheckBox() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleCheckBox);
-    return _super10.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleCheckBox);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class10, "role", 'CheckBox'), _class10);
-exports.RoleColumnHeader = (_class11 = /*#__PURE__*/function (_RoleType11) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleColumnHeader, _RoleType11);
-  var _super11 = _createSuper(RoleColumnHeader);
-  function RoleColumnHeader() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleColumnHeader);
-    return _super11.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleColumnHeader);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class11, "role", 'ColumnHeader'), _class11);
-exports.RoleComboBox = (_class12 = /*#__PURE__*/function (_RoleType12) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleComboBox, _RoleType12);
-  var _super12 = _createSuper(RoleComboBox);
-  function RoleComboBox() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleComboBox);
-    return _super12.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleComboBox);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class12, "role", 'ComboBox'), _class12);
-exports.RoleComplementary = (_class13 = /*#__PURE__*/function (_RoleType13) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleComplementary, _RoleType13);
-  var _super13 = _createSuper(RoleComplementary);
-  function RoleComplementary() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleComplementary);
-    return _super13.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleComplementary);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class13, "role", 'Complementary'), _class13);
-exports.RoleContentInfo = (_class14 = /*#__PURE__*/function (_RoleType14) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleContentInfo, _RoleType14);
-  var _super14 = _createSuper(RoleContentInfo);
-  function RoleContentInfo() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleContentInfo);
-    return _super14.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleContentInfo);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class14, "role", 'ContentInfo'), _class14);
-exports.RoleDefinition = (_class15 = /*#__PURE__*/function (_RoleType15) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleDefinition, _RoleType15);
-  var _super15 = _createSuper(RoleDefinition);
-  function RoleDefinition() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleDefinition);
-    return _super15.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleDefinition);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class15, "role", 'Definition'), _class15);
-exports.RoleDialog = (_class16 = /*#__PURE__*/function (_RoleType16) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleDialog, _RoleType16);
-  var _super16 = _createSuper(RoleDialog);
-  function RoleDialog() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleDialog);
-    return _super16.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleDialog);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class16, "role", 'Dialog'), _class16);
-exports.RoleDirectory = (_class17 = /*#__PURE__*/function (_RoleType17) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleDirectory, _RoleType17);
-  var _super17 = _createSuper(RoleDirectory);
-  function RoleDirectory() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleDirectory);
-    return _super17.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleDirectory);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class17, "role", 'Directory'), _class17);
-exports.RoleDocument = (_class18 = /*#__PURE__*/function (_RoleType18) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleDocument, _RoleType18);
-  var _super18 = _createSuper(RoleDocument);
-  function RoleDocument() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleDocument);
-    return _super18.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleDocument);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class18, "role", 'Document'), _class18);
-exports.RoleFeed = (_class19 = /*#__PURE__*/function (_RoleType19) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleFeed, _RoleType19);
-  var _super19 = _createSuper(RoleFeed);
-  function RoleFeed() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleFeed);
-    return _super19.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleFeed);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class19, "role", 'Feed'), _class19);
-exports.RoleFigure = (_class20 = /*#__PURE__*/function (_RoleType20) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleFigure, _RoleType20);
-  var _super20 = _createSuper(RoleFigure);
-  function RoleFigure() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleFigure);
-    return _super20.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleFigure);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class20, "role", 'Figure'), _class20);
-exports.RoleForm = (_class21 = /*#__PURE__*/function (_RoleType21) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleForm, _RoleType21);
-  var _super21 = _createSuper(RoleForm);
-  function RoleForm() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleForm);
-    return _super21.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleForm);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class21, "role", 'Form'), _class21);
-exports.RoleGrid = (_class22 = /*#__PURE__*/function (_RoleType22) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleGrid, _RoleType22);
-  var _super22 = _createSuper(RoleGrid);
-  function RoleGrid() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleGrid);
-    return _super22.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleGrid);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class22, "role", 'Grid'), _class22);
-exports.RoleGridCell = (_class23 = /*#__PURE__*/function (_RoleType23) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleGridCell, _RoleType23);
-  var _super23 = _createSuper(RoleGridCell);
-  function RoleGridCell() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleGridCell);
-    return _super23.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleGridCell);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class23, "role", 'GridCell'), _class23);
-exports.RoleGroup = (_class24 = /*#__PURE__*/function (_RoleType24) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleGroup, _RoleType24);
-  var _super24 = _createSuper(RoleGroup);
-  function RoleGroup() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleGroup);
-    return _super24.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleGroup);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class24, "role", 'Group'), _class24);
-exports.RoleHeading = (_class25 = /*#__PURE__*/function (_RoleType25) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleHeading, _RoleType25);
-  var _super25 = _createSuper(RoleHeading);
-  function RoleHeading() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleHeading);
-    return _super25.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleHeading);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class25, "role", 'Heading'), _class25);
-exports.RoleImg = (_class26 = /*#__PURE__*/function (_RoleType26) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleImg, _RoleType26);
-  var _super26 = _createSuper(RoleImg);
-  function RoleImg() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleImg);
-    return _super26.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleImg);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class26, "role", 'Img'), _class26);
-exports.RoleLink = (_class27 = /*#__PURE__*/function (_RoleType27) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleLink, _RoleType27);
-  var _super27 = _createSuper(RoleLink);
-  function RoleLink() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleLink);
-    return _super27.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleLink);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class27, "role", 'Link'), _class27);
-exports.RoleList = (_class28 = /*#__PURE__*/function (_RoleType28) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleList, _RoleType28);
-  var _super28 = _createSuper(RoleList);
-  function RoleList() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleList);
-    return _super28.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleList);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class28, "role", 'List'), _class28);
-exports.RoleListBox = (_class29 = /*#__PURE__*/function (_RoleType29) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleListBox, _RoleType29);
-  var _super29 = _createSuper(RoleListBox);
-  function RoleListBox() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleListBox);
-    return _super29.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleListBox);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class29, "role", 'ListBox'), _class29);
-exports.RoleListItem = (_class30 = /*#__PURE__*/function (_RoleType30) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleListItem, _RoleType30);
-  var _super30 = _createSuper(RoleListItem);
-  function RoleListItem() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleListItem);
-    return _super30.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleListItem);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class30, "role", 'ListItem'), _class30);
-exports.RoleLog = (_class31 = /*#__PURE__*/function (_RoleType31) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleLog, _RoleType31);
-  var _super31 = _createSuper(RoleLog);
-  function RoleLog() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleLog);
-    return _super31.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleLog);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class31, "role", 'Log'), _class31);
-exports.RoleMain = (_class32 = /*#__PURE__*/function (_RoleType32) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMain, _RoleType32);
-  var _super32 = _createSuper(RoleMain);
-  function RoleMain() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMain);
-    return _super32.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMain);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class32, "role", 'Main'), _class32);
-exports.RoleMarquee = (_class33 = /*#__PURE__*/function (_RoleType33) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMarquee, _RoleType33);
-  var _super33 = _createSuper(RoleMarquee);
-  function RoleMarquee() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMarquee);
-    return _super33.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMarquee);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class33, "role", 'Marquee'), _class33);
-exports.RoleMath = (_class34 = /*#__PURE__*/function (_RoleType34) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMath, _RoleType34);
-  var _super34 = _createSuper(RoleMath);
-  function RoleMath() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMath);
-    return _super34.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMath);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class34, "role", 'Math'), _class34);
-exports.RoleMenu = (_class35 = /*#__PURE__*/function (_RoleType35) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMenu, _RoleType35);
-  var _super35 = _createSuper(RoleMenu);
-  function RoleMenu() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMenu);
-    return _super35.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMenu);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class35, "role", 'Menu'), _class35);
-exports.RoleMenuBar = (_class36 = /*#__PURE__*/function (_RoleType36) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMenuBar, _RoleType36);
-  var _super36 = _createSuper(RoleMenuBar);
-  function RoleMenuBar() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMenuBar);
-    return _super36.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMenuBar);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class36, "role", 'MenuBar'), _class36);
-exports.RoleMenuItem = (_class37 = /*#__PURE__*/function (_RoleType37) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMenuItem, _RoleType37);
-  var _super37 = _createSuper(RoleMenuItem);
-  function RoleMenuItem() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMenuItem);
-    return _super37.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMenuItem);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class37, "role", 'MenuItem'), _class37);
-exports.RoleMenuItemCheckBox = (_class38 = /*#__PURE__*/function (_RoleType38) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMenuItemCheckBox, _RoleType38);
-  var _super38 = _createSuper(RoleMenuItemCheckBox);
-  function RoleMenuItemCheckBox() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMenuItemCheckBox);
-    return _super38.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMenuItemCheckBox);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class38, "role", 'MenuItemCheckBox'), _class38);
-exports.RoleMenuItemRadio = (_class39 = /*#__PURE__*/function (_RoleType39) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleMenuItemRadio, _RoleType39);
-  var _super39 = _createSuper(RoleMenuItemRadio);
-  function RoleMenuItemRadio() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleMenuItemRadio);
-    return _super39.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleMenuItemRadio);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class39, "role", 'MenuItemRadio'), _class39);
-exports.RoleNavigation = (_class40 = /*#__PURE__*/function (_RoleType40) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleNavigation, _RoleType40);
-  var _super40 = _createSuper(RoleNavigation);
-  function RoleNavigation() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleNavigation);
-    return _super40.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleNavigation);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class40, "role", 'Navigation'), _class40);
-exports.RoleNone = (_class41 = /*#__PURE__*/function (_RoleType41) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleNone, _RoleType41);
-  var _super41 = _createSuper(RoleNone);
-  function RoleNone() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleNone);
-    return _super41.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleNone);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class41, "role", 'None'), _class41);
-exports.RoleNote = (_class42 = /*#__PURE__*/function (_RoleType42) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleNote, _RoleType42);
-  var _super42 = _createSuper(RoleNote);
-  function RoleNote() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleNote);
-    return _super42.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleNote);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class42, "role", 'Note'), _class42);
-exports.RoleOption = (_class43 = /*#__PURE__*/function (_RoleType43) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleOption, _RoleType43);
-  var _super43 = _createSuper(RoleOption);
-  function RoleOption() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleOption);
-    return _super43.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleOption);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class43, "role", 'Option'), _class43);
-exports.RoleParagraph = (_class44 = /*#__PURE__*/function (_RoleType44) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleParagraph, _RoleType44);
-  var _super44 = _createSuper(RoleParagraph);
-  function RoleParagraph() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleParagraph);
-    return _super44.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleParagraph);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class44, "role", 'Paragraph'), _class44);
-exports.RolePresentation = (_class45 = /*#__PURE__*/function (_RoleType45) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RolePresentation, _RoleType45);
-  var _super45 = _createSuper(RolePresentation);
-  function RolePresentation() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RolePresentation);
-    return _super45.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RolePresentation);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class45, "role", 'Presentation'), _class45);
-exports.RoleProgressBar = (_class46 = /*#__PURE__*/function (_RoleType46) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleProgressBar, _RoleType46);
-  var _super46 = _createSuper(RoleProgressBar);
-  function RoleProgressBar() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleProgressBar);
-    return _super46.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleProgressBar);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class46, "role", 'ProgressBar'), _class46);
-exports.RoleRadio = (_class47 = /*#__PURE__*/function (_RoleType47) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleRadio, _RoleType47);
-  var _super47 = _createSuper(RoleRadio);
-  function RoleRadio() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleRadio);
-    return _super47.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleRadio);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class47, "role", 'Radio'), _class47);
-exports.RoleRadioGroup = (_class48 = /*#__PURE__*/function (_RoleType48) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleRadioGroup, _RoleType48);
-  var _super48 = _createSuper(RoleRadioGroup);
-  function RoleRadioGroup() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleRadioGroup);
-    return _super48.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleRadioGroup);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class48, "role", 'RadioGroup'), _class48);
-exports.RoleRegion = (_class49 = /*#__PURE__*/function (_RoleType49) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleRegion, _RoleType49);
-  var _super49 = _createSuper(RoleRegion);
-  function RoleRegion() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleRegion);
-    return _super49.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleRegion);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class49, "role", 'Region'), _class49);
-exports.RoleRow = (_class50 = /*#__PURE__*/function (_RoleType50) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleRow, _RoleType50);
-  var _super50 = _createSuper(RoleRow);
-  function RoleRow() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleRow);
-    return _super50.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleRow);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class50, "role", 'Row'), _class50);
-exports.RoleRowGroup = (_class51 = /*#__PURE__*/function (_RoleType51) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleRowGroup, _RoleType51);
-  var _super51 = _createSuper(RoleRowGroup);
-  function RoleRowGroup() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleRowGroup);
-    return _super51.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleRowGroup);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class51, "role", 'RowGroup'), _class51);
-exports.RoleRowHeader = (_class52 = /*#__PURE__*/function (_RoleType52) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleRowHeader, _RoleType52);
-  var _super52 = _createSuper(RoleRowHeader);
-  function RoleRowHeader() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleRowHeader);
-    return _super52.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleRowHeader);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class52, "role", 'RowHeader'), _class52);
-exports.RoleScrollBar = (_class53 = /*#__PURE__*/function (_RoleType53) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleScrollBar, _RoleType53);
-  var _super53 = _createSuper(RoleScrollBar);
-  function RoleScrollBar() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleScrollBar);
-    return _super53.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleScrollBar);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class53, "role", 'ScrollBar'), _class53);
-exports.RoleSearch = (_class54 = /*#__PURE__*/function (_RoleType54) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleSearch, _RoleType54);
-  var _super54 = _createSuper(RoleSearch);
-  function RoleSearch() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleSearch);
-    return _super54.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleSearch);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class54, "role", 'Search'), _class54);
-exports.RoleSearchBox = (_class55 = /*#__PURE__*/function (_RoleType55) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleSearchBox, _RoleType55);
-  var _super55 = _createSuper(RoleSearchBox);
-  function RoleSearchBox() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleSearchBox);
-    return _super55.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleSearchBox);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class55, "role", 'SearchBox'), _class55);
-exports.RoleSectionHead = (_class56 = /*#__PURE__*/function (_RoleType56) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleSectionHead, _RoleType56);
-  var _super56 = _createSuper(RoleSectionHead);
-  function RoleSectionHead() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleSectionHead);
-    return _super56.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleSectionHead);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class56, "role", 'SectionHead'), _class56);
-exports.RoleSeparator = (_class57 = /*#__PURE__*/function (_RoleType57) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleSeparator, _RoleType57);
-  var _super57 = _createSuper(RoleSeparator);
-  function RoleSeparator() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleSeparator);
-    return _super57.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleSeparator);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class57, "role", 'Separator'), _class57);
-exports.RoleSlider = (_class58 = /*#__PURE__*/function (_RoleType58) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleSlider, _RoleType58);
-  var _super58 = _createSuper(RoleSlider);
-  function RoleSlider() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleSlider);
-    return _super58.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleSlider);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class58, "role", 'Slider'), _class58);
-exports.RoleSpinButton = (_class59 = /*#__PURE__*/function (_RoleType59) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleSpinButton, _RoleType59);
-  var _super59 = _createSuper(RoleSpinButton);
-  function RoleSpinButton() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleSpinButton);
-    return _super59.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleSpinButton);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class59, "role", 'SpinButton'), _class59);
-exports.RoleStatus = (_class60 = /*#__PURE__*/function (_RoleType60) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleStatus, _RoleType60);
-  var _super60 = _createSuper(RoleStatus);
-  function RoleStatus() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleStatus);
-    return _super60.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleStatus);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class60, "role", 'Status'), _class60);
-exports.RoleStrong = (_class61 = /*#__PURE__*/function (_RoleType61) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleStrong, _RoleType61);
-  var _super61 = _createSuper(RoleStrong);
-  function RoleStrong() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleStrong);
-    return _super61.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleStrong);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class61, "role", 'Strong'), _class61);
-exports.RoleSwitch = (_class62 = /*#__PURE__*/function (_RoleType62) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleSwitch, _RoleType62);
-  var _super62 = _createSuper(RoleSwitch);
-  function RoleSwitch() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleSwitch);
-    return _super62.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleSwitch);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class62, "role", 'Switch'), _class62);
-exports.RoleTab = (_class63 = /*#__PURE__*/function (_RoleType63) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTab, _RoleType63);
-  var _super63 = _createSuper(RoleTab);
-  function RoleTab() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTab);
-    return _super63.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTab);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class63, "role", 'Tab'), _class63);
-exports.RoleTabList = (_class64 = /*#__PURE__*/function (_RoleType64) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTabList, _RoleType64);
-  var _super64 = _createSuper(RoleTabList);
-  function RoleTabList() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTabList);
-    return _super64.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTabList);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class64, "role", 'TabList'), _class64);
-exports.RoleTabPanel = (_class65 = /*#__PURE__*/function (_RoleType65) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTabPanel, _RoleType65);
-  var _super65 = _createSuper(RoleTabPanel);
-  function RoleTabPanel() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTabPanel);
-    return _super65.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTabPanel);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class65, "role", 'TabPanel'), _class65);
-exports.RoleTable = (_class66 = /*#__PURE__*/function (_RoleType66) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTable, _RoleType66);
-  var _super66 = _createSuper(RoleTable);
-  function RoleTable() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTable);
-    return _super66.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTable);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class66, "role", 'Table'), _class66);
-exports.RoleTerm = (_class67 = /*#__PURE__*/function (_RoleType67) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTerm, _RoleType67);
-  var _super67 = _createSuper(RoleTerm);
-  function RoleTerm() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTerm);
-    return _super67.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTerm);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class67, "role", 'Term'), _class67);
-exports.RoleTextBox = (_class68 = /*#__PURE__*/function (_RoleType68) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTextBox, _RoleType68);
-  var _super68 = _createSuper(RoleTextBox);
-  function RoleTextBox() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTextBox);
-    return _super68.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTextBox);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class68, "role", 'TextBox'), _class68);
-exports.RoleTimer = (_class69 = /*#__PURE__*/function (_RoleType69) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTimer, _RoleType69);
-  var _super69 = _createSuper(RoleTimer);
-  function RoleTimer() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTimer);
-    return _super69.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTimer);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class69, "role", 'Timer'), _class69);
-exports.RoleToolBar = (_class70 = /*#__PURE__*/function (_RoleType70) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleToolBar, _RoleType70);
-  var _super70 = _createSuper(RoleToolBar);
-  function RoleToolBar() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleToolBar);
-    return _super70.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleToolBar);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class70, "role", 'ToolBar'), _class70);
-exports.RoleToolTip = (_class71 = /*#__PURE__*/function (_RoleType71) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleToolTip, _RoleType71);
-  var _super71 = _createSuper(RoleToolTip);
-  function RoleToolTip() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleToolTip);
-    return _super71.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleToolTip);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class71, "role", 'ToolTip'), _class71);
-exports.RoleTree = (_class72 = /*#__PURE__*/function (_RoleType72) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTree, _RoleType72);
-  var _super72 = _createSuper(RoleTree);
-  function RoleTree() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTree);
-    return _super72.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTree);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class72, "role", 'Tree'), _class72);
-exports.RoleTreeGrid = (_class73 = /*#__PURE__*/function (_RoleType73) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTreeGrid, _RoleType73);
-  var _super73 = _createSuper(RoleTreeGrid);
-  function RoleTreeGrid() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTreeGrid);
-    return _super73.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTreeGrid);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class73, "role", 'TreeGrid'), _class73);
-exports.RoleTreeItem = (_class74 = /*#__PURE__*/function (_RoleType74) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleTreeItem, _RoleType74);
-  var _super74 = _createSuper(RoleTreeItem);
-  function RoleTreeItem() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleTreeItem);
-    return _super74.apply(this, arguments);
-  }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleTreeItem);
-}(RoleType), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(_class74, "role", 'TreeItem'), _class74);
+  (0, _createClass2["default"])(InnerText, null, [{
+    key: "set",
+    value:
+    /**
+     * @param {ElemType} elem
+     * @param {string} name
+     * @param {string|null|*[]|*} value
+     */
+    function set(elem, name, value) {
+      elem.vnode[name] = Array.isArray(value) ? value.filter(PropType.filter).join('\n') : value;
+    }
+  }]);
+  return InnerText;
+}(PropType);
+module.exports = InnerText;
 
 /***/ }),
-/* 41 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1);
-/* module decorator */ module = __webpack_require__.hmd(module);
+/* 43 */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+var _interopRequireDefault = __webpack_require__(1);
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+var _class, _class2, _class3, _class4, _class5, _class6, _class7, _class8, _class9, _class10, _class11, _class12, _class13, _class14, _class15, _class16, _class17, _class18, _class19, _class20, _class21, _class22, _class23, _class24, _class25, _class26, _class27, _class28, _class29, _class30, _class31, _class32, _class33, _class34, _class35, _class36, _class37, _class38, _class39, _class40, _class41, _class42, _class43, _class44, _class45, _class46, _class47, _class48, _class49, _class50, _class51, _class52, _class53, _class54, _class55, _class56, _class57, _class58, _class59, _class60, _class61, _class62, _class63, _class64, _class65, _class66, _class67, _class68, _class69, _class70, _class71, _class72, _class73, _class74;
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var ElemType = __webpack_require__(12);
-var PropType = __webpack_require__(30);
+var RoleType = __webpack_require__(44);
+exports.RoleAlert = (_class = /*#__PURE__*/function (_RoleType) {
+  (0, _inherits2["default"])(RoleAlert, _RoleType);
+  var _super = _createSuper(RoleAlert);
+  function RoleAlert() {
+    (0, _classCallCheck2["default"])(this, RoleAlert);
+    return _super.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleAlert);
+}(RoleType), (0, _defineProperty2["default"])(_class, "role", 'Alert'), _class);
+exports.RoleAlertDialog = (_class2 = /*#__PURE__*/function (_RoleType2) {
+  (0, _inherits2["default"])(RoleAlertDialog, _RoleType2);
+  var _super2 = _createSuper(RoleAlertDialog);
+  function RoleAlertDialog() {
+    (0, _classCallCheck2["default"])(this, RoleAlertDialog);
+    return _super2.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleAlertDialog);
+}(RoleType), (0, _defineProperty2["default"])(_class2, "role", 'AlertDialog'), _class2);
+exports.RoleApplication = (_class3 = /*#__PURE__*/function (_RoleType3) {
+  (0, _inherits2["default"])(RoleApplication, _RoleType3);
+  var _super3 = _createSuper(RoleApplication);
+  function RoleApplication() {
+    (0, _classCallCheck2["default"])(this, RoleApplication);
+    return _super3.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleApplication);
+}(RoleType), (0, _defineProperty2["default"])(_class3, "role", 'Application'), _class3);
+exports.RoleArticle = (_class4 = /*#__PURE__*/function (_RoleType4) {
+  (0, _inherits2["default"])(RoleArticle, _RoleType4);
+  var _super4 = _createSuper(RoleArticle);
+  function RoleArticle() {
+    (0, _classCallCheck2["default"])(this, RoleArticle);
+    return _super4.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleArticle);
+}(RoleType), (0, _defineProperty2["default"])(_class4, "role", 'Article'), _class4);
+exports.RoleBanner = (_class5 = /*#__PURE__*/function (_RoleType5) {
+  (0, _inherits2["default"])(RoleBanner, _RoleType5);
+  var _super5 = _createSuper(RoleBanner);
+  function RoleBanner() {
+    (0, _classCallCheck2["default"])(this, RoleBanner);
+    return _super5.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleBanner);
+}(RoleType), (0, _defineProperty2["default"])(_class5, "role", 'Banner'), _class5);
+exports.RoleBlockQuote = (_class6 = /*#__PURE__*/function (_RoleType6) {
+  (0, _inherits2["default"])(RoleBlockQuote, _RoleType6);
+  var _super6 = _createSuper(RoleBlockQuote);
+  function RoleBlockQuote() {
+    (0, _classCallCheck2["default"])(this, RoleBlockQuote);
+    return _super6.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleBlockQuote);
+}(RoleType), (0, _defineProperty2["default"])(_class6, "role", 'BlockQuote'), _class6);
+exports.RoleButton = (_class7 = /*#__PURE__*/function (_RoleType7) {
+  (0, _inherits2["default"])(RoleButton, _RoleType7);
+  var _super7 = _createSuper(RoleButton);
+  function RoleButton() {
+    (0, _classCallCheck2["default"])(this, RoleButton);
+    return _super7.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleButton);
+}(RoleType), (0, _defineProperty2["default"])(_class7, "role", 'Button'), _class7);
+exports.RoleCaption = (_class8 = /*#__PURE__*/function (_RoleType8) {
+  (0, _inherits2["default"])(RoleCaption, _RoleType8);
+  var _super8 = _createSuper(RoleCaption);
+  function RoleCaption() {
+    (0, _classCallCheck2["default"])(this, RoleCaption);
+    return _super8.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleCaption);
+}(RoleType), (0, _defineProperty2["default"])(_class8, "role", 'Caption'), _class8);
+exports.RoleCell = (_class9 = /*#__PURE__*/function (_RoleType9) {
+  (0, _inherits2["default"])(RoleCell, _RoleType9);
+  var _super9 = _createSuper(RoleCell);
+  function RoleCell() {
+    (0, _classCallCheck2["default"])(this, RoleCell);
+    return _super9.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleCell);
+}(RoleType), (0, _defineProperty2["default"])(_class9, "role", 'Cell'), _class9);
+exports.RoleCheckBox = (_class10 = /*#__PURE__*/function (_RoleType10) {
+  (0, _inherits2["default"])(RoleCheckBox, _RoleType10);
+  var _super10 = _createSuper(RoleCheckBox);
+  function RoleCheckBox() {
+    (0, _classCallCheck2["default"])(this, RoleCheckBox);
+    return _super10.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleCheckBox);
+}(RoleType), (0, _defineProperty2["default"])(_class10, "role", 'CheckBox'), _class10);
+exports.RoleColumnHeader = (_class11 = /*#__PURE__*/function (_RoleType11) {
+  (0, _inherits2["default"])(RoleColumnHeader, _RoleType11);
+  var _super11 = _createSuper(RoleColumnHeader);
+  function RoleColumnHeader() {
+    (0, _classCallCheck2["default"])(this, RoleColumnHeader);
+    return _super11.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleColumnHeader);
+}(RoleType), (0, _defineProperty2["default"])(_class11, "role", 'ColumnHeader'), _class11);
+exports.RoleComboBox = (_class12 = /*#__PURE__*/function (_RoleType12) {
+  (0, _inherits2["default"])(RoleComboBox, _RoleType12);
+  var _super12 = _createSuper(RoleComboBox);
+  function RoleComboBox() {
+    (0, _classCallCheck2["default"])(this, RoleComboBox);
+    return _super12.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleComboBox);
+}(RoleType), (0, _defineProperty2["default"])(_class12, "role", 'ComboBox'), _class12);
+exports.RoleComplementary = (_class13 = /*#__PURE__*/function (_RoleType13) {
+  (0, _inherits2["default"])(RoleComplementary, _RoleType13);
+  var _super13 = _createSuper(RoleComplementary);
+  function RoleComplementary() {
+    (0, _classCallCheck2["default"])(this, RoleComplementary);
+    return _super13.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleComplementary);
+}(RoleType), (0, _defineProperty2["default"])(_class13, "role", 'Complementary'), _class13);
+exports.RoleContentInfo = (_class14 = /*#__PURE__*/function (_RoleType14) {
+  (0, _inherits2["default"])(RoleContentInfo, _RoleType14);
+  var _super14 = _createSuper(RoleContentInfo);
+  function RoleContentInfo() {
+    (0, _classCallCheck2["default"])(this, RoleContentInfo);
+    return _super14.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleContentInfo);
+}(RoleType), (0, _defineProperty2["default"])(_class14, "role", 'ContentInfo'), _class14);
+exports.RoleDefinition = (_class15 = /*#__PURE__*/function (_RoleType15) {
+  (0, _inherits2["default"])(RoleDefinition, _RoleType15);
+  var _super15 = _createSuper(RoleDefinition);
+  function RoleDefinition() {
+    (0, _classCallCheck2["default"])(this, RoleDefinition);
+    return _super15.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleDefinition);
+}(RoleType), (0, _defineProperty2["default"])(_class15, "role", 'Definition'), _class15);
+exports.RoleDialog = (_class16 = /*#__PURE__*/function (_RoleType16) {
+  (0, _inherits2["default"])(RoleDialog, _RoleType16);
+  var _super16 = _createSuper(RoleDialog);
+  function RoleDialog() {
+    (0, _classCallCheck2["default"])(this, RoleDialog);
+    return _super16.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleDialog);
+}(RoleType), (0, _defineProperty2["default"])(_class16, "role", 'Dialog'), _class16);
+exports.RoleDirectory = (_class17 = /*#__PURE__*/function (_RoleType17) {
+  (0, _inherits2["default"])(RoleDirectory, _RoleType17);
+  var _super17 = _createSuper(RoleDirectory);
+  function RoleDirectory() {
+    (0, _classCallCheck2["default"])(this, RoleDirectory);
+    return _super17.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleDirectory);
+}(RoleType), (0, _defineProperty2["default"])(_class17, "role", 'Directory'), _class17);
+exports.RoleDocument = (_class18 = /*#__PURE__*/function (_RoleType18) {
+  (0, _inherits2["default"])(RoleDocument, _RoleType18);
+  var _super18 = _createSuper(RoleDocument);
+  function RoleDocument() {
+    (0, _classCallCheck2["default"])(this, RoleDocument);
+    return _super18.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleDocument);
+}(RoleType), (0, _defineProperty2["default"])(_class18, "role", 'Document'), _class18);
+exports.RoleFeed = (_class19 = /*#__PURE__*/function (_RoleType19) {
+  (0, _inherits2["default"])(RoleFeed, _RoleType19);
+  var _super19 = _createSuper(RoleFeed);
+  function RoleFeed() {
+    (0, _classCallCheck2["default"])(this, RoleFeed);
+    return _super19.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleFeed);
+}(RoleType), (0, _defineProperty2["default"])(_class19, "role", 'Feed'), _class19);
+exports.RoleFigure = (_class20 = /*#__PURE__*/function (_RoleType20) {
+  (0, _inherits2["default"])(RoleFigure, _RoleType20);
+  var _super20 = _createSuper(RoleFigure);
+  function RoleFigure() {
+    (0, _classCallCheck2["default"])(this, RoleFigure);
+    return _super20.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleFigure);
+}(RoleType), (0, _defineProperty2["default"])(_class20, "role", 'Figure'), _class20);
+exports.RoleForm = (_class21 = /*#__PURE__*/function (_RoleType21) {
+  (0, _inherits2["default"])(RoleForm, _RoleType21);
+  var _super21 = _createSuper(RoleForm);
+  function RoleForm() {
+    (0, _classCallCheck2["default"])(this, RoleForm);
+    return _super21.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleForm);
+}(RoleType), (0, _defineProperty2["default"])(_class21, "role", 'Form'), _class21);
+exports.RoleGrid = (_class22 = /*#__PURE__*/function (_RoleType22) {
+  (0, _inherits2["default"])(RoleGrid, _RoleType22);
+  var _super22 = _createSuper(RoleGrid);
+  function RoleGrid() {
+    (0, _classCallCheck2["default"])(this, RoleGrid);
+    return _super22.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleGrid);
+}(RoleType), (0, _defineProperty2["default"])(_class22, "role", 'Grid'), _class22);
+exports.RoleGridCell = (_class23 = /*#__PURE__*/function (_RoleType23) {
+  (0, _inherits2["default"])(RoleGridCell, _RoleType23);
+  var _super23 = _createSuper(RoleGridCell);
+  function RoleGridCell() {
+    (0, _classCallCheck2["default"])(this, RoleGridCell);
+    return _super23.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleGridCell);
+}(RoleType), (0, _defineProperty2["default"])(_class23, "role", 'GridCell'), _class23);
+exports.RoleGroup = (_class24 = /*#__PURE__*/function (_RoleType24) {
+  (0, _inherits2["default"])(RoleGroup, _RoleType24);
+  var _super24 = _createSuper(RoleGroup);
+  function RoleGroup() {
+    (0, _classCallCheck2["default"])(this, RoleGroup);
+    return _super24.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleGroup);
+}(RoleType), (0, _defineProperty2["default"])(_class24, "role", 'Group'), _class24);
+exports.RoleHeading = (_class25 = /*#__PURE__*/function (_RoleType25) {
+  (0, _inherits2["default"])(RoleHeading, _RoleType25);
+  var _super25 = _createSuper(RoleHeading);
+  function RoleHeading() {
+    (0, _classCallCheck2["default"])(this, RoleHeading);
+    return _super25.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleHeading);
+}(RoleType), (0, _defineProperty2["default"])(_class25, "role", 'Heading'), _class25);
+exports.RoleImg = (_class26 = /*#__PURE__*/function (_RoleType26) {
+  (0, _inherits2["default"])(RoleImg, _RoleType26);
+  var _super26 = _createSuper(RoleImg);
+  function RoleImg() {
+    (0, _classCallCheck2["default"])(this, RoleImg);
+    return _super26.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleImg);
+}(RoleType), (0, _defineProperty2["default"])(_class26, "role", 'Img'), _class26);
+exports.RoleLink = (_class27 = /*#__PURE__*/function (_RoleType27) {
+  (0, _inherits2["default"])(RoleLink, _RoleType27);
+  var _super27 = _createSuper(RoleLink);
+  function RoleLink() {
+    (0, _classCallCheck2["default"])(this, RoleLink);
+    return _super27.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleLink);
+}(RoleType), (0, _defineProperty2["default"])(_class27, "role", 'Link'), _class27);
+exports.RoleList = (_class28 = /*#__PURE__*/function (_RoleType28) {
+  (0, _inherits2["default"])(RoleList, _RoleType28);
+  var _super28 = _createSuper(RoleList);
+  function RoleList() {
+    (0, _classCallCheck2["default"])(this, RoleList);
+    return _super28.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleList);
+}(RoleType), (0, _defineProperty2["default"])(_class28, "role", 'List'), _class28);
+exports.RoleListBox = (_class29 = /*#__PURE__*/function (_RoleType29) {
+  (0, _inherits2["default"])(RoleListBox, _RoleType29);
+  var _super29 = _createSuper(RoleListBox);
+  function RoleListBox() {
+    (0, _classCallCheck2["default"])(this, RoleListBox);
+    return _super29.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleListBox);
+}(RoleType), (0, _defineProperty2["default"])(_class29, "role", 'ListBox'), _class29);
+exports.RoleListItem = (_class30 = /*#__PURE__*/function (_RoleType30) {
+  (0, _inherits2["default"])(RoleListItem, _RoleType30);
+  var _super30 = _createSuper(RoleListItem);
+  function RoleListItem() {
+    (0, _classCallCheck2["default"])(this, RoleListItem);
+    return _super30.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleListItem);
+}(RoleType), (0, _defineProperty2["default"])(_class30, "role", 'ListItem'), _class30);
+exports.RoleLog = (_class31 = /*#__PURE__*/function (_RoleType31) {
+  (0, _inherits2["default"])(RoleLog, _RoleType31);
+  var _super31 = _createSuper(RoleLog);
+  function RoleLog() {
+    (0, _classCallCheck2["default"])(this, RoleLog);
+    return _super31.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleLog);
+}(RoleType), (0, _defineProperty2["default"])(_class31, "role", 'Log'), _class31);
+exports.RoleMain = (_class32 = /*#__PURE__*/function (_RoleType32) {
+  (0, _inherits2["default"])(RoleMain, _RoleType32);
+  var _super32 = _createSuper(RoleMain);
+  function RoleMain() {
+    (0, _classCallCheck2["default"])(this, RoleMain);
+    return _super32.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMain);
+}(RoleType), (0, _defineProperty2["default"])(_class32, "role", 'Main'), _class32);
+exports.RoleMarquee = (_class33 = /*#__PURE__*/function (_RoleType33) {
+  (0, _inherits2["default"])(RoleMarquee, _RoleType33);
+  var _super33 = _createSuper(RoleMarquee);
+  function RoleMarquee() {
+    (0, _classCallCheck2["default"])(this, RoleMarquee);
+    return _super33.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMarquee);
+}(RoleType), (0, _defineProperty2["default"])(_class33, "role", 'Marquee'), _class33);
+exports.RoleMath = (_class34 = /*#__PURE__*/function (_RoleType34) {
+  (0, _inherits2["default"])(RoleMath, _RoleType34);
+  var _super34 = _createSuper(RoleMath);
+  function RoleMath() {
+    (0, _classCallCheck2["default"])(this, RoleMath);
+    return _super34.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMath);
+}(RoleType), (0, _defineProperty2["default"])(_class34, "role", 'Math'), _class34);
+exports.RoleMenu = (_class35 = /*#__PURE__*/function (_RoleType35) {
+  (0, _inherits2["default"])(RoleMenu, _RoleType35);
+  var _super35 = _createSuper(RoleMenu);
+  function RoleMenu() {
+    (0, _classCallCheck2["default"])(this, RoleMenu);
+    return _super35.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMenu);
+}(RoleType), (0, _defineProperty2["default"])(_class35, "role", 'Menu'), _class35);
+exports.RoleMenuBar = (_class36 = /*#__PURE__*/function (_RoleType36) {
+  (0, _inherits2["default"])(RoleMenuBar, _RoleType36);
+  var _super36 = _createSuper(RoleMenuBar);
+  function RoleMenuBar() {
+    (0, _classCallCheck2["default"])(this, RoleMenuBar);
+    return _super36.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMenuBar);
+}(RoleType), (0, _defineProperty2["default"])(_class36, "role", 'MenuBar'), _class36);
+exports.RoleMenuItem = (_class37 = /*#__PURE__*/function (_RoleType37) {
+  (0, _inherits2["default"])(RoleMenuItem, _RoleType37);
+  var _super37 = _createSuper(RoleMenuItem);
+  function RoleMenuItem() {
+    (0, _classCallCheck2["default"])(this, RoleMenuItem);
+    return _super37.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMenuItem);
+}(RoleType), (0, _defineProperty2["default"])(_class37, "role", 'MenuItem'), _class37);
+exports.RoleMenuItemCheckBox = (_class38 = /*#__PURE__*/function (_RoleType38) {
+  (0, _inherits2["default"])(RoleMenuItemCheckBox, _RoleType38);
+  var _super38 = _createSuper(RoleMenuItemCheckBox);
+  function RoleMenuItemCheckBox() {
+    (0, _classCallCheck2["default"])(this, RoleMenuItemCheckBox);
+    return _super38.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMenuItemCheckBox);
+}(RoleType), (0, _defineProperty2["default"])(_class38, "role", 'MenuItemCheckBox'), _class38);
+exports.RoleMenuItemRadio = (_class39 = /*#__PURE__*/function (_RoleType39) {
+  (0, _inherits2["default"])(RoleMenuItemRadio, _RoleType39);
+  var _super39 = _createSuper(RoleMenuItemRadio);
+  function RoleMenuItemRadio() {
+    (0, _classCallCheck2["default"])(this, RoleMenuItemRadio);
+    return _super39.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleMenuItemRadio);
+}(RoleType), (0, _defineProperty2["default"])(_class39, "role", 'MenuItemRadio'), _class39);
+exports.RoleNavigation = (_class40 = /*#__PURE__*/function (_RoleType40) {
+  (0, _inherits2["default"])(RoleNavigation, _RoleType40);
+  var _super40 = _createSuper(RoleNavigation);
+  function RoleNavigation() {
+    (0, _classCallCheck2["default"])(this, RoleNavigation);
+    return _super40.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleNavigation);
+}(RoleType), (0, _defineProperty2["default"])(_class40, "role", 'Navigation'), _class40);
+exports.RoleNone = (_class41 = /*#__PURE__*/function (_RoleType41) {
+  (0, _inherits2["default"])(RoleNone, _RoleType41);
+  var _super41 = _createSuper(RoleNone);
+  function RoleNone() {
+    (0, _classCallCheck2["default"])(this, RoleNone);
+    return _super41.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleNone);
+}(RoleType), (0, _defineProperty2["default"])(_class41, "role", 'None'), _class41);
+exports.RoleNote = (_class42 = /*#__PURE__*/function (_RoleType42) {
+  (0, _inherits2["default"])(RoleNote, _RoleType42);
+  var _super42 = _createSuper(RoleNote);
+  function RoleNote() {
+    (0, _classCallCheck2["default"])(this, RoleNote);
+    return _super42.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleNote);
+}(RoleType), (0, _defineProperty2["default"])(_class42, "role", 'Note'), _class42);
+exports.RoleOption = (_class43 = /*#__PURE__*/function (_RoleType43) {
+  (0, _inherits2["default"])(RoleOption, _RoleType43);
+  var _super43 = _createSuper(RoleOption);
+  function RoleOption() {
+    (0, _classCallCheck2["default"])(this, RoleOption);
+    return _super43.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleOption);
+}(RoleType), (0, _defineProperty2["default"])(_class43, "role", 'Option'), _class43);
+exports.RoleParagraph = (_class44 = /*#__PURE__*/function (_RoleType44) {
+  (0, _inherits2["default"])(RoleParagraph, _RoleType44);
+  var _super44 = _createSuper(RoleParagraph);
+  function RoleParagraph() {
+    (0, _classCallCheck2["default"])(this, RoleParagraph);
+    return _super44.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleParagraph);
+}(RoleType), (0, _defineProperty2["default"])(_class44, "role", 'Paragraph'), _class44);
+exports.RolePresentation = (_class45 = /*#__PURE__*/function (_RoleType45) {
+  (0, _inherits2["default"])(RolePresentation, _RoleType45);
+  var _super45 = _createSuper(RolePresentation);
+  function RolePresentation() {
+    (0, _classCallCheck2["default"])(this, RolePresentation);
+    return _super45.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RolePresentation);
+}(RoleType), (0, _defineProperty2["default"])(_class45, "role", 'Presentation'), _class45);
+exports.RoleProgressBar = (_class46 = /*#__PURE__*/function (_RoleType46) {
+  (0, _inherits2["default"])(RoleProgressBar, _RoleType46);
+  var _super46 = _createSuper(RoleProgressBar);
+  function RoleProgressBar() {
+    (0, _classCallCheck2["default"])(this, RoleProgressBar);
+    return _super46.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleProgressBar);
+}(RoleType), (0, _defineProperty2["default"])(_class46, "role", 'ProgressBar'), _class46);
+exports.RoleRadio = (_class47 = /*#__PURE__*/function (_RoleType47) {
+  (0, _inherits2["default"])(RoleRadio, _RoleType47);
+  var _super47 = _createSuper(RoleRadio);
+  function RoleRadio() {
+    (0, _classCallCheck2["default"])(this, RoleRadio);
+    return _super47.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleRadio);
+}(RoleType), (0, _defineProperty2["default"])(_class47, "role", 'Radio'), _class47);
+exports.RoleRadioGroup = (_class48 = /*#__PURE__*/function (_RoleType48) {
+  (0, _inherits2["default"])(RoleRadioGroup, _RoleType48);
+  var _super48 = _createSuper(RoleRadioGroup);
+  function RoleRadioGroup() {
+    (0, _classCallCheck2["default"])(this, RoleRadioGroup);
+    return _super48.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleRadioGroup);
+}(RoleType), (0, _defineProperty2["default"])(_class48, "role", 'RadioGroup'), _class48);
+exports.RoleRegion = (_class49 = /*#__PURE__*/function (_RoleType49) {
+  (0, _inherits2["default"])(RoleRegion, _RoleType49);
+  var _super49 = _createSuper(RoleRegion);
+  function RoleRegion() {
+    (0, _classCallCheck2["default"])(this, RoleRegion);
+    return _super49.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleRegion);
+}(RoleType), (0, _defineProperty2["default"])(_class49, "role", 'Region'), _class49);
+exports.RoleRow = (_class50 = /*#__PURE__*/function (_RoleType50) {
+  (0, _inherits2["default"])(RoleRow, _RoleType50);
+  var _super50 = _createSuper(RoleRow);
+  function RoleRow() {
+    (0, _classCallCheck2["default"])(this, RoleRow);
+    return _super50.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleRow);
+}(RoleType), (0, _defineProperty2["default"])(_class50, "role", 'Row'), _class50);
+exports.RoleRowGroup = (_class51 = /*#__PURE__*/function (_RoleType51) {
+  (0, _inherits2["default"])(RoleRowGroup, _RoleType51);
+  var _super51 = _createSuper(RoleRowGroup);
+  function RoleRowGroup() {
+    (0, _classCallCheck2["default"])(this, RoleRowGroup);
+    return _super51.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleRowGroup);
+}(RoleType), (0, _defineProperty2["default"])(_class51, "role", 'RowGroup'), _class51);
+exports.RoleRowHeader = (_class52 = /*#__PURE__*/function (_RoleType52) {
+  (0, _inherits2["default"])(RoleRowHeader, _RoleType52);
+  var _super52 = _createSuper(RoleRowHeader);
+  function RoleRowHeader() {
+    (0, _classCallCheck2["default"])(this, RoleRowHeader);
+    return _super52.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleRowHeader);
+}(RoleType), (0, _defineProperty2["default"])(_class52, "role", 'RowHeader'), _class52);
+exports.RoleScrollBar = (_class53 = /*#__PURE__*/function (_RoleType53) {
+  (0, _inherits2["default"])(RoleScrollBar, _RoleType53);
+  var _super53 = _createSuper(RoleScrollBar);
+  function RoleScrollBar() {
+    (0, _classCallCheck2["default"])(this, RoleScrollBar);
+    return _super53.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleScrollBar);
+}(RoleType), (0, _defineProperty2["default"])(_class53, "role", 'ScrollBar'), _class53);
+exports.RoleSearch = (_class54 = /*#__PURE__*/function (_RoleType54) {
+  (0, _inherits2["default"])(RoleSearch, _RoleType54);
+  var _super54 = _createSuper(RoleSearch);
+  function RoleSearch() {
+    (0, _classCallCheck2["default"])(this, RoleSearch);
+    return _super54.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleSearch);
+}(RoleType), (0, _defineProperty2["default"])(_class54, "role", 'Search'), _class54);
+exports.RoleSearchBox = (_class55 = /*#__PURE__*/function (_RoleType55) {
+  (0, _inherits2["default"])(RoleSearchBox, _RoleType55);
+  var _super55 = _createSuper(RoleSearchBox);
+  function RoleSearchBox() {
+    (0, _classCallCheck2["default"])(this, RoleSearchBox);
+    return _super55.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleSearchBox);
+}(RoleType), (0, _defineProperty2["default"])(_class55, "role", 'SearchBox'), _class55);
+exports.RoleSectionHead = (_class56 = /*#__PURE__*/function (_RoleType56) {
+  (0, _inherits2["default"])(RoleSectionHead, _RoleType56);
+  var _super56 = _createSuper(RoleSectionHead);
+  function RoleSectionHead() {
+    (0, _classCallCheck2["default"])(this, RoleSectionHead);
+    return _super56.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleSectionHead);
+}(RoleType), (0, _defineProperty2["default"])(_class56, "role", 'SectionHead'), _class56);
+exports.RoleSeparator = (_class57 = /*#__PURE__*/function (_RoleType57) {
+  (0, _inherits2["default"])(RoleSeparator, _RoleType57);
+  var _super57 = _createSuper(RoleSeparator);
+  function RoleSeparator() {
+    (0, _classCallCheck2["default"])(this, RoleSeparator);
+    return _super57.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleSeparator);
+}(RoleType), (0, _defineProperty2["default"])(_class57, "role", 'Separator'), _class57);
+exports.RoleSlider = (_class58 = /*#__PURE__*/function (_RoleType58) {
+  (0, _inherits2["default"])(RoleSlider, _RoleType58);
+  var _super58 = _createSuper(RoleSlider);
+  function RoleSlider() {
+    (0, _classCallCheck2["default"])(this, RoleSlider);
+    return _super58.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleSlider);
+}(RoleType), (0, _defineProperty2["default"])(_class58, "role", 'Slider'), _class58);
+exports.RoleSpinButton = (_class59 = /*#__PURE__*/function (_RoleType59) {
+  (0, _inherits2["default"])(RoleSpinButton, _RoleType59);
+  var _super59 = _createSuper(RoleSpinButton);
+  function RoleSpinButton() {
+    (0, _classCallCheck2["default"])(this, RoleSpinButton);
+    return _super59.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleSpinButton);
+}(RoleType), (0, _defineProperty2["default"])(_class59, "role", 'SpinButton'), _class59);
+exports.RoleStatus = (_class60 = /*#__PURE__*/function (_RoleType60) {
+  (0, _inherits2["default"])(RoleStatus, _RoleType60);
+  var _super60 = _createSuper(RoleStatus);
+  function RoleStatus() {
+    (0, _classCallCheck2["default"])(this, RoleStatus);
+    return _super60.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleStatus);
+}(RoleType), (0, _defineProperty2["default"])(_class60, "role", 'Status'), _class60);
+exports.RoleStrong = (_class61 = /*#__PURE__*/function (_RoleType61) {
+  (0, _inherits2["default"])(RoleStrong, _RoleType61);
+  var _super61 = _createSuper(RoleStrong);
+  function RoleStrong() {
+    (0, _classCallCheck2["default"])(this, RoleStrong);
+    return _super61.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleStrong);
+}(RoleType), (0, _defineProperty2["default"])(_class61, "role", 'Strong'), _class61);
+exports.RoleSwitch = (_class62 = /*#__PURE__*/function (_RoleType62) {
+  (0, _inherits2["default"])(RoleSwitch, _RoleType62);
+  var _super62 = _createSuper(RoleSwitch);
+  function RoleSwitch() {
+    (0, _classCallCheck2["default"])(this, RoleSwitch);
+    return _super62.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleSwitch);
+}(RoleType), (0, _defineProperty2["default"])(_class62, "role", 'Switch'), _class62);
+exports.RoleTab = (_class63 = /*#__PURE__*/function (_RoleType63) {
+  (0, _inherits2["default"])(RoleTab, _RoleType63);
+  var _super63 = _createSuper(RoleTab);
+  function RoleTab() {
+    (0, _classCallCheck2["default"])(this, RoleTab);
+    return _super63.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTab);
+}(RoleType), (0, _defineProperty2["default"])(_class63, "role", 'Tab'), _class63);
+exports.RoleTabList = (_class64 = /*#__PURE__*/function (_RoleType64) {
+  (0, _inherits2["default"])(RoleTabList, _RoleType64);
+  var _super64 = _createSuper(RoleTabList);
+  function RoleTabList() {
+    (0, _classCallCheck2["default"])(this, RoleTabList);
+    return _super64.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTabList);
+}(RoleType), (0, _defineProperty2["default"])(_class64, "role", 'TabList'), _class64);
+exports.RoleTabPanel = (_class65 = /*#__PURE__*/function (_RoleType65) {
+  (0, _inherits2["default"])(RoleTabPanel, _RoleType65);
+  var _super65 = _createSuper(RoleTabPanel);
+  function RoleTabPanel() {
+    (0, _classCallCheck2["default"])(this, RoleTabPanel);
+    return _super65.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTabPanel);
+}(RoleType), (0, _defineProperty2["default"])(_class65, "role", 'TabPanel'), _class65);
+exports.RoleTable = (_class66 = /*#__PURE__*/function (_RoleType66) {
+  (0, _inherits2["default"])(RoleTable, _RoleType66);
+  var _super66 = _createSuper(RoleTable);
+  function RoleTable() {
+    (0, _classCallCheck2["default"])(this, RoleTable);
+    return _super66.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTable);
+}(RoleType), (0, _defineProperty2["default"])(_class66, "role", 'Table'), _class66);
+exports.RoleTerm = (_class67 = /*#__PURE__*/function (_RoleType67) {
+  (0, _inherits2["default"])(RoleTerm, _RoleType67);
+  var _super67 = _createSuper(RoleTerm);
+  function RoleTerm() {
+    (0, _classCallCheck2["default"])(this, RoleTerm);
+    return _super67.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTerm);
+}(RoleType), (0, _defineProperty2["default"])(_class67, "role", 'Term'), _class67);
+exports.RoleTextBox = (_class68 = /*#__PURE__*/function (_RoleType68) {
+  (0, _inherits2["default"])(RoleTextBox, _RoleType68);
+  var _super68 = _createSuper(RoleTextBox);
+  function RoleTextBox() {
+    (0, _classCallCheck2["default"])(this, RoleTextBox);
+    return _super68.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTextBox);
+}(RoleType), (0, _defineProperty2["default"])(_class68, "role", 'TextBox'), _class68);
+exports.RoleTimer = (_class69 = /*#__PURE__*/function (_RoleType69) {
+  (0, _inherits2["default"])(RoleTimer, _RoleType69);
+  var _super69 = _createSuper(RoleTimer);
+  function RoleTimer() {
+    (0, _classCallCheck2["default"])(this, RoleTimer);
+    return _super69.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTimer);
+}(RoleType), (0, _defineProperty2["default"])(_class69, "role", 'Timer'), _class69);
+exports.RoleToolBar = (_class70 = /*#__PURE__*/function (_RoleType70) {
+  (0, _inherits2["default"])(RoleToolBar, _RoleType70);
+  var _super70 = _createSuper(RoleToolBar);
+  function RoleToolBar() {
+    (0, _classCallCheck2["default"])(this, RoleToolBar);
+    return _super70.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleToolBar);
+}(RoleType), (0, _defineProperty2["default"])(_class70, "role", 'ToolBar'), _class70);
+exports.RoleToolTip = (_class71 = /*#__PURE__*/function (_RoleType71) {
+  (0, _inherits2["default"])(RoleToolTip, _RoleType71);
+  var _super71 = _createSuper(RoleToolTip);
+  function RoleToolTip() {
+    (0, _classCallCheck2["default"])(this, RoleToolTip);
+    return _super71.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleToolTip);
+}(RoleType), (0, _defineProperty2["default"])(_class71, "role", 'ToolTip'), _class71);
+exports.RoleTree = (_class72 = /*#__PURE__*/function (_RoleType72) {
+  (0, _inherits2["default"])(RoleTree, _RoleType72);
+  var _super72 = _createSuper(RoleTree);
+  function RoleTree() {
+    (0, _classCallCheck2["default"])(this, RoleTree);
+    return _super72.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTree);
+}(RoleType), (0, _defineProperty2["default"])(_class72, "role", 'Tree'), _class72);
+exports.RoleTreeGrid = (_class73 = /*#__PURE__*/function (_RoleType73) {
+  (0, _inherits2["default"])(RoleTreeGrid, _RoleType73);
+  var _super73 = _createSuper(RoleTreeGrid);
+  function RoleTreeGrid() {
+    (0, _classCallCheck2["default"])(this, RoleTreeGrid);
+    return _super73.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTreeGrid);
+}(RoleType), (0, _defineProperty2["default"])(_class73, "role", 'TreeGrid'), _class73);
+exports.RoleTreeItem = (_class74 = /*#__PURE__*/function (_RoleType74) {
+  (0, _inherits2["default"])(RoleTreeItem, _RoleType74);
+  var _super74 = _createSuper(RoleTreeItem);
+  function RoleTreeItem() {
+    (0, _classCallCheck2["default"])(this, RoleTreeItem);
+    return _super74.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTreeItem);
+}(RoleType), (0, _defineProperty2["default"])(_class74, "role", 'TreeItem'), _class74);
+
+/***/ }),
+/* 44 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(1);
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var ElemType = __webpack_require__(13);
+var InnerText = __webpack_require__(42);
 
 /**
  * @abstract
  */
 var RoleType = /*#__PURE__*/function (_ElemType) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RoleType, _ElemType);
+  (0, _inherits2["default"])(RoleType, _ElemType);
   var _super = _createSuper(RoleType);
   function RoleType() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, RoleType);
+    (0, _classCallCheck2["default"])(this, RoleType);
     return _super.apply(this, arguments);
   }
-  return (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(RoleType);
+  return (0, _createClass2["default"])(RoleType);
 }(ElemType);
-(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__["default"])(RoleType, "props", {
+(0, _defineProperty2["default"])(RoleType, "props", {
   accessKey: 'accesskey',
   autocapitalize: 'autocapitalize',
   autofocus: 'autofocus',
@@ -4833,25 +4783,28 @@ var RoleType = /*#__PURE__*/function (_ElemType) {
   tabIndex: 'tabindex',
   title: 'title',
   translate: 'translate',
-  innerText: PropType
+  innerText: InnerText
 });
 module.exports = RoleType;
 
 /***/ }),
-/* 42 */
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/* 45 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(43);
-/* module decorator */ module = __webpack_require__.hmd(module);
 
+
+var _interopRequireDefault = __webpack_require__(1);
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(46));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _excluded = ["children"];
+var Context = /*#__PURE__*/(0, _createClass2["default"])(
 /**
  * @param {*} props
  * @constructor
  */
 function Context(props) {
+  (0, _classCallCheck2["default"])(this, Context);
   /**
    * @param {*} newProps
    * @param {*} children
@@ -4859,7 +4812,7 @@ function Context(props) {
    */
   this.Provider = function (_ref) {
     var children = _ref.children,
-      newProps = (0,_babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
+      newProps = (0, _objectWithoutProperties2["default"])(_ref, _excluded);
     props = newProps;
     return children;
   };
@@ -4869,23 +4822,19 @@ function Context(props) {
   this.Consumer = function (render) {
     return render(props);
   };
-}
+});
 module.exports = Context;
 
 /***/ }),
-/* 43 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/* 46 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _objectWithoutProperties)
-/* harmony export */ });
-/* harmony import */ var _objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
 
+
+var objectWithoutPropertiesLoose = __webpack_require__(47);
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
-  var target = (0,_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(source, excluded);
+  var target = objectWithoutPropertiesLoose(source, excluded);
   var key, i;
   if (Object.getOwnPropertySymbols) {
     var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
@@ -4898,16 +4847,14 @@ function _objectWithoutProperties(source, excluded) {
   }
   return target;
 }
+module.exports = _objectWithoutProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 44 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/* 47 */
+/***/ ((module) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _objectWithoutPropertiesLoose)
-/* harmony export */ });
+
+
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
@@ -4920,6 +4867,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   }
   return target;
 }
+module.exports = _objectWithoutPropertiesLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ })
 /******/ 	]);
@@ -4936,64 +4884,17 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/harmony module decorator */
-/******/ 	(() => {
-/******/ 		__webpack_require__.hmd = (module) => {
-/******/ 			module = Object.create(module);
-/******/ 			if (!module.children) module.children = [];
-/******/ 			Object.defineProperty(module, 'exports', {
-/******/ 				enumerable: true,
-/******/ 				set: () => {
-/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
-/******/ 				}
-/******/ 			});
-/******/ 			return module;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	

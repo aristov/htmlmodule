@@ -16,8 +16,11 @@ module.exports = exports = {
         use : {
           loader : 'babel-loader',
           options : {
+            plugins : [
+              '@babel/plugin-transform-modules-commonjs',
+              '@babel/plugin-transform-runtime',
+            ],
             presets : ['@babel/preset-env'],
-            plugins : ['@babel/plugin-transform-runtime'],
           },
         },
       },
