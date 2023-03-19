@@ -24,7 +24,7 @@ class App extends ElemType
   }
 
   static props = {
-    expanded : 'expanded',
+    expanded : AttrType.define('expanded'),
     hidden : AriaHidden,
   }
 }

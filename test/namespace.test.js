@@ -1,6 +1,6 @@
 const test = require('ava')
 const { SVGElement } = require('xwindow')
-const { ElemType } = require('..')
+const { AttrType, ElemType } = require('..')
 
 const SVG_NAMESPACE_URI = 'http://www.w3.org/2000/svg'
 
@@ -14,8 +14,8 @@ class Svg extends SvgType
   static tagName = 'svg'
 
   static props = {
-    width : 'width',
-    height : 'height',
+    width : AttrType.define('width'),
+    height : AttrType.define('height'),
   }
 }
 
@@ -24,7 +24,7 @@ class Path extends SvgType
   static tagName = 'path'
 
   static props = {
-    d : 'd',
+    d : AttrType.define('d'),
   }
 }
 

@@ -1,7 +1,7 @@
 const test = require('ava')
 const sinon = require('sinon')
 const window = require('xwindow')
-const { HtmlType } = require('..')
+const { AttrType, HtmlType } = require('..')
 const { MutationObserver } = window
 
 const document = window.document.implementation.createHTMLDocument('test')
@@ -36,7 +36,7 @@ class App extends HtmlType
   }
 
   static props = {
-    href : 'href',
+    href : AttrType.define('href'),
   }
 }
 
