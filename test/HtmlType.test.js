@@ -12,10 +12,10 @@ test('test #1', t => {
 
   t.is(elem.toString(), '<div title="Hello world!" hidden="" tabindex="-1">Example</div>')
   t.is(elem.node.constructor, HTMLDivElement)
-  t.is(elem.node.title, 'Hello world!')
-  t.is(elem.node.hidden, true)
-  t.is(elem.node.tabIndex, -1)
-  t.is(elem.node.textContent, 'Example')
+  t.is(elem.title, 'Hello world!')
+  t.is(elem.hidden, true)
+  t.is(elem.tabIndex, '-1')
+  t.is(elem.textContent, 'Example')
 })
 
 test('test #2', t => {
@@ -25,6 +25,6 @@ test('test #2', t => {
   })
 
   t.is(elem.toString(), '<input type="number">')
-  t.is(elem.node.type, 'number')
-  t.is(elem.node.valueAsNumber, 42)
+  t.is(elem.type, 'number')
+  t.is(elem.valueAsNumber, 42)
 })

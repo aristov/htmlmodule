@@ -25,7 +25,7 @@ test('test #1', async t => {
 
   t.is(elem.toString(), '<div class="App" id="foo"></div>')
   t.is(spy.callCount, 0)
-  t.is(elem.node.id, 'foo')
+  t.is(elem.id, 'foo')
 
   elem.setState({ id : 'foo' })
 
@@ -33,7 +33,7 @@ test('test #1', async t => {
 
   t.is(elem.toString(), '<div class="App" id="foo"></div>')
   t.is(spy.callCount, 0)
-  t.is(elem.node.id, 'foo')
+  t.is(elem.id, 'foo')
 
   elem.setState({ id : 'bar' })
 
@@ -41,5 +41,5 @@ test('test #1', async t => {
 
   t.is(elem.toString(), '<div class="App" id="bar"></div>')
   t.is(spy.callCount, 1)
-  t.is(elem.node.id, 'bar')
+  t.is(elem.id, 'bar')
 })

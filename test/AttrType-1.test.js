@@ -40,7 +40,7 @@ test('test #1', async t => {
 
   t.is(elem.toString(), '<div class="App" expanded="true"></div>')
   t.is(elem.expanded, 'true')
-  t.is(elem.hidden, null)
+  t.is(elem.hidden, '')
   t.is(spy.callCount, 0)
 
   elem.setState({
@@ -67,7 +67,7 @@ test('test #1', async t => {
   await new Promise(setImmediate)
 
   t.is(elem.toString(), '<div class="App"></div>')
-  t.is(elem.hidden, null)
+  t.is(elem.hidden, '')
   t.is(spy.callCount, 2)
 
   elem.setState({ hidden : 'true' })

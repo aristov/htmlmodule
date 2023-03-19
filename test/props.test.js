@@ -18,8 +18,8 @@ test('test #1', t => {
   const app = App.render()
 
   t.is(elem.toString(), '<div></div>')
-  t.is(elem.id, null)
-  t.is(elem.title, null)
+  t.is(elem.id, '')
+  t.is(elem.title, '')
 
   t.is(app.toString(), '<div><h1></h1></div>')
   t.is(app.id, 'foo')

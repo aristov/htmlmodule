@@ -31,7 +31,7 @@ test('test #1', t => {
   const elem = HtmlType.render({ innerText : 'foo\nbar' })
 
   t.is(elem.toString(), '<div>foo<br>bar</div>')
-  t.is(elem.node.innerText, 'foo\nbar')
+  t.is(elem.innerText, 'foo\nbar')
 })
 
 test('test #2', t => {
@@ -40,7 +40,7 @@ test('test #2', t => {
   })
 
   t.is(elem.toString(), '<div>foo<br>bar</div>')
-  t.is(elem.node.innerText, 'foo\nbar')
+  t.is(elem.innerText, 'foo\nbar')
 })
 
 test('test #3', async t => {
@@ -50,7 +50,7 @@ test('test #3', async t => {
   observer.observe(elem.node, { childList : true })
 
   t.is(elem.toString(), '<div class="Test">foo<br>bar</div>')
-  t.is(elem.node.innerText, 'foo\nbar')
+  t.is(elem.innerText, 'foo\nbar')
   t.is(spy.callCount, 0)
 
   elem.setState({ text : 'foo\nbar' })
@@ -58,7 +58,7 @@ test('test #3', async t => {
   await new Promise(setImmediate)
 
   t.is(elem.toString(), '<div class="Test">foo<br>bar</div>')
-  t.is(elem.node.innerText, 'foo\nbar')
+  t.is(elem.innerText, 'foo\nbar')
   t.is(spy.callCount, 0)
 
   elem.setState({ text : 'bar\nfoo' })
@@ -66,6 +66,6 @@ test('test #3', async t => {
   await new Promise(setImmediate)
 
   t.is(elem.toString(), '<div class="Test">bar<br>foo</div>')
-  t.is(elem.node.innerText, 'bar\nfoo')
+  t.is(elem.innerText, 'bar\nfoo')
   t.is(spy.callCount, 1)
 })
