@@ -24,28 +24,28 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  * @module htmlmodule
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
-exports = module.exports = _objectSpread(_objectSpread({}, __webpack_require__(3)), __webpack_require__(43));
-exports.AriaType = __webpack_require__(25);
+exports = module.exports = _objectSpread(_objectSpread({}, __webpack_require__(3)), __webpack_require__(44));
+exports.AriaType = __webpack_require__(26);
 exports.Attributes = __webpack_require__(30);
-exports.AttrType = __webpack_require__(26);
+exports.AttrType = __webpack_require__(12);
 exports.BooleanType = __webpack_require__(27);
 exports.Class = __webpack_require__(32);
 exports.ClassList = __webpack_require__(35);
 exports.Context = __webpack_require__(45);
 exports.Dataset = __webpack_require__(36);
-exports.ElemType = __webpack_require__(13);
+exports.ElemType = __webpack_require__(14);
 exports.EventType = __webpack_require__(37);
-exports.HtmlType = __webpack_require__(12);
+exports.HtmlType = __webpack_require__(13);
 exports.Id = __webpack_require__(38);
 exports.InnerHTML = __webpack_require__(39);
-exports.InnerText = __webpack_require__(42);
+exports.InnerText = __webpack_require__(43);
 exports.ListType = __webpack_require__(28);
 exports.PropType = __webpack_require__(31);
-exports.RoleType = __webpack_require__(44);
+exports.RoleType = __webpack_require__(42);
 exports.Style = __webpack_require__(40);
 exports.TextType = __webpack_require__(41);
 exports.TokenType = __webpack_require__(29);
-exports.window = __webpack_require__(24);
+exports.window = __webpack_require__(25);
 
 /***/ }),
 /* 1 */
@@ -97,8 +97,10 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 var _class, _class2, _class3, _class4, _class5, _class6, _class7, _class8, _class9, _class10, _class11, _class12, _class13, _class14, _class15, _class16, _class17, _class18, _class19, _class20, _class21, _class22, _class23, _class24, _class25, _class26, _class27, _class28, _class29, _class30, _class31, _class32, _class33, _class34, _class35, _class36, _class37, _class38, _class39, _class40, _class41, _class42, _class43, _class44, _class45, _class46, _class47, _class48, _class49, _class50, _class51, _class52, _class53, _class54, _class55, _class56, _class57, _class58, _class59, _class60, _class61, _class62, _class63, _class64, _class65, _class66, _class67, _class68, _class69, _class70, _class71, _class72, _class73, _class74, _class75, _class76, _class77, _class78, _class79, _class80, _class81, _class82, _class83, _class84, _class85, _class86, _class87, _class88, _class89, _class90, _class91, _class92, _class93, _class94, _class95, _class96, _class97, _class98, _class99, _class100, _class101, _class102, _class103, _class104, _class105, _class106, _class107, _class108, _class109, _class110, _class111;
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var HtmlType = __webpack_require__(12);
+var AttrType = __webpack_require__(12);
+var HtmlType = __webpack_require__(13);
 var PropType = __webpack_require__(31);
+var attr = AttrType.define.bind(AttrType);
 exports.HtmlA = (_class = /*#__PURE__*/function (_HtmlType) {
   (0, _inherits2["default"])(HtmlA, _HtmlType);
   var _super = _createSuper(HtmlA);
@@ -108,22 +110,22 @@ exports.HtmlA = (_class = /*#__PURE__*/function (_HtmlType) {
   }
   return (0, _createClass2["default"])(HtmlA);
 }(HtmlType), (0, _defineProperty2["default"])(_class, "tagName", 'a'), (0, _defineProperty2["default"])(_class, "props", {
-  download: 'download',
+  download: attr('download'),
   hash: PropType,
   host: PropType,
   hostname: PropType,
-  href: 'href',
-  hreflang: 'hreflang',
+  href: attr('href'),
+  hreflang: attr('hreflang'),
   password: PropType,
   pathname: PropType,
   port: PropType,
   protocol: PropType,
-  referrerPolicy: 'referrerpolicy',
-  rel: 'rel',
-  rev: 'rev',
+  referrerPolicy: attr('referrerpolicy'),
+  rel: attr('rel'),
+  rev: attr('rev'),
   search: PropType,
-  target: 'target',
-  type: 'type',
+  target: attr('target'),
+  type: attr('type'),
   username: PropType
 }), _class);
 exports.HtmlAbbr = (_class2 = /*#__PURE__*/function (_HtmlType2) {
@@ -153,22 +155,22 @@ exports.HtmlArea = (_class4 = /*#__PURE__*/function (_HtmlType4) {
   }
   return (0, _createClass2["default"])(HtmlArea);
 }(HtmlType), (0, _defineProperty2["default"])(_class4, "tagName", 'area'), (0, _defineProperty2["default"])(_class4, "props", {
-  alt: 'alt',
-  coords: 'coords',
-  download: 'download',
+  alt: attr('alt'),
+  coords: attr('coords'),
+  download: attr('download'),
   hash: PropType,
   host: PropType,
   hostname: PropType,
-  href: 'href',
+  href: attr('href'),
   password: PropType,
   pathname: PropType,
   port: PropType,
   protocol: PropType,
-  referrerPolicy: 'referrerpolicy',
-  rel: 'rel',
+  referrerPolicy: attr('referrerpolicy'),
+  rel: attr('rel'),
   search: PropType,
-  shape: 'shape',
-  target: 'target',
+  shape: attr('shape'),
+  target: attr('target'),
   username: PropType
 }), _class4);
 exports.HtmlArticle = (_class5 = /*#__PURE__*/function (_HtmlType5) {
@@ -198,17 +200,17 @@ exports.HtmlAudio = (_class7 = /*#__PURE__*/function (_HtmlType7) {
   }
   return (0, _createClass2["default"])(HtmlAudio);
 }(HtmlType), (0, _defineProperty2["default"])(_class7, "tagName", 'audio'), (0, _defineProperty2["default"])(_class7, "props", {
-  autoplay: 'autoplay',
-  controls: 'controls',
-  crossOrigin: 'crossorigin',
+  autoplay: attr('autoplay'),
+  controls: attr('controls'),
+  crossOrigin: attr('crossorigin'),
   currentTime: PropType,
   defaultMuted: PropType,
   defaultPlaybackRate: PropType,
-  loop: 'loop',
+  loop: attr('loop'),
   muted: PropType,
   playbackRate: PropType,
-  preload: 'preload',
-  src: 'src',
+  preload: attr('preload'),
+  src: attr('src'),
   srcObject: PropType,
   volume: PropType
 }), _class7);
@@ -230,8 +232,8 @@ exports.HtmlBase = (_class9 = /*#__PURE__*/function (_HtmlType9) {
   }
   return (0, _createClass2["default"])(HtmlBase);
 }(HtmlType), (0, _defineProperty2["default"])(_class9, "tagName", 'base'), (0, _defineProperty2["default"])(_class9, "props", {
-  href: 'href',
-  target: 'target'
+  href: attr('href'),
+  target: attr('target')
 }), _class9);
 exports.HtmlBdi = (_class10 = /*#__PURE__*/function (_HtmlType10) {
   (0, _inherits2["default"])(HtmlBdi, _HtmlType10);
@@ -260,7 +262,7 @@ exports.HtmlBlockQuote = (_class12 = /*#__PURE__*/function (_HtmlType12) {
   }
   return (0, _createClass2["default"])(HtmlBlockQuote);
 }(HtmlType), (0, _defineProperty2["default"])(_class12, "tagName", 'blockquote'), (0, _defineProperty2["default"])(_class12, "props", {
-  cite: 'cite'
+  cite: attr('cite')
 }), _class12);
 exports.HtmlBody = (_class13 = /*#__PURE__*/function (_HtmlType13) {
   (0, _inherits2["default"])(HtmlBody, _HtmlType13);
@@ -289,15 +291,15 @@ exports.HtmlButton = (_class15 = /*#__PURE__*/function (_HtmlType15) {
   }
   return (0, _createClass2["default"])(HtmlButton);
 }(HtmlType), (0, _defineProperty2["default"])(_class15, "tagName", 'button'), (0, _defineProperty2["default"])(_class15, "props", {
-  autofocus: 'autofocus',
-  disabled: 'disabled',
-  formAction: 'formaction',
-  formEnctype: 'formenctype',
-  formMethod: 'formmethod',
-  formNoValidate: 'formnovalidate',
-  formTarget: 'formtarget',
-  name: 'name',
-  type: 'type',
+  autofocus: attr('autofocus'),
+  disabled: attr('disabled'),
+  formAction: attr('formaction'),
+  formEnctype: attr('formenctype'),
+  formMethod: attr('formmethod'),
+  formNoValidate: attr('formnovalidate'),
+  formTarget: attr('formtarget'),
+  name: attr('name'),
+  type: attr('type'),
   value: PropType
 }), _class15);
 exports.HtmlCanvas = (_class16 = /*#__PURE__*/function (_HtmlType16) {
@@ -309,8 +311,8 @@ exports.HtmlCanvas = (_class16 = /*#__PURE__*/function (_HtmlType16) {
   }
   return (0, _createClass2["default"])(HtmlCanvas);
 }(HtmlType), (0, _defineProperty2["default"])(_class16, "tagName", 'canvas'), (0, _defineProperty2["default"])(_class16, "props", {
-  height: 'height',
-  width: 'width'
+  height: attr('height'),
+  width: attr('width')
 }), _class16);
 exports.HtmlCaption = (_class17 = /*#__PURE__*/function (_HtmlType17) {
   (0, _inherits2["default"])(HtmlCaption, _HtmlType17);
@@ -348,7 +350,7 @@ exports.HtmlCol = (_class20 = /*#__PURE__*/function (_HtmlType20) {
   }
   return (0, _createClass2["default"])(HtmlCol);
 }(HtmlType), (0, _defineProperty2["default"])(_class20, "tagName", 'col'), (0, _defineProperty2["default"])(_class20, "props", {
-  span: 'span'
+  span: attr('span')
 }), _class20);
 exports.HtmlColGroup = (_class21 = /*#__PURE__*/function (_HtmlType21) {
   (0, _inherits2["default"])(HtmlColGroup, _HtmlType21);
@@ -359,7 +361,7 @@ exports.HtmlColGroup = (_class21 = /*#__PURE__*/function (_HtmlType21) {
   }
   return (0, _createClass2["default"])(HtmlColGroup);
 }(HtmlType), (0, _defineProperty2["default"])(_class21, "tagName", 'colgroup'), (0, _defineProperty2["default"])(_class21, "props", {
-  span: 'span'
+  span: attr('span')
 }), _class21);
 exports.HtmlData = (_class22 = /*#__PURE__*/function (_HtmlType22) {
   (0, _inherits2["default"])(HtmlData, _HtmlType22);
@@ -399,8 +401,8 @@ exports.HtmlDel = (_class25 = /*#__PURE__*/function (_HtmlType25) {
   }
   return (0, _createClass2["default"])(HtmlDel);
 }(HtmlType), (0, _defineProperty2["default"])(_class25, "tagName", 'del'), (0, _defineProperty2["default"])(_class25, "props", {
-  cite: 'cite',
-  dateTime: 'datetime'
+  cite: attr('cite'),
+  dateTime: attr('datetime')
 }), _class25);
 exports.HtmlDetails = (_class26 = /*#__PURE__*/function (_HtmlType26) {
   (0, _inherits2["default"])(HtmlDetails, _HtmlType26);
@@ -411,7 +413,7 @@ exports.HtmlDetails = (_class26 = /*#__PURE__*/function (_HtmlType26) {
   }
   return (0, _createClass2["default"])(HtmlDetails);
 }(HtmlType), (0, _defineProperty2["default"])(_class26, "tagName", 'details'), (0, _defineProperty2["default"])(_class26, "props", {
-  open: 'open'
+  open: attr('open')
 }), _class26);
 exports.HtmlDfn = (_class27 = /*#__PURE__*/function (_HtmlType27) {
   (0, _inherits2["default"])(HtmlDfn, _HtmlType27);
@@ -431,7 +433,7 @@ exports.HtmlDialog = (_class28 = /*#__PURE__*/function (_HtmlType28) {
   }
   return (0, _createClass2["default"])(HtmlDialog);
 }(HtmlType), (0, _defineProperty2["default"])(_class28, "tagName", 'dialog'), (0, _defineProperty2["default"])(_class28, "props", {
-  open: 'open',
+  open: attr('open'),
   returnValue: PropType
 }), _class28);
 exports.HtmlDiv = (_class29 = /*#__PURE__*/function (_HtmlType29) {
@@ -479,10 +481,10 @@ exports.HtmlEmbed = (_class33 = /*#__PURE__*/function (_HtmlType33) {
   }
   return (0, _createClass2["default"])(HtmlEmbed);
 }(HtmlType), (0, _defineProperty2["default"])(_class33, "tagName", 'embed'), (0, _defineProperty2["default"])(_class33, "props", {
-  height: 'height',
-  src: 'src',
-  type: 'type',
-  width: 'width'
+  height: attr('height'),
+  src: attr('src'),
+  type: attr('type'),
+  width: attr('width')
 }), _class33);
 exports.HtmlFieldSet = (_class34 = /*#__PURE__*/function (_HtmlType34) {
   (0, _inherits2["default"])(HtmlFieldSet, _HtmlType34);
@@ -493,8 +495,8 @@ exports.HtmlFieldSet = (_class34 = /*#__PURE__*/function (_HtmlType34) {
   }
   return (0, _createClass2["default"])(HtmlFieldSet);
 }(HtmlType), (0, _defineProperty2["default"])(_class34, "tagName", 'fieldset'), (0, _defineProperty2["default"])(_class34, "props", {
-  disabled: 'disabled',
-  name: 'name'
+  disabled: attr('disabled'),
+  name: attr('name')
 }), _class34);
 exports.HtmlFigCaption = (_class35 = /*#__PURE__*/function (_HtmlType35) {
   (0, _inherits2["default"])(HtmlFigCaption, _HtmlType35);
@@ -532,14 +534,14 @@ exports.HtmlForm = (_class38 = /*#__PURE__*/function (_HtmlType38) {
   }
   return (0, _createClass2["default"])(HtmlForm);
 }(HtmlType), (0, _defineProperty2["default"])(_class38, "tagName", 'form'), (0, _defineProperty2["default"])(_class38, "props", {
-  acceptCharset: 'accept-charset',
-  action: 'action',
-  autocomplete: 'autocomplete',
-  enctype: 'enctype',
-  method: 'method',
-  name: 'name',
-  noValidate: 'novalidate',
-  target: 'target'
+  acceptCharset: attr('accept-charset'),
+  action: attr('action'),
+  autocomplete: attr('autocomplete'),
+  enctype: attr('enctype'),
+  method: attr('method'),
+  name: attr('name'),
+  noValidate: attr('novalidate'),
+  target: attr('target')
 }), _class38);
 exports.HtmlH1 = (_class39 = /*#__PURE__*/function (_HtmlType39) {
   (0, _inherits2["default"])(HtmlH1, _HtmlType39);
@@ -658,12 +660,12 @@ exports.HtmlIFrame = (_class51 = /*#__PURE__*/function (_HtmlType51) {
   }
   return (0, _createClass2["default"])(HtmlIFrame);
 }(HtmlType), (0, _defineProperty2["default"])(_class51, "tagName", 'iframe'), (0, _defineProperty2["default"])(_class51, "props", {
-  allowFullScreen: 'allowfullscreen',
-  height: 'height',
-  referrerPolicy: 'referrerpolicy',
-  src: 'src',
-  srcdoc: 'srcdoc',
-  width: 'width'
+  allowFullScreen: attr('allowfullscreen'),
+  height: attr('height'),
+  referrerPolicy: attr('referrerpolicy'),
+  src: attr('src'),
+  srcdoc: attr('srcdoc'),
+  width: attr('width')
 }), _class51);
 exports.HtmlImg = (_class52 = /*#__PURE__*/function (_HtmlType52) {
   (0, _inherits2["default"])(HtmlImg, _HtmlType52);
@@ -674,16 +676,16 @@ exports.HtmlImg = (_class52 = /*#__PURE__*/function (_HtmlType52) {
   }
   return (0, _createClass2["default"])(HtmlImg);
 }(HtmlType), (0, _defineProperty2["default"])(_class52, "tagName", 'img'), (0, _defineProperty2["default"])(_class52, "props", {
-  alt: 'alt',
-  crossOrigin: 'crossorigin',
-  height: 'height',
-  isMap: 'ismap',
-  referrerPolicy: 'referrerpolicy',
-  sizes: 'sizes',
-  src: 'src',
-  srcset: 'srcset',
-  useMap: 'usemap',
-  width: 'width'
+  alt: attr('alt'),
+  crossOrigin: attr('crossorigin'),
+  height: attr('height'),
+  isMap: attr('ismap'),
+  referrerPolicy: attr('referrerpolicy'),
+  sizes: attr('sizes'),
+  src: attr('src'),
+  srcset: attr('srcset'),
+  useMap: attr('usemap'),
+  width: attr('width')
 }), _class52);
 exports.HtmlInput = (_class53 = /*#__PURE__*/function (_HtmlType53) {
   (0, _inherits2["default"])(HtmlInput, _HtmlType53);
@@ -694,45 +696,45 @@ exports.HtmlInput = (_class53 = /*#__PURE__*/function (_HtmlType53) {
   }
   return (0, _createClass2["default"])(HtmlInput);
 }(HtmlType), (0, _defineProperty2["default"])(_class53, "tagName", 'input'), (0, _defineProperty2["default"])(_class53, "props", {
-  accept: 'accept',
-  alt: 'alt',
-  autocomplete: 'autocomplete',
-  autofocus: 'autofocus',
+  accept: attr('accept'),
+  alt: attr('alt'),
+  autocomplete: attr('autocomplete'),
+  autofocus: attr('autofocus'),
   checked: PropType,
   defaultChecked: PropType,
-  defaultValue: 'value',
-  dirName: 'dirname',
-  disabled: 'disabled',
-  files: 'files',
-  formAction: 'formaction',
-  formEnctype: 'formenctype',
-  formMethod: 'formmethod',
-  formNoValidate: 'formnovalidate',
-  formTarget: 'formtarget',
-  height: 'height',
+  defaultValue: attr('value'),
+  dirName: attr('dirname'),
+  disabled: attr('disabled'),
+  files: attr('files'),
+  formAction: attr('formaction'),
+  formEnctype: attr('formenctype'),
+  formMethod: attr('formmethod'),
+  formNoValidate: attr('formnovalidate'),
+  formTarget: attr('formtarget'),
+  height: attr('height'),
   indeterminate: PropType,
-  inputMode: 'inputmode',
-  max: 'max',
-  maxLength: 'maxlength',
-  min: 'min',
-  minLength: 'minlength',
-  multiple: 'multiple',
-  name: 'name',
-  pattern: 'pattern',
-  placeholder: 'placeholder',
-  readOnly: 'readonly',
-  required: 'required',
+  inputMode: attr('inputmode'),
+  max: attr('max'),
+  maxLength: attr('maxlength'),
+  min: attr('min'),
+  minLength: attr('minlength'),
+  multiple: attr('multiple'),
+  name: attr('name'),
+  pattern: attr('pattern'),
+  placeholder: attr('placeholder'),
+  readOnly: attr('readonly'),
+  required: attr('required'),
   selectionDirection: PropType,
   selectionEnd: PropType,
   selectionStart: PropType,
-  size: 'size',
-  src: 'src',
-  step: 'step',
-  type: 'type',
+  size: attr('size'),
+  src: attr('src'),
+  step: attr('step'),
+  type: attr('type'),
   value: PropType,
   valueAsDate: PropType,
   valueAsNumber: PropType,
-  width: 'width'
+  width: attr('width')
 }), _class53);
 exports.HtmlIns = (_class54 = /*#__PURE__*/function (_HtmlType54) {
   (0, _inherits2["default"])(HtmlIns, _HtmlType54);
@@ -743,8 +745,8 @@ exports.HtmlIns = (_class54 = /*#__PURE__*/function (_HtmlType54) {
   }
   return (0, _createClass2["default"])(HtmlIns);
 }(HtmlType), (0, _defineProperty2["default"])(_class54, "tagName", 'ins'), (0, _defineProperty2["default"])(_class54, "props", {
-  cite: 'cite',
-  dateTime: 'datetime'
+  cite: attr('cite'),
+  dateTime: attr('datetime')
 }), _class54);
 exports.HtmlKbd = (_class55 = /*#__PURE__*/function (_HtmlType55) {
   (0, _inherits2["default"])(HtmlKbd, _HtmlType55);
@@ -764,7 +766,7 @@ exports.HtmlLabel = (_class56 = /*#__PURE__*/function (_HtmlType56) {
   }
   return (0, _createClass2["default"])(HtmlLabel);
 }(HtmlType), (0, _defineProperty2["default"])(_class56, "tagName", 'label'), (0, _defineProperty2["default"])(_class56, "props", {
-  htmlFor: 'for'
+  htmlFor: attr('for')
 }), _class56);
 exports.HtmlLegend = (_class57 = /*#__PURE__*/function (_HtmlType57) {
   (0, _inherits2["default"])(HtmlLegend, _HtmlType57);
@@ -795,15 +797,15 @@ exports.HtmlLink = (_class59 = /*#__PURE__*/function (_HtmlType59) {
   }
   return (0, _createClass2["default"])(HtmlLink);
 }(HtmlType), (0, _defineProperty2["default"])(_class59, "tagName", 'link'), (0, _defineProperty2["default"])(_class59, "props", {
-  crossOrigin: 'crossorigin',
-  href: 'href',
-  hreflang: 'hreflang',
-  media: 'media',
-  nonce: 'nonce',
-  referrerPolicy: 'referrerpolicy',
-  rel: 'rel',
-  rev: 'rev',
-  type: 'type'
+  crossOrigin: attr('crossorigin'),
+  href: attr('href'),
+  hreflang: attr('hreflang'),
+  media: attr('media'),
+  nonce: attr('nonce'),
+  referrerPolicy: attr('referrerpolicy'),
+  rel: attr('rel'),
+  rev: attr('rev'),
+  type: attr('type')
 }), _class59);
 exports.HtmlMain = (_class60 = /*#__PURE__*/function (_HtmlType60) {
   (0, _inherits2["default"])(HtmlMain, _HtmlType60);
@@ -823,7 +825,7 @@ exports.HtmlMap = (_class61 = /*#__PURE__*/function (_HtmlType61) {
   }
   return (0, _createClass2["default"])(HtmlMap);
 }(HtmlType), (0, _defineProperty2["default"])(_class61, "tagName", 'map'), (0, _defineProperty2["default"])(_class61, "props", {
-  name: 'name'
+  name: attr('name')
 }), _class61);
 exports.HtmlMark = (_class62 = /*#__PURE__*/function (_HtmlType62) {
   (0, _inherits2["default"])(HtmlMark, _HtmlType62);
@@ -852,10 +854,10 @@ exports.HtmlMeta = (_class64 = /*#__PURE__*/function (_HtmlType64) {
   }
   return (0, _createClass2["default"])(HtmlMeta);
 }(HtmlType), (0, _defineProperty2["default"])(_class64, "tagName", 'meta'), (0, _defineProperty2["default"])(_class64, "props", {
-  charset: 'charset',
-  content: 'content',
-  httpEquiv: 'http-equiv',
-  name: 'name'
+  charset: attr('charset'),
+  content: attr('content'),
+  httpEquiv: attr('http-equiv'),
+  name: attr('name')
 }), _class64);
 exports.HtmlMeter = (_class65 = /*#__PURE__*/function (_HtmlType65) {
   (0, _inherits2["default"])(HtmlMeter, _HtmlType65);
@@ -866,11 +868,11 @@ exports.HtmlMeter = (_class65 = /*#__PURE__*/function (_HtmlType65) {
   }
   return (0, _createClass2["default"])(HtmlMeter);
 }(HtmlType), (0, _defineProperty2["default"])(_class65, "tagName", 'meter'), (0, _defineProperty2["default"])(_class65, "props", {
-  high: 'high',
-  low: 'low',
-  max: 'max',
-  min: 'min',
-  optimum: 'optimum',
+  high: attr('high'),
+  low: attr('low'),
+  max: attr('max'),
+  min: attr('min'),
+  optimum: attr('optimum'),
   value: PropType
 }), _class65);
 exports.HtmlNav = (_class66 = /*#__PURE__*/function (_HtmlType66) {
@@ -900,12 +902,12 @@ exports.HtmlObject = (_class68 = /*#__PURE__*/function (_HtmlType68) {
   }
   return (0, _createClass2["default"])(HtmlObject);
 }(HtmlType), (0, _defineProperty2["default"])(_class68, "tagName", 'object'), (0, _defineProperty2["default"])(_class68, "props", {
-  data: 'data',
-  height: 'height',
-  name: 'name',
-  type: 'type',
-  useMap: 'usemap',
-  width: 'width'
+  data: attr('data'),
+  height: attr('height'),
+  name: attr('name'),
+  type: attr('type'),
+  useMap: attr('usemap'),
+  width: attr('width')
 }), _class68);
 exports.HtmlOl = (_class69 = /*#__PURE__*/function (_HtmlType69) {
   (0, _inherits2["default"])(HtmlOl, _HtmlType69);
@@ -916,9 +918,9 @@ exports.HtmlOl = (_class69 = /*#__PURE__*/function (_HtmlType69) {
   }
   return (0, _createClass2["default"])(HtmlOl);
 }(HtmlType), (0, _defineProperty2["default"])(_class69, "tagName", 'ol'), (0, _defineProperty2["default"])(_class69, "props", {
-  reversed: 'reversed',
-  start: 'start',
-  type: 'type'
+  reversed: attr('reversed'),
+  start: attr('start'),
+  type: attr('type')
 }), _class69);
 exports.HtmlOptGroup = (_class70 = /*#__PURE__*/function (_HtmlType70) {
   (0, _inherits2["default"])(HtmlOptGroup, _HtmlType70);
@@ -929,8 +931,8 @@ exports.HtmlOptGroup = (_class70 = /*#__PURE__*/function (_HtmlType70) {
   }
   return (0, _createClass2["default"])(HtmlOptGroup);
 }(HtmlType), (0, _defineProperty2["default"])(_class70, "tagName", 'optgroup'), (0, _defineProperty2["default"])(_class70, "props", {
-  disabled: 'disabled',
-  label: 'label'
+  disabled: attr('disabled'),
+  label: attr('label')
 }), _class70);
 exports.HtmlOption = (_class71 = /*#__PURE__*/function (_HtmlType71) {
   (0, _inherits2["default"])(HtmlOption, _HtmlType71);
@@ -942,10 +944,10 @@ exports.HtmlOption = (_class71 = /*#__PURE__*/function (_HtmlType71) {
   return (0, _createClass2["default"])(HtmlOption);
 }(HtmlType), (0, _defineProperty2["default"])(_class71, "tagName", 'option'), (0, _defineProperty2["default"])(_class71, "props", {
   defaultSelected: PropType,
-  disabled: 'disabled',
-  label: 'label',
+  disabled: attr('disabled'),
+  label: attr('label'),
   selected: PropType,
-  text: 'text',
+  text: attr('text'),
   value: PropType
 }), _class71);
 exports.HtmlOutput = (_class72 = /*#__PURE__*/function (_HtmlType72) {
@@ -958,8 +960,8 @@ exports.HtmlOutput = (_class72 = /*#__PURE__*/function (_HtmlType72) {
   return (0, _createClass2["default"])(HtmlOutput);
 }(HtmlType), (0, _defineProperty2["default"])(_class72, "tagName", 'output'), (0, _defineProperty2["default"])(_class72, "props", {
   defaultValue: PropType,
-  htmlFor: 'for',
-  name: 'name',
+  htmlFor: attr('for'),
+  name: attr('name'),
   value: PropType
 }), _class72);
 exports.HtmlP = (_class73 = /*#__PURE__*/function (_HtmlType73) {
@@ -1007,7 +1009,7 @@ exports.HtmlProgress = (_class77 = /*#__PURE__*/function (_HtmlType77) {
   }
   return (0, _createClass2["default"])(HtmlProgress);
 }(HtmlType), (0, _defineProperty2["default"])(_class77, "tagName", 'progress'), (0, _defineProperty2["default"])(_class77, "props", {
-  max: 'max',
+  max: attr('max'),
   value: PropType
 }), _class77);
 exports.HtmlQ = (_class78 = /*#__PURE__*/function (_HtmlType78) {
@@ -1019,7 +1021,7 @@ exports.HtmlQ = (_class78 = /*#__PURE__*/function (_HtmlType78) {
   }
   return (0, _createClass2["default"])(HtmlQ);
 }(HtmlType), (0, _defineProperty2["default"])(_class78, "tagName", 'q'), (0, _defineProperty2["default"])(_class78, "props", {
-  cite: 'cite'
+  cite: attr('cite')
 }), _class78);
 exports.HtmlRp = (_class79 = /*#__PURE__*/function (_HtmlType79) {
   (0, _inherits2["default"])(HtmlRp, _HtmlType79);
@@ -1075,17 +1077,17 @@ exports.HtmlScript = (_class84 = /*#__PURE__*/function (_HtmlType84) {
   }
   return (0, _createClass2["default"])(HtmlScript);
 }(HtmlType), (0, _defineProperty2["default"])(_class84, "tagName", 'script'), (0, _defineProperty2["default"])(_class84, "props", {
-  async: 'async',
-  charset: 'charset',
-  crossOrigin: 'crossorigin',
-  defer: 'defer',
-  integrity: 'integrity',
-  noModule: 'nomodule',
-  nonce: 'nonce',
-  referrerPolicy: 'referrerpolicy',
-  src: 'src',
-  text: 'text',
-  type: 'type'
+  async: attr('async'),
+  charset: attr('charset'),
+  crossOrigin: attr('crossorigin'),
+  defer: attr('defer'),
+  integrity: attr('integrity'),
+  noModule: attr('nomodule'),
+  nonce: attr('nonce'),
+  referrerPolicy: attr('referrerpolicy'),
+  src: attr('src'),
+  text: attr('text'),
+  type: attr('type')
 }), _class84);
 exports.HtmlSection = (_class85 = /*#__PURE__*/function (_HtmlType85) {
   (0, _inherits2["default"])(HtmlSection, _HtmlType85);
@@ -1105,14 +1107,14 @@ exports.HtmlSelect = (_class86 = /*#__PURE__*/function (_HtmlType86) {
   }
   return (0, _createClass2["default"])(HtmlSelect);
 }(HtmlType), (0, _defineProperty2["default"])(_class86, "tagName", 'select'), (0, _defineProperty2["default"])(_class86, "props", {
-  autocomplete: 'autocomplete',
-  autofocus: 'autofocus',
-  disabled: 'disabled',
-  multiple: 'multiple',
-  name: 'name',
-  required: 'required',
+  autocomplete: attr('autocomplete'),
+  autofocus: attr('autofocus'),
+  disabled: attr('disabled'),
+  multiple: attr('multiple'),
+  name: attr('name'),
+  required: attr('required'),
   selectedIndex: PropType,
-  size: 'size',
+  size: attr('size'),
   value: PropType
 }), _class86);
 exports.HtmlSmall = (_class87 = /*#__PURE__*/function (_HtmlType87) {
@@ -1133,11 +1135,11 @@ exports.HtmlSource = (_class88 = /*#__PURE__*/function (_HtmlType88) {
   }
   return (0, _createClass2["default"])(HtmlSource);
 }(HtmlType), (0, _defineProperty2["default"])(_class88, "tagName", 'source'), (0, _defineProperty2["default"])(_class88, "props", {
-  media: 'media',
-  sizes: 'sizes',
-  src: 'src',
-  srcset: 'srcset',
-  type: 'type'
+  media: attr('media'),
+  sizes: attr('sizes'),
+  src: attr('src'),
+  srcset: attr('srcset'),
+  type: attr('type')
 }), _class88);
 exports.HtmlSpan = (_class89 = /*#__PURE__*/function (_HtmlType89) {
   (0, _inherits2["default"])(HtmlSpan, _HtmlType89);
@@ -1166,9 +1168,9 @@ exports.HtmlStyle = (_class91 = /*#__PURE__*/function (_HtmlType91) {
   }
   return (0, _createClass2["default"])(HtmlStyle);
 }(HtmlType), (0, _defineProperty2["default"])(_class91, "tagName", 'style'), (0, _defineProperty2["default"])(_class91, "props", {
-  media: 'media',
-  nonce: 'nonce',
-  type: 'type'
+  media: attr('media'),
+  nonce: attr('nonce'),
+  type: attr('type')
 }), _class91);
 exports.HtmlSub = (_class92 = /*#__PURE__*/function (_HtmlType92) {
   (0, _inherits2["default"])(HtmlSub, _HtmlType92);
@@ -1242,9 +1244,9 @@ exports.HtmlTd = (_class99 = /*#__PURE__*/function (_HtmlType99) {
   }
   return (0, _createClass2["default"])(HtmlTd);
 }(HtmlType), (0, _defineProperty2["default"])(_class99, "tagName", 'td'), (0, _defineProperty2["default"])(_class99, "props", {
-  colSpan: 'colspan',
-  headers: 'headers',
-  rowSpan: 'rowspan'
+  colSpan: attr('colspan'),
+  headers: attr('headers'),
+  rowSpan: attr('rowspan')
 }), _class99);
 exports.HtmlTemplate = (_class100 = /*#__PURE__*/function (_HtmlType100) {
   (0, _inherits2["default"])(HtmlTemplate, _HtmlType100);
@@ -1264,26 +1266,26 @@ exports.HtmlTextArea = (_class101 = /*#__PURE__*/function (_HtmlType101) {
   }
   return (0, _createClass2["default"])(HtmlTextArea);
 }(HtmlType), (0, _defineProperty2["default"])(_class101, "tagName", 'textarea'), (0, _defineProperty2["default"])(_class101, "props", {
-  autocomplete: 'autocomplete',
-  autofocus: 'autofocus',
-  cols: 'cols',
+  autocomplete: attr('autocomplete'),
+  autofocus: attr('autofocus'),
+  cols: attr('cols'),
   defaultValue: PropType,
-  dirName: 'dirname',
-  disabled: 'disabled',
-  inputMode: 'inputmode',
-  maxLength: 'maxlength',
-  minLength: 'minlength',
-  name: 'name',
-  placeholder: 'placeholder',
-  readOnly: 'readonly',
-  required: 'required',
-  rows: 'rows',
+  dirName: attr('dirname'),
+  disabled: attr('disabled'),
+  inputMode: attr('inputmode'),
+  maxLength: attr('maxlength'),
+  minLength: attr('minlength'),
+  name: attr('name'),
+  placeholder: attr('placeholder'),
+  readOnly: attr('readonly'),
+  required: attr('required'),
+  rows: attr('rows'),
   selectionDirection: PropType,
   selectionEnd: PropType,
   selectionStart: PropType,
-  step: 'step',
+  step: attr('step'),
   value: PropType,
-  wrap: 'wrap'
+  wrap: attr('wrap')
 }), _class101);
 exports.HtmlTh = (_class102 = /*#__PURE__*/function (_HtmlType102) {
   (0, _inherits2["default"])(HtmlTh, _HtmlType102);
@@ -1294,11 +1296,11 @@ exports.HtmlTh = (_class102 = /*#__PURE__*/function (_HtmlType102) {
   }
   return (0, _createClass2["default"])(HtmlTh);
 }(HtmlType), (0, _defineProperty2["default"])(_class102, "tagName", 'th'), (0, _defineProperty2["default"])(_class102, "props", {
-  abbr: 'abbr',
-  colSpan: 'colspan',
-  headers: 'headers',
-  rowSpan: 'rowspan',
-  scope: 'scope'
+  abbr: attr('abbr'),
+  colSpan: attr('colspan'),
+  headers: attr('headers'),
+  rowSpan: attr('rowspan'),
+  scope: attr('scope')
 }), _class102);
 exports.HtmlTime = (_class103 = /*#__PURE__*/function (_HtmlType103) {
   (0, _inherits2["default"])(HtmlTime, _HtmlType103);
@@ -1309,7 +1311,7 @@ exports.HtmlTime = (_class103 = /*#__PURE__*/function (_HtmlType103) {
   }
   return (0, _createClass2["default"])(HtmlTime);
 }(HtmlType), (0, _defineProperty2["default"])(_class103, "tagName", 'time'), (0, _defineProperty2["default"])(_class103, "props", {
-  dateTime: 'datetime'
+  dateTime: attr('datetime')
 }), _class103);
 exports.HtmlTitle = (_class104 = /*#__PURE__*/function (_HtmlType104) {
   (0, _inherits2["default"])(HtmlTitle, _HtmlType104);
@@ -1320,7 +1322,7 @@ exports.HtmlTitle = (_class104 = /*#__PURE__*/function (_HtmlType104) {
   }
   return (0, _createClass2["default"])(HtmlTitle);
 }(HtmlType), (0, _defineProperty2["default"])(_class104, "tagName", 'title'), (0, _defineProperty2["default"])(_class104, "props", {
-  text: 'text'
+  text: attr('text')
 }), _class104);
 exports.HtmlTr = (_class105 = /*#__PURE__*/function (_HtmlType105) {
   (0, _inherits2["default"])(HtmlTr, _HtmlType105);
@@ -1340,11 +1342,11 @@ exports.HtmlTrack = (_class106 = /*#__PURE__*/function (_HtmlType106) {
   }
   return (0, _createClass2["default"])(HtmlTrack);
 }(HtmlType), (0, _defineProperty2["default"])(_class106, "tagName", 'track'), (0, _defineProperty2["default"])(_class106, "props", {
-  "default": 'default',
-  kind: 'kind',
-  label: 'label',
-  src: 'src',
-  srclang: 'srclang'
+  "default": attr('default'),
+  kind: attr('kind'),
+  label: attr('label'),
+  src: attr('src'),
+  srclang: attr('srclang')
 }), _class106);
 exports.HtmlU = (_class107 = /*#__PURE__*/function (_HtmlType107) {
   (0, _inherits2["default"])(HtmlU, _HtmlType107);
@@ -1382,22 +1384,22 @@ exports.HtmlVideo = (_class110 = /*#__PURE__*/function (_HtmlType110) {
   }
   return (0, _createClass2["default"])(HtmlVideo);
 }(HtmlType), (0, _defineProperty2["default"])(_class110, "tagName", 'video'), (0, _defineProperty2["default"])(_class110, "props", {
-  autoplay: 'autoplay',
-  controls: 'controls',
-  crossOrigin: 'crossorigin',
+  autoplay: attr('autoplay'),
+  controls: attr('controls'),
+  crossOrigin: attr('crossorigin'),
   currentTime: PropType,
   defaultMuted: PropType,
   defaultPlaybackRate: PropType,
-  height: 'height',
-  loop: 'loop',
+  height: attr('height'),
+  loop: attr('loop'),
   muted: PropType,
   playbackRate: PropType,
-  poster: 'poster',
-  preload: 'preload',
-  src: 'src',
+  poster: attr('poster'),
+  preload: attr('preload'),
+  src: attr('src'),
   srcObject: PropType,
   volume: PropType,
-  width: 'width'
+  width: attr('width')
 }), _class110);
 exports.HtmlWbr = (_class111 = /*#__PURE__*/function (_HtmlType111) {
   (0, _inherits2["default"])(HtmlWbr, _HtmlType111);
@@ -1557,16 +1559,123 @@ module.exports = _getPrototypeOf, module.exports.__esModule = true, module.expor
 
 
 var _interopRequireDefault = __webpack_require__(1);
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+/**
+ * @abstract
+ */
+var AttrType = /*#__PURE__*/function () {
+  function AttrType() {
+    (0, _classCallCheck2["default"])(this, AttrType);
+  }
+  (0, _createClass2["default"])(AttrType, null, [{
+    key: "get",
+    value:
+    /**
+     * @param {ElemType} elem
+     * @param {string} propName
+     * @returns {string|null|*}
+     */
+    function get(elem, propName) {
+      var _elem$node$getAttribu;
+      return (_elem$node$getAttribu = elem.node.getAttribute(this.nodeName)) !== null && _elem$node$getAttribu !== void 0 ? _elem$node$getAttribu : this.defaultValue;
+    }
+
+    /**
+     * @param {ElemType} elem
+     * @param {string} propName
+     * @param {string|null|*} value
+     */
+  }, {
+    key: "set",
+    value: function set(elem, propName, value) {
+      elem.vnode[propName] = value;
+    }
+
+    /**
+     * @param {ElemType} elem
+     * @param {string} propName
+     * @param {*} value
+     */
+  }, {
+    key: "update",
+    value: function update(elem, propName, value) {
+      if (value === true) {
+        value = '';
+      } else if (value === false || value === null || value === this.defaultValue) {
+        elem.node.removeAttribute(this.nodeName);
+        return;
+      }
+      if (value != elem.node.getAttribute(this.nodeName)) {
+        elem.node.setAttribute(this.nodeName, value);
+      }
+    }
+
+    /**
+     * @param {ElemType} elem
+     * @param {string} propName
+     */
+  }, {
+    key: "reset",
+    value: function reset(elem, propName) {
+      if (!elem.vnode.hasOwnProperty(propName)) {
+        elem.node.removeAttribute(this.nodeName);
+      }
+    }
+
+    /**
+     * @param {string} nodeName
+     * @param {*} [defaultValue]
+     * @return {constructor @link AttrType}
+     */
+  }, {
+    key: "define",
+    value: function define(nodeName) {
+      var _class;
+      var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.defaultValue;
+      return _class = /*#__PURE__*/function (_this) {
+        (0, _inherits2["default"])(_class, _this);
+        var _super = _createSuper(_class);
+        function _class() {
+          (0, _classCallCheck2["default"])(this, _class);
+          return _super.apply(this, arguments);
+        }
+        return (0, _createClass2["default"])(_class);
+      }(this), (0, _defineProperty2["default"])(_class, "nodeName", nodeName), (0, _defineProperty2["default"])(_class, "defaultValue", defaultValue), _class;
+    }
+  }]);
+  return AttrType;
+}();
+(0, _defineProperty2["default"])(AttrType, "nodeName", null);
+(0, _defineProperty2["default"])(AttrType, "defaultValue", null);
+module.exports = AttrType;
+
+/***/ }),
+/* 13 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(1);
 var _createClass2 = _interopRequireDefault(__webpack_require__(4));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _inherits2 = _interopRequireDefault(__webpack_require__(6));
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var ElemType = __webpack_require__(13);
-var InnerText = __webpack_require__(42);
+var AttrType = __webpack_require__(12);
+var ElemType = __webpack_require__(14);
+var RoleType = __webpack_require__(42);
 
 /**
  * @abstract
@@ -1580,34 +1689,20 @@ var HtmlType = /*#__PURE__*/function (_ElemType) {
   }
   return (0, _createClass2["default"])(HtmlType);
 }(ElemType);
-(0, _defineProperty2["default"])(HtmlType, "props", {
-  accessKey: 'accesskey',
-  autocapitalize: 'autocapitalize',
-  autofocus: 'autofocus',
-  contentEditable: 'contenteditable',
-  dir: 'dir',
-  draggable: 'draggable',
-  enterKeyHint: 'enterkeyhint',
-  hidden: 'hidden',
-  inputMode: 'inputmode',
-  lang: 'lang',
-  spellcheck: 'spellcheck',
-  tabIndex: 'tabindex',
-  title: 'title',
-  translate: 'translate',
-  innerText: InnerText
-});
+(0, _defineProperty2["default"])(HtmlType, "props", _objectSpread(_objectSpread({}, RoleType.props), {}, {
+  hidden: AttrType.define('hidden')
+}));
 module.exports = HtmlType;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
 var _interopRequireDefault = __webpack_require__(1);
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(14));
-var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(20));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(15));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(21));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _createClass2 = _interopRequireDefault(__webpack_require__(4));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
@@ -1616,12 +1711,12 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var _require = __webpack_require__(24),
+var _require = __webpack_require__(25),
   Comment = _require.Comment,
   CustomEvent = _require.CustomEvent,
   document = _require.document;
-var AriaType = __webpack_require__(25);
-var AttrType = __webpack_require__(26);
+var AriaType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var Attributes = __webpack_require__(30);
 var Class = __webpack_require__(32);
 var ClassList = __webpack_require__(35);
@@ -1661,11 +1756,6 @@ var descriptors = {
     value: undefined
   }
 };
-var init;
-function debug() {
-  init.apply(this, arguments);
-  this.node.__elem = this;
-}
 
 /**
  * @abstract
@@ -2383,7 +2473,7 @@ var ElemType = /*#__PURE__*/function () {
       this.vnode = this.__createVNode();
       this.__resetProps();
       this.__destroy(true);
-      this.node = null;
+      this.node = this.__createNode();
       elem.children = children;
       elem.__parent = parent;
       elem.__init(node);
@@ -2468,6 +2558,16 @@ var ElemType = /*#__PURE__*/function () {
     }
 
     /**
+     * @private
+     */
+  }, {
+    key: "__debug",
+    value: function __debug() {
+      init.apply(this, arguments);
+      this.node.__elem = this;
+    }
+
+    /**
      * @return {string}
      */
   }, {
@@ -2508,24 +2608,40 @@ var ElemType = /*#__PURE__*/function () {
     }
 
     /**
+     * @param {ElemType} [elem]
+     * @param {boolean} [keepNode]
+     */
+  }, {
+    key: "destroy",
+    value: function destroy(elem, keepNode) {
+      elem === null || elem === void 0 ? void 0 : elem.__destroy(keepNode);
+    }
+
+    /**
      * @param {boolean} value
      */
   }, {
     key: "setDebugMode",
     value: function setDebugMode(value) {
-      init = init || ElemType.prototype.__init;
-      ElemType.prototype.__init = value ? debug : init;
+      ElemType.prototype.__init = value ? ElemType.prototype.__debug : init;
     }
 
     /**
      * @param {string} prop
-     * @param {constructor @link PropType|constructor @link AttrType|constructor @link EventType} type
-     * @return {*}
+     * @param {constructor @link PropType|constructor @link AttrType|constructor @link EventType|*} type
      * @private
      */
   }, {
     key: "__defineProp",
     value: function __defineProp(prop, type) {
+      if (typeof type !== 'function') {
+        Object.defineProperty(this.prototype, prop, {
+          configurable: true,
+          writable: true,
+          value: type
+        });
+        return;
+      }
       Object.defineProperty(this.prototype, prop, {
         configurable: true,
         get: function get() {
@@ -2546,9 +2662,6 @@ var ElemType = /*#__PURE__*/function () {
       var prop, type;
       for (prop in props) {
         type = props[prop];
-        if (typeof type === 'string') {
-          type = props[prop] = AttrType.define(type);
-        }
         this.__defineProp(prop, type);
       }
     }
@@ -2598,7 +2711,7 @@ var ElemType = /*#__PURE__*/function () {
 (0, _defineProperty2["default"])(ElemType, "class", null);
 (0, _defineProperty2["default"])(ElemType, "className", null);
 (0, _defineProperty2["default"])(ElemType, "props", _objectSpread(_objectSpread({
-  role: 'role',
+  role: AttrType.define('role'),
   className: Class,
   classList: ClassList,
   id: Id,
@@ -2608,25 +2721,26 @@ var ElemType = /*#__PURE__*/function () {
   innerHTML: InnerHTML
 }, EventType.props), AriaType.props));
 (0, _defineProperty2["default"])(ElemType, "defaultProps", null);
+var init = ElemType.prototype.__init;
 module.exports = ElemType;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-var arrayWithHoles = __webpack_require__(15);
-var iterableToArrayLimit = __webpack_require__(16);
-var unsupportedIterableToArray = __webpack_require__(17);
-var nonIterableRest = __webpack_require__(19);
+var arrayWithHoles = __webpack_require__(16);
+var iterableToArrayLimit = __webpack_require__(17);
+var unsupportedIterableToArray = __webpack_require__(18);
+var nonIterableRest = __webpack_require__(20);
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
 module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ ((module) => {
 
 
@@ -2637,7 +2751,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ ((module) => {
 
 
@@ -2669,12 +2783,12 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-var arrayLikeToArray = __webpack_require__(18);
+var arrayLikeToArray = __webpack_require__(19);
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
   if (typeof o === "string") return arrayLikeToArray(o, minLen);
@@ -2686,7 +2800,7 @@ function _unsupportedIterableToArray(o, minLen) {
 module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ ((module) => {
 
 
@@ -2701,7 +2815,7 @@ function _arrayLikeToArray(arr, len) {
 module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ ((module) => {
 
 
@@ -2712,34 +2826,34 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-var arrayWithoutHoles = __webpack_require__(21);
-var iterableToArray = __webpack_require__(22);
-var unsupportedIterableToArray = __webpack_require__(17);
-var nonIterableSpread = __webpack_require__(23);
+var arrayWithoutHoles = __webpack_require__(22);
+var iterableToArray = __webpack_require__(23);
+var unsupportedIterableToArray = __webpack_require__(18);
+var nonIterableSpread = __webpack_require__(24);
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
 }
 module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 
-var arrayLikeToArray = __webpack_require__(18);
+var arrayLikeToArray = __webpack_require__(19);
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return arrayLikeToArray(arr);
 }
 module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ ((module) => {
 
 
@@ -2750,7 +2864,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ ((module) => {
 
 
@@ -2761,7 +2875,7 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ ((module) => {
 
 
@@ -2780,7 +2894,7 @@ if (typeof window === 'undefined') {
 } else module.exports = window;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
@@ -2789,7 +2903,7 @@ var _interopRequireDefault = __webpack_require__(1);
 var _createClass2 = _interopRequireDefault(__webpack_require__(4));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
-var AttrType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var BooleanType = __webpack_require__(27);
 var ListType = __webpack_require__(28);
 var TokenType = __webpack_require__(29);
@@ -2853,110 +2967,6 @@ var AriaType = /*#__PURE__*/(0, _createClass2["default"])(function AriaType() {
 module.exports = AriaType;
 
 /***/ }),
-/* 26 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-
-
-var _interopRequireDefault = __webpack_require__(1);
-var _inherits2 = _interopRequireDefault(__webpack_require__(6));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
-var _createClass2 = _interopRequireDefault(__webpack_require__(4));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-/**
- * @abstract
- */
-var AttrType = /*#__PURE__*/function () {
-  function AttrType() {
-    (0, _classCallCheck2["default"])(this, AttrType);
-  }
-  (0, _createClass2["default"])(AttrType, null, [{
-    key: "get",
-    value:
-    /**
-     * @param {ElemType} elem
-     * @param {string} propName
-     * @returns {string|null|*}
-     */
-    function get(elem, propName) {
-      var _elem$vnode$propName;
-      return (_elem$vnode$propName = elem.vnode[propName]) !== null && _elem$vnode$propName !== void 0 ? _elem$vnode$propName : this.defaultValue;
-    }
-
-    /**
-     * @param {ElemType} elem
-     * @param {string} propName
-     * @param {string|null|*} value
-     */
-  }, {
-    key: "set",
-    value: function set(elem, propName, value) {
-      elem.vnode[propName] = value;
-    }
-
-    /**
-     * @param {ElemType} elem
-     * @param {string} propName
-     * @param {*} value
-     */
-  }, {
-    key: "update",
-    value: function update(elem, propName, value) {
-      if (value === true) {
-        value = '';
-      } else if (value === false || value === null || value === this.defaultValue) {
-        elem.node.removeAttribute(this.nodeName);
-        return;
-      }
-      if (value != elem.node.getAttribute(this.nodeName)) {
-        elem.node.setAttribute(this.nodeName, value);
-      }
-    }
-
-    /**
-     * @param {ElemType} elem
-     * @param {string} propName
-     */
-  }, {
-    key: "reset",
-    value: function reset(elem, propName) {
-      if (!elem.vnode.hasOwnProperty(propName)) {
-        elem.node.removeAttribute(this.nodeName);
-      }
-    }
-
-    /**
-     * @param {string} nodeName
-     * @param {*} [defaultValue]
-     * @return {constructor @link AttrType}
-     */
-  }, {
-    key: "define",
-    value: function define(nodeName) {
-      var _class;
-      var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.defaultValue;
-      return _class = /*#__PURE__*/function (_this) {
-        (0, _inherits2["default"])(_class, _this);
-        var _super = _createSuper(_class);
-        function _class() {
-          (0, _classCallCheck2["default"])(this, _class);
-          return _super.apply(this, arguments);
-        }
-        return (0, _createClass2["default"])(_class);
-      }(this), (0, _defineProperty2["default"])(_class, "nodeName", nodeName), (0, _defineProperty2["default"])(_class, "defaultValue", defaultValue), _class;
-    }
-  }]);
-  return AttrType;
-}();
-(0, _defineProperty2["default"])(AttrType, "nodeName", null);
-(0, _defineProperty2["default"])(AttrType, "defaultValue", null);
-module.exports = AttrType;
-
-/***/ }),
 /* 27 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -2971,7 +2981,7 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var BooleanType = /*#__PURE__*/function (_AttrType) {
   (0, _inherits2["default"])(BooleanType, _AttrType);
   var _super = _createSuper(BooleanType);
@@ -3013,7 +3023,7 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var ListType = /*#__PURE__*/function (_AttrType) {
   (0, _inherits2["default"])(ListType, _AttrType);
   var _super = _createSuper(ListType);
@@ -3060,7 +3070,7 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var TokenType = /*#__PURE__*/function (_AttrType) {
   (0, _inherits2["default"])(TokenType, _AttrType);
   var _super = _createSuper(TokenType);
@@ -3263,7 +3273,7 @@ module.exports = PropType;
 
 
 var _interopRequireDefault = __webpack_require__(1);
-var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(20));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(21));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _createClass2 = _interopRequireDefault(__webpack_require__(4));
 var _get2 = _interopRequireDefault(__webpack_require__(33));
@@ -3273,7 +3283,7 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var Class = /*#__PURE__*/function (_AttrType) {
   (0, _inherits2["default"])(Class, _AttrType);
   var _super = _createSuper(Class);
@@ -3474,7 +3484,7 @@ var _interopRequireDefault = __webpack_require__(1);
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _createClass2 = _interopRequireDefault(__webpack_require__(4));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
-var window = __webpack_require__(24);
+var window = __webpack_require__(25);
 var HTMLElement = window.HTMLElement;
 var EventType = /*#__PURE__*/function () {
   /**
@@ -3870,7 +3880,7 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AttrType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var counter = 0;
 var Id = /*#__PURE__*/function (_AttrType) {
   (0, _inherits2["default"])(Id, _AttrType);
@@ -3944,9 +3954,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var _require = __webpack_require__(24),
+var _require = __webpack_require__(25),
   document = _require.document;
-var AttrType = __webpack_require__(26);
+var AttrType = __webpack_require__(12);
 var sampleNode = document.createElement('div');
 var Style = /*#__PURE__*/function (_AttrType) {
   (0, _inherits2["default"])(Style, _AttrType);
@@ -3981,7 +3991,7 @@ module.exports = Style;
 var _interopRequireDefault = __webpack_require__(1);
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _createClass2 = _interopRequireDefault(__webpack_require__(4));
-var _require = __webpack_require__(24),
+var _require = __webpack_require__(25),
   Text = _require.Text;
 var TextType = /*#__PURE__*/function () {
   /**
@@ -4024,6 +4034,55 @@ module.exports = TextType;
 
 
 var _interopRequireDefault = __webpack_require__(1);
+var _createClass2 = _interopRequireDefault(__webpack_require__(4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
+var _inherits2 = _interopRequireDefault(__webpack_require__(6));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var AttrType = __webpack_require__(12);
+var ElemType = __webpack_require__(14);
+var InnerText = __webpack_require__(43);
+
+/**
+ * @abstract
+ */
+var RoleType = /*#__PURE__*/function (_ElemType) {
+  (0, _inherits2["default"])(RoleType, _ElemType);
+  var _super = _createSuper(RoleType);
+  function RoleType() {
+    (0, _classCallCheck2["default"])(this, RoleType);
+    return _super.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleType);
+}(ElemType);
+(0, _defineProperty2["default"])(RoleType, "props", {
+  accessKey: AttrType.define('accesskey'),
+  autocapitalize: AttrType.define('autocapitalize'),
+  autofocus: AttrType.define('autofocus'),
+  contentEditable: AttrType.define('contenteditable'),
+  dir: AttrType.define('dir'),
+  draggable: AttrType.define('draggable'),
+  enterKeyHint: AttrType.define('enterkeyhint'),
+  inputMode: AttrType.define('inputmode'),
+  lang: AttrType.define('lang'),
+  spellcheck: AttrType.define('spellcheck'),
+  tabIndex: AttrType.define('tabindex'),
+  title: AttrType.define('title'),
+  translate: AttrType.define('translate'),
+  innerText: InnerText
+});
+module.exports = RoleType;
+
+/***/ }),
+/* 43 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(1);
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
 var _createClass2 = _interopRequireDefault(__webpack_require__(4));
 var _inherits2 = _interopRequireDefault(__webpack_require__(6));
@@ -4056,7 +4115,7 @@ var InnerText = /*#__PURE__*/function (_PropType) {
 module.exports = InnerText;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -4071,7 +4130,7 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
 var _class, _class2, _class3, _class4, _class5, _class6, _class7, _class8, _class9, _class10, _class11, _class12, _class13, _class14, _class15, _class16, _class17, _class18, _class19, _class20, _class21, _class22, _class23, _class24, _class25, _class26, _class27, _class28, _class29, _class30, _class31, _class32, _class33, _class34, _class35, _class36, _class37, _class38, _class39, _class40, _class41, _class42, _class43, _class44, _class45, _class46, _class47, _class48, _class49, _class50, _class51, _class52, _class53, _class54, _class55, _class56, _class57, _class58, _class59, _class60, _class61, _class62, _class63, _class64, _class65, _class66, _class67, _class68, _class69, _class70, _class71, _class72, _class73, _class74;
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var RoleType = __webpack_require__(44);
+var RoleType = __webpack_require__(42);
 exports.RoleAlert = (_class = /*#__PURE__*/function (_RoleType) {
   (0, _inherits2["default"])(RoleAlert, _RoleType);
   var _super = _createSuper(RoleAlert);
@@ -4738,54 +4797,6 @@ exports.RoleTreeItem = (_class74 = /*#__PURE__*/function (_RoleType74) {
   }
   return (0, _createClass2["default"])(RoleTreeItem);
 }(RoleType), (0, _defineProperty2["default"])(_class74, "role", 'TreeItem'), _class74);
-
-/***/ }),
-/* 44 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-
-
-var _interopRequireDefault = __webpack_require__(1);
-var _createClass2 = _interopRequireDefault(__webpack_require__(4));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(5));
-var _inherits2 = _interopRequireDefault(__webpack_require__(6));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var ElemType = __webpack_require__(13);
-var InnerText = __webpack_require__(42);
-
-/**
- * @abstract
- */
-var RoleType = /*#__PURE__*/function (_ElemType) {
-  (0, _inherits2["default"])(RoleType, _ElemType);
-  var _super = _createSuper(RoleType);
-  function RoleType() {
-    (0, _classCallCheck2["default"])(this, RoleType);
-    return _super.apply(this, arguments);
-  }
-  return (0, _createClass2["default"])(RoleType);
-}(ElemType);
-(0, _defineProperty2["default"])(RoleType, "props", {
-  accessKey: 'accesskey',
-  autocapitalize: 'autocapitalize',
-  autofocus: 'autofocus',
-  contentEditable: 'contenteditable',
-  dir: 'dir',
-  draggable: 'draggable',
-  enterKeyHint: 'enterkeyhint',
-  inputMode: 'inputmode',
-  lang: 'lang',
-  spellcheck: 'spellcheck',
-  tabIndex: 'tabindex',
-  title: 'title',
-  translate: 'translate',
-  innerText: InnerText
-});
-module.exports = RoleType;
 
 /***/ }),
 /* 45 */
