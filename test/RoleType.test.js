@@ -87,7 +87,7 @@ test('RoleType: role', t => {
 test('ToggleButton: className', t => {
   const elem = ToggleButton.render()
 
-  t.is(elem.node.className, 'ToggleButton')
+  t.is(elem.className, 'ToggleButton')
   t.is(elem.toString(), '<span role="Button" class="ToggleButton" aria-pressed="false">On</span>')
 })
 

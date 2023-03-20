@@ -23,6 +23,6 @@ class Cux extends Baz
 test('test #1', t => {
   const elem = Cux.render('qwe')
 
-  t.is(elem.node.className, 'Cux BAT Foo')
+  t.is(elem.className, 'Cux BAT Foo')
   t.is(elem.toString(), '<div class="Cux BAT Foo">qwe</div>')
 })
