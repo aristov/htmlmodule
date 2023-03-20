@@ -14,7 +14,7 @@ test('test #1', t => {
   t.is(elem.node.constructor, HTMLDivElement)
   t.is(elem.title, 'Hello world!')
   t.is(elem.hidden, true)
-  t.is(elem.tabIndex, '-1')
+  t.is(elem.tabIndex, -1)
   t.is(elem.textContent, 'Example')
 })
 
