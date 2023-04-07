@@ -13,7 +13,7 @@ class Main extends ElemType
 
 test('test #1', t => {
   const main = new Main({
-    innerHTML : '<p><button>push me</button></p>',
+    innerHTML : '<p><button class="foo">push me</button></p>',
   })
   const app = App.render({
     onclick,
@@ -21,17 +21,19 @@ test('test #1', t => {
   })
   const button = app.node.querySelector('button')
 
-  t.is(app.toString(), '<div class="App"><main><p><button>push me</button></p></main></div>')
+  t.is(app.toString(), '<div class="App"><main><p><button class="foo">push me</button></p></main></div>')
 
   button.click()
 
   function onclick(e) {
     const target = e.target
 
-    t.true(target instanceof ElemType)
-    t.is(target.node, button)
+    t.true(target instanceof Main)
+    t.is(target, main)
     t.is(target.closest(App), app)
     t.is(target.closest(Main), main)
-    t.is(target.closest(ElemType), target)
+    t.is(target.closest(ElemType), main)
   }
+
+  t.is(app.toString(), '<div class="App"><main><p><button class="foo">push me</button></p></main></div>')
 })
