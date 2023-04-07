@@ -68,19 +68,19 @@ class App extends ElemType
 test('test #1', t => {
   const elem = App.render()
 
-  t.is(elem.toString(), '<div role="form" class="App" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
+  t.is(elem.toString(), '<div class="App" role="form" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
 
   elem.setState({ step : 1 })
 
-  t.is(elem.toString(), '<div role="form" class="App" aria-hidden="false" aria-label="Go"><input class="Input" aria-disabled="false" aria-placeholder="Wow"></div>')
+  t.is(elem.toString(), '<div class="App" role="form" aria-hidden="false" aria-label="Go"><input class="Input" aria-disabled="false" aria-placeholder="Wow"></div>')
 
   elem.setState({ step : 2 })
 
-  t.is(elem.toString(), '<div role="form" class="App" aria-label="Think"><input class="Input" aria-placeholder="Hey"></div>')
+  t.is(elem.toString(), '<div class="App" role="form" aria-label="Think"><input class="Input" aria-placeholder="Hey"></div>')
 
   elem.setState({ step : 3 })
 
-  t.is(elem.toString(), '<div role="form" class="App" id="id1" data-id="123" style="display: inline;"><input class="Input" id="id2" data-id="456" style="display: block;"></div>')
+  t.is(elem.toString(), '<div class="App" role="form" id="id1" data-id="123" style="display: inline;"><input class="Input" id="id2" data-id="456" style="display: block;"></div>')
 })
 
 test('test #2', t => {
@@ -90,5 +90,5 @@ test('test #2', t => {
     }
   })
 
-  t.is(elem.toString(), '<div role="form" class="App" aria-busy="true" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
+  t.is(elem.toString(), '<div class="App" role="form" aria-busy="true" aria-hidden="true"><input class="Input" aria-disabled="true"></div>')
 })

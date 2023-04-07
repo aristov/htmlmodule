@@ -67,7 +67,7 @@ test('Button: role', t => {
   const elem = Button.render('OK')
 
   t.is(elem.node.getAttribute('role'), 'Button')
-  t.is(elem.toString(), '<div role="Button" class="Button">OK</div>')
+  t.is(elem.toString(), '<div class="Button" role="Button">OK</div>')
 })
 
 test('TextInputBox: role', t => {
@@ -88,15 +88,15 @@ test('ToggleButton: className', t => {
   const elem = ToggleButton.render()
 
   t.is(elem.className, 'ToggleButton')
-  t.is(elem.toString(), '<span role="Button" class="ToggleButton" aria-pressed="false">On</span>')
+  t.is(elem.toString(), '<span class="ToggleButton" role="Button" aria-pressed="false">On</span>')
 })
 
 test('Article: setState', t => {
   const elem = Article.render()
 
-  t.is(elem.toString(), '<div role="Article" class="Article"><span role="Button" class="ToggleButton" aria-pressed="false">On</span><div role="Region" aria-expanded="false"></div></div>')
+  t.is(elem.toString(), '<div class="Article" role="Article"><span class="ToggleButton" role="Button" aria-pressed="false">On</span><div role="Region" aria-expanded="false"></div></div>')
 
   elem.toggle()
 
-  t.is(elem.toString(), '<div role="Article" class="Article"><span role="Button" class="ToggleButton" aria-pressed="true">Off</span><div role="Region" aria-expanded="true"></div></div>')
+  t.is(elem.toString(), '<div class="Article" role="Article"><span class="ToggleButton" role="Button" aria-pressed="true">Off</span><div role="Region" aria-expanded="true"></div></div>')
 })

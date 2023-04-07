@@ -38,19 +38,19 @@ test('test #1', async t => {
   const observer = new MutationObserver(spy)
   observer.observe(elem.node, { attributes : true, subtree : true })
 
-  t.is(elem.toString(), '<div role="form" class="App"><input role="textbox" class="Input"></div>')
+  t.is(elem.toString(), '<div class="App" role="form"><input class="Input" role="textbox"></div>')
 
   elem.setState({ step : 1 })
 
   await new Promise(setImmediate)
 
-  t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')
+  t.is(elem.toString(), '<div class="App" role="form"><input class="Input" role="searchbox"></div>')
   t.is(spy.callCount, 1)
 
   elem.setState({ step : 2 })
 
   await new Promise(setImmediate)
 
-  t.is(elem.toString(), '<div role="form" class="App"><input role="searchbox" class="Input"></div>')
+  t.is(elem.toString(), '<div class="App" role="form"><input class="Input" role="searchbox"></div>')
   t.is(spy.callCount, 1)
 })

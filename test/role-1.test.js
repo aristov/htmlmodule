@@ -32,7 +32,7 @@ test('test #1', t => {
 test('test #2', t => {
   const elem = RoleLink.render('test')
 
-  t.is(elem.toString(), '<div role="Link" class="RoleLink">test</div>')
+  t.is(elem.toString(), '<div class="RoleLink" role="Link">test</div>')
 })
 
 test('test #3', t => {
@@ -41,7 +41,7 @@ test('test #3', t => {
     children : 'test',
   })
 
-  t.is(elem.toString(), '<div role="Button" class="RoleLink">test</div>')
+  t.is(elem.toString(), '<div class="RoleLink" role="Button">test</div>')
 })
 
 test('test #4', t => {
@@ -56,7 +56,7 @@ test('test #4', t => {
 test('test #5', t => {
   const elem = FooLink.render('test')
 
-  t.is(elem.toString(), '<div role="Link" class="FooLink RoleLink">test</div>')
+  t.is(elem.toString(), '<div class="FooLink RoleLink" role="Link">test</div>')
 })
 
 test('test #6', t => {
