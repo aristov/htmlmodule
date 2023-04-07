@@ -3,7 +3,7 @@ const { RoleArticle, RoleButton, RoleRegion, RoleType } = require('..')
 
 class Button extends RoleType
 {
-  static role = 'Button'
+  static role = 'button'
 
   static class = 'Button'
 }
@@ -59,15 +59,15 @@ class Article extends RoleArticle
 test('RoleButton: role', t => {
   const elem = RoleButton.render('OK')
 
-  t.is(elem.node.getAttribute('role'), 'Button')
-  t.is(elem.toString(), '<div role="Button">OK</div>')
+  t.is(elem.node.getAttribute('role'), 'button')
+  t.is(elem.toString(), '<div role="button">OK</div>')
 })
 
 test('Button: role', t => {
   const elem = Button.render('OK')
 
-  t.is(elem.node.getAttribute('role'), 'Button')
-  t.is(elem.toString(), '<div class="Button" role="Button">OK</div>')
+  t.is(elem.node.getAttribute('role'), 'button')
+  t.is(elem.toString(), '<div class="Button" role="button">OK</div>')
 })
 
 test('TextInputBox: role', t => {
@@ -78,25 +78,25 @@ test('TextInputBox: role', t => {
 })
 
 test('RoleType: role', t => {
-  const elem = RoleType.render({ role : 'Link' })
+  const elem = RoleType.render({ role : 'link' })
 
-  t.is(elem.node.getAttribute('role'), 'Link')
-  t.is(elem.toString(), '<div role="Link"></div>')
+  t.is(elem.node.getAttribute('role'), 'link')
+  t.is(elem.toString(), '<div role="link"></div>')
 })
 
 test('ToggleButton: className', t => {
   const elem = ToggleButton.render()
 
   t.is(elem.className, 'ToggleButton')
-  t.is(elem.toString(), '<span class="ToggleButton" role="Button" aria-pressed="false">On</span>')
+  t.is(elem.toString(), '<span class="ToggleButton" role="button" aria-pressed="false">On</span>')
 })
 
 test('Article: setState', t => {
   const elem = Article.render()
 
-  t.is(elem.toString(), '<div class="Article" role="Article"><span class="ToggleButton" role="Button" aria-pressed="false">On</span><div role="Region" aria-expanded="false"></div></div>')
+  t.is(elem.toString(), '<div class="Article" role="article"><span class="ToggleButton" role="button" aria-pressed="false">On</span><div role="region" aria-expanded="false"></div></div>')
 
   elem.toggle()
 
-  t.is(elem.toString(), '<div class="Article" role="Article"><span class="ToggleButton" role="Button" aria-pressed="true">Off</span><div role="Region" aria-expanded="true"></div></div>')
+  t.is(elem.toString(), '<div class="Article" role="article"><span class="ToggleButton" role="button" aria-pressed="true">Off</span><div role="region" aria-expanded="true"></div></div>')
 })

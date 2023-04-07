@@ -3,7 +3,7 @@ const { ElemType } = require('..')
 
 class RoleLink extends ElemType
 {
-  static role = 'Link'
+  static role = 'link'
 
   static class = 'RoleLink'
 }
@@ -32,16 +32,16 @@ test('test #1', t => {
 test('test #2', t => {
   const elem = RoleLink.render('test')
 
-  t.is(elem.toString(), '<div class="RoleLink" role="Link">test</div>')
+  t.is(elem.toString(), '<div class="RoleLink" role="link">test</div>')
 })
 
 test('test #3', t => {
   const elem = RoleLink.render({
-    role : 'Button',
+    role : 'button',
     children : 'test',
   })
 
-  t.is(elem.toString(), '<div class="RoleLink" role="Button">test</div>')
+  t.is(elem.toString(), '<div class="RoleLink" role="button">test</div>')
 })
 
 test('test #4', t => {
@@ -56,7 +56,7 @@ test('test #4', t => {
 test('test #5', t => {
   const elem = FooLink.render('test')
 
-  t.is(elem.toString(), '<div class="FooLink RoleLink" role="Link">test</div>')
+  t.is(elem.toString(), '<div class="FooLink RoleLink" role="link">test</div>')
 })
 
 test('test #6', t => {
