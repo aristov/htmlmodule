@@ -4672,7 +4672,7 @@ exports.RoleOption = (_class49 = /*#__PURE__*/function (_RoleType49) {
   }
   return (0, _createClass2["default"])(RoleOption);
 }(RoleType), (0, _defineProperty2["default"])(_class49, "role", 'option'), (0, _defineProperty2["default"])(_class49, "props", {
-  selected: BooleanType.define(false)
+  selected: TokenType.define('aria-selected', false)
 }), _class49);
 exports.RoleParagraph = (_class50 = /*#__PURE__*/function (_RoleType50) {
   (0, _inherits2["default"])(RoleParagraph, _RoleType50);
@@ -4894,7 +4894,7 @@ exports.RoleTab = (_class71 = /*#__PURE__*/function (_RoleType71) {
   }
   return (0, _createClass2["default"])(RoleTab);
 }(RoleType), (0, _defineProperty2["default"])(_class71, "role", 'tab'), (0, _defineProperty2["default"])(_class71, "props", {
-  selected: BooleanType.define(false)
+  selected: TokenType.define('aria-selected', false)
 }), _class71);
 exports.RoleTabList = (_class72 = /*#__PURE__*/function (_RoleType72) {
   (0, _inherits2["default"])(RoleTabList, _RoleType72);
