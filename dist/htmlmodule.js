@@ -1710,6 +1710,7 @@ var BooleanType = /*#__PURE__*/function (_AttrType) {
 
     /**
      * @param {string} nodeName
+     * @param {boolean} [defaultValue]
      * @param {string} [nodeValue]
      * @return {constructor @link BooleanType}
      */
@@ -1717,7 +1718,8 @@ var BooleanType = /*#__PURE__*/function (_AttrType) {
     key: "define",
     value: function define(nodeName) {
       var _class;
-      var nodeValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.nodeValue;
+      var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.defaultValue;
+      var nodeValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.nodeValue;
       return _class = /*#__PURE__*/function (_this) {
         (0, _inherits2["default"])(_class, _this);
         var _super2 = _createSuper(_class);
@@ -1726,7 +1728,7 @@ var BooleanType = /*#__PURE__*/function (_AttrType) {
           return _super2.apply(this, arguments);
         }
         return (0, _createClass2["default"])(_class);
-      }(this), (0, _defineProperty2["default"])(_class, "nodeName", nodeName), (0, _defineProperty2["default"])(_class, "nodeValue", nodeValue), _class;
+      }(this), (0, _defineProperty2["default"])(_class, "nodeName", nodeName), (0, _defineProperty2["default"])(_class, "defaultValue", defaultValue), (0, _defineProperty2["default"])(_class, "nodeValue", nodeValue), _class;
     }
   }]);
   return BooleanType;
@@ -2069,6 +2071,23 @@ var ElemType = /*#__PURE__*/function () {
     }
 
     /**
+     * @param {ElemType} elem
+     * @return {boolean}
+     */
+  }, {
+    key: "contains",
+    value: function contains(elem) {
+      var parent = elem.__parent;
+      do {
+        var _parent;
+        if (parent === this) {
+          return true;
+        }
+      } while (parent = (_parent = parent) === null || _parent === void 0 ? void 0 : _parent.__parent);
+      return false;
+    }
+
+    /**
      * @public
      */
   }, {
@@ -2386,8 +2405,8 @@ var ElemType = /*#__PURE__*/function () {
     key: "__createVNode",
     value: function __createVNode() {
       var vnode = {
-        role: this.constructor.role,
-        className: Class.generate(this.constructor)
+        className: Class.generate(this.constructor),
+        role: this.constructor.role
       };
       Object.defineProperty(vnode, 'classList', nullDescriptor);
       return vnode;
@@ -3078,9 +3097,9 @@ var AriaType = /*#__PURE__*/(0, _createClass2["default"])(function AriaType() {
 });
 (0, _defineProperty2["default"])(AriaType, "props", {
   activeDescendant: AttrType.define('aria-activedescendant'),
-  atomic: BooleanType.define('aria-atomic', 'true'),
+  atomic: BooleanType.define('aria-atomic', false, 'true'),
   autoComplete: TokenType.define('aria-autocomplete', 'none'),
-  busy: BooleanType.define('aria-busy', 'true'),
+  busy: BooleanType.define('aria-busy', false, 'true'),
   checked: TokenType.define('aria-checked'),
   colCount: NumberType.define('aria-colcount'),
   colIndex: NumberType.define('aria-colindex'),
@@ -3089,7 +3108,7 @@ var AriaType = /*#__PURE__*/(0, _createClass2["default"])(function AriaType() {
   current: TokenType.define('aria-current', false),
   describedBy: AttrType.define('aria-describedby'),
   details: AttrType.define('aria-details'),
-  disabled: BooleanType.define('aria-disabled', 'true'),
+  disabled: BooleanType.define('aria-disabled', false, 'true'),
   dropEffect: AttrType.define('aria-dropeffect', 'none'),
   errorMessage: AttrType.define('aria-errormessage'),
   expanded: TokenType.define('aria-expanded'),
@@ -3103,17 +3122,17 @@ var AriaType = /*#__PURE__*/(0, _createClass2["default"])(function AriaType() {
   labelledBy: AttrType.define('aria-labelledby'),
   level: NumberType.define('aria-level'),
   live: TokenType.define('aria-live', 'off'),
-  modal: BooleanType.define('aria-modal', 'true'),
-  multiLine: BooleanType.define('aria-multiline', 'true'),
-  multiSelectable: BooleanType.define('aria-multiselectable', 'true'),
+  modal: BooleanType.define('aria-modal', false, 'true'),
+  multiLine: BooleanType.define('aria-multiline', false, 'true'),
+  multiSelectable: BooleanType.define('aria-multiselectable', false, 'true'),
   orientation: TokenType.define('aria-orientation'),
   owns: AttrType.define('aria-owns'),
   placeholder: AttrType.define('aria-placeholder'),
   posInSet: NumberType.define('aria-posinset'),
   pressed: TokenType.define('aria-pressed'),
-  readOnly: BooleanType.define('aria-readonly', 'true'),
+  readOnly: BooleanType.define('aria-readonly', false, 'true'),
   relevant: AttrType.define('aria-relevant', 'additions text'),
-  required: BooleanType.define('aria-required', 'true'),
+  required: BooleanType.define('aria-required', false, 'true'),
   roleDescription: AttrType.define('aria-roledescription'),
   rowCount: NumberType.define('aria-rowcount'),
   rowIndex: NumberType.define('aria-rowindex'),
@@ -3554,13 +3573,10 @@ var EventType = /*#__PURE__*/function () {
       if (target) {
         return target;
       }
-      target = EventType.ElemType.render({
-        node: node
-      });
       do {
         node = node.parentNode;
-        target.__parent = elem.getElemByNode(node);
-      } while (node && !target.__parent);
+        target = elem.getElemByNode(node);
+      } while (node && !target);
       return target;
     }
 
@@ -4188,10 +4204,13 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(6));
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(8));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(11));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(2));
-var _class, _class2, _class3, _class4, _class5, _class6, _class7, _class8, _class9, _class10, _class11, _class12, _class13, _class14, _class15, _class16, _class17, _class18, _class19, _class20, _class21, _class22, _class23, _class24, _class25, _class26, _class27, _class28, _class29, _class30, _class31, _class32, _class33, _class34, _class35, _class36, _class37, _class38, _class39, _class40, _class41, _class42, _class43, _class44, _class45, _class46, _class47, _class48, _class49, _class50, _class51, _class52, _class53, _class54, _class55, _class56, _class57, _class58, _class59, _class60, _class61, _class62, _class63, _class64, _class65, _class66, _class67, _class68, _class69, _class70, _class71, _class72, _class73, _class74;
+var _class, _class2, _class3, _class4, _class5, _class6, _class7, _class8, _class9, _class10, _class11, _class12, _class13, _class14, _class15, _class16, _class17, _class18, _class19, _class20, _class21, _class22, _class23, _class24, _class25, _class26, _class27, _class28, _class29, _class30, _class31, _class32, _class33, _class34, _class35, _class36, _class37, _class38, _class39, _class40, _class41, _class42, _class43, _class44, _class45, _class46, _class47, _class48, _class49, _class50, _class51, _class52, _class53, _class54, _class55, _class56, _class57, _class58, _class59, _class60, _class61, _class62, _class63, _class64, _class65, _class66, _class67, _class68, _class69, _class70, _class71, _class72, _class73, _class74, _class75, _class76, _class77, _class78, _class79, _class80, _class81, _class82, _class83;
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var RoleType = __webpack_require__(42);
+var BooleanType = __webpack_require__(13);
+var NumberType = __webpack_require__(16);
+var TokenType = __webpack_require__(31);
 exports.RoleAlert = (_class = /*#__PURE__*/function (_RoleType) {
   (0, _inherits2["default"])(RoleAlert, _RoleType);
   var _super = _createSuper(RoleAlert);
@@ -4200,7 +4219,10 @@ exports.RoleAlert = (_class = /*#__PURE__*/function (_RoleType) {
     return _super.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleAlert);
-}(RoleType), (0, _defineProperty2["default"])(_class, "role", 'Alert'), _class);
+}(RoleType), (0, _defineProperty2["default"])(_class, "role", 'alert'), (0, _defineProperty2["default"])(_class, "props", {
+  live: TokenType.define('aria-live', 'assertive'),
+  atomic: BooleanType.define('aria-atomic', true)
+}), _class);
 exports.RoleAlertDialog = (_class2 = /*#__PURE__*/function (_RoleType2) {
   (0, _inherits2["default"])(RoleAlertDialog, _RoleType2);
   var _super2 = _createSuper(RoleAlertDialog);
@@ -4209,7 +4231,7 @@ exports.RoleAlertDialog = (_class2 = /*#__PURE__*/function (_RoleType2) {
     return _super2.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleAlertDialog);
-}(RoleType), (0, _defineProperty2["default"])(_class2, "role", 'AlertDialog'), _class2);
+}(RoleType), (0, _defineProperty2["default"])(_class2, "role", 'alertdialog'), _class2);
 exports.RoleApplication = (_class3 = /*#__PURE__*/function (_RoleType3) {
   (0, _inherits2["default"])(RoleApplication, _RoleType3);
   var _super3 = _createSuper(RoleApplication);
@@ -4218,7 +4240,7 @@ exports.RoleApplication = (_class3 = /*#__PURE__*/function (_RoleType3) {
     return _super3.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleApplication);
-}(RoleType), (0, _defineProperty2["default"])(_class3, "role", 'Application'), _class3);
+}(RoleType), (0, _defineProperty2["default"])(_class3, "role", 'application'), _class3);
 exports.RoleArticle = (_class4 = /*#__PURE__*/function (_RoleType4) {
   (0, _inherits2["default"])(RoleArticle, _RoleType4);
   var _super4 = _createSuper(RoleArticle);
@@ -4227,7 +4249,7 @@ exports.RoleArticle = (_class4 = /*#__PURE__*/function (_RoleType4) {
     return _super4.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleArticle);
-}(RoleType), (0, _defineProperty2["default"])(_class4, "role", 'Article'), _class4);
+}(RoleType), (0, _defineProperty2["default"])(_class4, "role", 'article'), _class4);
 exports.RoleBanner = (_class5 = /*#__PURE__*/function (_RoleType5) {
   (0, _inherits2["default"])(RoleBanner, _RoleType5);
   var _super5 = _createSuper(RoleBanner);
@@ -4236,7 +4258,7 @@ exports.RoleBanner = (_class5 = /*#__PURE__*/function (_RoleType5) {
     return _super5.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleBanner);
-}(RoleType), (0, _defineProperty2["default"])(_class5, "role", 'Banner'), _class5);
+}(RoleType), (0, _defineProperty2["default"])(_class5, "role", 'banner'), _class5);
 exports.RoleBlockQuote = (_class6 = /*#__PURE__*/function (_RoleType6) {
   (0, _inherits2["default"])(RoleBlockQuote, _RoleType6);
   var _super6 = _createSuper(RoleBlockQuote);
@@ -4245,7 +4267,7 @@ exports.RoleBlockQuote = (_class6 = /*#__PURE__*/function (_RoleType6) {
     return _super6.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleBlockQuote);
-}(RoleType), (0, _defineProperty2["default"])(_class6, "role", 'BlockQuote'), _class6);
+}(RoleType), (0, _defineProperty2["default"])(_class6, "role", 'blockquote'), _class6);
 exports.RoleButton = (_class7 = /*#__PURE__*/function (_RoleType7) {
   (0, _inherits2["default"])(RoleButton, _RoleType7);
   var _super7 = _createSuper(RoleButton);
@@ -4254,7 +4276,7 @@ exports.RoleButton = (_class7 = /*#__PURE__*/function (_RoleType7) {
     return _super7.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleButton);
-}(RoleType), (0, _defineProperty2["default"])(_class7, "role", 'Button'), _class7);
+}(RoleType), (0, _defineProperty2["default"])(_class7, "role", 'button'), _class7);
 exports.RoleCaption = (_class8 = /*#__PURE__*/function (_RoleType8) {
   (0, _inherits2["default"])(RoleCaption, _RoleType8);
   var _super8 = _createSuper(RoleCaption);
@@ -4263,7 +4285,7 @@ exports.RoleCaption = (_class8 = /*#__PURE__*/function (_RoleType8) {
     return _super8.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleCaption);
-}(RoleType), (0, _defineProperty2["default"])(_class8, "role", 'Caption'), _class8);
+}(RoleType), (0, _defineProperty2["default"])(_class8, "role", 'caption'), _class8);
 exports.RoleCell = (_class9 = /*#__PURE__*/function (_RoleType9) {
   (0, _inherits2["default"])(RoleCell, _RoleType9);
   var _super9 = _createSuper(RoleCell);
@@ -4272,7 +4294,7 @@ exports.RoleCell = (_class9 = /*#__PURE__*/function (_RoleType9) {
     return _super9.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleCell);
-}(RoleType), (0, _defineProperty2["default"])(_class9, "role", 'Cell'), _class9);
+}(RoleType), (0, _defineProperty2["default"])(_class9, "role", 'cell'), _class9);
 exports.RoleCheckBox = (_class10 = /*#__PURE__*/function (_RoleType10) {
   (0, _inherits2["default"])(RoleCheckBox, _RoleType10);
   var _super10 = _createSuper(RoleCheckBox);
@@ -4281,583 +4303,713 @@ exports.RoleCheckBox = (_class10 = /*#__PURE__*/function (_RoleType10) {
     return _super10.apply(this, arguments);
   }
   return (0, _createClass2["default"])(RoleCheckBox);
-}(RoleType), (0, _defineProperty2["default"])(_class10, "role", 'CheckBox'), _class10);
-exports.RoleColumnHeader = (_class11 = /*#__PURE__*/function (_RoleType11) {
-  (0, _inherits2["default"])(RoleColumnHeader, _RoleType11);
-  var _super11 = _createSuper(RoleColumnHeader);
-  function RoleColumnHeader() {
-    (0, _classCallCheck2["default"])(this, RoleColumnHeader);
+}(RoleType), (0, _defineProperty2["default"])(_class10, "role", 'checkbox'), _class10);
+exports.RoleCode = (_class11 = /*#__PURE__*/function (_RoleType11) {
+  (0, _inherits2["default"])(RoleCode, _RoleType11);
+  var _super11 = _createSuper(RoleCode);
+  function RoleCode() {
+    (0, _classCallCheck2["default"])(this, RoleCode);
     return _super11.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleColumnHeader);
-}(RoleType), (0, _defineProperty2["default"])(_class11, "role", 'ColumnHeader'), _class11);
-exports.RoleComboBox = (_class12 = /*#__PURE__*/function (_RoleType12) {
-  (0, _inherits2["default"])(RoleComboBox, _RoleType12);
-  var _super12 = _createSuper(RoleComboBox);
-  function RoleComboBox() {
-    (0, _classCallCheck2["default"])(this, RoleComboBox);
+  return (0, _createClass2["default"])(RoleCode);
+}(RoleType), (0, _defineProperty2["default"])(_class11, "role", 'code'), _class11);
+exports.RoleColumnHeader = (_class12 = /*#__PURE__*/function (_RoleType12) {
+  (0, _inherits2["default"])(RoleColumnHeader, _RoleType12);
+  var _super12 = _createSuper(RoleColumnHeader);
+  function RoleColumnHeader() {
+    (0, _classCallCheck2["default"])(this, RoleColumnHeader);
     return _super12.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleComboBox);
-}(RoleType), (0, _defineProperty2["default"])(_class12, "role", 'ComboBox'), _class12);
-exports.RoleComplementary = (_class13 = /*#__PURE__*/function (_RoleType13) {
-  (0, _inherits2["default"])(RoleComplementary, _RoleType13);
-  var _super13 = _createSuper(RoleComplementary);
-  function RoleComplementary() {
-    (0, _classCallCheck2["default"])(this, RoleComplementary);
+  return (0, _createClass2["default"])(RoleColumnHeader);
+}(RoleType), (0, _defineProperty2["default"])(_class12, "role", 'columnheader'), _class12);
+exports.RoleComboBox = (_class13 = /*#__PURE__*/function (_RoleType13) {
+  (0, _inherits2["default"])(RoleComboBox, _RoleType13);
+  var _super13 = _createSuper(RoleComboBox);
+  function RoleComboBox() {
+    (0, _classCallCheck2["default"])(this, RoleComboBox);
     return _super13.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleComplementary);
-}(RoleType), (0, _defineProperty2["default"])(_class13, "role", 'Complementary'), _class13);
-exports.RoleContentInfo = (_class14 = /*#__PURE__*/function (_RoleType14) {
-  (0, _inherits2["default"])(RoleContentInfo, _RoleType14);
-  var _super14 = _createSuper(RoleContentInfo);
-  function RoleContentInfo() {
-    (0, _classCallCheck2["default"])(this, RoleContentInfo);
+  return (0, _createClass2["default"])(RoleComboBox);
+}(RoleType), (0, _defineProperty2["default"])(_class13, "role", 'combobox'), (0, _defineProperty2["default"])(_class13, "props", {
+  hasPopup: TokenType.define('aria-haspopup', 'listbox')
+}), _class13);
+exports.RoleComplementary = (_class14 = /*#__PURE__*/function (_RoleType14) {
+  (0, _inherits2["default"])(RoleComplementary, _RoleType14);
+  var _super14 = _createSuper(RoleComplementary);
+  function RoleComplementary() {
+    (0, _classCallCheck2["default"])(this, RoleComplementary);
     return _super14.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleContentInfo);
-}(RoleType), (0, _defineProperty2["default"])(_class14, "role", 'ContentInfo'), _class14);
-exports.RoleDefinition = (_class15 = /*#__PURE__*/function (_RoleType15) {
-  (0, _inherits2["default"])(RoleDefinition, _RoleType15);
-  var _super15 = _createSuper(RoleDefinition);
-  function RoleDefinition() {
-    (0, _classCallCheck2["default"])(this, RoleDefinition);
+  return (0, _createClass2["default"])(RoleComplementary);
+}(RoleType), (0, _defineProperty2["default"])(_class14, "role", 'complementary'), _class14);
+exports.RoleContentInfo = (_class15 = /*#__PURE__*/function (_RoleType15) {
+  (0, _inherits2["default"])(RoleContentInfo, _RoleType15);
+  var _super15 = _createSuper(RoleContentInfo);
+  function RoleContentInfo() {
+    (0, _classCallCheck2["default"])(this, RoleContentInfo);
     return _super15.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleDefinition);
-}(RoleType), (0, _defineProperty2["default"])(_class15, "role", 'Definition'), _class15);
-exports.RoleDialog = (_class16 = /*#__PURE__*/function (_RoleType16) {
-  (0, _inherits2["default"])(RoleDialog, _RoleType16);
-  var _super16 = _createSuper(RoleDialog);
-  function RoleDialog() {
-    (0, _classCallCheck2["default"])(this, RoleDialog);
+  return (0, _createClass2["default"])(RoleContentInfo);
+}(RoleType), (0, _defineProperty2["default"])(_class15, "role", 'contentinfo'), _class15);
+exports.RoleDefinition = (_class16 = /*#__PURE__*/function (_RoleType16) {
+  (0, _inherits2["default"])(RoleDefinition, _RoleType16);
+  var _super16 = _createSuper(RoleDefinition);
+  function RoleDefinition() {
+    (0, _classCallCheck2["default"])(this, RoleDefinition);
     return _super16.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleDialog);
-}(RoleType), (0, _defineProperty2["default"])(_class16, "role", 'Dialog'), _class16);
-exports.RoleDirectory = (_class17 = /*#__PURE__*/function (_RoleType17) {
-  (0, _inherits2["default"])(RoleDirectory, _RoleType17);
-  var _super17 = _createSuper(RoleDirectory);
-  function RoleDirectory() {
-    (0, _classCallCheck2["default"])(this, RoleDirectory);
+  return (0, _createClass2["default"])(RoleDefinition);
+}(RoleType), (0, _defineProperty2["default"])(_class16, "role", 'definition'), _class16);
+exports.RoleDeletion = (_class17 = /*#__PURE__*/function (_RoleType17) {
+  (0, _inherits2["default"])(RoleDeletion, _RoleType17);
+  var _super17 = _createSuper(RoleDeletion);
+  function RoleDeletion() {
+    (0, _classCallCheck2["default"])(this, RoleDeletion);
     return _super17.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleDirectory);
-}(RoleType), (0, _defineProperty2["default"])(_class17, "role", 'Directory'), _class17);
-exports.RoleDocument = (_class18 = /*#__PURE__*/function (_RoleType18) {
-  (0, _inherits2["default"])(RoleDocument, _RoleType18);
-  var _super18 = _createSuper(RoleDocument);
-  function RoleDocument() {
-    (0, _classCallCheck2["default"])(this, RoleDocument);
+  return (0, _createClass2["default"])(RoleDeletion);
+}(RoleType), (0, _defineProperty2["default"])(_class17, "role", 'deletion'), _class17);
+exports.RoleDialog = (_class18 = /*#__PURE__*/function (_RoleType18) {
+  (0, _inherits2["default"])(RoleDialog, _RoleType18);
+  var _super18 = _createSuper(RoleDialog);
+  function RoleDialog() {
+    (0, _classCallCheck2["default"])(this, RoleDialog);
     return _super18.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleDocument);
-}(RoleType), (0, _defineProperty2["default"])(_class18, "role", 'Document'), _class18);
-exports.RoleFeed = (_class19 = /*#__PURE__*/function (_RoleType19) {
-  (0, _inherits2["default"])(RoleFeed, _RoleType19);
-  var _super19 = _createSuper(RoleFeed);
-  function RoleFeed() {
-    (0, _classCallCheck2["default"])(this, RoleFeed);
+  return (0, _createClass2["default"])(RoleDialog);
+}(RoleType), (0, _defineProperty2["default"])(_class18, "role", 'dialog'), _class18);
+
+/**
+ * @deprecated
+ */
+exports.RoleDirectory = (_class19 = /*#__PURE__*/function (_RoleType19) {
+  (0, _inherits2["default"])(RoleDirectory, _RoleType19);
+  var _super19 = _createSuper(RoleDirectory);
+  function RoleDirectory() {
+    (0, _classCallCheck2["default"])(this, RoleDirectory);
     return _super19.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleFeed);
-}(RoleType), (0, _defineProperty2["default"])(_class19, "role", 'Feed'), _class19);
-exports.RoleFigure = (_class20 = /*#__PURE__*/function (_RoleType20) {
-  (0, _inherits2["default"])(RoleFigure, _RoleType20);
-  var _super20 = _createSuper(RoleFigure);
-  function RoleFigure() {
-    (0, _classCallCheck2["default"])(this, RoleFigure);
+  return (0, _createClass2["default"])(RoleDirectory);
+}(RoleType), (0, _defineProperty2["default"])(_class19, "role", 'directory'), _class19);
+exports.RoleDocument = (_class20 = /*#__PURE__*/function (_RoleType20) {
+  (0, _inherits2["default"])(RoleDocument, _RoleType20);
+  var _super20 = _createSuper(RoleDocument);
+  function RoleDocument() {
+    (0, _classCallCheck2["default"])(this, RoleDocument);
     return _super20.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleFigure);
-}(RoleType), (0, _defineProperty2["default"])(_class20, "role", 'Figure'), _class20);
-exports.RoleForm = (_class21 = /*#__PURE__*/function (_RoleType21) {
-  (0, _inherits2["default"])(RoleForm, _RoleType21);
-  var _super21 = _createSuper(RoleForm);
-  function RoleForm() {
-    (0, _classCallCheck2["default"])(this, RoleForm);
+  return (0, _createClass2["default"])(RoleDocument);
+}(RoleType), (0, _defineProperty2["default"])(_class20, "role", 'document'), _class20);
+exports.RoleEmphasis = (_class21 = /*#__PURE__*/function (_RoleType21) {
+  (0, _inherits2["default"])(RoleEmphasis, _RoleType21);
+  var _super21 = _createSuper(RoleEmphasis);
+  function RoleEmphasis() {
+    (0, _classCallCheck2["default"])(this, RoleEmphasis);
     return _super21.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleForm);
-}(RoleType), (0, _defineProperty2["default"])(_class21, "role", 'Form'), _class21);
-exports.RoleGrid = (_class22 = /*#__PURE__*/function (_RoleType22) {
-  (0, _inherits2["default"])(RoleGrid, _RoleType22);
-  var _super22 = _createSuper(RoleGrid);
-  function RoleGrid() {
-    (0, _classCallCheck2["default"])(this, RoleGrid);
+  return (0, _createClass2["default"])(RoleEmphasis);
+}(RoleType), (0, _defineProperty2["default"])(_class21, "role", 'emphasis'), _class21);
+exports.RoleFeed = (_class22 = /*#__PURE__*/function (_RoleType22) {
+  (0, _inherits2["default"])(RoleFeed, _RoleType22);
+  var _super22 = _createSuper(RoleFeed);
+  function RoleFeed() {
+    (0, _classCallCheck2["default"])(this, RoleFeed);
     return _super22.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleGrid);
-}(RoleType), (0, _defineProperty2["default"])(_class22, "role", 'Grid'), _class22);
-exports.RoleGridCell = (_class23 = /*#__PURE__*/function (_RoleType23) {
-  (0, _inherits2["default"])(RoleGridCell, _RoleType23);
-  var _super23 = _createSuper(RoleGridCell);
-  function RoleGridCell() {
-    (0, _classCallCheck2["default"])(this, RoleGridCell);
+  return (0, _createClass2["default"])(RoleFeed);
+}(RoleType), (0, _defineProperty2["default"])(_class22, "role", 'feed'), _class22);
+exports.RoleFigure = (_class23 = /*#__PURE__*/function (_RoleType23) {
+  (0, _inherits2["default"])(RoleFigure, _RoleType23);
+  var _super23 = _createSuper(RoleFigure);
+  function RoleFigure() {
+    (0, _classCallCheck2["default"])(this, RoleFigure);
     return _super23.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleGridCell);
-}(RoleType), (0, _defineProperty2["default"])(_class23, "role", 'GridCell'), _class23);
-exports.RoleGroup = (_class24 = /*#__PURE__*/function (_RoleType24) {
-  (0, _inherits2["default"])(RoleGroup, _RoleType24);
-  var _super24 = _createSuper(RoleGroup);
-  function RoleGroup() {
-    (0, _classCallCheck2["default"])(this, RoleGroup);
+  return (0, _createClass2["default"])(RoleFigure);
+}(RoleType), (0, _defineProperty2["default"])(_class23, "role", 'figure'), _class23);
+exports.RoleForm = (_class24 = /*#__PURE__*/function (_RoleType24) {
+  (0, _inherits2["default"])(RoleForm, _RoleType24);
+  var _super24 = _createSuper(RoleForm);
+  function RoleForm() {
+    (0, _classCallCheck2["default"])(this, RoleForm);
     return _super24.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleGroup);
-}(RoleType), (0, _defineProperty2["default"])(_class24, "role", 'Group'), _class24);
-exports.RoleHeading = (_class25 = /*#__PURE__*/function (_RoleType25) {
-  (0, _inherits2["default"])(RoleHeading, _RoleType25);
-  var _super25 = _createSuper(RoleHeading);
-  function RoleHeading() {
-    (0, _classCallCheck2["default"])(this, RoleHeading);
+  return (0, _createClass2["default"])(RoleForm);
+}(RoleType), (0, _defineProperty2["default"])(_class24, "role", 'form'), _class24);
+exports.RoleGeneric = (_class25 = /*#__PURE__*/function (_RoleType25) {
+  (0, _inherits2["default"])(RoleGeneric, _RoleType25);
+  var _super25 = _createSuper(RoleGeneric);
+  function RoleGeneric() {
+    (0, _classCallCheck2["default"])(this, RoleGeneric);
     return _super25.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleHeading);
-}(RoleType), (0, _defineProperty2["default"])(_class25, "role", 'Heading'), _class25);
-exports.RoleImg = (_class26 = /*#__PURE__*/function (_RoleType26) {
-  (0, _inherits2["default"])(RoleImg, _RoleType26);
-  var _super26 = _createSuper(RoleImg);
-  function RoleImg() {
-    (0, _classCallCheck2["default"])(this, RoleImg);
+  return (0, _createClass2["default"])(RoleGeneric);
+}(RoleType), (0, _defineProperty2["default"])(_class25, "role", 'generic'), _class25);
+exports.RoleGrid = (_class26 = /*#__PURE__*/function (_RoleType26) {
+  (0, _inherits2["default"])(RoleGrid, _RoleType26);
+  var _super26 = _createSuper(RoleGrid);
+  function RoleGrid() {
+    (0, _classCallCheck2["default"])(this, RoleGrid);
     return _super26.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleImg);
-}(RoleType), (0, _defineProperty2["default"])(_class26, "role", 'Img'), _class26);
-exports.RoleLink = (_class27 = /*#__PURE__*/function (_RoleType27) {
-  (0, _inherits2["default"])(RoleLink, _RoleType27);
-  var _super27 = _createSuper(RoleLink);
-  function RoleLink() {
-    (0, _classCallCheck2["default"])(this, RoleLink);
+  return (0, _createClass2["default"])(RoleGrid);
+}(RoleType), (0, _defineProperty2["default"])(_class26, "role", 'grid'), _class26);
+exports.RoleGridCell = (_class27 = /*#__PURE__*/function (_RoleType27) {
+  (0, _inherits2["default"])(RoleGridCell, _RoleType27);
+  var _super27 = _createSuper(RoleGridCell);
+  function RoleGridCell() {
+    (0, _classCallCheck2["default"])(this, RoleGridCell);
     return _super27.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleLink);
-}(RoleType), (0, _defineProperty2["default"])(_class27, "role", 'Link'), _class27);
-exports.RoleList = (_class28 = /*#__PURE__*/function (_RoleType28) {
-  (0, _inherits2["default"])(RoleList, _RoleType28);
-  var _super28 = _createSuper(RoleList);
-  function RoleList() {
-    (0, _classCallCheck2["default"])(this, RoleList);
+  return (0, _createClass2["default"])(RoleGridCell);
+}(RoleType), (0, _defineProperty2["default"])(_class27, "role", 'gridcell'), _class27);
+exports.RoleGroup = (_class28 = /*#__PURE__*/function (_RoleType28) {
+  (0, _inherits2["default"])(RoleGroup, _RoleType28);
+  var _super28 = _createSuper(RoleGroup);
+  function RoleGroup() {
+    (0, _classCallCheck2["default"])(this, RoleGroup);
     return _super28.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleList);
-}(RoleType), (0, _defineProperty2["default"])(_class28, "role", 'List'), _class28);
-exports.RoleListBox = (_class29 = /*#__PURE__*/function (_RoleType29) {
-  (0, _inherits2["default"])(RoleListBox, _RoleType29);
-  var _super29 = _createSuper(RoleListBox);
-  function RoleListBox() {
-    (0, _classCallCheck2["default"])(this, RoleListBox);
+  return (0, _createClass2["default"])(RoleGroup);
+}(RoleType), (0, _defineProperty2["default"])(_class28, "role", 'group'), _class28);
+exports.RoleHeading = (_class29 = /*#__PURE__*/function (_RoleType29) {
+  (0, _inherits2["default"])(RoleHeading, _RoleType29);
+  var _super29 = _createSuper(RoleHeading);
+  function RoleHeading() {
+    (0, _classCallCheck2["default"])(this, RoleHeading);
     return _super29.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleListBox);
-}(RoleType), (0, _defineProperty2["default"])(_class29, "role", 'ListBox'), _class29);
-exports.RoleListItem = (_class30 = /*#__PURE__*/function (_RoleType30) {
-  (0, _inherits2["default"])(RoleListItem, _RoleType30);
-  var _super30 = _createSuper(RoleListItem);
-  function RoleListItem() {
-    (0, _classCallCheck2["default"])(this, RoleListItem);
+  return (0, _createClass2["default"])(RoleHeading);
+}(RoleType), (0, _defineProperty2["default"])(_class29, "role", 'heading'), _class29);
+exports.RoleImg = (_class30 = /*#__PURE__*/function (_RoleType30) {
+  (0, _inherits2["default"])(RoleImg, _RoleType30);
+  var _super30 = _createSuper(RoleImg);
+  function RoleImg() {
+    (0, _classCallCheck2["default"])(this, RoleImg);
     return _super30.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleListItem);
-}(RoleType), (0, _defineProperty2["default"])(_class30, "role", 'ListItem'), _class30);
-exports.RoleLog = (_class31 = /*#__PURE__*/function (_RoleType31) {
-  (0, _inherits2["default"])(RoleLog, _RoleType31);
-  var _super31 = _createSuper(RoleLog);
-  function RoleLog() {
-    (0, _classCallCheck2["default"])(this, RoleLog);
+  return (0, _createClass2["default"])(RoleImg);
+}(RoleType), (0, _defineProperty2["default"])(_class30, "role", 'img'), _class30);
+exports.RoleInsertion = (_class31 = /*#__PURE__*/function (_RoleType31) {
+  (0, _inherits2["default"])(RoleInsertion, _RoleType31);
+  var _super31 = _createSuper(RoleInsertion);
+  function RoleInsertion() {
+    (0, _classCallCheck2["default"])(this, RoleInsertion);
     return _super31.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleLog);
-}(RoleType), (0, _defineProperty2["default"])(_class31, "role", 'Log'), _class31);
-exports.RoleMain = (_class32 = /*#__PURE__*/function (_RoleType32) {
-  (0, _inherits2["default"])(RoleMain, _RoleType32);
-  var _super32 = _createSuper(RoleMain);
-  function RoleMain() {
-    (0, _classCallCheck2["default"])(this, RoleMain);
+  return (0, _createClass2["default"])(RoleInsertion);
+}(RoleType), (0, _defineProperty2["default"])(_class31, "role", 'insertion'), _class31);
+exports.RoleLink = (_class32 = /*#__PURE__*/function (_RoleType32) {
+  (0, _inherits2["default"])(RoleLink, _RoleType32);
+  var _super32 = _createSuper(RoleLink);
+  function RoleLink() {
+    (0, _classCallCheck2["default"])(this, RoleLink);
     return _super32.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMain);
-}(RoleType), (0, _defineProperty2["default"])(_class32, "role", 'Main'), _class32);
-exports.RoleMarquee = (_class33 = /*#__PURE__*/function (_RoleType33) {
-  (0, _inherits2["default"])(RoleMarquee, _RoleType33);
-  var _super33 = _createSuper(RoleMarquee);
-  function RoleMarquee() {
-    (0, _classCallCheck2["default"])(this, RoleMarquee);
+  return (0, _createClass2["default"])(RoleLink);
+}(RoleType), (0, _defineProperty2["default"])(_class32, "role", 'link'), _class32);
+exports.RoleList = (_class33 = /*#__PURE__*/function (_RoleType33) {
+  (0, _inherits2["default"])(RoleList, _RoleType33);
+  var _super33 = _createSuper(RoleList);
+  function RoleList() {
+    (0, _classCallCheck2["default"])(this, RoleList);
     return _super33.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMarquee);
-}(RoleType), (0, _defineProperty2["default"])(_class33, "role", 'Marquee'), _class33);
-exports.RoleMath = (_class34 = /*#__PURE__*/function (_RoleType34) {
-  (0, _inherits2["default"])(RoleMath, _RoleType34);
-  var _super34 = _createSuper(RoleMath);
-  function RoleMath() {
-    (0, _classCallCheck2["default"])(this, RoleMath);
+  return (0, _createClass2["default"])(RoleList);
+}(RoleType), (0, _defineProperty2["default"])(_class33, "role", 'list'), _class33);
+exports.RoleListBox = (_class34 = /*#__PURE__*/function (_RoleType34) {
+  (0, _inherits2["default"])(RoleListBox, _RoleType34);
+  var _super34 = _createSuper(RoleListBox);
+  function RoleListBox() {
+    (0, _classCallCheck2["default"])(this, RoleListBox);
     return _super34.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMath);
-}(RoleType), (0, _defineProperty2["default"])(_class34, "role", 'Math'), _class34);
-exports.RoleMenu = (_class35 = /*#__PURE__*/function (_RoleType35) {
-  (0, _inherits2["default"])(RoleMenu, _RoleType35);
-  var _super35 = _createSuper(RoleMenu);
-  function RoleMenu() {
-    (0, _classCallCheck2["default"])(this, RoleMenu);
+  return (0, _createClass2["default"])(RoleListBox);
+}(RoleType), (0, _defineProperty2["default"])(_class34, "role", 'listbox'), (0, _defineProperty2["default"])(_class34, "props", {
+  orientation: TokenType.define('aria-orientation', 'vertical')
+}), _class34);
+exports.RoleListItem = (_class35 = /*#__PURE__*/function (_RoleType35) {
+  (0, _inherits2["default"])(RoleListItem, _RoleType35);
+  var _super35 = _createSuper(RoleListItem);
+  function RoleListItem() {
+    (0, _classCallCheck2["default"])(this, RoleListItem);
     return _super35.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMenu);
-}(RoleType), (0, _defineProperty2["default"])(_class35, "role", 'Menu'), _class35);
-exports.RoleMenuBar = (_class36 = /*#__PURE__*/function (_RoleType36) {
-  (0, _inherits2["default"])(RoleMenuBar, _RoleType36);
-  var _super36 = _createSuper(RoleMenuBar);
-  function RoleMenuBar() {
-    (0, _classCallCheck2["default"])(this, RoleMenuBar);
+  return (0, _createClass2["default"])(RoleListItem);
+}(RoleType), (0, _defineProperty2["default"])(_class35, "role", 'listitem'), _class35);
+exports.RoleLog = (_class36 = /*#__PURE__*/function (_RoleType36) {
+  (0, _inherits2["default"])(RoleLog, _RoleType36);
+  var _super36 = _createSuper(RoleLog);
+  function RoleLog() {
+    (0, _classCallCheck2["default"])(this, RoleLog);
     return _super36.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMenuBar);
-}(RoleType), (0, _defineProperty2["default"])(_class36, "role", 'MenuBar'), _class36);
-exports.RoleMenuItem = (_class37 = /*#__PURE__*/function (_RoleType37) {
-  (0, _inherits2["default"])(RoleMenuItem, _RoleType37);
-  var _super37 = _createSuper(RoleMenuItem);
-  function RoleMenuItem() {
-    (0, _classCallCheck2["default"])(this, RoleMenuItem);
+  return (0, _createClass2["default"])(RoleLog);
+}(RoleType), (0, _defineProperty2["default"])(_class36, "role", 'log'), (0, _defineProperty2["default"])(_class36, "props", {
+  live: TokenType.define('aria-live', 'polite')
+}), _class36);
+exports.RoleMain = (_class37 = /*#__PURE__*/function (_RoleType37) {
+  (0, _inherits2["default"])(RoleMain, _RoleType37);
+  var _super37 = _createSuper(RoleMain);
+  function RoleMain() {
+    (0, _classCallCheck2["default"])(this, RoleMain);
     return _super37.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMenuItem);
-}(RoleType), (0, _defineProperty2["default"])(_class37, "role", 'MenuItem'), _class37);
-exports.RoleMenuItemCheckBox = (_class38 = /*#__PURE__*/function (_RoleType38) {
-  (0, _inherits2["default"])(RoleMenuItemCheckBox, _RoleType38);
-  var _super38 = _createSuper(RoleMenuItemCheckBox);
-  function RoleMenuItemCheckBox() {
-    (0, _classCallCheck2["default"])(this, RoleMenuItemCheckBox);
+  return (0, _createClass2["default"])(RoleMain);
+}(RoleType), (0, _defineProperty2["default"])(_class37, "role", 'main'), _class37);
+exports.RoleMarquee = (_class38 = /*#__PURE__*/function (_RoleType38) {
+  (0, _inherits2["default"])(RoleMarquee, _RoleType38);
+  var _super38 = _createSuper(RoleMarquee);
+  function RoleMarquee() {
+    (0, _classCallCheck2["default"])(this, RoleMarquee);
     return _super38.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMenuItemCheckBox);
-}(RoleType), (0, _defineProperty2["default"])(_class38, "role", 'MenuItemCheckBox'), _class38);
-exports.RoleMenuItemRadio = (_class39 = /*#__PURE__*/function (_RoleType39) {
-  (0, _inherits2["default"])(RoleMenuItemRadio, _RoleType39);
-  var _super39 = _createSuper(RoleMenuItemRadio);
-  function RoleMenuItemRadio() {
-    (0, _classCallCheck2["default"])(this, RoleMenuItemRadio);
+  return (0, _createClass2["default"])(RoleMarquee);
+}(RoleType), (0, _defineProperty2["default"])(_class38, "role", 'marquee'), _class38);
+exports.RoleMath = (_class39 = /*#__PURE__*/function (_RoleType39) {
+  (0, _inherits2["default"])(RoleMath, _RoleType39);
+  var _super39 = _createSuper(RoleMath);
+  function RoleMath() {
+    (0, _classCallCheck2["default"])(this, RoleMath);
     return _super39.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleMenuItemRadio);
-}(RoleType), (0, _defineProperty2["default"])(_class39, "role", 'MenuItemRadio'), _class39);
-exports.RoleNavigation = (_class40 = /*#__PURE__*/function (_RoleType40) {
-  (0, _inherits2["default"])(RoleNavigation, _RoleType40);
-  var _super40 = _createSuper(RoleNavigation);
-  function RoleNavigation() {
-    (0, _classCallCheck2["default"])(this, RoleNavigation);
+  return (0, _createClass2["default"])(RoleMath);
+}(RoleType), (0, _defineProperty2["default"])(_class39, "role", 'math'), _class39);
+exports.RoleMenu = (_class40 = /*#__PURE__*/function (_RoleType40) {
+  (0, _inherits2["default"])(RoleMenu, _RoleType40);
+  var _super40 = _createSuper(RoleMenu);
+  function RoleMenu() {
+    (0, _classCallCheck2["default"])(this, RoleMenu);
     return _super40.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleNavigation);
-}(RoleType), (0, _defineProperty2["default"])(_class40, "role", 'Navigation'), _class40);
-exports.RoleNone = (_class41 = /*#__PURE__*/function (_RoleType41) {
-  (0, _inherits2["default"])(RoleNone, _RoleType41);
-  var _super41 = _createSuper(RoleNone);
-  function RoleNone() {
-    (0, _classCallCheck2["default"])(this, RoleNone);
+  return (0, _createClass2["default"])(RoleMenu);
+}(RoleType), (0, _defineProperty2["default"])(_class40, "role", 'menu'), (0, _defineProperty2["default"])(_class40, "props", {
+  orientation: TokenType.define('aria-orientation', 'vertical')
+}), _class40);
+exports.RoleMenuBar = (_class41 = /*#__PURE__*/function (_RoleType41) {
+  (0, _inherits2["default"])(RoleMenuBar, _RoleType41);
+  var _super41 = _createSuper(RoleMenuBar);
+  function RoleMenuBar() {
+    (0, _classCallCheck2["default"])(this, RoleMenuBar);
     return _super41.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleNone);
-}(RoleType), (0, _defineProperty2["default"])(_class41, "role", 'None'), _class41);
-exports.RoleNote = (_class42 = /*#__PURE__*/function (_RoleType42) {
-  (0, _inherits2["default"])(RoleNote, _RoleType42);
-  var _super42 = _createSuper(RoleNote);
-  function RoleNote() {
-    (0, _classCallCheck2["default"])(this, RoleNote);
+  return (0, _createClass2["default"])(RoleMenuBar);
+}(RoleType), (0, _defineProperty2["default"])(_class41, "role", 'menubar'), (0, _defineProperty2["default"])(_class41, "props", {
+  orientation: TokenType.define('aria-orientation', 'horizontal')
+}), _class41);
+exports.RoleMenuItem = (_class42 = /*#__PURE__*/function (_RoleType42) {
+  (0, _inherits2["default"])(RoleMenuItem, _RoleType42);
+  var _super42 = _createSuper(RoleMenuItem);
+  function RoleMenuItem() {
+    (0, _classCallCheck2["default"])(this, RoleMenuItem);
     return _super42.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleNote);
-}(RoleType), (0, _defineProperty2["default"])(_class42, "role", 'Note'), _class42);
-exports.RoleOption = (_class43 = /*#__PURE__*/function (_RoleType43) {
-  (0, _inherits2["default"])(RoleOption, _RoleType43);
-  var _super43 = _createSuper(RoleOption);
-  function RoleOption() {
-    (0, _classCallCheck2["default"])(this, RoleOption);
+  return (0, _createClass2["default"])(RoleMenuItem);
+}(RoleType), (0, _defineProperty2["default"])(_class42, "role", 'menuitem'), _class42);
+exports.RoleMenuItemCheckBox = (_class43 = /*#__PURE__*/function (_RoleType43) {
+  (0, _inherits2["default"])(RoleMenuItemCheckBox, _RoleType43);
+  var _super43 = _createSuper(RoleMenuItemCheckBox);
+  function RoleMenuItemCheckBox() {
+    (0, _classCallCheck2["default"])(this, RoleMenuItemCheckBox);
     return _super43.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleOption);
-}(RoleType), (0, _defineProperty2["default"])(_class43, "role", 'Option'), _class43);
-exports.RoleParagraph = (_class44 = /*#__PURE__*/function (_RoleType44) {
-  (0, _inherits2["default"])(RoleParagraph, _RoleType44);
-  var _super44 = _createSuper(RoleParagraph);
-  function RoleParagraph() {
-    (0, _classCallCheck2["default"])(this, RoleParagraph);
+  return (0, _createClass2["default"])(RoleMenuItemCheckBox);
+}(RoleType), (0, _defineProperty2["default"])(_class43, "role", 'menuitemcheckbox'), _class43);
+exports.RoleMenuItemRadio = (_class44 = /*#__PURE__*/function (_RoleType44) {
+  (0, _inherits2["default"])(RoleMenuItemRadio, _RoleType44);
+  var _super44 = _createSuper(RoleMenuItemRadio);
+  function RoleMenuItemRadio() {
+    (0, _classCallCheck2["default"])(this, RoleMenuItemRadio);
     return _super44.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleParagraph);
-}(RoleType), (0, _defineProperty2["default"])(_class44, "role", 'Paragraph'), _class44);
-exports.RolePresentation = (_class45 = /*#__PURE__*/function (_RoleType45) {
-  (0, _inherits2["default"])(RolePresentation, _RoleType45);
-  var _super45 = _createSuper(RolePresentation);
-  function RolePresentation() {
-    (0, _classCallCheck2["default"])(this, RolePresentation);
+  return (0, _createClass2["default"])(RoleMenuItemRadio);
+}(RoleType), (0, _defineProperty2["default"])(_class44, "role", 'menuitemradio'), _class44);
+exports.RoleMeter = (_class45 = /*#__PURE__*/function (_RoleType45) {
+  (0, _inherits2["default"])(RoleMeter, _RoleType45);
+  var _super45 = _createSuper(RoleMeter);
+  function RoleMeter() {
+    (0, _classCallCheck2["default"])(this, RoleMeter);
     return _super45.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RolePresentation);
-}(RoleType), (0, _defineProperty2["default"])(_class45, "role", 'Presentation'), _class45);
-exports.RoleProgressBar = (_class46 = /*#__PURE__*/function (_RoleType46) {
-  (0, _inherits2["default"])(RoleProgressBar, _RoleType46);
-  var _super46 = _createSuper(RoleProgressBar);
-  function RoleProgressBar() {
-    (0, _classCallCheck2["default"])(this, RoleProgressBar);
+  return (0, _createClass2["default"])(RoleMeter);
+}(RoleType), (0, _defineProperty2["default"])(_class45, "role", 'meter'), (0, _defineProperty2["default"])(_class45, "props", {
+  valueMin: NumberType.define('aria-valuemin', 0),
+  valueMax: NumberType.define('aria-valuemax', 100)
+}), _class45);
+exports.RoleNavigation = (_class46 = /*#__PURE__*/function (_RoleType46) {
+  (0, _inherits2["default"])(RoleNavigation, _RoleType46);
+  var _super46 = _createSuper(RoleNavigation);
+  function RoleNavigation() {
+    (0, _classCallCheck2["default"])(this, RoleNavigation);
     return _super46.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleProgressBar);
-}(RoleType), (0, _defineProperty2["default"])(_class46, "role", 'ProgressBar'), _class46);
-exports.RoleRadio = (_class47 = /*#__PURE__*/function (_RoleType47) {
-  (0, _inherits2["default"])(RoleRadio, _RoleType47);
-  var _super47 = _createSuper(RoleRadio);
-  function RoleRadio() {
-    (0, _classCallCheck2["default"])(this, RoleRadio);
+  return (0, _createClass2["default"])(RoleNavigation);
+}(RoleType), (0, _defineProperty2["default"])(_class46, "role", 'navigation'), _class46);
+exports.RoleNone = (_class47 = /*#__PURE__*/function (_RoleType47) {
+  (0, _inherits2["default"])(RoleNone, _RoleType47);
+  var _super47 = _createSuper(RoleNone);
+  function RoleNone() {
+    (0, _classCallCheck2["default"])(this, RoleNone);
     return _super47.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleRadio);
-}(RoleType), (0, _defineProperty2["default"])(_class47, "role", 'Radio'), _class47);
-exports.RoleRadioGroup = (_class48 = /*#__PURE__*/function (_RoleType48) {
-  (0, _inherits2["default"])(RoleRadioGroup, _RoleType48);
-  var _super48 = _createSuper(RoleRadioGroup);
-  function RoleRadioGroup() {
-    (0, _classCallCheck2["default"])(this, RoleRadioGroup);
+  return (0, _createClass2["default"])(RoleNone);
+}(RoleType), (0, _defineProperty2["default"])(_class47, "role", 'none'), _class47);
+exports.RoleNote = (_class48 = /*#__PURE__*/function (_RoleType48) {
+  (0, _inherits2["default"])(RoleNote, _RoleType48);
+  var _super48 = _createSuper(RoleNote);
+  function RoleNote() {
+    (0, _classCallCheck2["default"])(this, RoleNote);
     return _super48.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleRadioGroup);
-}(RoleType), (0, _defineProperty2["default"])(_class48, "role", 'RadioGroup'), _class48);
-exports.RoleRegion = (_class49 = /*#__PURE__*/function (_RoleType49) {
-  (0, _inherits2["default"])(RoleRegion, _RoleType49);
-  var _super49 = _createSuper(RoleRegion);
-  function RoleRegion() {
-    (0, _classCallCheck2["default"])(this, RoleRegion);
+  return (0, _createClass2["default"])(RoleNote);
+}(RoleType), (0, _defineProperty2["default"])(_class48, "role", 'note'), _class48);
+exports.RoleOption = (_class49 = /*#__PURE__*/function (_RoleType49) {
+  (0, _inherits2["default"])(RoleOption, _RoleType49);
+  var _super49 = _createSuper(RoleOption);
+  function RoleOption() {
+    (0, _classCallCheck2["default"])(this, RoleOption);
     return _super49.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleRegion);
-}(RoleType), (0, _defineProperty2["default"])(_class49, "role", 'Region'), _class49);
-exports.RoleRow = (_class50 = /*#__PURE__*/function (_RoleType50) {
-  (0, _inherits2["default"])(RoleRow, _RoleType50);
-  var _super50 = _createSuper(RoleRow);
-  function RoleRow() {
-    (0, _classCallCheck2["default"])(this, RoleRow);
+  return (0, _createClass2["default"])(RoleOption);
+}(RoleType), (0, _defineProperty2["default"])(_class49, "role", 'option'), (0, _defineProperty2["default"])(_class49, "props", {
+  selected: BooleanType.define(false)
+}), _class49);
+exports.RoleParagraph = (_class50 = /*#__PURE__*/function (_RoleType50) {
+  (0, _inherits2["default"])(RoleParagraph, _RoleType50);
+  var _super50 = _createSuper(RoleParagraph);
+  function RoleParagraph() {
+    (0, _classCallCheck2["default"])(this, RoleParagraph);
     return _super50.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleRow);
-}(RoleType), (0, _defineProperty2["default"])(_class50, "role", 'Row'), _class50);
-exports.RoleRowGroup = (_class51 = /*#__PURE__*/function (_RoleType51) {
-  (0, _inherits2["default"])(RoleRowGroup, _RoleType51);
-  var _super51 = _createSuper(RoleRowGroup);
-  function RoleRowGroup() {
-    (0, _classCallCheck2["default"])(this, RoleRowGroup);
+  return (0, _createClass2["default"])(RoleParagraph);
+}(RoleType), (0, _defineProperty2["default"])(_class50, "role", 'paragraph'), _class50);
+exports.RolePresentation = (_class51 = /*#__PURE__*/function (_RoleType51) {
+  (0, _inherits2["default"])(RolePresentation, _RoleType51);
+  var _super51 = _createSuper(RolePresentation);
+  function RolePresentation() {
+    (0, _classCallCheck2["default"])(this, RolePresentation);
     return _super51.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleRowGroup);
-}(RoleType), (0, _defineProperty2["default"])(_class51, "role", 'RowGroup'), _class51);
-exports.RoleRowHeader = (_class52 = /*#__PURE__*/function (_RoleType52) {
-  (0, _inherits2["default"])(RoleRowHeader, _RoleType52);
-  var _super52 = _createSuper(RoleRowHeader);
-  function RoleRowHeader() {
-    (0, _classCallCheck2["default"])(this, RoleRowHeader);
+  return (0, _createClass2["default"])(RolePresentation);
+}(RoleType), (0, _defineProperty2["default"])(_class51, "role", 'presentation'), _class51);
+exports.RoleProgressBar = (_class52 = /*#__PURE__*/function (_RoleType52) {
+  (0, _inherits2["default"])(RoleProgressBar, _RoleType52);
+  var _super52 = _createSuper(RoleProgressBar);
+  function RoleProgressBar() {
+    (0, _classCallCheck2["default"])(this, RoleProgressBar);
     return _super52.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleRowHeader);
-}(RoleType), (0, _defineProperty2["default"])(_class52, "role", 'RowHeader'), _class52);
-exports.RoleScrollBar = (_class53 = /*#__PURE__*/function (_RoleType53) {
-  (0, _inherits2["default"])(RoleScrollBar, _RoleType53);
-  var _super53 = _createSuper(RoleScrollBar);
-  function RoleScrollBar() {
-    (0, _classCallCheck2["default"])(this, RoleScrollBar);
+  return (0, _createClass2["default"])(RoleProgressBar);
+}(RoleType), (0, _defineProperty2["default"])(_class52, "role", 'progressbar'), (0, _defineProperty2["default"])(_class52, "props", {
+  valueMin: NumberType.define('aria-valuemin', 0),
+  valueMax: NumberType.define('aria-valuemax', 100)
+}), _class52);
+exports.RoleRadio = (_class53 = /*#__PURE__*/function (_RoleType53) {
+  (0, _inherits2["default"])(RoleRadio, _RoleType53);
+  var _super53 = _createSuper(RoleRadio);
+  function RoleRadio() {
+    (0, _classCallCheck2["default"])(this, RoleRadio);
     return _super53.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleScrollBar);
-}(RoleType), (0, _defineProperty2["default"])(_class53, "role", 'ScrollBar'), _class53);
-exports.RoleSearch = (_class54 = /*#__PURE__*/function (_RoleType54) {
-  (0, _inherits2["default"])(RoleSearch, _RoleType54);
-  var _super54 = _createSuper(RoleSearch);
-  function RoleSearch() {
-    (0, _classCallCheck2["default"])(this, RoleSearch);
+  return (0, _createClass2["default"])(RoleRadio);
+}(RoleType), (0, _defineProperty2["default"])(_class53, "role", 'radio'), _class53);
+exports.RoleRadioGroup = (_class54 = /*#__PURE__*/function (_RoleType54) {
+  (0, _inherits2["default"])(RoleRadioGroup, _RoleType54);
+  var _super54 = _createSuper(RoleRadioGroup);
+  function RoleRadioGroup() {
+    (0, _classCallCheck2["default"])(this, RoleRadioGroup);
     return _super54.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleSearch);
-}(RoleType), (0, _defineProperty2["default"])(_class54, "role", 'Search'), _class54);
-exports.RoleSearchBox = (_class55 = /*#__PURE__*/function (_RoleType55) {
-  (0, _inherits2["default"])(RoleSearchBox, _RoleType55);
-  var _super55 = _createSuper(RoleSearchBox);
-  function RoleSearchBox() {
-    (0, _classCallCheck2["default"])(this, RoleSearchBox);
+  return (0, _createClass2["default"])(RoleRadioGroup);
+}(RoleType), (0, _defineProperty2["default"])(_class54, "role", 'radiogroup'), _class54);
+exports.RoleRegion = (_class55 = /*#__PURE__*/function (_RoleType55) {
+  (0, _inherits2["default"])(RoleRegion, _RoleType55);
+  var _super55 = _createSuper(RoleRegion);
+  function RoleRegion() {
+    (0, _classCallCheck2["default"])(this, RoleRegion);
     return _super55.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleSearchBox);
-}(RoleType), (0, _defineProperty2["default"])(_class55, "role", 'SearchBox'), _class55);
-exports.RoleSectionHead = (_class56 = /*#__PURE__*/function (_RoleType56) {
-  (0, _inherits2["default"])(RoleSectionHead, _RoleType56);
-  var _super56 = _createSuper(RoleSectionHead);
-  function RoleSectionHead() {
-    (0, _classCallCheck2["default"])(this, RoleSectionHead);
+  return (0, _createClass2["default"])(RoleRegion);
+}(RoleType), (0, _defineProperty2["default"])(_class55, "role", 'region'), _class55);
+exports.RoleRow = (_class56 = /*#__PURE__*/function (_RoleType56) {
+  (0, _inherits2["default"])(RoleRow, _RoleType56);
+  var _super56 = _createSuper(RoleRow);
+  function RoleRow() {
+    (0, _classCallCheck2["default"])(this, RoleRow);
     return _super56.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleSectionHead);
-}(RoleType), (0, _defineProperty2["default"])(_class56, "role", 'SectionHead'), _class56);
-exports.RoleSeparator = (_class57 = /*#__PURE__*/function (_RoleType57) {
-  (0, _inherits2["default"])(RoleSeparator, _RoleType57);
-  var _super57 = _createSuper(RoleSeparator);
-  function RoleSeparator() {
-    (0, _classCallCheck2["default"])(this, RoleSeparator);
+  return (0, _createClass2["default"])(RoleRow);
+}(RoleType), (0, _defineProperty2["default"])(_class56, "role", 'row'), _class56);
+exports.RoleRowGroup = (_class57 = /*#__PURE__*/function (_RoleType57) {
+  (0, _inherits2["default"])(RoleRowGroup, _RoleType57);
+  var _super57 = _createSuper(RoleRowGroup);
+  function RoleRowGroup() {
+    (0, _classCallCheck2["default"])(this, RoleRowGroup);
     return _super57.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleSeparator);
-}(RoleType), (0, _defineProperty2["default"])(_class57, "role", 'Separator'), _class57);
-exports.RoleSlider = (_class58 = /*#__PURE__*/function (_RoleType58) {
-  (0, _inherits2["default"])(RoleSlider, _RoleType58);
-  var _super58 = _createSuper(RoleSlider);
-  function RoleSlider() {
-    (0, _classCallCheck2["default"])(this, RoleSlider);
+  return (0, _createClass2["default"])(RoleRowGroup);
+}(RoleType), (0, _defineProperty2["default"])(_class57, "role", 'rowgroup'), _class57);
+exports.RoleRowHeader = (_class58 = /*#__PURE__*/function (_RoleType58) {
+  (0, _inherits2["default"])(RoleRowHeader, _RoleType58);
+  var _super58 = _createSuper(RoleRowHeader);
+  function RoleRowHeader() {
+    (0, _classCallCheck2["default"])(this, RoleRowHeader);
     return _super58.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleSlider);
-}(RoleType), (0, _defineProperty2["default"])(_class58, "role", 'Slider'), _class58);
-exports.RoleSpinButton = (_class59 = /*#__PURE__*/function (_RoleType59) {
-  (0, _inherits2["default"])(RoleSpinButton, _RoleType59);
-  var _super59 = _createSuper(RoleSpinButton);
-  function RoleSpinButton() {
-    (0, _classCallCheck2["default"])(this, RoleSpinButton);
+  return (0, _createClass2["default"])(RoleRowHeader);
+}(RoleType), (0, _defineProperty2["default"])(_class58, "role", 'rowheader'), _class58);
+exports.RoleScrollBar = (_class59 = /*#__PURE__*/function (_RoleType59) {
+  (0, _inherits2["default"])(RoleScrollBar, _RoleType59);
+  var _super59 = _createSuper(RoleScrollBar);
+  function RoleScrollBar() {
+    (0, _classCallCheck2["default"])(this, RoleScrollBar);
     return _super59.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleSpinButton);
-}(RoleType), (0, _defineProperty2["default"])(_class59, "role", 'SpinButton'), _class59);
-exports.RoleStatus = (_class60 = /*#__PURE__*/function (_RoleType60) {
-  (0, _inherits2["default"])(RoleStatus, _RoleType60);
-  var _super60 = _createSuper(RoleStatus);
-  function RoleStatus() {
-    (0, _classCallCheck2["default"])(this, RoleStatus);
+  return (0, _createClass2["default"])(RoleScrollBar);
+}(RoleType), (0, _defineProperty2["default"])(_class59, "role", 'scrollbar'), (0, _defineProperty2["default"])(_class59, "props", {
+  orientation: TokenType.define('aria-orientation', 'vertical'),
+  valueMin: NumberType.define('aria-valuemin', 0),
+  valueMax: NumberType.define('aria-valuemax', 100)
+}), _class59);
+exports.RoleSearch = (_class60 = /*#__PURE__*/function (_RoleType60) {
+  (0, _inherits2["default"])(RoleSearch, _RoleType60);
+  var _super60 = _createSuper(RoleSearch);
+  function RoleSearch() {
+    (0, _classCallCheck2["default"])(this, RoleSearch);
     return _super60.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleStatus);
-}(RoleType), (0, _defineProperty2["default"])(_class60, "role", 'Status'), _class60);
-exports.RoleStrong = (_class61 = /*#__PURE__*/function (_RoleType61) {
-  (0, _inherits2["default"])(RoleStrong, _RoleType61);
-  var _super61 = _createSuper(RoleStrong);
-  function RoleStrong() {
-    (0, _classCallCheck2["default"])(this, RoleStrong);
+  return (0, _createClass2["default"])(RoleSearch);
+}(RoleType), (0, _defineProperty2["default"])(_class60, "role", 'search'), _class60);
+exports.RoleSearchBox = (_class61 = /*#__PURE__*/function (_RoleType61) {
+  (0, _inherits2["default"])(RoleSearchBox, _RoleType61);
+  var _super61 = _createSuper(RoleSearchBox);
+  function RoleSearchBox() {
+    (0, _classCallCheck2["default"])(this, RoleSearchBox);
     return _super61.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleStrong);
-}(RoleType), (0, _defineProperty2["default"])(_class61, "role", 'Strong'), _class61);
-exports.RoleSwitch = (_class62 = /*#__PURE__*/function (_RoleType62) {
-  (0, _inherits2["default"])(RoleSwitch, _RoleType62);
-  var _super62 = _createSuper(RoleSwitch);
-  function RoleSwitch() {
-    (0, _classCallCheck2["default"])(this, RoleSwitch);
+  return (0, _createClass2["default"])(RoleSearchBox);
+}(RoleType), (0, _defineProperty2["default"])(_class61, "role", 'searchbox'), _class61);
+exports.RoleSectionHead = (_class62 = /*#__PURE__*/function (_RoleType62) {
+  (0, _inherits2["default"])(RoleSectionHead, _RoleType62);
+  var _super62 = _createSuper(RoleSectionHead);
+  function RoleSectionHead() {
+    (0, _classCallCheck2["default"])(this, RoleSectionHead);
     return _super62.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleSwitch);
-}(RoleType), (0, _defineProperty2["default"])(_class62, "role", 'Switch'), _class62);
-exports.RoleTab = (_class63 = /*#__PURE__*/function (_RoleType63) {
-  (0, _inherits2["default"])(RoleTab, _RoleType63);
-  var _super63 = _createSuper(RoleTab);
-  function RoleTab() {
-    (0, _classCallCheck2["default"])(this, RoleTab);
+  return (0, _createClass2["default"])(RoleSectionHead);
+}(RoleType), (0, _defineProperty2["default"])(_class62, "role", 'sectionhead'), _class62);
+exports.RoleSeparator = (_class63 = /*#__PURE__*/function (_RoleType63) {
+  (0, _inherits2["default"])(RoleSeparator, _RoleType63);
+  var _super63 = _createSuper(RoleSeparator);
+  function RoleSeparator() {
+    (0, _classCallCheck2["default"])(this, RoleSeparator);
     return _super63.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTab);
-}(RoleType), (0, _defineProperty2["default"])(_class63, "role", 'Tab'), _class63);
-exports.RoleTabList = (_class64 = /*#__PURE__*/function (_RoleType64) {
-  (0, _inherits2["default"])(RoleTabList, _RoleType64);
-  var _super64 = _createSuper(RoleTabList);
-  function RoleTabList() {
-    (0, _classCallCheck2["default"])(this, RoleTabList);
+  return (0, _createClass2["default"])(RoleSeparator);
+}(RoleType), (0, _defineProperty2["default"])(_class63, "role", 'separator'), (0, _defineProperty2["default"])(_class63, "props", {
+  orientation: TokenType.define('aria-orientation', 'horizontal'),
+  valueMin: NumberType.define('aria-valuemin', 0),
+  valueMax: NumberType.define('aria-valuemax', 100)
+}), _class63);
+exports.RoleSlider = (_class64 = /*#__PURE__*/function (_RoleType64) {
+  (0, _inherits2["default"])(RoleSlider, _RoleType64);
+  var _super64 = _createSuper(RoleSlider);
+  function RoleSlider() {
+    (0, _classCallCheck2["default"])(this, RoleSlider);
     return _super64.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTabList);
-}(RoleType), (0, _defineProperty2["default"])(_class64, "role", 'TabList'), _class64);
-exports.RoleTabPanel = (_class65 = /*#__PURE__*/function (_RoleType65) {
-  (0, _inherits2["default"])(RoleTabPanel, _RoleType65);
-  var _super65 = _createSuper(RoleTabPanel);
-  function RoleTabPanel() {
-    (0, _classCallCheck2["default"])(this, RoleTabPanel);
+  return (0, _createClass2["default"])(RoleSlider);
+}(RoleType), (0, _defineProperty2["default"])(_class64, "role", 'slider'), (0, _defineProperty2["default"])(_class64, "props", {
+  orientation: TokenType.define('aria-orientation', 'horizontal'),
+  valueMin: NumberType.define('aria-valuemin', 0),
+  valueMax: NumberType.define('aria-valuemax', 100)
+}), _class64);
+exports.RoleSpinButton = (_class65 = /*#__PURE__*/function (_RoleType65) {
+  (0, _inherits2["default"])(RoleSpinButton, _RoleType65);
+  var _super65 = _createSuper(RoleSpinButton);
+  function RoleSpinButton() {
+    (0, _classCallCheck2["default"])(this, RoleSpinButton);
     return _super65.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTabPanel);
-}(RoleType), (0, _defineProperty2["default"])(_class65, "role", 'TabPanel'), _class65);
-exports.RoleTable = (_class66 = /*#__PURE__*/function (_RoleType66) {
-  (0, _inherits2["default"])(RoleTable, _RoleType66);
-  var _super66 = _createSuper(RoleTable);
-  function RoleTable() {
-    (0, _classCallCheck2["default"])(this, RoleTable);
+  return (0, _createClass2["default"])(RoleSpinButton);
+}(RoleType), (0, _defineProperty2["default"])(_class65, "role", 'spinbutton'), (0, _defineProperty2["default"])(_class65, "props", {
+  valueMin: NumberType.define('aria-valuemin', -Infinity),
+  valueMax: NumberType.define('aria-valuemax', Infinity),
+  valueNow: NumberType.define('aria-valuenow', 0)
+}), _class65);
+exports.RoleStatus = (_class66 = /*#__PURE__*/function (_RoleType66) {
+  (0, _inherits2["default"])(RoleStatus, _RoleType66);
+  var _super66 = _createSuper(RoleStatus);
+  function RoleStatus() {
+    (0, _classCallCheck2["default"])(this, RoleStatus);
     return _super66.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTable);
-}(RoleType), (0, _defineProperty2["default"])(_class66, "role", 'Table'), _class66);
-exports.RoleTerm = (_class67 = /*#__PURE__*/function (_RoleType67) {
-  (0, _inherits2["default"])(RoleTerm, _RoleType67);
-  var _super67 = _createSuper(RoleTerm);
-  function RoleTerm() {
-    (0, _classCallCheck2["default"])(this, RoleTerm);
+  return (0, _createClass2["default"])(RoleStatus);
+}(RoleType), (0, _defineProperty2["default"])(_class66, "role", 'status'), (0, _defineProperty2["default"])(_class66, "props", {
+  live: TokenType.define('aria-live', 'polite'),
+  atomic: BooleanType.define('aria-atomic', true)
+}), _class66);
+exports.RoleStrong = (_class67 = /*#__PURE__*/function (_RoleType67) {
+  (0, _inherits2["default"])(RoleStrong, _RoleType67);
+  var _super67 = _createSuper(RoleStrong);
+  function RoleStrong() {
+    (0, _classCallCheck2["default"])(this, RoleStrong);
     return _super67.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTerm);
-}(RoleType), (0, _defineProperty2["default"])(_class67, "role", 'Term'), _class67);
-exports.RoleTextBox = (_class68 = /*#__PURE__*/function (_RoleType68) {
-  (0, _inherits2["default"])(RoleTextBox, _RoleType68);
-  var _super68 = _createSuper(RoleTextBox);
-  function RoleTextBox() {
-    (0, _classCallCheck2["default"])(this, RoleTextBox);
+  return (0, _createClass2["default"])(RoleStrong);
+}(RoleType), (0, _defineProperty2["default"])(_class67, "role", 'strong'), _class67);
+exports.RoleSubscript = (_class68 = /*#__PURE__*/function (_RoleType68) {
+  (0, _inherits2["default"])(RoleSubscript, _RoleType68);
+  var _super68 = _createSuper(RoleSubscript);
+  function RoleSubscript() {
+    (0, _classCallCheck2["default"])(this, RoleSubscript);
     return _super68.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTextBox);
-}(RoleType), (0, _defineProperty2["default"])(_class68, "role", 'TextBox'), _class68);
-exports.RoleTimer = (_class69 = /*#__PURE__*/function (_RoleType69) {
-  (0, _inherits2["default"])(RoleTimer, _RoleType69);
-  var _super69 = _createSuper(RoleTimer);
-  function RoleTimer() {
-    (0, _classCallCheck2["default"])(this, RoleTimer);
+  return (0, _createClass2["default"])(RoleSubscript);
+}(RoleType), (0, _defineProperty2["default"])(_class68, "role", 'subscript'), _class68);
+exports.RoleSuperscript = (_class69 = /*#__PURE__*/function (_RoleType69) {
+  (0, _inherits2["default"])(RoleSuperscript, _RoleType69);
+  var _super69 = _createSuper(RoleSuperscript);
+  function RoleSuperscript() {
+    (0, _classCallCheck2["default"])(this, RoleSuperscript);
     return _super69.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTimer);
-}(RoleType), (0, _defineProperty2["default"])(_class69, "role", 'Timer'), _class69);
-exports.RoleToolBar = (_class70 = /*#__PURE__*/function (_RoleType70) {
-  (0, _inherits2["default"])(RoleToolBar, _RoleType70);
-  var _super70 = _createSuper(RoleToolBar);
-  function RoleToolBar() {
-    (0, _classCallCheck2["default"])(this, RoleToolBar);
+  return (0, _createClass2["default"])(RoleSuperscript);
+}(RoleType), (0, _defineProperty2["default"])(_class69, "role", 'superscript'), _class69);
+exports.RoleSwitch = (_class70 = /*#__PURE__*/function (_RoleType70) {
+  (0, _inherits2["default"])(RoleSwitch, _RoleType70);
+  var _super70 = _createSuper(RoleSwitch);
+  function RoleSwitch() {
+    (0, _classCallCheck2["default"])(this, RoleSwitch);
     return _super70.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleToolBar);
-}(RoleType), (0, _defineProperty2["default"])(_class70, "role", 'ToolBar'), _class70);
-exports.RoleToolTip = (_class71 = /*#__PURE__*/function (_RoleType71) {
-  (0, _inherits2["default"])(RoleToolTip, _RoleType71);
-  var _super71 = _createSuper(RoleToolTip);
-  function RoleToolTip() {
-    (0, _classCallCheck2["default"])(this, RoleToolTip);
+  return (0, _createClass2["default"])(RoleSwitch);
+}(RoleType), (0, _defineProperty2["default"])(_class70, "role", 'switch'), _class70);
+exports.RoleTab = (_class71 = /*#__PURE__*/function (_RoleType71) {
+  (0, _inherits2["default"])(RoleTab, _RoleType71);
+  var _super71 = _createSuper(RoleTab);
+  function RoleTab() {
+    (0, _classCallCheck2["default"])(this, RoleTab);
     return _super71.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleToolTip);
-}(RoleType), (0, _defineProperty2["default"])(_class71, "role", 'ToolTip'), _class71);
-exports.RoleTree = (_class72 = /*#__PURE__*/function (_RoleType72) {
-  (0, _inherits2["default"])(RoleTree, _RoleType72);
-  var _super72 = _createSuper(RoleTree);
-  function RoleTree() {
-    (0, _classCallCheck2["default"])(this, RoleTree);
+  return (0, _createClass2["default"])(RoleTab);
+}(RoleType), (0, _defineProperty2["default"])(_class71, "role", 'tab'), (0, _defineProperty2["default"])(_class71, "props", {
+  selected: BooleanType.define(false)
+}), _class71);
+exports.RoleTabList = (_class72 = /*#__PURE__*/function (_RoleType72) {
+  (0, _inherits2["default"])(RoleTabList, _RoleType72);
+  var _super72 = _createSuper(RoleTabList);
+  function RoleTabList() {
+    (0, _classCallCheck2["default"])(this, RoleTabList);
     return _super72.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTree);
-}(RoleType), (0, _defineProperty2["default"])(_class72, "role", 'Tree'), _class72);
-exports.RoleTreeGrid = (_class73 = /*#__PURE__*/function (_RoleType73) {
-  (0, _inherits2["default"])(RoleTreeGrid, _RoleType73);
-  var _super73 = _createSuper(RoleTreeGrid);
-  function RoleTreeGrid() {
-    (0, _classCallCheck2["default"])(this, RoleTreeGrid);
+  return (0, _createClass2["default"])(RoleTabList);
+}(RoleType), (0, _defineProperty2["default"])(_class72, "role", 'tablist'), (0, _defineProperty2["default"])(_class72, "props", {
+  orientation: TokenType.define('aria-orientation', 'horizontal')
+}), _class72);
+exports.RoleTabPanel = (_class73 = /*#__PURE__*/function (_RoleType73) {
+  (0, _inherits2["default"])(RoleTabPanel, _RoleType73);
+  var _super73 = _createSuper(RoleTabPanel);
+  function RoleTabPanel() {
+    (0, _classCallCheck2["default"])(this, RoleTabPanel);
     return _super73.apply(this, arguments);
   }
-  return (0, _createClass2["default"])(RoleTreeGrid);
-}(RoleType), (0, _defineProperty2["default"])(_class73, "role", 'TreeGrid'), _class73);
-exports.RoleTreeItem = (_class74 = /*#__PURE__*/function (_RoleType74) {
-  (0, _inherits2["default"])(RoleTreeItem, _RoleType74);
-  var _super74 = _createSuper(RoleTreeItem);
-  function RoleTreeItem() {
-    (0, _classCallCheck2["default"])(this, RoleTreeItem);
+  return (0, _createClass2["default"])(RoleTabPanel);
+}(RoleType), (0, _defineProperty2["default"])(_class73, "role", 'tabpanel'), _class73);
+exports.RoleTable = (_class74 = /*#__PURE__*/function (_RoleType74) {
+  (0, _inherits2["default"])(RoleTable, _RoleType74);
+  var _super74 = _createSuper(RoleTable);
+  function RoleTable() {
+    (0, _classCallCheck2["default"])(this, RoleTable);
     return _super74.apply(this, arguments);
   }
+  return (0, _createClass2["default"])(RoleTable);
+}(RoleType), (0, _defineProperty2["default"])(_class74, "role", 'table'), _class74);
+exports.RoleTerm = (_class75 = /*#__PURE__*/function (_RoleType75) {
+  (0, _inherits2["default"])(RoleTerm, _RoleType75);
+  var _super75 = _createSuper(RoleTerm);
+  function RoleTerm() {
+    (0, _classCallCheck2["default"])(this, RoleTerm);
+    return _super75.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTerm);
+}(RoleType), (0, _defineProperty2["default"])(_class75, "role", 'term'), _class75);
+exports.RoleTextBox = (_class76 = /*#__PURE__*/function (_RoleType76) {
+  (0, _inherits2["default"])(RoleTextBox, _RoleType76);
+  var _super76 = _createSuper(RoleTextBox);
+  function RoleTextBox() {
+    (0, _classCallCheck2["default"])(this, RoleTextBox);
+    return _super76.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTextBox);
+}(RoleType), (0, _defineProperty2["default"])(_class76, "role", 'textbox'), _class76);
+exports.RoleTime = (_class77 = /*#__PURE__*/function (_RoleType77) {
+  (0, _inherits2["default"])(RoleTime, _RoleType77);
+  var _super77 = _createSuper(RoleTime);
+  function RoleTime() {
+    (0, _classCallCheck2["default"])(this, RoleTime);
+    return _super77.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTime);
+}(RoleType), (0, _defineProperty2["default"])(_class77, "role", 'time'), _class77);
+exports.RoleTimer = (_class78 = /*#__PURE__*/function (_RoleType78) {
+  (0, _inherits2["default"])(RoleTimer, _RoleType78);
+  var _super78 = _createSuper(RoleTimer);
+  function RoleTimer() {
+    (0, _classCallCheck2["default"])(this, RoleTimer);
+    return _super78.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTimer);
+}(RoleType), (0, _defineProperty2["default"])(_class78, "role", 'timer'), _class78);
+exports.RoleToolBar = (_class79 = /*#__PURE__*/function (_RoleType79) {
+  (0, _inherits2["default"])(RoleToolBar, _RoleType79);
+  var _super79 = _createSuper(RoleToolBar);
+  function RoleToolBar() {
+    (0, _classCallCheck2["default"])(this, RoleToolBar);
+    return _super79.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleToolBar);
+}(RoleType), (0, _defineProperty2["default"])(_class79, "role", 'toolbar'), (0, _defineProperty2["default"])(_class79, "props", {
+  orientation: TokenType.define('aria-orientation', 'horizontal')
+}), _class79);
+exports.RoleToolTip = (_class80 = /*#__PURE__*/function (_RoleType80) {
+  (0, _inherits2["default"])(RoleToolTip, _RoleType80);
+  var _super80 = _createSuper(RoleToolTip);
+  function RoleToolTip() {
+    (0, _classCallCheck2["default"])(this, RoleToolTip);
+    return _super80.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleToolTip);
+}(RoleType), (0, _defineProperty2["default"])(_class80, "role", 'tooltip'), _class80);
+exports.RoleTree = (_class81 = /*#__PURE__*/function (_RoleType81) {
+  (0, _inherits2["default"])(RoleTree, _RoleType81);
+  var _super81 = _createSuper(RoleTree);
+  function RoleTree() {
+    (0, _classCallCheck2["default"])(this, RoleTree);
+    return _super81.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTree);
+}(RoleType), (0, _defineProperty2["default"])(_class81, "role", 'tree'), (0, _defineProperty2["default"])(_class81, "props", {
+  orientation: TokenType.define('aria-orientation', 'vertical')
+}), _class81);
+exports.RoleTreeGrid = (_class82 = /*#__PURE__*/function (_RoleType82) {
+  (0, _inherits2["default"])(RoleTreeGrid, _RoleType82);
+  var _super82 = _createSuper(RoleTreeGrid);
+  function RoleTreeGrid() {
+    (0, _classCallCheck2["default"])(this, RoleTreeGrid);
+    return _super82.apply(this, arguments);
+  }
+  return (0, _createClass2["default"])(RoleTreeGrid);
+}(RoleType), (0, _defineProperty2["default"])(_class82, "role", 'treegrid'), _class82);
+exports.RoleTreeItem = (_class83 = /*#__PURE__*/function (_RoleType83) {
+  (0, _inherits2["default"])(RoleTreeItem, _RoleType83);
+  var _super83 = _createSuper(RoleTreeItem);
+  function RoleTreeItem() {
+    (0, _classCallCheck2["default"])(this, RoleTreeItem);
+    return _super83.apply(this, arguments);
+  }
   return (0, _createClass2["default"])(RoleTreeItem);
-}(RoleType), (0, _defineProperty2["default"])(_class74, "role", 'TreeItem'), _class74);
+}(RoleType), (0, _defineProperty2["default"])(_class83, "role", 'treeitem'), _class83);
 
 /***/ }),
 /* 45 */
