@@ -2310,7 +2310,9 @@ var ElemType = /*#__PURE__*/function () {
      */
   }, {
     key: "__init",
-    value: function __init(node, parentNode) {
+    value: function __init() {
+      var node = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.node;
+      var parentNode = arguments.length > 1 ? arguments[1] : undefined;
       if (this.node) {
         return;
       }
