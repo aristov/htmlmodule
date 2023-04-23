@@ -20,7 +20,6 @@ class App1 extends SuperApp
 class App2 extends SuperApp
 {
   static defaultProps = {
-    ...this.defaultProps,
     current : 'step',
     children : 'foo',
   }
@@ -44,7 +43,7 @@ test('test #2', t => {
 test('test #3', t => {
   const app = App1.render()
 
-  t.is(app.toString(), '<div aria-current="date" aria-disabled="true"></div>')
+  t.is(app.toString(), '<div aria-hidden="false" aria-current="date" aria-disabled="true"></div>')
 })
 
 test('test #4', t => {
@@ -54,7 +53,7 @@ test('test #4', t => {
     children : 'foo',
   })
 
-  t.is(app.toString(), '<div aria-current="location" aria-disabled="true" aria-hidden="true">foo</div>')
+  t.is(app.toString(), '<div aria-hidden="true" aria-current="location" aria-disabled="true">foo</div>')
 })
 
 test('test #5', t => {
