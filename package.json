@@ -18,6 +18,7 @@
   "scripts": {
     "build": "webpack && NODE_ENV=production webpack",
     "coverage": "nyc --reporter=lcov npm test",
+    "coverage-html": "nyc --reporter=html npm test",
     "publish": "git push && git push --tags",
     "start": "ava --watch",
     "test": "ava"
