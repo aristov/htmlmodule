@@ -8,8 +8,8 @@ exports = module.exports = {
 }
 
 exports.AriaType = require('./lib/AriaType')
-exports.Attributes = require('./lib/Attributes')
 exports.AttrType = require('./lib/AttrType')
+exports.Attributes = require('./lib/Attributes')
 exports.BooleanType = require('./lib/BooleanType')
 exports.Class = require('./lib/Class')
 exports.ClassList = require('./lib/ClassList')
@@ -21,6 +21,7 @@ exports.HtmlType = require('./lib/HtmlType')
 exports.Id = require('./lib/Id')
 exports.InnerHTML = require('./lib/InnerHTML')
 exports.InnerText = require('./lib/InnerText')
+exports.NumberType = require('./lib/NumberType')
 exports.PropType = require('./lib/PropType')
 exports.RoleType = require('./lib/RoleType')
 exports.Style = require('./lib/Style')

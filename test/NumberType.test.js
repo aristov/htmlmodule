@@ -20,7 +20,7 @@ test('test #1', t => {
   const app = App.render()
 
   t.is(app.toString(), '<div class="App"></div>')
-  t.is(app.valueNow, 0)
+  t.is(app.valueNow, NaN)
 
   app.setState({ valueNow : 42 })
 
@@ -30,5 +30,5 @@ test('test #1', t => {
   app.setState({ valueNow : null })
 
   t.is(app.toString(), '<div class="App"></div>')
-  t.is(app.valueNow, 0)
+  t.is(app.valueNow, NaN)
 })
