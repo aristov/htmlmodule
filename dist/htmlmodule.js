@@ -26,8 +26,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  */
 exports = module.exports = _objectSpread(_objectSpread({}, __webpack_require__(3)), __webpack_require__(44));
 exports.AriaType = __webpack_require__(30);
-exports.Attributes = __webpack_require__(32);
 exports.AttrType = __webpack_require__(12);
+exports.Attributes = __webpack_require__(32);
 exports.BooleanType = __webpack_require__(13);
 exports.Class = __webpack_require__(34);
 exports.ClassList = __webpack_require__(35);
@@ -39,6 +39,7 @@ exports.HtmlType = __webpack_require__(17);
 exports.Id = __webpack_require__(38);
 exports.InnerHTML = __webpack_require__(39);
 exports.InnerText = __webpack_require__(43);
+exports.NumberType = __webpack_require__(16);
 exports.PropType = __webpack_require__(33);
 exports.RoleType = __webpack_require__(42);
 exports.Style = __webpack_require__(40);
@@ -1816,7 +1817,7 @@ var NumberType = /*#__PURE__*/function (_AttrType) {
   }]);
   return NumberType;
 }(AttrType);
-(0, _defineProperty2["default"])(NumberType, "defaultValue", 0);
+(0, _defineProperty2["default"])(NumberType, "defaultValue", NaN);
 module.exports = NumberType;
 
 /***/ }),
@@ -1935,7 +1936,7 @@ var ElemType = /*#__PURE__*/function () {
       writable: true,
       value: _objectSpread({
         children: null
-      }, this.constructor.defaultProps)
+      }, this.constructor.__defaultProps)
     });
     if ((props === null || props === void 0 ? void 0 : props.constructor) === Object) {
       Object.assign(this.props, props);
@@ -2866,6 +2867,9 @@ var ElemType = /*#__PURE__*/function () {
       Object.defineProperties(this, {
         __props: {
           value: _objectSpread(_objectSpread({}, this.__props), this.props)
+        },
+        __defaultProps: {
+          value: _objectSpread(_objectSpread({}, this.__defaultProps), this.defaultProps)
         },
         __sampleNode: {
           value: this.__createNode()
@@ -4043,6 +4047,23 @@ var Style = /*#__PURE__*/function (_AttrType) {
     return _super.apply(this, arguments);
   }
   (0, _createClass2["default"])(Style, null, [{
+    key: "get",
+    value:
+    /**
+     * @param {ElemType} elem
+     * @param {string} prop
+     * @return {CSSStyleDeclaration}
+     */
+    function get(elem, prop) {
+      return elem.node.style;
+    }
+
+    /**
+     * @param {ElemType} elem
+     * @param {string} prop
+     * @param {string|{}|null} value
+     */
+  }, {
     key: "set",
     value: function set(elem, prop, value) {
       if (typeof value === 'string' || value === null) {
