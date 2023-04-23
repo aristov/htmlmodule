@@ -52,7 +52,7 @@ test('test #1', async t => {
   t.is(elem.node.className, 'App foo')
   t.is(elem.node.hidden, true)
   t.is(elem.node.getAttribute('aria-label'), 'bar')
-  t.is(elem.node.style.display, 'flex')
+  t.is(elem.style.display, 'flex')
   t.is(elem.node.href, 'http://example.com/home')
   t.is(spy.callCount, 0)
 
@@ -71,7 +71,7 @@ test('test #1', async t => {
   t.is(elem.node.className, 'App foo')
   t.is(elem.node.hidden, true)
   t.is(elem.node.getAttribute('aria-label'), 'bar')
-  t.is(elem.node.style.display, 'flex')
+  t.is(elem.style.display, 'flex')
   t.is(elem.node.href, 'http://example.com/home')
   t.is(spy.callCount, 0)
 
@@ -90,7 +90,7 @@ test('test #1', async t => {
   t.is(elem.node.className, 'App bar')
   t.is(elem.node.hidden, false)
   t.is(elem.node.getAttribute('aria-label'), 'bat')
-  t.is(elem.node.style.display, 'grid')
+  t.is(elem.style.display, 'grid')
   t.is(elem.node.href, 'http://example.com/about')
   t.is(spy.callCount, 1)
 
