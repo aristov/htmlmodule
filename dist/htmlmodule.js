@@ -2327,7 +2327,7 @@ var ElemType = /*#__PURE__*/function () {
       this.init();
       this.__assignProps();
       this.assign();
-      this.__children = this.render();
+      this.__children = this.parent === null ? undefined : this.render();
       this.__setRefs();
       if (this.parent === undefined) {
         node || (parentNode === null || parentNode === void 0 ? void 0 : parentNode.append(this.node));
@@ -2557,6 +2557,7 @@ var ElemType = /*#__PURE__*/function () {
           } else node.append(nodeA);
         }
         if (childA.constructor !== childB.constructor) {
+          childB.__parent = this;
           childA.__replaceElem(childB);
           continue;
         }
@@ -2604,6 +2605,7 @@ var ElemType = /*#__PURE__*/function () {
         if (childA.props && childB.props) {
           if (childA.tagName === childB.tagName && childA.props.key === childB.props.key) {
             if (childA.constructor !== childB.constructor) {
+              childB.__parent = this;
               childA.__replaceElem(childB);
               continue;
             }
@@ -2651,14 +2653,12 @@ var ElemType = /*#__PURE__*/function () {
     value: function __replaceElem(elem) {
       var node = this.node;
       var children = this.children;
-      var parent = this.__parent;
       this.children = [];
       this.vnode = this.__createVNode();
       this.__resetProps();
       this.__destroy(true);
       this.node = this.__createNode();
       elem.children = children;
-      elem.__parent = parent;
       elem.__init(node);
     }
 
@@ -2689,7 +2689,7 @@ var ElemType = /*#__PURE__*/function () {
     value: function __update() {
       this.parent = undefined;
       this.assign();
-      this.__children = this.render();
+      this.__children = this.parent === null ? undefined : this.render();
       this.__setRefs();
       if (this.parent === undefined) {
         if (this.__node) {
