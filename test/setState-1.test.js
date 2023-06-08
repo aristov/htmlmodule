@@ -1,5 +1,5 @@
-const test = require('ava')
-const { HtmlArticle, HtmlButton, HtmlSection } = require('..')
+import test from 'ava'
+import { HtmlArticle, HtmlButton, HtmlSection } from '../index.js'
 
 class Article extends HtmlArticle
 {

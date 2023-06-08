@@ -1,6 +1,8 @@
-const test = require('ava')
-const { HTMLDivElement } = require('xwindow')
-const { ElemType, PropType, HtmlA, HtmlB, HtmlI, HtmlP } = require('..')
+import test from 'ava'
+import window from 'xwindow'
+import { ElemType, PropType, HtmlA, HtmlB, HtmlI, HtmlP } from '../index.js'
+
+const { HTMLDivElement } = window
 
 test('test #1', t => {
   class App extends ElemType

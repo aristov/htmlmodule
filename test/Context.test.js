@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType, Context } = require('..')
+import test from 'ava'
+import { ElemType, Context } from '../index.js'
 
 const ChildContext = new Context(null)
 

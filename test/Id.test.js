@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType, Id } = require('..')
+import test from 'ava'
+import { ElemType, Id } from '../index.js'
 
 test('generate', t => {
   const app = ElemType.render({

@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType, HtmlA, HtmlB, HtmlDiv } = require('..')
+import test from 'ava'
+import { ElemType, HtmlA, HtmlB, HtmlDiv } from '../index.js'
 
 test('test #1', t => {
   let div1, div2, a, b

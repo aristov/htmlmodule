@@ -1,5 +1,5 @@
-const test = require('ava')
-const { HtmlInput } = require('..')
+import test from 'ava'
+import { HtmlInput } from '../index.js'
 
 let value = 'foo'
 

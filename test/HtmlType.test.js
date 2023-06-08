@@ -1,6 +1,8 @@
-const test = require('ava')
-const { HTMLDivElement } = require('xwindow')
-const { HtmlType, HtmlInput } = require('..')
+import test from 'ava'
+import window from 'xwindow'
+import { HtmlType, HtmlInput } from '../index.js'
+
+const { HTMLDivElement } = window
 
 test('test #1', t => {
   const elem = HtmlType.render({

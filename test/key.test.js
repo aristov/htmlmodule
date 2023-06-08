@@ -1,6 +1,6 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { HtmlUl, HtmlLi } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import { HtmlUl, HtmlLi } from '../index.js'
 
 let li0, li1, li2, li3, li4, li1A
 

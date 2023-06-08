@@ -1,7 +1,9 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { CustomEvent, Event, window } = require('xwindow')
-const { ElemType, HtmlType } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import window from 'xwindow'
+import { ElemType, HtmlType } from '../index.js'
+
+const { CustomEvent, Event } = window
 
 test('onload', t => {
   class App extends ElemType

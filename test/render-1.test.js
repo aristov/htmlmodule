@@ -1,7 +1,9 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { document } = require('xwindow')
-const { ElemType } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import window from 'xwindow'
+import { ElemType } from '../index.js'
+
+const { document } = window
 
 test('parentNode', t => {
   const childMount = sinon.spy()

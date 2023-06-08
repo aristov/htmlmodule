@@ -1,6 +1,6 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { ElemType, HtmlSpan } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import { ElemType, HtmlSpan } from '../index.js'
 
 const onclick1 = sinon.spy()
 const onclick2 = sinon.spy()

@@ -1,6 +1,6 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { ElemType } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import { ElemType } from '../index.js'
 
 let spy
 

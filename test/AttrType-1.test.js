@@ -1,7 +1,9 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { MutationObserver } = require('xwindow')
-const { AttrType, ElemType } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import window from 'xwindow'
+import { AttrType, ElemType } from '../index.js'
+
+const { MutationObserver } = window
 
 class AriaHidden extends AttrType
 {

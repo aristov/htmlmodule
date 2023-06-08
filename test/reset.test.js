@@ -1,5 +1,5 @@
-const test = require('ava')
-const { HtmlAudio, ElemType, PropType } = require('..')
+import test from 'ava'
+import { HtmlAudio, ElemType, PropType } from '../index.js'
 
 test('test #1', t => {
   class App extends HtmlAudio

@@ -1,6 +1,8 @@
-const test = require('ava')
-const { document } = require('xwindow')
-const { HtmlBody, HtmlH1 } = require('..')
+import test from 'ava'
+import window from 'xwindow'
+import { HtmlBody, HtmlH1 } from '../index.js'
+
+const { document } =  window
 
 test('test #1', t => {
   class App extends HtmlBody

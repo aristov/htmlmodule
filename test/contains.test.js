@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType } = require('..')
+import test from 'ava'
+import { ElemType } from '../index.js'
 
 test('test #1', t => {
   const childA = new ElemType()

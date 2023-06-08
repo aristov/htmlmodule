@@ -1,7 +1,8 @@
-const window = require('xwindow')
-const test = require('ava')
-const sinon = require('sinon')
-const { HtmlType } = require('..')
+import window from 'xwindow'
+import test from 'ava'
+import sinon from 'sinon'
+import { HtmlType } from '../index.js'
+
 const { MutationObserver } = window
 
 class Test extends HtmlType

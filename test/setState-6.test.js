@@ -1,7 +1,8 @@
-const window = require('xwindow')
-const test = require('ava')
-const sinon = require('sinon')
-const { ElemType } = require('..')
+import window from 'xwindow'
+import test from 'ava'
+import sinon from 'sinon'
+import { ElemType } from '../index.js'
+
 const { MutationObserver } = window
 
 class App extends ElemType

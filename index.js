@@ -2,30 +2,25 @@
  * @module htmlmodule
  * @author Vyacheslav Aristov <vv.aristov@gmail.com>
  */
-exports = module.exports = {
-  ...require('./lib/HtmlModule'),
-  ...require('./lib/AriaModule'),
-}
-
-exports.AriaType = require('./lib/AriaType')
-exports.AttrType = require('./lib/AttrType')
-exports.Attributes = require('./lib/Attributes')
-exports.BooleanType = require('./lib/BooleanType')
-exports.Class = require('./lib/Class')
-exports.ClassList = require('./lib/ClassList')
-exports.Context = require('./lib/Context')
-exports.Dataset = require('./lib/Dataset')
-exports.ElemType = require('./lib/ElemType')
-exports.EventType = require('./lib/EventType')
-exports.HtmlType = require('./lib/HtmlType')
-exports.Id = require('./lib/Id')
-exports.InnerHTML = require('./lib/InnerHTML')
-exports.InnerText = require('./lib/InnerText')
-exports.NumberType = require('./lib/NumberType')
-exports.PropType = require('./lib/PropType')
-exports.RoleType = require('./lib/RoleType')
-exports.Style = require('./lib/Style')
-exports.TextType = require('./lib/TextType')
-exports.TokenType = require('./lib/TokenType')
-
-exports.window = require('xwindow')
+export * from './lib/AriaModule.js'
+export * from './lib/AriaType.js'
+export * from './lib/AttrType.js'
+export * from './lib/Attributes.js'
+export * from './lib/BooleanType.js'
+export * from './lib/Class.js'
+export * from './lib/ClassList.js'
+export * from './lib/Context.js'
+export * from './lib/Dataset.js'
+export * from './lib/ElemType.js'
+export * from './lib/EventType.js'
+export * from './lib/HtmlModule.js'
+export * from './lib/HtmlType.js'
+export * from './lib/Id.js'
+export * from './lib/InnerHTML.js'
+export * from './lib/InnerText.js'
+export * from './lib/NumberType.js'
+export * from './lib/PropType.js'
+export * from './lib/RoleType.js'
+export * from './lib/Style.js'
+export * from './lib/TextType.js'
+export * from './lib/TokenType.js'

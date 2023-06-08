@@ -1,6 +1,8 @@
-const test = require('ava')
-const { SVGElement } = require('xwindow')
-const { AttrType, ElemType } = require('..')
+import test from 'ava'
+import window from 'xwindow'
+import { AttrType, ElemType } from '../index.js'
+
+const { SVGElement } =  window
 
 const SVG_NAMESPACE_URI = 'http://www.w3.org/2000/svg'
 
