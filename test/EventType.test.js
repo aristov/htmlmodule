@@ -56,7 +56,9 @@ test('relatedTarget', t => {
   t.is(onfocusB.args[0][0].target, buttonB)
   t.is(onfocusB.args[0][0].relatedTarget, buttonA)
 
-  document.body.innerHTML = ''
+  HtmlForm.destroy(form)
+
+  t.is(document.body.innerHTML, '')
 })
 
 test('stopPropagation', t => {

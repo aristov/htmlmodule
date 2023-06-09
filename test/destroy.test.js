@@ -3,7 +3,7 @@ import test from 'ava'
 import sinon from 'sinon'
 import { ElemType } from '../index.js'
 
-const { document } = window
+const document = window.document.implementation.createHTMLDocument()
 
 let spy
 

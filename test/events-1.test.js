@@ -3,7 +3,7 @@ import sinon from 'sinon'
 import window from 'xwindow'
 import { ElemType, HtmlType } from '../index.js'
 
-const { CustomEvent, Event } = window
+const { CustomEvent, Event, document } = window
 
 test('onload', t => {
   class App extends ElemType
@@ -218,7 +218,7 @@ test('focus + blur', t => {
     tabIndex : 0,
     onfocus,
     onblur,
-  }, window.document.body)
+  }, document.body)
 
   t.is(elem.toString(), '<div tabindex="0"></div>')
 
@@ -232,5 +232,7 @@ test('focus + blur', t => {
   t.is(onfocus.callCount, 1)
   t.is(onblur.callCount, 1)
 
-  window.document.body.innerHTML = ''
+  HtmlType.destroy(elem)
+  
+  t.is(document.body.innerHTML, '')
 })
