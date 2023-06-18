@@ -1,5 +1,5 @@
-const test = require('ava')
-const lib = require('../lib/HtmlModule')
+import test from 'ava'
+import * as lib from '../lib/HtmlModule.js'
 
 test('test #1', t => {
   t.is(lib.HtmlA.render().toString(), '<a></a>')

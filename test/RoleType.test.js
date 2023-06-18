@@ -1,5 +1,5 @@
-const test = require('ava')
-const { RoleArticle, RoleButton, RoleRegion, RoleType } = require('..')
+import test from 'ava'
+import { RoleArticle, RoleButton, RoleRegion, RoleType } from '../index.js'
 
 class Button extends RoleType
 {

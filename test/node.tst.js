@@ -1,6 +1,8 @@
-const test = require('ava')
-const { ElemType } = require('..')
-const { document } = require('xwindow')
+import test from 'ava'
+import window from '../lib/window.cjs'
+import { ElemType } from '../index.js'
+
+const { document } =  window
 
 test('test #1', t => {
   const node = document.createElement('div')

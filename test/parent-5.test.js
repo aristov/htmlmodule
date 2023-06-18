@@ -1,6 +1,6 @@
-const test = require('ava')
-const window = require('xwindow')
-const { ElemType, HtmlSpan } = require('..')
+import test from 'ava'
+import window from '../lib/window.cjs'
+import { ElemType, HtmlSpan } from '../index.js'
 
 let document, elem
 

@@ -1,6 +1,8 @@
-const test = require('ava')
-const { HTMLMetaElement, HTMLLinkElement } = require('xwindow')
-const { ElemType } = require('..')
+import test from 'ava'
+import window from '../lib/window.cjs'
+import { ElemType } from '../index.js'
+
+const { HTMLMetaElement, HTMLLinkElement } =  window
 
 test('test #1', t => {
   class Bar extends ElemType

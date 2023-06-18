@@ -1,9 +1,9 @@
-const test = require('ava')
-const sinon = require('sinon')
-const window = require('xwindow')
-const { AttrType, HtmlType } = require('..')
-const { MutationObserver } = window
+import test from 'ava'
+import sinon from 'sinon'
+import window from '../lib/window.cjs'
+import { AttrType, HtmlType } from '../index.js'
 
+const { MutationObserver } = window
 const document = window.document.implementation.createHTMLDocument('test')
 
 document.head.innerHTML = '<base href="http://example.com">'

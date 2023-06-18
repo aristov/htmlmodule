@@ -1,5 +1,5 @@
-const test = require('ava')
-const { HtmlType, HtmlH1 } = require('..')
+import test from 'ava'
+import { HtmlType, HtmlH1 } from '../index.js'
 
 class App extends HtmlType
 {

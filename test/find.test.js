@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType } = require('..')
+import test from 'ava'
+import { ElemType } from '../index.js'
 
 class Child extends ElemType
 {
@@ -57,17 +57,20 @@ test('test #1', t => {
 })
 
 test('filter', t => {
+  const child1 = new Child({ id : 'id1' })
+  const child2 = new Child({ id : 'id2' })
   const child3 = new Child({ id : 'id3' })
+  const child4 = new Child({ id : 'id4', hidden : true })
+  const child5 = new Child({ id : 'id5' })
   const elem = ElemType.render([
-    new Child({ id : 'id1' }),
+    child1,
     new ElemType([
-      new Child({ id : 'id2' }),
+      child2,
       child3,
-      new Child({ id : 'id4' }),
+      child4,
     ]),
-    new Child({ id : 'id5' }),
+    child5,
   ])
-  const result = elem.find(Child, item => item.id === 'id3')
 
   t.is(elem.toString(),
     '<div>' +
@@ -75,9 +78,19 @@ test('filter', t => {
     '<div>' +
     '<div class="Child" id="id2"></div>' +
     '<div class="Child" id="id3"></div>' +
-    '<div class="Child" id="id4"></div>' +
+    '<div class="Child" id="id4" aria-hidden="true"></div>' +
     '</div>' +
     '<div class="Child" id="id5"></div>' +
     '</div>')
-  t.is(result, child3)
+  t.is(elem.find(Child, item => item.id === 'id1'), child1)
+  t.is(elem.find(Child, item => item.id === 'id2'), child2)
+  t.is(elem.find(Child, item => item.id === 'id3'), child3)
+  t.is(elem.find(Child, item => item.id === 'id4'), child4)
+  t.is(elem.find(Child, item => item.id === 'id5'), child5)
+  t.is(elem.find(Child, ['id', 'id1']), child1)
+  t.is(elem.find(Child, ['id', 'id2']), child2)
+  t.is(elem.find(Child, ['id', 'id3']), child3)
+  t.is(elem.find(Child, ['id', 'id4']), child4)
+  t.is(elem.find(Child, ['id', 'id5']), child5)
+  t.is(elem.find(Child, 'hidden'), child4)
 })

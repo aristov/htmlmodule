@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType, HtmlA, HtmlB } = require('..')
+import test from 'ava'
+import { ElemType, HtmlA, HtmlB } from '../index.js'
 
 class A extends HtmlA
 {

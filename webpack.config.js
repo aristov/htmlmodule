@@ -1,4 +1,4 @@
-module.exports = exports = {
+const config = {
   mode : 'none',
   entry : './index.js',
   output : {
@@ -17,7 +17,6 @@ module.exports = exports = {
           loader : 'babel-loader',
           options : {
             plugins : [
-              '@babel/plugin-transform-modules-commonjs',
               '@babel/plugin-transform-runtime',
             ],
             presets : ['@babel/preset-env'],
@@ -29,8 +28,10 @@ module.exports = exports = {
 }
 
 if(process.env.NODE_ENV === 'production') {
-  exports.output.filename = 'htmlmodule.min.js'
-  exports.optimization = {
+  config.output.filename = 'htmlmodule.min.js'
+  config.optimization = {
     minimize : true,
   }
 }
+
+export default config

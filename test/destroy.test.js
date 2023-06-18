@@ -1,7 +1,9 @@
-const { document } = require('xwindow')
-const test = require('ava')
-const sinon = require('sinon')
-const { ElemType } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import window from '../lib/window.cjs'
+import { ElemType } from '../index.js'
+
+const document = window.document.implementation.createHTMLDocument()
 
 let spy
 

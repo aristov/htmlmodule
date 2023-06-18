@@ -1,5 +1,5 @@
-const test = require('ava')
-const { HtmlDiv } = require('..')
+import test from 'ava'
+import { HtmlDiv } from '../index.js'
 
 class App extends HtmlDiv
 {

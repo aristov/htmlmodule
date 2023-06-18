@@ -1,5 +1,5 @@
-const test = require('ava')
-const {
+import test from 'ava'
+import {
   HtmlDiv,
   HtmlInput,
   HtmlOutput,
@@ -9,7 +9,7 @@ const {
   HtmlLabel,
   HtmlAudio,
   HtmlTextArea,
-} = require('..')
+} from '../index.js'
 
 class App extends HtmlDiv
 {

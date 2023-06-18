@@ -1,6 +1,6 @@
-const window = require('xwindow')
-const test = require('ava')
-const { ElemType, HtmlButton } = require('..')
+import test from 'ava'
+import window from '../lib/window.cjs'
+import { ElemType, HtmlButton } from '../index.js'
 
 let document
 

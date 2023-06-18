@@ -1,6 +1,8 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { HtmlDiv, HtmlA, HtmlB, HtmlBr, HtmlSpan, window } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import window from '../lib/window.cjs'
+import { HtmlDiv, HtmlA, HtmlB, HtmlBr, HtmlSpan } from '../index.js'
+
 const { DocumentFragment } = window
 
 const parentInit = sinon.spy()

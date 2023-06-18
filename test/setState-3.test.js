@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType, HtmlInput, HtmlLabel } = require('..')
+import test from 'ava'
+import { ElemType, HtmlInput, HtmlLabel } from '../index.js'
 
 class App extends ElemType
 {

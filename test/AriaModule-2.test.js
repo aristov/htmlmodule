@@ -1,5 +1,5 @@
-const test = require('ava')
-const lib = require('../lib/AriaModule')
+import test from 'ava'
+import * as lib from '../lib/AriaModule.js'
 
 test('test #1', t => {
   t.is(lib.RoleAlert.render().live, 'assertive')

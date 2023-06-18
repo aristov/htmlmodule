@@ -1,5 +1,5 @@
-const test = require('ava')
-const { ElemType } = require('..')
+import test from 'ava'
+import { ElemType } from '../index.js'
 
 class Child extends ElemType
 {
@@ -67,36 +67,41 @@ test('test #1', t => {
 test('filter', t => {
   const children = [
     new Child({ className : 'foo' }),
-    new Child({ className : 'foo' }),
-    new Child({ className : 'foo' }),
+    new Child({ className : 'foo', hidden : true }),
+    new Child({ className : 'foo', hidden : true }),
     new Child({ className : 'foo' }),
   ]
+  let bar, bat, baz
   const elem = ElemType.render([
     children[0],
-    new Child({ className : 'bar' }),
+    bar = new Child({ className : 'bar' }),
     new ElemType([
       children[1],
-      new Child({ className : 'bat' }),
+      bat = new Child({ className : 'bat', hidden : true }),
       children[2],
     ]),
-    new Child({ className : 'baz' }),
+    baz = new Child({ className : 'baz' }),
     children[3],
   ])
-  const result = elem.findAll(Child, item => item.className === 'foo')
-
   t.is(elem.toString(), '<div>' +
     '<div class="foo"></div>' +
     '<div class="bar"></div>' +
     '<div>' +
-    '<div class="foo"></div>' +
-    '<div class="bat"></div>' +
-    '<div class="foo"></div>' +
+    '<div class="foo" aria-hidden="true"></div>' +
+    '<div class="bat" aria-hidden="true"></div>' +
+    '<div class="foo" aria-hidden="true"></div>' +
     '</div>' +
     '<div class="baz"></div>' +
     '<div class="foo"></div>' +
     '</div>')
-  t.is(result[0], children[0])
-  t.is(result[1], children[1])
-  t.is(result[2], children[2])
-  t.is(result[3], children[3])
+  t.deepEqual(elem.findAll(Child, item => item.className === 'foo'), children)
+  t.deepEqual(elem.findAll(Child, ['className', 'foo']), children)
+  t.deepEqual(elem.findAll(Child, ['className', 'bar']), [bar])
+  t.deepEqual(elem.findAll(Child, ['className', 'bat']), [bat])
+  t.deepEqual(elem.findAll(Child, ['className', 'baz']), [baz])
+  t.deepEqual(elem.findAll(Child, 'hidden'), [
+    children[1],
+    bat,
+    children[2],
+  ])
 })

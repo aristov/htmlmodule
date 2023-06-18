@@ -1,21 +1,9 @@
-const test = require('ava')
-const sinon = require('sinon')
-const { window, document } = require('xwindow')
+import test from 'ava'
+import sinon from 'sinon'
+import window from '../lib/window.cjs'
+import { HtmlForm, HtmlButton } from '../index.js'
 
-if(!window.SubmitEvent) {
-  // SubmitEvent polyfill for JSDOM
-  class SubmitEvent extends window.Event
-  {
-    constructor(type, init) {
-      super(type, init)
-      this.submitter = init.submitter
-    }
-  }
-
-  window.SubmitEvent = SubmitEvent
-}
-
-const { HtmlForm, HtmlButton } = require('..')
+const { document } = window
 
 test('submitter', t => {
   const onsubmit = sinon.spy()
@@ -68,7 +56,9 @@ test('relatedTarget', t => {
   t.is(onfocusB.args[0][0].target, buttonB)
   t.is(onfocusB.args[0][0].relatedTarget, buttonA)
 
-  document.body.innerHTML = ''
+  HtmlForm.destroy(form)
+
+  t.is(document.body.innerHTML, '')
 })
 
 test('stopPropagation', t => {

@@ -1,12 +1,12 @@
-const test = require('ava')
-const {
+import test from 'ava'
+import {
   HtmlDiv,
   HtmlInput,
   HtmlOutput,
   HtmlOption,
   HtmlAudio,
   HtmlTextArea,
-} = require('..')
+} from '../index.js'
 
 test('test #1', t => {
   const elem = HtmlDiv.render([

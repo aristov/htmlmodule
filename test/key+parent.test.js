@@ -1,6 +1,6 @@
-const test = require('ava')
-const window = require('xwindow')
-const { ElemType } = require('..')
+import test from 'ava'
+import window from '../lib/window.cjs'
+import { ElemType } from '../index.js'
 
 const document = window.document.implementation.createHTMLDocument('test')
 

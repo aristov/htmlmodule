@@ -1,6 +1,8 @@
-const test = require('ava')
-const { document } = require('xwindow')
-const { ElemType } = require('..')
+import test from 'ava'
+import window from '../lib/window.cjs'
+import { ElemType } from '../index.js'
+
+const { document } =  window
 
 class Child extends ElemType
 {

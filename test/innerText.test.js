@@ -1,7 +1,8 @@
-const window = require('xwindow')
-const test = require('ava')
-const sinon = require('sinon')
-const { HtmlType } = require('..')
+import test from 'ava'
+import sinon from 'sinon'
+import window from '../lib/window.cjs'
+import { HtmlType } from '../index.js'
+
 const { MutationObserver } = window
 
 Object.defineProperty(window.HTMLElement.prototype, 'innerText', {
