@@ -19,8 +19,8 @@ test('object', t => {
     },
   })
 
-  t.is(elem.toString(), '<div class="App" style="position: absolute; display: flex;"></div>')
-  t.is(elem.node.getAttribute('style'), 'position: absolute; display: flex;')
+  t.is(elem.toString(), '<div class="App" style="display: flex; position: absolute;"></div>')
+  t.is(elem.node.getAttribute('style'), 'display: flex; position: absolute;')
   t.is(elem.style.display, 'flex')
   t.is(elem.style.position, 'absolute')
 })
@@ -30,8 +30,8 @@ test('string', t => {
     style : 'position: fixed;',
   })
 
-  t.is(elem.toString(), '<div class="App" style="position: fixed; display: flex;"></div>')
-  t.is(elem.node.getAttribute('style'), 'position: fixed; display: flex;')
-  t.is(elem.style.display, 'flex')
+  t.is(elem.toString(), '<div class="App" style="position: fixed;"></div>')
+  t.is(elem.node.getAttribute('style'), 'position: fixed;')
+  t.is(elem.style.display, '')
   t.is(elem.style.position, 'fixed')
 })
