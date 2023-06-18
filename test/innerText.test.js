@@ -1,6 +1,6 @@
-import window from 'xwindow'
 import test from 'ava'
 import sinon from 'sinon'
+import window from '../lib/window.cjs'
 import { HtmlType } from '../index.js'
 
 const { MutationObserver } = window

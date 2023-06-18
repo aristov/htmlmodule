@@ -1,5 +1,5 @@
 import test from 'ava'
-import window from 'xwindow'
+import window from '../lib/window.cjs'
 import { HtmlBody, HtmlH1 } from '../index.js'
 
 const { document } =  window

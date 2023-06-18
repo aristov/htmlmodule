@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import window from 'xwindow'
+import window from '../lib/window.cjs'
 import { ElemType, HtmlType } from '../index.js'
 
 const { CustomEvent, Event, document } = window

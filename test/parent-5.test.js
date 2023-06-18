@@ -1,5 +1,5 @@
 import test from 'ava'
-import window from 'xwindow'
+import window from '../lib/window.cjs'
 import { ElemType, HtmlSpan } from '../index.js'
 
 let document, elem

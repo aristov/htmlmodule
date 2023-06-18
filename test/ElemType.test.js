@@ -1,5 +1,5 @@
 import test from 'ava'
-import window from 'xwindow'
+import window from '../lib/window.cjs'
 import { ElemType, PropType, HtmlA, HtmlB, HtmlI, HtmlP } from '../index.js'
 
 const { HTMLDivElement } = window

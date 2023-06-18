@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import window from 'xwindow'
+import window from '../lib/window.cjs'
 import { HtmlDiv, HtmlA, HtmlB, HtmlBr, HtmlSpan } from '../index.js'
 
 const { DocumentFragment } = window

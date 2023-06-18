@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import window from 'xwindow'
+import window from '../lib/window.cjs'
 import { HtmlForm, HtmlButton } from '../index.js'
 
 const { document } = window
