@@ -30,7 +30,7 @@ WAI-ARIA roles and attributes that help the developer create an accessible user 
 - API to build your own high-level components
 - WAI-ARIA role-based components to improve accessibility
 - Automatic generation of the className based on inheritance
-- Small footprint, 16KB after gzip
+- Small footprint, 17KB after gzip
 
 ## Documentation
 
