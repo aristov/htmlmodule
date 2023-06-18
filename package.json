@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "build": "webpack && NODE_ENV=production webpack",
-    "coverage": "nyc --reporter=lcov npm test",
-    "coverage-html": "nyc --reporter=html npm test",
+    "coverage": "c8 --reporter=lcov npm test",
+    "coverage-html": "c8 --reporter=html npm test",
     "publish": "git push && git push --tags",
     "start": "ava --watch",
     "test": "ava"
@@ -29,17 +29,18 @@
     "@babel/preset-env": "^7.20.2",
     "ava": "^5.2.0",
     "babel-loader": "^9.1.2",
+    "c8": "^8.0.0",
     "jsdom": "^22.1.0",
-    "nyc": "^15.1.0",
     "sinon": "^15.0.2",
     "terser-webpack-plugin": "^5.3.7",
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1"
   },
-  "nyc": {
+  "c8": {
     "exclude": [
       "dist/**",
-      "test/**"
+      "test/**",
+      "lib/window.cjs"
     ]
   },
   "keywords": [
