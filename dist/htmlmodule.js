@@ -1705,6 +1705,9 @@ var ElemType = /*#__PURE__*/function () {
   }, {
     key: "setState",
     value: function setState(state) {
+      if (!this.vnode) {
+        return;
+      }
       var prevState = _objectSpread({}, this.state);
       if (!this.state) {
         this.state = {};
@@ -2490,6 +2493,7 @@ var ElemType = /*#__PURE__*/function () {
       }
       this.__parent = null;
       this.__ref = null;
+      this.vnode = null;
       keepNode || this.node.remove();
     }
 
